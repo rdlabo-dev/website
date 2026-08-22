@@ -4,7 +4,27 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { JSDOM } from 'jsdom';
-import { generateArticles, normalizeFootnoteIds } from './generate-articles';
+import { generateArticles, normalizeFootnoteIds, renderArticleCoverSvg } from './generate-articles';
+
+test('renders an article-specific 1200x630 cover with escaped content', () => {
+  const svg = renderArticleCoverSvg({
+    slug: 'capacitor-example',
+    title: 'Capacitor <Example> & Setup',
+    emoji: '⚡',
+  });
+  assert.match(svg, /width="1200" height="630"/);
+  assert.match(svg, /Capacitor &lt;Example&gt; &amp; Setup/);
+  assert.match(svg, /⚡/);
+  assert.doesNotMatch(svg, /<Example>/);
+  const longWordSvg = renderArticleCoverSvg({
+    slug: 'long-word',
+    title:
+      '@capacitor-community/extraordinarily-long-package-name setup and troubleshooting guide for enterprise production applications',
+    emoji: '🔧',
+  });
+  assert.equal(longWordSvg.match(/font-size="58"/g)?.length, 3);
+  assert.match(longWordSvg, /…<\/text>/);
+});
 
 test('normalizes random Zenn footnote ids to stable article-scoped ids', () => {
   const rendered = new JSDOM(`
@@ -77,6 +97,49 @@ Translated body.
       /<loc>https:\/\/rdlabo\.dev\/articles\/example<\/loc>\s*<lastmod>2024-06-15<\/lastmod>/,
     );
     assert.doesNotMatch(sitemap, /<loc>https:\/\/rdlabo\.dev\/<\/loc>\s*<lastmod>/);
+    const catalog = await readFile(
+      join(root, 'projects/web-site/src/app/generated/article-catalog.generated.ts'),
+      'utf8',
+    );
+    assert.match(catalog, /"image": "https:\/\/rdlabo\.dev\/article-images\/example\.svg"/);
+    assert.match(catalog, /"imageWidth": 1200/);
+    assert.match(catalog, /"imageHeight": 630/);
+    const cover = await readFile(join(publicRoot, 'article-images/example.svg'), 'utf8');
+    assert.match(cover, /Example translation/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('invalid explicit article image aborts before generated outputs are changed', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'article-image-'));
+  const articlesRoot = join(root, 'projects/web-site/src/articles');
+  const generatedArticlesRoot = join(root, 'projects/web-site/src/app/generated/articles');
+  const sentinelPath = join(generatedArticlesRoot, 'keep.generated.ts');
+
+  try {
+    await Promise.all([
+      mkdir(articlesRoot, { recursive: true }),
+      mkdir(generatedArticlesRoot, { recursive: true }),
+    ]);
+    await Promise.all([
+      writeFile(
+        join(articlesRoot, 'example.md'),
+        `---
+title: Example translation
+description: Example description
+image: http://example.com/insecure.png
+zennSlug: example
+---
+Translated body.
+`,
+        'utf8',
+      ),
+      writeFile(sentinelPath, 'existing generated output\n', 'utf8'),
+    ]);
+
+    await assert.rejects(() => generateArticles({ root }), /absolute HTTPS URL/);
+    assert.equal(await readFile(sentinelPath, 'utf8'), 'existing generated output\n');
   } finally {
     await rm(root, { recursive: true, force: true });
   }

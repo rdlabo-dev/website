@@ -681,11 +681,25 @@ pagefind-modal-trigger.site-search {
   font-size: 1.08rem;
 }
 
-.article-header time {
-  display: block;
+.article-header__dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
   margin-top: 1rem;
   color: var(--site-ink-soft);
   font-size: 0.9rem;
+}
+
+.article-header__dates time {
+  margin-left: 0.2rem;
+}
+
+.article-header__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  border-radius: var(--site-radius);
 }
 
 .article-content {

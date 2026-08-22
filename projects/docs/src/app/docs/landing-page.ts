@@ -3,6 +3,7 @@ import { Component, LOCALE_ID, OnInit, PLATFORM_ID, inject, signal } from '@angu
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProjectDocs } from './docs-data';
 import { GitHubStarsService } from './github-stars.service';
+import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
 
 @Component({
@@ -105,6 +106,7 @@ import { SeoService } from './seo.service';
 export class LandingPageComponent implements OnInit {
   readonly #route = inject(ActivatedRoute);
   readonly #seo = inject(SeoService);
+  readonly #locale = inject(LOCALE_ID);
   readonly #stars = inject(GitHubStarsService);
   readonly #platformId = inject(PLATFORM_ID);
   readonly #numberFormat = new Intl.NumberFormat(inject(LOCALE_ID), {
@@ -126,6 +128,10 @@ export class LandingPageComponent implements OnInit {
       title: project.seoTitle ?? `${project.shortName} - rdlabo.dev`,
       description: project.description,
       path: project.path,
+      structuredData: docsBreadcrumbStructuredData(this.#locale, [
+        { name: 'rdlabo.dev', path: '/' },
+        { name: project.shortName, path: project.path },
+      ]),
     });
     if (isPlatformBrowser(this.#platformId)) {
       void this.#loadStarCount(project.repositoryUrl);

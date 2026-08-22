@@ -45,6 +45,8 @@ test('prerender output includes localized SEO metadata', async () => {
     /property="og:image" content="https:\/\/docs\.rdlabo\.dev\/assets\/brand\/og-card\.png"/,
   );
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
+  assert.match(html, /data-rdlabo-json-ld/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
 });
 
 test('prerenders current and past public sponsors in both locales', async () => {
@@ -82,10 +84,18 @@ test('Japanese home prerender uses slashless canonical SEO URLs', async () => {
   assert.doesNotMatch(html, /hreflang="ja" href="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
   assert.match(html, /hover:opacity-75" href="\/ja"/);
   assert.match(html, /hover:text-\[#c44320\][^>]*href="\/ja"/);
+  assert.match(html, /data-rdlabo-json-ld/);
+  assert.match(html, /"url":"https:\/\/docs\.rdlabo\.dev\/ja"/);
+  assert.match(html, /"inLanguage":"ja"/);
+  assert.match(html, /"@type":"WebPage"/);
+  assert.match(html, /"@id":"https:\/\/docs\.rdlabo\.dev\/#website"/);
 });
 
 test('prerendered docs shell stays layout-neutral before bootstrap', async () => {
   const html = await readFile(new URL('../dist/docs/browser/index.html', import.meta.url), 'utf8');
+  assert.match(html, /data-rdlabo-json-ld/);
+  assert.match(html, /"@type":"WebSite"/);
+  assert.match(html, /"url":"https:\/\/docs\.rdlabo\.dev\/"/);
   const shell = html.match(/<div\b[^>]*\bclass="[^"]*\bdocs-shell\b[^"]*"[^>]*>/)?.[0];
   assert.ok(shell, 'docs-shell must be present in prerendered index.html');
   assert.doesNotMatch(shell, /\blayout-ready\b/);
@@ -105,6 +115,30 @@ test('prerendered docs shell stays layout-neutral before bootstrap', async () =>
     css,
     /@media\s*\(\s*max-width:\s*1023px\s*\)[\s\S]*?\.docs-shell:not\(\.layout-ready\)\s+#docs-sidebar\s*\{[\s\S]*?visibility:\s*hidden;[\s\S]*?transform:\s*translateX\(-100%\);/,
   );
+});
+
+test('prerendered docs pages include breadcrumb JSON-LD with canonical HTTPS item URLs', async () => {
+  const [docsPage, support] = await Promise.all([
+    readFile(
+      new URL(
+        '../dist/docs/browser/projects/capacitor-admob/docs/readme/index.html',
+        import.meta.url,
+      ),
+      'utf8',
+    ),
+    readFile(new URL('../dist/docs/browser/support/index.html', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(docsPage, /"@type":"BreadcrumbList"/);
+  assert.match(docsPage, /"item":"https:\/\/docs\.rdlabo\.dev\/"/);
+  assert.match(docsPage, /"item":"https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-admob"/);
+  assert.match(
+    docsPage,
+    /"item":"https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-admob\/docs\/readme"/,
+  );
+
+  assert.match(support, /"@type":"BreadcrumbList"/);
+  assert.match(support, /"item":"https:\/\/docs\.rdlabo\.dev\/support"/);
 });
 
 test('prerendered locales include reusable hydration data', async () => {

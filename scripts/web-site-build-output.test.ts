@@ -13,6 +13,14 @@ test('prerenders the web-site home, archive, and translated articles', async () 
   assert.match(home, /Featured OSS/);
   assert.match(home, /https:\/\/docs\.rdlabo\.dev/);
   assert.match(home, /rel="canonical" href="https:\/\/rdlabo\.dev"/);
+  assert.match(home, /data-rdlabo-json-ld/);
+  assert.match(home, /"@type":"WebSite"/);
+  assert.match(home, /"@type":"Organization"/);
+  assert.match(home, /"@id":"https:\/\/rdlabo\.dev\/#organization"/);
+
+  const articles = await readFile(new URL('articles/index.html', browserRoot), 'utf8');
+  assert.match(articles, /"@type":"BreadcrumbList"/);
+  assert.match(articles, /"item":"https:\/\/rdlabo\.dev\/articles"/);
 
   for (const article of ARTICLE_SUMMARIES) {
     const html = await readFile(
@@ -25,6 +33,37 @@ test('prerenders the web-site home, archive, and translated articles', async () 
       html,
       new RegExp(`Read the original article in Japanese on ${article.sourceName}`),
     );
+    assert.match(html, /"@type":"BlogPosting"/);
+    assert.match(html, /"@type":"BreadcrumbList"/);
+    assert.match(
+      html,
+      new RegExp(`"mainEntityOfPage":"https://rdlabo.dev/articles/${article.slug}"`),
+    );
+    assert.match(
+      html,
+      new RegExp(`data-article-published[^>]*datetime="${article.publishedDate}"`),
+    );
+    assert.match(
+      html,
+      new RegExp(`"@id":"${article.originalUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`),
+    );
+    if (article.updatedAt) {
+      assert.match(html, new RegExp(`"dateModified":"${article.updatedAt}"`));
+      assert.match(html, new RegExp(`data-article-modified[^>]*datetime="${article.updatedAt}"`));
+    } else {
+      assert.doesNotMatch(html, /"dateModified":/);
+      assert.doesNotMatch(html, /data-article-modified/);
+    }
+    const escapedImage = article.image.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.match(html, new RegExp(`"image":"${escapedImage}"`));
+    assert.match(html, new RegExp(`property="og:image" content="${escapedImage}"`));
+    assert.match(html, new RegExp(`data-article-image[^>]*src="${escapedImage}"`));
+    const generatedCover = await readFile(
+      new URL(`article-images/${article.slug}.svg`, browserRoot),
+      'utf8',
+    );
+    assert.match(generatedCover, /width="1200" height="630"/);
+    assert.match(generatedCover, new RegExp(`data-article-slug="${article.slug}"`));
     if (article.slug === 'ionic-9-components-got-better') {
       assert.match(html, /class="article-link-card"/);
       assert.match(html, /Announcing Ionic Framework 9/);
@@ -44,6 +83,8 @@ test('prerenders the web-site home, archive, and translated articles', async () 
         `English translations of rdlabo articles published in ${year} about Ionic, Angular, and Capacitor\\.`,
       ),
     );
+    assert.match(archive, /"@type":"BreadcrumbList"/);
+    assert.match(archive, new RegExp(`"item":"https://rdlabo.dev/articles/archive/${year}"`));
   }
 });
 

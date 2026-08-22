@@ -6,8 +6,33 @@
         <div class="article-header__emoji" aria-hidden="true">{{ article.emoji }}</div>
         <h1>{{ article.title }}</h1>
         <p>{{ article.description }}</p>
-        <time [attr.datetime]="article.publishedDate">{{ displayDate }}</time>
+        <div class="article-header__dates">
+          <span
+            >Published
+            <time data-article-published [attr.datetime]="article.publishedDate">{{
+              displayDate
+            }}</time></span
+          >
+          @if (article.updatedAt && displayUpdatedDate) {
+            <span
+              >Updated
+              <time data-article-modified [attr.datetime]="article.updatedAt">{{
+                displayUpdatedDate
+              }}</time></span
+            >
+          }
+        </div>
       </header>
+
+      <img
+        class="article-header__cover"
+        data-article-image
+        [src]="article.image"
+        [alt]="article.title + ' cover image'"
+        [attr.width]="article.imageWidth"
+        [attr.height]="article.imageHeight"
+        fetchpriority="high"
+      />
 
       <aside class="article-original">
         <p>This article is an English translation.</p>

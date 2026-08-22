@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { articleSummaries, formatArticleDate } from '../../articles/article-data';
 import { FeaturedProjectCard } from '../../components/featured-project-card/featured-project-card';
+import { homeStructuredData } from '../../seo-json-ld';
 import { SeoService } from '../../seo.service';
 import { FEATURED_PROJECTS, SITE } from '../../site-config';
 
@@ -23,6 +24,7 @@ export class HomePage {
       title: 'rdlabo.dev — Open source for Ionic, Angular, and Capacitor',
       description: SITE.description,
       path: '/',
+      structuredData: homeStructuredData(SITE.description),
     });
   }
 }

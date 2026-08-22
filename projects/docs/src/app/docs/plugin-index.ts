@@ -1,6 +1,7 @@
 import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { projectGroupsForLocale } from './docs-data';
 import { ProjectIconComponent } from './project-icon';
+import { docsHomeStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
 
 @Component({
@@ -122,10 +123,12 @@ export class PluginIndexComponent implements OnInit {
       this.#locale.toLowerCase().startsWith('ja')
         ? 'Ionic・Angular・Capacitor OSSドキュメント | rdlabo'
         : 'Ionic, Angular, and Capacitor OSS Documentation | rdlabo';
+    const description = $localize`:@@siteDescription:Documentation for personal open source projects created and maintained by rdlabo.`;
     this.#seo.setPage({
       title: homeTitle,
-      description: $localize`:@@siteDescription:Documentation for personal open source projects created and maintained by rdlabo.`,
+      description,
       path: '/',
+      structuredData: docsHomeStructuredData(this.#locale, description),
     });
   }
 }

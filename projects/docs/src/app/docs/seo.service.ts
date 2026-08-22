@@ -1,14 +1,19 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, LOCALE_ID, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { serializeJsonLd, type JsonLdDocument } from '../../../../../shared/json-ld';
 import { localizedPublicPath } from '../locale-path';
 import { SITE_CONFIG } from '../site-config';
+
+const JSON_LD_SCRIPT_ID = 'rdlabo-json-ld';
+const JSON_LD_MARKER = 'data-rdlabo-json-ld';
 
 interface PageMetadata {
   title: string;
   description: string;
   path: string;
   noIndex?: boolean;
+  structuredData?: JsonLdDocument;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -44,6 +49,7 @@ export class SeoService {
     this.#setLink('alternate', englishUrl, 'en');
     this.#setLink('alternate', japaneseUrl, 'ja');
     this.#setLink('alternate', englishUrl, 'x-default');
+    this.#setStructuredData(page.noIndex ? undefined : page.structuredData);
   }
 
   #setLink(rel: string, href: string, hreflang?: string): void {
@@ -58,5 +64,25 @@ export class SeoService {
       this.#document.head.appendChild(link);
     }
     link.href = href;
+  }
+
+  #setStructuredData(data: JsonLdDocument | undefined): void {
+    const selector = `script[${JSON_LD_MARKER}], script#${JSON_LD_SCRIPT_ID}`;
+    const scripts = [...this.#document.head.querySelectorAll<HTMLScriptElement>(selector)];
+    const existing = scripts.shift();
+    for (const duplicate of scripts) duplicate.remove();
+    if (!data) {
+      existing?.remove();
+      return;
+    }
+    let script = existing;
+    if (!script) {
+      script = this.#document.createElement('script');
+      this.#document.head.appendChild(script);
+    }
+    script.type = 'application/ld+json';
+    script.id = JSON_LD_SCRIPT_ID;
+    script.setAttribute(JSON_LD_MARKER, '');
+    script.textContent = serializeJsonLd(data);
   }
 }

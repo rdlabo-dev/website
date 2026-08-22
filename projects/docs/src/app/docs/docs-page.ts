@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
+  LOCALE_ID,
   OnInit,
   PLATFORM_ID,
   inject,
@@ -14,6 +15,7 @@ import { CodePanel } from './code-panel';
 import { DocsHeading, DocsPage, ProjectDocs } from './docs-data';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ScrollSpyDirective } from './scroll-spy.directive';
+import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
 
 @Component({
@@ -147,6 +149,7 @@ import { SeoService } from './seo.service';
 export class DocsPageComponent implements OnInit, AfterViewInit {
   readonly #route = inject(ActivatedRoute);
   readonly #seo = inject(SeoService);
+  readonly #locale = inject(LOCALE_ID);
   readonly #document = inject(DOCUMENT);
   readonly #platformId = inject(PLATFORM_ID);
   readonly #destroyRef = inject(DestroyRef);
@@ -172,6 +175,11 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
         page.seoTitle ?? `${page.title} - ${project.shortName} - rdlabo.dev`,
       description: `${page.title}. ${project.description}`,
       path: page.path,
+      structuredData: docsBreadcrumbStructuredData(this.#locale, [
+        { name: 'rdlabo.dev', path: '/' },
+        { name: project.shortName, path: project.path },
+        { name: page.title, path: page.path },
+      ]),
     });
   }
 

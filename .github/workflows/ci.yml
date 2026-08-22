@@ -28,7 +28,7 @@ jobs:
       - run: npm run fmt:check
       - run: npm run lint
       - run: npm test
-      - run: git diff --exit-code -- projects/docs/src/app/generated projects/docs/public/sitemap.xml projects/web-site/src/app/generated projects/web-site/public/sitemap.xml
+      - run: test -z "$(git status --porcelain --untracked-files=all -- projects/docs/src/app/generated projects/docs/public/sitemap.xml projects/web-site/src/app/generated projects/web-site/public/article-images projects/web-site/public/sitemap.xml)"
       - run: npm run build
       - run: npm run seo:audit
-      - run: git diff --exit-code -- projects/docs/src/app/generated projects/docs/public/sitemap.xml projects/web-site/src/app/generated projects/web-site/public/sitemap.xml
+      - run: test -z "$(git status --porcelain --untracked-files=all -- projects/docs/src/app/generated projects/docs/public/sitemap.xml projects/web-site/src/app/generated projects/web-site/public/article-images projects/web-site/public/sitemap.xml)"

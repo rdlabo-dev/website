@@ -10,6 +10,7 @@ import {
   formatArticleDate,
 } from '../../articles/article-data';
 import { ArticleSidebar } from '../../components/article-sidebar/article-sidebar';
+import { articlesBreadcrumbStructuredData } from '../../seo-json-ld';
 import { SeoService } from '../../seo.service';
 import { SITE } from '../../site-config';
 
@@ -46,12 +47,14 @@ export class ArticlesPage {
     effect(() => {
       const selectedYear = this.selectedYear();
       const title = selectedYear ? `Articles from ${selectedYear}` : 'Articles';
+      const path = selectedYear ? `/articles/archive/${selectedYear}` : '/articles';
       this.#seo.setPage({
         title: `${title} — rdlabo.dev`,
         description: selectedYear
           ? `English translations of rdlabo articles published in ${selectedYear} about Ionic, Angular, and Capacitor.`
           : 'English translations of rdlabo articles about Ionic, Angular, and Capacitor.',
-        path: selectedYear ? `/articles/archive/${selectedYear}` : '/articles',
+        path,
+        structuredData: articlesBreadcrumbStructuredData(title, path),
       });
     });
   }

@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { CURRENT_SPONSORS, PAST_SPONSORS } from '../generated/sponsors.generated';
+import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
 
 @Component({
@@ -113,16 +114,25 @@ import { SeoService } from './seo.service';
 })
 export class SupportPageComponent implements OnInit {
   readonly #seo = inject(SeoService);
+  readonly #locale = inject(LOCALE_ID);
   readonly sponsorGroups = [
     { id: 'current', sponsors: CURRENT_SPONSORS },
     { id: 'past', sponsors: PAST_SPONSORS },
   ] as const;
 
   ngOnInit(): void {
+    const supportLabel = $localize`:@@supportPageTitle:Support open source - rdlabo.dev`.replace(
+      / - rdlabo\.dev$/,
+      '',
+    );
     this.#seo.setPage({
       title: $localize`:@@supportPageTitle:Support open source - rdlabo.dev`,
       description: $localize`:@@supportPageDescription:Support maintenance, documentation, and development across rdlabo's open source projects.`,
       path: '/support',
+      structuredData: docsBreadcrumbStructuredData(this.#locale, [
+        { name: 'rdlabo.dev', path: '/' },
+        { name: supportLabel, path: '/support' },
+      ]),
     });
   }
 }

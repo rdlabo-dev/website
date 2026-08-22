@@ -10,9 +10,11 @@ import {
   auditHreflangKeys,
   auditHtmlHreflangReciprocity,
   auditHtmlPage,
+  auditJsonLdSemantics,
   auditOrphanSitemapPages,
   auditSitemapEntries,
   collectInternalSitemapLinks,
+  expectedJsonLdTypes,
   htmlPathToPublicUrl,
   normalizeCanonicalUrl,
   normalizePublicUrl,
@@ -21,6 +23,26 @@ import {
   runSeoAudit,
   sitemapUrlToHtmlPath,
 } from './seo-audit';
+
+const WEB_SITE_HOME_JSON_LD =
+  '<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://rdlabo.dev","publisher":{"@id":"https://rdlabo.dev/#organization"},"inLanguage":"en"},{"@type":"Organization","@id":"https://rdlabo.dev/#organization","name":"rdlabo","url":"https://rdlabo.dev"}]}</script>';
+
+function webSiteArticleJsonLd(slug: string): string {
+  const pageUrl = `https://rdlabo.dev/articles/${slug}`;
+  const sourceUrl = `https://zenn.dev/rdlabo/articles/${slug}`;
+  const imageUrl = `https://rdlabo.dev/article-images/${slug}.svg`;
+  return `<meta property="article:published_time" content="2026-01-01T00:00:00.000Z"><meta property="og:image" content="${imageUrl}"><script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","mainEntityOfPage":"${pageUrl}","headline":"Article","description":"Example article.","image":"${imageUrl}","datePublished":"2026-01-01T00:00:00.000Z","author":{"@type":"Organization","name":"rdlabo","url":"https://rdlabo.dev"},"publisher":{"@id":"https://rdlabo.dev/#organization"},"inLanguage":"en","isBasedOn":{"@type":"Article","@id":"${sourceUrl}","inLanguage":"ja"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rdlabo.dev"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://rdlabo.dev/articles"},{"@type":"ListItem","position":3,"name":"Article","item":"${pageUrl}"}]}]}</script>`;
+}
+
+function webSiteArticleBody(slug: string): string {
+  return `<time data-article-published datetime="2026-01-01">January 1, 2026</time><img data-article-image src="https://rdlabo.dev/article-images/${slug}.svg"><aside class="article-original"><a href="https://zenn.dev/rdlabo/articles/${slug}">Original</a></aside>`;
+}
+
+const DOCS_HOME_JSON_LD_EN =
+  '<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://docs.rdlabo.dev/","publisher":{"@id":"https://rdlabo.dev/#organization"},"inLanguage":"en"}]}</script>';
+
+const DOCS_HOME_JSON_LD_JA =
+  '<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"WebPage","url":"https://docs.rdlabo.dev/ja","isPartOf":{"@id":"https://docs.rdlabo.dev/#website"},"inLanguage":"ja"}]}</script>';
 
 test('parseSitemap reads loc and lastmod only', () => {
   const entries = parseSitemap(`<?xml version="1.0" encoding="UTF-8"?>
@@ -412,25 +434,30 @@ test('runSeoAudit reports orphan pages and duplicate descriptions', async () => 
     'utf8',
   );
   const sharedDescription = 'Shared description for audit test.';
-  const head = (title: string, canonical: string) => `<!doctype html><html lang="en"><head>
+  const head = (
+    title: string,
+    canonical: string,
+    jsonLd = '',
+  ) => `<!doctype html><html lang="en"><head>
 <title>${title}</title>
 <meta name="description" content="${sharedDescription}" />
 <link rel="canonical" href="${canonical}" />
+${jsonLd}
 </head><body>`;
   await Promise.all([
     writeFile(
       join(browserRoot, 'index.html'),
-      `${head('Home — rdlabo.dev', 'https://rdlabo.dev/')}<a href="/articles/linked">Linked</a></body></html>`,
+      `${head('Home — rdlabo.dev', 'https://rdlabo.dev/', WEB_SITE_HOME_JSON_LD)}<a href="/articles/linked">Linked</a></body></html>`,
       'utf8',
     ),
     writeFile(
       join(browserRoot, 'articles', 'linked', 'index.html'),
-      `${head('Linked — rdlabo.dev', 'https://rdlabo.dev/articles/linked')}</body></html>`,
+      `${head('Linked — rdlabo.dev', 'https://rdlabo.dev/articles/linked', webSiteArticleJsonLd('linked'))}${webSiteArticleBody('linked')}</body></html>`,
       'utf8',
     ),
     writeFile(
       join(browserRoot, 'articles', 'orphan', 'index.html'),
-      `${head('Orphan — rdlabo.dev', 'https://rdlabo.dev/articles/orphan')}</body></html>`,
+      `${head('Orphan — rdlabo.dev', 'https://rdlabo.dev/articles/orphan', webSiteArticleJsonLd('orphan'))}${webSiteArticleBody('orphan')}</body></html>`,
       'utf8',
     ),
   ]);
@@ -475,12 +502,14 @@ test('runSeoAudit passes for a minimal built site', async () => {
 <title>Example — rdlabo.dev</title>
 <meta name="description" content="Example home page." />
 <link rel="canonical" href="https://rdlabo.dev/" />
+${WEB_SITE_HOME_JSON_LD}
 </head><body><a href="/articles/example">Example article</a></body></html>`;
   const articlePage = `<!doctype html><html lang="en"><head>
 <title>Example article — rdlabo.dev</title>
 <meta name="description" content="Example article page." />
 <link rel="canonical" href="https://rdlabo.dev/articles/example" />
-</head><body></body></html>`;
+${webSiteArticleJsonLd('example')}
+</head><body>${webSiteArticleBody('example')}</body></html>`;
   await Promise.all([
     writeFile(join(browserRoot, 'index.html'), page, 'utf8'),
     writeFile(join(browserRoot, 'articles', 'example', 'index.html'), articlePage, 'utf8'),
@@ -501,6 +530,156 @@ test('runSeoAudit passes for a minimal built site', async () => {
   assert.deepEqual(errors, []);
 });
 
+test('expectedJsonLdTypes maps representative routes to required schema types', () => {
+  assert.deepEqual(expectedJsonLdTypes('https://rdlabo.dev/', 'web-site'), [
+    'WebSite',
+    'Organization',
+  ]);
+  assert.deepEqual(expectedJsonLdTypes('https://rdlabo.dev/articles', 'web-site'), [
+    'BreadcrumbList',
+  ]);
+  assert.deepEqual(expectedJsonLdTypes('https://rdlabo.dev/articles/example', 'web-site'), [
+    'BlogPosting',
+    'BreadcrumbList',
+  ]);
+  assert.deepEqual(expectedJsonLdTypes('https://docs.rdlabo.dev/', 'docs'), ['WebSite']);
+  assert.deepEqual(expectedJsonLdTypes('https://docs.rdlabo.dev/ja', 'docs'), ['WebPage']);
+  assert.deepEqual(expectedJsonLdTypes('https://docs.rdlabo.dev/support', 'docs'), [
+    'BreadcrumbList',
+  ]);
+  assert.deepEqual(
+    expectedJsonLdTypes('https://docs.rdlabo.dev/projects/capacitor-admob/docs/readme', 'docs'),
+    ['BreadcrumbList'],
+  );
+  assert.deepEqual(
+    expectedJsonLdTypes(
+      'https://docs.rdlabo.dev/projects/eslint-plugin/docs/rules/example-rule',
+      'docs',
+    ),
+    ['BreadcrumbList'],
+  );
+});
+
+test('auditJsonLdSemantics validates breadcrumbs, BlogPosting canonical alignment, and dateModified rules', () => {
+  const origin = 'https://rdlabo.dev';
+  const pageUrl = `${origin}/articles/example`;
+  const validArticle = `<!doctype html><html lang="en"><head>
+<title>Example — rdlabo.dev</title>
+<meta name="description" content="Example article." />
+<link rel="canonical" href="${pageUrl}" />
+<meta property="article:published_time" content="2025-12-31T16:00:00.000Z" />
+<meta property="og:image" content="${origin}/article-images/example.svg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BlogPosting",
+      "mainEntityOfPage":"${pageUrl}",
+      "headline":"Example",
+      "description":"Example article.",
+      "image":"${origin}/article-images/example.svg",
+      "datePublished":"2025-12-31T16:00:00.000Z",
+      "dateModified":"2026-02-01",
+      "author":{"@type":"Organization","name":"rdlabo","url":"${origin}"},
+      "publisher":{"@id":"${origin}/#organization"},
+      "inLanguage":"en",
+      "isBasedOn":{"@type":"Article","@id":"https://zenn.dev/rdlabo/articles/example","inLanguage":"ja"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"${origin}"},
+        {"@type":"ListItem","position":2,"name":"Articles","item":"${origin}/articles"},
+        {"@type":"ListItem","position":3,"name":"Example","item":"${pageUrl}"}
+      ]
+    }
+  ]
+}</script>
+</head><body><time data-article-published datetime="2026-01-01">January 1, 2026</time><time data-article-modified datetime="2026-02-01">February 1, 2026</time><img data-article-image src="${origin}/article-images/example.svg" width="1200" height="630"><aside class="article-original"><a href="https://zenn.dev/rdlabo/articles/example">Original</a></aside></body></html>`;
+  const document = new JSDOM(validArticle).window.document;
+  assert.deepEqual(auditJsonLdSemantics(document, pageUrl, origin, 'web-site'), []);
+
+  const wrongImageDimensions = validArticle.replace(
+    'property="og:image:width" content="1200"',
+    'property="og:image:width" content="800"',
+  );
+  assert.match(
+    auditJsonLdSemantics(
+      new JSDOM(wrongImageDimensions).window.document,
+      pageUrl,
+      origin,
+      'web-site',
+    ).join('\n'),
+    /og:image dimensions must match the visible article image/,
+  );
+
+  const unknownImageDimensions = validArticle
+    .replace(/<meta property="og:image:(?:width|height)"[^>]+>\n/g, '')
+    .replace(' width="1200" height="630"', '');
+  assert.deepEqual(
+    auditJsonLdSemantics(
+      new JSDOM(unknownImageDimensions).window.document,
+      pageUrl,
+      origin,
+      'web-site',
+    ),
+    [],
+  );
+
+  const staleModified = validArticle.replace(
+    '"dateModified":"2026-02-01"',
+    '"dateModified":"2025-12-01"',
+  );
+  assert.match(
+    auditJsonLdSemantics(
+      new JSDOM(staleModified).window.document,
+      pageUrl,
+      origin,
+      'web-site',
+    ).join('\n'),
+    /dateModified must not be before datePublished/,
+  );
+
+  const badBreadcrumb = validArticle.replace('"position":2', '"position":3');
+  assert.match(
+    auditJsonLdSemantics(
+      new JSDOM(badBreadcrumb).window.document,
+      pageUrl,
+      origin,
+      'web-site',
+    ).join('\n'),
+    /BreadcrumbList positions must be contiguous/,
+  );
+
+  const missingSource = validArticle.replace(
+    ',\n      "isBasedOn":{"@type":"Article","@id":"https://zenn.dev/rdlabo/articles/example","inLanguage":"ja"}',
+    '',
+  );
+  assert.match(
+    auditJsonLdSemantics(
+      new JSDOM(missingSource).window.document,
+      pageUrl,
+      origin,
+      'web-site',
+    ).join('\n'),
+    /must declare isBasedOn as an Article object/,
+  );
+
+  const invalidUnmarkedBlock = validArticle.replace(
+    '</head>',
+    '<script type="application/ld+json">{broken}</script></head>',
+  );
+  assert.match(
+    auditHtmlPage(invalidUnmarkedBlock, pageUrl, {
+      bilingual: false,
+      siteName: 'web-site',
+    }).join('\n'),
+    /invalid JSON/,
+  );
+});
+
 test('runSeoAudit passes for a minimal bilingual docs site with simple sitemap', async () => {
   const root = await mkdtemp(join(tmpdir(), 'seo-audit-docs-'));
   const browserRoot = join(root, 'dist/docs/browser');
@@ -515,7 +694,7 @@ test('runSeoAudit passes for a minimal bilingual docs site with simple sitemap',
 </urlset>`,
     'utf8',
   );
-  const head = (lang: string, canonical: string, en: string, ja: string, body = '') =>
+  const head = (lang: string, canonical: string, en: string, ja: string, jsonLd = '', body = '') =>
     `<!doctype html><html lang="${lang}"><head>
 <title>Docs home</title>
 <meta name="description" content="Docs portal home." />
@@ -523,16 +702,24 @@ test('runSeoAudit passes for a minimal bilingual docs site with simple sitemap',
 <link rel="alternate" hreflang="en" href="${en}" />
 <link rel="alternate" hreflang="ja" href="${ja}" />
 <link rel="alternate" hreflang="x-default" href="${en}" />
+${jsonLd}
 </head><body>${body}</body></html>`;
   await Promise.all([
     writeFile(
       join(browserRoot, 'index.html'),
-      head('en', `${origin}/`, `${origin}/`, `${origin}/ja`, `<a href="/ja">Japanese</a>`),
+      head(
+        'en',
+        `${origin}/`,
+        `${origin}/`,
+        `${origin}/ja`,
+        DOCS_HOME_JSON_LD_EN,
+        `<a href="/ja">Japanese</a>`,
+      ),
       'utf8',
     ),
     writeFile(
       join(browserRoot, 'ja', 'index.html'),
-      head('ja', `${origin}/ja`, `${origin}/`, `${origin}/ja`),
+      head('ja', `${origin}/ja`, `${origin}/`, `${origin}/ja`, DOCS_HOME_JSON_LD_JA),
       'utf8',
     ),
   ]);
@@ -574,6 +761,7 @@ test('runSeoAudit catches empty hreflang and relative href via global extraction
 <link rel="alternate" hreflang="ja" href="/ja" />
 <link rel="alternate" hreflang="x-default" href="${origin}/" />
 <link rel="alternate" hreflang="  " href="${origin}/ignored" />
+${DOCS_HOME_JSON_LD_EN}
 </head><body><a href="/ja">Japanese</a></body></html>`;
   const japanesePage = `<!doctype html><html lang="ja"><head>
 <title>Docs home</title>
@@ -582,6 +770,7 @@ test('runSeoAudit catches empty hreflang and relative href via global extraction
 <link rel="alternate" hreflang="en" href="${origin}/" />
 <link rel="alternate" hreflang="ja" href="${origin}/ja" />
 <link rel="alternate" hreflang="x-default" href="${origin}/" />
+${DOCS_HOME_JSON_LD_JA}
 </head><body></body></html>`;
   await Promise.all([
     writeFile(join(browserRoot, 'index.html'), englishPage, 'utf8'),
@@ -626,6 +815,7 @@ test('runSeoAudit ignores built HTML outside the sitemap', async () => {
 <title>Home — rdlabo.dev</title>
 <meta name="description" content="Example home page." />
 <link rel="canonical" href="https://rdlabo.dev/" />
+${WEB_SITE_HOME_JSON_LD}
 </head><body></body></html>`;
   const legacyPage = `<!doctype html><html lang="en"><head>
 <title>Legacy redirect — rdlabo.dev</title>

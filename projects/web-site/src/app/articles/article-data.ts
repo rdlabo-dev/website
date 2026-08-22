@@ -10,6 +10,10 @@ export interface ArticleSummary {
   originalUrl: string;
   publishedAt: string;
   publishedDate: string;
+  updatedAt?: string;
+  image: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 export interface ArticleDetail extends ArticleSummary {

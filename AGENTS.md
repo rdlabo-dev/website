@@ -11,18 +11,18 @@ The documentation portal generates bilingual pages from source packages (pinned 
 
 ## Quick reference
 
-| Task                                               | Where                                                                                                                                        |
-| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Add/remove a project, change page list or metadata | `scripts/project-manifest.ts`                                                                                                                |
-| Write/edit Japanese documentation                  | `projects/docs/src/{project}/docs/ja/`                                                                                                       |
-| Write/edit English for portal-hosted projects      | `projects/docs/src/{project}/docs/` (read via GitHub raw, not local checkout)                                                                |
-| Write/edit English for package-hosted projects     | The OSS package repository                                                                                                                   |
-| Bump a package version                             | `package.json` pin → `npm install` → `npm run docs:generate`                                                                                 |
-| Regenerate all pages                               | `npm run docs:generate` (output: `projects/docs/src/app/generated/` — never edit by hand)                                                    |
-| Write/edit English article translations            | `projects/web-site/src/articles/*.md`                                                                                                        |
-| Regenerate article catalog and HTML                | `npm run articles:generate` (output: `projects/web-site/src/app/generated/` and `projects/web-site/public/sitemap.xml` — never edit by hand) |
-| Start the top site locally                         | `npm run start:web-site`                                                                                                                     |
-| Build or deploy one app                            | `npm run build:docs` / `build:web-site` / `deploy:docs` / `deploy:web-site`                                                                  |
+| Task                                               | Where                                                                                                                                                                                     |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Add/remove a project, change page list or metadata | `scripts/project-manifest.ts`                                                                                                                                                             |
+| Write/edit Japanese documentation                  | `projects/docs/src/{project}/docs/ja/`                                                                                                                                                    |
+| Write/edit English for portal-hosted projects      | `projects/docs/src/{project}/docs/` (read via GitHub raw, not local checkout)                                                                                                             |
+| Write/edit English for package-hosted projects     | The OSS package repository                                                                                                                                                                |
+| Bump a package version                             | `package.json` pin → `npm install` → `npm run docs:generate`                                                                                                                              |
+| Regenerate all pages                               | `npm run docs:generate` (output: `projects/docs/src/app/generated/` — never edit by hand)                                                                                                 |
+| Write/edit English article translations            | `projects/web-site/src/articles/*.md`                                                                                                                                                     |
+| Regenerate article catalog, HTML, and cover images | `npm run articles:generate` (output: `projects/web-site/src/app/generated/`, `projects/web-site/public/article-images/`, and `projects/web-site/public/sitemap.xml` — never edit by hand) |
+| Start the top site locally                         | `npm run start:web-site`                                                                                                                                                                  |
+| Build or deploy one app                            | `npm run build:docs` / `build:web-site` / `deploy:docs` / `deploy:web-site`                                                                                                               |
 
 ## Page roles
 
@@ -59,9 +59,9 @@ English-only Angular app for `rdlabo.dev`. Home page, featured OSS links, and re
 2. Fetches public Zenn metadata from `https://zenn.dev/rdlabo/feed?all=1` and only the note URLs explicitly declared by translated articles.
 3. Requires every source to match a public article. For note, generation also requires `sourceRevision` to match the SHA-256 of the current Japanese title and body so upstream edits cannot silently bypass translation review. `publishedDate` uses Asia/Tokyo.
 4. Renders Markdown to HTML (Zenn image paths rewritten, top-level `h1` demoted to `h2`, external links get `rel="noopener noreferrer"`).
-5. Writes generated TypeScript modules, lazy loaders, and `projects/web-site/public/sitemap.xml`.
+5. Writes generated TypeScript modules, lazy loaders, article-specific SVG cover images, and `projects/web-site/public/sitemap.xml`.
 
-Generated outputs under `projects/web-site/src/app/generated/` and `projects/web-site/public/sitemap.xml` must not be edited by hand.
+Generated outputs under `projects/web-site/src/app/generated/`, `projects/web-site/public/article-images/`, and `projects/web-site/public/sitemap.xml` must not be edited by hand.
 
 `prebuild:web-site` runs `articles:generate`; root `pretest` runs it together with
 `docs:generate`.
@@ -206,12 +206,25 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 - Bilingual docs pages emit `link[rel="alternate"][hreflang]` tags (`en`, `ja`, `x-default`) in HTML `<head>`. That is the canonical hreflang discovery surface. Each alternate `href` must be a non-empty, fully-qualified HTTPS URL (not relative paths, protocol-relative URLs, or `http:`).
 - The docs sitemap is deliberately simple: standard `urlset` entries with `<loc>` and optional explicit `<lastmod>` only (same shape as the top site). It omits `xmlns:xhtml` and `xhtml:link` alternates to reduce sitemap payload while diagnosing Search Console fetch issues. XHTML sitemap hreflang remains a supported standard elsewhere; this is redundancy removal, not a claim that sitemap hreflang is invalid.
 
+### JSON-LD structured data
+
+- Shared JSON-LD builders and safe serialization live in `shared/json-ld.ts`. The two app-specific graph builders live in `projects/web-site/src/app/seo-json-ld.ts` and `projects/docs/src/app/docs/seo-json-ld.ts`.
+- Each prerendered page may have exactly one managed `script#rdlabo-json-ld[data-rdlabo-json-ld][type="application/ld+json"]`. `SeoService.setPage` replaces it on navigation and removes it when no structured data is supplied or the page is `noIndex`.
+- `rdlabo.dev` emits `WebSite` + `Organization` on the home page, `BreadcrumbList` on article indexes, and `BlogPosting` + `BreadcrumbList` on translated article pages.
+- `docs.rdlabo.dev` emits `WebSite` only on the subdomain root. The Japanese `/ja` home emits a localized `WebPage` that references the root `WebSite`, because Google does not support a separate site name at a subdirectory level. Support, project landing, and documentation pages emit localized `BreadcrumbList` data.
+- Article `datePublished` comes from the source publication metadata. Emit `dateModified` only from an explicit validated article `updatedAt`; never infer it from generation or deployment time.
+- When `updatedAt` is present, the article page must display the same date in `time[data-article-modified]`; never expose a search-only modification date.
+- Every translated article gets a deterministic 1200×630 SVG cover derived from its title, emoji, and slug. `BlogPosting.image`, the visible article image, and `og:image` must agree. An explicit article-front-matter `image` may override the generated URL only when it is an absolute HTTPS URL representing that article. Override dimensions are unknown, so the page must omit both `og:image:width` / `og:image:height` and visible `width` / `height`; generated covers declare all four values as 1200×630. Do not reuse the generic site OG card or a logo as every article's representative image.
+- Translated articles identify the visible Japanese source link with `isBasedOn` as an `Article` in language `ja` while keeping the English rdlabo.dev URL canonical.
+- Structured-data strings must go through `serializeJsonLd`; do not assign raw `JSON.stringify` output to a script element.
+
 ### SEO audit
 
 - `npm run seo:audit` checks built sitemap-listed HTML for `docs.rdlabo.dev` and `rdlabo.dev`.
 - For bilingual docs, the audit validates reciprocal HTML-head hreflang across all sitemap-listed pages (exactly `en`, `ja`, and `x-default` — no other hreflang keys; no empty/whitespace `hreflang` attributes; alternate `href` values must be fully-qualified HTTPS URLs; targets must be sitemap locs; identical normalized mapping on EN/JA pairs). It does not require sitemap-level hreflang when the docs sitemap omits alternates.
 - Canonical URLs must match the sitemap page URL exactly after trailing-slash normalization; query strings and fragments are rejected rather than stripped silently.
-- When JSON-LD blocks are present, the audit validates syntax and basic shape only (valid JSON, object nodes, non-empty string `@type`). It is not a Google rich-result validator. Add schema-specific rich-result checks alongside each new JSON-LD schema when it is introduced.
+- JSON-LD validation covers all blocks for syntax and object shape, then validates the managed graph by route. It requires the expected schema types, canonical alignment, one instance of each required type, internal absolute-HTTPS breadcrumb items with contiguous positions, article author/publisher/language/source fields, required valid article-specific images with JSON-LD/OG/visible agreement and consistent optional dimensions, valid non-future publication/modification dates, and agreement with visible/meta article dates. Extend both route expectations and semantic tests when adding a schema or public route.
+- This audit enforces this repository's contracts; use Google's Rich Results Test after production deployment for Google's current eligibility diagnostics.
 - CI runs it after `npm run build`. Fix aggregated audit errors before merging.
 
 ## Internal and external links
@@ -229,7 +242,7 @@ The CI pipeline runs:
 1. `npm run fmt:check` — Prettier formatting.
 2. `npm run lint` — ESLint for `projects/docs` and `projects/web-site`.
 3. `npm test` — node contract tests + `ng test docs` + `ng test web-site`. Includes bilingual update blocker for documentation pages.
-4. Generated-output drift checks — `git diff --exit-code` on `projects/docs/src/app/generated`, `projects/docs/public/sitemap.xml`, `projects/web-site/src/app/generated`, and `projects/web-site/public/sitemap.xml` (before and after build).
+4. Generated-output drift checks — `git diff --exit-code` on `projects/docs/src/app/generated`, `projects/docs/public/sitemap.xml`, `projects/web-site/src/app/generated`, `projects/web-site/public/article-images`, and `projects/web-site/public/sitemap.xml` (before and after build).
 5. `npm run build` — `build:docs` (pagefind search index + `build-output.test.ts`) and `build:web-site` (`web-site-build-output.test.ts`).
 6. `npm run seo:audit` — validates built HTML metadata against both sitemaps.
 

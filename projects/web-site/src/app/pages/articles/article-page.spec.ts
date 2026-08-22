@@ -10,10 +10,14 @@ describe('ArticlePage', () => {
     title: 'Test Article',
     description: 'Test description',
     emoji: '📝',
+    image: 'https://rdlabo.dev/article-images/test-slug.svg',
+    imageWidth: 1200,
+    imageHeight: 630,
     sourceName: 'Zenn',
     originalUrl: 'https://zenn.dev/rdlabo/articles/test-slug',
     publishedAt: '2026-01-01T00:00:00.000Z',
     publishedDate: '2026-01-01',
+    updatedAt: '2026-02-01',
     html: '<p>Article body</p>',
     headings: [
       { id: 'first-section', text: 'First section', level: 2 },
@@ -55,6 +59,26 @@ describe('ArticlePage', () => {
 
     expect(noticeIndex).toBeGreaterThan(-1);
     expect(contentIndex).toBeGreaterThan(noticeIndex);
+  });
+
+  it('shows publication and explicit modification dates as visible time elements', () => {
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('time[data-article-published]')?.getAttribute('datetime')).toBe(
+      article.publishedDate,
+    );
+    expect(root.querySelector('time[data-article-modified]')?.getAttribute('datetime')).toBe(
+      article.updatedAt,
+    );
+    expect(root.querySelector('.article-header__dates')?.textContent).toContain('Updated');
+  });
+
+  it('shows the same article-specific image used by structured metadata', () => {
+    const image = fixture.nativeElement.querySelector(
+      'img[data-article-image]',
+    ) as HTMLImageElement;
+    expect(image.getAttribute('src')).toBe(article.image);
+    expect(image.width).toBe(1200);
+    expect(image.height).toBe(630);
   });
 
   it('renders only level-two headings in the contents list', () => {

@@ -24,6 +24,7 @@ interface ArticleFrontMatter {
   sourceRevision?: string;
   slug?: string;
   emoji?: string;
+  image?: string;
 }
 
 interface ArticleTranslation {
@@ -36,6 +37,7 @@ interface ArticleTranslation {
   description: string;
   updatedAt?: string;
   emoji: string;
+  image?: string;
   body: string;
 }
 
@@ -45,6 +47,9 @@ interface GeneratedArticle {
   description: string;
   updatedAt?: string;
   emoji: string;
+  image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   sourceName: 'Zenn' | 'note';
   originalUrl: string;
   publishedAt: string;
@@ -89,8 +94,72 @@ function required(value: unknown, field: string, file: string): string {
   return value.trim();
 }
 
+function optionalHttpsUrl(value: unknown, field: string, file: string): string | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value !== 'string' || !value.trim()) {
+    throw new Error(`${file} must declare ${field} as a non-empty HTTPS URL when present`);
+  }
+  const normalized = value.trim();
+  try {
+    if (new URL(normalized).protocol !== 'https:') throw new Error('not HTTPS');
+  } catch {
+    throw new Error(`${file} must declare ${field} as an absolute HTTPS URL when present`);
+  }
+  return normalized;
+}
+
 function rewriteZennImages(markdown: string): string {
   return markdown.replaceAll(/([("'])\/images\//g, '$1https://zenn.dev/images/');
+}
+
+function escapeXml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
+}
+
+function wrapCoverTitle(title: string): string[] {
+  const words = title
+    .trim()
+    .split(/\s+/)
+    .flatMap((word) => word.match(/.{1,34}/gu) ?? []);
+  const lines: string[] = [];
+  let truncated = false;
+  for (const word of words) {
+    const current = lines.at(-1);
+    if (!current) {
+      lines.push(word);
+    } else if (current.length + word.length + 1 <= 34) {
+      lines[lines.length - 1] = `${current} ${word}`;
+    } else if (lines.length < 3) {
+      lines.push(word);
+    } else {
+      truncated = true;
+      break;
+    }
+  }
+  if (truncated && lines[2]) lines[2] = `${lines[2].slice(0, 33).trimEnd()}…`;
+  return lines;
+}
+
+export function renderArticleCoverSvg(article: {
+  slug: string;
+  title: string;
+  emoji: string;
+}): string {
+  let hash = 0;
+  for (const character of article.slug) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+  const hue = hash % 360;
+  const titleLines = wrapCoverTitle(article.title)
+    .map(
+      (line, index) =>
+        `<text x="96" y="${300 + index * 76}" fill="#fff" font-family="system-ui, sans-serif" font-size="58" font-weight="700">${escapeXml(line)}</text>`,
+    )
+    .join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description" data-article-slug="${escapeXml(article.slug)}"><title id="title">${escapeXml(article.title)}</title><desc id="description">Cover image for ${escapeXml(article.title)}</desc><defs><linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(${hue} 58% 24%)"/><stop offset="1" stop-color="hsl(${(hue + 42) % 360} 72% 42%)"/></linearGradient></defs><rect width="1200" height="630" rx="36" fill="url(#background)"/><circle cx="1050" cy="80" r="230" fill="#fff" opacity=".08"/><text x="96" y="165" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif" font-size="92">${escapeXml(article.emoji)}</text>${titleLines}<text x="96" y="570" fill="#fff" opacity=".78" font-family="system-ui, sans-serif" font-size="28" font-weight="600">rdlabo.dev · English developer article</text></svg>\n`;
 }
 
 function renderArticleLinkCards(document: Document): void {
@@ -223,6 +292,7 @@ async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[
           title: required(parsed.attributes.title, 'title', file),
           description: required(parsed.attributes.description, 'description', file),
           updatedAt: optionalUpdatedAt(parsed.attributes.updatedAt, file),
+          image: optionalHttpsUrl(parsed.attributes.image, 'image', file),
           emoji:
             typeof parsed.attributes.emoji === 'string' && parsed.attributes.emoji.trim()
               ? parsed.attributes.emoji.trim()
@@ -240,6 +310,7 @@ async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[
         title: required(parsed.attributes.title, 'title', file),
         description: required(parsed.attributes.description, 'description', file),
         updatedAt: optionalUpdatedAt(parsed.attributes.updatedAt, file),
+        image: optionalHttpsUrl(parsed.attributes.image, 'image', file),
         emoji:
           typeof parsed.attributes.emoji === 'string' && parsed.attributes.emoji.trim()
             ? parsed.attributes.emoji.trim()
@@ -330,11 +401,15 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
       rendered.window.document.body.innerHTML,
       `translated article ${slug}`,
     );
+    const generatedImage = !translation.image;
     articles.push({
       slug,
       title: translation.title,
       description: translation.description,
       ...(translation.updatedAt ? { updatedAt: translation.updatedAt } : {}),
+      image:
+        translation.image ?? `https://rdlabo.dev/article-images/${encodeURIComponent(slug)}.svg`,
+      ...(generatedImage ? { imageWidth: 1200, imageHeight: 630 } : {}),
       emoji: translation.emoji,
       sourceName: translation.source === 'note' ? 'note' : 'Zenn',
       originalUrl: metadata.url,
@@ -347,7 +422,12 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
   articles.sort((left, right) => right.publishedAt.localeCompare(left.publishedAt));
 
   await rm(generatedArticlesRoot, { recursive: true, force: true });
-  await mkdir(generatedArticlesRoot, { recursive: true });
+  const articleImagesRoot = join(publicRoot, 'article-images');
+  await rm(articleImagesRoot, { recursive: true, force: true });
+  await Promise.all([
+    mkdir(generatedArticlesRoot, { recursive: true }),
+    mkdir(articleImagesRoot, { recursive: true }),
+  ]);
   const summaries = articles.map(({ html: _html, headings: _headings, ...summary }) => summary);
   const catalog = `// Generated by scripts/generate-articles.ts. Do not edit.\nexport const ARTICLE_SUMMARIES = ${JSON.stringify(summaries, null, 2)} as const;\n\nexport const ARTICLE_YEARS = ${JSON.stringify([...new Set(articles.map((article) => article.publishedDate.slice(0, 4)))])} as const;\n`;
   const loaders = `// Generated by scripts/generate-articles.ts. Do not edit.\nexport const ARTICLE_LOADERS: Record<string, () => Promise<{ default: { html: string; headings: readonly { id: string; text: string; level: 2 | 3 }[] } }>> = {\n${articles.map((article) => `  ${JSON.stringify(article.slug)}: () => import('./articles/${article.slug}.generated'),`).join('\n')}\n};\n`;
@@ -371,6 +451,12 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
     writeIfChanged(join(generatedRoot, 'article-catalog.generated.ts'), catalog),
     writeIfChanged(join(generatedRoot, 'article-loaders.generated.ts'), loaders),
     writeIfChanged(join(publicRoot, 'sitemap.xml'), sitemap),
+    ...articles.map((article) =>
+      writeIfChanged(
+        join(articleImagesRoot, `${article.slug}.svg`),
+        renderArticleCoverSvg(article),
+      ),
+    ),
     ...articles.map((article) =>
       writeIfChanged(
         join(generatedArticlesRoot, `${article.slug}.generated.ts`),

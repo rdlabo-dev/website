@@ -182,3 +182,7 @@ After `CI` succeeds for the current `main` revision, the separate `Deploy to Clo
 The GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` is required. Create a narrowly scoped Cloudflare API token that can edit Workers for the account declared in the Wrangler configs; never commit the token. Local deployment remains available for recovery through `npm run deploy` and `npm run deploy:dry-run`, but is not part of the normal release flow.
 
 Cloudflare drops trailing slashes (`html_handling: drop-trailing-slash`) so URLs match canonical routes on both domains.
+
+## Maintainers
+
+- [rdlabo](https://rdlabo.dev/)

@@ -941,9 +941,7 @@ test('configures Cloudflare Workers Static Assets for both public sites', async 
     packageJson.scripts?.['deploy:dry-run'],
     'npm run build && npm run deploy:docs:dry-run && npm run deploy:web-site:dry-run',
   );
-  await assert.rejects(() =>
-    access(new URL('../projects/docs/public/_redirects', import.meta.url), constants.F_OK),
-  );
+  await access(new URL('../projects/docs/public/_redirects', import.meta.url), constants.F_OK);
 });
 
 test('deploys verified main revisions to Cloudflare', async () => {
@@ -952,10 +950,7 @@ test('deploys verified main revisions to Cloudflare', async () => {
     readdir(new URL('../.github/workflows', import.meta.url)),
   ]);
 
-  await assert.rejects(
-    () => access(new URL('../netlify.toml', import.meta.url), constants.F_OK),
-    (error: NodeJS.ErrnoException) => error.code === 'ENOENT',
-  );
+  await access(new URL('../netlify.toml', import.meta.url), constants.F_OK);
   assert.equal(
     workflowFiles.some((fileName) => /netlify/i.test(fileName)),
     false,
@@ -1025,6 +1020,147 @@ test('uses docs.rdlabo.dev as the canonical origin in site SEO outputs', async (
     new RegExp(`Sitemap:\\s*${canonicalOrigin.replaceAll('.', '\\.')}/sitemap\\.xml`),
   );
   assert.doesNotMatch(robots, new RegExp(legacyOrigin.replaceAll('.', '\\.')));
+});
+
+test('keeps legacy Stripe host paths on permanent canonical redirects', async () => {
+  const [redirects, netlify] = await Promise.all([
+    readFile(new URL('../projects/docs/public/_redirects', import.meta.url), 'utf8'),
+    readFile(new URL('../netlify.toml', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(
+    redirects,
+    /^\/docs\/\* https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat 301$/m,
+  );
+  assert.match(
+    redirects,
+    /^\/stripe\/docs\/\* https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat 301$/m,
+  );
+  assert.doesNotMatch(redirects, /https:\/\/stripe\.capacitorjs\.jp/);
+  assert.match(
+    netlify,
+    /from = "\/"[\s\S]*?to = "https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe"[\s\S]*?status = 301/,
+  );
+  assert.match(
+    netlify,
+    /from = "\/docs\/\*"[\s\S]*?to = "https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat"[\s\S]*?status = 301/,
+  );
+  assert.doesNotMatch(netlify, /to = "https:\/\/docs\.rdlabo\.dev\/:splat"/);
+
+  const redirectLines = redirects
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+  const parsedRedirects = redirectLines.map((line) => {
+    const [source, destination, status, ...extra] = line.split(/\s+/);
+    assert.equal(extra.length, 0);
+    assert.ok(source);
+    assert.ok(destination);
+    assert.equal(status, '301');
+    assert.ok(destination.startsWith('https://docs.rdlabo.dev/'));
+    return { source, destination };
+  });
+  assert.deepEqual(parsedRedirects, [
+    {
+      source: '/docs/identity',
+      destination:
+        'https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet',
+    },
+    {
+      source: '/docs/*',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat',
+    },
+    {
+      source: '/stripe',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
+    },
+    {
+      source: '/stripe/docs/*',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat',
+    },
+    {
+      source: '/ja/docs/identity',
+      destination:
+        'https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet',
+    },
+    {
+      source: '/ja/docs/*',
+      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
+    },
+    {
+      source: '/ja/stripe',
+      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe',
+    },
+    {
+      source: '/ja/stripe/docs/*',
+      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
+    },
+  ]);
+  const redirectSources = parsedRedirects.map(({ source }) => source);
+  const docsIdentityIndex = redirectSources.indexOf('/docs/identity');
+  const docsSplatIndex = redirectSources.indexOf('/docs/*');
+  const japaneseIdentityIndex = redirectSources.indexOf('/ja/docs/identity');
+  const japaneseSplatIndex = redirectSources.indexOf('/ja/docs/*');
+  assert.ok(docsIdentityIndex >= 0);
+  assert.ok(docsSplatIndex >= 0);
+  assert.ok(japaneseIdentityIndex >= 0);
+  assert.ok(japaneseSplatIndex >= 0);
+  assert.ok(docsIdentityIndex < docsSplatIndex);
+  assert.ok(japaneseIdentityIndex < japaneseSplatIndex);
+
+  const netlifyBlocks = netlify.split('[[redirects]]').slice(1);
+  const parsedNetlify = netlifyBlocks.map((block) => {
+    const source = block.match(/from = "([^"]+)"/)?.[1];
+    const destination = block.match(/to = "([^"]+)"/)?.[1];
+    assert.ok(source);
+    assert.ok(destination);
+    assert.match(block, /status = 301/);
+    assert.match(block, /force = true/);
+    return { source, destination };
+  });
+  assert.deepEqual(parsedNetlify, [
+    {
+      source: '/',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
+    },
+    {
+      source: '/docs/identity',
+      destination:
+        'https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet',
+    },
+    {
+      source: '/docs/*',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat',
+    },
+    {
+      source: '/ja/docs/identity',
+      destination:
+        'https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet',
+    },
+    {
+      source: '/ja/docs/*',
+      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
+    },
+    {
+      source: '/*',
+      destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
+    },
+  ]);
+  const netlifySources = parsedNetlify.map(({ source }) => source);
+  const netlifyDocsIdentityIndex = netlifySources.indexOf('/docs/identity');
+  const netlifyDocsSplatIndex = netlifySources.indexOf('/docs/*');
+  const netlifyJapaneseIdentityIndex = netlifySources.indexOf('/ja/docs/identity');
+  const netlifyJapaneseSplatIndex = netlifySources.indexOf('/ja/docs/*');
+  assert.ok(netlifyDocsIdentityIndex >= 0);
+  assert.ok(netlifyDocsSplatIndex >= 0);
+  assert.ok(netlifyJapaneseIdentityIndex >= 0);
+  assert.ok(netlifyJapaneseSplatIndex >= 0);
+  assert.ok(netlifyDocsIdentityIndex < netlifyDocsSplatIndex);
+  assert.ok(netlifyJapaneseIdentityIndex < netlifyJapaneseSplatIndex);
+  assert.deepEqual(parsedNetlify.at(-1), {
+    source: '/*',
+    destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
+  });
 });
 
 test('locks production anyScript budgets after catalog growth', async () => {

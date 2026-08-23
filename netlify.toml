@@ -1,0 +1,42 @@
+[build]
+  command = "true"
+  publish = "projects/docs/public"
+
+# stripe.capacitorjs.jp is a redirect-only legacy site. Resolve its old routes
+# directly to canonical project URLs instead of preserving paths at the docs
+# portal root.
+[[redirects]]
+  from = "/"
+  to = "https://docs.rdlabo.dev/projects/capacitor-stripe"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/identity"
+  to = "https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/*"
+  to = "https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ja/docs/identity"
+  to = "https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ja/docs/*"
+  to = "https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "https://docs.rdlabo.dev/projects/capacitor-stripe"
+  status = 301
+  force = true

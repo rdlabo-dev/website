@@ -1,0 +1,11 @@
+# Legacy Stripe documentation routes. stripe.capacitorjs.jp preserves the
+# request path when forwarding to docs.rdlabo.dev, so resolve it at the edge
+# before Angular's compatibility routes render a client-side redirect page.
+/docs/identity https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet 301
+/docs/* https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat 301
+/stripe https://docs.rdlabo.dev/projects/capacitor-stripe 301
+/stripe/docs/* https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat 301
+/ja/docs/identity https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet 301
+/ja/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301
+/ja/stripe https://docs.rdlabo.dev/ja/projects/capacitor-stripe 301
+/ja/stripe/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301

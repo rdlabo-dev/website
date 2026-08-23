@@ -205,6 +205,8 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 - Bilingual docs pages emit `link[rel="alternate"][hreflang]` tags (`en`, `ja`, `x-default`) in HTML `<head>`. That is the canonical hreflang discovery surface. Each alternate `href` must be a non-empty, fully-qualified HTTPS URL (not relative paths, protocol-relative URLs, or `http:`).
 - The docs sitemap is deliberately simple: standard `urlset` entries with `<loc>` and optional explicit `<lastmod>` only (same shape as the top site). It omits `xmlns:xhtml` and `xhtml:link` alternates to reduce sitemap payload while diagnosing Search Console fetch issues. XHTML sitemap hreflang remains a supported standard elsewhere; this is redundancy removal, not a claim that sitemap hreflang is invalid.
+- Legacy Stripe paths forwarded from `stripe.capacitorjs.jp` are mapped to `/projects/capacitor-stripe/...` by `projects/docs/public/_redirects`. Keep exact routes before splats and use permanent 301 responses; do not rely on Angular client redirects for migrated public URLs.
+- `netlify.toml` is the redirect-only deployment contract for `stripe.capacitorjs.jp`: its root points to the Stripe project landing, `/docs/*` maps directly to the canonical Stripe page, and unmatched historical paths fall back to the project landing. It must never mirror arbitrary paths onto the docs portal root.
 
 ### JSON-LD structured data
 

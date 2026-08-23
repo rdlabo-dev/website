@@ -28,6 +28,26 @@ test('legacy prerender output redirects to an absolute canonical route', async (
   assert.doesNotMatch(html, /\/stripe\/docs\/projects\/capacitor-stripe/);
 });
 
+test('ships permanent edge redirects for legacy Stripe documentation paths', async () => {
+  const redirects = await readFile(
+    new URL('../dist/docs/browser/_redirects', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(
+    redirects,
+    /^\/docs\/\* https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat 301$/m,
+  );
+  assert.match(
+    redirects,
+    /^\/docs\/identity https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe-identity\/docs\/identity-verification-sheet 301$/m,
+  );
+  assert.match(
+    redirects,
+    /^\/ja\/docs\/\* https:\/\/docs\.rdlabo\.dev\/ja\/projects\/capacitor-stripe\/docs\/:splat 301$/m,
+  );
+});
+
 test('prerender output includes localized SEO metadata', async () => {
   const html = await readFile(
     new URL('../dist/docs/browser/ja/projects/capacitor-admob/index.html', import.meta.url),

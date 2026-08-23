@@ -1023,8 +1023,9 @@ test('uses docs.rdlabo.dev as the canonical origin in site SEO outputs', async (
 });
 
 test('keeps legacy Stripe host paths on permanent canonical redirects', async () => {
-  const [redirects, netlify] = await Promise.all([
+  const [redirects, legacyRedirects, netlify] = await Promise.all([
     readFile(new URL('../projects/docs/public/_redirects', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/legacy-stripe-redirect/_redirects', import.meta.url), 'utf8'),
     readFile(new URL('../netlify.toml', import.meta.url), 'utf8'),
   ]);
 
@@ -1046,8 +1047,8 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
     /from = "\/docs\/\*"[\s\S]*?to = "https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat"[\s\S]*?status = 301/,
   );
   assert.doesNotMatch(netlify, /to = "https:\/\/docs\.rdlabo\.dev\/:splat"/);
-  assert.match(netlify, /command = "npm run build:docs"/);
-  assert.match(netlify, /publish = "dist\/docs\/browser"/);
+  assert.match(netlify, /command = "true"/);
+  assert.match(netlify, /publish = "projects\/legacy-stripe-redirect"/);
   assert.match(netlify, /NODE_VERSION = "24"/);
 
   const redirectLines = redirects
@@ -1164,6 +1165,20 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
     source: '/*',
     destination: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
   });
+
+  const parsedLegacyRedirects = legacyRedirects
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'))
+    .map((line) => {
+      const [source, destination, status, ...extra] = line.split(/\s+/);
+      assert.equal(extra.length, 0);
+      assert.equal(status, '301!');
+      assert.ok(source);
+      assert.ok(destination);
+      return { source, destination };
+    });
+  assert.deepEqual(parsedLegacyRedirects, parsedNetlify);
 });
 
 test('locks production anyScript budgets after catalog growth', async () => {

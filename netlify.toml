@@ -1,13 +1,13 @@
 [build]
-  command = "npm run build:docs"
-  publish = "dist/docs/browser"
+  command = "true"
+  publish = "projects/legacy-stripe-redirect"
 
 [build.environment]
   NODE_VERSION = "24"
 
 # stripe.capacitorjs.jp is a redirect-only legacy site. Resolve its old routes
 # directly to canonical project URLs instead of preserving paths at the docs
-# portal root.
+# portal root. These forced rules mirror the dedicated publish directory.
 [[redirects]]
   from = "/"
   to = "https://docs.rdlabo.dev/projects/capacitor-stripe"

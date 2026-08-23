@@ -1,0 +1,9 @@
+# Netlify-only forced redirects. Keep exact routes before splats and the
+# catch-all last. The exclamation mark prevents generated/static files from
+# shadowing a permanent redirect.
+/ https://docs.rdlabo.dev/projects/capacitor-stripe 301!
+/docs/identity https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet 301!
+/docs/* https://docs.rdlabo.dev/projects/capacitor-stripe/docs/:splat 301!
+/ja/docs/identity https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet 301!
+/ja/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301!
+/* https://docs.rdlabo.dev/projects/capacitor-stripe 301!

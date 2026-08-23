@@ -1,6 +1,9 @@
 [build]
-  command = "true"
-  publish = "projects/docs/public"
+  command = "npm run build:docs"
+  publish = "dist/docs/browser"
+
+[build.environment]
+  NODE_VERSION = "24"
 
 # stripe.capacitorjs.jp is a redirect-only legacy site. Resolve its old routes
 # directly to canonical project URLs instead of preserving paths at the docs

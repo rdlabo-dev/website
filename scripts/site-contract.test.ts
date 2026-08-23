@@ -1046,6 +1046,9 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
     /from = "\/docs\/\*"[\s\S]*?to = "https:\/\/docs\.rdlabo\.dev\/projects\/capacitor-stripe\/docs\/:splat"[\s\S]*?status = 301/,
   );
   assert.doesNotMatch(netlify, /to = "https:\/\/docs\.rdlabo\.dev\/:splat"/);
+  assert.match(netlify, /command = "npm run build:docs"/);
+  assert.match(netlify, /publish = "dist\/docs\/browser"/);
+  assert.match(netlify, /NODE_VERSION = "24"/);
 
   const redirectLines = redirects
     .split('\n')

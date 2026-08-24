@@ -896,10 +896,13 @@ test('configures Cloudflare Workers Static Assets for both public sites', async 
     name?: string;
     account_id?: string;
     compatibility_date?: string;
+    main?: string;
     workers_dev?: boolean;
     preview_urls?: boolean;
     assets?: {
       directory?: string;
+      binding?: string;
+      run_worker_first?: string[];
       not_found_handling?: string;
       html_handling?: string;
     };
@@ -917,9 +920,12 @@ test('configures Cloudflare Workers Static Assets for both public sites', async 
   assert.equal(wrangler.name, 'docs');
   assert.equal(wrangler.account_id, '09b7a8355cbc8a838af7de40ed9ec7f8');
   assert.equal(wrangler.compatibility_date, '2026-08-15');
+  assert.equal(wrangler.main, './workers/docs-worker.mjs');
   assert.equal(wrangler.workers_dev, false);
   assert.equal(wrangler.preview_urls, false);
   assert.equal(wrangler.assets?.directory, './dist/docs/browser');
+  assert.equal(wrangler.assets?.binding, 'ASSETS');
+  assert.deepEqual(wrangler.assets?.run_worker_first, ['/ja/stripe/docs/angular/']);
   assert.equal(wrangler.assets?.not_found_handling, '404-page');
   assert.equal(wrangler.assets?.html_handling, 'drop-trailing-slash');
   assert.deepEqual(wrangler.routes, [{ pattern: 'docs.rdlabo.dev', custom_domain: true }]);
@@ -942,6 +948,36 @@ test('configures Cloudflare Workers Static Assets for both public sites', async 
     'npm run build && npm run deploy:docs:dry-run && npm run deploy:web-site:dry-run',
   );
   await access(new URL('../projects/docs/public/_redirects', import.meta.url), constants.F_OK);
+  await access(new URL('../workers/docs-worker.mjs', import.meta.url), constants.F_OK);
+});
+
+test('redirects the trailing-slash legacy Stripe Angular URL before static asset routing', async () => {
+  const { default: docsWorker } = await import('../workers/docs-worker.mjs');
+  let delegatedRequest: Request | undefined;
+  const env = {
+    ASSETS: {
+      fetch(request: Request) {
+        delegatedRequest = request;
+        return Promise.resolve(new Response('asset'));
+      },
+    },
+  };
+
+  const redirect = await docsWorker.fetch(
+    new Request('https://docs.rdlabo.dev/ja/stripe/docs/angular/?source=legacy'),
+    env,
+  );
+  assert.equal(redirect.status, 301);
+  assert.equal(
+    redirect.headers.get('location'),
+    'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/angular?source=legacy',
+  );
+  assert.equal(delegatedRequest, undefined);
+
+  const request = new Request('https://docs.rdlabo.dev/projects/capacitor-stripe');
+  const asset = await docsWorker.fetch(request, env);
+  assert.equal(asset.status, 200);
+  assert.equal(delegatedRequest, request);
 });
 
 test('deploys verified main revisions to Cloudflare', async () => {
@@ -1096,10 +1132,6 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
       destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe',
     },
     {
-      source: '/ja/stripe/docs/angular/',
-      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/angular',
-    },
-    {
       source: '/ja/stripe/docs/*',
       destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
     },
@@ -1109,17 +1141,12 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
   const docsSplatIndex = redirectSources.indexOf('/docs/*');
   const japaneseIdentityIndex = redirectSources.indexOf('/ja/docs/identity');
   const japaneseSplatIndex = redirectSources.indexOf('/ja/docs/*');
-  const japaneseStripeAngularSlashIndex = redirectSources.indexOf('/ja/stripe/docs/angular/');
-  const japaneseStripeDocsSplatIndex = redirectSources.indexOf('/ja/stripe/docs/*');
   assert.ok(docsIdentityIndex >= 0);
   assert.ok(docsSplatIndex >= 0);
   assert.ok(japaneseIdentityIndex >= 0);
   assert.ok(japaneseSplatIndex >= 0);
-  assert.ok(japaneseStripeAngularSlashIndex >= 0);
-  assert.ok(japaneseStripeDocsSplatIndex >= 0);
   assert.ok(docsIdentityIndex < docsSplatIndex);
   assert.ok(japaneseIdentityIndex < japaneseSplatIndex);
-  assert.ok(japaneseStripeAngularSlashIndex < japaneseStripeDocsSplatIndex);
 
   const netlifyBlocks = netlify.split('[[redirects]]').slice(1);
   const parsedNetlify = netlifyBlocks.map((block) => {

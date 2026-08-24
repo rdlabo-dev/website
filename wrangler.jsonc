@@ -3,10 +3,13 @@
   "name": "docs",
   "account_id": "09b7a8355cbc8a838af7de40ed9ec7f8",
   "compatibility_date": "2026-08-15",
+  "main": "./workers/docs-worker.mjs",
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
     "directory": "./dist/docs/browser",
+    "binding": "ASSETS",
+    "run_worker_first": ["/ja/stripe/docs/angular/"],
     "not_found_handling": "404-page",
     "html_handling": "drop-trailing-slash",
   },

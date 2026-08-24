@@ -9,7 +9,7 @@ I maintain [`@rdlabo/ionic-theme-md3`](https://github.com/rdlabo-dev/ionic-theme
 
 To start, here is the same demo using the same HTML in Ionic's standard `md` mode and with the theme applied. Standard Ionic is on the left; `ionic-theme-md3` is on the right.
 
-![The same screen in Ionic's standard md mode and ionic-theme-md3](https://zenn.dev/images/ionic-theme-md3/comparison-md2-md3.png)
+![The same screen in Ionic's standard md mode and ionic-theme-md3](/articles/ionic-theme-md3/comparison-md2-md3.png)
 
 Inputs that appear as one continuous block in the standard theme are separated into individual surfaces. Spacing and rounded corners make each group of information easier to distinguish. The Header and Tab bar also change shape, transforming the overall impression of the screen while keeping the Ionic components themselves.
 
@@ -69,19 +69,19 @@ The current demo covers the Ionic components commonly used in apps, including Bu
 
 The theme retains existing Ionic APIs such as `fill` and `size` while applying MD3-style rounded shapes and state treatments.
 
-![Button sizes and states with ionic-theme-md3](https://zenn.dev/images/ionic-theme-md3/buttons-controls-wide.png)
+![Button sizes and states with ionic-theme-md3](/articles/ionic-theme-md3/buttons-controls-wide.png)
 
 ### Forms
 
 Input and Textarea continue to support Ionic's existing label placements. The demo also covers states beyond the default, including helper text, error text, and password visibility.
 
-![Form components with ionic-theme-md3](https://zenn.dev/images/ionic-theme-md3/forms-wide.png)
+![Form components with ionic-theme-md3](/articles/ionic-theme-md3/forms-wide.png)
 
 Looking only at a polished static state can hide problems that appear when a theme is introduced into a real app. That is why development also checks focus, error, and disabled states, along with cases where text grows longer.
 
 ### Overlays
 
-![An Alert and its backdrop with ionic-theme-md3](https://zenn.dev/images/ionic-theme-md3/alert-wide.png)
+![An Alert and its backdrop with ionic-theme-md3](/articles/ionic-theme-md3/alert-wide.png)
 
 Overlays such as Alert, Action Sheet, and Modal are adjusted as a whole—including the backdrop, button placement, and animation, not just the container shape. Ionic's Controller APIs remain unchanged.
 
@@ -102,7 +102,7 @@ This lets you start with one screen or a small set of components and expand the 
 
 Light mode is on the left and Dark mode is on the right.
 
-![Light and Dark mode comparison for ionic-theme-md3](https://zenn.dev/images/ionic-theme-md3/light-dark-wide.png)
+![Light and Dark mode comparison for ionic-theme-md3](/articles/ionic-theme-md3/light-dark-wide.png)
 
 When using the CSS Class approach, remember to load Ionic's Dark palette as well. In Angular, that is the following file.
 
@@ -134,7 +134,7 @@ Matching demo screenshots cannot guarantee correct rendering in every applicatio
 
 The following image shows the same Input demo screen in each theme. Material Design 3 is on the left and iOS 26 is on the right.
 
-![The same HTML rendered with Material Design 3 and iOS 26 themes](https://zenn.dev/images/ionic-theme-md3/md3-ios26-wide.png)
+![The same HTML rendered with Material Design 3 and iOS 26 themes](/articles/ionic-theme-md3/md3-ios26-wide.png)
 
 Sharing the same HTML avoids filling templates with conditions such as `isPlatform('ios')`. Markup for data and accessibility can stay shared while the theme takes responsibility for presentation.
 

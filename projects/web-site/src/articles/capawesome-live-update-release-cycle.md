@@ -34,10 +34,10 @@ git push origin --tags
 CI receiving the tag routes bug fixes in existing features to Live Update, and builds iOS / Android for store submission when the release includes new features, behavior changes, or native changes. Native changes always require store submission.
 
 ```text
-タグをpush
-  → 配信経路を判定
-  ├─ 既存機能の不具合修正 → bundleをbuild・署名 → Live Update
-  └─ 新機能・機能変更・ネイティブ変更 → Cloud Build → Cloud Deploy
+Push a tag
+  → Determine the delivery path
+  ├─ Bug fix to existing functionality → Build and sign the bundle → Live Update
+  └─ New feature, behavior change, or native change → Cloud Build → Cloud Deploy
 ```
 
 In this order, configure the app, native build, store submission, and the CI that connects them. The logic that decides between Live Update and store submission is saved for last as a bonus section.
@@ -566,8 +566,8 @@ Put human delivery intent on the tag; CI verifies it does not contradict the act
 Use these two tag kinds as release entry points:
 
 ```text
-vX.Y.Z     安定版
-vX.Y.Z-N   同じパッチに対する追加修正
+vX.Y.Z     Stable release
+vX.Y.Z-N   Follow-up fix for the same patch release
 ```
 
 In this workflow, feature additions and changes go to store submission as major / minor updates. Only bug fixes in existing features become patches or `-N` tags—candidates for Live Update.

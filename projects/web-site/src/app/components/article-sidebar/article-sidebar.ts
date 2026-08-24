@@ -50,6 +50,12 @@ import { articleCategories, ArticleHeading } from '../../articles/article-data';
                     "
                     [attr.aria-current]="currentCategoryId() === category.id ? 'page' : null"
                   >
+                    <span class="article-sidebar__category-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M20 13 11 4H4v7l9 9 7-7Z" />
+                        <circle cx="7.5" cy="7.5" r="1.25" />
+                      </svg>
+                    </span>
                     {{ category.name }}
                     @if (
                       relatedCategoryIds().includes(category.id) &&

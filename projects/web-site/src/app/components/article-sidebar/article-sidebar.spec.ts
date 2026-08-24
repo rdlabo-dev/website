@@ -43,6 +43,12 @@ describe('ArticleSidebar', () => {
       '/articles?library=ionic-theme-ios26',
       '/articles?library=ionic-theme-md3',
     ]);
+    expect(root.querySelectorAll('.article-sidebar__category-icon')).toHaveLength(2);
+    expect(
+      Array.from(root.querySelectorAll('.article-sidebar__category-icon')).every(
+        (icon) => icon.getAttribute('aria-hidden') === 'true',
+      ),
+    ).toBe(true);
   });
 
   it('exposes the current category to assistive technology', () => {

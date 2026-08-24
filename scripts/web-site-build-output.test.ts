@@ -42,21 +42,19 @@ test('prerenders the web-site home, archive, and translated articles', async () 
       new RegExp(`Read the original article in Japanese on ${article.sourceName}`),
     );
     if (article.relatedLibraries?.length) {
-      assert.match(html, /Related documentation/);
+      assert.doesNotMatch(html, /Related documentation/);
       assert.match(html, /Continue with documentation/);
-      const relatedDocsIndex = html.indexOf('Related documentation');
       const bodyMarker = html.indexOf('class="znc article-content"');
       const continueIndex = html.indexOf('Continue with documentation');
-      assert.ok(relatedDocsIndex > -1 && bodyMarker > relatedDocsIndex);
+      assert.ok(bodyMarker > -1);
       assert.ok(continueIndex > bodyMarker);
       for (const library of article.relatedLibraries) {
         const escapedName = library.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const escapedUrl = library.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        assert.match(html, new RegExp(escapedName));
         assert.match(
           html,
           new RegExp(
-            `<a(?=[^>]*href="${escapedUrl}")(?=[^>]*aria-label="${escapedName} documentation")[^>]*>\\s*Documentation\\s*</a>`,
+            `<a(?=[^>]*href="${escapedUrl}")[^>]*>\\s*${escapedName} documentation\\s*</a>`,
           ),
         );
       }

@@ -866,50 +866,6 @@ pagefind-modal-trigger.site-search:empty {
   text-decoration: none;
 }
 
-.article-related-docs {
-  margin: 1.75rem 0 0;
-  padding: 1.25rem 1.35rem;
-  border: 1px solid var(--site-border);
-  border-radius: var(--site-radius-sm);
-  background: #fffaf7;
-}
-
-.article-related-docs h2 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.article-related-docs__list {
-  display: grid;
-  gap: 0.85rem;
-  margin: 1rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.article-related-docs__item {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.35rem 1rem;
-}
-
-.article-related-docs__name {
-  margin: 0;
-  font-weight: 600;
-}
-
-.article-related-docs__link {
-  color: var(--site-accent-strong);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.article-related-docs__link:hover {
-  text-decoration: underline;
-}
-
 .article-related-libraries {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -1026,8 +982,10 @@ app-article-sidebar {
 }
 
 .article-sidebar__category-link {
-  display: block;
-  padding: 0.35rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
   border-radius: 0.375rem;
   color: #6b625d;
   font-size: 0.82rem;
@@ -1035,16 +993,27 @@ app-article-sidebar {
   text-decoration: none;
 }
 
+.article-sidebar__category-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.article-sidebar__category-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .article-sidebar__category-link:hover,
 .article-sidebar__category-link:focus-visible {
   background: var(--site-accent-soft);
   color: var(--site-accent-strong);
-}
-
-.article-sidebar__category-link--related {
-  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--site-accent) 55%, transparent);
-  color: #5c554f;
-  font-weight: 500;
 }
 
 .article-sidebar__category-link--active {

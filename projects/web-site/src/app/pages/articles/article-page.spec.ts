@@ -88,17 +88,13 @@ describe('ArticlePage', () => {
     expect(image.height).toBe(630);
   });
 
-  it('links related libraries to their documentation', () => {
+  it('links related libraries to their documentation after the article', () => {
     const root = fixture.nativeElement as HTMLElement;
-    const relatedDocs = root.querySelector('.article-related-docs') as HTMLElement;
     const relatedCta = root.querySelector('.article-related-libraries') as HTMLElement;
     const articleMain = root.querySelector('.article-main');
     const children = Array.from(articleMain?.children ?? []);
     const noticeIndex = children.findIndex((element) =>
       element.classList.contains('article-original'),
-    );
-    const relatedDocsIndex = children.findIndex((element) =>
-      element.classList.contains('article-related-docs'),
     );
     const contentIndex = children.findIndex((element) =>
       element.classList.contains('article-content'),
@@ -107,20 +103,14 @@ describe('ArticlePage', () => {
       element.classList.contains('article-related-libraries'),
     );
 
-    expect(relatedDocs.textContent).toContain('Related documentation');
-    expect(relatedDocs.textContent).toContain('Ionic Theme MD3');
-    const relatedDocsLink = relatedDocs.querySelector('a');
-    expect(relatedDocsLink?.textContent?.trim()).toBe('Documentation');
-    expect(relatedDocsLink?.getAttribute('aria-label')).toBe('Ionic Theme MD3 documentation');
-    expect(relatedDocsLink?.href).toBe('https://docs.rdlabo.dev/projects/ionic-theme-md3');
-    expect(relatedDocsLink?.target).toBe('');
+    expect(root.querySelector('.article-related-docs')).toBeNull();
     expect(relatedCta.textContent).toContain('Continue with documentation');
     expect(relatedCta.querySelector('a')?.href).toBe(
       'https://docs.rdlabo.dev/projects/ionic-theme-md3',
     );
+    expect(relatedCta.querySelector('a')?.target).toBe('');
     expect(noticeIndex).toBeGreaterThan(-1);
-    expect(relatedDocsIndex).toBeGreaterThan(noticeIndex);
-    expect(contentIndex).toBeGreaterThan(relatedDocsIndex);
+    expect(contentIndex).toBeGreaterThan(noticeIndex);
     expect(relatedCtaIndex).toBeGreaterThan(contentIndex);
   });
 

@@ -45,26 +45,6 @@
         >
       </aside>
 
-      @if (article.relatedLibraries?.length) {
-        <aside class="article-related-docs" aria-labelledby="related-docs-heading">
-          <h2 id="related-docs-heading">Related documentation</h2>
-          <ul class="article-related-docs__list">
-            @for (library of article.relatedLibraries; track library.id) {
-              <li class="article-related-docs__item">
-                <p class="article-related-docs__name">{{ library.name }}</p>
-                <a
-                  class="article-related-docs__link"
-                  [href]="library.url"
-                  [attr.aria-label]="library.name + ' documentation'"
-                >
-                  Documentation
-                </a>
-              </li>
-            }
-          </ul>
-        </aside>
-      }
-
       <div class="znc article-content" [innerHTML]="article.html | safeHtml"></div>
 
       @if (article.relatedLibraries?.length) {

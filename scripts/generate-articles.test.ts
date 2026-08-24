@@ -4,7 +4,38 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { JSDOM } from 'jsdom';
-import { generateArticles, normalizeFootnoteIds, renderArticleCoverSvg } from './generate-articles';
+import {
+  assertLocalArticleImagesExist,
+  generateArticles,
+  normalizeFootnoteIds,
+  renderArticleCoverSvg,
+} from './generate-articles';
+
+test('requires root-relative article images to exist under the public directory', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'article-local-image-'));
+  const publicRoot = join(root, 'public');
+  const imagePath = join(publicRoot, 'images/example/screenshot.png');
+
+  try {
+    await mkdir(join(publicRoot, 'images/example'), { recursive: true });
+    await writeFile(imagePath, 'image');
+    await assertLocalArticleImagesExist(
+      '![Screenshot](/images/example/screenshot.png)',
+      publicRoot,
+      'example.md',
+    );
+    await assert.rejects(
+      assertLocalArticleImagesExist(
+        '![Missing](/images/example/missing.png)',
+        publicRoot,
+        'example.md',
+      ),
+      /example\.md references a missing local image: \/images\/example\/missing\.png/,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
 
 test('renders an article-specific 1200x630 cover with escaped content', () => {
   const svg = renderArticleCoverSvg({

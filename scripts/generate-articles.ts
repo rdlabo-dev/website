@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import fm from 'front-matter';
@@ -108,8 +108,29 @@ function optionalHttpsUrl(value: unknown, field: string, file: string): string |
   return normalized;
 }
 
-function rewriteZennImages(markdown: string): string {
-  return markdown.replaceAll(/([("'])\/images\//g, '$1https://zenn.dev/images/');
+export async function assertLocalArticleImagesExist(
+  markdown: string,
+  publicRoot: string,
+  file: string,
+): Promise<void> {
+  const paths = [
+    ...new Set(
+      Array.from(markdown.matchAll(/!\[[^\]]*\]\((\/[^\s)]+)(?:\s+[^)]*)?\)/g), (match) =>
+        decodeURIComponent(match[1]),
+      ),
+    ),
+  ];
+  for (const path of paths) {
+    const asset = resolve(publicRoot, `.${path}`);
+    if (!asset.startsWith(`${resolve(publicRoot)}/`)) {
+      throw new Error(`${file} references an image outside the public directory: ${path}`);
+    }
+    try {
+      await access(asset);
+    } catch {
+      throw new Error(`${file} references a missing local image: ${path}`);
+    }
+  }
 }
 
 function escapeXml(value: string): string {
@@ -371,7 +392,8 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
         translation.file,
       );
     }
-    const rendered = new JSDOM(await markdownToHtml(rewriteZennImages(translation.body)));
+    await assertLocalArticleImagesExist(translation.body, publicRoot, translation.file);
+    const rendered = new JSDOM(await markdownToHtml(translation.body));
     for (const heading of Array.from(rendered.window.document.querySelectorAll('h1'))) {
       const replacement = rendered.window.document.createElement('h2');
       for (const attribute of Array.from(heading.attributes)) {

@@ -58,7 +58,7 @@ English-only Angular app for `rdlabo.dev`. Home page, featured OSS links, and re
 1. Loads Markdown from `projects/web-site/src/articles/*.md`. Zenn sources use `zennSlug`; explicitly selected note sources use `source: note`, `sourceUrl`, `sourceRevision`, and `slug`. All articles require `title` and `description`; `emoji` is optional.
 2. Fetches public Zenn metadata from `https://zenn.dev/rdlabo/feed?all=1` and only the note URLs explicitly declared by translated articles.
 3. Requires every source to match a public article. For note, generation also requires `sourceRevision` to match the SHA-256 of the current Japanese title and body so upstream edits cannot silently bypass translation review. `publishedDate` uses Asia/Tokyo.
-4. Renders Markdown to HTML (Zenn image paths rewritten, top-level `h1` demoted to `h2`, external links get `rel="noopener noreferrer"`).
+4. Requires root-relative article images to exist under `projects/web-site/public/`, then renders Markdown to HTML (top-level `h1` demoted to `h2`, external links get `rel="noopener noreferrer"`). Zenn `/images/...` assets must be copied into the matching public path rather than hotlinked from Zenn.
 5. Writes generated TypeScript modules, lazy loaders, article-specific SVG cover images, and `projects/web-site/public/sitemap.xml`.
 
 Generated outputs under `projects/web-site/src/app/generated/`, `projects/web-site/public/article-images/`, and `projects/web-site/public/sitemap.xml` must not be edited by hand.

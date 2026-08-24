@@ -53,7 +53,7 @@
           <ul>
             @for (library of article.relatedLibraries; track library.id) {
               <li>
-                <a class="external-link" [href]="library.url">{{ library.name }} documentation</a>
+                <a [href]="library.url">{{ library.name }} documentation</a>
               </li>
             }
           </ul>

@@ -9,7 +9,11 @@
       <ul class="site-footer__list">
         @for (link of navLinks; track link.href) {
           <li>
-            @if (link.external) {
+            @if (link.sameSite) {
+              <a class="site-footer__link" [href]="link.href">
+                {{ link.label }}
+              </a>
+            } @else if (link.external) {
               <a
                 class="site-footer__link external-link"
                 [href]="link.href"

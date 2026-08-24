@@ -26,8 +26,7 @@
     </button>
     <a
       class="m-3.5 flex min-w-0 items-center gap-2.5 text-[#211d1b] no-underline hover:opacity-75"
-      [href]="canonicalHomePath"
-      (click)="navigateHome($event)"
+      href="https://rdlabo.dev/"
     >
       <img class="h-6 w-auto" src="/assets/brand/rdlabo-logo.svg" width="48" height="24" alt="" />
       <span class="truncate text-sm font-normal tracking-[-0.02em] sm:text-base">rdlabo.dev</span>
@@ -89,7 +88,7 @@
     i18n-aria-label="@@documentation"
     aria-label="Documentation"
   >
-    <nav class="px-3" i18n-aria-label="@@projectsNav" aria-label="Projects">
+    <nav class="px-3" i18n-aria-label="@@primaryNavigation" aria-label="Primary navigation">
       <a
         class="flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm font-medium tracking-tight text-[#292320] no-underline hover:text-[#c44320]"
         [href]="canonicalHomePath"
@@ -104,6 +103,21 @@
           <rect x="7" y="7" width="4" height="4" rx="0.75" stroke="currentColor" />
         </svg>
         <span i18n="@@allProjectsNav">All projects</span>
+      </a>
+
+      <a
+        class="mt-1 flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm font-medium tracking-tight text-[#292320] no-underline hover:text-[#c44320]"
+        href="https://rdlabo.dev/articles"
+      >
+        <svg class="size-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3 2.5h10v11H3v-11ZM5.5 5h5M5.5 7.5h5M5.5 10h3.5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span i18n="@@articlesNav">Articles</span>
       </a>
 
       <a
@@ -130,33 +144,44 @@
           {{ group.label }}
         </p>
         @for (project of group.projects; track project.id) {
-          <button
-            class="flex w-full cursor-pointer items-center gap-2.5 rounded-xl border-0 bg-transparent px-3 py-2.5 text-left text-sm font-medium tracking-tight text-[#4e4642] hover:text-[#c44320]"
-            type="button"
+          <div
+            class="flex items-center rounded-xl text-sm font-medium tracking-tight text-[#4e4642]"
             [class.bg-[#fff0ea]]="activeProject()?.id === project.id"
             [class.!text-[#c44320]]="activeProject()?.id === project.id"
-            [id]="'project-button-' + project.id"
-            [attr.aria-expanded]="isProjectExpanded(project)"
-            [attr.aria-controls]="projectPanelId(project)"
-            (click)="selectProject(project)"
           >
-            <svg
-              class="size-3 shrink-0 transition-transform duration-200"
-              [class.-rotate-90]="!isProjectExpanded(project)"
-              viewBox="0 0 10 6"
-              fill="none"
-              aria-hidden="true"
+            <button
+              class="grid size-11 shrink-0 cursor-pointer place-items-center rounded-lg border-0 bg-transparent hover:text-[#c44320]"
+              type="button"
+              [id]="'project-button-' + project.id"
+              [attr.aria-label]="projectNavigationLabel(project)"
+              [attr.aria-expanded]="isProjectExpanded(project)"
+              [attr.aria-controls]="projectPanelId(project)"
+              (click)="selectProject(project)"
             >
-              <path
-                d="M1 1 5 5 9 1"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-              />
-            </svg>
-            <span>{{ project.shortName }}</span>
-          </button>
+              <svg
+                class="size-3 transition-transform duration-200"
+                [class.-rotate-90]="!isProjectExpanded(project)"
+                viewBox="0 0 10 6"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1 5 5 9 1"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </button>
+            <a
+              class="min-w-0 flex-1 rounded-lg py-2.5 pr-3 no-underline hover:text-[#c44320]"
+              [routerLink]="project.path"
+              routerLinkActive="!text-[#c44320]"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >{{ project.shortName }}</a
+            >
+          </div>
 
           <div
             class="grid transition-[grid-template-rows] duration-200"
@@ -166,18 +191,11 @@
             <div
               class="min-h-0 overflow-hidden"
               [id]="projectPanelId(project)"
-              [attr.aria-labelledby]="'project-button-' + project.id"
+              [attr.aria-label]="project.shortName"
               [attr.aria-hidden]="!isProjectExpanded(project)"
               [attr.inert]="isProjectExpanded(project) ? null : ''"
             >
               <div class="mt-1 ml-3 border-l border-[#e4d8d1] pl-3">
-                <a
-                  class="block rounded-lg px-3 py-2 text-[0.84rem] text-[#6f6661] no-underline hover:text-[#c44320]"
-                  [routerLink]="project.path"
-                  routerLinkActive="!text-[#c44320]"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  ><ng-container i18n="@@overviewNav">Overview</ng-container></a
-                >
                 @for (section of sectionsFor(project); track section.name) {
                   <p
                     class="mt-5 mb-1 px-3 text-[0.62rem] font-semibold tracking-[0.13em] text-[#6f6661] uppercase"

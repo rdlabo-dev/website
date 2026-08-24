@@ -64,12 +64,7 @@ import { SITE } from '../../site-config';
         <nav aria-label="Resources">
           <ul class="article-sidebar__resource-list">
             <li>
-              <a
-                class="article-sidebar__resource-link external-link"
-                [href]="site.docsUrl + '/support'"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a class="article-sidebar__resource-link" [href]="site.docsUrl + '/support'">
                 <svg
                   class="article-sidebar__resource-icon"
                   viewBox="0 0 24 24"

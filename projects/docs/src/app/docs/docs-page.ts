@@ -10,18 +10,18 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CodePanel } from './code-panel';
 import { DocsHeading, DocsPage, ProjectDocs } from './docs-data';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ScrollSpyDirective } from './scroll-spy.directive';
 import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
-import { localizedFragmentPath } from '../locale-path';
+import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
 
 @Component({
   selector: 'app-docs-page',
-  imports: [CodePanel, SafeHtmlPipe, ScrollSpyDirective],
+  imports: [CodePanel, RouterLink, SafeHtmlPipe, ScrollSpyDirective],
   template: `
     @if (project(); as proj) {
       @if (page(); as doc) {
@@ -46,6 +46,26 @@ import { localizedFragmentPath } from '../locale-path';
               [appScrollSpy]="headingKeys()"
               (activeHeadingChange)="activate($event)"
             >
+              <nav
+                class="mb-5 flex flex-wrap items-center gap-2 text-sm text-[#796e68]"
+                i18n-aria-label="@@breadcrumb"
+                aria-label="Breadcrumb"
+              >
+                <a
+                  class="text-inherit no-underline hover:text-[#c44320] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
+                  [href]="docsHomePath"
+                >
+                  <ng-container i18n="@@allProjectsNav">All projects</ng-container>
+                </a>
+                <span aria-hidden="true">/</span>
+                <a
+                  class="text-inherit no-underline hover:text-[#c44320] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
+                  [routerLink]="proj.path"
+                  >{{ proj.shortName }}</a
+                >
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">{{ doc.title }}</span>
+              </nav>
               <span
                 aria-hidden="true"
                 class="sr-only"
@@ -160,6 +180,7 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
   protected readonly tocHeadings = signal<DocsHeading[]>([]);
   protected readonly activeToc = signal('');
   protected readonly activeLines = signal<Record<string, readonly number[]>>({});
+  protected readonly docsHomePath = canonicalHomePath(this.#locale);
 
   ngOnInit(): void {
     const slug = this.#route.snapshot.data['pageSlug'] as string;

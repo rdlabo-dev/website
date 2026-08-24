@@ -69,8 +69,11 @@
       <trans-unit id="onThisPage"><source>On this page</source><target>このページの内容</target></trans-unit>
       <trans-unit id="editOnGitHub"><source>Edit this page on GitHub</source><target>GitHubでこのページを編集</target></trans-unit>
       <trans-unit id="projectsNav"><source>Projects</source><target>プロジェクト</target></trans-unit>
+      <trans-unit id="primaryNavigation"><source>Primary navigation</source><target>メインナビゲーション</target></trans-unit>
       <trans-unit id="allProjectsNav"><source>All projects</source><target>すべてのプロジェクト</target></trans-unit>
+      <trans-unit id="articlesNav"><source>Articles</source><target>記事</target></trans-unit>
       <trans-unit id="supportNav"><source>Support</source><target>支援する</target></trans-unit>
+      <trans-unit id="breadcrumb"><source>Breadcrumb</source><target>パンくずリスト</target></trans-unit>
       <trans-unit id="supportFooter"><source>Support these projects</source><target>プロジェクトを支援する</target></trans-unit>
       <trans-unit id="capacitorPluginsNav"><source>Capacitor plugins</source><target>Capacitorプラグイン</target></trans-unit>
       <trans-unit id="overviewNav"><source>Overview</source><target>概要</target></trans-unit>

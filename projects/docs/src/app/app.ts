@@ -163,6 +163,19 @@ export class App {
     this.expandedProjectId.set(project.id);
   }
 
+  protected projectNavigationLabel(project: ProjectSummary): string {
+    const action = this.isProjectExpanded(project)
+      ? this.isJapanese
+        ? '折りたたむ'
+        : 'Collapse'
+      : this.isJapanese
+        ? '展開する'
+        : 'Expand';
+    return this.isJapanese
+      ? `${project.shortName}のナビゲーションを${action}`
+      : `${action} navigation for ${project.shortName}`;
+  }
+
   #sidebarContainsFocus(): boolean {
     const activeElement = this.#document.activeElement;
     return (

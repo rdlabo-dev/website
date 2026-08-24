@@ -79,13 +79,23 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('header')?.textContent).toContain('rdlabo.dev');
     const projectButtons = compiled.querySelectorAll<HTMLButtonElement>(
-      'nav[aria-label="Projects"] button[id^="project-button-"]',
+      'nav[aria-label="Primary navigation"] button[id^="project-button-"]',
     );
     expect(projectButtons).toHaveLength(19);
     for (const button of Array.from(projectButtons)) {
       expect(button.getAttribute('aria-expanded')).toBe('false');
       expect(button.getAttribute('aria-controls')).toMatch(/^project-panel-/);
+      expect(button.getAttribute('aria-label')).toContain('navigation for');
     }
+    const articlesLink = compiled.querySelector<HTMLAnchorElement>(
+      'nav[aria-label="Primary navigation"] a[href="https://rdlabo.dev/articles"]',
+    );
+    expect(articlesLink?.target).toBe('');
+    expect(articlesLink?.textContent?.trim()).toBe('Articles');
+    const projectOverviewLinks = compiled.querySelectorAll<HTMLAnchorElement>(
+      'nav[aria-label="Primary navigation"] a[href^="/projects/"]',
+    );
+    expect(projectOverviewLinks.length).toBeGreaterThanOrEqual(19);
     const panels = compiled.querySelectorAll<HTMLElement>('[id^="project-panel-"]');
     expect(panels).toHaveLength(19);
     for (const panel of Array.from(panels)) {
@@ -216,13 +226,14 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const brand = compiled.querySelector<HTMLAnchorElement>('header a[href]')!;
     const allProjects = compiled.querySelector<HTMLAnchorElement>(
-      'nav[aria-label="Projects"] > a',
+      'nav[aria-label="Primary navigation"] > a',
     )!;
-    expect(brand.getAttribute('href')).toBe('/ja');
+    expect(brand.href).toBe('https://rdlabo.dev/');
+    expect(brand.target).toBe('');
     expect(allProjects.getAttribute('href')).toBe('/ja');
   });
 
-  it('does not intercept Japanese home clicks so the browser can follow /ja', async () => {
+  it('links the Japanese header brand to the main site in the same tab', async () => {
     TestBed.resetTestingModule();
     await TestBed.configureTestingModule({
       imports: [App],
@@ -245,22 +256,12 @@ describe('App', () => {
     const brand = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
       'header a[href]',
     )!;
-    expect(brand.getAttribute('href')).toBe('/ja');
-
-    const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
-    (
-      fixture.componentInstance as unknown as {
-        navigateHome(event: MouseEvent): void;
-      }
-    ).navigateHome(event);
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(event.defaultPrevented).toBe(false);
+    expect(brand.href).toBe('https://rdlabo.dev/');
+    expect(brand.target).toBe('');
     expect(router.url).toBe('/projects/capacitor-stripe');
   });
 
-  it('uses SPA navigation for English home clicks', async () => {
+  it('links the English header brand to the main site in the same tab', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/projects/capacitor-stripe');
@@ -269,15 +270,9 @@ describe('App', () => {
     const brand = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
       'header a[href]',
     )!;
-    expect(brand.getAttribute('href')).toBe('/');
-
-    const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
-    brand.dispatchEvent(event);
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(event.defaultPrevented).toBe(true);
-    expect(router.url).toBe('/');
+    expect(brand.href).toBe('https://rdlabo.dev/');
+    expect(brand.target).toBe('');
+    expect(router.url).toBe('/projects/capacitor-stripe');
   });
 
   it('removes a closed mobile menu from focus order and restores focus on Escape', async () => {

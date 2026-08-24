@@ -477,14 +477,10 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
       replacement.innerHTML = heading.innerHTML;
       heading.replaceWith(replacement);
     }
-    for (const link of Array.from(
-      rendered.window.document.querySelectorAll<HTMLAnchorElement>('a[target="_blank"]'),
-    )) {
-      link.rel = 'noopener noreferrer';
-    }
     renderArticleLinkCards(rendered.window.document);
     renderEmbeddedFrames(rendered.window.document);
     normalizeFootnoteIds(rendered.window.document, slug);
+    normalizeArticleLinks(rendered.window.document);
     const headings = Array.from(
       rendered.window.document.querySelectorAll<HTMLHeadingElement>('h2, h3'),
     )
@@ -564,6 +560,25 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
       ),
     ),
   ]);
+}
+
+export function normalizeArticleLinks(document: Document): void {
+  for (const link of Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('a[target="_blank"]'),
+  )) {
+    let isDocsLink = false;
+    try {
+      isDocsLink = new URL(link.href).origin === 'https://docs.rdlabo.dev';
+    } catch {
+      // Invalid URLs are rejected by the generated HTML policy.
+    }
+    if (isDocsLink) {
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+      continue;
+    }
+    link.rel = 'noopener noreferrer';
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

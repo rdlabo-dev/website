@@ -26,7 +26,7 @@ import { FeaturedProject } from '../../site-config';
       <h3 class="featured-project-card__title">{{ project().name }}</h3>
       <p class="featured-project-card__package">{{ project().packageName }}</p>
       <p class="featured-project-card__description">{{ project().description }}</p>
-      <span class="featured-project-card__cta external-link">Read documentation</span>
+      <span class="featured-project-card__cta">Read documentation</span>
     </a>
   `,
   styles: [

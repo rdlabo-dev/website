@@ -2,6 +2,7 @@ export interface NavLink {
   label: string;
   href: string;
   external?: boolean;
+  sameSite?: boolean;
   mobile?: boolean;
 }
 
@@ -25,7 +26,7 @@ export const SITE = {
 
 export const NAV_LINKS: readonly NavLink[] = [
   { label: 'Articles', href: '/articles' },
-  { label: 'Docs', href: SITE.docsUrl, external: true },
+  { label: 'Docs', href: SITE.docsUrl, sameSite: true },
   { label: 'GitHub', href: SITE.githubUrl, external: true, mobile: false },
 ];
 

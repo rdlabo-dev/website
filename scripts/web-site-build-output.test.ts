@@ -7,11 +7,14 @@ import {
 } from '../projects/web-site/src/app/generated/article-catalog.generated';
 
 const browserRoot = new URL('../dist/web-site/browser/', import.meta.url);
+const docsLinkOpeningNewTab =
+  /<a(?=[^>]*href="https:\/\/docs\.rdlabo\.dev(?:\/|"))[^>]*target="_blank"[^>]*>/;
 
 test('prerenders the web-site home, archive, and translated articles', async () => {
   const home = await readFile(new URL('index.html', browserRoot), 'utf8');
   assert.match(home, /Featured OSS/);
   assert.match(home, /https:\/\/docs\.rdlabo\.dev/);
+  assert.doesNotMatch(home, docsLinkOpeningNewTab);
   assert.match(home, /rel="canonical" href="https:\/\/rdlabo\.dev"/);
   assert.match(home, /data-rdlabo-json-ld/);
   assert.match(home, /"@type":"WebSite"/);
@@ -35,6 +38,7 @@ test('prerenders the web-site home, archive, and translated articles', async () 
     );
     assert.match(html, /"@type":"BlogPosting"/);
     assert.match(html, /"@type":"BreadcrumbList"/);
+    assert.doesNotMatch(html, docsLinkOpeningNewTab);
     assert.match(
       html,
       new RegExp(`"mainEntityOfPage":"https://rdlabo.dev/articles/${article.slug}"`),

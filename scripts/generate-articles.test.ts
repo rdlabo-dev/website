@@ -7,9 +7,30 @@ import { JSDOM } from 'jsdom';
 import {
   assertLocalArticleImagesExist,
   generateArticles,
+  normalizeArticleLinks,
   normalizeFootnoteIds,
   renderArticleCoverSvg,
 } from './generate-articles';
+
+test('keeps rdlabo docs links in the same tab and external links isolated', () => {
+  const document = new JSDOM(`
+    <a id="root" href="https://docs.rdlabo.dev" target="_blank" rel="nofollow">Docs</a>
+    <a id="query" href="https://docs.rdlabo.dev?project=themes" target="_blank" rel="nofollow">Docs query</a>
+    <a id="path" href="https://docs.rdlabo.dev/projects/example" target="_blank" rel="nofollow">Guide</a>
+    <a id="external" href="https://github.com/rdlabo-dev" target="_blank" rel="nofollow">GitHub</a>
+  `).window.document;
+
+  normalizeArticleLinks(document);
+
+  for (const id of ['root', 'query', 'path']) {
+    const link = document.querySelector<HTMLAnchorElement>(`#${id}`)!;
+    assert.equal(link.target, '');
+    assert.equal(link.rel, '');
+  }
+  const external = document.querySelector<HTMLAnchorElement>('#external')!;
+  assert.equal(external.target, '_blank');
+  assert.equal(external.rel, 'noopener noreferrer');
+});
 
 test('requires root-relative article images to exist under the public directory', async () => {
   const root = await mkdtemp(join(tmpdir(), 'article-local-image-'));

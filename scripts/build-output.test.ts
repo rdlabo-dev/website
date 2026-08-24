@@ -91,7 +91,7 @@ test('prerenders current and past public sponsors in both locales', async () => 
   }
 });
 
-test('Japanese home prerender uses slashless canonical SEO URLs', async () => {
+test('Japanese home prerender uses slashless canonical SEO URLs and clear site navigation', async () => {
   const html = await readFile(
     new URL('../dist/docs/browser/ja/index.html', import.meta.url),
     'utf8',
@@ -102,7 +102,8 @@ test('Japanese home prerender uses slashless canonical SEO URLs', async () => {
   assert.doesNotMatch(html, /rel="canonical" href="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
   assert.doesNotMatch(html, /property="og:url" content="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
   assert.doesNotMatch(html, /hreflang="ja" href="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
-  assert.match(html, /hover:opacity-75" href="\/ja"/);
+  assert.match(html, /<a[^>]*href="https:\/\/rdlabo\.dev\/"[^>]*hover:opacity-75[^>]*>/);
+  assert.doesNotMatch(html, /<a[^>]*href="https:\/\/rdlabo\.dev\/"[^>]*target="_blank"[^>]*>/);
   assert.match(html, /hover:text-\[#c44320\][^>]*href="\/ja"/);
   assert.match(html, /data-rdlabo-json-ld/);
   assert.match(html, /"url":"https:\/\/docs\.rdlabo\.dev\/ja"/);
@@ -159,6 +160,36 @@ test('prerendered docs pages include breadcrumb JSON-LD with canonical HTTPS ite
 
   assert.match(support, /"@type":"BreadcrumbList"/);
   assert.match(support, /"item":"https:\/\/docs\.rdlabo\.dev\/support"/);
+});
+
+test('visible docs breadcrumbs use canonical locale home paths', async () => {
+  const [english, japanese] = await Promise.all([
+    readFile(
+      new URL(
+        '../dist/docs/browser/projects/ionic-theme-md3/docs/migration/index.html',
+        import.meta.url,
+      ),
+      'utf8',
+    ),
+    readFile(
+      new URL(
+        '../dist/docs/browser/ja/projects/ionic-theme-md3/docs/migration/index.html',
+        import.meta.url,
+      ),
+      'utf8',
+    ),
+  ]);
+  const englishBreadcrumb = english.match(
+    /<nav[^>]*aria-label="Breadcrumb"[^>]*>[\s\S]*?<\/nav>/,
+  )?.[0];
+  const japaneseBreadcrumb = japanese.match(
+    /<nav[^>]*aria-label="パンくずリスト"[^>]*>[\s\S]*?<\/nav>/,
+  )?.[0];
+  assert.ok(englishBreadcrumb);
+  assert.ok(japaneseBreadcrumb);
+  assert.match(englishBreadcrumb, /href="\/"/);
+  assert.match(japaneseBreadcrumb, /href="\/ja"/);
+  assert.doesNotMatch(japaneseBreadcrumb, /href="\/ja\/"/);
 });
 
 test('prerendered locales include reusable hydration data', async () => {

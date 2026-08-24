@@ -17,7 +17,11 @@
       <ul class="site-nav__list">
         @for (link of navLinks; track link.href) {
           <li class="site-nav__item" [class.site-nav__item--mobile-hidden]="link.mobile === false">
-            @if (link.external) {
+            @if (link.sameSite) {
+              <a class="site-nav__link" [href]="link.href">
+                {{ link.label }}
+              </a>
+            } @else if (link.external) {
               <a
                 class="site-nav__link external-link"
                 [href]="link.href"

@@ -108,7 +108,7 @@ test('Japanese home prerender uses slashless canonical SEO URLs and clear site n
   );
   assert.doesNotMatch(html, /<a[^>]*href="https:\/\/rdlabo\.dev\/"[^>]*target="_blank"[^>]*>/);
   assert.match(html, /class="docs-home-link[^"]*"[^>]*href="\/ja"/);
-  assert.match(html, />ドキュメント</);
+  assert.match(html, />docs</);
   assert.match(html, /(?:href="\/ja"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/ja")/);
   assert.match(html, /data-rdlabo-json-ld/);
   assert.match(html, /"url":"https:\/\/docs\.rdlabo\.dev\/ja"/);

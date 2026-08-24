@@ -28,7 +28,7 @@ test('normalizes, deduplicates, and validates related library IDs', () => {
   );
 });
 
-test('groups articles by library in deterministic filename order', async () => {
+test('groups articles by library in deterministic reverse publication order', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'article-relations-'));
   try {
     await Promise.all([
@@ -38,6 +38,7 @@ test('groups articles by library in deterministic filename order', async () => {
 title: Last
 description: Last description
 slug: last
+publishedDate: "2026-08-24"
 relatedLibraries:
   - ionic-theme-md3
 ---
@@ -50,6 +51,7 @@ Body
 title: First
 description: First description
 zennSlug: first
+publishedDate: "2026-08-23"
 relatedLibraries:
   - " ionic-theme-md3 "
   - ionic-theme-ios26
@@ -64,13 +66,14 @@ Body
     const related = await loadRelatedArticlesByLibrary(directory);
     assert.deepEqual(
       related.get('ionic-theme-md3')?.map((article) => article.slug),
-      ['first', 'last'],
+      ['last', 'first'],
     );
     assert.deepEqual(related.get('ionic-theme-ios26'), [
       {
         slug: 'first',
         title: 'First',
         description: 'First description',
+        publishedDate: '2026-08-23',
         url: 'https://rdlabo.dev/articles/first',
       },
     ]);

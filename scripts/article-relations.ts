@@ -7,6 +7,7 @@ export interface RelatedArticle {
   slug: string;
   title: string;
   description: string;
+  publishedDate: string;
   url: string;
 }
 
@@ -56,6 +57,11 @@ export async function loadRelatedArticlesByLibrary(
     );
     const title = requiredArticleField(parsed.attributes['title'], 'title', file);
     const description = requiredArticleField(parsed.attributes['description'], 'description', file);
+    const publishedDate = requiredArticleField(
+      parsed.attributes['publishedDate'],
+      'publishedDate',
+      file,
+    );
 
     for (const libraryId of libraryIds) {
       const entries = related.get(libraryId) ?? [];
@@ -63,10 +69,18 @@ export async function loadRelatedArticlesByLibrary(
         slug,
         title,
         description,
+        publishedDate,
         url: `https://rdlabo.dev/articles/${slug}`,
       });
       related.set(libraryId, entries);
     }
+  }
+  for (const entries of related.values()) {
+    entries.sort(
+      (left, right) =>
+        right.publishedDate.localeCompare(left.publishedDate, 'en') ||
+        left.slug.localeCompare(right.slug, 'en'),
+    );
   }
   return related;
 }

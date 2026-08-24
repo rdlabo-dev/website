@@ -68,5 +68,11 @@ describe('LandingPageComponent', () => {
       'https://rdlabo.dev/articles/ionic-themes-ionic9-major-update',
     );
     expect(compiled.textContent).toContain('Related articles');
+    const dates = Array.from(compiled.querySelectorAll<HTMLTimeElement>('time'));
+    expect(dates.map((date) => date.dateTime)).toEqual(['2026-08-24', '2026-08-24']);
+    expect(dates.every((date) => date.textContent?.includes('August 24, 2026'))).toBe(true);
+    expect(compiled.querySelectorAll('.project-feature')).toHaveLength(3);
+    expect(compiled.querySelectorAll('.project-feature a')).toHaveLength(0);
+    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(2);
   });
 });

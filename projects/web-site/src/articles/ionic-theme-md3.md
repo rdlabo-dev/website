@@ -2,6 +2,7 @@
 title: "A Material Design 3 Theme for Ionic Has Grown into Something Really Good"
 description: "@rdlabo/ionic-theme-md3 brings Material Design 3 to Ionic while preserving its components and markup, with dark mode, transitions, incremental adoption, and iOS 26 theme compatibility."
 zennSlug: ionic-theme-md3
+publishedDate: "2026-08-24"
 relatedLibraries:
   - ionic-theme-md3
 emoji: "🎨"

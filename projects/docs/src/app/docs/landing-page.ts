@@ -88,13 +88,17 @@ import { SeoService } from './seo.service';
           <h2 class="m-0 text-2xl font-semibold tracking-[-0.03em] text-[#211d1b]">
             {{ p.featuresHeading }}
           </h2>
-          <ul class="mt-7 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          <ul class="mt-8 grid list-none grid-cols-1 gap-x-10 gap-y-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
             @for (feature of p.features; track feature.title) {
-              <li class="rounded-2xl border border-[#eadfd9] bg-white px-5 py-5">
-                <h3 class="m-0 text-lg font-semibold tracking-[-0.02em] text-[#292320]">
+              <li class="project-feature py-1">
+                <h3
+                  class="m-0 border-l-2 border-[#e6a48f] pl-4 text-lg font-semibold tracking-[-0.02em] text-[#292320]"
+                >
                   {{ feature.title }}
                 </h3>
-                <p class="mt-2 mb-0 leading-7 text-[#6f6661]">{{ feature.description }}</p>
+                <p class="mt-3 mb-0 pl-[18px] leading-7 text-[#6f6661]">
+                  {{ feature.description }}
+                </p>
               </li>
             }
           </ul>
@@ -109,10 +113,18 @@ import { SeoService } from './seo.service';
               @for (article of p.relatedArticles; track article.slug) {
                 <li>
                   <a
-                    class="block h-full rounded-2xl border border-[#eadfd9] bg-white px-5 py-5 text-[#292320] no-underline transition hover:border-[#ea572a] hover:text-[#c44320]"
+                    class="related-article-link group block h-full rounded-[0.625rem] border border-[#eadfd9] bg-white px-5 py-5 text-[#292320] no-underline transition-[border-color,box-shadow,transform] duration-150 hover:-translate-y-0.5 hover:border-[#e9aa96] hover:shadow-[0_10px_24px_rgba(44,34,29,.07)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#f4b7a4]"
                     [href]="article.url"
                   >
-                    <h3 class="m-0 text-lg font-semibold tracking-[-0.02em]">
+                    <time
+                      class="text-[0.82rem] text-[#8a7f79]"
+                      [attr.datetime]="article.publishedDate"
+                    >
+                      {{ formatArticleDate(article.publishedDate) }}
+                    </time>
+                    <h3
+                      class="mt-1.5 mb-0 text-lg font-semibold tracking-[-0.02em] text-[#292320] group-hover:text-[#c44320]"
+                    >
                       {{ article.title }}
                     </h3>
                     <p class="mt-2 mb-0 leading-7 text-[#6f6661]">
@@ -133,6 +145,13 @@ export class LandingPageComponent implements OnInit {
   readonly #seo = inject(SeoService);
   readonly #locale = inject(LOCALE_ID);
   readonly #stars = inject(GitHubStarsService);
+  protected readonly formatArticleDate = (date: string): string =>
+    new Intl.DateTimeFormat(this.#locale, {
+      timeZone: 'Asia/Tokyo',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(`${date}T00:00:00+09:00`));
   readonly #platformId = inject(PLATFORM_ID);
   readonly #numberFormat = new Intl.NumberFormat(inject(LOCALE_ID), {
     notation: 'compact',

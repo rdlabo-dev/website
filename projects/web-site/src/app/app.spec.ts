@@ -71,6 +71,9 @@ describe('App', () => {
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-ios26');
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-md3');
     expect(compiled.textContent).toContain('@rdlabo/ngx-cdk-scroll-strategies');
+    const allProjects = compiled.querySelector<HTMLAnchorElement>('.project-grid__all a');
+    expect(allProjects?.textContent?.trim()).toBe('All Projects');
+    expect(allProjects?.href).toBe('https://docs.rdlabo.dev/');
     expect(compiled.querySelectorAll('.article-preview')).toHaveLength(3);
     expect(compiled.querySelectorAll('a.article-preview')).toHaveLength(3);
   });

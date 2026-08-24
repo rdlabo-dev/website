@@ -39,6 +39,7 @@ export interface RelatedArticle {
   slug: string;
   title: string;
   description: string;
+  publishedDate: string;
   url: string;
 }
 

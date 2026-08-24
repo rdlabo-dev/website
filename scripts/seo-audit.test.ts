@@ -63,12 +63,12 @@ test('auditSitemapEntries rejects duplicate locs and future lastmod values', () 
     [
       { loc: 'https://rdlabo.dev/' },
       { loc: 'https://rdlabo.dev/' },
-      { loc: 'https://rdlabo.dev/articles', lastmod: '2026-08-24' },
+      { loc: 'https://rdlabo.dev/articles', lastmod: '9999-12-31' },
     ],
     'https://rdlabo.dev',
   ).filter((error) => error.includes('future') || error.includes('duplicate'));
   assert.match(errors.join('\n'), /duplicate sitemap loc https:\/\/rdlabo\.dev\//);
-  assert.match(errors.join('\n'), /invalid or future lastmod 2026-08-24/);
+  assert.match(errors.join('\n'), /invalid or future lastmod 9999-12-31/);
   assert.equal(isValidContentUpdatedAt('2026-08-24', now), false);
 });
 

@@ -8,4 +8,5 @@
 /ja/docs/identity https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet 301
 /ja/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301
 /ja/stripe https://docs.rdlabo.dev/ja/projects/capacitor-stripe 301
+/ja/stripe/docs/angular/ https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/angular 301
 /ja/stripe/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301

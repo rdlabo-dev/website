@@ -1096,6 +1096,10 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
       destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe',
     },
     {
+      source: '/ja/stripe/docs/angular/',
+      destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/angular',
+    },
+    {
       source: '/ja/stripe/docs/*',
       destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
     },
@@ -1105,12 +1109,17 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
   const docsSplatIndex = redirectSources.indexOf('/docs/*');
   const japaneseIdentityIndex = redirectSources.indexOf('/ja/docs/identity');
   const japaneseSplatIndex = redirectSources.indexOf('/ja/docs/*');
+  const japaneseStripeAngularSlashIndex = redirectSources.indexOf('/ja/stripe/docs/angular/');
+  const japaneseStripeDocsSplatIndex = redirectSources.indexOf('/ja/stripe/docs/*');
   assert.ok(docsIdentityIndex >= 0);
   assert.ok(docsSplatIndex >= 0);
   assert.ok(japaneseIdentityIndex >= 0);
   assert.ok(japaneseSplatIndex >= 0);
+  assert.ok(japaneseStripeAngularSlashIndex >= 0);
+  assert.ok(japaneseStripeDocsSplatIndex >= 0);
   assert.ok(docsIdentityIndex < docsSplatIndex);
   assert.ok(japaneseIdentityIndex < japaneseSplatIndex);
+  assert.ok(japaneseStripeAngularSlashIndex < japaneseStripeDocsSplatIndex);
 
   const netlifyBlocks = netlify.split('[[redirects]]').slice(1);
   const parsedNetlify = netlifyBlocks.map((block) => {

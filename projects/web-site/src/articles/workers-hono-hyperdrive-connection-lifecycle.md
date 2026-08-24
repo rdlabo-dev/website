@@ -26,7 +26,7 @@ Workers do not allow I/O objects to span requests. A client or driver-level pool
 Avoid this pattern:
 
 ```ts
-// global scopeにdriver connectionを保持しない
+// Do not keep a driver connection in global scope
 let connection: Connection | undefined;
 
 async function getConnection(env: Env) {
@@ -150,9 +150,9 @@ The [official Cloudflare mysql2 setup](https://developers.cloudflare.com/hyperdr
 The boundaries are:
 
 ```text
-origin connection pool: Hyperdriveが管理
-driver connection: requestが管理
-transaction: service/use caseが管理
+origin connection pool: managed by Hyperdrive
+driver connection: managed by the request
+transaction: managed by the service/use case
 ```
 
 # Summary

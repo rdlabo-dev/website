@@ -30,7 +30,7 @@ const res = resource({
   loader: () => fetch(...);
 });
 
-// 変更前（エラーが隠蔽される）
+// Before (errors are hidden)
 const inner = computed(() => res.value()?.inner);
 ```
 
@@ -39,11 +39,11 @@ __New behavior__: explicit error handling required
 const res = resource({
   loader: () => fetch(...);
 
-  // 変更案1: Errorsではなく、defaultValue（初期値はundefined）を返すようにする
+  // Option 1: Return defaultValue (initially undefined) instead of Errors
   throwErrorsFromValue: false,
 });
 
-// 変更案2: errorのハンドリングを行う
+// Option 2: Handle the error
 const inner = computed(() => {
   if (res.error()) return undefined;
   return res.value()?.inner;
@@ -57,11 +57,11 @@ The same applies in HTML templates. If you used `resource.value()` as optional, 
 
 ```html
 @if (res.isLoading()) {
-  <!-- ローディング中のコンテンツ -->
+  <!-- Content while loading -->
 } @else if (res.error()) {
-  <!-- エラー時のコンテンツ -->
+  <!-- Content on error -->
 } @else {
-  <!-- 正常時のコンテンツ -->
+  <!-- Content on success -->
 }
 ```
 
@@ -77,7 +77,7 @@ Details:
 ```typescript
 const error = resource.error();
 if (error instanceof Error) {
-  // error.message など型安全にアクセス可能
+  // Type-safe access to error.message and other properties
 }
 ```
 
@@ -86,7 +86,7 @@ Type guards make error handling easier. Also, values thrown that are not `Error`
 ```typescript
 if (resource.error() instanceof ResourceWrappedError) {
   const original = resource.error().cause;
-  // originalがAPIのエラーオブジェクトなど
+  // original can be an API error object, for example
 }
 ```
 
@@ -101,10 +101,10 @@ const res = resource<Data>({
   loader: () => fetch(...), 
 });
 
-// WritableResourceなので、`reload`メソッドにアクセスできる
+// It is a WritableResource, so the `reload` method is available
 res.reload();
 
-// Writableでないため`reload`メソッドにアクセスできない
+// It is not Writable, so the `reload` method is unavailable
 res.asReadonly();
 res.reload(); // NG
 ```
@@ -114,7 +114,7 @@ res.reload(); // NG
 `request` becomes `params` for clearer intent.
 
 ```typescript
-// 変更前
+// Before
 const res = resource<User>({
   request: () => ({id: userId()}),
   loader: ({request}) => {
@@ -122,7 +122,7 @@ const res = resource<User>({
   }
 });
 
-// 変更後
+// After
 const res = resource<User>({
   params: () => ({id: userId()}),
   loader: ({params}) => {

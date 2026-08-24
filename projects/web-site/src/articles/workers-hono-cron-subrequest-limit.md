@@ -19,8 +19,8 @@ Even with relaxed limits today, I think Cron should not execute all N items in o
 
 The original flow was one DB query to find targets and N external API calls per target.
 ```text
-1: 対象ユーザーを一覧取得
-N: ユーザーごとに外部APIを呼ぶ
+1: List target users
+N: Call the external API for each user
 ```
 Processing all targets in one Cron run grows subrequests with N.
 
@@ -50,7 +50,7 @@ export default {
     const users = await repository.findAllTargetUsers();
 
     for (const user of users) {
-      await reloadExternalState(user.id); // 外部fetch
+      await reloadExternalState(user.id); // external fetch
     }
   },
 };
@@ -89,8 +89,8 @@ async scheduled(_event: ScheduledEvent, env: Env) {
 ```
 Queues `sendBatch()` accepts up to 100 messages, 256KB total. With small messages carrying IDs only, Cron fan-out changes like this:
 ```text
-変更前: N回の外部API呼び出し
-変更後: ceil(N / 100)回のsendBatch
+Before: N external API calls
+After: ceil(N / 100) sendBatch calls
 ```
 For 1,000 users, one external API call per user inside Cron is at least 1,000 subrequests. Sending to Queue in chunks of 100 makes Cron-side Queue subrequests 10.
 

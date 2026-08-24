@@ -5,7 +5,7 @@ zennSlug: 2adf2bdb3a97e4
 emoji: "💭"
 ---
 ```
-秘伝のタレです。きれいに書き直したという方はぜひ教えてください。
+This is the secret sauce. Let me know if you rewrite it more cleanly.
 
 ```
 
@@ -68,11 +68,11 @@ This has become something of a secret sauce for me, so I am publishing the assoc
     });
     let data = arrayNew.concat(oldData);
 
-    // デフォは降順(DESC)
+    // Default is descending (DESC)
     let ord = -1;
 
     if (order === 'ASC') {
-      // 指定があれば昇順(ASC)
+      // Ascending (ASC) when specified
       console.log('ASC');
       ord = 1;
     }

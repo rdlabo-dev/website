@@ -197,7 +197,7 @@ const sts = new AwsClient({
   accessKeyId: env.AWS_ACCESS_KEY_ID,
   secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
   service: 'sts',
-  region: 'us-east-1', // global STS endpointの署名region
+  region: 'us-east-1', // Signing region for the global STS endpoint
 });
 
 const userHash = Array.from(

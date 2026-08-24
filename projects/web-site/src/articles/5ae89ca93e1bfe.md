@@ -77,7 +77,7 @@ Capacitor 3+ has `npx cap migrate`, but Capacitor 2 does not, so I reinstalled f
 ```bash
 % rm -rf ios android
 % npm install @capacitor/cli@4 @capacitor/core@4 @capacitor/android@4 @capacitor/ios@4
-// あと、プラグインまわりもアップデート
+// Also update the plugins
 ```
 
 ## 4. Make it run
@@ -158,15 +158,15 @@ export class MainPage {
   async alertDeleteItem(productName: string): Promise<boolean> {
     return new Promise<boolean>(async (resolve) => {
       const alert = await this.alertCtrl.create({
-        header: `${productName}を削除しますか？`,
-        message: '削除した場合、復元を行うことはできませんので再登録が必要です。',
+        header: `Delete ${productName}?`,
+        message: 'Deleted items cannot be restored, so you will need to register again.',
         buttons: [
           {
-            text: 'キャンセル',
+            text: 'Cancel',
             handler: () => resolve(false),
           },
           {
-            text: '削除',
+            text: 'Delete',
             handler: () => resolve(true),
           },
         ],
@@ -177,10 +177,10 @@ export class MainPage {
 
   public async shareApp () {
     await Share.share({
-      title: '食品表示印刷',
-      text: '食品表示ラベルをシンプルに印刷するモバイルアプリ',
+      title: 'Food Label Printing',
+      text: 'A mobile app for simple food-label printing',
       url: 'https://foodlabel.rdlabo.jp/',
-      dialogTitle: '食品表示ラベルをシンプルに印刷するモバイルアプリ「食品表示印刷」',
+      dialogTitle: 'Food Label Printing: a mobile app for simple food-label printing',
     });
   };
 }
@@ -216,10 +216,10 @@ function overlayFunc() {
   return {
     async shareApp(): Promise<void> {
       await Share.share({
-        title: '食品表示印刷',
-        text: '食品表示ラベルをシンプルに印刷するモバイルアプリ',
+        title: 'Food Label Printing',
+        text: 'A mobile app for simple food-label printing',
         url: 'https://foodlabel.rdlabo.jp/',
-        dialogTitle: '食品表示ラベルをシンプルに印刷するモバイルアプリ「食品表示印刷」',
+        dialogTitle: 'Food Label Printing: a mobile app for simple food-label printing',
       });
     },
     async navigatePrint(): Promise<void> {
@@ -231,15 +231,15 @@ function overlayFunc() {
     async alertDeleteItem(productName: string): Promise<boolean> {
       return new Promise<boolean>(async (resolve) => {
         const alert = await alertCtrl.create({
-          header: `${productName}を削除しますか？`,
-          message: '削除した場合、復元を行うことはできませんので再登録が必要です。',
+          header: `Delete ${productName}?`,
+          message: 'Deleted items cannot be restored, so you will need to register again.',
           buttons: [
             {
-              text: 'キャンセル',
+              text: 'Cancel',
               handler: () => resolve(false),
             },
             {
-              text: '削除',
+              text: 'Delete',
               handler: () => resolve(true),
             },
           ],

@@ -26,13 +26,13 @@ The mistake was framing it as a binary choice: singleton or request scope. In pr
 ```text
 isolate scope
   Hono app
-  検証済みの設定
-  Secrets Managerから取得したsecret
+  validated configuration
+  secrets fetched from Secrets Manager
 
 handler invocation scope
-  primary / replica connection（最初の利用時にlazy生成）
+  primary / replica connections (created lazily on first use)
   invocation container
-  userIdなどの認証情報（HTTP requestのみ）
+  authentication data such as userId (HTTP requests only)
 ```
 
 The Hono app is route definitions, so there is no need to rebuild it every time. Secrets do not need to be fetched again on every request within the same isolate. On the other hand, I create mysql2 connections per HTTP request, Scheduled handler, and Queue consumer invocation, and leave cleanup at the end to Workers.

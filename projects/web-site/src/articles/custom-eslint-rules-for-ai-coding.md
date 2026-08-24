@@ -24,7 +24,7 @@ And now I can have AI write those rules too. The volume of code being written ha
 When I asked AI to fix something, this pattern came back often:
 
 ```ts
-// ❌ 処理全体をtry-catchで囲う
+// ❌ Wrap the entire operation in try-catch
 async save(): Promise<void> {
   try {
     await this.api.update(this.form.value);
@@ -44,7 +44,7 @@ The problem was that large `try` blocks and catch-and-log kept appearing in my p
 If I were writing the same logic, I would want it shaped like this:
 
 ```ts
-// ✅ 処理内容は同じだけどこっちの方が好き
+// ✅ The operation is the same, but this form is preferred
 save(): Promise<void> {
   return this.api
     .update(this.form.value)
@@ -60,7 +60,7 @@ save(): Promise<void> {
 On the other hand, I use `try-catch` for small synchronous boundaries where exceptions can occur:
 
 ```ts
-// ✅ 同期例外の境界だけを小さく囲う
+// ✅ Keep only the synchronous-exception boundary small
 parse(value: string): Settings | undefined {
   try {
     return JSON.parse(value) as Settings;
@@ -89,7 +89,7 @@ AI is not defying instructions. It is finding another solution that satisfies th
 If I ask AI to implement an Ionic Angular screen in the ordinary way, it puts state and logic on the Component.
 
 ```ts
-// ❌ Angularとしては正しいけれど、私たちが書かせたい形ではない
+// ❌ Correct for Angular, but not the form we want to write
 @Component({ selector: 'app-foods', template: '' })
 class FoodsPage {
   ionViewWillEnter(): void {
@@ -106,7 +106,7 @@ It works even without implementing Ionic lifecycle interfaces, and the Component
 But the shape I want AI to write is this:
 
 ```ts
-// ✅ ComponentはViewとLifecycleに寄せる
+// ✅ Keep the Component focused on the view and lifecycle
 @Component({ selector: 'app-foods', template: '' })
 class FoodsPage implements ViewWillEnter {
   readonly vm = new ViewModel(this);
@@ -116,7 +116,7 @@ class FoodsPage implements ViewWillEnter {
   }
 }
 
-// ✅ 状態と振る舞いはViewModelへ置く
+// ✅ Put state and behavior in the ViewModel
 class ViewModel extends ViewModelStore<FoodsPage> {
   reload(): void {}
   save(): void {}

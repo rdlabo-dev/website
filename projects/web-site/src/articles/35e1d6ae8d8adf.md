@@ -90,7 +90,7 @@ For example, displaying messages in a chat app:
         <div class="message">{{ message.text }}</div>
       </div>
     </div>
-    <div *ngIf="messagesResource.isLoading">メッセージを読み込み中...</div>
+    <div *ngIf="messagesResource.isLoading">Loading messages...</div>
   `
 })
 export class ChatComponent {
@@ -108,12 +108,12 @@ Angular 19.2 also improves the in-template developer experience. Support for **u
 
 Traditional style:
 ```html
-<div>{{ (user$ | async)?.name }} さんの残高: {{ (balance$ | async) | currency }}</div>
+<div>{{ (user$ | async)?.name }}'s balance: {{ (balance$ | async) | currency }}</div>
 ```
 
 New style:
 ```html
-<div>${(user$ | async)?.name} さんの残高: ${(balance$ | async) | currency}</div>
+<div>${(user$ | async)?.name}'s balance: ${(balance$ | async) | currency}</div>
 ```
 
 Personally, this is still experimental, so I want to wait before using it in production. Still, it feels like it could be very useful down the road.

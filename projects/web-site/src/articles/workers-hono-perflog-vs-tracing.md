@@ -40,13 +40,13 @@ Even when I know "the API is slow," I cannot open one-request traces for every e
 This is not claiming perfLog is more capable than Tracing. perfLog finds candidates; Tracing goes inside them.
 
 ```text
-すべてのrequest
+every request
   └─ perfLog
-       ├─ Workers Logs      直近のraw dataを確認
-       └─ Analytics Engine route別の傾向と変更前後を集計
+       ├─ Workers Logs      inspect recent raw data
+       └─ Analytics Engine aggregate trends by route and compare before/after
 
-遅いrouteが見つかったら
-  └─ Workers Tracing       1 requestの内訳へ潜る
+when a slow route is found
+  └─ Workers Tracing       drill into one request
 ```
 
 ## What Workers Tracing shows
@@ -183,9 +183,9 @@ For example, if secrets and DB connections run in container middleware, that tim
 
 ```text
 Worker fetch
-  ├─ Hono appの外で行った処理        ← t_appに含まれない
+  ├─ work performed outside Hono app ← not included in t_app
   └─ perfLog
-       └─ auth / container / handler  ← t_appに含まれる
+       └─ auth / container / handler  ← included in t_app
 ```
 
 Do not naively compare cold `t_app` across projects whose middleware order differs. It is an indicator for slow endpoints and before/after within each project first.

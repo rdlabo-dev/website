@@ -32,7 +32,7 @@ The usual update flow.
 
 ESLint provides a migration tool, so use that. Run the following command.
 ```bash
-% npx @eslint/migrate-config [eslint設定ファイル（例：.eslintrc.json）] 
+% npx @eslint/migrate-config .eslintrc.json
 ```
 That generates `eslint.config.mjs` automatically. Then install the required packages as instructed.
 ```bash

@@ -162,7 +162,7 @@ Items with messages no longer show an unnecessary divider between the field and 
   class="ion-invalid ion-touched"
   label="Email"
   placeholder="name@example.com"
-  errorText="メールアドレスを確認してください"
+  errorText="Please check your email address"
 ></ion-input>
 ```
 

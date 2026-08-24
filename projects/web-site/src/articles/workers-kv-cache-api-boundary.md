@@ -118,9 +118,9 @@ Sitemap stays in KV. I wanted daily-generated XML readable no matter which colo 
 But I do not need to read KV on every delivery. Cache API sits in front.
 ```text
 request
-  -> Cache API（1時間）
-  -> Workers KV（日次生成したXML、26時間）
-  -> DBから再生成
+  -> Cache API (1 hour)
+  -> Workers KV (daily generated XML, 26 hours)
+  -> Regenerate from the database
 ```
 Requests from the same colo return from Cache API; only a colo's first request reads KV. KV is storage for cross-colo artifacts; Cache API is storage for recently served responses.
 

@@ -19,7 +19,7 @@ This code looks correct at a glance, but TypeScript's type information actually 
 In plain HTML, every attribute value is treated as a string. The same applies to Ionic components—for example:
 
 ```html
-<!-- Ionicコンポーネント：文字列として処理される -->
+<!-- Ionic component: processed as a string -->
 <ion-item button="true" disabled="false">
 <ion-progress-bar value="50">
 ```
@@ -29,20 +29,20 @@ Here, the Ionic Framework receives the string `"true"` for `button="true"` and c
 With Angular, however, `components.d.ts` defines strict types for each component's attributes:
 
 ```typescript
-// @ionic/core/dist/types/components.d.ts の例
+// Example from @ionic/core/dist/types/components.d.ts
 interface IonItem {
-  button?: boolean;  // boolean型を期待
+  button?: boolean;  // Expects a boolean
   disabled?: boolean;
-  lines?: 'full' | 'inset' | 'none';  // 特定の文字列リテラル型を期待
+  lines?: 'full' | 'inset' | 'none';  // Expects specific string literal types
 }
 ```
 
 TypeScript type-checks against these definitions, which leads to problems like:
 
 ```html
-<!-- TypeScriptの型チェックでエラーになる -->
+<!-- TypeScript type checking reports an error -->
 <ion-item button="true">  <!-- string "true" ≠ boolean true -->
-<ion-item lines="invalid">  <!-- "invalid" は許可された値ではない -->
+<ion-item lines="invalid">  <!-- "invalid" is not an allowed value -->
 ```
 
 Recent WebStorm versions now surface these type-check errors:
@@ -96,11 +96,11 @@ The rule validates the following types and reports errors:
 
 #### String literal union attributes
 ```html
-<!-- ❌ エラーが表示される -->
+<!-- ❌ An error is displayed -->
 <ion-item lines="invalid"></ion-item>
 <ion-radio labelPlacement="center"></ion-radio>
 
-<!-- ✅ 正しい値 -->
+<!-- ✅ Correct value -->
 <ion-item lines="full"></ion-item>
 <ion-radio labelPlacement="start"></ion-radio>
 ```
@@ -152,7 +152,7 @@ If you write code like this during development:
 
 ```html
 <ion-item button="true" lines="true">
-  <ion-label>設定</ion-label>
+  <ion-label>Settings</ion-label>
 </ion-item>
 <ion-progress-bar value="50"></ion-progress-bar>
 ```
@@ -169,7 +169,7 @@ With the `--fix` option, it automatically corrects to:
 
 ```html
 <ion-item [button]="true" lines="full">
-  <ion-label>設定</ion-label>
+  <ion-label>Settings</ion-label>
 </ion-item>
 <ion-progress-bar [value]="50"></ion-progress-bar>
 ```

@@ -353,13 +353,13 @@ Value conversion cannot be verified by types alone. Pin success, failure, and sh
 
 ```ts
 describe('zNumOptional', () => {
-  it('未指定相当の値をundefinedへ正規化する', () => {
+  it('normalizes values equivalent to omitted input to undefined', () => {
     expect(zNumOptional().parse(undefined)).toBeUndefined();
     expect(zNumOptional().parse(null)).toBeUndefined();
     expect(zNumOptional().parse('')).toBeUndefined();
   });
 
-  it('数値文字列をnumberへ変換し、空白はrejectする', () => {
+  it('converts numeric strings to numbers and rejects whitespace', () => {
     expect(zNumOptional().parse('7')).toBe(7);
     expect(zNumOptional().safeParse('   ').success).toBe(false);
   });

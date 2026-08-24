@@ -26,8 +26,8 @@ Cloudflare Workers' `Date` and `Intl` use UTC as the local timezone. If pre-migr
 ```ts
 const now = new Date();
 
-now.getDate(); // WorkersではUTCの日付
-now.toISOString(); // 常にUTCの文字列
+now.getDate(); // UTC date in Workers
+now.toISOString(); // Always a UTC string
 ```
 
 [Cloudflare's Local development documentation](https://developers.cloudflare.com/workers/local-development/) also states that `workerd` runs with `TZ=UTC` to match production.

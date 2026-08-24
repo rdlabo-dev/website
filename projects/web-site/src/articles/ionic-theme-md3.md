@@ -50,7 +50,7 @@ In addition to CSS, the package provides `mdTransitionAnimation` for page transi
 ```ts
 // Ionic 9
 import { isPlatform, provideIonicAngular } from '@ionic/angular';
-// Ionic 8では @ionic/angular/standalone からimportします
+// In Ionic 8, import from @ionic/angular/standalone
 import { mdTransitionAnimation } from '@rdlabo/ionic-theme-md3';
 
 provideIonicAngular({

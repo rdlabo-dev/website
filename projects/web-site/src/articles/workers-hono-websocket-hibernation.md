@@ -21,11 +21,11 @@ With Hibernation, WebSocket connections remain but Durable Object memory does no
 
 I do not sync data bodies over WebSocket — only notify that something changed.
 ```text
-1. client A / Bが同じユーザー用Durable Objectへ接続
-2. Hono APIがDBを更新
-3. Hono APIがDurable Objectへinvalidateをpublish
-4. Durable Objectが接続中のclientへbroadcast
-5. clientが通常のHono APIから最新データを再取得
+1. Clients A and B connect to the Durable Object for the same user
+2. The Hono API updates the database
+3. The Hono API publishes an invalidation to the Durable Object
+4. The Durable Object broadcasts it to connected clients
+5. Each client refetches the latest data from the ordinary Hono API
 ```
 ```text
 client A ─┐
@@ -121,7 +121,7 @@ app.get('/realtime/socket', async (c) => {
   const id = c.env.REALTIME.idFromName(`user:${userId}`);
   const stub = c.env.REALTIME.get(id);
 
-  // 認証tokenはDurable Objectへ転送しない
+  // Do not forward the authentication token to the Durable Object
   return stub.fetch('https://do/connect', {
     headers: {
       Upgrade: 'websocket',
@@ -158,7 +158,7 @@ export class RealtimeRoom extends DurableObject<Env> {
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
 
-    // JavaScriptを起こさず、runtimeだけでpingへ応答する
+    // Let the runtime answer pings without waking JavaScript
     this.ctx.setWebSocketAutoResponse(
       new WebSocketRequestResponsePair('ping', 'pong'),
     );
@@ -191,7 +191,7 @@ export class RealtimeRoom extends DurableObject<Env> {
     };
     server.serializeAttachment(attachment);
 
-    // server.accept()ではなくHibernation APIへ登録する
+    // Register with the Hibernation API instead of server.accept()
     this.ctx.acceptWebSocket(server);
 
     return new Response(null, {
@@ -205,7 +205,7 @@ export class RealtimeRoom extends DurableObject<Env> {
     const payload = await request.json();
     const message = JSON.stringify(payload);
 
-    // Hibernation後も接続中socketをruntimeから取り直せる
+    // Recover connected sockets from the runtime after hibernation
     for (const socket of this.ctx.getWebSockets()) {
       try {
         socket.send(message);
@@ -217,13 +217,13 @@ export class RealtimeRoom extends DurableObject<Env> {
   }
 
   webSocketMessage(socket: WebSocket, message: string | ArrayBuffer): void {
-    // pingはauto-responseが処理するため、通常ここへ来ない
+    // Auto-response handles pings, so they normally do not reach this handler
     const attachment = socket.deserializeAttachment() as SocketAttachment;
     console.warn('[Realtime] ignored message', attachment.clientId, message);
   }
 
   webSocketClose(socket: WebSocket, code: number, reason: string): void {
-    // 古いcompatibility date向け。illegalなcodeは1000へ正規化する
+    // For older compatibility dates, normalize invalid codes to 1000
     const replyCode = [1005, 1006, 1015].includes(code) ? 1000 : code;
     socket.close(replyCode, reason);
   }
@@ -296,9 +296,9 @@ WebSocket is a notification path while connected, not a durable message queue. I
 
 This race also exists:
 ```text
-RESTで初期データ取得
-  ↓ この間に更新
-WebSocket接続完了
+Fetch initial data over REST
+  ↓ An update occurs in this interval
+WebSocket connection opens
 ```
 If an update lands between first REST and WebSocket open, connect succeeds with stale data.
 
@@ -350,7 +350,7 @@ const nextMessage = (socket: WebSocket): Promise<string> =>
     }, { once: true });
   });
 
-it('Hibernation後も接続中socketへpublishできる', async () => {
+it('publishes to connected sockets after hibernation', async () => {
   const id = env.REALTIME.idFromName('user:10');
   const stub = env.REALTIME.get(id);
 

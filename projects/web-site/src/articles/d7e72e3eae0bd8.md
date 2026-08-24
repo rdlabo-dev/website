@@ -55,7 +55,7 @@ public async presentToast(options: ToastOptions): Promise<void> {
       position: 'top',
       color: 'dark',
       duration: 2000,
-      buttons: ['閉じる'],
+      buttons: ['Close'],
     },
     options,
   );
@@ -70,17 +70,17 @@ This does not come up often, but when you add `@ionic/angular`, `@ionic/core` is
 ```
 // before 
 const toast = await this.toastCtrl.create({
-  message: 'グループを作成しました',
+  message: 'Group created',
   position: 'top',
   color: 'dark',
   duration: 2000,
-  buttons: ['閉じる'],
+  buttons: ['Close'],
 });
 await toast.present();
 
 // after
 await this.helper.presentToast({
-  message: 'グループを作成しました',
+  message: 'Group created',
 });
 
 ```
@@ -98,7 +98,7 @@ While we are at it, Toast is user feedback, so you can pair it with a light vibr
         position: 'top',
         color: 'dark',
         duration: 2000,
-        buttons: ['閉じる'],
+        buttons: ['Close'],
       },
       options,
     );

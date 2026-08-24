@@ -32,7 +32,7 @@ So this is not "SSE is expensive, WebSocket is cheap." It is a decision for **wh
 I did not need to stream data bodies.
 ```text
 server -> client: status-invalidated
-client -> API: 最新データをGET
+client -> API: GET the latest data
 ```
 Notify only that something changed; the client refetches via the ordinary API. SSE is straightforward for this.
 
@@ -46,7 +46,7 @@ Cloudflare Workers run on multiple isolates per request. The isolate holding a c
 
 Putting connected clients in module-scope `Set` shares that list only inside the isolate.
 ```ts
-// このSetが見えるのは同じisolateだけ
+// This Set is visible only within the same isolate
 const clients = new Set<WritableStreamDefaultWriter>();
 ```
 Then when another isolate handles POST, I cannot tell which connection to invalidate. If the same user connects from phone and PC, I must deliver the same update to multiple connections.

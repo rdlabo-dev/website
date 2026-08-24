@@ -63,8 +63,8 @@ At first I assumed "on Workers I rebuild everything every time" and assembled th
 That does not mean I can leave a DB connection on the workbench either. Cloudflare's Hyperdrive official examples also create a mysql2 connection per request and leave the pool behind to Hyperdrive.
 
 ```text
-isolateで再利用: Hono app、検証済みの不変な設定、共有してよいmemo
-requestで作る: DB connection、request container、認証状態
+Reuse in the isolate: Hono app, validated immutable configuration, safe shared memoization
+Create per request: DB connection, request container, authentication state
 ```
 
 What I keep at module scope is limited to things I can rebuild if they disappear and that are safe when shared across multiple requests. I cannot pass I/O objects such as streams or connections created in one request to the next.
@@ -110,7 +110,7 @@ Workers run near the user by default, but that does not mean they are near RDS. 
 Code that did not stand out when EC2 sat in the same region as RDS suddenly slowed after the Workers move—for this reason. I needed to reduce round trips, not only optimize placement.
 
 ```text
-直列queryの待ち時間 ≒ WorkerとDBの往復時間 × query回数
+Sequential query latency ≒ Worker-to-DB round-trip time × number of queries
 ```
 
 Parallelize independent queries and batch what can be batched. When communication with backends like the DB dominates, use Smart Placement or explicit Placement to move the Worker closer to the backend.

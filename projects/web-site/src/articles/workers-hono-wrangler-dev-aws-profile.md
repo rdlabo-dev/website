@@ -139,10 +139,10 @@ The launcher runs in four stages:
 AWS_PROFILE
   ↓
 aws configure export-credentials
-  ↓ 3項目だけparse
+  ↓ parse only three fields
 wrangler dev --var AWS_ACCESS_KEY_ID:... --var ...
   ↓
-Honoのc.env.AWS_*
+Hono c.env.AWS_*
 ```
 
 The core looks like this:
@@ -163,7 +163,7 @@ const result = spawnSync(
 );
 
 if (result.status !== 0) {
-  console.error('[dev-aws] AWS credentialを解決できませんでした');
+  console.error('[dev-aws] Failed to resolve AWS credentials');
   process.exit(1);
 }
 

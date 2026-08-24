@@ -64,7 +64,7 @@ class MyPluginModule(reactContext: ReactApplicationContext) : ReactContextBaseJa
 To use the plugin, add it to `getPackages` in the project—the part Capacitor handles with `npx cap update`.
 
 ```diff:java
-+ import com.example.myplugin.MyPluginPackage; // 追加
++ import com.example.myplugin.MyPluginPackage; // Add this import
 
   @Override
   protected List<ReactPackage> getPackages() {

@@ -28,7 +28,7 @@ First, the most visually obvious new feature in Ionic 9: `ion-select-option` now
 Until now, what you could show in a Select Option was basically plain text only.
 
 ```html
-<ion-select-option value="train">電車</ion-select-option>
+<ion-select-option value="train">Train</ion-select-option>
 ```
 
 For prefectures or simple statuses, that is enough. But if you want to pick an assignee while seeing a profile photo, show product photos alongside prices, or display travel time and amenities for each mode of transport, it suddenly feels cramped.
@@ -36,10 +36,10 @@ For prefectures or simple statuses, that is enough. But if you want to pick an a
 In Ionic 9, you can place images, Avatars, Icons, Badges, and more in the start and end slots of `ion-select-option`. You can also use `description` to show a second line of supplementary information below the label.
 
 ```html
-<ion-select label="移動手段" interface="modal">
+<ion-select label="Transportation" interface="modal">
   <ion-select-option
     value="train"
-    description="指定席 · Wi-Fi"
+    description="Reserved seat · Wi-Fi"
   >
     <ion-icon
       slot="start"
@@ -48,7 +48,7 @@ In Ionic 9, you can place images, Avatars, Icons, Badges, and more in the start 
       aria-hidden="true"
     ></ion-icon>
 
-    <span>電車</span>
+    <span>Train</span>
 
     <ion-badge slot="end" color="tertiary">
       ¥6,400
@@ -122,7 +122,7 @@ The same applies in a Button's start slot or anywhere you used to place Ionicons
   <ion-icon slot="start" aria-hidden="true">
     <i class="bi bi-trash-fill"></i>
   </ion-icon>
-  削除
+  Delete
 </ion-button>
 ```
 
@@ -139,9 +139,9 @@ ion-icon.large-font-icon {
 Ionic 9 also lets you place custom SVG markup directly in an `ion-icon` slot, in addition to loading external SVG via `src`.
 
 ```html
-<ion-icon aria-label="カスタムアイコン">
+<ion-icon aria-label="Custom icon">
   <svg viewBox="0 0 24 24" aria-hidden="true">
-    <!-- 独自のpath -->
+    <!-- Custom path -->
   </svg>
 </ion-icon>
 ```
@@ -157,10 +157,10 @@ Whether you use Ionicons, another icon library, or custom SVG, you can handle th
 So in Ionic 9, you rewrite like this.
 
 ```diff html
--<ion-img src="/assets/image.png" alt="商品画像"></ion-img>
+-<ion-img src="/assets/image.png" alt="Product image"></ion-img>
 +<img
 +  src="/assets/image.png"
-+  alt="商品画像"
++  alt="Product image"
 +  loading="lazy"
 +/>
 ```
@@ -199,7 +199,7 @@ Until Ionic 8, `autocorrect` on `ion-input` and `ion-searchbar` was `"on" | "off
 Watch out for Ionic's boolean property conversion here.
 
 ```html
-<!-- Ionic 9ではtrueになる -->
+<!-- true in Ionic 9 -->
 <ion-input autocorrect="off"></ion-input>
 ```
 
@@ -233,7 +233,7 @@ The label moves when either of these is true:
 It no longer reacts to icons or buttons beside the field—it looks at whether the user is about to enter input or has already entered a value. Label position and form state now align more naturally.
 
 ```html
-<ion-input label="メールアドレス" label-placement="floating">
+<ion-input label="Email address" label-placement="floating">
   <ion-icon
     slot="start"
     name="mail-outline"

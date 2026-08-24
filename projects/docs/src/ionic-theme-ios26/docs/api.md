@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios26` v3.0.0. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios26` v9.0.0. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 

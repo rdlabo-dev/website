@@ -76,5 +76,10 @@ describe('App', () => {
     expect(allProjects?.href).toBe('https://docs.rdlabo.dev/');
     expect(compiled.querySelectorAll('.article-preview')).toHaveLength(3);
     expect(compiled.querySelectorAll('a.article-preview')).toHaveLength(3);
+    expect(
+      Array.from(compiled.querySelectorAll('.article-preview__cta')).every(
+        (cta) => cta.textContent?.trim() === 'Read article →',
+      ),
+    ).toBe(true);
   });
 });

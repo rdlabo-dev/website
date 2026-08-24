@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
   "category": "frontend-tools",
   "icon": "theme",
-  "version": "2.0.0",
+  "version": "9.0.0",
   "description": "Material Design 3 styling for Ionic applications.",
   "headline": "Bring Material Design 3 to Ionic apps",
   "overview": "Apply Material Design 3 styling to Ionic while keeping markup compatible with the iOS 26 theme and shared transition animations.",

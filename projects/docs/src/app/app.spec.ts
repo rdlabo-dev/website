@@ -40,6 +40,7 @@ describe('App', () => {
       providers: [
         provideRouter([
           { path: '', pathMatch: 'full', component: StubPage },
+          { path: 'support', component: StubPage },
           { path: 'projects/capacitor-stripe', component: StubPage },
           { path: 'projects/capacitor-stripe/docs/configuration', component: StubPage },
           { path: 'projects/capacitor-admob', component: StubPage },
@@ -224,13 +225,17 @@ describe('App', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const brand = compiled.querySelector<HTMLAnchorElement>('header a[href]')!;
+    const brand = compiled.querySelector<HTMLAnchorElement>('header a.docs-brand')!;
+    const docsHome = compiled.querySelector<HTMLAnchorElement>('header a.docs-home-link')!;
     const allProjects = compiled.querySelector<HTMLAnchorElement>(
       'nav[aria-label="Primary navigation"] > a',
     )!;
     expect(brand.href).toBe('https://rdlabo.dev/');
     expect(brand.target).toBe('');
+    expect(docsHome.getAttribute('href')).toBe('/ja');
+    expect(docsHome.textContent?.trim()).toBe('Docs');
     expect(allProjects.getAttribute('href')).toBe('/ja');
+    expect(allProjects.getAttribute('aria-current')).toBe('page');
   });
 
   it('links the Japanese header brand to the main site in the same tab', async () => {
@@ -254,10 +259,14 @@ describe('App', () => {
     fixture.detectChanges();
 
     const brand = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
-      'header a[href]',
+      'header a.docs-brand',
+    )!;
+    const docsHome = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
+      'header a.docs-home-link',
     )!;
     expect(brand.href).toBe('https://rdlabo.dev/');
     expect(brand.target).toBe('');
+    expect(docsHome.getAttribute('href')).toBe('/ja');
     expect(router.url).toBe('/projects/capacitor-stripe');
   });
 
@@ -268,11 +277,58 @@ describe('App', () => {
     fixture.detectChanges();
 
     const brand = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
-      'header a[href]',
+      'header a.docs-brand',
+    )!;
+    const docsHome = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
+      'header a.docs-home-link',
     )!;
     expect(brand.href).toBe('https://rdlabo.dev/');
     expect(brand.target).toBe('');
+    expect(docsHome.getAttribute('href')).toBe('/');
+    expect(docsHome.textContent?.trim()).toBe('Docs');
     expect(router.url).toBe('/projects/capacitor-stripe');
+  });
+
+  it('marks exactly one sidebar location with aria-current for each docs route kind', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    const compiled = fixture.nativeElement as HTMLElement;
+    const currentLinks = () =>
+      Array.from(
+        compiled.querySelectorAll<HTMLAnchorElement>(
+          'nav[aria-label="Primary navigation"] a[aria-current="page"]',
+        ),
+      );
+
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['All projects']);
+
+    await router.navigateByUrl('/support');
+    fixture.detectChanges();
+    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Support']);
+
+    await router.navigateByUrl('/projects/capacitor-stripe');
+    fixture.detectChanges();
+    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Stripe']);
+
+    await router.navigateByUrl('/projects/capacitor-stripe/docs/configuration');
+    fixture.detectChanges();
+    expect(currentLinks()).toHaveLength(1);
+    expect(currentLinks()[0]?.textContent?.trim()).toBe('Configuration');
+    expect(
+      compiled
+        .querySelector<HTMLAnchorElement>('a[href="/projects/capacitor-stripe"]')
+        ?.getAttribute('aria-current'),
+    ).toBeNull();
+  });
+
+  it('keeps the empty pagefind search host in the DOM for production injection', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const trigger = (fixture.nativeElement as HTMLElement).querySelector('pagefind-modal-trigger');
+    expect(trigger).not.toBeNull();
+    expect(trigger?.childElementCount).toBe(0);
   });
 
   it('removes a closed mobile menu from focus order and restores focus on Escape', async () => {

@@ -116,18 +116,27 @@ import { SeoService } from './seo.service';
                     class="related-article-link group block h-full rounded-[0.625rem] border border-[#eadfd9] bg-white px-5 py-5 text-[#292320] no-underline transition-[border-color,box-shadow,transform] duration-150 hover:-translate-y-0.5 hover:border-[#e9aa96] hover:shadow-[0_10px_24px_rgba(44,34,29,.07)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#f4b7a4]"
                     [href]="article.url"
                   >
+                    @if (isJapanese) {
+                      <span
+                        class="related-article-lang inline-flex rounded-full bg-[#fff0ea] px-2.5 py-0.5 text-[0.72rem] font-semibold tracking-wide text-[#c44320]"
+                        i18n="@@relatedArticleLanguage"
+                        >English</span
+                      >
+                    }
                     <time
-                      class="text-[0.82rem] text-[#8a7f79]"
+                      class="block text-[0.82rem] text-[#8a7f79]"
+                      [class.mt-2]="isJapanese"
                       [attr.datetime]="article.publishedDate"
                     >
                       {{ formatArticleDate(article.publishedDate) }}
                     </time>
                     <h3
+                      lang="en"
                       class="mt-1.5 mb-0 text-lg font-semibold tracking-[-0.02em] text-[#292320] group-hover:text-[#c44320]"
                     >
                       {{ article.title }}
                     </h3>
-                    <p class="mt-2 mb-0 leading-7 text-[#6f6661]">
+                    <p lang="en" class="mt-2 mb-0 leading-7 text-[#6f6661]">
                       {{ article.description }}
                     </p>
                   </a>
@@ -152,6 +161,7 @@ export class LandingPageComponent implements OnInit {
       month: 'long',
       day: 'numeric',
     }).format(new Date(`${date}T00:00:00+09:00`));
+  protected readonly isJapanese = this.#locale.toLowerCase().startsWith('ja');
   readonly #platformId = inject(PLATFORM_ID);
   readonly #numberFormat = new Intl.NumberFormat(inject(LOCALE_ID), {
     notation: 'compact',

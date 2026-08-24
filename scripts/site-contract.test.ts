@@ -410,8 +410,8 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
-    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '3.0.0' }],
-    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '2.0.0' }],
+    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.0.0' }],
+    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.0.0' }],
   ]);
   const packageJson = JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),
@@ -508,10 +508,14 @@ test('lists ionic theme packages and pins localized README imports', async () =>
         'utf8',
       ),
     ]);
+  const iosExpected = expectedProjects.get('ionic-theme-ios26');
+  assert.ok(iosExpected);
   assert.match(iosReadme, /\]\(\/docs\/using-ion-item-group\)/);
   assert.match(
     iosReadme,
-    /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios26\/blob\/v3\.0\.0\/docs\/using-ion-item-group\.md/,
+    new RegExp(
+      `https://github\\.com/rdlabo-dev/ionic-theme-ios26/blob/v${iosExpected.version}/docs/using-ion-item-group\\.md`,
+    ),
   );
 
   assert.equal(yamlTitle(usingDocJa), 'ion-item-groupの使用方法');

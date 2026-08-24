@@ -3,6 +3,17 @@
   min-height: 100dvh;
 }
 
+/* Hide secondary brand text before Docs / controls overflow on narrow phones. */
+@media (max-width: 390px) {
+  .docs-brand__name {
+    display: none;
+  }
+
+  .docs-brand {
+    margin-inline: 0.5rem;
+  }
+}
+
 @media (max-width: 1023px) {
   .docs-shell:not(.layout-ready) #docs-sidebar {
     visibility: hidden;

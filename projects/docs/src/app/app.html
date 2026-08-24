@@ -25,16 +25,33 @@
       </span>
     </button>
     <a
-      class="m-3.5 flex min-w-0 items-center gap-2.5 text-[#211d1b] no-underline hover:opacity-75"
+      class="docs-brand m-3.5 flex min-w-0 items-center gap-2.5 text-[#211d1b] no-underline hover:opacity-75"
       href="https://rdlabo.dev/"
     >
-      <img class="h-6 w-auto" src="/assets/brand/rdlabo-logo.svg" width="48" height="24" alt="" />
-      <span class="truncate text-sm font-normal tracking-[-0.02em] sm:text-base">rdlabo.dev</span>
+      <img
+        class="h-6 w-auto shrink-0"
+        src="/assets/brand/rdlabo-logo.svg"
+        width="48"
+        height="24"
+        alt=""
+      />
+      <span class="docs-brand__name truncate text-sm font-normal tracking-[-0.02em] sm:text-base"
+        >rdlabo.dev</span
+      >
     </a>
+    <span class="docs-brand__sep shrink-0 text-sm text-[#c4b8b1]" aria-hidden="true">/</span>
+    <a
+      class="docs-home-link mr-2 shrink-0 text-sm font-semibold tracking-[-0.02em] text-[#211d1b] no-underline hover:opacity-75 sm:mr-3.5 sm:text-base"
+      [href]="canonicalHomePath"
+      (click)="navigateHome($event)"
+      i18n="@@docsHomeNav"
+      >Docs</a
+    >
     @if (activeProject(); as project) {
-      <span class="hidden border-l border-[#e5d9d3] pl-4 text-sm text-[#796e68] md:block">{{
-        project.shortName
-      }}</span>
+      <span
+        class="docs-active-project hidden min-w-0 truncate border-l border-[#e5d9d3] pl-4 text-sm text-[#796e68] md:block"
+        >{{ project.shortName }}</span
+      >
     }
   </div>
   <div class="ml-auto flex items-stretch">
@@ -95,6 +112,7 @@
         (click)="navigateHome($event)"
         [class.bg-[#fff0ea]]="isIndex()"
         [class.!text-[#c44320]]="isIndex()"
+        [attr.aria-current]="isIndex() ? 'page' : null"
       >
         <svg class="size-3.5 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <rect x="1" y="1" width="4" height="4" rx="0.75" stroke="currentColor" />
@@ -125,6 +143,7 @@
         routerLink="/support"
         [class.bg-[#fff0ea]]="isSupport()"
         [class.!text-[#c44320]]="isSupport()"
+        [attr.aria-current]="isSupport() ? 'page' : null"
       >
         <svg class="size-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
@@ -179,6 +198,7 @@
               [routerLink]="project.path"
               routerLinkActive="!text-[#c44320]"
               [routerLinkActiveOptions]="{ exact: true }"
+              ariaCurrentWhenActive="page"
               >{{ project.shortName }}</a
             >
           </div>
@@ -207,6 +227,7 @@
                       class="block rounded-lg px-3 py-2 text-[0.84rem] leading-5 text-[#6f6661] no-underline hover:text-[#c44320]"
                       [routerLink]="page.path"
                       routerLinkActive="bg-[#fff5f0] !text-[#c44320]"
+                      ariaCurrentWhenActive="page"
                       >{{ page.navTitle }}</a
                     >
                   }

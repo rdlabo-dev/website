@@ -45,11 +45,19 @@ import { SITE } from '../../site-config';
                       currentCategoryId() === category.id
                     "
                     [class.article-sidebar__category-link--related]="
-                      relatedCategoryIds().includes(category.id)
+                      relatedCategoryIds().includes(category.id) &&
+                      currentCategoryId() !== category.id
                     "
                     [attr.aria-current]="currentCategoryId() === category.id ? 'page' : null"
-                    >{{ category.name }}</a
                   >
+                    {{ category.name }}
+                    @if (
+                      relatedCategoryIds().includes(category.id) &&
+                      currentCategoryId() !== category.id
+                    ) {
+                      <span class="sr-only"> (related to this article)</span>
+                    }
+                  </a>
                 </li>
               }
             </ul>

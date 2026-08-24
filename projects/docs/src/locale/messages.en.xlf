@@ -83,6 +83,21 @@
         <source>Support</source>
       </segment>
     </unit>
+    <unit id="docsHomeNav">
+      <segment>
+        <source>Docs</source>
+      </segment>
+    </unit>
+    <unit id="relatedArticles">
+      <segment>
+        <source>Related articles</source>
+      </segment>
+    </unit>
+    <unit id="relatedArticleLanguage">
+      <segment>
+        <source>English</source>
+      </segment>
+    </unit>
     <unit id="breadcrumb">
       <segment>
         <source>Breadcrumb</source>

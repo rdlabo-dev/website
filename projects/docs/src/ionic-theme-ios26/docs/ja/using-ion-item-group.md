@@ -26,7 +26,7 @@ Ionic Angularアプリケーションでは、`@rdlabo/rules` の [`require-ion-
 
 Ionicは通常、`ion-list` 自体に背景を設定するため、`ion-list-header` もitemと同じsurface内に表示されます。iOS 26のlayoutではheaderとitemのsurfaceを分離します。
 
-![ion-item-groupが必要な理由を示すinset listの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v3.0.0/screenshots/why-ion-list-inset.png)
+![ion-item-groupが必要な理由を示すinset listの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/why-ion-list-inset.png)
 
 そのため、このテーマは次のようにstyleを適用します。
 

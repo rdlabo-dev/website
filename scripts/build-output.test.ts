@@ -102,14 +102,71 @@ test('Japanese home prerender uses slashless canonical SEO URLs and clear site n
   assert.doesNotMatch(html, /rel="canonical" href="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
   assert.doesNotMatch(html, /property="og:url" content="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
   assert.doesNotMatch(html, /hreflang="ja" href="https:\/\/docs\.rdlabo\.dev\/ja\/"/);
-  assert.match(html, /<a[^>]*href="https:\/\/rdlabo\.dev\/"[^>]*hover:opacity-75[^>]*>/);
+  assert.match(
+    html,
+    /<a(?=[^>]*\bclass="docs-brand[^"]*")(?=[^>]*\bhref="https:\/\/rdlabo\.dev\/")[^>]*>/,
+  );
   assert.doesNotMatch(html, /<a[^>]*href="https:\/\/rdlabo\.dev\/"[^>]*target="_blank"[^>]*>/);
-  assert.match(html, /hover:text-\[#c44320\][^>]*href="\/ja"/);
+  assert.match(html, /class="docs-home-link[^"]*"[^>]*href="\/ja"/);
+  assert.match(html, />ドキュメント</);
+  assert.match(html, /(?:href="\/ja"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/ja")/);
   assert.match(html, /data-rdlabo-json-ld/);
   assert.match(html, /"url":"https:\/\/docs\.rdlabo\.dev\/ja"/);
   assert.match(html, /"inLanguage":"ja"/);
   assert.match(html, /"@type":"WebPage"/);
   assert.match(html, /"@id":"https:\/\/docs\.rdlabo\.dev\/#website"/);
+});
+
+test('prerendered docs mark current location and hide empty search hosts', async () => {
+  const [home, support, landing, docPage, japaneseLanding] = await Promise.all([
+    readFile(new URL('../dist/docs/browser/index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../dist/docs/browser/support/index.html', import.meta.url), 'utf8'),
+    readFile(
+      new URL('../dist/docs/browser/projects/ionic-theme-md3/index.html', import.meta.url),
+      'utf8',
+    ),
+    readFile(
+      new URL(
+        '../dist/docs/browser/projects/ionic-theme-md3/docs/migration/index.html',
+        import.meta.url,
+      ),
+      'utf8',
+    ),
+    readFile(
+      new URL('../dist/docs/browser/ja/projects/ionic-theme-md3/index.html', import.meta.url),
+      'utf8',
+    ),
+  ]);
+
+  assert.match(home, /(?:href="\/"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/")/);
+  assert.match(
+    support,
+    /(?:href="\/support"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/support")/,
+  );
+  assert.match(
+    landing,
+    /(?:href="\/projects\/ionic-theme-md3"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3")/,
+  );
+  assert.match(
+    docPage,
+    /(?:href="\/projects\/ionic-theme-md3\/docs\/migration"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3\/docs\/migration")/,
+  );
+  assert.doesNotMatch(
+    docPage,
+    /href="\/projects\/ionic-theme-md3"(?![^>]*\/docs\/)[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3"(?![^>]*\/docs\/)/,
+  );
+  assert.match(japaneseLanding, /関連記事（英語）/);
+  assert.match(japaneseLanding, /related-article-lang[^>]*>英語</);
+  assert.match(japaneseLanding, /lang="en"/);
+  assert.doesNotMatch(landing, /関連記事（英語）/);
+  assert.doesNotMatch(landing, /related-article-lang/);
+
+  const [docsStyles, siteStyles] = await Promise.all([
+    readFile(new URL('../projects/docs/src/styles.css', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/web-site/src/styles.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(docsStyles, /pagefind-modal-trigger\.docs-search:empty\s*\{\s*display:\s*none;/);
+  assert.match(siteStyles, /pagefind-modal-trigger\.site-search:empty\s*\{\s*display:\s*none;/);
 });
 
 test('prerendered docs shell stays layout-neutral before bootstrap', async () => {

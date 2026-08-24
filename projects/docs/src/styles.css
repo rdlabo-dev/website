@@ -32,6 +32,11 @@ pagefind-modal-trigger.docs-search {
   border-left: 1px solid #eadfd9;
 }
 
+/* Hide the empty host in dev/loading/failure so its border cannot leave a 1px divider. */
+pagefind-modal-trigger.docs-search:empty {
+  display: none;
+}
+
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger.docs-search .pf-trigger-btn {
   width: auto;
   height: 100%;

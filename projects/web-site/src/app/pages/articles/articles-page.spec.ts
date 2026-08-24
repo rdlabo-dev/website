@@ -49,6 +49,12 @@ describe('ArticlesPage', () => {
     expect(cards.length).toBeGreaterThan(0);
     expect(cards.every((card) => card.getAttribute('href')?.startsWith('/articles/'))).toBe(true);
     expect(cards.every((card) => card.querySelector('a') === null)).toBe(true);
+    expect(
+      cards.every(
+        (card) =>
+          card.querySelector('.article-preview__cta')?.textContent?.trim() === 'Read article →',
+      ),
+    ).toBe(true);
   });
 
   it('describes both source platforms and displays each article source', () => {

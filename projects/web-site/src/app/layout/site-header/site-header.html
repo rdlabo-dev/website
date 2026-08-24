@@ -35,6 +35,7 @@
                 class="site-nav__link"
                 [routerLink]="link.href"
                 routerLinkActive="site-nav__link--active"
+                ariaCurrentWhenActive="page"
                 [routerLinkActiveOptions]="{ exact: link.href === '/' }"
               >
                 {{ link.label }}

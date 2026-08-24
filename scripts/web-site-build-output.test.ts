@@ -24,6 +24,11 @@ test('prerenders the web-site home, archive, and translated articles', async () 
   const articles = await readFile(new URL('articles/index.html', browserRoot), 'utf8');
   assert.match(articles, /"@type":"BreadcrumbList"/);
   assert.match(articles, /"item":"https:\/\/rdlabo\.dev\/articles"/);
+  assert.match(
+    articles,
+    /site-nav__link--active[^>]*aria-current="page"|aria-current="page"[^>]*site-nav__link--active/,
+  );
+  assert.match(articles, /Read article →/);
 
   for (const article of ARTICLE_SUMMARIES) {
     const html = await readFile(
@@ -36,6 +41,29 @@ test('prerenders the web-site home, archive, and translated articles', async () 
       html,
       new RegExp(`Read the original article in Japanese on ${article.sourceName}`),
     );
+    if (article.relatedLibraries?.length) {
+      assert.match(html, /Related documentation/);
+      assert.match(html, /Continue with documentation/);
+      const relatedDocsIndex = html.indexOf('Related documentation');
+      const bodyMarker = html.indexOf('class="znc article-content"');
+      const continueIndex = html.indexOf('Continue with documentation');
+      assert.ok(relatedDocsIndex > -1 && bodyMarker > relatedDocsIndex);
+      assert.ok(continueIndex > bodyMarker);
+      for (const library of article.relatedLibraries) {
+        const escapedName = library.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedUrl = library.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        assert.match(html, new RegExp(escapedName));
+        assert.match(
+          html,
+          new RegExp(
+            `<a(?=[^>]*href="${escapedUrl}")(?=[^>]*aria-label="${escapedName} documentation")[^>]*>\\s*Documentation\\s*</a>`,
+          ),
+        );
+      }
+    } else {
+      assert.doesNotMatch(html, /Related documentation/);
+      assert.doesNotMatch(html, /Continue with documentation/);
+    }
     assert.match(html, /"@type":"BlogPosting"/);
     assert.match(html, /"@type":"BreadcrumbList"/);
     assert.doesNotMatch(html, docsLinkOpeningNewTab);

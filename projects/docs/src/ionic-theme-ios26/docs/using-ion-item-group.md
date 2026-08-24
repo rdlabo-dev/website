@@ -32,7 +32,7 @@ Only when this condition applies, you need to wrap your list items with `ion-ite
 
 By default in Ionic Framework, `ion-list` has a background color, and `ion-list-header` is treated as part of the list. However, with this structure, it's impossible to accurately reproduce **iOS's native design patterns**.
 
-![ion-list inset background comparison showing why ion-item-group is required](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v3.0.0/screenshots/why-ion-list-inset.png)
+![ion-list inset background comparison showing why ion-item-group is required](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/why-ion-list-inset.png)
 
 ### Solution: Background Color Separation
 

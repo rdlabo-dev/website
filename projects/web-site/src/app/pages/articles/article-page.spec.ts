@@ -89,13 +89,70 @@ describe('ArticlePage', () => {
   });
 
   it('links related libraries to their documentation', () => {
-    const related = fixture.nativeElement.querySelector(
-      '.article-related-libraries',
-    ) as HTMLElement;
-    expect(related.textContent).toContain('Ionic Theme MD3 documentation');
-    expect(related.querySelector('a')?.href).toBe(
+    const root = fixture.nativeElement as HTMLElement;
+    const relatedDocs = root.querySelector('.article-related-docs') as HTMLElement;
+    const relatedCta = root.querySelector('.article-related-libraries') as HTMLElement;
+    const articleMain = root.querySelector('.article-main');
+    const children = Array.from(articleMain?.children ?? []);
+    const noticeIndex = children.findIndex((element) =>
+      element.classList.contains('article-original'),
+    );
+    const relatedDocsIndex = children.findIndex((element) =>
+      element.classList.contains('article-related-docs'),
+    );
+    const contentIndex = children.findIndex((element) =>
+      element.classList.contains('article-content'),
+    );
+    const relatedCtaIndex = children.findIndex((element) =>
+      element.classList.contains('article-related-libraries'),
+    );
+
+    expect(relatedDocs.textContent).toContain('Related documentation');
+    expect(relatedDocs.textContent).toContain('Ionic Theme MD3');
+    const relatedDocsLink = relatedDocs.querySelector('a');
+    expect(relatedDocsLink?.textContent?.trim()).toBe('Documentation');
+    expect(relatedDocsLink?.getAttribute('aria-label')).toBe('Ionic Theme MD3 documentation');
+    expect(relatedDocsLink?.href).toBe('https://docs.rdlabo.dev/projects/ionic-theme-md3');
+    expect(relatedDocsLink?.target).toBe('');
+    expect(relatedCta.textContent).toContain('Continue with documentation');
+    expect(relatedCta.querySelector('a')?.href).toBe(
       'https://docs.rdlabo.dev/projects/ionic-theme-md3',
     );
+    expect(noticeIndex).toBeGreaterThan(-1);
+    expect(relatedDocsIndex).toBeGreaterThan(noticeIndex);
+    expect(contentIndex).toBeGreaterThan(relatedDocsIndex);
+    expect(relatedCtaIndex).toBeGreaterThan(contentIndex);
+  });
+
+  it('omits related documentation when the article has no relatedLibraries', async () => {
+    await TestBed.resetTestingModule()
+      .configureTestingModule({
+        imports: [ArticlePage],
+        providers: [
+          provideRouter([]),
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              snapshot: {
+                data: {
+                  article: {
+                    ...article,
+                    relatedLibraries: undefined,
+                  },
+                },
+              },
+            },
+          },
+        ],
+      })
+      .compileComponents();
+
+    const emptyRelatedFixture = TestBed.createComponent(ArticlePage);
+    emptyRelatedFixture.detectChanges();
+    const root = emptyRelatedFixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('.article-related-docs')).toBeNull();
+    expect(root.querySelector('.article-related-libraries')).toBeNull();
   });
 
   it('renders only level-two headings in the contents list', () => {

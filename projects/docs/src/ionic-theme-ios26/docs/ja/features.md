@@ -7,7 +7,7 @@ CSS変数とSass mixinでテーマをカスタマイズしたり、コンポー�
 ## CSS変数
 
 ライブラリのデフォルトスタイルをデザインに合わせてカスタマイズできるよう、複数のCSS変数を提供しています。詳細は次のファイルを参照してください。
-https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v3.0.0/src/styles/default-variables.scss
+https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v9.0.0/src/styles/default-variables.scss
 
 ## Liquid Glass mixin
 

@@ -56,6 +56,27 @@ describe('ArticleSidebar', () => {
       '.article-sidebar__category-link[aria-current="page"]',
     );
     expect(current?.textContent?.trim()).toBe('Ionic Theme MD3');
+    expect(current?.classList.contains('article-sidebar__category-link--active')).toBe(true);
+    expect(current?.classList.contains('article-sidebar__category-link--related')).toBe(false);
+  });
+
+  it('marks related libraries without treating them as the current filter', () => {
+    fixture.componentRef.setInput('relatedCategoryIds', ['ionic-theme-ios26']);
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const related = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__category-link'),
+    ).find((link) => link.textContent?.includes('Ionic Theme iOS26'));
+    const other = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__category-link'),
+    ).find((link) => link.textContent?.includes('Ionic Theme MD3'));
+
+    expect(related?.classList.contains('article-sidebar__category-link--related')).toBe(true);
+    expect(related?.classList.contains('article-sidebar__category-link--active')).toBe(false);
+    expect(related?.getAttribute('aria-current')).toBeNull();
+    expect(related?.textContent).toContain('related to this article');
+    expect(other?.classList.contains('article-sidebar__category-link--related')).toBe(false);
   });
 
   it('renders contents links when headings are provided', () => {

@@ -85,6 +85,12 @@ import { Component, input } from '@angular/core';
       list-style: none;
     }
 
+    .oss-resource-links__list > li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
     .oss-resource-links__link {
       display: inline-flex;
       align-items: center;

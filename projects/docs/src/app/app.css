@@ -3,6 +3,11 @@
   min-height: 100dvh;
 }
 
+#docs-sidebar :is(a, button):focus-visible {
+  outline: 2px solid #ea572a;
+  outline-offset: -2px;
+}
+
 /* Hide secondary brand text before Docs / controls overflow on narrow phones. */
 @media (max-width: 390px) {
   .docs-brand__name {

@@ -99,6 +99,31 @@ import { SeoService } from './seo.service';
             }
           </ul>
         </section>
+
+        @if (p.relatedArticles?.length) {
+          <section class="mt-16 border-t border-[#eadfd9] pt-12">
+            <h2 class="m-0 text-2xl font-semibold tracking-[-0.03em] text-[#211d1b]">
+              <ng-container i18n="@@relatedArticles">Related articles</ng-container>
+            </h2>
+            <ul class="mt-7 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2">
+              @for (article of p.relatedArticles; track article.slug) {
+                <li>
+                  <a
+                    class="block h-full rounded-2xl border border-[#eadfd9] bg-white px-5 py-5 text-[#292320] no-underline transition hover:border-[#ea572a] hover:text-[#c44320]"
+                    [href]="article.url"
+                  >
+                    <h3 class="m-0 text-lg font-semibold tracking-[-0.02em]">
+                      {{ article.title }}
+                    </h3>
+                    <p class="mt-2 mb-0 leading-7 text-[#6f6661]">
+                      {{ article.description }}
+                    </p>
+                  </a>
+                </li>
+              }
+            </ul>
+          </section>
+        }
       </article>
     }
   `,

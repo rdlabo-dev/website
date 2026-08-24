@@ -1,18 +1,14 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { ArticleHeading } from '../../articles/article-data';
+import { articleCategories, ArticleHeading } from '../../articles/article-data';
 import { SITE } from '../../site-config';
 
 @Component({
   selector: 'app-article-sidebar',
   imports: [RouterLink],
   template: `
-    <aside
-      class="article-sidebar"
-      [attr.aria-label]="tocHeadings().length ? 'Table of contents' : 'Resources'"
-      data-pagefind-ignore
-    >
+    <aside class="article-sidebar" aria-label="Article navigation" data-pagefind-ignore>
       @if (tocHeadings().length) {
         <p class="article-sidebar__label">Contents</p>
         <nav aria-label="On this page">
@@ -31,9 +27,39 @@ import { SITE } from '../../site-config';
         </nav>
       }
 
+      @if (categories.length) {
+        <div
+          class="article-sidebar__categories"
+          [class.article-sidebar__section--separated]="tocHeadings().length"
+        >
+          <p class="article-sidebar__label">Category</p>
+          <nav aria-label="Article categories">
+            <ul class="article-sidebar__category-list">
+              @for (category of categories; track category.id) {
+                <li>
+                  <a
+                    class="article-sidebar__category-link"
+                    routerLink="/articles"
+                    [queryParams]="{ library: category.id }"
+                    [class.article-sidebar__category-link--active]="
+                      currentCategoryId() === category.id
+                    "
+                    [class.article-sidebar__category-link--related]="
+                      relatedCategoryIds().includes(category.id)
+                    "
+                    [attr.aria-current]="currentCategoryId() === category.id ? 'page' : null"
+                    >{{ category.name }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </nav>
+        </div>
+      }
+
       <div
         class="article-sidebar__resources"
-        [class.article-sidebar__resources--separated]="tocHeadings().length"
+        [class.article-sidebar__resources--separated]="tocHeadings().length || categories.length"
       >
         <nav aria-label="Resources">
           <ul class="article-sidebar__resource-list">
@@ -115,5 +141,8 @@ import { SITE } from '../../site-config';
 export class ArticleSidebar {
   readonly tocHeadings = input<readonly ArticleHeading[]>([]);
   readonly articleSlug = input<string | undefined>(undefined);
+  readonly currentCategoryId = input<string | undefined>(undefined);
+  readonly relatedCategoryIds = input<readonly string[]>([]);
+  protected readonly categories = articleCategories;
   protected readonly site = SITE;
 }

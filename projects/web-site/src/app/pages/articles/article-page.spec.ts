@@ -13,6 +13,13 @@ describe('ArticlePage', () => {
     image: 'https://rdlabo.dev/article-images/test-slug.svg',
     imageWidth: 1200,
     imageHeight: 630,
+    relatedLibraries: [
+      {
+        id: 'ionic-theme-md3',
+        name: 'Ionic Theme MD3',
+        url: 'https://docs.rdlabo.dev/projects/ionic-theme-md3',
+      },
+    ],
     sourceName: 'Zenn',
     originalUrl: 'https://zenn.dev/rdlabo/articles/test-slug',
     publishedAt: '2026-01-01T00:00:00.000Z',
@@ -79,6 +86,16 @@ describe('ArticlePage', () => {
     expect(image.getAttribute('src')).toBe(article.image);
     expect(image.width).toBe(1200);
     expect(image.height).toBe(630);
+  });
+
+  it('links related libraries to their documentation', () => {
+    const related = fixture.nativeElement.querySelector(
+      '.article-related-libraries',
+    ) as HTMLElement;
+    expect(related.textContent).toContain('Ionic Theme MD3 documentation');
+    expect(related.querySelector('a')?.href).toBe(
+      'https://docs.rdlabo.dev/projects/ionic-theme-md3',
+    );
   });
 
   it('renders only level-two headings in the contents list', () => {

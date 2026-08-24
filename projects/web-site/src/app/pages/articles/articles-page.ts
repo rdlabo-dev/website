@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
 import {
+  articleCategories,
   ArticleSummary,
   articleSummaries,
   articleYears,
@@ -33,12 +34,27 @@ export class ArticlesPage {
     this.#route.paramMap.pipe(map((params) => params.get('year'))),
     { initialValue: this.#route.snapshot.paramMap.get('year') },
   );
+  protected readonly requestedLibrary = toSignal(
+    this.#route.queryParamMap.pipe(map((params) => params.get('library'))),
+    { initialValue: this.#route.snapshot.queryParamMap.get('library') },
+  );
+  protected readonly selectedCategory = computed(() =>
+    articleCategories.find((category) => category.id === this.requestedLibrary()),
+  );
   protected readonly months = computed(() => {
     const selectedYear = this.selectedYear();
-    return this.#groupByMonth(
-      selectedYear
+    const selectedLibrary = this.selectedCategory()?.id;
+    const articles = selectedLibrary
+      ? articleSummaries
+      : selectedYear
         ? articleSummaries.filter((article) => article.publishedDate.startsWith(selectedYear))
-        : articleSummaries.slice(0, 12),
+        : articleSummaries.slice(0, 12);
+    return this.#groupByMonth(
+      selectedLibrary
+        ? articles.filter((article) =>
+            article.relatedLibraries?.some((library) => library.id === selectedLibrary),
+          )
+        : articles,
     );
   });
   protected readonly formatArticleDate = formatArticleDate;
@@ -46,13 +62,22 @@ export class ArticlesPage {
   constructor() {
     effect(() => {
       const selectedYear = this.selectedYear();
-      const title = selectedYear ? `Articles from ${selectedYear}` : 'Articles';
-      const path = selectedYear ? `/articles/archive/${selectedYear}` : '/articles';
+      const selectedCategory = this.selectedCategory();
+      const baseTitle =
+        selectedYear && !selectedCategory ? `Articles from ${selectedYear}` : 'Articles';
+      const title = selectedCategory ? `${baseTitle} for ${selectedCategory.name}` : baseTitle;
+      const basePath =
+        selectedYear && !selectedCategory ? `/articles/archive/${selectedYear}` : '/articles';
+      const path = selectedCategory
+        ? `${basePath}?library=${encodeURIComponent(selectedCategory.id)}`
+        : basePath;
       this.#seo.setPage({
         title: `${title} — rdlabo.dev`,
-        description: selectedYear
-          ? `English translations of rdlabo articles published in ${selectedYear} about Ionic, Angular, and Capacitor.`
-          : 'English translations of rdlabo articles about Ionic, Angular, and Capacitor.',
+        description: selectedCategory
+          ? `English translations of rdlabo articles related to ${selectedCategory.name}.`
+          : selectedYear
+            ? `English translations of rdlabo articles published in ${selectedYear} about Ionic, Angular, and Capacitor.`
+            : 'English translations of rdlabo articles about Ionic, Angular, and Capacitor.',
         path,
         structuredData: articlesBreadcrumbStructuredData(title, path),
       });

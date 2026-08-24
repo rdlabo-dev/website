@@ -4,7 +4,9 @@
       <header class="page-header">
         <p class="page-header__eyebrow">Writing</p>
         <h1 class="page-header__title">
-          @if (selectedYear(); as year) {
+          @if (selectedCategory(); as category) {
+            Articles for {{ category.name }}
+          } @else if (selectedYear(); as year) {
             Articles from {{ year }}
           } @else {
             Articles
@@ -14,10 +16,20 @@
           Reviewed English translations of articles originally published in Japanese on Zenn and
           note.
         </p>
+        @if (selectedCategory()) {
+          <p class="article-filter-status">
+            Showing all articles in this category.
+            <a routerLink="/articles">All articles</a>
+          </p>
+        }
       </header>
 
       <nav class="article-years" aria-label="Article archives">
-        <a routerLink="/articles" [class.article-years__active]="!selectedYear()">Latest</a>
+        <a
+          routerLink="/articles"
+          [class.article-years__active]="!selectedYear() && !selectedCategory()"
+          >Latest</a
+        >
         @for (year of years; track year) {
           <a
             [routerLink]="['/articles/archive', year]"
@@ -66,6 +78,6 @@
       }
     </div>
 
-    <app-article-sidebar />
+    <app-article-sidebar [currentCategoryId]="selectedCategory()?.id" />
   </div>
 </article>

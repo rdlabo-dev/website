@@ -15,3 +15,7 @@ export function localizedPublicPath(locale: string, path: string): string {
   }
   return isJapaneseLocale(locale) ? `/ja${normalized}` : normalized;
 }
+
+export function localizedFragmentPath(locale: string, path: string, fragment: string): string {
+  return `${localizedPublicPath(locale, path)}#${fragment}`;
+}

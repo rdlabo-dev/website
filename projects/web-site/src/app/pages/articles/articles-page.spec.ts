@@ -7,9 +7,11 @@ import { ArticlesPage } from './articles-page';
 describe('ArticlesPage', () => {
   let fixture: ComponentFixture<ArticlesPage>;
   const paramMap = new BehaviorSubject(convertToParamMap({}));
+  const queryParamMap = new BehaviorSubject(convertToParamMap({}));
 
   beforeEach(async () => {
     paramMap.next(convertToParamMap({}));
+    queryParamMap.next(convertToParamMap({}));
     await TestBed.configureTestingModule({
       imports: [ArticlesPage],
       providers: [
@@ -17,8 +19,12 @@ describe('ArticlesPage', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            snapshot: { paramMap: convertToParamMap({}) },
+            snapshot: {
+              paramMap: convertToParamMap({}),
+              queryParamMap: convertToParamMap({}),
+            },
             paramMap,
+            queryParamMap,
           },
         },
       ],
@@ -81,5 +87,59 @@ describe('ArticlesPage', () => {
         date.dateTime.startsWith('2024'),
       ),
     ).toBe(true);
+  });
+
+  it('filters articles by the selected related-library category', () => {
+    queryParamMap.next(convertToParamMap({ library: 'ionic-theme-md3' }));
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('a.article-preview'));
+    expect(cards.map((card) => card.getAttribute('href'))).toEqual([
+      '/articles/ionic-themes-ionic9-major-update',
+      '/articles/ionic-theme-md3',
+    ]);
+    expect(root.querySelector('.article-sidebar__category-link--active')?.textContent?.trim()).toBe(
+      'Ionic Theme MD3',
+    );
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles for Ionic Theme MD3');
+    expect(root.querySelector('.article-filter-status a')?.getAttribute('href')).toBe('/articles');
+    expect(root.querySelector('.article-years__active')).toBeNull();
+    expect(
+      root.querySelector('.article-sidebar__category-link--active')?.getAttribute('aria-current'),
+    ).toBe('page');
+  });
+
+  it('ignores an unknown related-library category', () => {
+    queryParamMap.next(convertToParamMap({ library: 'unknown-library' }));
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles');
+    expect(root.querySelectorAll('a.article-preview')).toHaveLength(12);
+    expect(root.querySelector('.article-years__active')?.textContent?.trim()).toBe('Latest');
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      'https://rdlabo.dev/articles',
+    );
+  });
+
+  it('normalizes an archive URL with a category to the all-years category view', () => {
+    paramMap.next(convertToParamMap({ year: '2024' }));
+    queryParamMap.next(convertToParamMap({ library: 'ionic-theme-md3' }));
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles for Ionic Theme MD3');
+    expect(
+      Array.from(root.querySelectorAll<HTMLTimeElement>('.article-preview__date')).some(
+        (date) => !date.dateTime.startsWith('2024'),
+      ),
+    ).toBe(true);
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      'https://rdlabo.dev/articles?library=ionic-theme-md3',
+    );
+    expect(
+      root.querySelector('.article-sidebar__category-link--active')?.getAttribute('href'),
+    ).toBe('/articles?library=ionic-theme-md3');
   });
 });

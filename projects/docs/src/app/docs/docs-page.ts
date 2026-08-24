@@ -17,6 +17,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { ScrollSpyDirective } from './scroll-spy.directive';
 import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
+import { localizedFragmentPath } from '../locale-path';
 
 @Component({
   selector: 'app-docs-page',
@@ -116,7 +117,7 @@ import { SeoService } from './seo.service';
                         <a
                           class="block py-1 text-[0.82rem] leading-5 font-normal break-words text-[#6b625d] no-underline transition-colors hover:text-[#c44320] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
                           [class.!text-[#c44320]]="activeToc() === heading.id"
-                          [href]="'#' + heading.id"
+                          [href]="tocHref(doc, heading)"
                           >{{ heading.text }}</a
                         >
                       </li>
@@ -206,5 +207,9 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
     );
     const entry = page?.scrollMap.find((candidate) => candidate.id === id);
     if (entry) this.activeLines.set({ ...entry.activeLine });
+  }
+
+  protected tocHref(page: DocsPage, heading: DocsHeading): string {
+    return localizedFragmentPath(this.#locale, page.path, heading.id);
   }
 }

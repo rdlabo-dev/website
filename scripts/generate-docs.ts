@@ -33,6 +33,7 @@ import {
   stripRdlaboDocsOmit,
 } from './package-markdown';
 import { assertValidContentUpdatedAt, formatSitemapLastmod } from './seo-dates';
+import { loadRelatedArticlesByLibrary, type RelatedArticle } from './article-relations';
 
 const root = resolve(process.cwd());
 const docsRepositoryUrl = 'https://github.com/rdlabo-dev/website';
@@ -342,7 +343,11 @@ async function resolvePageSource(
   };
 }
 
-async function generateProject(project: ProjectDefinition, locale: Locale): Promise<any> {
+async function generateProject(
+  project: ProjectDefinition,
+  locale: Locale,
+  relatedArticles: readonly RelatedArticle[] = [],
+): Promise<any> {
   const isHostedDocumentation = !!project.hostedUrl;
   const packageRoot = join(root, 'node_modules', project.packageName);
   const packageJson = isHostedDocumentation
@@ -597,6 +602,7 @@ async function generateProject(project: ProjectDefinition, locale: Locale): Prom
   return {
     ...localizeProject(project, locale, packageJson.version),
     path: `/projects/${project.slug}`,
+    ...(relatedArticles.length ? { relatedArticles } : {}),
     pages,
   };
 }
@@ -605,10 +611,17 @@ async function main(): Promise<void> {
   const generatedDirectory = join(root, 'projects/docs/src/app/generated');
   const projectsDirectory = join(generatedDirectory, 'projects');
   await mkdir(projectsDirectory, { recursive: true });
+  const relatedArticlesByLibrary = await loadRelatedArticlesByLibrary(
+    join(root, 'projects/web-site/src/articles'),
+  );
   const projectsByLocale: Record<Locale, any[]> = { en: [], ja: [] };
   for (const project of projectDefinitions) {
     for (const locale of ['en', 'ja'] as const) {
-      const generated = await generateProject(project, locale);
+      const generated = await generateProject(
+        project,
+        locale,
+        relatedArticlesByLibrary.get(project.id),
+      );
       projectsByLocale[locale].push(generated);
       if (!project.hostedUrl) {
         await writeFile(
@@ -622,7 +635,7 @@ async function main(): Promise<void> {
   const catalogs = Object.fromEntries(
     (['en', 'ja'] as const).map((locale) => [
       locale,
-      projectsByLocale[locale].map(({ pages, ...project }) => ({
+      projectsByLocale[locale].map(({ pages, relatedArticles: _relatedArticles, ...project }) => ({
         ...project,
         pages: pages.map(
           ({ html, headings, codes, scrollMap, editUrl, file, ...page }: any) => page,

@@ -154,6 +154,8 @@ test('generates a pending Zenn translation from reviewed fallback metadata', asy
 title: Pending translation
 description: Pending description
 zennSlug: pending
+relatedLibraries:
+  - ionic-theme-md3
 sourceVerification: pending
 sourceUrl: https://zenn.dev/rdlabo/articles/pending
 publishedAt: "2026-08-24T17:20:00+09:00"
@@ -179,6 +181,36 @@ Translated body.
     assert.match(catalog, /"originalUrl": "https:\/\/zenn\.dev\/rdlabo\/articles\/pending"/);
     assert.match(catalog, /"publishedAt": "2026-08-24T08:20:00\.000Z"/);
     assert.match(catalog, /"publishedDate": "2026-08-24"/);
+    assert.match(catalog, /"id": "ionic-theme-md3"/);
+    assert.match(catalog, /https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-md3/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('rejects unknown related library project IDs', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'article-related-library-'));
+  const articlesRoot = join(root, 'projects/web-site/src/articles');
+
+  try {
+    await mkdir(articlesRoot, { recursive: true });
+    await writeFile(
+      join(articlesRoot, 'example.md'),
+      `---
+title: Example translation
+description: Example description
+zennSlug: example
+relatedLibraries:
+  - missing-library
+---
+Translated body.
+`,
+      'utf8',
+    );
+    await assert.rejects(
+      () => generateArticles({ root }),
+      /declares unknown relatedLibraries project ID: missing-library/,
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }

@@ -35,6 +35,13 @@ export interface ProjectFeature {
   description: string;
 }
 
+export interface RelatedArticle {
+  slug: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
 export interface ProjectCategorySummary {
   id: ProjectCategory;
   label: string;
@@ -82,6 +89,7 @@ export interface ProjectSummary {
   overview: string;
   featuresHeading: string;
   features: readonly ProjectFeature[];
+  relatedArticles?: readonly RelatedArticle[];
   path: string;
   pages: readonly DocsPageSummary[];
 }

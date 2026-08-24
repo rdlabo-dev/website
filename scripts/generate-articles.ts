@@ -13,6 +13,8 @@ import {
   formatContentUpdatedAt,
   formatSitemapLastmod,
 } from './seo-dates';
+import { projectDefinitions } from './project-manifest';
+import { parseRelatedLibraryIds } from './article-relations';
 
 interface ArticleFrontMatter {
   title: string;
@@ -28,6 +30,7 @@ interface ArticleFrontMatter {
   slug?: string;
   emoji?: string;
   image?: string;
+  relatedLibraries?: unknown;
 }
 
 interface ArticleTranslation {
@@ -46,6 +49,11 @@ interface ArticleTranslation {
   updatedAt?: string;
   emoji: string;
   image?: string;
+  relatedLibraries: {
+    id: string;
+    name: string;
+    url: string;
+  }[];
   body: string;
 }
 
@@ -58,6 +66,11 @@ interface GeneratedArticle {
   image: string;
   imageWidth?: number;
   imageHeight?: number;
+  relatedLibraries?: {
+    id: string;
+    name: string;
+    url: string;
+  }[];
   sourceName: 'Zenn' | 'note';
   originalUrl: string;
   publishedAt: string;
@@ -302,6 +315,18 @@ function optionalUpdatedAt(value: unknown, file: string): string | undefined {
   return assertValidContentUpdatedAt(value.trim(), file);
 }
 
+function relatedLibraries(value: unknown, file: string): ArticleTranslation['relatedLibraries'] {
+  return parseRelatedLibraryIds(value, file).map((id) => {
+    const project = projectDefinitions.find((entry) => entry.id === id);
+    if (!project) throw new Error(`Validated project ID disappeared: ${id}`);
+    return {
+      id: project.id,
+      name: project.shortName,
+      url: `https://docs.rdlabo.dev/projects/${project.slug}`,
+    };
+  });
+}
+
 function pendingZennMetadata(
   attributes: Partial<ArticleFrontMatter>,
   zennSlug: string,
@@ -354,6 +379,7 @@ async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[
           description: required(parsed.attributes.description, 'description', file),
           updatedAt: optionalUpdatedAt(parsed.attributes.updatedAt, file),
           image: optionalHttpsUrl(parsed.attributes.image, 'image', file),
+          relatedLibraries: relatedLibraries(parsed.attributes.relatedLibraries, file),
           emoji:
             typeof parsed.attributes.emoji === 'string' && parsed.attributes.emoji.trim()
               ? parsed.attributes.emoji.trim()
@@ -373,6 +399,7 @@ async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[
         description: required(parsed.attributes.description, 'description', file),
         updatedAt: optionalUpdatedAt(parsed.attributes.updatedAt, file),
         image: optionalHttpsUrl(parsed.attributes.image, 'image', file),
+        relatedLibraries: relatedLibraries(parsed.attributes.relatedLibraries, file),
         emoji:
           typeof parsed.attributes.emoji === 'string' && parsed.attributes.emoji.trim()
             ? parsed.attributes.emoji.trim()
@@ -481,6 +508,9 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
         translation.image ?? `https://rdlabo.dev/article-images/${encodeURIComponent(slug)}.svg`,
       ...(generatedImage ? { imageWidth: 1200, imageHeight: 630 } : {}),
       emoji: translation.emoji,
+      ...(translation.relatedLibraries.length
+        ? { relatedLibraries: translation.relatedLibraries }
+        : {}),
       sourceName: translation.source === 'note' ? 'note' : 'Zenn',
       originalUrl: metadata.url,
       publishedAt: metadata.publishedAt,

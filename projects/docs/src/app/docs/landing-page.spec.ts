@@ -55,4 +55,18 @@ describe('LandingPageComponent', () => {
       compiled.querySelector('a[href="https://github.com/capacitor-community/admob"]'),
     ).not.toBeNull();
   });
+
+  it('links library documentation to related articles', async () => {
+    const compiled = await setup('ionic-theme-md3');
+    const links = Array.from(
+      compiled.querySelectorAll<HTMLAnchorElement>('a[href^="https://rdlabo.dev/articles/"]'),
+    );
+    expect(links.map((link) => link.href)).toContain(
+      'https://rdlabo.dev/articles/ionic-theme-md3',
+    );
+    expect(links.map((link) => link.href)).toContain(
+      'https://rdlabo.dev/articles/ionic-themes-ionic9-major-update',
+    );
+    expect(compiled.textContent).toContain('Related articles');
+  });
 });

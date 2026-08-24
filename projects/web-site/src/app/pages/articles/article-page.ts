@@ -20,6 +20,9 @@ export class ArticlePage {
     ? formatArticleDate(this.article.updatedAt)
     : undefined;
   protected readonly tocHeadings = this.article.headings.filter((heading) => heading.level === 2);
+  protected readonly relatedLibraryIds = (this.article.relatedLibraries ?? []).map(
+    (library) => library.id,
+  );
 
   constructor() {
     this.#seo.setPage({

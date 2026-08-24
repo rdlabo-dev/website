@@ -28,6 +28,20 @@ export const PROJECT = {
     }
   ],
   "path": "/projects/ionic-theme-ios26",
+  "relatedArticles": [
+    {
+      "slug": "1cac6284b08db2",
+      "title": "I Released the Most Faithful iOS 26 CSS Library in the World!",
+      "description": "Introducing @rdlabo/ionic-theme-ios26—pixel-compared Ionic theme for iOS 26 safe areas, floating tabs, rounded UI, dark mode, and Capacitor deployment.",
+      "url": "https://rdlabo.dev/articles/1cac6284b08db2"
+    },
+    {
+      "slug": "ionic-themes-ionic9-major-update",
+      "title": "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9",
+      "description": "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path.",
+      "url": "https://rdlabo.dev/articles/ionic-themes-ionic9-major-update"
+    }
+  ],
   "pages": [
     {
       "title": "Getting Started",

@@ -31,6 +31,33 @@ describe('ArticleSidebar', () => {
     ]);
   });
 
+  it('lists related-library categories and links to filtered articles', () => {
+    const root = fixture.nativeElement as HTMLElement;
+    const links = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__category-link'),
+    );
+
+    expect(links.map((link) => link.textContent?.trim())).toEqual([
+      'Ionic Theme iOS26',
+      'Ionic Theme MD3',
+    ]);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual([
+      '/articles?library=ionic-theme-ios26',
+      '/articles?library=ionic-theme-md3',
+    ]);
+  });
+
+  it('exposes the current category to assistive technology', () => {
+    fixture.componentRef.setInput('currentCategoryId', 'ionic-theme-md3');
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const current = root.querySelector<HTMLAnchorElement>(
+      '.article-sidebar__category-link[aria-current="page"]',
+    );
+    expect(current?.textContent?.trim()).toBe('Ionic Theme MD3');
+  });
+
   it('renders contents links when headings are provided', () => {
     fixture.componentRef.setInput('tocHeadings', [{ id: 'intro', text: 'Introduction', level: 2 }]);
     fixture.componentRef.setInput('articleSlug', 'sample-slug');
@@ -48,9 +75,9 @@ describe('ArticleSidebar', () => {
   it('omits the contents section when there are no headings', () => {
     const root = fixture.nativeElement as HTMLElement;
 
-    expect(root.querySelector('.article-sidebar__label')).toBeNull();
+    expect(root.querySelector('.article-sidebar__label')?.textContent?.trim()).toBe('Category');
     expect(root.querySelector('.article-sidebar__list')).toBeNull();
-    expect(root.querySelector('.article-sidebar__resources--separated')).toBeNull();
+    expect(root.querySelector('.article-sidebar__resources--separated')).not.toBeNull();
     expect(root.querySelectorAll('.article-sidebar__resource-link')).toHaveLength(3);
   });
 });

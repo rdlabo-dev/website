@@ -46,8 +46,25 @@
       </aside>
 
       <div class="znc article-content" [innerHTML]="article.html | safeHtml"></div>
+
+      @if (article.relatedLibraries?.length) {
+        <aside class="article-related-libraries" aria-labelledby="related-libraries-heading">
+          <h2 id="related-libraries-heading">Related libraries</h2>
+          <ul>
+            @for (library of article.relatedLibraries; track library.id) {
+              <li>
+                <a class="external-link" [href]="library.url">{{ library.name }} documentation</a>
+              </li>
+            }
+          </ul>
+        </aside>
+      }
     </div>
 
-    <app-article-sidebar [tocHeadings]="tocHeadings" [articleSlug]="article.slug" />
+    <app-article-sidebar
+      [tocHeadings]="tocHeadings"
+      [articleSlug]="article.slug"
+      [relatedCategoryIds]="relatedLibraryIds"
+    />
   </div>
 </article>

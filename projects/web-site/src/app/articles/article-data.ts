@@ -14,6 +14,11 @@ export interface ArticleSummary {
   image: string;
   imageWidth?: number;
   imageHeight?: number;
+  relatedLibraries?: readonly {
+    id: string;
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface ArticleDetail extends ArticleSummary {
@@ -27,8 +32,22 @@ export interface ArticleHeading {
   level: 2 | 3;
 }
 
+export interface ArticleCategory {
+  id: string;
+  name: string;
+}
+
 export const articleSummaries = ARTICLE_SUMMARIES as readonly ArticleSummary[];
 export const articleYears = ARTICLE_YEARS as readonly string[];
+export const articleCategories: readonly ArticleCategory[] = Array.from(
+  new Map(
+    articleSummaries.flatMap((article) =>
+      (article.relatedLibraries ?? []).map(
+        (library) => [library.id, { id: library.id, name: library.name }] as const,
+      ),
+    ),
+  ).values(),
+).sort((left, right) => left.name.localeCompare(right.name, 'en'));
 
 export async function loadArticle(slug: string): Promise<ArticleDetail | undefined> {
   const summary = articleSummaries.find((article) => article.slug === slug);

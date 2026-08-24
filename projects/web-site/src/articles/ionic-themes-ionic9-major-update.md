@@ -6,6 +6,9 @@ sourceVerification: pending
 sourceUrl: https://zenn.dev/rdlabo/articles/ionic-themes-ionic9-major-update
 publishedAt: "2026-08-24T17:20:00+09:00"
 publishedDate: "2026-08-24"
+relatedLibraries:
+  - ionic-theme-ios26
+  - ionic-theme-md3
 emoji: "🎨"
 ---
 

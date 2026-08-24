@@ -161,6 +161,7 @@ export class App {
       return;
     }
     this.expandedProjectId.set(project.id);
+    void this.#router.navigateByUrl(project.path);
   }
 
   protected projectNavigationLabel(project: ProjectSummary): string {

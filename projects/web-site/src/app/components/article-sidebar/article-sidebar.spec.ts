@@ -18,9 +18,7 @@ describe('ArticleSidebar', () => {
 
   it('renders the shared external resource links', () => {
     const root = fixture.nativeElement as HTMLElement;
-    const links = Array.from(
-      root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__resource-link'),
-    );
+    const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.oss-resource-links__link'));
 
     expect(
       links.map((link) => [link.textContent?.trim(), link.href, link.target, link.rel]),
@@ -99,6 +97,6 @@ describe('ArticleSidebar', () => {
     expect(root.querySelector('.article-sidebar__label')?.textContent?.trim()).toBe('Category');
     expect(root.querySelector('.article-sidebar__list')).toBeNull();
     expect(root.querySelector('.article-sidebar__resources--separated')).not.toBeNull();
-    expect(root.querySelectorAll('.article-sidebar__resource-link')).toHaveLength(3);
+    expect(root.querySelectorAll('.oss-resource-links__link')).toHaveLength(3);
   });
 });

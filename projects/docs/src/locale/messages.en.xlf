@@ -85,7 +85,7 @@
     </unit>
     <unit id="docsHomeNav">
       <segment>
-        <source>Docs</source>
+        <source>docs</source>
       </segment>
     </unit>
     <unit id="relatedArticles">
@@ -141,6 +141,11 @@
       </notes>
       <segment>
         <source>Table of contents</source>
+      </segment>
+    </unit>
+    <unit id="pageNavigation">
+      <segment>
+        <source>Page navigation</source>
       </segment>
     </unit>
     <unit id="contents">

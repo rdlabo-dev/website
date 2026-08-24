@@ -87,6 +87,7 @@ describe('App', () => {
       expect(button.getAttribute('aria-expanded')).toBe('false');
       expect(button.getAttribute('aria-controls')).toMatch(/^project-panel-/);
       expect(button.getAttribute('aria-label')).toContain('navigation for');
+      expect(button.textContent?.trim()).not.toBe('');
     }
     const articlesLink = compiled.querySelector<HTMLAnchorElement>(
       'nav[aria-label="Primary navigation"] a[href="https://rdlabo.dev/articles"]',
@@ -137,7 +138,7 @@ describe('App', () => {
     expect(compiled.textContent).toContain('Server Integration');
   });
 
-  it('toggles project accordion panels without navigating', async () => {
+  it('navigates to a project overview when opening its accordion panel', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -152,7 +153,7 @@ describe('App', () => {
     stripeButton.click();
     fixture.detectChanges();
     await fixture.whenStable();
-    expect(router.url).toBe('/');
+    expect(router.url).toBe('/projects/capacitor-stripe');
     expect(stripeButton.getAttribute('aria-expanded')).toBe('true');
     expect(stripePanel.hasAttribute('inert')).toBe(false);
     expect(stripePanel.getAttribute('aria-hidden')).toBe('false');
@@ -161,7 +162,7 @@ describe('App', () => {
     stripeButton.click();
     fixture.detectChanges();
     await fixture.whenStable();
-    expect(router.url).toBe('/');
+    expect(router.url).toBe('/projects/capacitor-stripe');
     expect(stripeButton.getAttribute('aria-expanded')).toBe('false');
     expect(stripePanel.hasAttribute('inert')).toBe(true);
     expect(stripePanel.getAttribute('aria-hidden')).toBe('true');
@@ -169,7 +170,7 @@ describe('App', () => {
     admobButton.click();
     fixture.detectChanges();
     await fixture.whenStable();
-    expect(router.url).toBe('/');
+    expect(router.url).toBe('/projects/capacitor-admob');
     expect(admobButton.getAttribute('aria-expanded')).toBe('true');
     expect(admobPanel.hasAttribute('inert')).toBe(false);
     expect(admobPanel.getAttribute('aria-hidden')).toBe('false');
@@ -233,7 +234,7 @@ describe('App', () => {
     expect(brand.href).toBe('https://rdlabo.dev/');
     expect(brand.target).toBe('');
     expect(docsHome.getAttribute('href')).toBe('/ja');
-    expect(docsHome.textContent?.trim()).toBe('Docs');
+    expect(docsHome.textContent?.trim()).toBe('docs');
     expect(allProjects.getAttribute('href')).toBe('/ja');
     expect(allProjects.getAttribute('aria-current')).toBe('page');
   });
@@ -285,7 +286,7 @@ describe('App', () => {
     expect(brand.href).toBe('https://rdlabo.dev/');
     expect(brand.target).toBe('');
     expect(docsHome.getAttribute('href')).toBe('/');
-    expect(docsHome.textContent?.trim()).toBe('Docs');
+    expect(docsHome.textContent?.trim()).toBe('docs');
     expect(router.url).toBe('/projects/capacitor-stripe');
   });
 
@@ -310,7 +311,7 @@ describe('App', () => {
 
     await router.navigateByUrl('/projects/capacitor-stripe');
     fixture.detectChanges();
-    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Stripe']);
+    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Overview']);
 
     await router.navigateByUrl('/projects/capacitor-stripe/docs/configuration');
     fixture.detectChanges();
@@ -373,7 +374,7 @@ describe('App', () => {
     expect(document.activeElement).toBe(button);
   });
 
-  it('keeps the mobile menu open and expands the project panel without navigating', async () => {
+  it('navigates to the overview and closes the mobile menu when opening a project', async () => {
     mockMatchMedia(true);
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
@@ -394,9 +395,9 @@ describe('App', () => {
     stripeButton.click();
     fixture.detectChanges();
     await fixture.whenStable();
-    expect(router.url).toBe('/');
-    expect(button.getAttribute('aria-expanded')).toBe('true');
-    expect(menu.hasAttribute('inert')).toBe(false);
+    expect(router.url).toBe('/projects/capacitor-stripe');
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(menu.hasAttribute('inert')).toBe(true);
     expect(stripeButton.getAttribute('aria-expanded')).toBe('true');
     expect(stripePanel.hasAttribute('inert')).toBe(false);
     expect(stripePanel.getAttribute('aria-hidden')).toBe('false');

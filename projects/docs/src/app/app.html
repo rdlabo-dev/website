@@ -25,7 +25,7 @@
       </span>
     </button>
     <a
-      class="docs-brand m-3.5 flex min-w-0 items-center gap-2.5 text-[#211d1b] no-underline hover:opacity-75"
+      class="docs-brand my-3.5 ml-3.5 flex min-w-0 items-center gap-2.5 text-[#211d1b] no-underline hover:opacity-75"
       href="https://rdlabo.dev/"
     >
       <img
@@ -39,13 +39,17 @@
         >rdlabo.dev</span
       >
     </a>
-    <span class="docs-brand__sep shrink-0 text-sm text-[#c4b8b1]" aria-hidden="true">/</span>
+    <span
+      class="docs-brand__sep mx-2 inline-flex h-6 shrink-0 items-center text-sm leading-none text-[#a99d96] sm:text-base"
+      aria-hidden="true"
+      >/</span
+    >
     <a
-      class="docs-home-link mr-2 shrink-0 text-sm font-semibold tracking-[-0.02em] text-[#211d1b] no-underline hover:opacity-75 sm:mr-3.5 sm:text-base"
+      class="docs-home-link mr-2 shrink-0 text-sm font-normal tracking-[-0.02em] text-[#211d1b] no-underline hover:opacity-75 sm:mr-3.5 sm:text-base"
       [href]="canonicalHomePath"
       (click)="navigateHome($event)"
       i18n="@@docsHomeNav"
-      >Docs</a
+      >docs</a
     >
     @if (activeProject(); as project) {
       <span
@@ -169,7 +173,7 @@
             [class.!text-[#c44320]]="activeProject()?.id === project.id"
           >
             <button
-              class="grid size-11 shrink-0 cursor-pointer place-items-center rounded-lg border-0 bg-transparent hover:text-[#c44320]"
+              class="flex min-w-0 flex-1 cursor-pointer items-center rounded-xl border-0 bg-transparent text-left text-inherit hover:text-[#c44320]"
               type="button"
               [id]="'project-button-' + project.id"
               [attr.aria-label]="projectNavigationLabel(project)"
@@ -177,30 +181,24 @@
               [attr.aria-controls]="projectPanelId(project)"
               (click)="selectProject(project)"
             >
-              <svg
-                class="size-3 transition-transform duration-200"
-                [class.-rotate-90]="!isProjectExpanded(project)"
-                viewBox="0 0 10 6"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 1 5 5 9 1"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+              <span class="grid size-11 shrink-0 place-items-center" aria-hidden="true">
+                <svg
+                  class="size-3 transition-transform duration-200"
+                  [class.-rotate-90]="!isProjectExpanded(project)"
+                  viewBox="0 0 10 6"
+                  fill="none"
+                >
+                  <path
+                    d="M1 1 5 5 9 1"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
+              <span class="min-w-0 flex-1 py-2.5 pr-3">{{ project.shortName }}</span>
             </button>
-            <a
-              class="min-w-0 flex-1 rounded-lg py-2.5 pr-3 no-underline hover:text-[#c44320]"
-              [routerLink]="project.path"
-              routerLinkActive="!text-[#c44320]"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ariaCurrentWhenActive="page"
-              >{{ project.shortName }}</a
-            >
           </div>
 
           <div
@@ -216,6 +214,15 @@
               [attr.inert]="isProjectExpanded(project) ? null : ''"
             >
               <div class="mt-1 ml-3 border-l border-[#e4d8d1] pl-3">
+                <a
+                  class="block rounded-lg px-3 py-2 text-[0.84rem] leading-5 font-medium text-[#6f6661] no-underline hover:text-[#c44320]"
+                  [routerLink]="project.path"
+                  routerLinkActive="bg-[#fff5f0] !text-[#c44320]"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  ariaCurrentWhenActive="page"
+                  i18n="@@overviewNav"
+                  >Overview</a
+                >
                 @for (section of sectionsFor(project); track section.name) {
                   <p
                     class="mt-5 mb-1 px-3 text-[0.62rem] font-semibold tracking-[0.13em] text-[#6f6661] uppercase"

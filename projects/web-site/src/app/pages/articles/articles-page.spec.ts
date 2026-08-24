@@ -70,9 +70,7 @@ describe('ArticlesPage', () => {
 
   it('includes the shared resource links in the sidebar', () => {
     const root = fixture.nativeElement as HTMLElement;
-    const links = Array.from(
-      root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__resource-link'),
-    );
+    const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.oss-resource-links__link'));
 
     expect(links.map((link) => link.textContent?.trim())).toEqual([
       'Support my OSS',

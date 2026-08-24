@@ -176,7 +176,7 @@ describe('ArticlePage', () => {
     const sidebar = root.querySelector('.article-sidebar');
 
     expect(sidebar).not.toBeNull();
-    expect(root.querySelectorAll('.article-sidebar__resource-link')).toHaveLength(3);
+    expect(root.querySelectorAll('.oss-resource-links__link')).toHaveLength(3);
   });
 
   it('keeps the shared sidebar when there are no level-two headings', async () => {
@@ -208,6 +208,6 @@ describe('ArticlePage', () => {
 
     expect(root.querySelector('.article-sidebar')).not.toBeNull();
     expect(root.querySelector('.article-sidebar__list')).toBeNull();
-    expect(root.querySelectorAll('.article-sidebar__resource-link')).toHaveLength(3);
+    expect(root.querySelectorAll('.oss-resource-links__link')).toHaveLength(3);
   });
 });

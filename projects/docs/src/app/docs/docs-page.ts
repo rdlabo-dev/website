@@ -12,6 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CodePanel } from './code-panel';
+import { OssResourceLinksComponent } from '../../../../../shared/oss-resource-links';
 import { DocsHeading, DocsPage, ProjectDocs } from './docs-data';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ScrollSpyDirective } from './scroll-spy.directive';
@@ -21,7 +22,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
 
 @Component({
   selector: 'app-docs-page',
-  imports: [CodePanel, RouterLink, SafeHtmlPipe, ScrollSpyDirective],
+  imports: [CodePanel, OssResourceLinksComponent, RouterLink, SafeHtmlPipe, ScrollSpyDirective],
   template: `
     @if (project(); as proj) {
       @if (page(); as doc) {
@@ -31,9 +32,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               'grid items-start justify-center pt-[42px] max-[960px]:block max-[960px]:pt-7 ' +
               (doc.codes.length
                 ? 'grid-cols-[minmax(420px,680px)_minmax(420px,1fr)] max-[1500px]:grid-cols-[minmax(420px,800px)_minmax(420px,1fr)] max-[1100px]:grid-cols-[minmax(380px,1fr)_minmax(380px,1fr)]'
-                : tocHeadings().length
-                  ? 'grid-cols-[minmax(0,3fr)_minmax(0,1fr)] max-[1500px]:grid-cols-[minmax(0,1fr)]'
-                  : 'grid-cols-[minmax(0,1fr)]')
+                : 'grid-cols-[minmax(0,3fr)_minmax(0,1fr)] max-[1500px]:grid-cols-[minmax(0,1fr)]')
             "
           >
             <article
@@ -98,66 +97,89 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                   }
                 </div>
               }
-              @if (!doc.codes.length && !tocHeadings().length) {
-                <div class="mt-8 border-t border-slate-200 pt-4">
-                  <a
-                    class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
-                    [href]="doc.editUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path
-                        d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.74 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.41-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"
-                      />
-                    </svg>
-                    <ng-container i18n="@@editOnGitHub">Edit this page on GitHub</ng-container>
-                  </a>
+              @if (!doc.codes.length) {
+                <div class="mt-8 border-t border-slate-200 pt-4 min-[1501px]:hidden">
+                  <app-oss-resource-links />
+                  <div class="mt-4 border-t border-slate-200 pt-4">
+                    <a
+                      class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
+                      [href]="doc.editUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <svg
+                        class="size-3.5"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.74 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.41-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"
+                        />
+                      </svg>
+                      <ng-container i18n="@@editOnGitHub">Edit this page on GitHub</ng-container>
+                    </a>
+                  </div>
                 </div>
               }
             </article>
             @if (doc.codes.length) {
               <app-code-panel [codes]="doc.codes" [activeLines]="activeLines()" />
             }
-            @if (!doc.codes.length && tocHeadings().length) {
+            @if (!doc.codes.length) {
               <aside
                 class="sticky top-8 w-full max-h-[calc(100dvh-64px)] min-w-0 overflow-y-auto px-5 pt-2 pb-8 max-[1500px]:hidden"
-                i18n-aria-label="@@tableOfContents"
-                aria-label="Table of contents"
+                i18n-aria-label="@@pageNavigation"
+                aria-label="Page navigation"
               >
-                <p
-                  class="m-0 mb-3 text-[0.65rem] leading-none font-normal tracking-[0.16em] text-slate-400 uppercase"
-                >
-                  <ng-container i18n="@@contents">Contents</ng-container>
-                </p>
-                <nav i18n-aria-label="@@onThisPage" aria-label="On this page">
-                  <ul class="m-0 list-none p-0">
-                    @for (heading of tocHeadings(); track heading.id) {
-                      <li [class.pl-3]="heading.level === 3">
-                        <a
-                          class="block py-1 text-[0.82rem] leading-5 font-normal break-words text-[#6b625d] no-underline transition-colors hover:text-[#c44320] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
-                          [class.!text-[#c44320]]="activeToc() === heading.id"
-                          [href]="tocHref(doc, heading)"
-                          >{{ heading.text }}</a
-                        >
-                      </li>
-                    }
-                  </ul>
-                </nav>
-                <div class="mt-5 border-t border-slate-200 pt-4">
-                  <a
-                    class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
-                    [href]="doc.editUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                @if (tocHeadings().length) {
+                  <p
+                    class="m-0 mb-3 text-[0.65rem] leading-none font-normal tracking-[0.16em] text-slate-400 uppercase"
                   >
-                    <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path
-                        d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.74 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.41-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"
-                      />
-                    </svg>
-                    <ng-container i18n="@@editOnGitHub">Edit this page on GitHub</ng-container>
-                  </a>
+                    <ng-container i18n="@@contents">Contents</ng-container>
+                  </p>
+                  <nav i18n-aria-label="@@onThisPage" aria-label="On this page">
+                    <ul class="m-0 list-none p-0">
+                      @for (heading of tocHeadings(); track heading.id) {
+                        <li [class.pl-3]="heading.level === 3">
+                          <a
+                            class="block py-1 text-[0.82rem] leading-5 font-normal break-words text-[#6b625d] no-underline transition-colors hover:text-[#c44320] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
+                            [class.!text-[#c44320]]="activeToc() === heading.id"
+                            [href]="tocHref(doc, heading)"
+                            >{{ heading.text }}</a
+                          >
+                        </li>
+                      }
+                    </ul>
+                  </nav>
+                }
+                <div
+                  [class.mt-5]="tocHeadings().length"
+                  [class.border-t]="tocHeadings().length"
+                  [class.border-slate-200]="tocHeadings().length"
+                  [class.pt-4]="tocHeadings().length"
+                >
+                  <app-oss-resource-links />
+                  <div class="mt-4 border-t border-slate-200 pt-4">
+                    <a
+                      class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
+                      [href]="doc.editUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <svg
+                        class="size-3.5"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.74 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.41-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"
+                        />
+                      </svg>
+                      <ng-container i18n="@@editOnGitHub">Edit this page on GitHub</ng-container>
+                    </a>
+                  </div>
                 </div>
               </aside>
             }

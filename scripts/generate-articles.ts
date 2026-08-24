@@ -19,8 +19,11 @@ interface ArticleFrontMatter {
   description: string;
   updatedAt?: string;
   zennSlug?: string;
-  source?: 'zenn' | 'note';
+  sourceVerification?: 'pending';
   sourceUrl?: string;
+  publishedAt?: string;
+  publishedDate?: string;
+  source?: 'zenn' | 'note';
   sourceRevision?: string;
   slug?: string;
   emoji?: string;
@@ -32,6 +35,11 @@ interface ArticleTranslation {
   source: 'zenn' | 'note';
   sourceKey: string;
   sourceRevision?: string;
+  pendingSourceMetadata?: {
+    url: string;
+    publishedAt: string;
+    publishedDate: string;
+  };
   slug: string;
   title: string;
   description: string;
@@ -294,6 +302,38 @@ function optionalUpdatedAt(value: unknown, file: string): string | undefined {
   return assertValidContentUpdatedAt(value.trim(), file);
 }
 
+function pendingZennMetadata(
+  attributes: Partial<ArticleFrontMatter>,
+  zennSlug: string,
+  file: string,
+): ArticleTranslation['pendingSourceMetadata'] {
+  if (attributes.sourceVerification !== 'pending') return undefined;
+  const url = required(attributes.sourceUrl, 'sourceUrl', file);
+  const expectedUrl = `https://zenn.dev/rdlabo/articles/${encodeURIComponent(zennSlug)}`;
+  if (url !== expectedUrl) {
+    throw new Error(
+      `${file} must declare sourceUrl as the canonical Zenn article URL ${expectedUrl} while source verification is pending`,
+    );
+  }
+  const publishedAt = required(attributes.publishedAt, 'publishedAt', file);
+  if (Number.isNaN(new Date(publishedAt).valueOf())) {
+    throw new Error(
+      `${file} must declare publishedAt as a valid date while source verification is pending`,
+    );
+  }
+  const publishedDate = required(attributes.publishedDate, 'publishedDate', file);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(publishedDate)) {
+    throw new Error(
+      `${file} must declare publishedDate as YYYY-MM-DD while source verification is pending`,
+    );
+  }
+  return {
+    url,
+    publishedAt: new Date(publishedAt).toISOString(),
+    publishedDate,
+  };
+}
+
 async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[]> {
   await mkdir(sourceRoot, { recursive: true });
   const files = (await readdir(sourceRoot)).filter((file) => file.endsWith('.md')).sort();
@@ -327,6 +367,7 @@ async function loadTranslations(sourceRoot: string): Promise<ArticleTranslation[
         file,
         source,
         sourceKey: zennSlug,
+        pendingSourceMetadata: pendingZennMetadata(parsed.attributes, zennSlug, file),
         slug: zennSlug,
         title: required(parsed.attributes.title, 'title', file),
         description: required(parsed.attributes.description, 'description', file),
@@ -374,7 +415,14 @@ export async function generateArticles(options: GenerateArticlesOptions = {}): P
     const metadata =
       translation.source === 'note'
         ? noteMetadataByUrl.get(translation.sourceKey)
-        : zennMetadataBySlug.get(translation.sourceKey);
+        : (zennMetadataBySlug.get(translation.sourceKey) ??
+          (translation.pendingSourceMetadata
+            ? {
+                slug: translation.sourceKey,
+                title: translation.title,
+                ...translation.pendingSourceMetadata,
+              }
+            : undefined));
     if (!metadata) {
       throw new Error(
         `${translation.file} does not match a public ${translation.source === 'note' ? 'note' : 'Zenn'} article`,

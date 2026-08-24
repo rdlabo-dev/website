@@ -142,6 +142,157 @@ Translated body.
   }
 });
 
+test('generates a pending Zenn translation from reviewed fallback metadata', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'pending-zenn-'));
+  const articlesRoot = join(root, 'projects/web-site/src/articles');
+
+  try {
+    await mkdir(articlesRoot, { recursive: true });
+    await writeFile(
+      join(articlesRoot, 'pending.md'),
+      `---
+title: Pending translation
+description: Pending description
+zennSlug: pending
+sourceVerification: pending
+sourceUrl: https://zenn.dev/rdlabo/articles/pending
+publishedAt: "2026-08-24T17:20:00+09:00"
+publishedDate: "2026-08-24"
+---
+Translated body.
+`,
+      'utf8',
+    );
+
+    await generateArticles({
+      root,
+      fetchZennArticles: async () => [],
+      fetchNoteSource: async () => {
+        throw new Error('note fetch must not run in this test');
+      },
+    });
+
+    const catalog = await readFile(
+      join(root, 'projects/web-site/src/app/generated/article-catalog.generated.ts'),
+      'utf8',
+    );
+    assert.match(catalog, /"originalUrl": "https:\/\/zenn\.dev\/rdlabo\/articles\/pending"/);
+    assert.match(catalog, /"publishedAt": "2026-08-24T08:20:00\.000Z"/);
+    assert.match(catalog, /"publishedDate": "2026-08-24"/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('rejects missing or invalid pending Zenn metadata before generating outputs', async () => {
+  const invalidFields = [
+    ['sourceUrl', undefined, /non-empty sourceUrl/],
+    ['sourceUrl', 'https://example.com/pending', /canonical Zenn article URL/],
+    ['publishedAt', undefined, /non-empty publishedAt/],
+    ['publishedAt', 'not-a-date', /publishedAt as a valid date/],
+    ['publishedDate', undefined, /non-empty publishedDate/],
+    ['publishedDate', '2026-8-24', /publishedDate as YYYY-MM-DD/],
+  ] as const;
+
+  for (const [field, value, expectedError] of invalidFields) {
+    const root = await mkdtemp(join(tmpdir(), `pending-zenn-${field}-`));
+    const articlesRoot = join(root, 'projects/web-site/src/articles');
+    const generatedRoot = join(root, 'projects/web-site/src/app/generated/articles');
+    const sentinel = join(generatedRoot, 'keep.generated.ts');
+    const metadata: Record<string, string | undefined> = {
+      sourceUrl: 'https://zenn.dev/rdlabo/articles/pending',
+      publishedAt: '2026-08-24T17:20:00+09:00',
+      publishedDate: '2026-08-24',
+      [field]: value,
+    };
+    const metadataLines = [
+      metadata['sourceUrl'] ? `sourceUrl: ${metadata['sourceUrl']}` : undefined,
+      metadata['publishedAt'] ? `publishedAt: "${metadata['publishedAt']}"` : undefined,
+      metadata['publishedDate'] ? `publishedDate: "${metadata['publishedDate']}"` : undefined,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    try {
+      await Promise.all([
+        mkdir(articlesRoot, { recursive: true }),
+        mkdir(generatedRoot, { recursive: true }),
+      ]);
+      await Promise.all([
+        writeFile(
+          join(articlesRoot, 'pending.md'),
+          `---
+title: Pending translation
+description: Pending description
+zennSlug: pending
+sourceVerification: pending
+${metadataLines}
+---
+Translated body.
+`,
+          'utf8',
+        ),
+        writeFile(sentinel, 'keep\n', 'utf8'),
+      ]);
+
+      await assert.rejects(() => generateArticles({ root }), expectedError);
+      assert.equal(await readFile(sentinel, 'utf8'), 'keep\n');
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test('prefers public Zenn feed metadata when a pending article becomes available', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'pending-zenn-feed-'));
+  const articlesRoot = join(root, 'projects/web-site/src/articles');
+
+  try {
+    await mkdir(articlesRoot, { recursive: true });
+    await writeFile(
+      join(articlesRoot, 'pending.md'),
+      `---
+title: Pending translation
+description: Pending description
+zennSlug: pending
+sourceVerification: pending
+sourceUrl: https://zenn.dev/rdlabo/articles/pending
+publishedAt: "2026-08-24T17:20:00+09:00"
+publishedDate: "2026-08-24"
+---
+Translated body.
+`,
+      'utf8',
+    );
+
+    await generateArticles({
+      root,
+      fetchZennArticles: async () => [
+        {
+          slug: 'pending',
+          title: 'Public source',
+          url: 'https://zenn.dev/rdlabo/articles/pending',
+          publishedAt: '2026-08-25T01:02:03.000Z',
+          publishedDate: '2026-08-25',
+        },
+      ],
+      fetchNoteSource: async () => {
+        throw new Error('note fetch must not run in this test');
+      },
+    });
+
+    const catalog = await readFile(
+      join(root, 'projects/web-site/src/app/generated/article-catalog.generated.ts'),
+      'utf8',
+    );
+    assert.match(catalog, /"publishedAt": "2026-08-25T01:02:03\.000Z"/);
+    assert.match(catalog, /"publishedDate": "2026-08-25"/);
+    assert.doesNotMatch(catalog, /2026-08-24T08:20:00\.000Z/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('invalid explicit article image aborts before generated outputs are changed', async () => {
   const root = await mkdtemp(join(tmpdir(), 'article-image-'));
   const articlesRoot = join(root, 'projects/web-site/src/articles');

@@ -18,6 +18,7 @@ import { SITE_CONFIG } from '../projects/docs/src/app/site-config';
 import { enforceGeneratedHtmlPolicy } from './html-policy';
 import { normalizeImportedReadmeHeadings } from './markdown-headings';
 import { splitDocgenReadme } from './docgen-readme';
+import { prepareDocgenMarkdown, restoreDocgenInlineCode } from './docgen-inline-code';
 import {
   fetchEnglishProjectMarkdown,
   fetchEnglishProjectReadme,
@@ -505,10 +506,12 @@ async function generateProject(
         ),
       );
     }
-    let html = rewriteInternalLinks(await markdownToHtml(expanded), project, locale).replace(
-      'loading="lazy"',
-      'loading="eager" fetchpriority="high"',
-    );
+    const preparedDocgen = prepareDocgenMarkdown(expanded);
+    let html = rewriteInternalLinks(
+      await markdownToHtml(preparedDocgen.markdown),
+      project,
+      locale,
+    ).replace('loading="lazy"', 'loading="eager" fetchpriority="high"');
     const htmlDocument = new JSDOM(html).window.document;
     if (
       fromPackage ||
@@ -557,6 +560,7 @@ async function generateProject(
         }
       }
     }
+    restoreDocgenInlineCode(htmlDocument, preparedDocgen.inlineCodes);
     if (annotateDocgen) annotateDocgenApiEntries(htmlDocument);
     formatApiEntries(htmlDocument);
     if (slug === 'api') formatApiReference(htmlDocument);

@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the public API exported by `@rdlabo/ionic-angular-photo-editor` v21.6.2. Pass component inputs through Ionic Modal `componentProps`.
+Reference for the public API exported by `@rdlabo/ionic-angular-photo-editor` v21.7.0. Pass component inputs through Ionic Modal `componentProps`.
 
 ## Components
 

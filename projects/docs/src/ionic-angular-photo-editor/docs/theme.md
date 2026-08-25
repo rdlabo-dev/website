@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 Override the editor colors after [Installation](/docs/readme#installation).
 
-Default color is set, but user can overwrite it: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/photo-editor/src/lib/pages/core.scss
+Default color is set, but user can overwrite it: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/pages/core.scss
 
 ## How to overwrite
 

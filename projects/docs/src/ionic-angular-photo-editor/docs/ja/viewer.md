@@ -54,7 +54,7 @@ true の場合、iOS 向けにフッターのセーフエリアを有効にし�
 
 設定すると、ラベルが上書きされます。
 
-一覧は[こちら](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/photo-editor/src/lib/dictionaries.ts)です。
+一覧は[こちら](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/dictionaries.ts)です。
 
 #### headerButtonColorScheme: 'light' | 'dark'
 

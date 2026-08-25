@@ -7,7 +7,7 @@ scrollActiveLine: []
 Angular CDK の Virtual Viewport と Header を連携します。[インストール](/docs/readme#インストール) のあとで呼び出します。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { VirtualScrollHeaderDirective } from '@rdlabo/ionic-angular-scroll-header';

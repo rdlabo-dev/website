@@ -42,4 +42,4 @@ The image url or base64 string.
 
 If set, the label is overwritten.
 
-List is [here](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/photo-editor/src/lib/dictionaries.ts).
+List is [here](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/dictionaries.ts).

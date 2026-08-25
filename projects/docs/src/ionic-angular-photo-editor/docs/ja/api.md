@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-photo-editor` v21.6.2 が公開するAPIのリファレンスです。ComponentのinputはIonic Modalの `componentProps` を通して渡します。
+`@rdlabo/ionic-angular-photo-editor` v21.7.0 が公開するAPIのリファレンスです。ComponentのinputはIonic Modalの `componentProps` を通して渡します。
 
 ## Component
 

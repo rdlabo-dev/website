@@ -180,6 +180,14 @@
         <source>Get started</source>
       </segment>
     </unit>
+    <unit id="viewDemo">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:60,61</note>
+      </notes>
+      <segment>
+        <source>Demo</source>
+      </segment>
+    </unit>
     <unit id="viewSource">
       <notes>
         <note category="location">projects/docs/src/app/docs/landing-page.ts:56,57</note>

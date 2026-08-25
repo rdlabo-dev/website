@@ -87,6 +87,7 @@
       <trans-unit id="readDocumentation"><source>Read documentation</source><target>ドキュメントを読む</target></trans-unit>
       <trans-unit id="growingCollection"><source>Growing collection</source><target>今後追加予定</target></trans-unit>
       <trans-unit id="upcomingProjects"><source>More rdlabo projects will be documented here as they are released.</source><target>rdlaboの新しいOSSをリリースにあわせて追加します。</target></trans-unit>
+      <trans-unit id="viewDemo"><source>Demo</source><target>デモを見る</target></trans-unit>
       <trans-unit id="viewSource"><source>View source</source><target>ソースを見る</target></trans-unit>
       <trans-unit id="starOnGitHub"><source>Star on GitHub</source><target>GitHubでStarする</target></trans-unit>
       <trans-unit id="relatedArticles"><source>Related articles</source><target>関連記事（英語）</target></trans-unit>

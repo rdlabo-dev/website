@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 [インストール](/docs/readme#インストール) のあとで使います。
 
-> 基本的な利用例です。
+> 各Itemの可変Heightがすでに分かっている場合に使う、Angular CDK Virtual Scrollの基本例です。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple
 - Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.7.0/projects/demo/src/app/scroll-strategies/pages/scroll-simple

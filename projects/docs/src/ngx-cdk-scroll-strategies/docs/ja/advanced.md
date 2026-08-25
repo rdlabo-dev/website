@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 [インストール](/docs/readme#インストール) のあとで使います。
 
-> 実践的なデモです。スクロールアイテムを別コンポーネントにし、各コンポーネントの高さを取得します。
+> 各Scroll Itemを別Componentにし、動的なItem Heightを計測するAngular CDK Virtual Scrollの実践例です。
 > Angular の基礎知識がないと難しい内容です。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced

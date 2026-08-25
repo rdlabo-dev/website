@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 [インストール](/docs/readme#インストール) のあとで使います。
 
-> WeChat のようなリバーススクロールのデモです。
+> 可変Item HeightとReverse Virtual Scrollを組み合わせ、WeChatのようなChat UIを実装するデモです。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse
 - Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.7.0/projects/demo/src/app/scroll-strategies/pages/scroll-reverse

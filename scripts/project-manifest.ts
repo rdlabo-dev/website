@@ -529,45 +529,60 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
+    seoTitle: text(
+      'Angular CDK Virtual Scroll: Variable Item Heights | rdlabo',
+      'Angular CDK Virtual Scrollの可変アイテム高さ対応 | rdlabo',
+    ),
     description: text(
-      'Dynamic item-size strategies for Angular CDK virtual scrolling.',
-      'Angular CDK Virtual Scroll向けの動的Item Size Strategy。',
+      'Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.',
+      'Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。',
     ),
     headline: text(
-      'Virtualize lists with known variable item sizes',
-      'Itemごとに異なる既知の高さでListをVirtualizeする',
+      'Angular CDK virtual scroll with variable item heights',
+      'Angular CDK Virtual Scrollを可変Item Heightに対応',
     ),
     overview: text(
-      'Provide exact item geometry to Angular CDK virtual scrolling, including reverse layouts and programmatic scrolling without estimating unknown heights.',
-      '未知の高さを推測せず、Reverse LayoutやProgrammatic Scrollを含む正確なItem GeometryをAngular CDK Virtual Scrollへ提供します。',
+      'Supply known or measured per-item heights instead of a fixed itemSize or autosize estimation. Get exact scroll geometry, programmatic scrolling, and reverse chat layouts.',
+      '固定のitemSizeやautosizeによる推定の代わりに、既知または計測したItemごとの高さを指定します。正確なScroll Geometry、Programmatic Scroll、Chat形式のReverse Layoutを実現します。',
     ),
-    featuresHeading: text('Virtual scroll strategy', 'Virtual Scroll Strategy'),
+    featuresHeading: text('Variable-height virtual scrolling', '可変高さのVirtual Scroll'),
     features: [
       {
-        title: text('Dynamic sizes', '動的Size'),
+        title: text('Variable item heights', '可変Item Height'),
         description: text(
-          'Supply a finite positive size for every data item.',
-          'すべてのData Itemへ有限の正数Sizeを指定します。',
+          'Give every list item its own known or measured pixel height.',
+          '各List Itemに、既知または計測した個別のPixel Heightを指定します。',
         ),
       },
       {
-        title: text('Reverse scrolling', 'Reverse Scroll'),
+        title: text('Exact scroll geometry', '正確なScroll Geometry'),
+        description: text(
+          'Avoid average-size estimation when calculating ranges and index offsets.',
+          'RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。',
+        ),
+      },
+      {
+        title: text('Reverse virtual scroll', 'Reverse Virtual Scroll'),
         description: text(
           'Support chat-style reverse layouts and logical index scrolling.',
           'Chat形式のReverse Layoutと論理Index Scrollに対応します。',
         ),
       },
-      {
-        title: text('Stable geometry', '安定したGeometry'),
-        description: text(
-          'Keep the last complete geometry while data and size signals synchronize.',
-          'DataとSizeのSignalが同期するまで最後の完全なGeometryを維持します。',
-        ),
-      },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        seoTitle: text(
+          'Angular CDK Variable Height Virtual Scroll Setup | rdlabo',
+          'Angular CDK可変高さVirtual Scrollの導入方法 | rdlabo',
+        ),
+        updatedAt: text('2026-08-25', '2026-08-25'),
+      }),
       page('Simple Usage', 'シンプルな使い方', 'simple', 'simple.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Angular CDK Virtual Scroll: Variable Height Example | rdlabo',
+          'Angular CDK Virtual Scrollの可変高さサンプル | rdlabo',
+        ),
+        updatedAt: text('2026-08-25', '2026-08-25'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple',
           'Interactive simple virtual scroll demo',
@@ -575,6 +590,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       }),
       page('Advanced Usage', '応用的な使い方', 'advanced', 'advanced.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Angular CDK Virtual Scroll: Dynamic Item Height | rdlabo',
+          'Angular CDK Virtual Scrollで動的なItem Heightを計測 | rdlabo',
+        ),
+        updatedAt: text('2026-08-25', '2026-08-25'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced',
           'Interactive advanced virtual scroll demo',
@@ -582,13 +602,24 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       }),
       page('Reverse Scroll', 'リバーススクロール', 'reverse', 'reverse.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Angular CDK Reverse Virtual Scroll for Chat UIs | rdlabo',
+          'Angular CDK Reverse Virtual ScrollでChat UIを実装 | rdlabo',
+        ),
+        updatedAt: text('2026-08-25', '2026-08-25'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse',
           'Interactive reverse virtual scroll demo',
           'Reverse Virtual Scrollの操作デモ',
         ),
       }),
-      page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド'),
+      page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Angular CDK Virtual Scroll: Autosize vs Variable Height',
+          'Angular CDK Virtual Scrollのautosizeと可変高さの違い',
+        ),
+        updatedAt: text('2026-08-25', '2026-08-25'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },

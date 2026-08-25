@@ -6,7 +6,18 @@ scrollActiveLine: []
 
 ## 概要
 
-`@angular/cdk/scrolling` 向けの動的なアイテムサイズのストラテジーです。Virtual Scroll で使う配列の各アイテムサイズを個別に指定できます。リポジトリ名に “Ionic” が含まれていますが、このストラテジーは Angular のみで動作します。
+`@rdlabo/ngx-cdk-scroll-strategies` は、可変・動的なItem Heightを扱うAngular CDK Virtual Scroll Strategyです。Virtual Scrollで使う配列の各Item Sizeを個別に指定し、高さが異なるListを正確なScroll Geometryで描画できます。
+
+固定の`[itemSize]`や、`[autosize]`による平均Item Sizeの推定の代わりに、`[itemDynamicSizes]`へ既知または計測した高さを渡します。`@angular/cdk/scrolling`で動作し、Ionicには依存しません。
+
+## このStrategyが適するケース
+
+- List ItemやRowごとに高さが異なる
+- Text、Image、展開状態などから動的なItem Heightを計算または計測できる
+- Variable Heightでも`scrollToIndex`やScroll Positionを正確に扱いたい
+- Chat UIのようなReverse Virtual Scrollを実装したい
+
+Item Heightが事前に分からない場合も、DOMから計測した値を[応用的な使い方](/docs/advanced)のように渡せます。Itemの実際の高さを自動推定するだけのDrop-in `autosize`ではありません。
 
 シンプルなコーディング概念は次のとおりです。
 

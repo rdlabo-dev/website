@@ -56,7 +56,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/capacitor-community/stripe/edit/main/packages/identity/docs/configuration.md"
+      "editUrl": "https://github.com/rdlabo-dev/website/edit/main/projects/docs/src/stripe-identity/docs/configuration.md"
     },
     {
       "title": "Identity Verification Sheet",
@@ -268,7 +268,7 @@ export const PROJECT = {
           }
         }
       ],
-      "editUrl": "https://github.com/capacitor-community/stripe/edit/main/packages/identity/docs/identity-verification-sheet.md"
+      "editUrl": "https://github.com/rdlabo-dev/website/edit/main/projects/docs/src/stripe-identity/docs/identity-verification-sheet.md"
     },
     {
       "title": "API",

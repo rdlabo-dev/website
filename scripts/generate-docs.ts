@@ -28,7 +28,7 @@ import {
   apiAnchorFragments,
   expandApiPlaceholders,
   extractPackageReadmeParts,
-  moveRdlaboDocsPickToOverview,
+  extractRdlaboDocsPick,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   stripLeadingH1,
@@ -261,17 +261,30 @@ function rewriteInternalLinks(html: string, project: ProjectDefinition, locale: 
   return rewritten;
 }
 
+async function renderProjectOverview(
+  markdown: string,
+  project: ProjectDefinition,
+  locale: Locale,
+): Promise<string> {
+  const context = `${project.id}/overview (${locale})`;
+  const html = rewriteInternalLinks(await markdownToHtml(markdown), project, locale).replace(
+    'loading="lazy"',
+    'loading="eager" fetchpriority="high"',
+  );
+  const document = new JSDOM(html).window.document;
+  return enforceGeneratedHtmlPolicy(document.body.innerHTML, context);
+}
+
 function pageEditUrl(
   fromPackage: boolean,
   repositoryUrl: string,
   version: string,
   file: string,
   sourcePath: string,
-  repositoryRef?: string,
   repositoryPath?: string,
 ): string {
-  if (fromPackage && repositoryPath && repositoryRef) {
-    return `${repositoryUrl}/edit/${repositoryRef}/${repositoryPath}`;
+  if (fromPackage && repositoryPath) {
+    return `${repositoryUrl}/edit/main/${repositoryPath}`;
   }
   if (fromPackage) {
     const packagePath = sourcePath.endsWith('README.md') ? 'README.md' : `docs/${file}`;
@@ -312,7 +325,6 @@ type ResolvedPageSource = {
   fromPackage: boolean;
   repositoryUrl: string;
   repositoryPath?: string;
-  repositoryRef?: string;
 };
 
 async function resolvePageSource(
@@ -342,7 +354,6 @@ async function resolvePageSource(
     fromPackage: true,
     repositoryUrl: fetched.repositoryUrl,
     repositoryPath: fetched.repositoryPath,
-    repositoryRef: fetched.repositoryRef,
   };
 }
 
@@ -375,11 +386,11 @@ async function generateProject(
     sourcePath: string;
     fromPackage: boolean;
     repositoryPath?: string;
-    repositoryRef?: string;
     repositoryUrl: string;
     annotateDocgen: boolean;
   };
   const sourcePages: SourcePage[] = [];
+  let overviewMarkdown: string | undefined;
   let docgenApiPage: SourcePage | undefined;
   const declaresApiPage = project.pages.some((entry) => entry.slug === 'api');
   const repositoryCache = new Map<string, string>();
@@ -390,13 +401,20 @@ async function generateProject(
     const isPackageLanding = resolved.fromPackage && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;
     if (!resolved.fromPackage && file === 'readme.md') {
-      preparedBody = moveRdlaboDocsPickToOverview(preparedBody);
+      const extracted = extractRdlaboDocsPick(preparedBody);
+      preparedBody = extracted.markdown;
+      if (extracted.picked.length) overviewMarkdown = extracted.picked.join('\n\n');
     }
     let splitReadme =
       !resolved.fromPackage && file === 'readme.md' ? splitDocgenReadme(preparedBody) : undefined;
     if (resolved.fromPackage) {
       if (isPackageLanding) {
         const extracted = extractPackageReadmeParts(resolved.content);
+        if (extracted.overview) {
+          overviewMarkdown = normalizePackageMarkdown(
+            rewritePackageDocLinks(extracted.overview, apiAnchors, packageLandingSlug),
+          );
+        }
         preparedBody = normalizePackageMarkdown(
           rewritePackageDocLinks(extracted.readme, apiAnchors, packageLandingSlug),
         );
@@ -424,7 +442,6 @@ async function generateProject(
       sourcePath: resolved.sourcePath,
       fromPackage: resolved.fromPackage,
       repositoryPath: resolved.repositoryPath,
-      repositoryRef: resolved.repositoryRef,
       repositoryUrl: resolved.repositoryUrl,
       annotateDocgen: false,
     });
@@ -442,7 +459,6 @@ async function generateProject(
         sourcePath: resolved.sourcePath,
         fromPackage: resolved.fromPackage,
         repositoryPath: resolved.repositoryPath,
-        repositoryRef: resolved.repositoryRef,
         repositoryUrl: resolved.repositoryUrl,
         annotateDocgen: true,
       };
@@ -470,7 +486,6 @@ async function generateProject(
           ),
           fromPackage: true,
           repositoryPath: readme.repositoryPath,
-          repositoryRef: readme.repositoryRef,
           repositoryUrl: readme.repositoryUrl,
           annotateDocgen: true,
         };
@@ -489,7 +504,6 @@ async function generateProject(
     sourcePath,
     fromPackage,
     repositoryPath,
-    repositoryRef,
     repositoryUrl,
     annotateDocgen,
   } of sourcePages) {
@@ -510,6 +524,9 @@ async function generateProject(
           ),
         ),
       );
+    }
+    if (page.demo && codes.length) {
+      throw new Error(`${context} cannot combine an interactive demo with scroll-synced code`);
     }
     const preparedDocgen = prepareDocgenMarkdown(expanded);
     let html = rewriteInternalLinks(
@@ -589,6 +606,14 @@ async function generateProject(
             ),
           }
         : {}),
+      ...(page.demo
+        ? {
+            demo: {
+              url: page.demo.url,
+              title: localize(page.demo.title, locale),
+            },
+          }
+        : {}),
       slug,
       file,
       section: localize(page.section, locale),
@@ -603,13 +628,15 @@ async function generateProject(
         packageJson.version,
         file,
         sourcePath,
-        repositoryRef,
         repositoryPath,
       ),
     });
   }
   return {
     ...localizeProject(project, locale, packageJson.version),
+    ...(overviewMarkdown
+      ? { overviewHtml: await renderProjectOverview(overviewMarkdown, project, locale) }
+      : {}),
     path: `/projects/${project.slug}`,
     ...(relatedArticles.length ? { relatedArticles } : {}),
     pages,

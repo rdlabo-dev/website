@@ -14,6 +14,10 @@ export interface ProjectPageDefinition {
   seoTitle?: LocalizedText;
   /** Optional explicit content update date (`YYYY-MM-DD`) for sitemap `<lastmod>`. */
   updatedAt?: LocalizedText;
+  demo?: {
+    url: string;
+    title: LocalizedText;
+  };
 }
 
 export interface ProjectFeatureDefinition {
@@ -47,7 +51,7 @@ export interface ProjectDefinition {
   category: ProjectCategoryId;
   icon: 'payments' | 'identity' | 'terminal' | 'ads' | 'lint' | 'server' | 'app' | 'theme' | 'docs';
   adapter?: 'capacitor-docs-json' | 'markdown';
-  /** Git ref for English guide Markdown fetched from the OSS repository (default: `main`). */
+  /** Immutable Git ref override for English guides (default: installed package tag). */
   englishDocsRef?: string;
   /** Optional intent-focused document title for the project landing page SEO `<title>`. */
   seoTitle?: LocalizedText;
@@ -60,6 +64,7 @@ export interface ProjectDefinition {
 }
 
 const text = (en: string, ja: string): LocalizedText => ({ en, ja });
+const ionicAngularLibraryDocsRef = '92b474cc5e6228969b72a38a71f3e5ae18c8e005';
 
 export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = [
   {
@@ -102,6 +107,7 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
 interface PageOptions {
   seoTitle?: LocalizedText;
   updatedAt?: LocalizedText;
+  demo?: ProjectPageDefinition['demo'];
 }
 
 const page = (
@@ -122,6 +128,21 @@ const page = (
 
 const groupPage = (object: string, slug: string): ProjectPageDefinition =>
   page(object, object, slug, `${slug}.md`, 'Guides', 'ガイド');
+
+const interactiveDemo = (
+  url: string,
+  enTitle: string,
+  jaTitle: string,
+): NonNullable<ProjectPageDefinition['demo']> => {
+  const parsed = new URL(url);
+  if (
+    parsed.origin !== 'https://rdlabo-ionic-angular-library.netlify.app' ||
+    !parsed.pathname.startsWith('/main/')
+  ) {
+    throw new Error(`Untrusted interactive demo URL: ${url}`);
+  }
+  return { url: parsed.href, title: text(enTitle, jaTitle) };
+};
 
 const eslintRuleNames = [
   'component-property-use-readonly',
@@ -260,6 +281,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: ionicAngularLibraryDocsRef,
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -351,6 +373,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Photo Editor',
     packageName: '@rdlabo/ionic-angular-photo-editor',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
     category: 'frontend-tools',
     icon: 'app',
@@ -399,8 +422,20 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
       ),
-      page('Photo Editor', 'Photo Editor', 'editor', 'editor.md', 'Guides', 'ガイド'),
-      page('Photo Viewer', 'Photo Viewer', 'viewer', 'viewer.md', 'Guides', 'ガイド'),
+      page('Photo Editor', 'Photo Editor', 'editor', 'editor.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
+          'Interactive Photo Editor demo',
+          'Photo Editorの操作デモ',
+        ),
+      }),
+      page('Photo Viewer', 'Photo Viewer', 'viewer', 'viewer.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
+          'Interactive Photo Viewer demo',
+          'Photo Viewerの操作デモ',
+        ),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },
@@ -412,6 +447,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Scroll Header',
     packageName: '@rdlabo/ionic-angular-scroll-header',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
     category: 'frontend-tools',
     icon: 'app',
@@ -454,7 +490,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('IonContent', 'IonContent', 'ion-content', 'ion-content.md', 'Guides', 'ガイド'),
+      page('IonContent', 'IonContent', 'ion-content', 'ion-content.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
+          'Interactive IonContent scroll header demo',
+          'IonContent Scroll Headerの操作デモ',
+        ),
+      }),
       page(
         'Virtual Scroll',
         'Virtual Scroll',
@@ -462,6 +504,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'virtual-scroll.md',
         'Guides',
         'ガイド',
+        {
+          demo: interactiveDemo(
+            'https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header',
+            'Interactive virtual scroll header demo',
+            'Virtual Scroll Headerの操作デモ',
+          ),
+        },
       ),
       page('Safe Area', 'Safe Area', 'safe-area', 'safe-area.md', 'Guides', 'ガイド'),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
@@ -475,6 +524,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Angular CDK Scroll Strategies',
     packageName: '@rdlabo/ngx-cdk-scroll-strategies',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies',
     category: 'frontend-tools',
     icon: 'app',
@@ -517,9 +567,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('Simple Usage', 'シンプルな使い方', 'simple', 'simple.md', 'Guides', 'ガイド'),
-      page('Advanced Usage', '応用的な使い方', 'advanced', 'advanced.md', 'Guides', 'ガイド'),
-      page('Reverse Scroll', 'リバーススクロール', 'reverse', 'reverse.md', 'Guides', 'ガイド'),
+      page('Simple Usage', 'シンプルな使い方', 'simple', 'simple.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple',
+          'Interactive simple virtual scroll demo',
+          'Simple Virtual Scrollの操作デモ',
+        ),
+      }),
+      page('Advanced Usage', '応用的な使い方', 'advanced', 'advanced.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced',
+          'Interactive advanced virtual scroll demo',
+          'Advanced Virtual Scrollの操作デモ',
+        ),
+      }),
+      page('Reverse Scroll', 'リバーススクロール', 'reverse', 'reverse.md', 'Guides', 'ガイド', {
+        demo: interactiveDemo(
+          'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse',
+          'Interactive reverse virtual scroll demo',
+          'Reverse Virtual Scrollの操作デモ',
+        ),
+      }),
       page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド'),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -532,6 +600,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS26',
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
+    // v9.0.0 predates the Overview pick marker; pin the immutable docs commit that added it.
+    englishDocsRef: 'e3605fd371ee96d1cb11e62638948e141aa7718f',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -609,6 +679,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme MD3',
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
+    // v9.0.0 predates the Overview pick marker; pin the immutable docs commit that added it.
+    englishDocsRef: '7f337d0d8711fcbf9d3e6b1590b6863cc9b0992c',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -679,6 +751,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Collect Icons',
     packageName: '@rdlabo/ionic-angular-collect-icons',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-collect-icons',
+    // The translated migration guide follows this reviewed immutable docs revision.
+    englishDocsRef: '3786a8a70cfa9f02e225ccba35d1b43f1fbdb78d',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -736,6 +810,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Hono Kit',
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    // The portal documents the reviewed post-release guide set at this immutable revision.
+    englishDocsRef: '66c1fdfd9aa606a21f8fe2c34adbb56dc9bb4fac',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -820,6 +896,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
+    // The Japanese migration guide follows this reviewed immutable docs revision.
+    englishDocsRef: 'f405c0e67b208756bde6b79ff704f42f26e748a6',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -890,6 +968,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Docgen',
     packageName: '@rdlabo/capacitor-docgen',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-docgen',
+    // v0.4.1 predates the portal guide; pin the reviewed immutable docs revision.
+    englishDocsRef: 'e8c125387d9ccc86ee19a73bc915df35926c8244',
     category: 'developer-tools',
     icon: 'docs',
     adapter: 'markdown',
@@ -1214,6 +1294,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'AdMob',
     packageName: '@capacitor-community/admob',
     repositoryUrl: 'https://github.com/capacitor-community/admob',
+    // v8.1.0 does not publish the guide tree; pin the reviewed immutable docs revision.
+    englishDocsRef: '7e4b1ddb943ab0dd5a8e46ea10b26af699bd73cb',
     category: 'capacitor-plugins',
     icon: 'ads',
     seoTitle: text(
@@ -1373,6 +1455,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Code Scanner',
     packageName: '@rdlabo/capacitor-codescanner',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-codescanner',
+    // v8.0.3 predates the portal guide; pin the reviewed immutable docs revision.
+    englishDocsRef: 'c0c9b2e15d41e44a83569e574f0300dc67e46767',
     category: 'capacitor-plugins',
     icon: 'app',
     adapter: 'markdown',
@@ -1425,6 +1509,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Screenshot Event',
     packageName: '@rdlabo/capacitor-screenshot-event',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-screenshot-event',
+    // v8.0.0 predates the portal guide; pin the reviewed immutable docs revision.
+    englishDocsRef: 'dbd409d0f9e0e13907f37f8cd664ae9c367c2c8c',
     category: 'capacitor-plugins',
     icon: 'app',
     adapter: 'markdown',
@@ -1474,6 +1560,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Printer',
     packageName: '@rdlabo/capacitor-printer',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-printer',
+    // v8.0.1 predates the portal guides; pin the reviewed immutable docs revision.
+    englishDocsRef: 'ba3e9caaabf64f0933a918079ce7ad36a9eea18b',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',
@@ -1527,6 +1615,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Brother Print',
     packageName: '@rdlabo/capacitor-brotherprint',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-brotherprint',
+    // v8.1.1 predates the portal guides; pin the reviewed immutable docs revision.
+    englishDocsRef: 'b877460a79c1d671603c7af9d59201841ffa891f',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',

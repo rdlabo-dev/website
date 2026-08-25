@@ -12,6 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CodePanel } from './code-panel';
+import { InteractiveDemoPanel } from './interactive-demo-panel';
 import { OssResourceLinksComponent } from '../../../../../shared/oss-resource-links';
 import { DocsHeading, DocsPage, ProjectDocs } from './docs-data';
 import { SafeHtmlPipe } from './safe-html.pipe';
@@ -22,7 +23,14 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
 
 @Component({
   selector: 'app-docs-page',
-  imports: [CodePanel, OssResourceLinksComponent, RouterLink, SafeHtmlPipe, ScrollSpyDirective],
+  imports: [
+    CodePanel,
+    InteractiveDemoPanel,
+    OssResourceLinksComponent,
+    RouterLink,
+    SafeHtmlPipe,
+    ScrollSpyDirective,
+  ],
   template: `
     @if (project(); as proj) {
       @if (page(); as doc) {
@@ -32,6 +40,8 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               'grid items-start justify-center pt-[42px] max-[960px]:block max-[960px]:pt-7 ' +
               (doc.codes.length
                 ? 'grid-cols-[minmax(420px,680px)_minmax(420px,1fr)] max-[1500px]:grid-cols-[minmax(420px,800px)_minmax(420px,1fr)] max-[1100px]:grid-cols-[minmax(380px,1fr)_minmax(380px,1fr)]'
+                : doc.demo
+                  ? 'grid-cols-[minmax(0,1fr)_480px] gap-8 max-[1100px]:grid-cols-[minmax(380px,1fr)_430px] max-[1100px]:gap-5'
                 : 'grid-cols-[minmax(0,3fr)_minmax(0,1fr)] max-[1500px]:grid-cols-[minmax(0,1fr)]')
             "
           >
@@ -126,7 +136,10 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
             @if (doc.codes.length) {
               <app-code-panel [codes]="doc.codes" [activeLines]="activeLines()" />
             }
-            @if (!doc.codes.length) {
+            @if (doc.demo; as demo) {
+              <app-interactive-demo-panel [demo]="demo" />
+            }
+            @if (!doc.codes.length && !doc.demo) {
               <aside
                 class="sticky top-8 w-full max-h-[calc(100dvh-64px)] min-w-0 overflow-y-auto px-5 pt-2 pb-8 max-[1500px]:hidden"
                 i18n-aria-label="@@pageNavigation"

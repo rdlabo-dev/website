@@ -14,8 +14,6 @@ export const DOCS_PORTAL_REPOSITORY_URL =
 
 function localPortalRef(): string {
   try {
-    const branch = execFileSync('git', ['branch', '--show-current'], { encoding: 'utf8' }).trim();
-    if (!branch || branch === 'main') return 'main';
     return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
   } catch {
     return 'main';
@@ -37,6 +35,20 @@ async function pinnedVersionFor(packageName: string): Promise<string | undefined
     packageJson.dependencies?.[packageName] ?? packageJson.devDependencies?.[packageName];
   pinnedVersionCache.set(packageName, version);
   return version;
+}
+
+export async function resolveEnglishSourceRef(project: {
+  englishDocsRef?: string;
+  packageName: string;
+}): Promise<string> {
+  if (project.englishDocsRef) {
+    if (!/^(?:[0-9a-f]{40}|v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)$/.test(project.englishDocsRef)) {
+      throw new Error(`English docs ref must be immutable: ${project.englishDocsRef}`);
+    }
+    return project.englishDocsRef;
+  }
+  const version = await pinnedVersionFor(project.packageName);
+  return version ? `v${version}` : 'main';
 }
 
 export async function pinPackageSourceLinks(
@@ -181,13 +193,11 @@ function packageEnglishPaths(
   file: string,
 ): string[] {
   const { sourceDirectory } = project;
-  const paths = [`docs/${file}`, `${sourceDirectory}/docs/${file}`];
   const scopedDirectory = packageScopedDirectory(project);
   if (scopedDirectory) {
-    paths.push(`${scopedDirectory}/docs/${file}`);
+    return [`${scopedDirectory}/docs/${file}`];
   }
-
-  return paths;
+  return [`docs/${file}`, `${sourceDirectory}/docs/${file}`];
 }
 
 function packageScopedDirectory(project: {
@@ -232,7 +242,7 @@ export async function fetchEnglishProjectMarkdown(
   file: string,
   cache = new Map<string, string>(),
 ): Promise<FetchedEnglishMarkdown> {
-  const ref = project.englishDocsRef ?? 'main';
+  const ref = await resolveEnglishSourceRef(project);
   const shouldFallbackToRepositoryReadme = file === 'readme.md' || file === 'getting-started.md';
   const fromPackage = await fetchFirstRepositoryPath(
     project.repositoryUrl,
@@ -308,7 +318,7 @@ export async function fetchEnglishProjectReadme(
   },
   cache = new Map<string, string>(),
 ): Promise<FetchedEnglishMarkdown | undefined> {
-  const ref = project.englishDocsRef ?? 'main';
+  const ref = await resolveEnglishSourceRef(project);
   return (
     (await fetchFirstRepositoryPath(
       project.repositoryUrl,

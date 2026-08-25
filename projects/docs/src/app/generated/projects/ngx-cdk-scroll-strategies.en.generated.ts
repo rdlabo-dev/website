@@ -77,6 +77,10 @@ export const PROJECT = {
     {
       "title": "Simple Usage",
       "navTitle": "Simple Usage",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
+        "title": "Interactive simple virtual scroll demo"
+      },
       "slug": "simple",
       "file": "simple.md",
       "section": "Guides",
@@ -90,6 +94,10 @@ export const PROJECT = {
     {
       "title": "Advanced Usage",
       "navTitle": "Advanced Usage",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
+        "title": "Interactive advanced virtual scroll demo"
+      },
       "slug": "advanced",
       "file": "advanced.md",
       "section": "Guides",
@@ -103,6 +111,10 @@ export const PROJECT = {
     {
       "title": "Reverse Scroll",
       "navTitle": "Reverse Scroll",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
+        "title": "Interactive reverse virtual scroll demo"
+      },
       "slug": "reverse",
       "file": "reverse.md",
       "section": "Guides",

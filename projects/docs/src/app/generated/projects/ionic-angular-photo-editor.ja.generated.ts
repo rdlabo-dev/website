@@ -120,6 +120,10 @@ export const PROJECT = {
     {
       "title": "Photo Editor",
       "navTitle": "Photo Editor",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
+        "title": "Photo Editorの操作デモ"
+      },
       "slug": "editor",
       "file": "editor.md",
       "section": "ガイド",
@@ -159,6 +163,10 @@ export const PROJECT = {
     {
       "title": "Photo Viewer",
       "navTitle": "Photo Viewer",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
+        "title": "Photo Viewerの操作デモ"
+      },
       "slug": "viewer",
       "file": "viewer.md",
       "section": "ガイド",

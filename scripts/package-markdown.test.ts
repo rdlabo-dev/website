@@ -6,7 +6,6 @@ import {
   extractPackageReadme,
   extractPackageReadmeParts,
   extractRdlaboDocsPick,
-  moveRdlaboDocsPickToOverview,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   stripLeadingH1,
@@ -118,7 +117,22 @@ hidden in a sample
   assert.equal(stripRdlaboDocsOmit(markdown), markdown);
 });
 
-test('moves rdlabo-docs-pick regions from the README preamble into Overview', () => {
+test('ignores omit markers inside tilde fences and respects the closing fence length', () => {
+  const markdown = `## Overview
+
+~~~~md
+<!-- rdlabo-docs-omit -->
+literal example
+<!-- /rdlabo-docs-omit -->
+~~~
+still fenced
+~~~~
+`;
+
+  assert.equal(stripRdlaboDocsOmit(markdown), markdown);
+});
+
+test('extracts rdlabo-docs-pick regions for the project Overview', () => {
   const markdown = `# Theme
 
 Intro.
@@ -136,11 +150,8 @@ Theme details.
 npm install
 `;
 
-  assert.equal(
-    extractPackageReadme(markdown),
-    `## Overview
-
-![Theme screenshot](https://example.com/theme.png)
+  assert.deepEqual(extractPackageReadmeParts(markdown), {
+    readme: `## Overview
 
 Theme details.
 
@@ -148,12 +159,14 @@ Theme details.
 
 npm install
 `,
-  );
+    overview: '![Theme screenshot](https://example.com/theme.png)',
+    api: undefined,
+  });
 });
 
-test('moves localized rdlabo-docs-pick regions into the Japanese Overview', () => {
-  assert.equal(
-    moveRdlaboDocsPickToOverview(`紹介
+test('extracts localized rdlabo-docs-pick regions without leaving them in the README', () => {
+  assert.deepEqual(
+    extractRdlaboDocsPick(`紹介
 
 <!-- rdlabo-docs-pick -->
 ![テーマのスクリーンショット](theme.png)
@@ -163,15 +176,16 @@ test('moves localized rdlabo-docs-pick regions into the Japanese Overview', () =
 
 詳細
 `),
-    `紹介
+    {
+      markdown: `紹介
 
 
 ## 概要
 
-![テーマのスクリーンショット](theme.png)
-
 詳細
 `,
+      picked: ['![テーマのスクリーンショット](theme.png)'],
+    },
   );
 });
 

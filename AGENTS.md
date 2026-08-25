@@ -118,12 +118,12 @@ When revisions differ, generation fails before generated output is written. A mi
 
 `docs:generate` **always** loads English from GitHub raw — never from the local filesystem. Resolution order:
 
-1. Package repository: `docs/{file}`, `{sourceDirectory}/docs/{file}`, then `README.md` for landings.
+1. Package repository: the package-scoped `docs/{file}` path in monorepos; otherwise `docs/{file}` or `{sourceDirectory}/docs/{file}`; then the package README for landings.
 2. Portal repository (`rdlabo-dev/website`): `projects/docs/src/{sourceDirectory}/docs/{file}`.
 
 For `@capacitor-community/admob` and rdlabo Capacitor plugins, English lives in the **package repository only** — do not copy those English files into `projects/docs/src/{project}/docs/`.
 
-Optional `englishDocsRef` overrides the Git ref for English guides fetched from the package repository (default: `main`). API signatures always follow the installed npm version, not the Git ref.
+English package guides default to the installed package's immutable `vX.Y.Z` tag. Optional `englishDocsRef` overrides that source only with an immutable 40-character commit SHA or version tag; use it when reviewed portal guides postdate a release or the release tag does not contain the guide tree. Portal-owned English falls back through the current portal commit SHA, not a floating branch. API signatures always follow the installed npm version, not the Git ref. Generated source content may be pinned, while “Edit this page on GitHub” intentionally targets the repository's editable `main` branch.
 
 ### API sources
 

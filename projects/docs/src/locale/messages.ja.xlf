@@ -69,6 +69,9 @@
       <trans-unit id="contents"><source>Contents</source><target>目次</target></trans-unit>
       <trans-unit id="onThisPage"><source>On this page</source><target>このページの内容</target></trans-unit>
       <trans-unit id="editOnGitHub"><source>Edit this page on GitHub</source><target>GitHubでこのページを編集</target></trans-unit>
+      <trans-unit id="interactiveDemo"><source>Interactive demo</source><target>操作デモ</target></trans-unit>
+      <trans-unit id="openDemo"><source>Open demo</source><target>デモを開く</target></trans-unit>
+      <trans-unit id="loadingDemo"><source>Loading demo…</source><target>デモを読み込んでいます…</target></trans-unit>
       <trans-unit id="projectsNav"><source>Projects</source><target>プロジェクト</target></trans-unit>
       <trans-unit id="primaryNavigation"><source>Primary navigation</source><target>メインナビゲーション</target></trans-unit>
       <trans-unit id="allProjectsNav"><source>All projects</source><target>すべてのプロジェクト</target></trans-unit>

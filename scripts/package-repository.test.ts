@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import test from 'node:test';
 import {
   CANONICAL_DOCS_PORTAL_REPOSITORY_URL,
@@ -8,8 +9,31 @@ import {
   pinPackageSourceLinks,
   parseRepositoryUrl,
   repositoryRawUrl,
+  resolveEnglishSourceRef,
   repositorySourceLabel,
 } from './package-repository';
+
+test('pins English docs to the installed package tag unless an immutable ref is explicit', async () => {
+  assert.equal(
+    await resolveEnglishSourceRef({ packageName: '@rdlabo/capacitor-docgen' }),
+    'v0.4.1',
+  );
+  assert.equal(
+    await resolveEnglishSourceRef({
+      packageName: '@rdlabo/capacitor-docgen',
+      englishDocsRef: '0123456789abcdef0123456789abcdef01234567',
+    }),
+    '0123456789abcdef0123456789abcdef01234567',
+  );
+  await assert.rejects(
+    () =>
+      resolveEnglishSourceRef({
+        packageName: '@rdlabo/capacitor-docgen',
+        englishDocsRef: 'main',
+      }),
+    /must be immutable/,
+  );
+});
 
 test('parses GitHub repository URLs', () => {
   assert.deepEqual(parseRepositoryUrl('https://github.com/capacitor-community/admob'), {
@@ -59,6 +83,11 @@ test('builds raw and source labels for repository docs', () => {
   assert.equal(
     DOCS_PORTAL_REPOSITORY_URL,
     process.env['RDLABO_DOCS_REPOSITORY_URL'] ?? CANONICAL_DOCS_PORTAL_REPOSITORY_URL,
+  );
+  assert.equal(
+    DOCS_PORTAL_REF,
+    process.env['RDLABO_DOCS_REF'] ??
+      execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   );
   assert.ok(DOCS_PORTAL_REF);
 });

@@ -172,6 +172,21 @@
         <source>Edit this page on GitHub</source>
       </segment>
     </unit>
+    <unit id="interactiveDemo">
+      <segment>
+        <source>Interactive demo</source>
+      </segment>
+    </unit>
+    <unit id="openDemo">
+      <segment>
+        <source>Open demo</source>
+      </segment>
+    </unit>
+    <unit id="loadingDemo">
+      <segment>
+        <source>Loading demo…</source>
+      </segment>
+    </unit>
     <unit id="getStarted">
       <notes>
         <note category="location">projects/docs/src/app/docs/landing-page.ts:48,49</note>

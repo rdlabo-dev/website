@@ -43,6 +43,11 @@ export interface RelatedArticle {
   url: string;
 }
 
+export interface InteractiveDemo {
+  url: string;
+  title: string;
+}
+
 export interface ProjectCategorySummary {
   id: ProjectCategory;
   label: string;
@@ -62,6 +67,7 @@ export interface DocsPageSummary {
   slug: string;
   section: string;
   path: string;
+  demo?: InteractiveDemo;
 }
 
 export interface DocsPage extends DocsPageSummary {
@@ -89,6 +95,7 @@ export interface ProjectSummary {
   description: string;
   headline: string;
   overview: string;
+  overviewHtml?: string;
   featuresHeading: string;
   features: readonly ProjectFeature[];
   relatedArticles?: readonly RelatedArticle[];

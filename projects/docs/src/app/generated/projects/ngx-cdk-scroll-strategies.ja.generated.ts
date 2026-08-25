@@ -77,6 +77,10 @@ export const PROJECT = {
     {
       "title": "シンプルな使い方",
       "navTitle": "シンプルな使い方",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
+        "title": "Simple Virtual Scrollの操作デモ"
+      },
       "slug": "simple",
       "file": "simple.md",
       "section": "ガイド",
@@ -90,6 +94,10 @@ export const PROJECT = {
     {
       "title": "応用的な使い方",
       "navTitle": "応用的な使い方",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
+        "title": "Advanced Virtual Scrollの操作デモ"
+      },
       "slug": "advanced",
       "file": "advanced.md",
       "section": "ガイド",
@@ -103,6 +111,10 @@ export const PROJECT = {
     {
       "title": "リバーススクロール",
       "navTitle": "リバーススクロール",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
+        "title": "Reverse Virtual Scrollの操作デモ"
+      },
       "slug": "reverse",
       "file": "reverse.md",
       "section": "ガイド",

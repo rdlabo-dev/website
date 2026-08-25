@@ -5,10 +5,11 @@ import { ProjectDocs } from './docs-data';
 import { GitHubStarsService } from './github-stars.service';
 import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [RouterLink],
+  imports: [RouterLink, SafeHtmlPipe],
   template: `
     @if (project(); as p) {
       <article class="mx-auto max-w-5xl px-6 pt-16 pb-24 sm:px-10 sm:pt-24">
@@ -93,6 +94,13 @@ import { SeoService } from './seo.service';
             </a>
           </div>
         </div>
+
+        @if (p.overviewHtml) {
+          <div
+            class="znc mt-14 [&_img]:mx-auto [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_p]:m-0"
+            [innerHTML]="p.overviewHtml | safeHtml"
+          ></div>
+        }
 
         <section class="mt-20 border-t border-[#eadfd9] pt-12">
           <h2 class="m-0 text-2xl font-semibold tracking-[-0.03em] text-[#211d1b]">

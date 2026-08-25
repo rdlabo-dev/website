@@ -2,95 +2,24 @@ import { splitDocgenReadme } from './docgen-readme';
 
 const LANDING_START = /^## Overview[ \t]*$/m;
 const LANDING_END = /^## Index[ \t]*$/m;
-const OVERVIEW_HEADING = /^## (?:Overview|概要)[ \t]*$/m;
-const OMIT_OPEN = /<!--\s*rdlabo-docs-omit\s*-->/;
-const OMIT_CLOSE = /<!--\s*\/rdlabo-docs-omit\s*-->/;
 
-function firstMatch(
-  pattern: RegExp,
+function extractMarkedRegions(
   markdown: string,
-  from: number,
-): { index: number; length: number } | undefined {
-  const match = markdown.slice(from).match(pattern);
-  if (!match || match.index === undefined) return undefined;
-  return { index: from + match.index, length: match[0].length };
-}
-
-/**
- * Drops README regions wrapped in `<!-- rdlabo-docs-omit -->` … `<!-- /rdlabo-docs-omit -->`.
- * The markers are HTML comments, so GitHub still shows the content between them.
- * Markers inside fenced code blocks are ignored; omit regions may contain fences.
- */
-export function stripRdlaboDocsOmit(markdown: string): string {
-  let i = 0;
-  let inFence = false;
+  name: 'rdlabo-docs-omit' | 'rdlabo-docs-pick',
+): { markdown: string; selected: string[] } {
   let output = '';
-  while (i < markdown.length) {
-    if (inFence) {
-      const end = markdown.indexOf('```', i);
-      if (end < 0) {
-        output += markdown.slice(i);
-        break;
-      }
-      output += markdown.slice(i, end + 3);
-      i = end + 3;
-      inFence = false;
-      continue;
-    }
-
-    const fenceAt = markdown.indexOf('```', i);
-    const open = firstMatch(OMIT_OPEN, markdown, i);
-    const close = firstMatch(OMIT_CLOSE, markdown, i);
-    const nextFence = fenceAt < 0 ? Number.POSITIVE_INFINITY : fenceAt;
-    const nextOpen = open?.index ?? Number.POSITIVE_INFINITY;
-    const nextClose = close?.index ?? Number.POSITIVE_INFINITY;
-    const next = Math.min(nextFence, nextOpen, nextClose);
-    if (next === Number.POSITIVE_INFINITY) {
-      output += markdown.slice(i);
-      break;
-    }
-    if (next === nextFence) {
-      output += markdown.slice(i, nextFence + 3);
-      i = nextFence + 3;
-      inFence = true;
-      continue;
-    }
-    if (next === nextClose) {
-      throw new Error('rdlabo-docs-omit close marker without an open marker');
-    }
-    output += markdown.slice(i, nextOpen);
-    const afterOpen = nextOpen + (open?.length ?? 0);
-    const closeInner = firstMatch(OMIT_CLOSE, markdown, afterOpen);
-    if (!closeInner) {
-      throw new Error('unclosed rdlabo-docs-omit block');
-    }
-    i = closeInner.index + closeInner.length;
-  }
-  return output
-    .replace(/^\s+/, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .replace(/\s+$/, '\n');
-}
-
-/**
- * Extracts README regions that should be moved into the documentation Overview.
- * GitHub still renders the selected content at its original position because the
- * markers themselves are HTML comments. Markers inside fenced code are ignored.
- */
-export function extractRdlaboDocsPick(markdown: string): {
-  markdown: string;
-  picked: string[];
-} {
-  let output = '';
-  const picked: string[] = [];
-  let currentPick = '';
+  const selected: string[] = [];
+  let current: string | undefined;
   let fence: { marker: '`' | '~'; length: number } | undefined;
+  const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const openMarker = new RegExp(`^\\s*<!--\\s*${escapedName}\\s*-->\\s*$`);
+  const closeMarker = new RegExp(`^\\s*<!--\\s*\\/${escapedName}\\s*-->\\s*$`);
 
   for (const line of markdown.match(/[^\n]*(?:\n|$)/g)?.filter(Boolean) ?? []) {
     const content = line.replace(/\r?\n$/, '');
     const append = (): void => {
-      if (currentPick) currentPick += line;
-      else output += line;
+      if (current === undefined) output += line;
+      else current += line;
     };
 
     if (fence) {
@@ -112,24 +41,48 @@ export function extractRdlaboDocsPick(markdown: string): {
       continue;
     }
 
-    if (/^\s*<!--\s*rdlabo-docs-pick\s*-->\s*$/.test(content)) {
-      if (currentPick) throw new Error('nested rdlabo-docs-pick block');
-      currentPick = '\n';
+    if (openMarker.test(content)) {
+      if (current !== undefined) throw new Error(`nested ${name} block`);
+      current = '';
       continue;
     }
-    if (/^\s*<!--\s*\/rdlabo-docs-pick\s*-->\s*$/.test(content)) {
-      if (!currentPick) {
-        throw new Error('rdlabo-docs-pick close marker without an open marker');
-      }
-      const pickedContent = currentPick.trim();
-      if (pickedContent) picked.push(pickedContent);
-      currentPick = '';
+    if (closeMarker.test(content)) {
+      if (current === undefined) throw new Error(`${name} close marker without an open marker`);
+      const selectedContent = current.trim();
+      if (selectedContent) selected.push(selectedContent);
+      current = undefined;
       continue;
     }
     append();
   }
-  if (currentPick) throw new Error('unclosed rdlabo-docs-pick block');
-  return { markdown: output, picked };
+
+  if (current !== undefined) throw new Error(`unclosed ${name} block`);
+  return { markdown: output, selected };
+}
+
+/**
+ * Drops README regions wrapped in `<!-- rdlabo-docs-omit -->` … `<!-- /rdlabo-docs-omit -->`.
+ * The markers are HTML comments, so GitHub still shows the content between them.
+ * Markers inside fenced code blocks are ignored; omit regions may contain fences.
+ */
+export function stripRdlaboDocsOmit(markdown: string): string {
+  return extractMarkedRegions(markdown, 'rdlabo-docs-omit')
+    .markdown.replace(/^\s+/, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/\s+$/, '\n');
+}
+
+/**
+ * Extracts README regions that should be shown on the project Overview.
+ * GitHub still renders the selected content at its original position because the
+ * markers themselves are HTML comments. Markers inside fenced code are ignored.
+ */
+export function extractRdlaboDocsPick(markdown: string): {
+  markdown: string;
+  picked: string[];
+} {
+  const { markdown: withoutPick, selected } = extractMarkedRegions(markdown, 'rdlabo-docs-pick');
+  return { markdown: withoutPick, picked: selected };
 }
 
 function landingFromOverview(markdown: string): string | undefined {
@@ -140,26 +93,16 @@ function landingFromOverview(markdown: string): string | undefined {
   return (end < 0 ? rest : rest.slice(0, end)).trim();
 }
 
-function addPickedContentToOverview(markdown: string, picked: readonly string[]): string {
-  if (!picked.length) return markdown;
-  const overview = markdown.match(OVERVIEW_HEADING);
-  const content = picked.join('\n\n');
-  if (!overview || overview.index === undefined) return `${content}\n\n${markdown}`;
-  const insertion = overview.index + overview[0].length;
-  return `${markdown.slice(0, insertion)}\n\n${content}${markdown.slice(insertion)}`;
-}
-
-export function moveRdlaboDocsPickToOverview(markdown: string): string {
-  const { markdown: withoutPick, picked } = extractRdlaboDocsPick(markdown);
-  return addPickedContentToOverview(withoutPick, picked);
-}
-
-export function extractPackageReadmeParts(markdown: string): { readme: string; api?: string } {
+export function extractPackageReadmeParts(markdown: string): {
+  readme: string;
+  overview?: string;
+  api?: string;
+} {
   const withoutOmit = stripRdlaboDocsOmit(markdown);
   const { markdown: withoutPick, picked } = extractRdlaboDocsPick(withoutOmit);
   const stripped = stripLeadingH1(withoutPick);
   const selected = (landingFromOverview(stripped) ?? stripped).trim();
-  const landing = addPickedContentToOverview(selected, picked).trim();
+  const landing = selected.trim();
   if (!landing) {
     throw new Error('package README is empty after rdlabo-docs-omit');
   }
@@ -167,6 +110,7 @@ export function extractPackageReadmeParts(markdown: string): { readme: string; a
   const splitFull = splitDocgenReadme(markdown);
   return {
     readme: `${(splitLanding?.readme ?? landing).trim()}\n`,
+    ...(picked.length ? { overview: picked.join('\n\n') } : {}),
     api: splitLanding?.api ?? splitFull?.api,
   };
 }

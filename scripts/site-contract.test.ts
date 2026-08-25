@@ -14,6 +14,13 @@ import {
   stripRdlaboDocsOmit,
 } from './package-markdown';
 import { fetchEnglishProjectMarkdown } from './package-repository';
+import { PROJECT as ionicThemeIos26En } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.en.generated';
+import { PROJECT as ionicThemeIos26Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.ja.generated';
+import { PROJECT as ionicThemeMd3En } from '../projects/docs/src/app/generated/projects/ionic-theme-md3.en.generated';
+import { PROJECT as ionicThemeMd3Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-md3.ja.generated';
+import { PROJECT as photoEditorEn } from '../projects/docs/src/app/generated/projects/ionic-angular-photo-editor.en.generated';
+import { PROJECT as scrollHeaderEn } from '../projects/docs/src/app/generated/projects/ionic-angular-scroll-header.en.generated';
+import { PROJECT as scrollStrategiesEn } from '../projects/docs/src/app/generated/projects/ngx-cdk-scroll-strategies.en.generated';
 
 const require = createRequire(import.meta.url);
 
@@ -76,6 +83,13 @@ test('pins every documentation source to the installed package version', async (
 
   for (const project of projectDefinitions) {
     if (project.hostedUrl) continue;
+    if (project.englishDocsRef) {
+      assert.match(
+        project.englishDocsRef,
+        /^(?:[0-9a-f]{40}|v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)$/,
+        `${project.id} English docs ref must be immutable`,
+      );
+    }
     const declaredVersion =
       packageJson.dependencies?.[project.packageName] ??
       packageJson.devDependencies?.[project.packageName];
@@ -197,6 +211,66 @@ test('favicon brand assets are wired for rdlabo.dev', async () => {
       constants.F_OK,
     ),
   );
+});
+
+test('embeds interactive demos only in web-capable guide pages', () => {
+  const expected = new Map([
+    [
+      'ionic-angular-photo-editor/editor',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
+    ],
+    [
+      'ionic-angular-photo-editor/viewer',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
+    ],
+    [
+      'ionic-angular-scroll-header/ion-content',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
+    ],
+    [
+      'ionic-angular-scroll-header/virtual-scroll',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header',
+    ],
+    [
+      'ngx-cdk-scroll-strategies/simple',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple',
+    ],
+    [
+      'ngx-cdk-scroll-strategies/advanced',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced',
+    ],
+    [
+      'ngx-cdk-scroll-strategies/reverse',
+      'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse',
+    ],
+  ]);
+  const actual = new Map<string, string>();
+
+  for (const project of projectDefinitions) {
+    for (const page of project.pages) {
+      if (!page.demo) continue;
+      const key = `${project.id}/${page.slug}`;
+      const demoUrl = new URL(page.demo.url);
+      assert.equal(
+        demoUrl.origin,
+        'https://rdlabo-ionic-angular-library.netlify.app',
+        `${key} must use the trusted demo origin`,
+      );
+      assert.match(demoUrl.pathname, /^\/main\//, `${key} must use a deployed main demo`);
+      assert.equal(page.section.en, 'Guides', `${key} must be a guide`);
+      assert.notEqual(project.category, 'capacitor-plugins', `${key} cannot embed a native demo`);
+      actual.set(key, page.demo.url);
+    }
+  }
+
+  assert.deepEqual(actual, expected);
+
+  for (const project of [photoEditorEn, scrollHeaderEn, scrollStrategiesEn]) {
+    for (const page of project.pages) {
+      if (!('demo' in page)) continue;
+      assert.deepEqual(page.codes, [], `${project.id}/${page.slug} cannot combine demo and code`);
+    }
+  }
 });
 
 test('imports every installed ESLint rule README with matching EN/JA code fences', async () => {
@@ -531,6 +605,20 @@ test('lists ionic theme packages and pins localized README imports', async () =>
   for (const markdown of [iosMigration, iosMigrationJa]) {
     assert.match(markdown, /\.header-item-group/);
     assert.match(markdown, /\.item-group-header/);
+  }
+});
+
+test('shows ionic theme README picks on project Overviews, not Getting Started', () => {
+  for (const [project, screenshot] of [
+    [ionicThemeIos26En, 'screenshots/ios26.png'],
+    [ionicThemeIos26Ja, 'screenshots/ios26.png'],
+    [ionicThemeMd3En, 'screenshots/md3.png'],
+    [ionicThemeMd3Ja, 'screenshots/md3.png'],
+  ] as const) {
+    assert.match(project.overviewHtml, new RegExp(screenshot.replace('.', '\\.')));
+    const gettingStarted = project.pages.find((page) => page.slug === 'readme');
+    assert.ok(gettingStarted);
+    assert.doesNotMatch(gettingStarted.html, new RegExp(screenshot.replace('.', '\\.')));
   }
 });
 

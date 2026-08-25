@@ -77,6 +77,10 @@ export const PROJECT = {
     {
       "title": "IonContent",
       "navTitle": "IonContent",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
+        "title": "Interactive IonContent scroll header demo"
+      },
       "slug": "ion-content",
       "file": "ion-content.md",
       "section": "Guides",
@@ -90,6 +94,10 @@ export const PROJECT = {
     {
       "title": "Virtual Scroll",
       "navTitle": "Virtual Scroll",
+      "demo": {
+        "url": "https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header",
+        "title": "Interactive virtual scroll header demo"
+      },
       "slug": "virtual-scroll",
       "file": "virtual-scroll.md",
       "section": "Guides",

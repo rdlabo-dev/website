@@ -2,10 +2,7 @@
 title: "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9"
 description: "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path."
 zennSlug: ionic-themes-ionic9-major-update
-sourceVerification: pending
-sourceUrl: https://zenn.dev/rdlabo/articles/ionic-themes-ionic9-major-update
-publishedAt: "2026-08-24T17:20:00+09:00"
-publishedDate: "2026-08-24"
+publishedDate: "2026-08-25"
 relatedLibraries:
   - ionic-theme-ios26
   - ionic-theme-md3

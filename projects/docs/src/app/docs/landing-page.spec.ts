@@ -90,8 +90,11 @@ describe('LandingPageComponent', () => {
       ),
     ).toBe(true);
     const dates = Array.from(compiled.querySelectorAll<HTMLTimeElement>('time'));
-    expect(dates.map((date) => date.dateTime)).toEqual(['2026-08-24', '2026-08-24']);
-    expect(dates.every((date) => date.textContent?.includes('August 24, 2026'))).toBe(true);
+    expect(dates.map((date) => date.dateTime)).toEqual(['2026-08-25', '2026-08-24']);
+    expect(dates.map((date) => date.textContent?.trim())).toEqual([
+      'August 25, 2026',
+      'August 24, 2026',
+    ]);
     expect(compiled.querySelectorAll('.project-feature')).toHaveLength(3);
     expect(compiled.querySelectorAll('.project-feature a')).toHaveLength(0);
     expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(2);

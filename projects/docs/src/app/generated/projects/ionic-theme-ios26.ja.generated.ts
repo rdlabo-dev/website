@@ -35,7 +35,7 @@ export const PROJECT = {
       "slug": "ionic-themes-ionic9-major-update",
       "title": "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9",
       "description": "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path.",
-      "publishedDate": "2026-08-24",
+      "publishedDate": "2026-08-25",
       "url": "https://rdlabo.dev/articles/ionic-themes-ionic9-major-update"
     },
     {

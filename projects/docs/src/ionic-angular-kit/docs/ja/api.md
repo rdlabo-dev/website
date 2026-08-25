@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-kit` v21.6.2 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
+`@rdlabo/ionic-angular-kit` v21.7.0 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
 
 ## Core
 

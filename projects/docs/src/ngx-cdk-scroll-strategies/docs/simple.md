@@ -9,7 +9,7 @@ Call this after [Installation](/docs/readme#installation).
 > This is a simple example of how to use it.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.6.2/projects/demo/src/app/scroll-strategies/pages/scroll-simple
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.7.0/projects/demo/src/app/scroll-strategies/pages/scroll-simple
 
 ```ts
 import { CdkDynamicSizeVirtualScroll, itemDynamicSize } from '@rdlabo/ngx-cdk-scroll-strategies';

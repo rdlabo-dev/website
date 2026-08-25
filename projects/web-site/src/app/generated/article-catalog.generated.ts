@@ -22,8 +22,8 @@ export const ARTICLE_SUMMARIES = [
     ],
     "sourceName": "Zenn",
     "originalUrl": "https://zenn.dev/rdlabo/articles/ionic-themes-ionic9-major-update",
-    "publishedAt": "2026-08-24T08:20:00.000Z",
-    "publishedDate": "2026-08-24"
+    "publishedAt": "2026-08-25T06:33:09.000Z",
+    "publishedDate": "2026-08-25"
   },
   {
     "slug": "ionic-theme-md3",

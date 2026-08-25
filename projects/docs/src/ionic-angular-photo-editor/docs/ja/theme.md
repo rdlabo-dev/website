@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 [インストール](/docs/readme#インストール) のあと、エディターの色を上書きします。
 
-デフォルトの色は設定済みですが、上書きできます: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/photo-editor/src/lib/pages/core.scss
+デフォルトの色は設定済みですが、上書きできます: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/pages/core.scss
 
 ## 上書き方法
 

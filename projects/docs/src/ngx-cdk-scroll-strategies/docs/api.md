@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the public API exported by `@rdlabo/ngx-cdk-scroll-strategies` v21.6.2.
+Reference for the public API exported by `@rdlabo/ngx-cdk-scroll-strategies` v21.7.0.
 
 ## Directive
 

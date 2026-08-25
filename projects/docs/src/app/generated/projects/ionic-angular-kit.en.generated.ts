@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
   "category": "frontend-tools",
   "icon": "app",
-  "version": "21.6.2",
+  "version": "21.7.0",
   "description": "Shared application infrastructure for Ionic Angular projects.",
   "headline": "Build consistent, resilient Ionic Angular applications",
   "overview": "Compose typed storage, overlays, authentication, HTTP policy, realtime connections, offline replicas, themes, reviews, printing, Firebase, and Live Updates from focused entry points.",

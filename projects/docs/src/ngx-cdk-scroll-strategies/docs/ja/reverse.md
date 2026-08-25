@@ -9,7 +9,7 @@ scrollActiveLine: []
 > WeChat のようなリバーススクロールのデモです。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.6.2/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.7.0/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
 
 リバーススクロールの場合は、`cdk-virtual-scroll-viewport` タグに `isReverse` ディレクティブを追加します。
 
@@ -66,7 +66,7 @@ div.reverse-items {
 ```
 
 **リバーススクロールでは、CdkVirtualScrollViewport の measureScrollOffset は動作しません。このディレクティブの scrollOffset を使ってください。**
-https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
+https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
 
 リバースレイアウトはネイティブの負の `scrollTop` 値を使います。`scrollToIndex()` は通常どおり論理的なアイテムインデックスを受け取り、その累積オフセットを内部でネイティブ座標に変換します。
 
@@ -78,4 +78,4 @@ https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/scroll
 import { DynamicSizeVirtualScrollService } from '@rdlabo/ngx-cdk-scroll-strategies';
 ```
 
-詳細はこちら: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts
+詳細はこちら: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts

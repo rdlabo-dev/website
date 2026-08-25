@@ -7,7 +7,7 @@ scrollActiveLine: []
 Coordinate headers with Angular CDK virtual viewports. Call this after [Installation](/docs/readme#installation).
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.6.2/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { VirtualScrollHeaderDirective } from '@rdlabo/ionic-angular-scroll-header';

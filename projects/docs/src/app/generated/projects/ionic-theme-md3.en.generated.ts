@@ -32,18 +32,18 @@ export const PROJECT = {
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
+      "slug": "ionic-themes-ionic9-major-update",
+      "title": "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9",
+      "description": "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path.",
+      "publishedDate": "2026-08-25",
+      "url": "https://rdlabo.dev/articles/ionic-themes-ionic9-major-update"
+    },
+    {
       "slug": "ionic-theme-md3",
       "title": "A Material Design 3 Theme for Ionic Has Grown into Something Really Good",
       "description": "@rdlabo/ionic-theme-md3 brings Material Design 3 to Ionic while preserving its components and markup, with dark mode, transitions, incremental adoption, and iOS 26 theme compatibility.",
       "publishedDate": "2026-08-24",
       "url": "https://rdlabo.dev/articles/ionic-theme-md3"
-    },
-    {
-      "slug": "ionic-themes-ionic9-major-update",
-      "title": "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9",
-      "description": "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path.",
-      "publishedDate": "2026-08-24",
-      "url": "https://rdlabo.dev/articles/ionic-themes-ionic9-major-update"
     }
   ],
   "pages": [

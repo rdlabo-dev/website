@@ -6,6 +6,7 @@ export const PROJECT = {
   "shortName": "Angular CDK Scroll Strategies",
   "packageName": "@rdlabo/ngx-cdk-scroll-strategies",
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+  "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies",
   "category": "frontend-tools",
   "icon": "app",
   "version": "21.6.2",

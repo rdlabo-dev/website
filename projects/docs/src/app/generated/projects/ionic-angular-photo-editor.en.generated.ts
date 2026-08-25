@@ -6,6 +6,7 @@ export const PROJECT = {
   "shortName": "Ionic Angular Photo Editor",
   "packageName": "@rdlabo/ionic-angular-photo-editor",
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+  "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
   "category": "frontend-tools",
   "icon": "app",
   "version": "21.6.2",

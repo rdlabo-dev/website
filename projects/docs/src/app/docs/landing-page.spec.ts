@@ -59,6 +59,15 @@ describe('LandingPageComponent', () => {
 
   it('links library documentation to related articles', async () => {
     const compiled = await setup('ionic-theme-md3');
+    const actionLabels = Array.from(
+      compiled.querySelectorAll<HTMLAnchorElement>('article > div > div.mt-9 > a'),
+    ).map((link) => link.textContent?.trim());
+    expect(actionLabels.slice(0, 3)).toEqual(['Get started', 'Demo', 'View source']);
+    expect(
+      compiled.querySelector<HTMLAnchorElement>(
+        'a[href="https://ionic-theme-md3.rdlabo.dev/"]',
+      )?.textContent,
+    ).toContain('Demo');
     const links = Array.from(
       compiled.querySelectorAll<HTMLAnchorElement>('a[href^="https://rdlabo.dev/articles/"]'),
     );

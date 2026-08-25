@@ -40,6 +40,8 @@ export interface ProjectDefinition {
   localizedShortName?: LocalizedText;
   packageName: string;
   repositoryUrl: string;
+  /** Optional interactive demo linked from the project Overview. */
+  demoUrl?: string;
   /** Hosted documentation URL for catalog-only projects that are not rendered by this portal. */
   hostedUrl?: string;
   category: ProjectCategoryId;
@@ -349,6 +351,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Photo Editor',
     packageName: '@rdlabo/ionic-angular-photo-editor',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -409,6 +412,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Scroll Header',
     packageName: '@rdlabo/ionic-angular-scroll-header',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -471,6 +475,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Angular CDK Scroll Strategies',
     packageName: '@rdlabo/ngx-cdk-scroll-strategies',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -527,6 +532,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS26',
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
+    demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -603,6 +609,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme MD3',
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
+    demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',

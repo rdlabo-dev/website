@@ -28,6 +28,7 @@ import {
   apiAnchorFragments,
   expandApiPlaceholders,
   extractPackageReadmeParts,
+  moveRdlaboDocsPickToOverview,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   stripLeadingH1,
@@ -220,6 +221,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
       : project.shortName,
     packageName: project.packageName,
     repositoryUrl: project.repositoryUrl,
+    demoUrl: project.demoUrl,
     hostedUrl: project.hostedUrl,
     category: project.category,
     icon: project.icon,
@@ -387,8 +389,11 @@ async function generateProject(
     const parsed = fm<any>(resolved.content);
     const isPackageLanding = resolved.fromPackage && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;
+    if (!resolved.fromPackage && file === 'readme.md') {
+      preparedBody = moveRdlaboDocsPickToOverview(preparedBody);
+    }
     let splitReadme =
-      !resolved.fromPackage && file === 'readme.md' ? splitDocgenReadme(parsed.body) : undefined;
+      !resolved.fromPackage && file === 'readme.md' ? splitDocgenReadme(preparedBody) : undefined;
     if (resolved.fromPackage) {
       if (isPackageLanding) {
         const extracted = extractPackageReadmeParts(resolved.content);

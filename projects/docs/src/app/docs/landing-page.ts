@@ -50,6 +50,16 @@ import { SeoService } from './seo.service';
             >
               <ng-container i18n="@@getStarted">Get started</ng-container>
             </a>
+            @if (p.demoUrl) {
+              <a
+                class="external-link rounded-full border border-[#d9cec8] px-6 py-3.5 font-semibold text-[#3b3430] no-underline transition hover:border-[#ea572a] hover:text-[#c44320] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
+                [href]="p.demoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ng-container i18n="@@viewDemo">Demo</ng-container>
+              </a>
+            }
             <a
               class="external-link rounded-full border border-[#d9cec8] px-6 py-3.5 font-semibold text-[#3b3430] no-underline transition hover:border-[#ea572a] hover:text-[#c44320] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ea572a]"
               [href]="p.repositoryUrl"

@@ -6,6 +6,7 @@ export const PROJECT = {
   "shortName": "Ionic Angular Scroll Header",
   "packageName": "@rdlabo/ionic-angular-scroll-header",
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+  "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
   "category": "frontend-tools",
   "icon": "app",
   "version": "21.6.2",

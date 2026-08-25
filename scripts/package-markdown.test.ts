@@ -5,6 +5,8 @@ import {
   expandApiPlaceholders,
   extractPackageReadme,
   extractPackageReadmeParts,
+  extractRdlaboDocsPick,
+  moveRdlaboDocsPickToOverview,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   stripLeadingH1,
@@ -114,6 +116,89 @@ hidden in a sample
 `;
 
   assert.equal(stripRdlaboDocsOmit(markdown), markdown);
+});
+
+test('moves rdlabo-docs-pick regions from the README preamble into Overview', () => {
+  const markdown = `# Theme
+
+Intro.
+
+<!-- rdlabo-docs-pick -->
+![Theme screenshot](https://example.com/theme.png)
+<!-- /rdlabo-docs-pick -->
+
+## Overview
+
+Theme details.
+
+## Installation
+
+npm install
+`;
+
+  assert.equal(
+    extractPackageReadme(markdown),
+    `## Overview
+
+![Theme screenshot](https://example.com/theme.png)
+
+Theme details.
+
+## Installation
+
+npm install
+`,
+  );
+});
+
+test('moves localized rdlabo-docs-pick regions into the Japanese Overview', () => {
+  assert.equal(
+    moveRdlaboDocsPickToOverview(`紹介
+
+<!-- rdlabo-docs-pick -->
+![テーマのスクリーンショット](theme.png)
+<!-- /rdlabo-docs-pick -->
+
+## 概要
+
+詳細
+`),
+    `紹介
+
+
+## 概要
+
+![テーマのスクリーンショット](theme.png)
+
+詳細
+`,
+  );
+});
+
+test('ignores pick markers inside backtick and tilde fenced code', () => {
+  const markdown = `## Overview
+
+\`\`\`md
+<!-- rdlabo-docs-pick -->
+literal example
+<!-- /rdlabo-docs-pick -->
+\`\`\`
+
+~~~~md
+<!-- rdlabo-docs-pick -->
+another literal example
+<!-- /rdlabo-docs-pick -->
+~~~~
+`;
+
+  assert.deepEqual(extractRdlaboDocsPick(markdown), { markdown, picked: [] });
+});
+
+test('throws on an unclosed rdlabo-docs-pick block', () => {
+  assert.throws(
+    () => extractRdlaboDocsPick('<!-- rdlabo-docs-pick -->\nScreenshot\n'),
+    /unclosed rdlabo-docs-pick block/,
+  );
 });
 
 test('throws on an unclosed rdlabo-docs-omit block', () => {

@@ -6,7 +6,9 @@ scrollActiveLine: []
 
 IonicアプリケーションにiOS26デザインシステムを適用するCSS/JSテーマライブラリです。
 
+<!-- rdlabo-docs-pick -->
 ![iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/ios26.png)
+<!-- /rdlabo-docs-pick -->
 
 DEMOはこちら: https://ionic-theme-ios26.rdlabo.dev/
 

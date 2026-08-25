@@ -80,6 +80,7 @@ export interface ProjectSummary {
   shortName: string;
   packageName: string;
   repositoryUrl: string;
+  demoUrl?: string;
   hostedUrl?: string;
   category: ProjectCategory;
   icon: ProjectIcon;

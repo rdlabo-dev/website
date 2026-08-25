@@ -47,6 +47,21 @@
 
       <div class="znc article-content" [innerHTML]="article.html | safeHtml"></div>
 
+      <aside class="article-support" aria-labelledby="article-support-heading">
+        <div>
+          <p class="article-support__eyebrow">Support independent OSS</p>
+          <h2 id="article-support-heading">Support rdlabo OSS</h2>
+          <p>If you'd like to support ongoing public OSS work, sponsorship starts at $5 a month.</p>
+        </div>
+        <a
+          class="button button--secondary external-link"
+          [href]="sponsorUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          >View sponsorship options</a
+        >
+      </aside>
+
       @if (article.relatedLibraries?.length) {
         <aside class="article-related-libraries" aria-labelledby="related-libraries-heading">
           <h2 id="related-libraries-heading">Continue with documentation</h2>

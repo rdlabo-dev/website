@@ -109,7 +109,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               }
               @if (!doc.codes.length) {
                 <div class="mt-8 border-t border-slate-200 pt-4 min-[1501px]:hidden">
-                  <app-oss-resource-links />
+                  <app-oss-resource-links [supportLabel]="supportLabel" />
                   <div class="mt-4 border-t border-slate-200 pt-4">
                     <a
                       class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
@@ -172,7 +172,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                   [class.border-slate-200]="tocHeadings().length"
                   [class.pt-4]="tocHeadings().length"
                 >
-                  <app-oss-resource-links />
+                  <app-oss-resource-links [supportLabel]="supportLabel" />
                   <div class="mt-4 border-t border-slate-200 pt-4">
                     <a
                       class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
@@ -216,6 +216,7 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
   protected readonly activeToc = signal('');
   protected readonly activeLines = signal<Record<string, readonly number[]>>({});
   protected readonly docsHomePath = canonicalHomePath(this.#locale);
+  protected readonly supportLabel = $localize`:@@supportThisOss:Support this OSS`;
 
   ngOnInit(): void {
     const slug = this.#route.snapshot.data['pageSlug'] as string;

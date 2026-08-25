@@ -102,6 +102,9 @@ describe('ArticlePage', () => {
     const relatedCtaIndex = children.findIndex((element) =>
       element.classList.contains('article-related-libraries'),
     );
+    const supportCtaIndex = children.findIndex((element) =>
+      element.classList.contains('article-support'),
+    );
 
     expect(root.querySelector('.article-related-docs')).toBeNull();
     expect(relatedCta.textContent).toContain('Continue with documentation');
@@ -111,7 +114,22 @@ describe('ArticlePage', () => {
     expect(relatedCta.querySelector('a')?.target).toBe('');
     expect(noticeIndex).toBeGreaterThan(-1);
     expect(contentIndex).toBeGreaterThan(noticeIndex);
+    expect(supportCtaIndex).toBeGreaterThan(contentIndex);
     expect(relatedCtaIndex).toBeGreaterThan(contentIndex);
+    expect(relatedCtaIndex).toBeGreaterThan(supportCtaIndex);
+  });
+
+  it('invites readers to support independent OSS after the article body', () => {
+    const root = fixture.nativeElement as HTMLElement;
+    const support = root.querySelector('.article-support') as HTMLElement;
+    const link = support.querySelector('a') as HTMLAnchorElement;
+
+    expect(support.textContent).toContain('Support rdlabo OSS');
+    expect(support.textContent).toContain("If you'd like to support ongoing public OSS work");
+    expect(link.textContent?.trim()).toBe('View sponsorship options');
+    expect(link.href).toBe('https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-article');
+    expect(link.target).toBe('_blank');
+    expect(link.rel).toBe('noopener noreferrer');
   });
 
   it('omits related documentation when the article has no relatedLibraries', async () => {

@@ -13,6 +13,9 @@ const docsLinkOpeningNewTab =
 test('prerenders the web-site home, archive, and translated articles', async () => {
   const home = await readFile(new URL('index.html', browserRoot), 'utf8');
   assert.match(home, /Featured OSS/);
+  assert.match(home, /Current milestone: 10 monthly sponsors/);
+  assert.match(home, /View sponsorship options/);
+  assert.match(home, /metadata_campaign=rdlabo-home/);
   assert.match(home, /https:\/\/docs\.rdlabo\.dev/);
   assert.doesNotMatch(home, docsLinkOpeningNewTab);
   assert.match(home, /rel="canonical" href="https:\/\/rdlabo\.dev"/);
@@ -41,6 +44,9 @@ test('prerenders the web-site home, archive, and translated articles', async () 
       html,
       new RegExp(`Read the original article in Japanese on ${article.sourceName}`),
     );
+    assert.match(html, /Support rdlabo OSS/);
+    assert.match(html, /View sponsorship options/);
+    assert.match(html, /metadata_campaign=rdlabo-article/);
     if (article.relatedLibraries?.length) {
       assert.doesNotMatch(html, /Related documentation/);
       assert.match(html, /Continue with documentation/);

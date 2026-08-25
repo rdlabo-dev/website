@@ -73,7 +73,7 @@ describe('ArticlesPage', () => {
     const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.oss-resource-links__link'));
 
     expect(links.map((link) => link.textContent?.trim())).toEqual([
-      'Support my OSS',
+      'Support this OSS',
       'Zenn',
       'X / @rdlabo',
     ]);

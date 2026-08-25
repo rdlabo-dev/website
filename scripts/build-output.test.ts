@@ -79,7 +79,8 @@ test('prerenders current and past public sponsors in both locales', async () => 
     for (const sponsor of [...CURRENT_SPONSORS, ...PAST_SPONSORS]) {
       assert.match(html, new RegExp(`href="${sponsor.profileUrl}"`));
     }
-    assert.doesNotMatch(html, /\$\d/);
+    assert.match(html, /(?:Sponsor from \$5\/month|月5ドルから支援する)/);
+    assert.doesNotMatch(html, /monthlyPriceInDollars/);
   }
   if (CURRENT_SPONSORS.length > 0) {
     assert.match(english, />Current sponsors</);

@@ -19,6 +19,8 @@ export const SITE = {
   tagline: 'Open-source tools for Ionic, Angular, and Capacitor.',
   description: 'Personal open source projects maintained by rdlabo.',
   docsUrl: 'https://docs.rdlabo.dev',
+  supportUrl: 'https://docs.rdlabo.dev/support',
+  sponsorUrl: 'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-home',
   githubUrl: 'https://github.com/rdlabo-dev',
   zennUrl: 'https://zenn.dev/rdlabo',
   xUrl: 'https://x.com/rdlabo',
@@ -27,6 +29,7 @@ export const SITE = {
 export const NAV_LINKS: readonly NavLink[] = [
   { label: 'Articles', href: '/articles' },
   { label: 'Docs', href: SITE.docsUrl, sameSite: true },
+  { label: 'Support', href: SITE.supportUrl, sameSite: true },
   { label: 'GitHub', href: SITE.githubUrl, external: true, mobile: false },
 ];
 

@@ -23,6 +23,8 @@ export class ArticlePage {
   protected readonly relatedLibraryIds = (this.article.relatedLibraries ?? []).map(
     (library) => library.id,
   );
+  protected readonly sponsorUrl =
+    'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-article';
 
   constructor() {
     this.#seo.setPage({

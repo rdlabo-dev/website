@@ -16,7 +16,7 @@ describe('OssResourceLinksComponent in docs', () => {
     expect(
       links.map((link) => [link.textContent?.trim(), link.getAttribute('href'), link.target, link.rel]),
     ).toEqual([
-      ['Support my OSS', '/support', '', ''],
+      ['Support this OSS', '/support', '', ''],
       ['Zenn', 'https://zenn.dev/rdlabo', '_blank', 'noopener noreferrer'],
       ['X / @rdlabo', 'https://x.com/rdlabo', '_blank', 'noopener noreferrer'],
     ]);

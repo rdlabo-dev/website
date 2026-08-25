@@ -34,7 +34,7 @@ describe('App', () => {
     const navLabels = Array.from(compiled.querySelectorAll('.site-nav__link')).map((link) =>
       link.textContent?.trim(),
     );
-    expect(navLabels).toEqual(['Articles', 'Docs', 'GitHub']);
+    expect(navLabels).toEqual(['Articles', 'Docs', 'Support', 'GitHub']);
     expect(compiled.querySelector('pagefind-modal-trigger')).toBeTruthy();
     expect(compiled.querySelector('pagefind-modal')).toBeTruthy();
   });
@@ -74,6 +74,15 @@ describe('App', () => {
     const allProjects = compiled.querySelector<HTMLAnchorElement>('.project-grid__all a');
     expect(allProjects?.textContent?.trim()).toBe('All Projects');
     expect(allProjects?.href).toBe('https://docs.rdlabo.dev/');
+    const supportCta = compiled.querySelector<HTMLAnchorElement>('.community-cta a');
+    expect(supportCta?.textContent?.trim()).toBe('View sponsorship options');
+    expect(supportCta?.href).toBe(
+      'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-home',
+    );
+    expect(supportCta?.target).toBe('_blank');
+    expect(compiled.querySelector('.community-cta__vision')?.textContent).toContain(
+      '10 monthly sponsors',
+    );
     expect(compiled.querySelectorAll('.article-preview')).toHaveLength(3);
     expect(compiled.querySelectorAll('a.article-preview')).toHaveLength(3);
     expect(

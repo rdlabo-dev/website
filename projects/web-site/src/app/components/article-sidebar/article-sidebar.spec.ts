@@ -23,7 +23,7 @@ describe('ArticleSidebar', () => {
     expect(
       links.map((link) => [link.textContent?.trim(), link.href, link.target, link.rel]),
     ).toEqual([
-      ['Support my OSS', 'https://docs.rdlabo.dev/support', '', ''],
+      ['Support this OSS', 'https://docs.rdlabo.dev/support', '', ''],
       ['Zenn', 'https://zenn.dev/rdlabo', '_blank', 'noopener noreferrer'],
       ['X / @rdlabo', 'https://x.com/rdlabo', '_blank', 'noopener noreferrer'],
     ]);

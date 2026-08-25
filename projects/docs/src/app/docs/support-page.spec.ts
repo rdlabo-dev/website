@@ -40,6 +40,20 @@ describe('SupportPageComponent', () => {
       expect(compiled.textContent).toContain(sponsor.name);
       expect(compiled.textContent).toContain(`@${sponsor.login}`);
     }
-    expect(compiled.textContent).not.toMatch(/\$\d/);
+    for (const card of compiled.querySelectorAll('[aria-labelledby$="-sponsors-heading"] li')) {
+      expect(card.textContent).not.toMatch(/\$\d/);
+    }
+    expect(compiled.textContent).toContain('The first 10 monthly sponsors');
+    expect(compiled.textContent).toContain('100 monthly sponsors');
+    expect(compiled.textContent).toContain(
+      'Individual sponsors who opt to be public are recognized equally here',
+    );
+    expect(compiled.textContent).toContain(
+      'Individual sponsorships do not unlock exclusive features, priority support',
+    );
+    const join = compiled.querySelector<HTMLAnchorElement>(
+      'a[href*="metadata_campaign=docs-support"]',
+    );
+    expect(join?.textContent?.trim()).toBe('Sponsor from $5/month');
   });
 });

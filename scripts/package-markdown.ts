@@ -123,7 +123,7 @@ export function stripLeadingH1(markdown: string): string {
   return markdown.replace(/^# [^\n]+\r?\n+/, '');
 }
 
-const API_PLACEHOLDER = /^(?:<!--\s*)?!::([a-zA-Z0-9]+)::(?:\s*-->)?[ \t]*$/gm;
+const API_PLACEHOLDER = /^(?:<!--\s*)?!::([a-zA-Z0-9_.-]+)::(?:\s*-->)?[ \t]*$/gm;
 
 export function expandApiPlaceholders(
   markdown: string,

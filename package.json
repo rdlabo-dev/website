@@ -27,7 +27,7 @@
     "build:web-site": "ng build web-site && pagefind --site dist/web-site/browser --output-subdir pagefind && tsx --test scripts/web-site-build-output.test.ts",
     "watch": "ng build docs --watch --configuration development",
     "pretest": "npm run docs:generate && npm run articles:generate",
-    "test": "tsx --test scripts/docgen-inline-code.test.ts scripts/docgen-readme.test.ts scripts/html-policy.test.ts scripts/markdown-headings.test.ts scripts/package-markdown.test.ts scripts/package-repository.test.ts scripts/github-sponsors.test.ts scripts/bilingual-update-blocker.test.ts scripts/site-contract.test.ts scripts/zenn-articles.test.ts scripts/note-articles.test.ts scripts/import-zenn-articles.test.ts scripts/generate-articles.test.ts scripts/article-relations.test.ts scripts/seo-dates.test.ts shared/json-ld.test.ts scripts/seo-audit.test.ts && ng test docs --watch=false && ng test web-site --watch=false",
+    "test": "tsx --test scripts/docgen-api.test.ts scripts/docgen-inline-code.test.ts scripts/docgen-readme.test.ts scripts/html-policy.test.ts scripts/markdown-headings.test.ts scripts/package-markdown.test.ts scripts/package-repository.test.ts scripts/github-sponsors.test.ts scripts/bilingual-update-blocker.test.ts scripts/site-contract.test.ts scripts/zenn-articles.test.ts scripts/note-articles.test.ts scripts/import-zenn-articles.test.ts scripts/generate-articles.test.ts scripts/article-relations.test.ts scripts/seo-dates.test.ts shared/json-ld.test.ts scripts/seo-audit.test.ts && ng test docs --watch=false && ng test web-site --watch=false",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "deploy": "npm run build && npm run deploy:docs && npm run deploy:web-site",

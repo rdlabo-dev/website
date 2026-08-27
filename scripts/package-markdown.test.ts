@@ -326,7 +326,10 @@ test('rewrites package-relative guide and API links', () => {
 });
 
 test('expands bare and HTML-commented API placeholders', () => {
-  const api = new Map([['createPaymentSheet', '#### `method` createPaymentSheet(...)\n']]);
+  const api = new Map([
+    ['createPaymentSheet', '#### `method` createPaymentSheet(...)\n'],
+    ['addListener.Events.Completed', '#### `method` addListener(Events.Completed, ...)\n'],
+  ]);
   assert.equal(
     expandApiPlaceholders('Before\n\n!::createPaymentSheet::\n\nAfter\n', api).expanded,
     'Before\n\n#### `method` createPaymentSheet(...)\n\n\nAfter\n',
@@ -336,6 +339,10 @@ test('expands bare and HTML-commented API placeholders', () => {
     'Before\n\n#### `method` createPaymentSheet(...)\n\n\nAfter\n',
   );
   assert.deepEqual(expandApiPlaceholders('!::missing::\n', api).missing, ['missing']);
+  assert.equal(
+    expandApiPlaceholders('<!-- !::addListener.Events.Completed:: -->\n', api).expanded,
+    '#### `method` addListener(Events.Completed, ...)\n\n',
+  );
 });
 
 test('rewrites nested package-relative guide links', () => {

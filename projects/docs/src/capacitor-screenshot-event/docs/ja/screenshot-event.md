@@ -18,7 +18,7 @@ const handle = await ScreenshotEvent.addListener('userDidTakeScreenshot', () => 
 await handle.remove();
 ```
 
-!::addListener::
+!::addListener.userDidTakeScreenshot::
 
 !::PluginListenerHandle::
 

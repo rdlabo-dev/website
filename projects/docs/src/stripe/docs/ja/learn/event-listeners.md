@@ -22,8 +22,6 @@ await Promise.all([
 ]);
 ```
 
-!::addListener::
-
 !::PluginListenerHandle::
 
 ## Android Activity の再生成
@@ -37,6 +35,8 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 アプリケーションレベルの結果リスナーは JavaScript ランタイムの存続中ずっと登録しておいてください。Android の再生成後も支払い結果が必要なら、ボタンハンドラーで追加し、ページ破棄時に削除する設計にはしないでください。
 
 ## PaymentSheet のイベント
+
+!::addListener.PaymentSheetEventsEnum::
 
 !::PaymentSheetEventsEnum::
 
@@ -52,6 +52,8 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 
 ## PaymentFlow のイベント
 
+!::addListener.PaymentFlowEventsEnum::
+
 !::PaymentFlowEventsEnum::
 
 1. 起動時に結果リスナーを登録する。
@@ -64,6 +66,8 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 
 ## Apple Pay のイベント
 
+!::addListener.ApplePayEventsEnum::
+
 !::ApplePayEventsEnum::
 
 `DidSelectShippingContact` には `contact` と `updateId` が含まれます。iOS では、その `updateId` と更新後の `paymentSummaryItems` を指定して `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは25秒後に元の項目へ戻ります。`updateApplePaySheet` は Android と Web では未実装です。
@@ -71,6 +75,8 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 `DidCreatePaymentMethod` には配送先 `contact` が含まれます。Apple は支払いが成功するまで住所全体を返しません。
 
 ## Google Pay のイベント
+
+!::addListener.GooglePayEventsEnum::
 
 !::GooglePayEventsEnum::
 

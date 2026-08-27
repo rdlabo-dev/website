@@ -58,6 +58,6 @@ const handle = await CodeScanner.addListener('CodeScannerCatchEvent', (event) =>
 await handle.remove();
 ```
 
-!::addListener::
+!::addListener.CodeScannerCatchEvent::
 
 !::PluginListenerHandle::

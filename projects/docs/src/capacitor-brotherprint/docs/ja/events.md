@@ -51,7 +51,7 @@ const removePrintListeners = async () => {
 
 https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.1.1/demo/src/app/home/home.page.ts
 
-!::addListener::
+!::addListener.BrotherPrintEventsEnum::
 
 !::BrotherPrintEventsEnum::
 

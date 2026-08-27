@@ -22,8 +22,6 @@ const handle = await AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
 await handle.remove();
 ```
 
-!::addListener::
-
 !::PluginListenerHandle::
 
 ## 共通のライフサイクルイベント
@@ -58,12 +56,22 @@ await handle.remove();
 - [インタースティシャル広告](/docs/interstitial)
 - [リワード広告](/docs/rewarded)
 
+!::addListener.AppOpenAdPluginEvents::
+
 !::AppOpenAdPluginEvents::
+
+!::addListener.BannerAdPluginEvents::
 
 !::BannerAdPluginEvents::
 
+!::addListener.InterstitialAdPluginEvents::
+
 !::InterstitialAdPluginEvents::
 
+!::addListener.RewardAdPluginEvents::
+
 !::RewardAdPluginEvents::
+
+!::addListener.RewardInterstitialAdPluginEvents::
 
 !::RewardInterstitialAdPluginEvents::

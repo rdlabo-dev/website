@@ -1,9 +1,7 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { loadRelatedArticlesByLibrary, parseRelatedLibraryIds } from './article-relations';
+import { groupRelatedArticlesByLibrary, parseRelatedLibraryIds } from './article-relations';
 
 test('normalizes, deduplicates, and validates related library IDs', () => {
   assert.deepEqual(
@@ -28,76 +26,74 @@ test('normalizes, deduplicates, and validates related library IDs', () => {
   );
 });
 
-test('groups articles by library in deterministic reverse publication order', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'article-relations-'));
-  try {
-    await Promise.all([
-      writeFile(
-        join(directory, 'z-last.md'),
-        `---
-title: Last
-description: Last description
-slug: last
-publishedDate: "2026-08-24"
-relatedLibraries:
-  - ionic-theme-md3
----
-Body
-`,
-      ),
-      writeFile(
-        join(directory, 'a-first.md'),
-        `---
-title: First
-description: First description
-zennSlug: first
-publishedDate: "2026-08-23"
-relatedLibraries:
-  - " ionic-theme-md3 "
-  - ionic-theme-ios26
-  - ionic-theme-md3
----
-Body
-`,
-      ),
-      writeFile(join(directory, 'ignored.md'), '---\ntitle: Ignored\n---\nBody\n'),
-    ]);
-
-    const related = await loadRelatedArticlesByLibrary(directory);
-    assert.deepEqual(
-      related.get('ionic-theme-md3')?.map((article) => article.slug),
-      ['last', 'first'],
-    );
-    assert.deepEqual(related.get('ionic-theme-ios26'), [
-      {
-        slug: 'first',
-        title: 'First',
-        description: 'First description',
-        publishedDate: '2026-08-23',
-        url: 'https://rdlabo.dev/articles/first',
-      },
-    ]);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
+test('groups generated article summaries by library in reverse publication order', () => {
+  const related = groupRelatedArticlesByLibrary([
+    {
+      slug: 'first',
+      title: 'First',
+      description: 'First description',
+      publishedDate: '2026-08-23',
+      relatedLibraries: [
+        { id: 'ionic-theme-md3' },
+        { id: 'ionic-theme-ios26' },
+        { id: 'ionic-theme-md3' },
+      ],
+    },
+    {
+      slug: 'last',
+      title: 'Last',
+      description: 'Last description',
+      publishedDate: '2026-08-24',
+      relatedLibraries: [{ id: 'ionic-theme-md3' }],
+    },
+    {
+      slug: 'ignored',
+      title: 'Ignored',
+      description: 'Ignored description',
+      publishedDate: '2026-08-25',
+    },
+  ]);
+  assert.deepEqual(
+    related.get('ionic-theme-md3')?.map((article) => article.slug),
+    ['last', 'first'],
+  );
+  assert.deepEqual(related.get('ionic-theme-ios26'), [
+    {
+      slug: 'first',
+      title: 'First',
+      description: 'First description',
+      publishedDate: '2026-08-23',
+      url: 'https://rdlabo.dev/articles/first',
+    },
+  ]);
 });
 
-test('rejects malformed related article metadata', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'article-relations-invalid-'));
-  try {
-    await writeFile(
-      join(directory, 'invalid.md'),
-      `---
-title: " "
-description: Description
-slug: invalid
-relatedLibraries:
-  - ionic-theme-md3
----
-`,
-    );
-    await assert.rejects(loadRelatedArticlesByLibrary(directory), /must declare a non-empty title/);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
+test('rejects malformed generated related article metadata', () => {
+  assert.throws(
+    () =>
+      groupRelatedArticlesByLibrary([
+        {
+          slug: 'invalid',
+          title: ' ',
+          description: 'Description',
+          publishedDate: '2026-08-24',
+          relatedLibraries: [{ id: 'ionic-theme-md3' }],
+        },
+      ]),
+    /must declare a non-empty title/,
+  );
+});
+
+test('generates article metadata before documentation through the public docs entrypoint', async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL('../package.json', import.meta.url), 'utf8'),
+  ) as { scripts: Record<string, string> };
+  assert.equal(
+    packageJson.scripts['docs:generate'],
+    'npm run articles:generate && npm run docs:generate:content',
+  );
+  assert.equal(packageJson.scripts['docs:generate:content'], 'tsx scripts/generate-docs.ts');
+  for (const script of ['prestart', 'prestart:ja', 'prebuild:docs', 'pretest']) {
+    assert.equal(packageJson.scripts[script], 'npm run docs:generate', script);
   }
 });

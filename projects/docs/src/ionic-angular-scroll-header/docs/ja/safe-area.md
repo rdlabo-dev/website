@@ -6,6 +6,8 @@ scrollActiveLine: []
 
 Safe Area 用の非表示 Header と常時表示 Native Header です。
 
+まず[IonContentガイド](/docs/ion-content)のScroll連動Headerを設定し、このページのHeader構成を用途に応じて選択してください。
+
 ## セーフエリア用に hidden な Header を設定する必要があるのはなぜですか？
 
 もちろん、次のように ion-content にセーフエリアを設定することもできます。

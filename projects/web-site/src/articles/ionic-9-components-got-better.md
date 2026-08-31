@@ -2,6 +2,9 @@
 title: "Ionic 9 Is Here! Web Standardization Takes a Big Step Forward — Five Major Changes"
 description: "Ionic Framework 9 highlights five changes that matter in day-to-day app development: rich Select options, Font Icons in ion-icon, ion-img deprecation, cleaner form controls, and more accessible sheet modal handles."
 zennSlug: ionic-9-components-got-better
+updatedAt: "2026-08-31"
+relatedLibraries:
+  - ionic-docs
 emoji: "🚀"
 ---
 

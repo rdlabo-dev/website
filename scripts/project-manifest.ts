@@ -12,6 +12,8 @@ export interface ProjectPageDefinition {
   file: string;
   /** Optional intent-focused document title for SEO `<title>` metadata. */
   seoTitle?: LocalizedText;
+  /** Optional intent-focused summary for SEO description metadata. */
+  seoDescription?: LocalizedText;
   /** Optional explicit content update date (`YYYY-MM-DD`) for sitemap `<lastmod>`. */
   updatedAt?: LocalizedText;
   demo?: {
@@ -106,6 +108,7 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
 ];
 interface PageOptions {
   seoTitle?: LocalizedText;
+  seoDescription?: LocalizedText;
   updatedAt?: LocalizedText;
   demo?: ProjectPageDefinition['demo'];
 }
@@ -512,7 +515,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           ),
         },
       ),
-      page('Safe Area', 'Safe Area', 'safe-area', 'safe-area.md', 'Guides', 'ガイド'),
+      page('Safe Area', 'Safe Area', 'safe-area', 'safe-area.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Ionic Safe Area with Scroll-Aware Headers | rdlabo',
+          'IonicのSafe AreaとScroll連動Header | rdlabo',
+        ),
+        seoDescription: text(
+          'Configure hidden safe-area headers and always-visible native headers with @rdlabo/ionic-angular-scroll-header for Ionic content layouts.',
+          'Ionic・Angular CDKのScroll連動Headerで、Safe Area用の非表示Headerと常時表示するNative Headerを設定する方法を解説します。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },
@@ -984,9 +997,29 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guide',
         'ガイド',
       ),
-      page('Configuration', '設定', 'configuration', 'configuration.md', 'Guide', 'ガイド'),
+      page('Configuration', '設定', 'configuration', 'configuration.md', 'Guide', 'ガイド', {
+        seoTitle: text(
+          'Configure Angular and Ionic ESLint Rules | rdlabo',
+          'Angular・Ionic向けESLintルールの設定 | rdlabo',
+        ),
+        seoDescription: text(
+          'Configure @rdlabo/eslint-plugin-rules with flat config presets for Angular, Ionic, or framework-independent TypeScript projects.',
+          '@rdlabo/eslint-plugin-rulesのFlat Configを使い、Angular・Ionic・汎用TypeScript向けのESLintプリセットを設定します。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド'),
-      page('Rules', 'ルール一覧', 'rules', 'rules.md', 'Reference', 'リファレンス'),
+      page('Rules', 'ルール一覧', 'rules', 'rules.md', 'Reference', 'リファレンス', {
+        seoTitle: text(
+          'Angular, Ionic, and TypeScript ESLint Rules | rdlabo',
+          'Angular・Ionic・TypeScript向けESLintルール一覧 | rdlabo',
+        ),
+        seoDescription: text(
+          'Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.',
+          'Angular Signal、Ionic Component、Component境界、フォーム、安全な非同期処理を検査する@rdlabo/eslint-plugin-rulesのルール一覧です。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
       ...eslintRulePages,
     ],
@@ -1063,9 +1096,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/capacitor-community/stripe',
     category: 'capacitor-plugins',
     icon: 'payments',
+    seoTitle: text(
+      'Capacitor Stripe Plugin Documentation | rdlabo',
+      'Capacitor Stripe プラグイン ドキュメント | rdlabo',
+    ),
     description: text(
-      'Native Stripe payments for Capacitor applications.',
-      'Capacitor アプリで Stripe のネイティブ決済を利用するためのプラグイン。',
+      'Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.',
+      'Capacitorアプリに@capacitor-community/stripeを導入し、iOS・Android・WebでPaymentSheet、Apple Pay、Google Payを実装するためのドキュメント。',
     ),
     headline: text(
       'Accept Stripe payments in Capacitor apps',
@@ -1121,6 +1158,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
+        {
+          seoTitle: text(
+            'Configure Capacitor Stripe for iOS, Android, and Web | rdlabo',
+            'Capacitor StripeのiOS・Android・Web設定 | rdlabo',
+          ),
+          seoDescription: text(
+            'Configure @capacitor-community/stripe with a publishable key and platform settings before presenting PaymentSheet, Apple Pay, or Google Pay.',
+            '@capacitor-community/stripeに公開可能キーと各Platformの設定を追加し、PaymentSheet、Apple Pay、Google Payを利用する準備をします。',
+          ),
+          updatedAt: text('2026-08-31', '2026-08-31'),
+        },
       ),
       page(
         'Vanilla JS',
@@ -1164,8 +1212,28 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         },
       ),
       page('PaymentFlow', 'PaymentFlow', 'payment-flow', 'payment-flow.md', 'Methods', 'メソッド'),
-      page('Apple Pay', 'Apple Pay', 'apple-pay', 'apple-pay.md', 'Methods', 'メソッド'),
-      page('Google Pay', 'Google Pay', 'google-pay', 'google-pay.md', 'Methods', 'メソッド'),
+      page('Apple Pay', 'Apple Pay', 'apple-pay', 'apple-pay.md', 'Methods', 'メソッド', {
+        seoTitle: text(
+          'Capacitor Stripe Apple Pay Integration | rdlabo',
+          'Capacitor StripeでApple Payを実装 | rdlabo',
+        ),
+        seoDescription: text(
+          'Create, present, and confirm Apple Pay payments in a Capacitor app with @capacitor-community/stripe on supported Apple devices.',
+          '@capacitor-community/stripeを使い、対応するApple端末のCapacitorアプリでApple Pay決済を作成・表示・確定します。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
+      page('Google Pay', 'Google Pay', 'google-pay', 'google-pay.md', 'Methods', 'メソッド', {
+        seoTitle: text(
+          'Capacitor Stripe Google Pay Integration | rdlabo',
+          'Capacitor StripeでGoogle Payを実装 | rdlabo',
+        ),
+        seoDescription: text(
+          'Create, present, and confirm Google Pay payments in a Capacitor app with @capacitor-community/stripe on supported Android devices.',
+          '@capacitor-community/stripeを使い、対応するAndroid端末のCapacitorアプリでGoogle Pay決済を作成・表示・確定します。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },
@@ -1377,7 +1445,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        seoTitle: text(
+          'Capacitor AdMob Plugin Setup Guide | rdlabo',
+          'Capacitor AdMob プラグイン導入ガイド | rdlabo',
+        ),
+        seoDescription: text(
+          'Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.',
+          '@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。',
+        ),
+        updatedAt: text('2026-08-31', '2026-08-31'),
+      }),
       page(
         'Initialize',
         '初期化',
@@ -1395,6 +1473,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'interstitial.md',
         'Ad formats',
         '広告フォーマット',
+        {
+          seoTitle: text(
+            'Capacitor AdMob Interstitial Ads Guide | rdlabo',
+            'Capacitor AdMobインタースティシャル広告ガイド | rdlabo',
+          ),
+          seoDescription: text(
+            'Prepare, show, and handle interstitial ad events in Capacitor apps with @capacitor-community/admob on iOS and Android.',
+            '@capacitor-community/admobを使い、iOS・AndroidのCapacitorアプリでインタースティシャル広告の準備・表示・Event処理を実装します。',
+          ),
+          updatedAt: text('2026-08-31', '2026-08-31'),
+        },
       ),
       page(
         'Rewarded Ads',

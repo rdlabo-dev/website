@@ -88,10 +88,18 @@ export const ARTICLE_SUMMARIES = [
     "slug": "ionic-9-components-got-better",
     "title": "Ionic 9 Is Here! Web Standardization Takes a Big Step Forward — Five Major Changes",
     "description": "Ionic Framework 9 highlights five changes that matter in day-to-day app development: rich Select options, Font Icons in ion-icon, ion-img deprecation, cleaner form controls, and more accessible sheet modal handles.",
+    "updatedAt": "2026-08-31",
     "image": "https://rdlabo.dev/article-images/ionic-9-components-got-better.svg",
     "imageWidth": 1200,
     "imageHeight": 630,
     "emoji": "🚀",
+    "relatedLibraries": [
+      {
+        "id": "ionic-docs",
+        "name": "Ionic Docs Japanese",
+        "url": "https://ionicframework.jp/docs/"
+      }
+    ],
     "sourceName": "Zenn",
     "originalUrl": "https://zenn.dev/rdlabo/articles/ionic-9-components-got-better",
     "publishedAt": "2026-08-20T23:21:47.000Z",

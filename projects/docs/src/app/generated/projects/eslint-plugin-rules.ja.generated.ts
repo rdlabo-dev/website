@@ -60,6 +60,9 @@ export const PROJECT = {
     {
       "title": "設定",
       "navTitle": "設定",
+      "seoTitle": "Angular・Ionic向けESLintルールの設定 | rdlabo",
+      "seoDescription": "@rdlabo/eslint-plugin-rulesのFlat Configを使い、Angular・Ionic・汎用TypeScript向けのESLintプリセットを設定します。",
+      "updatedAt": "2026-08-31",
       "slug": "configuration",
       "file": "configuration.md",
       "section": "ガイド",
@@ -128,6 +131,9 @@ export const PROJECT = {
     {
       "title": "ルール一覧",
       "navTitle": "ルール一覧",
+      "seoTitle": "Angular・Ionic・TypeScript向けESLintルール一覧 | rdlabo",
+      "seoDescription": "Angular Signal、Ionic Component、Component境界、フォーム、安全な非同期処理を検査する@rdlabo/eslint-plugin-rulesのルール一覧です。",
+      "updatedAt": "2026-08-31",
       "slug": "rules",
       "file": "rules.md",
       "section": "リファレンス",

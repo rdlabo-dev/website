@@ -390,8 +390,6 @@ export const PROJECTS_EN = [
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
-        "seoTitle": "Angular CDK Variable Height Virtual Scroll Setup | rdlabo",
-        "updatedAt": "2026-08-25",
         "slug": "readme",
         "section": "Quickstart",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/readme"
@@ -399,8 +397,6 @@ export const PROJECTS_EN = [
       {
         "title": "Simple Usage",
         "navTitle": "Simple Usage",
-        "seoTitle": "Angular CDK Virtual Scroll: Variable Height Example | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
           "title": "Interactive simple virtual scroll demo"
@@ -412,8 +408,6 @@ export const PROJECTS_EN = [
       {
         "title": "Advanced Usage",
         "navTitle": "Advanced Usage",
-        "seoTitle": "Angular CDK Virtual Scroll: Dynamic Item Height | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
           "title": "Interactive advanced virtual scroll demo"
@@ -425,8 +419,6 @@ export const PROJECTS_EN = [
       {
         "title": "Reverse Scroll",
         "navTitle": "Reverse Scroll",
-        "seoTitle": "Angular CDK Reverse Virtual Scroll for Chat UIs | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
           "title": "Interactive reverse virtual scroll demo"
@@ -438,8 +430,6 @@ export const PROJECTS_EN = [
       {
         "title": "FAQ",
         "navTitle": "FAQ",
-        "seoTitle": "Angular CDK Virtual Scroll: Autosize vs Variable Height",
-        "updatedAt": "2026-08-25",
         "slug": "faq",
         "section": "Guides",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/faq"
@@ -1034,7 +1024,8 @@ export const PROJECTS_EN = [
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
-    "description": "Native Stripe payments for Capacitor applications.",
+    "seoTitle": "Capacitor Stripe Plugin Documentation | rdlabo",
+    "description": "Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.",
     "headline": "Accept Stripe payments in Capacitor apps",
     "overview": "Present native PaymentSheet and PaymentFlow, accept Apple Pay and Google Pay, and integrate payments on the web from the same Capacitor codebase.",
     "featuresHeading": "What you can build",
@@ -1114,7 +1105,6 @@ export const PROJECTS_EN = [
       {
         "title": "PaymentSheet",
         "navTitle": "PaymentSheet",
-        "seoTitle": "Capacitor Stripe PaymentSheet API | rdlabo",
         "slug": "payment-sheet",
         "section": "Methods",
         "path": "/projects/capacitor-stripe/docs/payment-sheet"
@@ -2037,8 +2027,6 @@ export const PROJECTS_JA = [
       {
         "title": "はじめに",
         "navTitle": "はじめに",
-        "seoTitle": "Angular CDK可変高さVirtual Scrollの導入方法 | rdlabo",
-        "updatedAt": "2026-08-25",
         "slug": "readme",
         "section": "クイックスタート",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/readme"
@@ -2046,8 +2034,6 @@ export const PROJECTS_JA = [
       {
         "title": "シンプルな使い方",
         "navTitle": "シンプルな使い方",
-        "seoTitle": "Angular CDK Virtual Scrollの可変高さサンプル | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
           "title": "Simple Virtual Scrollの操作デモ"
@@ -2059,8 +2045,6 @@ export const PROJECTS_JA = [
       {
         "title": "応用的な使い方",
         "navTitle": "応用的な使い方",
-        "seoTitle": "Angular CDK Virtual Scrollで動的なItem Heightを計測 | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
           "title": "Advanced Virtual Scrollの操作デモ"
@@ -2072,8 +2056,6 @@ export const PROJECTS_JA = [
       {
         "title": "リバーススクロール",
         "navTitle": "リバーススクロール",
-        "seoTitle": "Angular CDK Reverse Virtual ScrollでChat UIを実装 | rdlabo",
-        "updatedAt": "2026-08-25",
         "demo": {
           "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
           "title": "Reverse Virtual Scrollの操作デモ"
@@ -2085,8 +2067,6 @@ export const PROJECTS_JA = [
       {
         "title": "FAQ",
         "navTitle": "FAQ",
-        "seoTitle": "Angular CDK Virtual Scrollのautosizeと可変高さの違い",
-        "updatedAt": "2026-08-25",
         "slug": "faq",
         "section": "ガイド",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/faq"
@@ -2681,7 +2661,8 @@ export const PROJECTS_JA = [
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
-    "description": "Capacitor アプリで Stripe のネイティブ決済を利用するためのプラグイン。",
+    "seoTitle": "Capacitor Stripe プラグイン ドキュメント | rdlabo",
+    "description": "Capacitorアプリに@capacitor-community/stripeを導入し、iOS・Android・WebでPaymentSheet、Apple Pay、Google Payを実装するためのドキュメント。",
     "headline": "CapacitorアプリでStripe決済を受け付ける",
     "overview": "同じCapacitorコードベースからネイティブのPaymentSheetとPaymentFlow、Apple Pay、Google Pay、Web決済を利用できます。",
     "featuresHeading": "実装できること",
@@ -2761,7 +2742,6 @@ export const PROJECTS_JA = [
       {
         "title": "PaymentSheet",
         "navTitle": "PaymentSheet",
-        "seoTitle": "Capacitor Stripe PaymentSheet API リファレンス | rdlabo",
         "slug": "payment-sheet",
         "section": "メソッド",
         "path": "/projects/capacitor-stripe/docs/payment-sheet"

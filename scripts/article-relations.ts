@@ -1,6 +1,3 @@
-import { readFile, readdir } from 'node:fs/promises';
-import { join } from 'node:path';
-import fm from 'front-matter';
 import { projectDefinitions } from './project-manifest';
 
 export interface RelatedArticle {
@@ -28,40 +25,36 @@ export function parseRelatedLibraryIds(value: unknown, file: string): string[] {
   return ids;
 }
 
-function requiredArticleField(value: unknown, field: string, file: string): string {
+interface RelatedArticleSummary {
+  slug: string;
+  title: string;
+  description: string;
+  publishedDate: string;
+  relatedLibraries?: readonly { id: string }[];
+}
+
+function requiredArticleField(value: unknown, field: string, article: string): string {
   if (typeof value !== 'string' || !value.trim()) {
-    throw new Error(`${file} with relatedLibraries must declare a non-empty ${field}`);
+    throw new Error(`${article} with relatedLibraries must declare a non-empty ${field}`);
   }
   return value.trim();
 }
 
-export async function loadRelatedArticlesByLibrary(
-  articlesDirectory: string,
-): Promise<Map<string, RelatedArticle[]>> {
+export function groupRelatedArticlesByLibrary(
+  summaries: readonly RelatedArticleSummary[],
+): Map<string, RelatedArticle[]> {
   const related = new Map<string, RelatedArticle[]>();
-  const files = (await readdir(articlesDirectory))
-    .filter((entry) => entry.endsWith('.md'))
-    .sort((left, right) => left.localeCompare(right, 'en'));
-
-  for (const file of files) {
-    const parsed = fm<Record<string, unknown>>(
-      await readFile(join(articlesDirectory, file), 'utf8'),
+  for (const summary of summaries) {
+    const libraryIds = parseRelatedLibraryIds(
+      summary.relatedLibraries?.map(({ id }) => id),
+      summary.slug,
     );
-    const libraryIds = parseRelatedLibraryIds(parsed.attributes['relatedLibraries'], file);
     if (!libraryIds.length) continue;
 
-    const slug = requiredArticleField(
-      parsed.attributes['slug'] ?? parsed.attributes['zennSlug'],
-      'slug',
-      file,
-    );
-    const title = requiredArticleField(parsed.attributes['title'], 'title', file);
-    const description = requiredArticleField(parsed.attributes['description'], 'description', file);
-    const publishedDate = requiredArticleField(
-      parsed.attributes['publishedDate'],
-      'publishedDate',
-      file,
-    );
+    const slug = requiredArticleField(summary.slug, 'slug', summary.slug);
+    const title = requiredArticleField(summary.title, 'title', slug);
+    const description = requiredArticleField(summary.description, 'description', slug);
+    const publishedDate = requiredArticleField(summary.publishedDate, 'publishedDate', slug);
 
     for (const libraryId of libraryIds) {
       const entries = related.get(libraryId) ?? [];

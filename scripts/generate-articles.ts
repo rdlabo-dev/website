@@ -321,8 +321,8 @@ function relatedLibraries(value: unknown, file: string): ArticleTranslation['rel
     if (!project) throw new Error(`Validated project ID disappeared: ${id}`);
     return {
       id: project.id,
-      name: project.shortName,
-      url: `https://docs.rdlabo.dev/projects/${project.slug}`,
+      name: project.localizedShortName?.en ?? project.shortName,
+      url: project.hostedUrl ?? `https://docs.rdlabo.dev/projects/${project.slug}`,
     };
   });
 }

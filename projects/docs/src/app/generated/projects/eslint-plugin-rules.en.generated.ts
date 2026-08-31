@@ -70,6 +70,9 @@ export const PROJECT = {
     {
       "title": "Configuration",
       "navTitle": "Configuration",
+      "seoTitle": "Configure Angular and Ionic ESLint Rules | rdlabo",
+      "seoDescription": "Configure @rdlabo/eslint-plugin-rules with flat config presets for Angular, Ionic, or framework-independent TypeScript projects.",
+      "updatedAt": "2026-08-31",
       "slug": "configuration",
       "file": "configuration.md",
       "section": "Guide",
@@ -138,6 +141,9 @@ export const PROJECT = {
     {
       "title": "Rules",
       "navTitle": "Rules",
+      "seoTitle": "Angular, Ionic, and TypeScript ESLint Rules | rdlabo",
+      "seoDescription": "Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.",
+      "updatedAt": "2026-08-31",
       "slug": "rules",
       "file": "rules.md",
       "section": "Reference",

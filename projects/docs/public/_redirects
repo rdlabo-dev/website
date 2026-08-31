@@ -1,3 +1,6 @@
+# Historical source URL discovered before ESLint rule pages had canonical docs routes.
+/src/rules/ionic-attr-type-check.ts https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check 301
+
 # Legacy Stripe documentation routes. stripe.capacitorjs.jp preserves the
 # request path when forwarding to docs.rdlabo.dev, so resolve it at the edge
 # before Angular's compatibility routes render a client-side redirect page.

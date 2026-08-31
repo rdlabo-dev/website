@@ -27,7 +27,9 @@ describe('LandingPageComponent', () => {
 
   it('renders a manifest-driven Stripe landing page', async () => {
     const compiled = await setup('stripe');
-    expect(TestBed.inject(Title).getTitle()).toBe('Stripe - rdlabo.dev');
+    expect(TestBed.inject(Title).getTitle()).toBe(
+      'Capacitor Stripe Plugin Documentation | rdlabo',
+    );
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Accept Stripe payments in Capacitor apps',
     );

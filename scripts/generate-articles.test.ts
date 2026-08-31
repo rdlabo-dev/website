@@ -177,6 +177,7 @@ description: Pending description
 zennSlug: pending
 relatedLibraries:
   - ionic-theme-md3
+  - ionic-docs
 sourceVerification: pending
 sourceUrl: https://zenn.dev/rdlabo/articles/pending
 publishedAt: "2026-08-24T17:20:00+09:00"
@@ -204,6 +205,8 @@ Translated body.
     assert.match(catalog, /"publishedDate": "2026-08-24"/);
     assert.match(catalog, /"id": "ionic-theme-md3"/);
     assert.match(catalog, /https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-md3/);
+    assert.match(catalog, /"id": "ionic-docs"/);
+    assert.match(catalog, /"url": "https:\/\/ionicframework\.jp\/docs\/"/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

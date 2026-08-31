@@ -36,14 +36,16 @@ describe('ArticleSidebar', () => {
     );
 
     expect(links.map((link) => link.textContent?.trim())).toEqual([
+      'Ionic Docs Japanese',
       'Ionic Theme iOS26',
       'Ionic Theme MD3',
     ]);
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
+      '/articles?library=ionic-docs',
       '/articles?library=ionic-theme-ios26',
       '/articles?library=ionic-theme-md3',
     ]);
-    expect(root.querySelectorAll('.article-sidebar__category-icon')).toHaveLength(2);
+    expect(root.querySelectorAll('.article-sidebar__category-icon')).toHaveLength(3);
     expect(
       Array.from(root.querySelectorAll('.article-sidebar__category-icon')).every(
         (icon) => icon.getAttribute('aria-hidden') === 'true',

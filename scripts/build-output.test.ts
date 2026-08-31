@@ -28,7 +28,7 @@ test('legacy prerender output redirects to an absolute canonical route', async (
   assert.doesNotMatch(html, /\/stripe\/docs\/projects\/capacitor-stripe/);
 });
 
-test('ships permanent edge redirects for legacy Stripe documentation paths', async () => {
+test('ships permanent edge redirects for canonical documentation paths', async () => {
   const redirects = await readFile(
     new URL('../dist/docs/browser/_redirects', import.meta.url),
     'utf8',
@@ -45,6 +45,10 @@ test('ships permanent edge redirects for legacy Stripe documentation paths', asy
   assert.match(
     redirects,
     /^\/ja\/docs\/\* https:\/\/docs\.rdlabo\.dev\/ja\/projects\/capacitor-stripe\/docs\/:splat 301$/m,
+  );
+  assert.match(
+    redirects,
+    /^\/src\/rules\/ionic-attr-type-check\.ts https:\/\/docs\.rdlabo\.dev\/projects\/eslint-plugin-rules\/docs\/rules\/ionic-attr-type-check 301$/m,
   );
 });
 
@@ -67,6 +71,44 @@ test('prerender output includes localized SEO metadata', async () => {
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /data-rdlabo-json-ld/);
   assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test('prerenders intent-focused metadata for high-impression documentation pages', async () => {
+  const cases = [
+    {
+      path: 'projects/capacitor-stripe/index.html',
+      title: 'Capacitor Stripe Plugin Documentation | rdlabo',
+      description:
+        'Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.',
+    },
+    {
+      path: 'projects/capacitor-stripe/docs/configuration/index.html',
+      title: 'Configure Capacitor Stripe for iOS, Android, and Web | rdlabo',
+      description:
+        'Configure @capacitor-community/stripe with a publishable key and platform settings before presenting PaymentSheet, Apple Pay, or Google Pay.',
+    },
+    {
+      path: 'projects/eslint-plugin-rules/docs/rules/index.html',
+      title: 'Angular, Ionic, and TypeScript ESLint Rules | rdlabo',
+      description:
+        'Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.',
+    },
+    {
+      path: 'projects/capacitor-admob/docs/interstitial/index.html',
+      title: 'Capacitor AdMob Interstitial Ads Guide | rdlabo',
+      description:
+        'Prepare, show, and handle interstitial ad events in Capacitor apps with @capacitor-community/admob on iOS and Android.',
+    },
+  ] as const;
+
+  for (const entry of cases) {
+    const html = await readFile(
+      new URL(`../dist/docs/browser/${entry.path}`, import.meta.url),
+      'utf8',
+    );
+    assert.ok(html.includes(`<title>${entry.title}</title>`), entry.path);
+    assert.ok(html.includes(`<meta name="description" content="${entry.description}"`), entry.path);
+  }
 });
 
 test('prerenders current and past public sponsors in both locales', async () => {

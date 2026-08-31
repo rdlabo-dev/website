@@ -117,6 +117,9 @@ export const PROJECT = {
     {
       "title": "Safe Area",
       "navTitle": "Safe Area",
+      "seoTitle": "Ionic Safe Area with Scroll-Aware Headers | rdlabo",
+      "seoDescription": "Configure hidden safe-area headers and always-visible native headers with @rdlabo/ionic-angular-scroll-header for Ionic content layouts.",
+      "updatedAt": "2026-08-31",
       "slug": "safe-area",
       "file": "safe-area.md",
       "section": "Guides",

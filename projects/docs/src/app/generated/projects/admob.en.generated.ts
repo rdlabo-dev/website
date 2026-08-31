@@ -37,6 +37,9 @@ export const PROJECT = {
     {
       "title": "Getting Started",
       "navTitle": "Getting Started",
+      "seoTitle": "Capacitor AdMob Plugin Setup Guide | rdlabo",
+      "seoDescription": "Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.",
+      "updatedAt": "2026-08-31",
       "slug": "readme",
       "file": "readme.md",
       "section": "Quickstart",
@@ -177,6 +180,9 @@ export const PROJECT = {
     {
       "title": "Interstitial Ads",
       "navTitle": "Interstitial Ads",
+      "seoTitle": "Capacitor AdMob Interstitial Ads Guide | rdlabo",
+      "seoDescription": "Prepare, show, and handle interstitial ad events in Capacitor apps with @capacitor-community/admob on iOS and Android.",
+      "updatedAt": "2026-08-31",
       "slug": "interstitial",
       "file": "interstitial.md",
       "section": "Ad formats",

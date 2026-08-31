@@ -37,6 +37,9 @@ export const PROJECT = {
     {
       "title": "はじめに",
       "navTitle": "はじめに",
+      "seoTitle": "Capacitor AdMob プラグイン導入ガイド | rdlabo",
+      "seoDescription": "@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。",
+      "updatedAt": "2026-08-31",
       "slug": "readme",
       "file": "readme.md",
       "section": "クイックスタート",
@@ -273,6 +276,9 @@ export const PROJECT = {
     {
       "title": "インタースティシャル広告",
       "navTitle": "インタースティシャル広告",
+      "seoTitle": "Capacitor AdMobインタースティシャル広告ガイド | rdlabo",
+      "seoDescription": "@capacitor-community/admobを使い、iOS・AndroidのCapacitorアプリでインタースティシャル広告の準備・表示・Event処理を実装します。",
+      "updatedAt": "2026-08-31",
       "slug": "interstitial",
       "file": "interstitial.md",
       "section": "広告フォーマット",

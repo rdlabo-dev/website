@@ -63,6 +63,7 @@ export interface DocsPageSummary {
   title: string;
   navTitle: string;
   seoTitle?: string;
+  seoDescription?: string;
   updatedAt?: string;
   slug: string;
   section: string;

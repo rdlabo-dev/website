@@ -231,7 +231,7 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
     this.#seo.setPage({
       title:
         page.seoTitle ?? `${page.title} - ${project.shortName} - rdlabo.dev`,
-      description: `${page.title}. ${project.description}`,
+      description: page.seoDescription ?? `${page.title}. ${project.description}`,
       path: page.path,
       structuredData: docsBreadcrumbStructuredData(this.#locale, [
         { name: 'rdlabo.dev', path: '/' },

@@ -1150,7 +1150,7 @@ test('uses docs.rdlabo.dev as the canonical origin in site SEO outputs', async (
   assert.doesNotMatch(robots, new RegExp(legacyOrigin.replaceAll('.', '\\.')));
 });
 
-test('keeps legacy Stripe host paths on permanent canonical redirects', async () => {
+test('keeps documentation redirects permanent and legacy Stripe hosting isolated', async () => {
   const [redirects, legacyRedirects, netlify] = await Promise.all([
     readFile(new URL('../projects/docs/public/_redirects', import.meta.url), 'utf8'),
     readFile(new URL('../projects/legacy-stripe-redirect/_redirects', import.meta.url), 'utf8'),
@@ -1193,6 +1193,11 @@ test('keeps legacy Stripe host paths on permanent canonical redirects', async ()
     return { source, destination };
   });
   assert.deepEqual(parsedRedirects, [
+    {
+      source: '/src/rules/ionic-attr-type-check.ts',
+      destination:
+        'https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check',
+    },
     {
       source: '/docs/identity',
       destination:

@@ -33,7 +33,8 @@ import {
   stripRdlaboDocsOmit,
 } from './package-markdown';
 import { assertValidContentUpdatedAt, formatSitemapLastmod } from './seo-dates';
-import { loadRelatedArticlesByLibrary, type RelatedArticle } from './article-relations';
+import { groupRelatedArticlesByLibrary, type RelatedArticle } from './article-relations';
+import { ARTICLE_SUMMARIES } from '../projects/web-site/src/app/generated/article-catalog.generated';
 import { apiMarkdown } from './docgen-api';
 
 const root = resolve(process.cwd());
@@ -533,6 +534,7 @@ async function generateProject(
       title: (useFrontMatterTitle && parsed.attributes.title) || localize(page.title, locale),
       navTitle: localize(page.title, locale),
       ...(page.seoTitle ? { seoTitle: localize(page.seoTitle, locale) } : {}),
+      ...(page.seoDescription ? { seoDescription: localize(page.seoDescription, locale) } : {}),
       ...(page.updatedAt
         ? {
             updatedAt: assertValidContentUpdatedAt(
@@ -582,9 +584,7 @@ async function main(): Promise<void> {
   const generatedDirectory = join(root, 'projects/docs/src/app/generated');
   const projectsDirectory = join(generatedDirectory, 'projects');
   await mkdir(projectsDirectory, { recursive: true });
-  const relatedArticlesByLibrary = await loadRelatedArticlesByLibrary(
-    join(root, 'projects/web-site/src/articles'),
-  );
+  const relatedArticlesByLibrary = groupRelatedArticlesByLibrary(ARTICLE_SUMMARIES);
   const projectsByLocale: Record<Locale, any[]> = { en: [], ja: [] };
   for (const project of projectDefinitions) {
     for (const locale of ['en', 'ja'] as const) {
@@ -609,7 +609,18 @@ async function main(): Promise<void> {
       projectsByLocale[locale].map(({ pages, relatedArticles: _relatedArticles, ...project }) => ({
         ...project,
         pages: pages.map(
-          ({ html, headings, codes, scrollMap, editUrl, file, ...page }: any) => page,
+          ({
+            html,
+            headings,
+            codes,
+            scrollMap,
+            editUrl,
+            file,
+            seoTitle,
+            seoDescription,
+            updatedAt,
+            ...page
+          }: any) => page,
         ),
       })),
     ]),

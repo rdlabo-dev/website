@@ -6,6 +6,7 @@ sourceVerification: pending
 sourceUrl: https://zenn.dev/rdlabo/articles/playwright-visual-regression-ci-baseline
 publishedAt: "2026-08-30T12:52:15+09:00"
 publishedDate: "2026-08-30"
+updatedAt: "2026-09-03"
 emoji: "📸"
 ---
 
@@ -169,15 +170,15 @@ I therefore separated the job that generates the images from the job that commit
 
 ```text
 read-only job
-  PRのSHAをcheckout
-  Linuxで画像を更新
-  artifactへ保存
+  check out PR SHA
+  update images on Linux
+  save as artifact
           │
           ▼
 write job
-  PRの現在のhead SHAを再取得
-  コメント時点のSHAと一致するか確認
-  GitHub APIでbot commit
+  fetch current PR head SHA
+  verify it matches the SHA at comment time
+  create bot commit through GitHub API
 ```
 
 Before committing, the workflow confirms that the PR's repository, branch, and head SHA are unchanged from when image generation began. If any value has changed, it fails and requires another `/update-screenshots` command.

@@ -9,9 +9,12 @@
   <url><loc>https://rdlabo.dev/articles/archive/2022</loc></url>
   <url><loc>https://rdlabo.dev/articles/archive/2021</loc></url>
   <url><loc>https://rdlabo.dev/articles/archive/2020</loc></url>
-  <url><loc>https://rdlabo.dev/articles/playwright-visual-regression-ci-baseline</loc></url>
-  <url><loc>https://rdlabo.dev/articles/npm-beta-per-pull-request</loc></url>
-  <url><loc>https://rdlabo.dev/articles/b3874dc571f7da</loc></url>
+  <url><loc>https://rdlabo.dev/articles/playwright-visual-regression-ci-baseline</loc>
+    <lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://rdlabo.dev/articles/npm-beta-per-pull-request</loc>
+    <lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://rdlabo.dev/articles/b3874dc571f7da</loc>
+    <lastmod>2026-09-03</lastmod></url>
   <url><loc>https://rdlabo.dev/articles/ionic-themes-ionic9-major-update</loc></url>
   <url><loc>https://rdlabo.dev/articles/ionic-theme-md3</loc></url>
   <url><loc>https://rdlabo.dev/articles/ionic-9-components-got-better</loc>
@@ -74,7 +77,8 @@
   <url><loc>https://rdlabo.dev/articles/bb03d724d33831</loc></url>
   <url><loc>https://rdlabo.dev/articles/55cbf1fd6a4b2f</loc></url>
   <url><loc>https://rdlabo.dev/articles/d321a378825c63</loc></url>
-  <url><loc>https://rdlabo.dev/articles/c6a838ae934128</loc></url>
+  <url><loc>https://rdlabo.dev/articles/c6a838ae934128</loc>
+    <lastmod>2026-09-03</lastmod></url>
   <url><loc>https://rdlabo.dev/articles/7506d62d50609d</loc></url>
   <url><loc>https://rdlabo.dev/articles/5325127b665d56</loc></url>
   <url><loc>https://rdlabo.dev/articles/b3bd6491cc26d6</loc></url>

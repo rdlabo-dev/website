@@ -4,6 +4,7 @@ description: "How I built a secure per-PR npm beta release flow with GitHub Acti
 zennSlug: npm-beta-per-pull-request
 emoji: "🧪"
 publishedDate: "2026-08-30"
+updatedAt: "2026-09-03"
 originalUrl: "https://zenn.dev/rdlabo/articles/npm-beta-per-pull-request"
 ---
 
@@ -61,19 +62,19 @@ That covers the publication-path design. Now, how does it work in practice?
 The workflow has four main stages.
 
 ```text
-PRのcommit
+PR commit
   │
-  ├─ リポジトリごとの必須CI
+  ├─ Repository-specific required CI
   │
   └─ build → npm pack → immutable artifact
                               │
-maintainerが /beta            │
+maintainer posts /beta        │
   └─ 👀 reaction              │
-       └─ CI・権限・SHAを検証 ┘
+       └─ verify CI, permission, and SHA ┘
                     │
-                    └─ OIDCでnpmへbeta publish
+                    └─ publish beta to npm via OIDC
                                    │
-                                   └─ PRへnpm installをコメント
+                                   └─ comment npm install command on PR
 ```
 
 The key design choice is that building the PR's code and publishing to npm do not happen in the same job.

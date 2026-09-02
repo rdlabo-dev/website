@@ -10,8 +10,8 @@ export const ARTICLE_SUMMARIES = [
     "emoji": "📸",
     "sourceName": "Zenn",
     "originalUrl": "https://zenn.dev/rdlabo/articles/playwright-visual-regression-ci-baseline",
-    "publishedAt": "2026-08-30T03:52:15.000Z",
-    "publishedDate": "2026-08-30"
+    "publishedAt": "2026-08-31T06:54:43.000Z",
+    "publishedDate": "2026-08-31"
   },
   {
     "slug": "npm-beta-per-pull-request",

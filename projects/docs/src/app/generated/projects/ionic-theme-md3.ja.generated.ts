@@ -9,7 +9,7 @@ export const PROJECT = {
   "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
   "category": "frontend-tools",
   "icon": "theme",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
   "headline": "IonicアプリにMaterial Design 3を取り入れる",
   "overview": "iOS 26テーマと共通のマークアップ互換性を保ちつつ、IonicへMaterial Design 3スタイルとトランジションアニメーションを適用します。",
@@ -28,7 +28,7 @@ export const PROJECT = {
       "description": "非iOSプラットフォーム向けにMD3のナビゲーショントランジションを設定します。"
     }
   ],
-  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.0.0/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
@@ -180,7 +180,7 @@ export const PROJECT = {
       "file": "api.md",
       "section": "リファレンス",
       "path": "/projects/ionic-theme-md3/docs/api",
-      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\"><code>@rdlabo/ionic-theme-md3</code> v9.0.0 が公開するJavaScript APIのリファレンスです。CSS entry pointはREADMEで説明します。</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Ionic向けのMaterial Design 3 navigation transitionを生成します。</p></section>\n\n\n</div>",
+      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\"><code>@rdlabo/ionic-theme-md3</code> v9.1.0 が公開するJavaScript APIのリファレンスです。CSS entry pointはREADMEで説明します。</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Ionic向けのMaterial Design 3 navigation transitionを生成します。</p></section>\n\n\n</div>",
       "headings": [
         {
           "id": "animation",

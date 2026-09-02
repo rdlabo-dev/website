@@ -1,61 +1,88 @@
 ---
-title: 'Photo Viewer'
-code: []
-scrollActiveLine: []
+title: Photo Viewer
 ---
 
-Ionic モーダルで `PhotoViewerPage` を表示します。[インストール](/docs/readme#インストール) のあとで呼び出します。
+Ionic Modalで `PhotoViewerPage` を表示します。[Installation](/docs/readme#installation)の後に呼び出してください。
 
 ```typescript
-import { PhotoViewerPage, IPhotoViewerDismiss, PhotoViewerProps } from '@rdlabo/ionic-angular-photo-editor';
+import { PhotoViewerProps, PhotoViewerResult } from '@rdlabo/ionic-angular-photo-editor';
+import { PhotoViewerPage } from '@rdlabo/ionic-angular-photo-editor/viewer';
 
 (async () => {
   const componentProps = {
-    imageUrls: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
+    imageUrls: ['https://picsum.photos/200/300', 'https://picsum.photos/200/301'],
     index: 0,
     isCircle: false,
-    headerButtonColorScheme: 'dark',
+    enableDelete: true,
+    toolbarColorScheme: 'dark',
+    imageAlt: (url, index) => `Photo ${index + 1}`,
+    labels: {
+      delete: 'Delete',
+    },
   } satisfies PhotoViewerProps;
   const modal = await this.modalCtrl.create({
     component: PhotoViewerPage,
     componentProps,
   });
   await modal.present();
-  const { data } = await modal.onWillDismiss<IPhotoViewerDismiss>();
-  if (data?.delete) {
-    // User delete image
+  const { data } = await modal.onWillDismiss<PhotoViewerResult>();
+  if (data?.action === 'delete') {
+    console.log(data.index, data.value);
   }
 })();
 ```
 
-### オプション
+## Modal result
 
-#### imageUrls: string[]
+UserがDeleteをtapすると、Modalは次のdataでdismissします。
 
-画像の URL または base64 文字列の配列です。
+```typescript
+interface PhotoViewerResult {
+  action: 'delete';
+  index: number;
+  value: string; // URL of the image at index
+}
+```
 
-#### index: number
+Closeまたはswipe downではdataなしでdismissします。
 
-imageUrls のインデックスです。
+## Option
 
-#### isCircle: boolean
+### imageUrls: string[]
 
-設定すると、画像が円形で表示されます。
+**必須。** 表示するImage URLまたはData URLです。
 
-#### enableDelete: boolean
+### index: number
 
-true の場合、削除ボタンが表示されます。
+最初に表示するslide indexです。Defaultは `0` です。
 
-#### enableFooterSafeArea: boolean
+### isCircle: boolean
 
-true の場合、iOS 向けにフッターのセーフエリアを有効にします。
+`true` の場合、画像を円形でrenderします。
 
-#### labels: IDictionaryForViewer
+### enableDelete: boolean
 
-設定すると、ラベルが上書きされます。
+`true` の場合、Delete Buttonを表示します。
 
-一覧は[こちら](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/dictionaries.ts)です。
+### enableFooterSafeArea: boolean
 
-#### headerButtonColorScheme: 'light' | 'dark'
+`true` の場合、iOSでFooterのSafe Area paddingを追加します。
 
-必須です。`ion-toolbar` が暗色または黒色の場合は `dark`、明色または白色の場合は `light` を選択してください。ツールバーの外観はCSS、半透明コンテンツ、実行時のテーマ上書きによって変わるため、ライブラリ側では判定できません。
+### toolbarColorScheme: 'light' | 'dark'
+
+**必須。** 暗色・黒色の `ion-toolbar` には `dark`、明色・白色のToolbarには `light` を使います。[Theme](./theme.md)も参照してください。
+
+### imageAlt: string | ((url: string, index: number) => string)
+
+各slide画像のaccessibleな `alt` textです。Defaultは空文字列です。Alt textがURLまたはindexに依存する場合はfunctionを渡します。
+
+### labels: Partial&lt;PhotoViewerLabels&gt;
+
+Default UI stringを上書きします。指定しないkeyはbuilt-inの日本語defaultを維持します。
+
+| Key    | Default（ja） |
+| ------ | ------------- |
+| close  | 閉じる        |
+| delete | 削除          |
+
+Close Buttonの `aria-label` にも `close` labelを使います。

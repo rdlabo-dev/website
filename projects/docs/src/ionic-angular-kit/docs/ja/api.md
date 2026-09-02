@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-kit` v21.7.0 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
+`@rdlabo/ionic-angular-kit` v22.0.0 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
 
 ## Core
 
@@ -22,6 +22,10 @@ title: API
 
 Offline repository、同期Replica、Outbox、Request Policy、Schema、Identity、Recovery APIです。Composition Rootには `provideOffline` または用途別Providerを使います。
 
+#### `module` @rdlabo/ionic-angular-kit/forms
+
+Angular 22 Signal FormsをIonic controlへadaptする `KitIonicFormField`、`provideKitIonicSignalForms`、`kitDefaultSignalFormErrorMessage`、`KIT_SIGNAL_FORM_ERROR_MESSAGE_RESOLVER`、`KitSignalFormErrorMessageResolver` です。[フォーム](/docs/forms)も参照してください。
+
 #### `module` @rdlabo/ionic-angular-kit/auth-firebase
 
 Firebase Authentication Providerと、Sign-in、Sign-up、Link、Reauthentication、Verification、Password、Account更新の型付き関数です。
@@ -32,7 +36,7 @@ Apple・Facebook Social Authentication helperとresponse・option typeです。
 
 #### `module` @rdlabo/ionic-angular-kit/app-update
 
-Native Application Update確認用の `provideKitAppUpdate` と `KitAppUpdateService` です。
+Angular Service Workerのupdateを連携する `provideKitAppUpdate` と `KitAppUpdateService` です。
 
 #### `module` @rdlabo/ionic-angular-kit/live-update
 

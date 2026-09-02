@@ -7,20 +7,34 @@ title: Storage・Overlay
 Ionic Storageを一度provideします。`KitStorageService` は遅延初期化し、すべてのpublic操作が完了を待つため、service作成直後のwriteも失われません。
 
 ```ts
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, type ApplicationConfig } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 export const appConfig: ApplicationConfig = {
-  providers: [importProvidersFrom(IonicStorageModule.withConfig({ name: '__mydb' }))],
+  providers: [importProvidersFrom(IonicStorageModule.forRoot({ name: '__mydb' }))],
 };
 ```
 
 ```ts
-const storage = inject(KitStorageService);
+import { inject, Injectable } from '@angular/core';
+import { KitStorageService } from '@rdlabo/ionic-angular-kit';
 
-await storage.set('token', token);
-const saved = await storage.get<string>('token');
-await storage.remove('token');
+@Injectable({ providedIn: 'root' })
+export class TokenStore {
+  readonly #storage = inject(KitStorageService);
+
+  async save(token: string): Promise<void> {
+    await this.#storage.set('token', token);
+  }
+
+  get(): Promise<string | null> {
+    return this.#storage.get<string>('token');
+  }
+
+  remove(): Promise<void> {
+    return this.#storage.remove('token');
+  }
+}
 ```
 
 存在しないkeyに対して `get<T>()` は `null` を返します。`kitClearStoragePreservingKeys()` はアプリデータをclearしながら、最後に入力した認証emailやthemeなど、指定した値を復元します。
@@ -44,13 +58,10 @@ export class DetailPage {
   readonly item = input.required<Item>();
 }
 
-export const launchDetailPage = (
-  overlay: KitOverlayController,
-  props: { item: Item },
-): Promise<DetailResult | undefined> =>
+export const launchDetailPage = (overlay: KitOverlayController, props: { item: Item }): Promise<DetailResult | undefined> =>
   overlay.presentModal(DetailPage, props, { backdropDismiss: false });
 ```
 
-Component propsはAngularの `input()`、dismiss dataはcomponentのstatic `modalReturn` 宣言から推論されます。Ionic controllerをinlineで呼ばず、各Modal・Popoverの隣に型付きlauncherを置いてください。
+Component propsはAngularの `input()` fieldから、dismiss dataはcomponentのstatic `modalReturn` 宣言から推論されます。Ionic controllerをinlineで呼ばず、各Modal・Popoverの隣に型付きlauncherを置いてください。
 
 同じcontrollerが `presentPopover()`、`presentToast()`、`alertClose()`、`alertConfirm()` を提供します。Modal optionの `watchKeyboard: true` はNative Keyboard表示中にBottom Sheetを全高へ広げます。

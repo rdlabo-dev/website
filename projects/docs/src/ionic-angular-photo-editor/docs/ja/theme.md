@@ -1,14 +1,10 @@
 ---
-title: 'テーマ'
-code: []
-scrollActiveLine: []
+title: Theme
 ---
 
-[インストール](/docs/readme#インストール) のあと、エディターの色を上書きします。
+[Installation](/docs/readme#installation)の後に、Editorの色を上書きします。
 
-デフォルトの色は設定済みですが、上書きできます: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/pages/core.scss
-
-## 上書き方法
+Default colorはlibrary stylesheetで定義されています。CSS variableで上書きします。
 
 ```scss
 :root {
@@ -27,11 +23,13 @@ scrollActiveLine: []
 }
 ```
 
-## ヘッダーボタンのカラースキーム
+Source reference: [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/projects/photo-editor/src/lib/pages/core.scss)
 
-`PhotoEditorPage` と `PhotoViewerPage` では、モーダルの `componentProps` に `headerButtonColorScheme: 'light' | 'dark'` を指定する必要があります。`ion-toolbar` が暗色または黒色の場合は `dark`、明色または白色の場合は `light` を選択してください。最終的なツールバーの外観はCSS、半透明効果、実行時のテーマ上書きによって変わるため、ライブラリ側では確実に判定できません。利用側で明示的に選択する必要があります。
+## Toolbar color scheme
 
-`@rdlabo/ionic-theme-ios26` v3では、iOS 26テーマとダークモードのスタイルよりあとに、オプションの連携スタイルシートを読み込みます。
+`PhotoEditorPage` と `PhotoViewerPage` では、Modalの `componentProps` に `toolbarColorScheme: 'light' | 'dark'` を指定する必要があります。暗色・黒色の `ion-toolbar` には `dark`、明色・白色のToolbarには `light` を選択してください。最終的なToolbarの外観はCSS、translucency、runtime theme overrideによって変わるため、Library側では確実に判定できません。利用側で明示的に選択する必要があります。
+
+`@rdlabo/ionic-theme-ios26` v3では、iOS 26 ThemeとDark Mode styleより後に、任意のintegration stylesheetをimportします。
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css';
@@ -40,4 +38,4 @@ scrollActiveLine: []
 @import '@rdlabo/ionic-angular-photo-editor/css/ios26-header-button-color-scheme.css';
 ```
 
-必要に応じて、対応するAlwaysまたはSystemダークモード用のimportへ置き換えてください。photo-editor連携スタイルシートは、局所的なヘッダーの配色がアプリ全体の配色を上書きできるよう、必ず最後に読み込む必要があります。iOS 26テーマを使用しないアプリでは、このオプションのスタイルシートを読み込まないでください。その場合は、通常のIonicボタンの前景色切り替えだけが適用されます。
+必要に応じて、対応するAlwaysまたはSystem Dark Mode用のimportへ置き換えてください。Photo Editor integration stylesheetは、local header schemeがアプリ全体のschemeを上書きできるよう、必ず最後に読み込みます。iOS 26 Themeを使わないアプリでは、この任意stylesheetをimportしないでください。その場合は通常のIonic Button foreground color switchだけが適用されます。

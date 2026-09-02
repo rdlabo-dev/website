@@ -4,6 +4,18 @@ title: 任意機能
 
 任意機能はsecondary entry pointを使い、利用しないNative plugin・SDKがアプリへ入らないようにします。
 
+## WebアプリケーションのUpdate
+
+`/app-update` の `provideKitAppUpdate()` は、bootstrap前に完全なAngular Service Worker versionがあるか確認します。このblocking strategyは、update確認の遅延よりも入力中の内容をすべて保持することが重要なアプリで引き続きdefaultです。
+
+実行可能なapplication chunkをすべてprefetchするアプリは、non-blockingなstartup checkを選択できます。
+
+```ts
+provideKitAppUpdate({ strategy: 'background' });
+```
+
+Background strategyがreloadするのは、Angularが最初のrenderを完了する前だけです。それより後のupdateは次の自然なpage loadまで残し、user inputを破棄しません。実行中のshellに別versionのlazy chunkが混在する可能性があるため、`activateUpdate()` は呼びません。回復不能なstartup generationは `ngsw-bypass` を付けて一度だけretryし、現在のhistory stateとoffline-safeなloop guardを保持します。
+
 ## Theme・Review
 
 `provideKitTheme()` と `KitThemeController` はuser設定を永続化し、overrideされるまでは `prefers-color-scheme` に追従し、アプリ指定のpalette classを切り替え、Android Status Barを同期します。

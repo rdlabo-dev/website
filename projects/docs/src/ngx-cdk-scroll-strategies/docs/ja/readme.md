@@ -4,6 +4,8 @@ code: []
 scrollActiveLine: []
 ---
 
+> 可変・動的なItem Heightに対応するAngular CDK Virtual Scroll。
+
 ## 概要
 
 `@rdlabo/ngx-cdk-scroll-strategies` は、可変・動的なItem Heightを扱うAngular CDK Virtual Scroll Strategyです。Virtual Scrollで使う配列の各Item Sizeを個別に指定し、高さが異なるListを正確なScroll Geometryで描画できます。
@@ -17,9 +19,9 @@ scrollActiveLine: []
 - Variable Heightでも`scrollToIndex`やScroll Positionを正確に扱いたい
 - Chat UIのようなReverse Virtual Scrollを実装したい
 
-Item Heightが事前に分からない場合も、DOMから計測した値を[応用的な使い方](/docs/advanced)のように渡せます。Itemの実際の高さを自動推定するだけのDrop-in `autosize`ではありません。
+Item Heightが事前に分からない場合は、[応用的な使い方](/docs/advanced)のように計測した値を渡します。未知のDOM Heightをすべて自動検出するDrop-in Strategyではありません。
 
-シンプルなコーディング概念は次のとおりです。
+Angular CDKで可変HeightのVirtual Scrollを構成する基本形は次のとおりです。
 
 ```html
 <cdk-virtual-scroll-viewport
@@ -31,11 +33,11 @@ Item Heightが事前に分からない場合も、DOMから計測した値を[�
 </cdk-virtual-scroll-viewport>
 ```
 
-`[itemSize]` や `[autosize]` ディレクティブの代わりに `[itemDynamicSizes]` ディレクティブを使います。`[itemDynamicSizes]` の値の型は `itemDynamicSize[]` です。
+`[itemSize]` や `[autosize]` の代わりに `[itemDynamicSizes]` directiveを使います。値の型は `itemDynamicSize[]` です。
 
 すべてのデータアイテムに対し、同じ順序で対応する `itemDynamicSizes` のエントリが 1 つ必要です。各 `itemSize` は 0 より大きい有限の数値でなければなりません。Angular がデータとサイズのシグナルを別ターンで更新した場合、ストラテジーは長さが一致するまで最後の完全なジオメトリを保持し、未知の高さは推定しません。
 
-このライブラリは、主に次のブログを基にしています: https://dev.to/georgii/virtual-scrolling-of-content-with-variable-height-with-angular-3a52
+このLibraryは主に[Virtual scrolling of content with variable height with Angular](https://dev.to/georgii/virtual-scrolling-of-content-with-variable-height-with-angular-3a52)を基にしています。
 
 ## 機能
 

@@ -7,7 +7,7 @@ scrollActiveLine: []
 Ionic Content に Scroll 連動 Header を付けます。[インストール](/docs/readme#インストール) のあとで呼び出します。Safe Area用の非表示Headerと常時表示するNative Headerの使い分けは、[Safe Areaガイド](/docs/safe-area)を参照してください。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { ScrollHeaderDirective } from '@rdlabo/ionic-angular-scroll-header';

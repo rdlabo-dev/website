@@ -484,8 +484,8 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
-    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.0.0' }],
-    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.0.0' }],
+    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.1.0' }],
+    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
   ]);
   const packageJson = JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),
@@ -517,6 +517,35 @@ test('lists ionic theme packages and pins localized README imports', async () =>
     assert.equal(installedPackage.version, expected.version);
 
     const docsRoot = new URL(`../projects/docs/src/${projectId}/docs/`, import.meta.url);
+    const apiPage = project.pages.find((page) => page.file === 'api.md');
+    assert.ok(apiPage, `${projectId} must declare an API page`);
+    assert.equal(
+      apiPage.localEnglishSource,
+      true,
+      `${projectId} API must use localEnglishSource so portal EN wins over stale upstream`,
+    );
+    assert.ok(
+      project.pages
+        .filter((page) => page.file !== 'api.md')
+        .every((page) => !page.localEnglishSource),
+      `${projectId} must enable localEnglishSource only on the API page`,
+    );
+    const [englishApi, japaneseApi] = await Promise.all([
+      readFile(new URL('api.md', docsRoot), 'utf8'),
+      readFile(new URL('ja/api.md', docsRoot), 'utf8'),
+    ]);
+    for (const [locale, markdown] of [
+      ['en', englishApi],
+      ['ja', japaneseApi],
+    ] as const) {
+      const escapedPackage = expected.packageName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      assert.match(
+        markdown,
+        new RegExp(`\`${escapedPackage}\`\\s+v${expected.version}\\b`),
+        `${projectId} ${locale} api.md must pin the installed ${expected.packageName} v${expected.version}`,
+      );
+    }
+
     const pageFiles = project.pages.map((page) => page.file).filter((file) => file !== 'api.md');
     for (const pageFile of pageFiles) {
       const [english, japanese] = await Promise.all([
@@ -584,7 +613,10 @@ test('lists ionic theme packages and pins localized README imports', async () =>
     ]);
   const iosExpected = expectedProjects.get('ionic-theme-ios26');
   assert.ok(iosExpected);
-  assert.match(iosReadme, /\]\(\/docs\/using-ion-item-group\)/);
+  assert.match(
+    iosReadme,
+    /\]\(https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-ios26\/docs\/using-ion-item-group\)/,
+  );
   assert.match(
     iosReadme,
     new RegExp(

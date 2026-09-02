@@ -2,137 +2,223 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-photo-editor` v21.7.0 が公開するAPIのリファレンスです。ComponentのinputはIonic Modalの `componentProps` を通して渡します。
+`@rdlabo/ionic-angular-photo-editor` v22.0.0が公開するpublic entry pointのリファレンスです。Component、Service、任意実装は、それぞれ専用のsecondary entry pointからimportしてください。
 
-## Component
+## Entry point
 
-#### `component` PhotoEditorPage
+| Import path                                         | 主なexport                                                            |
+| --------------------------------------------------- | --------------------------------------------------------------------- |
+| `@rdlabo/ionic-angular-photo-editor`                | 設定、共有型、`PhotoLoadError`                                       |
+| `@rdlabo/ionic-angular-photo-editor/editor`         | `PhotoEditorPage`                                                     |
+| `@rdlabo/ionic-angular-photo-editor/editor/tui`     | `createTuiImageEditor`                                                |
+| `@rdlabo/ionic-angular-photo-editor/viewer`         | `PhotoViewerPage`                                                     |
+| `@rdlabo/ionic-angular-photo-editor/file`           | `PhotoFileService`                                                    |
+| `@rdlabo/ionic-angular-photo-editor/file/capacitor` | `loadCapacitorPhotoCamera`                                            |
 
-画像EditorをIonic Modalで表示します。
+## 設定・写真読み込み
 
-| Input               | Type                            | Description                                | Default     |
-| ------------------- | ------------------------------- | ------------------------------------------ | ----------- |
-| **`value`**         | `string`                        | 画像URLまたはbase64文字列。必須です。      |             |
-| **`requireSquare`** | `boolean`                       | 保存前に正方形への切り抜きを必須にします。 | `false`     |
-| **`labels`**        | `Partial<IDictionaryForEditor>` | Editorのラベルを上書きします。             | `undefined` |
+#### `function` providePhotoEditor(config?: PhotoEditorConfig): EnvironmentProviders
 
-#### `component` PhotoViewerPage
+アプリ全体の写真読み込みdefaultと、任意のEditor・Camera adapterを登録します。
 
-1件以上の画像をIonic Modalで表示します。
+#### `constant` PHOTO_EDITOR_CONFIG
 
-| Input                      | Type                            | Description                           | Default     |
-| -------------------------- | ------------------------------- | ------------------------------------- | ----------- |
-| **`imageUrls`**            | `string[]`                      | 画像URLまたはbase64文字列。必須です。 |             |
-| **`index`**                | `number`                        | 最初に選択する画像のindexです。       | `0`         |
-| **`isCircle`**             | `boolean`                       | 画像を円形で表示します。              | `false`     |
-| **`enableDelete`**         | `boolean`                       | 削除ボタンを表示します。              | `false`     |
-| **`enableFooterSafeArea`** | `boolean`                       | iOSのFooter Safe Areaを追加します。   | `false`     |
-| **`labels`**               | `Partial<IDictionaryForViewer>` | Viewerのラベルを上書きします。        | `undefined` |
+解決済みの `maxSize`、label、Image Editor factory、Camera loaderを保持するAngular Injection Tokenです。
 
-## Service
+#### `interface` PhotoEditorConfig
+
+| Prop                      | Type                         | Description                                      | Default     |
+| ------------------------- | ---------------------------- | ------------------------------------------------ | ----------- |
+| **`maxSize`**             | `number`                     | Resize後の長辺pixel数です。                       | `1000`      |
+| **`labels`**              | `Partial<PhotoFileLabels>`   | Camera、Album、Cancel labelの上書きです。         | `undefined` |
+| **`createImageEditor`**   | `PhotoImageEditorFactory`    | 編集・Resizeに使うadapterです。                   |             |
+| **`loadCamera`**          | `PhotoCameraLoader`          | NativeのCamera・Album選択に使うadapterです。      |             |
 
 #### `class` PhotoFileService
 
-カメラ、アルバム、またはブラウザのfile inputから写真を読み込み、リサイズしてbase64文字列を返します。
+`@rdlabo/ionic-angular-photo-editor/file` からimportします。Browser・Capacitorから写真を選択し、正規化します。
 
-| Member                 | Type                                   | Description                                             | Default |
-| ---------------------- | -------------------------------------- | ------------------------------------------------------- | ------- |
-| **`photoMaxSize`**     | `number`                               | 出力する画像の幅または高さの最大pixel数です。           | `1000`  |
-| **`labels`**           | `IDictionaryForService`                | カメラ、アルバム、キャンセルのラベルを上書きします。    |         |
-| **`loadPhoto(limit)`** | `(limit: number) => Promise<string[]>` | 写真の取得元を表示し、最大 `limit` 件の画像を返します。 |         |
+| Member                   | Type                                                     | Description                                        |
+| ------------------------ | -------------------------------------------------------- | -------------------------------------------------- |
+| **`loadPhoto(options?)`** | `(options?: PhotoLoadOptions) => Promise<string[]>`      | Platform Pickerを開き、正規化したData URLを返します。 |
 
-## Modal result type
+#### `interface` PhotoLoadOptions
 
-#### `interface` IPhotoEditorDismiss
+| Prop          | Type                       | Description                                          | Default                        |
+| ------------- | -------------------------- | ---------------------------------------------------- | ------------------------------ |
+| **`limit`**   | `number`                   | Album・Browserで選択する最大画像数です。             | `1`                            |
+| **`maxSize`** | `number`                   | Resize後の長辺pixel数です。                           | 設定済みの `maxSize` または `1000` |
+| **`labels`**  | `Partial<PhotoFileLabels>` | Request単位のNative Action Sheet label上書きです。   | 設定済みのlabel                |
 
-| Prop        | Type     | Description                               |
-| ----------- | -------- | ----------------------------------------- |
-| **`value`** | `string` | 保存した画像のURLまたはbase64文字列です。 |
+#### `class` PhotoLoadError
 
-#### `interface` IPhotoViewerDismiss
+想定される写真選択エラーの型付きErrorです。Readonlyの `code` は `PhotoLoadErrorCode` です。
 
-| Prop         | Type                               | Description                   |
-| ------------ | ---------------------------------- | ----------------------------- |
-| **`delete`** | `{ index: number; value: string }` | 削除した画像のindexと値です。 |
+#### `type alias` PhotoLoadErrorCode
 
-## Component prop type
+`'cancelled' | 'invalid-type' | 'unavailable'`
+
+#### `interface` PhotoFileLabels
+
+| Prop         | Type     | Description          |
+| ------------ | -------- | -------------------- |
+| **`camera`** | `string` | Camera選択labelです。 |
+| **`album`**  | `string` | Album選択labelです。  |
+| **`cancel`** | `string` | Cancel labelです。    |
+
+## Editor
+
+#### `component` PhotoEditorPage
+
+`@rdlabo/ionic-angular-photo-editor/editor` からimportし、Ionic Modalで表示します。
+
+| Input                         | Type                           | Description                                         | Default     |
+| ----------------------------- | ------------------------------ | --------------------------------------------------- | ----------- |
+| **`value`**                   | `string`                       | Image URLまたはData URLです。必須です。             |             |
+| **`requireSquare`**           | `boolean`                      | 編集を続ける前に正方形へのcropを必須にします。      | `false`     |
+| **`toolbarColorScheme`**      | `PhotoToolbarColorScheme`      | Header Button背後のToolbar外観です。必須です。      |             |
+| **`labels`**                  | `Partial<PhotoEditorLabels>`   | Editor labelを上書きします。                        | `undefined` |
 
 #### `interface` PhotoEditorProps
 
-| Prop                | Type                            | Description                           | Default     |
-| ------------------- | ------------------------------- | ------------------------------------- | ----------- |
-| **`value`**         | `string`                        | 画像URLまたはbase64文字列。必須です。 |             |
-| **`requireSquare`** | `boolean`                       | 正方形への切り抜きを必須にします。    | `false`     |
-| **`labels`**        | `Partial<IDictionaryForEditor>` | Editorのラベルを上書きします。        | `undefined` |
+Modalの `componentProps` contractです。上記の `value`、`requireSquare`、`toolbarColorScheme`、`labels` と同じfieldを持ちます。
+
+#### `interface` PhotoEditorResult
+
+| Prop         | Type       | Description                         |
+| ------------ | ---------- | ----------------------------------- |
+| **`action`** | `'save'`   | Save成功を示します。                |
+| **`value`**  | `string`   | 編集済み画像のData URLです。        |
+
+#### `interface` PhotoEditorLabels
+
+文字列field: `save`、`close`、`back`、`apply`、`crop`、`rotate`、`cropCover`、`crop16x9`、`cropSquare`、`cropFree`、`filter`、`brightness`、`original`、`invert`、`sepia`、`vintage`、`blur`、`grayscale`、`sharpen`、`emboss`。
+
+## Viewer
+
+#### `component` PhotoViewerPage
+
+`@rdlabo/ionic-angular-photo-editor/viewer` からimportし、Ionic Modalで表示します。
+
+| Input                           | Type                                              | Description                                      | Default     |
+| ------------------------------- | ------------------------------------------------- | ------------------------------------------------ | ----------- |
+| **`imageUrls`**                 | `string[]`                                        | Image URLまたはData URLです。必須です。          |             |
+| **`index`**                     | `number`                                          | 最初に選択するImage indexです。                  | `0`         |
+| **`isCircle`**                  | `boolean`                                         | 画像を円形で表示します。                         | `false`     |
+| **`enableDelete`**              | `boolean`                                         | Delete Buttonを表示します。                      | `false`     |
+| **`enableFooterSafeArea`**      | `boolean`                                         | iOS FooterのSafe Area paddingを追加します。      | `false`     |
+| **`toolbarColorScheme`**        | `PhotoToolbarColorScheme`                         | Header Button背後のToolbar外観です。必須です。   |             |
+| **`imageAlt`**                  | `string \| ((url: string, index: number) => string)` | Accessibleな画像alt textまたはresolverです。     | `''`        |
+| **`labels`**                    | `Partial<PhotoViewerLabels>`                      | Viewer labelを上書きします。                     | `undefined` |
 
 #### `interface` PhotoViewerProps
 
-| Prop                       | Type                            | Description                                                       | Default     |
-| -------------------------- | ------------------------------- | ----------------------------------------------------------------- | ----------- |
-| **`imageUrls`**            | `string[]`                      | 画像URLまたはbase64文字列。`PhotoViewerPage` の表示時は必須です。 |             |
-| **`index`**                | `number`                        | 最初に選択する画像のindexです。                                   | `0`         |
-| **`isCircle`**             | `boolean`                       | 画像を円形で表示します。                                          | `false`     |
-| **`enableDelete`**         | `boolean`                       | 削除ボタンを表示します。                                          | `false`     |
-| **`enableFooterSafeArea`** | `boolean`                       | iOSのFooter Safe Areaを追加します。                               | `false`     |
-| **`labels`**               | `Partial<IDictionaryForViewer>` | Viewerのラベルを上書きします。                                    | `undefined` |
+Modalの `componentProps` contractです。`PhotoViewerPage` に示したものと同じfieldを持ちます。
 
-## Dictionary
+#### `interface` PhotoViewerResult
 
-#### `interface` IDictionaryForEditor
+| Prop         | Type       | Description                         |
+| ------------ | ---------- | ----------------------------------- |
+| **`action`** | `'delete'` | Delete要求を示します。              |
+| **`index`**  | `number`   | 選択した画像のindexです。           |
+| **`value`**  | `string`   | そのindexのURLまたはData URLです。  |
 
-| Prop             | Type     | Description                    |
-| ---------------- | -------- | ------------------------------ |
-| **`save`**       | `string` | 保存actionのラベルです。       |
-| **`crop`**       | `string` | Crop toolのラベルです。        |
-| **`filter`**     | `string` | Filter toolのラベルです。      |
-| **`brightness`** | `string` | Brightness toolのラベルです。  |
-| **`original`**   | `string` | Original filterのラベルです。  |
-| **`invert`**     | `string` | Invert filterのラベルです。    |
-| **`sepia`**      | `string` | Sepia filterのラベルです。     |
-| **`vintage`**    | `string` | Vintage filterのラベルです。   |
-| **`blur`**       | `string` | Blur filterのラベルです。      |
-| **`grayscale`**  | `string` | Grayscale filterのラベルです。 |
-| **`sharpen`**    | `string` | Sharpen filterのラベルです。   |
-| **`emboss`**     | `string` | Emboss filterのラベルです。    |
+#### `interface` PhotoViewerLabels
 
-#### `interface` IDictionaryForViewer
+| Prop         | Type     | Description          |
+| ------------ | -------- | -------------------- |
+| **`close`**  | `string` | Close labelです。    |
+| **`delete`** | `string` | Delete labelです。   |
 
-| Prop         | Type     | Description              |
-| ------------ | -------- | ------------------------ |
-| **`delete`** | `string` | 削除actionのラベルです。 |
+#### `type alias` PhotoToolbarColorScheme
 
-#### `interface` IDictionaryForService
+`'light' | 'dark'`
 
-| Prop         | Type     | Description                    |
-| ------------ | -------- | ------------------------------ |
-| **`camera`** | `string` | カメラのラベルです。           |
-| **`album`**  | `string` | アルバムのラベルです。         |
-| **`cancel`** | `string` | キャンセルactionのラベルです。 |
+## 任意adapter
 
-## Supporting type
+#### `function` createTuiImageEditor
 
-#### `interface` IFilter
+`@rdlabo/ionic-angular-photo-editor/editor/tui` からimportします。TUI Image Editor実装をbundlerが解決できるLazy Chunkで読み込む `PhotoImageEditorFactory` です。
 
-| Prop         | Type     | Description                  |
-| ------------ | -------- | ---------------------------- |
-| **`name`**   | `string` | Filter名です。               |
-| **`type`**   | `string` | Filter typeです。            |
-| **`option`** | `any`    | Filter固有のoptionです。     |
-| **`data`**   | `string` | Filter適用後の画像dataです。 |
-| **`width`**  | `number` | 画像の幅です。               |
-| **`height`** | `number` | 画像の高さです。             |
+#### `function` loadCapacitorPhotoCamera
 
-#### `interface` IFilterPreset
+`@rdlabo/ionic-angular-photo-editor/file/capacitor` からimportします。Capacitor Camera実装をbundlerが解決できるLazy Chunkで読み込む `PhotoCameraLoader` です。
 
-| Prop         | Type     | Description              |
-| ------------ | -------- | ------------------------ |
-| **`name`**   | `string` | Preset名です。           |
-| **`type`**   | `string` | Filter typeです。        |
-| **`option`** | `any`    | Filter固有のoptionです。 |
+#### `type alias` PhotoImageEditorFactory
 
-#### `interface` ISize
+`(host: Element, options: PhotoImageEditorOptions) => Promise<PhotoImageEditor>`
 
-| Prop         | Type     | Description           |
-| ------------ | -------- | --------------------- |
-| **`width`**  | `number` | pixel単位の幅です。   |
-| **`height`** | `number` | pixel単位の高さです。 |
+#### `interface` PhotoImageEditorOptions
+
+| Prop                 | Type     | Description                         |
+| -------------------- | -------- | ----------------------------------- |
+| **`cssMaxWidth`**    | `number` | Editor Canvasの最大widthです。      |
+| **`cssMaxHeight`**   | `number` | Editor Canvasの最大heightです。     |
+
+#### `interface` PhotoCropRect
+
+数値の `left`、`top`、`width`、`height` fieldを持つRectangleです。
+
+#### `interface` PhotoImageEditor
+
+最小限のEditor adapter contractです。
+
+| Member                   | Type                                                                                         |
+| ------------------------ | -------------------------------------------------------------------------------------------- |
+| **`applyFilter`**         | `(type: string, options?: Exclude<PhotoFilterOptions, null>) => Promise<unknown>`             |
+| **`crop`**                | `(rect: PhotoCropRect) => Promise<unknown>`                                                  |
+| **`destroy`**             | `() => void`                                                                                 |
+| **`getCropzoneRect`**     | `() => PhotoCropRect`                                                                        |
+| **`hasFilter`**           | `(type: string) => boolean`                                                                  |
+| **`loadImageFromFile`**   | `(file: File) => Promise<{ newWidth: number; newHeight: number }>`                            |
+| **`removeFilter`**        | `(type: string) => Promise<unknown>`                                                         |
+| **`rotate`**              | `(angle: number) => Promise<unknown>`                                                        |
+| **`setCropzoneRect`**     | `(ratio?: number) => void`                                                                   |
+| **`startDrawingMode`**    | `(mode: string) => void`                                                                     |
+| **`stopDrawingMode`**     | `() => void`                                                                                 |
+| **`toDataURL`**           | `(options?: { multiplier?: number }) => string`                                              |
+
+#### `type alias` PhotoCameraLoader
+
+`() => Promise<PhotoCameraAdapter>`
+
+#### `interface` PhotoCameraAdapter
+
+| Member           | Type                                                                          | Description   |
+| ---------------- | ----------------------------------------------------------------------------- | ------------- |
+| **`getPhoto`**   | `(options: PhotoCameraOptions) => Promise<PhotoCameraImage>`                  | Camera撮影。  |
+| **`pickImages`** | `(options: PhotoCameraOptions) => Promise<{ photos: PhotoCameraImage[] }>`     | Album選択。   |
+
+#### `interface` PhotoCameraOptions
+
+| Prop          | Type         | Description                         |
+| ------------- | ------------ | ----------------------------------- |
+| **`quality`** | `number`     | 要求するImage qualityです。         |
+| **`width`**   | `number`     | 要求するImage widthです。           |
+| **`limit?`**  | `number`     | 任意のAlbum選択上限です。           |
+| **`source?`** | `'camera'`   | 任意のCamera専用source markerです。 |
+
+#### `interface` PhotoCameraImage
+
+| Prop           | Type     | Description                    |
+| -------------- | -------- | ------------------------------ |
+| **`dataUrl?`** | `string` | Image Data URLです。           |
+| **`webPath?`** | `string` | Browserから参照できるImage URLです。 |
+
+## 画像関連の補助型
+
+#### `interface` PhotoFilter
+
+`name`、`type`、`option`、`data`、`width`、`height` を持つrender済みFilter previewです。
+
+#### `type alias` PhotoFilterOptions
+
+`{ blur: number } | { brightness: number } | { noise: number } | { blocksize: number } | { color: string; distance: number; useAlpha?: boolean } | { mode: string; color: string; alpha?: number } | { maskObjId: number } | null`
+
+#### `interface` PhotoFilterPreset
+
+`name`、`type`、`option` を持つFilter Menu presetです。
+
+#### `interface` PhotoSize
+
+数値の `width` と `height` を持つ2次元pixel sizeです。

@@ -266,10 +266,11 @@ type ResolvedPageSource = {
 async function resolvePageSource(
   project: ProjectDefinition,
   locale: Locale,
-  file: string,
+  page: ProjectPageDefinition,
   repositoryCache: Map<string, string>,
 ): Promise<ResolvedPageSource> {
-  if (locale === 'ja') {
+  const { file } = page;
+  if (locale === 'ja' || (locale === 'en' && page.localEnglishSource)) {
     const srcPath = srcDocsPath(project, locale, file);
     return {
       content: await readFile(srcPath, 'utf8'),
@@ -332,7 +333,7 @@ async function generateProject(
   const repositoryCache = new Map<string, string>();
   for (const declaredPage of project.pages) {
     const { file } = declaredPage;
-    const resolved = await resolvePageSource(project, locale, file, repositoryCache);
+    const resolved = await resolvePageSource(project, locale, declaredPage, repositoryCache);
     const parsed = fm<any>(resolved.content);
     const isPackageLanding = resolved.fromPackage && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;

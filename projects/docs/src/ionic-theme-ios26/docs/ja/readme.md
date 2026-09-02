@@ -7,7 +7,7 @@ scrollActiveLine: []
 IonicアプリケーションにiOS26デザインシステムを適用するCSS/JSテーマライブラリです。
 
 <!-- rdlabo-docs-pick -->
-![iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/ios26.png)
+![iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.1.0/screenshots/ios26.png)
 <!-- /rdlabo-docs-pick -->
 
 DEMOはこちら: https://ionic-theme-ios26.rdlabo.dev/
@@ -51,7 +51,7 @@ Note: **@ionic/core@ < 8.8.1 を使う場合は**、@rdlabo/ionic-theme-ios26@2.
 
 /**
  * If you will use the design of ion-item-group with ion-list on Android as well, import it.
- * More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v9.0.0/docs/using-ion-item-group.md
+ * More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v9.1.0/docs/using-ion-item-group.md
  * Note: This stylesheet is included in `@rdlabo/ionic-theme-md3`.
  * @import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css';
  */

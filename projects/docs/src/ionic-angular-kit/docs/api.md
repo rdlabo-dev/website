@@ -2,7 +2,7 @@
 title: API
 ---
 
-Public entry-point map for `@rdlabo/ionic-angular-kit` v21.7.0. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
+Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.0. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
 
 ## Core
 
@@ -22,6 +22,10 @@ Public entry-point map for `@rdlabo/ionic-angular-kit` v21.7.0. The focused guid
 
 Offline repository, synchronized replica, outbox, request-policy, schema, identity, and recovery APIs. Use `provideOffline` or its focused provider variants as the composition root.
 
+#### `module` @rdlabo/ionic-angular-kit/forms
+
+`KitIonicFormField`, `provideKitIonicSignalForms`, `kitDefaultSignalFormErrorMessage`, `KIT_SIGNAL_FORM_ERROR_MESSAGE_RESOLVER`, and `KitSignalFormErrorMessageResolver` for adapting Angular 22 Signal Forms to Ionic controls. See [Forms](/docs/forms).
+
 #### `module` @rdlabo/ionic-angular-kit/auth-firebase
 
 Firebase authentication providers and typed sign-in, sign-up, linking, reauthentication, verification, password, and account-update functions.
@@ -32,7 +36,7 @@ Apple and Facebook social authentication helpers and their response and option t
 
 #### `module` @rdlabo/ionic-angular-kit/app-update
 
-`provideKitAppUpdate` and `KitAppUpdateService` for native application-update checks.
+`provideKitAppUpdate` and `KitAppUpdateService` for coordinated Angular service-worker updates.
 
 #### `module` @rdlabo/ionic-angular-kit/live-update
 

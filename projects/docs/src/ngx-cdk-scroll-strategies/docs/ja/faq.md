@@ -18,4 +18,4 @@ https://github.com/angular/components/blob/main/src/cdk-experimental/scrolling/a
 
 ### Dynamic HeightのViewport自体にも使えますか？
 
-このライブラリが扱うのはViewport Containerの高さではなく、Viewport内にある各Itemの可変Heightです。`cdk-virtual-scroll-viewport`自体の高さや`max-height`をContent量に合わせる問題とは別です。
+いいえ。このライブラリが扱うのはViewport Containerの高さではなく、Viewport内にある各Itemの可変Heightです。`cdk-virtual-scroll-viewport`自体の高さや`max-height`をContent量に合わせる問題とは別です。

@@ -6,10 +6,10 @@ scrollActiveLine: []
 
 Call this after [Installation](/docs/readme#installation).
 
-> This is a simple example of how to use it.
+> This basic Angular CDK virtual scroll example is for items whose variable heights are already known.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v21.7.0/projects/demo/src/app/scroll-strategies/pages/scroll-simple
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.0/projects/demo/src/app/scroll-strategies/pages/scroll-simple
 
 ```ts
 import { CdkDynamicSizeVirtualScroll, itemDynamicSize } from '@rdlabo/ngx-cdk-scroll-strategies';

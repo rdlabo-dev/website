@@ -9,7 +9,7 @@ CSS variables, opt-out class, and the liquid glass mixin. See [Using ion-item-gr
 ### CSS Variables
 
 To customize the library's default styles to match your design, several CSS variables are provided. See this file for details:
-https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v9.0.0/src/styles/default-variables.scss
+https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v9.1.0/src/styles/default-variables.scss
 
 ### `.ios26-disabled` Class
 

@@ -16,6 +16,12 @@ export interface ProjectPageDefinition {
   seoDescription?: LocalizedText;
   /** Optional explicit content update date (`YYYY-MM-DD`) for sitemap `<lastmod>`. */
   updatedAt?: LocalizedText;
+  /**
+   * When true, English generation reads this page from the portal local filesystem
+   * (same path layout as Japanese) instead of fetching GitHub English sources.
+   * Edit links use the portal path (`fromPackage: false`).
+   */
+  localEnglishSource?: boolean;
   demo?: {
     url: string;
     title: LocalizedText;
@@ -66,7 +72,7 @@ export interface ProjectDefinition {
 }
 
 const text = (en: string, ja: string): LocalizedText => ({ en, ja });
-const ionicAngularLibraryDocsRef = '92b474cc5e6228969b72a38a71f3e5ae18c8e005';
+const ionicAngularLibraryDocsRef = 'v22.0.0';
 
 export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = [
   {
@@ -110,6 +116,7 @@ interface PageOptions {
   seoTitle?: LocalizedText;
   seoDescription?: LocalizedText;
   updatedAt?: LocalizedText;
+  localEnglishSource?: boolean;
   demo?: ProjectPageDefinition['demo'];
 }
 
@@ -349,6 +356,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'ガイド',
       ),
       page('Authentication and HTTP', '認証・HTTP', 'auth-http', 'auth-http.md', 'Guide', 'ガイド'),
+      page('Forms', 'フォーム', 'forms', 'forms.md', 'Guide', 'ガイド', {
+        seoTitle: text(
+          'Angular Signal Forms for Ionic Controls | rdlabo',
+          'Ionic向けAngular Signal Forms | rdlabo',
+        ),
+        seoDescription: text(
+          'Adapt Angular 22 Signal Forms to Ionic controls with automatic errorText, localized validation messages, and state classes.',
+          'Angular 22 Signal FormsをIonic controlへ統合し、errorTextの自動設定、validation messageの多言語化、state classを利用する方法を解説します。',
+        ),
+      }),
       page(
         'Offline and Realtime',
         'Offline・Realtime',
@@ -644,8 +661,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS26',
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
-    // v9.0.0 predates the Overview pick marker; pin the immutable docs commit that added it.
-    englishDocsRef: 'e3605fd371ee96d1cb11e62638948e141aa7718f',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -712,7 +727,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       ),
       page('iOS 18', 'iOS 18', 'ios-18', 'ios-18.md', 'Guides', 'ガイド'),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+      }),
     ],
   },
   {
@@ -723,8 +740,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme MD3',
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
-    // v9.0.0 predates the Overview pick marker; pin the immutable docs commit that added it.
-    englishDocsRef: '7f337d0d8711fcbf9d3e6b1590b6863cc9b0992c',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -784,7 +799,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'ガイド',
       ),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+      }),
     ],
   },
   {

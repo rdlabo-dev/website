@@ -6,30 +6,59 @@ scrollActiveLine: []
 
 ## Overview
 
-This is a photo editor and viewer for modal page of Ionic Angular project using Capacitor.
+Photo editor and viewer modal pages for Ionic Angular applications, with Capacitor camera/album support.
 
 ## Features
 
 ### Choose by editing goal
 
-| Goal | Guide |
-| --- | --- |
-| Load a photo from camera or album | [PhotoFileService](/docs/photo-file) |
-| Crop and edit in a modal | [Photo Editor](/docs/editor) |
-| Browse images in a modal | [Photo Viewer](/docs/viewer) |
-| Override editor colors | [Theme](/docs/theme) |
+| Goal                              | Guide                                                                                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Load a photo from camera or album | [PhotoFileService](/docs/photo-file)                                     |
+| Crop and edit in a modal          | [Photo Editor](/docs/editor)                                             |
+| Browse images in a modal          | [Photo Viewer](/docs/viewer)                                             |
+| Override editor colors            | [Theme](/docs/theme)                                                     |
+| Upgrade from an earlier release   | [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/docs/migration.md#rdlaboionic-angular-photo-editor) |
 
 ## Quick start
 
-After [Installation](#installation), load a photo:
+After [Installation](#installation), register optional defaults and load a photo:
 
 ```typescript
-import { PhotoFileService } from '@rdlabo/ionic-angular-photo-editor';
+import { providePhotoEditor } from '@rdlabo/ionic-angular-photo-editor';
+import { createTuiImageEditor } from '@rdlabo/ionic-angular-photo-editor/editor/tui';
+import { PhotoFileService } from '@rdlabo/ionic-angular-photo-editor/file';
+import { loadCapacitorPhotoCamera } from '@rdlabo/ionic-angular-photo-editor/file/capacitor';
 
-const files = await this.photoFileService.loadPhoto(1);
+// app.config.ts
+export const appConfig = {
+  providers: [
+    providePhotoEditor({
+      maxSize: 1000,
+      createImageEditor: createTuiImageEditor,
+      loadCamera: loadCapacitorPhotoCamera,
+    }),
+  ],
+};
+
+// component
+const files = await this.photoFileService.loadPhoto({ limit: 1 });
 ```
 
-Then present the editor or viewer. Details: [PhotoFileService](/docs/photo-file), [Photo Editor](/docs/editor), [Photo Viewer](/docs/viewer).
+Present the editor or viewer from their secondary entry points. Details: [PhotoFileService](/docs/photo-file), [Photo Editor](/docs/editor), [Photo Viewer](/docs/viewer).
+
+## Package entry points
+
+| Import path                                         | Exports                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------- |
+| `@rdlabo/ionic-angular-photo-editor`                | Types, `providePhotoEditor`, `PHOTO_EDITOR_CONFIG`, `PhotoLoadError` |
+| `@rdlabo/ionic-angular-photo-editor/editor`         | `PhotoEditorPage`                                                    |
+| `@rdlabo/ionic-angular-photo-editor/editor/tui`     | opt-in `createTuiImageEditor` adapter                                |
+| `@rdlabo/ionic-angular-photo-editor/viewer`         | `PhotoViewerPage`                                                    |
+| `@rdlabo/ionic-angular-photo-editor/file`           | `PhotoFileService`                                                   |
+| `@rdlabo/ionic-angular-photo-editor/file/capacitor` | opt-in `loadCapacitorPhotoCamera` adapter                            |
+
+Import components and services only from their entry point. Import shared types and configuration from the root package.
 
 ## Installation
 
@@ -37,22 +66,24 @@ Then present the editor or viewer. Details: [PhotoFileService](/docs/photo-file)
 npm install @rdlabo/ionic-angular-photo-editor
 ```
 
-If you use capacitor, you need to install plugin:
+Install only the optional feature dependencies used by the application:
 
 ```bash
-npm install @capacitor/camera swiper tui-image-editor
+# editor, and resizing in PhotoFileService
+npm install tui-image-editor
+
+# viewer
+npm install swiper
+
+# native camera and album selection
+npm install @capacitor/camera
 ```
 
-And set permission. more info is here: [Camera](https://capacitorjs.com/docs/apis/camera#android-configuration)
+Configure Android/iOS camera permissions as described in the [Capacitor Camera docs](https://capacitorjs.com/docs/apis/camera#android-configuration).
+Native iOS applications must target iOS/iPadOS 16.4 or later.
 
-If you public your project to the web, you need to add the following input tag to the index.html.
-
-```html
-<div style="width: 0; height: 0; overflow: hidden">
-  <input id="browserPhotoUploader" type="file" accept="image/*" />
-</div>
-```
-
+No static `<input type="file">` in `index.html` is required. On web, `PhotoFileService` creates and attaches a hidden file input synchronously when `loadPhoto()` is called.
+The root, `/editor`, and `/file` entry points do not import optional implementations. Opt in through `/editor/tui` and `/file/capacitor`; web-only consumers can omit the Capacitor adapter and dependency.
 
 ## Documentation
 
@@ -61,4 +92,5 @@ Start with [Installation](#installation), then pick a guide.
 - [PhotoFileService](/docs/photo-file) — camera and album.
 - [Photo Editor](/docs/editor) — crop and edit in a modal.
 - [Photo Viewer](/docs/viewer) — browse images in a modal.
-- [Theme](/docs/theme) — CSS variables.
+- [Theme](/docs/theme) — CSS variables and toolbar color scheme.
+- [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/docs/migration.md#rdlaboionic-angular-photo-editor) — breaking changes and required consumer updates.

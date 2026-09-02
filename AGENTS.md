@@ -116,10 +116,12 @@ When revisions differ, generation fails before generated output is written. A mi
 
 ### English resolution
 
-`docs:generate` **always** loads English from GitHub raw — never from the local filesystem. Resolution order:
+`docs:generate` loads English from GitHub raw by default — not from the local filesystem. Resolution order:
 
 1. Package repository: the package-scoped `docs/{file}` path in monorepos; otherwise `docs/{file}` or `{sourceDirectory}/docs/{file}`; then the package README for landings.
 2. Portal repository (`rdlabo-dev/website`): `projects/docs/src/{sourceDirectory}/docs/{file}`.
+
+Per-page `localEnglishSource: true` in `scripts/project-manifest.ts` is the explicit exception: English for that page only is read from the portal local file (`projects/docs/src/{sourceDirectory}/docs/{file}`), with `fromPackage: false` and a portal “Edit this page” link — the same local-file behavior as Japanese. Use it sparingly when the reviewed portal English must win over a stale upstream fetch for a single page.
 
 For `@capacitor-community/admob` and rdlabo Capacitor plugins, English lives in the **package repository only** — do not copy those English files into `projects/docs/src/{project}/docs/`.
 

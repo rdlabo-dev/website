@@ -127,7 +127,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Shared application infrastructure for Ionic Angular projects.",
     "headline": "Build consistent, resilient Ionic Angular applications",
     "overview": "Compose typed storage, overlays, authentication, HTTP policy, realtime connections, offline replicas, themes, reviews, printing, Firebase, and Live Updates from focused entry points.",
@@ -174,6 +174,13 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-angular-kit/docs/auth-http"
       },
       {
+        "title": "Forms",
+        "navTitle": "Forms",
+        "slug": "forms",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
         "title": "Offline and Realtime",
         "navTitle": "Offline and Realtime",
         "slug": "offline-realtime",
@@ -206,7 +213,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Photo editing and viewing flows for Ionic Angular and Capacitor applications.",
     "headline": "Edit and review photos in Ionic modals",
     "overview": "Load photos from camera or album, crop and edit images, and present a configurable photo viewer from one Ionic Angular package.",
@@ -289,7 +296,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Scroll-aware header directives for Ionic and Angular CDK viewports.",
     "headline": "Build headers that respond to content scrolling",
     "overview": "Hide and reveal Ionic headers for IonContent and CDK virtual scrolling while preserving safe-area and native-header layouts.",
@@ -365,7 +372,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "seoTitle": "Angular CDK Virtual Scroll: Variable Item Heights | rdlabo",
     "description": "Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.",
     "headline": "Angular CDK virtual scroll with variable item heights",
@@ -453,7 +460,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.0.0",
+    "version": "9.1.0",
     "description": "iOS 26 design styling for Ionic applications.",
     "headline": "Bring iOS 26 design to Ionic apps",
     "overview": "Apply iOS 26 CSS, transitions, and Liquid Glass interactions to Ionic components, with dark mode and selective migration support.",
@@ -472,7 +479,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.1.0/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -543,7 +550,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.0.0",
+    "version": "9.1.0",
     "description": "Material Design 3 styling for Ionic applications.",
     "headline": "Bring Material Design 3 to Ionic apps",
     "overview": "Apply Material Design 3 styling to Ionic while keeping markup compatible with the iOS 26 theme and shared transition animations.",
@@ -562,7 +569,7 @@ export const PROJECTS_EN = [
         "description": "Configure MD3 navigation transitions for non-iOS platforms."
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.0.0/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {
@@ -1764,7 +1771,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Ionic Angularプロジェクト向けの共有アプリケーション基盤。",
     "headline": "一貫性と耐障害性を備えたIonic Angularアプリを構築する",
     "overview": "型安全なStorage、Overlay、認証、HTTPポリシー、Realtime接続、Offline Replica、Theme、Review、印刷、Firebase、Live Updateを用途別エントリポイントから構成します。",
@@ -1811,6 +1818,13 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-kit/docs/auth-http"
       },
       {
+        "title": "フォーム",
+        "navTitle": "フォーム",
+        "slug": "forms",
+        "section": "ガイド",
+        "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
         "title": "Offline・Realtime",
         "navTitle": "Offline・Realtime",
         "slug": "offline-realtime",
@@ -1843,7 +1857,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Ionic Angular・Capacitorアプリ向けの写真編集・閲覧フロー。",
     "headline": "Ionic Modalで写真を編集・確認する",
     "overview": "カメラやアルバムから写真を読み込み、切り抜き・編集し、設定可能な写真Viewerを1つのIonic Angularパッケージから利用できます。",
@@ -1872,7 +1886,7 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-photo-editor/docs/readme"
       },
       {
-        "title": "テーマ",
+        "title": "Theme",
         "navTitle": "テーマ",
         "slug": "theme",
         "section": "ガイド",
@@ -1926,7 +1940,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "description": "Ionic・Angular CDK viewport向けのScroll連動Header Directive。",
     "headline": "Scrollに追従するHeaderを実装する",
     "overview": "Safe AreaとNative Headerレイアウトを維持しながら、IonContentとCDK Virtual Scrollに応じてIonic Headerを表示・非表示にします。",
@@ -2002,7 +2016,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "21.7.0",
+    "version": "22.0.0",
     "seoTitle": "Angular CDK Virtual Scrollの可変アイテム高さ対応 | rdlabo",
     "description": "Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。",
     "headline": "Angular CDK Virtual Scrollを可変Item Heightに対応",
@@ -2090,7 +2104,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.0.0",
+    "version": "9.1.0",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
     "headline": "IonicアプリにiOS 26デザインを取り入れる",
     "overview": "IonicコンポーネントへiOS 26のCSS、トランジション、Liquid Glassインタラクションを適用し、ダークモードと段階的な移行にも対応します。",
@@ -2109,7 +2123,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.0.0/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.1.0/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -2180,7 +2194,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.0.0",
+    "version": "9.1.0",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
     "headline": "IonicアプリにMaterial Design 3を取り入れる",
     "overview": "iOS 26テーマと共通のマークアップ互換性を保ちつつ、IonicへMaterial Design 3スタイルとトランジションアニメーションを適用します。",
@@ -2199,7 +2213,7 @@ export const PROJECTS_JA = [
         "description": "非iOSプラットフォーム向けにMD3のナビゲーショントランジションを設定します。"
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.0.0/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {

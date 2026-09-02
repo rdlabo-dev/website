@@ -7,7 +7,7 @@ scrollActiveLine: []
 Attach scroll-aware headers to Ionic content. Call this after [Installation](/docs/readme#installation).
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { ScrollHeaderDirective } from '@rdlabo/ionic-angular-scroll-header';

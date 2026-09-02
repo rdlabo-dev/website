@@ -1,21 +1,26 @@
 ---
-title: 'Photo Editor'
-code: []
-scrollActiveLine: []
+title: Photo Editor
 ---
 
-Ionic モーダルで `PhotoEditorPage` を表示します。[インストール](/docs/readme#インストール) のあとで呼び出します。
+Ionic Modalで `PhotoEditorPage` を表示します。[Installation](/docs/readme#installation)の後に呼び出してください。
 
 ```typescript
-import { PhotoEditorPage, IPhotoEditorDismiss, PhotoEditorProps } from '@rdlabo/ionic-angular-photo-editor';
+import { PhotoEditorProps, PhotoEditorResult, providePhotoEditor } from '@rdlabo/ionic-angular-photo-editor';
+import { PhotoEditorPage } from '@rdlabo/ionic-angular-photo-editor/editor';
+import { createTuiImageEditor } from '@rdlabo/ionic-angular-photo-editor/editor/tui';
+
+// app.config.ts
+export const appConfig = {
+  providers: [providePhotoEditor({ createImageEditor: createTuiImageEditor })],
+};
 
 (async () => {
   const componentProps = {
     requireSquare: false,
     value: 'https://picsum.photos/200/300',
-    headerButtonColorScheme: 'dark',
+    toolbarColorScheme: 'dark',
     labels: {
-      save: '送信', // change '保存' to '送信'
+      save: '送信', // override default '保存'
     },
   } satisfies PhotoEditorProps;
   const modal = await this.modalCtrl.create({
@@ -23,29 +28,63 @@ import { PhotoEditorPage, IPhotoEditorDismiss, PhotoEditorProps } from '@rdlabo/
     componentProps,
   });
   await modal.present();
-  const { data } = await modal.onWillDismiss<IPhotoEditorDismiss>();
-  if (data?.value) {
+  const { data } = await modal.onWillDismiss<PhotoEditorResult>();
+  if (data?.action === 'save') {
     console.log(data.value);
   }
 })();
 ```
 
-### オプション
+## Modal result
 
-#### requireSquare: boolean
+SaveするとModalは次のdataでdismissします。
 
-true の場合、最初に画像を正方形に切り抜く必要があります。
+```typescript
+interface PhotoEditorResult {
+  action: 'save';
+  value: string; // data URL of the edited image
+}
+```
 
-#### value: string
+Saveせずにcloseした場合はdataなしでdismissします。
 
-画像の URL または base64 文字列です。
+## Option
 
-#### labels: IDictionaryForEditor
+### requireSquare: boolean
 
-設定すると、ラベルが上書きされます。
+`true` の場合、編集を続ける前に画像を正方形へcropする必要があります。
 
-一覧は[こちら](https://github.com/rdlabo-dev/ionic-angular-library/blob/v21.7.0/projects/photo-editor/src/lib/dictionaries.ts)です。
+### value: string
 
-#### headerButtonColorScheme: 'light' | 'dark'
+編集するImage URLまたはData URLです。
 
-必須です。`ion-toolbar` が暗色または黒色の場合は `dark`、明色または白色の場合は `light` を選択してください。ツールバーの外観はCSS、半透明コンテンツ、実行時のテーマ上書きによって変わるため、ライブラリ側では判定できません。
+### toolbarColorScheme: 'light' | 'dark'
+
+**必須。** 暗色・黒色の `ion-toolbar` には `dark`、明色・白色のToolbarには `light` を使います。LibraryはCSS、translucency、runtime theme overrideからToolbarの外観を推論できません。[Theme](./theme.md)も参照してください。
+
+### labels: Partial&lt;PhotoEditorLabels&gt;
+
+Default UI stringを上書きします。指定しないkeyはbuilt-inの日本語defaultを維持します。
+
+| Key        | Default（ja）   |
+| ---------- | --------------- |
+| save       | 保存            |
+| close      | 閉じる          |
+| back       | 戻る            |
+| apply      | 適用            |
+| crop       | 切り抜き・回転  |
+| rotate     | 回転            |
+| cropCover  | 画像に合わせる  |
+| crop16x9   | 16対9           |
+| cropSquare | 正方形          |
+| cropFree   | 自由            |
+| filter     | フィルター      |
+| brightness | 明るさ          |
+| original   | オリジナル      |
+| invert     | 反転            |
+| sepia      | セピア          |
+| vintage    | ヴィンテージ    |
+| blur       | ぼかし          |
+| grayscale  | グレースケール  |
+| sharpen    | 輪郭            |
+| emboss     | エンボス        |

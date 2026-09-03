@@ -57,6 +57,38 @@ describe('App', () => {
     fixture.destroy();
   });
 
+  it('tracks article journeys to Docs, GitHub, npm, sponsors, and source articles', async () => {
+    const gtag = vi.fn();
+    (window as GoogleAnalyticsWindow).gtag = gtag;
+    const fixture = TestBed.createComponent(App);
+    window.history.pushState({}, '', '/articles/example');
+
+    for (const href of [
+      'https://docs.rdlabo.dev/projects/example',
+      'https://github.com/rdlabo-dev/example',
+      'https://www.npmjs.com/package/example',
+      'https://github.com/sponsors/rdlabo',
+      'https://zenn.dev/rdlabo/articles/example',
+    ]) {
+      const anchor = document.createElement('a');
+      anchor.href = href;
+      anchor.addEventListener('click', (event) => event.preventDefault());
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+    }
+
+    expect(gtag.mock.calls.filter(([type]) => type === 'event').slice(-5)).toEqual([
+      ['event', 'article_to_docs', expect.objectContaining({ article_slug: 'example' })],
+      ['event', 'article_to_github', expect.objectContaining({ article_slug: 'example' })],
+      ['event', 'article_to_npm', expect.objectContaining({ article_slug: 'example' })],
+      ['event', 'article_to_sponsor', expect.objectContaining({ article_slug: 'example' })],
+      ['event', 'article_source_click', expect.objectContaining({ article_slug: 'example' })],
+    ]);
+    window.history.pushState({}, '', '/');
+    fixture.destroy();
+  });
+
   it('renders four featured projects and the three latest translated articles', async () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();

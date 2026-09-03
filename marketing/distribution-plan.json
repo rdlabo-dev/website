@@ -1,0 +1,205 @@
+{
+  "$schema": "./distribution-plan.schema.json",
+  "campaigns": [
+    {
+      "priority": 1,
+      "id": "2026q3-angular-685kb",
+      "slug": "b3874dc571f7da",
+      "audience": "Angular and web performance engineers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        {
+          "id": "linkedin-launch",
+          "channel": "linkedin",
+          "destination": "rdlabo",
+          "status": "planned"
+        },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        },
+        { "id": "x-followup", "channel": "x", "destination": "@rdlabo", "status": "planned" }
+      ]
+    },
+    {
+      "priority": 2,
+      "id": "2026q3-npm-beta-pr",
+      "slug": "npm-beta-per-pull-request",
+      "audience": "OSS and npm maintainers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 3,
+      "id": "2026q3-eslint-ai",
+      "slug": "custom-eslint-rules-for-ai-coding",
+      "audience": "AI coding and developer tooling teams",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        {
+          "id": "linkedin-launch",
+          "channel": "linkedin",
+          "destination": "rdlabo",
+          "status": "planned"
+        },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 4,
+      "id": "2026q3-visual-regression",
+      "slug": "playwright-visual-regression-ci-baseline",
+      "audience": "Playwright and OSS maintainers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        },
+        {
+          "id": "reddit-playwright",
+          "channel": "reddit",
+          "destination": "Relevant Playwright community",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 5,
+      "id": "2026q4-workers-cache",
+      "slug": "workers-kv-cache-api-boundary",
+      "audience": "Cloudflare Workers developers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 6,
+      "id": "2026q4-workers-hibernation",
+      "slug": "workers-hono-websocket-hibernation",
+      "audience": "Realtime and Workers developers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 7,
+      "id": "2026q4-hono-container",
+      "slug": "workers-hono-container-lifecycle",
+      "audience": "Hono and serverless developers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "hn-launch",
+          "channel": "hackernews",
+          "destination": "Hacker News",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 8,
+      "id": "2026q4-ionic9-themes",
+      "slug": "ionic-themes-ionic9-major-update",
+      "audience": "Ionic developers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        {
+          "id": "ionic-discord",
+          "channel": "ionic-discord",
+          "destination": "Ionic Discord",
+          "status": "planned"
+        },
+        {
+          "id": "ionic-forum",
+          "channel": "ionic-forum",
+          "destination": "Ionic Forum",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "priority": 9,
+      "id": "2026q4-ionic-md3",
+      "slug": "ionic-theme-md3",
+      "audience": "Ionic and design-system developers",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        {
+          "id": "ionic-discord",
+          "channel": "ionic-discord",
+          "destination": "Ionic Discord",
+          "status": "planned"
+        },
+        { "id": "reddit-ionic", "channel": "reddit", "destination": "r/ionic", "status": "planned" }
+      ]
+    },
+    {
+      "priority": 10,
+      "id": "2026q4-capacitor-live-update",
+      "slug": "capawesome-live-update-release-cycle",
+      "audience": "Capacitor and mobile CI teams",
+      "status": "backlog",
+      "placements": [
+        { "id": "x-launch", "channel": "x", "destination": "@rdlabo", "status": "planned" },
+        {
+          "id": "linkedin-launch",
+          "channel": "linkedin",
+          "destination": "rdlabo",
+          "status": "planned"
+        },
+        { "id": "dev-crosspost", "channel": "devto", "destination": "rdlabo", "status": "planned" },
+        {
+          "id": "ionic-discord",
+          "channel": "ionic-discord",
+          "destination": "Ionic Discord",
+          "status": "planned"
+        }
+      ]
+    }
+  ]
+}

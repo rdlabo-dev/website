@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["campaigns"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "campaigns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["priority", "id", "slug", "audience", "status", "placements"],
+        "properties": {
+          "priority": { "type": "integer", "minimum": 1 },
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "slug": { "type": "string", "minLength": 1 },
+          "audience": { "type": "string", "minLength": 1 },
+          "status": {
+            "enum": ["backlog", "copy-ready", "scheduled", "active", "complete"]
+          },
+          "placements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "channel", "destination", "status"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "channel": {
+                  "enum": [
+                    "x",
+                    "linkedin",
+                    "devto",
+                    "hackernews",
+                    "reddit",
+                    "ionic-discord",
+                    "ionic-forum"
+                  ]
+                },
+                "destination": { "type": "string", "minLength": 1 },
+                "status": {
+                  "enum": ["planned", "drafted", "scheduled", "published", "skipped"]
+                },
+                "copyPath": { "type": "string", "pattern": "^marketing/campaigns/" },
+                "scheduledAt": { "$ref": "#/$defs/dateTime" },
+                "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+                "publishedAt": { "$ref": "#/$defs/dateTime" },
+                "skipReason": { "type": "string", "minLength": 1 },
+                "results": {
+                  "type": "array",
+                  "items": { "$ref": "#/$defs/result" }
+                }
+              },
+              "allOf": [
+                {
+                  "if": { "properties": { "status": { "const": "planned" } } },
+                  "then": { "not": { "required": ["copyPath"] } }
+                },
+                {
+                  "if": { "properties": { "status": { "const": "drafted" } } },
+                  "then": { "required": ["copyPath"] }
+                },
+                {
+                  "if": { "properties": { "status": { "const": "scheduled" } } },
+                  "then": { "required": ["copyPath", "scheduledAt"] }
+                },
+                {
+                  "if": { "properties": { "status": { "const": "published" } } },
+                  "then": { "required": ["copyPath", "url", "publishedAt"] }
+                },
+                {
+                  "if": { "properties": { "status": { "const": "skipped" } } },
+                  "then": { "required": ["skipReason"] }
+                },
+                {
+                  "if": { "required": ["results"] },
+                  "then": { "properties": { "status": { "const": "published" } } }
+                }
+              ]
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "status": { "const": "copy-ready" } } },
+            "then": {
+              "properties": {
+                "placements": {
+                  "items": {
+                    "properties": {
+                      "status": { "enum": ["drafted", "scheduled", "published", "skipped"] }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": { "properties": { "status": { "const": "scheduled" } } },
+            "then": {
+              "properties": {
+                "placements": {
+                  "items": {
+                    "properties": { "status": { "enum": ["scheduled", "published", "skipped"] } }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": { "properties": { "status": { "const": "active" } } },
+            "then": {
+              "properties": {
+                "placements": {
+                  "contains": { "properties": { "status": { "const": "published" } } }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "dateTime": { "type": "string", "format": "date-time" },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "window",
+        "measuredAt",
+        "source",
+        "articleVisitors",
+        "docsClicks",
+        "githubClicks",
+        "npmClicks",
+        "sponsorClicks",
+        "backlinks",
+        "officialMentions"
+      ],
+      "properties": {
+        "window": { "enum": ["24h", "7d", "30d"] },
+        "measuredAt": { "$ref": "#/$defs/dateTime" },
+        "source": { "type": "string", "minLength": 1 },
+        "articleVisitors": { "type": "integer", "minimum": 0 },
+        "docsClicks": { "type": "integer", "minimum": 0 },
+        "githubClicks": { "type": "integer", "minimum": 0 },
+        "npmClicks": { "type": "integer", "minimum": 0 },
+        "sponsorClicks": { "type": "integer", "minimum": 0 },
+        "backlinks": { "type": "integer", "minimum": 0 },
+        "officialMentions": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -112,11 +112,11 @@ test('prerenders the web-site home, archive, and translated articles', async () 
       new URL(`articles/archive/${year}/index.html`, browserRoot),
       'utf8',
     );
-    assert.match(archive, new RegExp(`Articles from ${year}`));
+    assert.match(archive, new RegExp(`Engineering Notes from ${year}`));
     assert.match(
       archive,
       new RegExp(
-        `English translations of rdlabo articles published in ${year} about Ionic, Angular, and Capacitor\\.`,
+        `Engineering notes published in ${year} from real-world Ionic, Angular, Capacitor, Cloudflare, and OSS work\\.`,
       ),
     );
     assert.match(archive, /"@type":"BreadcrumbList"/);

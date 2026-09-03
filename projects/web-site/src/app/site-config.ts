@@ -16,8 +16,9 @@ export interface FeaturedProject {
 
 export const SITE = {
   name: 'rdlabo.dev',
-  tagline: 'Open-source tools for Ionic, Angular, and Capacitor.',
-  description: 'Personal open source projects maintained by rdlabo.',
+  tagline: 'Engineering notes and open-source tools for modern application teams.',
+  description:
+    'Engineering notes and maintained open-source tools for Ionic, Angular, Capacitor, and Cloudflare applications.',
   docsUrl: 'https://docs.rdlabo.dev',
   supportUrl: 'https://docs.rdlabo.dev/support',
   sponsorUrl: 'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-home',

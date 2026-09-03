@@ -467,6 +467,13 @@ pagefind-modal-trigger.site-search:empty {
   color: var(--site-ink-muted);
 }
 
+.page-header__note {
+  max-width: 40rem;
+  margin: 0.6rem 0 0;
+  color: var(--site-ink-soft);
+  font-size: 0.9rem;
+}
+
 .section-heading--split {
   display: flex;
   align-items: end;

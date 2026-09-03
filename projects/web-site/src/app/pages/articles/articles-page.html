@@ -5,16 +5,20 @@
         <p class="page-header__eyebrow">Writing</p>
         <h1 class="page-header__title">
           @if (selectedCategory(); as category) {
-            Articles for {{ category.name }}
+            Engineering Notes for {{ category.name }}
           } @else if (selectedYear(); as year) {
-            Articles from {{ year }}
+            Engineering Notes from {{ year }}
           } @else {
-            Articles
+            Engineering Notes
           }
         </h1>
         <p class="page-header__lead">
-          Reviewed English translations of articles originally published in Japanese on Zenn and
-          note.
+          Practical lessons from building and maintaining real-world Ionic, Angular, Capacitor,
+          Cloudflare, and open-source projects.
+        </p>
+        <p class="page-header__note">
+          Some articles are reviewed English editions of work originally published in Japanese on
+          Zenn and note.
         </p>
         @if (selectedCategory()) {
           <p class="article-filter-status">
@@ -68,7 +72,7 @@
         </div>
       } @else {
         <div class="articles-empty articles-empty--page" role="status">
-          <p class="articles-empty__title">No translated articles found.</p>
+          <p class="articles-empty__title">No engineering notes found.</p>
           <p class="articles-empty__body">
             Read the Japanese originals on
             <a class="external-link" [href]="site.zennUrl" target="_blank" rel="noopener noreferrer"

@@ -1,5 +1,12 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DestroyRef,
+  HostListener,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
@@ -35,6 +42,25 @@ export class App {
       .subscribe((event) => this.#sendPageView(event.urlAfterRedirects));
   }
 
+  @HostListener('document:click', ['$event'])
+  protected trackArticleJourney(event: MouseEvent): void {
+    if (!isPlatformBrowser(this.#platformId)) return;
+    const target = event.target;
+    const anchor = target instanceof Element ? target.closest<HTMLAnchorElement>('a[href]') : null;
+    const article = this.#document.defaultView?.location.pathname.match(/^\/articles\/([^/]+)$/);
+    if (!anchor || !article) return;
+
+    const destination = new URL(anchor.href, this.#document.baseURI);
+    const eventName = this.#articleJourneyEvent(destination);
+    if (!eventName) return;
+    const browserWindow = this.#document.defaultView as GoogleAnalyticsWindow | null;
+    browserWindow?.gtag?.('event', eventName, {
+      article_slug: decodeURIComponent(article[1]),
+      link_url: destination.href,
+      link_domain: destination.hostname,
+    });
+  }
+
   #sendPageView(path: string): void {
     if (!isPlatformBrowser(this.#platformId)) return;
     const browserWindow = this.#document.defaultView as GoogleAnalyticsWindow | null;
@@ -45,6 +71,22 @@ export class App {
       page_location: browserWindow.location.href,
       page_path: path,
     });
+  }
+
+  #articleJourneyEvent(destination: URL): string | undefined {
+    if (destination.hostname === 'docs.rdlabo.dev') return 'article_to_docs';
+    if (destination.hostname === 'www.npmjs.com' || destination.hostname === 'npmjs.com') {
+      return 'article_to_npm';
+    }
+    if (destination.hostname === 'github.com') {
+      return destination.pathname.startsWith('/sponsors/')
+        ? 'article_to_sponsor'
+        : 'article_to_github';
+    }
+    if (destination.hostname === 'zenn.dev' || destination.hostname === 'note.com') {
+      return 'article_source_click';
+    }
+    return undefined;
   }
 
   #loadSearchAssets(): void {

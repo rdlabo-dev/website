@@ -21,7 +21,7 @@ export class HomePage {
 
   constructor() {
     this.#seo.setPage({
-      title: 'rdlabo.dev — Open source for Ionic, Angular, and Capacitor',
+      title: 'rdlabo.dev — Engineering notes and open source for application teams',
       description: SITE.description,
       path: '/',
       structuredData: homeStructuredData(SITE.description),

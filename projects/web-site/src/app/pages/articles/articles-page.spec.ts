@@ -57,10 +57,12 @@ describe('ArticlesPage', () => {
     ).toBe(true);
   });
 
-  it('describes both source platforms and displays each article source', () => {
+  it('leads with engineering value while identifying both source platforms', () => {
     const root = fixture.nativeElement as HTMLElement;
 
-    expect(root.querySelector('.page-header__lead')?.textContent).toContain('Zenn and note');
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Engineering Notes');
+    expect(root.querySelector('.page-header__lead')?.textContent).toContain('real-world Ionic');
+    expect(root.querySelector('.page-header__note')?.textContent).toContain('Zenn and note');
     expect(
       Array.from(root.querySelectorAll('.article-preview__source')).some(
         (source) => source.textContent?.trim() === 'From note',
@@ -84,7 +86,7 @@ describe('ArticlesPage', () => {
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
-    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles from 2024');
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Engineering Notes from 2024');
     expect(root.querySelector('.article-years__active')?.textContent?.trim()).toBe('2024');
     expect(
       Array.from(root.querySelectorAll<HTMLTimeElement>('.article-preview__date')).every((date) =>
@@ -106,7 +108,9 @@ describe('ArticlesPage', () => {
     expect(root.querySelector('.article-sidebar__category-link--active')?.textContent?.trim()).toBe(
       'Ionic Theme MD3',
     );
-    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles for Ionic Theme MD3');
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe(
+      'Engineering Notes for Ionic Theme MD3',
+    );
     expect(root.querySelector('.article-filter-status a')?.getAttribute('href')).toBe('/articles');
     expect(root.querySelector('.article-years__active')).toBeNull();
     expect(
@@ -119,7 +123,7 @@ describe('ArticlesPage', () => {
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
-    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles');
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Engineering Notes');
     expect(root.querySelectorAll('a.article-preview')).toHaveLength(12);
     expect(root.querySelector('.article-years__active')?.textContent?.trim()).toBe('Latest');
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
@@ -133,7 +137,9 @@ describe('ArticlesPage', () => {
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
-    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Articles for Ionic Theme MD3');
+    expect(root.querySelector('h1')?.textContent?.trim()).toBe(
+      'Engineering Notes for Ionic Theme MD3',
+    );
     expect(
       Array.from(root.querySelectorAll<HTMLTimeElement>('.article-preview__date')).some(
         (date) => !date.dateTime.startsWith('2024'),

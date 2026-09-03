@@ -93,7 +93,8 @@ test('generates article metadata before documentation through the public docs en
     'npm run articles:generate && npm run docs:generate:content',
   );
   assert.equal(packageJson.scripts['docs:generate:content'], 'tsx scripts/generate-docs.ts');
-  for (const script of ['prestart', 'prestart:ja', 'prebuild:docs', 'pretest']) {
+  for (const script of ['prestart', 'prestart:ja', 'prebuild:docs']) {
     assert.equal(packageJson.scripts[script], 'npm run docs:generate', script);
   }
+  assert.equal(packageJson.scripts.pretest, 'npm run docs:generate && npm run marketing:validate');
 });

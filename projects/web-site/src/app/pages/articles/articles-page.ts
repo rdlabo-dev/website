@@ -64,7 +64,9 @@ export class ArticlesPage {
       const selectedYear = this.selectedYear();
       const selectedCategory = this.selectedCategory();
       const baseTitle =
-        selectedYear && !selectedCategory ? `Articles from ${selectedYear}` : 'Articles';
+        selectedYear && !selectedCategory
+          ? `Engineering Notes from ${selectedYear}`
+          : 'Engineering Notes';
       const title = selectedCategory ? `${baseTitle} for ${selectedCategory.name}` : baseTitle;
       const basePath =
         selectedYear && !selectedCategory ? `/articles/archive/${selectedYear}` : '/articles';
@@ -74,10 +76,10 @@ export class ArticlesPage {
       this.#seo.setPage({
         title: `${title} — rdlabo.dev`,
         description: selectedCategory
-          ? `English translations of rdlabo articles related to ${selectedCategory.name}.`
+          ? `Practical engineering notes from building and maintaining ${selectedCategory.name}.`
           : selectedYear
-            ? `English translations of rdlabo articles published in ${selectedYear} about Ionic, Angular, and Capacitor.`
-            : 'English translations of rdlabo articles about Ionic, Angular, and Capacitor.',
+            ? `Engineering notes published in ${selectedYear} from real-world Ionic, Angular, Capacitor, Cloudflare, and OSS work.`
+            : 'Engineering notes from building and maintaining real-world Ionic, Angular, Capacitor, Cloudflare, and open-source projects.',
         path,
         structuredData: articlesBreadcrumbStructuredData(title, path),
       });

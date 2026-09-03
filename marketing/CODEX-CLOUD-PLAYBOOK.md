@@ -1,110 +1,129 @@
-# Codex Cloud article distribution playbook
+# Weekly OSS improvement playbook
 
-Use this playbook for every article-distribution cycle. Work on one campaign at a time and open a
-reviewable pull request; never publish to an external service from this workflow.
+This file is the recurring workflow for the Devin automation. The filename is retained because the
+automation already references it. The workflow is provider-independent and may also be run locally.
 
-Article prose, translations, and new articles remain a local workflow. Do not edit files under
-`projects/web-site/src/articles/` during a Cloud distribution or measurement cycle.
+The public purpose of rdlabo is to make useful, reliable OSS and documentation available to
+developers. Sponsorship is a private, lagging sustainability metric—not the editorial voice, the
+optimization target, or a reason to reduce public access.
+
+Article prose, translations, and new articles remain a local workflow. Never edit files under
+`projects/web-site/src/articles/` in this cycle. Never publish to an external service.
+
+## Weekly objective
+
+Find one evidence-backed opportunity to make the OSS ecosystem more useful, trustworthy, or easier
+to adopt. Prefer a small change whose effect can be evaluated in the next cycle. Do not create work
+merely to satisfy the schedule.
 
 ## Inputs
 
-1. Read `AGENTS.md` and this file completely.
-2. Read `marketing/distribution-plan.json` and its JSON Schema.
-3. Read the selected English article and its generated catalog entry.
-4. Check the current rules of every planned destination using primary sources immediately before
-   drafting.
-5. Read `marketing/analytics-access.md` and verify that the connected GA4 and Search Console
-   properties match its contract before reading or recording measurements.
+1. Read `AGENTS.md`, this file, and `marketing/analytics-access.md` completely.
+2. Read GA4 for the exact property and ranges defined in the analytics contract.
+3. Inspect the relevant site, documentation, repository, generated catalog, and tests.
+4. Read `marketing/distribution-plan.json` only when evaluating an already active or explicitly
+   approved distribution campaign.
+5. Use primary, current sources for any external platform rule or technical claim.
 
-## Select work
+## Decision order
 
-- Continue an `active` or `scheduled` campaign before starting a new one.
-- Otherwise select the lowest-priority-number `backlog` campaign.
-- A later campaign may reuse an article. Do not merge it into an older campaign.
-- Each actual post is a placement with a unique ID. Add another placement for a follow-up post or a
-  second community; never overwrite a prior publication.
+Evaluate these areas in order:
 
-## Prepare copy
+1. broken builds, links, metadata, tracking, or public routes;
+2. friction from an article or landing page to relevant Docs, GitHub, or npm resources;
+3. setup and adoption friction in project landing pages and documentation;
+4. inconsistencies between the site, Docs, READMEs, releases, and supported versions;
+5. discoverability of existing problem-solving content;
+6. evidence that a previous improvement helped, failed, or needs more time.
 
-For every selected placement, create `marketing/campaigns/{campaign-id}/{placement-id}.md` with:
+Do not rank an idea higher merely because it could increase Sponsor clicks.
 
-- destination and current rule-check date;
-- post title where the channel supports one;
-- final post body;
-- canonical article URL;
-- exact URL to use;
-- CTA and image/alt-text requirements;
-- a Japanese translation for user review;
-- publication and measurement sections left empty.
+## Evidence and baseline
 
-Use channel-specific copy. Hacker News must receive the clean canonical URL, never a UTM URL. DEV
-must declare the clean rdlabo.dev URL as `canonical_url`; links readers click may use UTM values.
-Other tracked links use `utm_source`, `utm_medium`, `utm_campaign`, and a placement-specific
-`utm_content`.
+For each candidate, record:
 
-Use this fixed vocabulary so results remain comparable:
+- the exact GA4 property, timezone, date range, comparison range, filters, and data source;
+- the affected route, project, or user journey;
+- the observed problem and the evidence for it;
+- the proposed change and why it should help users;
+- one primary success metric and any guardrail metric;
+- the earliest date on which the result can be evaluated.
 
-| Channel       | `utm_source`    | `utm_medium`  |
-| ------------- | --------------- | ------------- |
-| X             | `x`             | `social`      |
-| LinkedIn      | `linkedin`      | `social`      |
-| DEV Community | `devto`         | `syndication` |
-| Reddit        | `reddit`        | `community`   |
-| Ionic Discord | `ionic-discord` | `community`   |
-| Ionic Forum   | `ionic-forum`   | `community`   |
+Compare the latest complete 7-day period with the preceding 7 days. Use a complete 28-day view for
+context when available. Do not treat incomplete recent data as a decline. Do not invent unavailable
+values or imply causation from a single correlation.
 
-Always set `utm_campaign` to the campaign `id` and `utm_content` to the placement `id`. Hacker
-News is the sole exception: use the clean canonical URL and no UTM parameters.
+## Choose one outcome
+
+Choose exactly one:
+
+- **Implement:** one small, reversible, evidence-backed improvement;
+- **Observe:** the prior change has not reached its evaluation date;
+- **Report:** there is a meaningful finding but no safe repository change;
+- **No action:** evidence is insufficient or no user-benefiting change is justified.
+
+An empty week is acceptable. Never open an empty or cosmetic pull request to demonstrate activity.
+
+## Implementation boundaries
+
+- Do not edit article source Markdown.
+- Do not add exclusive sponsor-only features or restrict existing public functionality.
+- Do not add sponsorship prompts to issue replies, support responses, install steps, or error states.
+- Do not place a prominent Sponsor CTA above the primary task of a page.
+- Do not repeatedly add or A/B test donation language.
+- Prefer clearer navigation, accurate compatibility information, reproducible examples, accessible
+  UI, faster pages, and better measurement.
+- Keep every change small enough to attribute and revert.
+
+## Sponsorship guardrail
+
+The internal north-star outcome is healthy, retained individual monthly sponsorship, but the weekly
+agent must not optimize directly for it. Public-facing decisions must pass this test:
+
+> Would this still be a good change for users if it produced no new sponsors?
+
+If the answer is no, do not implement it.
+
+Sponsorship may be observed monthly through active individual sponsors, new sponsors, cancellations,
+net change, and retention when those values are legitimately available. Sponsor-link clicks are a
+diagnostic signal only. Never identify or profile individual sponsors, infer motives, or manufacture
+attribution that the data cannot support.
+
+Keep sponsorship availability quiet and optional: GitHub's standard Sponsor surface, the existing
+home-page section, and a short contextual note at the end of an appropriate maintenance report are
+sufficient. Individual sponsorship must not promise priority support, an SLA, or exclusive access.
 
 ## Review cycle
 
-1. Run an editorial/manager review for accuracy, claims, tone, and repository policy.
-2. Run a marketing review for audience fit, channel rules, hook, CTA, and tracking.
+For an implementation:
+
+1. Run a manager review for user value, accuracy, scope, and repository policy.
+2. Run a marketing review for audience fit, trust, tone, measurement quality, and over-promotion.
 3. Fix every blocking issue and repeat both reviews until both approve.
-4. Only then set the placement to `drafted` and add its `copyPath`.
-5. Set the campaign to `copy-ready` only when every non-skipped placement has approved copy.
+4. Run `npm run fmt:check`, `npm run lint`, relevant tests, and required generated-output checks.
+5. Create a work branch and a reviewable pull request only when files changed.
 
-## State contract
+The pull request must state the evidence, hypothesis, primary metric, guardrail, evaluation date,
+review approvals, and limitations. It must not claim causation before the evaluation window closes.
 
-- `backlog`: placements may still be `planned`.
-- `copy-ready`: every non-skipped placement is at least `drafted` and has an existing `copyPath`.
-- `scheduled`: every non-skipped placement is `scheduled` or `published`; scheduled placements
-  have `scheduledAt` with a timezone.
-- `active`: at least one placement is `published` with its public HTTPS URL and `publishedAt`.
-- `complete`: every placement is either `skipped` with a reason or `published` with a `30d` result.
+## Distribution is opt-in
 
-## Approval and publication
+Do not start a backlog campaign automatically. Distribution work is allowed only when the user has
+explicitly selected an article or campaign for promotion. When authorized, follow
+`distribution-plan.schema.json`, create one artifact per placement, run both review cycles, and run
+`npm run marketing:validate`.
 
-The pull request delivers proposed copy; it does not authorize publication. Ask the user to approve
-the exact placement. After the user publishes it—or explicitly authorizes a connected service to do
-so—record the immutable public URL and timestamp without rewriting the approved copy.
+A merged copy artifact never authorizes publication. The user publishes manually unless they grant
+separate approval for the exact copy, destination, and account. Hacker News, Reddit, Discord, and
+forums remain personal, human-led community participation rather than automated brand posting.
 
-## Measurement
+## Weekly report
 
-Record snapshots at 24 hours, 7 days, and 30 days after `publishedAt`. Values are cumulative from
-publication time through the named window, not incremental between windows. Each result records:
+Every run reports:
 
-- `measuredAt` with timezone;
-- `source`, such as GA4 plus the destination's native analytics;
-- article visitors;
-- Docs, GitHub, npm, and Sponsor clicks;
-- backlinks;
-- official or maintainer mentions.
-
-Do not invent unavailable values. If a metric cannot be obtained, explain that in the placement
-artifact and leave the campaign active rather than entering an estimate.
-
-Run a weekly measurement-only cycle even when no new campaign is drafted. Read GA4 and Search
-Console, update due snapshots and the monthly summary, then open a pull request only when tracked
-records change or an actionable finding exists. If either connection is unavailable, report the
-missing connection without substituting estimates.
-
-## Pull-request completion
-
-- Confirm every referenced article slug exists in the generated article catalog.
-- Confirm priorities and campaign IDs are unique; article slugs may repeat across campaigns.
-- Confirm placement IDs are unique only within their campaign; channels may repeat.
-- Run `npm run marketing:validate`; it enforces the state contract, IDs, article references, copy
-  paths, and completion evidence.
-- Run `npm run fmt:check`, `npm run lint`, and the relevant tests.
-- Summarize the two review approvals and identify every action that still needs user approval.
+- complete measurement ranges and data availability;
+- the single selected outcome and its evidence;
+- what changed, or why no change was justified;
+- the next evaluation date;
+- blockers such as missing GA4 or Search Console access;
+- any action that still requires explicit user approval.

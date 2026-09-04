@@ -84,7 +84,7 @@
     "@rdlabo/ionic-theme-ios26": "9.1.0",
     "@rdlabo/ionic-theme-md3": "9.1.0",
     "@rdlabo/ngx-cdk-scroll-strategies": "22.0.0",
-    "@rdlabo/workers-hono-kit": "0.10.6",
+    "@rdlabo/workers-hono-kit": "0.11.1",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/express": "^5.0.1",
     "@types/jsdom": "^27.0.0",

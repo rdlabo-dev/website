@@ -26,6 +26,19 @@ export const ARTICLE_SUMMARIES = [
     "publishedDate": "2026-09-04"
   },
   {
+    "slug": "cloudflare-workers-ai-model-benchmark",
+    "title": "I Was Ready to Move Everything to OSS Models on Cloudflare Workers AI—Then the Benchmarks Said No",
+    "description": "A production-shaped benchmark of seven OSS models on Workers AI against GPT-5.2, Gemini 3.5 Flash-Lite, and Claude Haiku 4.5 for schema compliance, latency, accuracy, and cost.",
+    "image": "https://rdlabo.dev/article-images/cloudflare-workers-ai-model-benchmark.svg",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "emoji": "⏱️",
+    "sourceName": "Zenn",
+    "originalUrl": "https://zenn.dev/rdlabo/articles/cloudflare-workers-ai-model-benchmark",
+    "publishedAt": "2026-09-02T11:59:56.000Z",
+    "publishedDate": "2026-09-02"
+  },
+  {
     "slug": "playwright-visual-regression-ci-baseline",
     "title": "Visual Regression Testing for OSS: Mac-Independent Baselines Updated Only in CI",
     "description": "How an Ionic theme project uses Playwright in a fixed Linux container, maintainer-authorized screenshot updates, and separate read/write jobs to keep visual baselines reproducible and reviewable.",

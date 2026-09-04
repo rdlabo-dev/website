@@ -12,15 +12,20 @@
     <meta name="theme-color" content="#fffaf7" />
     <link rel="icon" type="image/svg+xml" href="/assets/brand/rdlabo-logo.svg" />
     <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXVGMHNGJG"></script>
+    <!-- Google tag (gtag.js): loaded only on production hosts -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
-      gtag('config', 'G-EXVGMHNGJG', { send_page_view: false });
+      if (/(^|\.)rdlabo\.dev$/.test(window.location.hostname)) {
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-EXVGMHNGJG';
+        document.head.appendChild(gtagScript);
+        gtag('js', new Date());
+        gtag('config', 'G-EXVGMHNGJG', { send_page_view: false });
+      }
     </script>
   </head>
   <body>

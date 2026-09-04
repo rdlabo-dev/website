@@ -27,6 +27,10 @@ one-time setup.
 
 ## GA4 events
 
+Both apps load `gtag.js` only when the page hostname is `rdlabo.dev` or one of its subdomains.
+Local development (`localhost`, `127.0.0.1`) and preview hosts define the `gtag` stub but never
+load the tag, so their page views and clicks do not reach the property.
+
 The site emits these events from article pages:
 
 | Event                  | Meaning                                               |

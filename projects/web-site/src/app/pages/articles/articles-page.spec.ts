@@ -102,6 +102,7 @@ describe('ArticlesPage', () => {
     const root = fixture.nativeElement as HTMLElement;
     const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('a.article-preview'));
     expect(cards.map((card) => card.getAttribute('href'))).toEqual([
+      '/articles/ionic-theme-reusable-css-v9-1',
       '/articles/ionic-themes-ionic9-major-update',
       '/articles/ionic-theme-md3',
     ]);

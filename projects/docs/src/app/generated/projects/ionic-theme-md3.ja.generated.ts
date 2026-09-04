@@ -32,6 +32,13 @@ export const PROJECT = {
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
+      "slug": "ionic-theme-reusable-css-v9-1",
+      "title": "Making Ionic Themes Easier to Override: Rethinking !important and Shadow Parts in v9.1.0",
+      "description": "How v9.1.0 of the iOS 26 and Material Design 3 themes makes Ionic styles easier to override by reducing !important, preferring public CSS custom properties, and fixing grouped Inset Lists.",
+      "publishedDate": "2026-09-04",
+      "url": "https://rdlabo.dev/articles/ionic-theme-reusable-css-v9-1"
+    },
+    {
       "slug": "ionic-themes-ionic9-major-update",
       "title": "Bringing iOS 26 and Material Design 3 to Ionic: Both Themes Reach v9",
       "description": "The iOS 26 and Material Design 3 themes for Ionic now align with Ionic 9, adding two-line list items, supporting-text layouts, iOS outline fields, visual regression testing, and a smoother migration path.",

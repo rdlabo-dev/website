@@ -77,6 +77,9 @@ describe('LandingPageComponent', () => {
       'https://rdlabo.dev/articles/ionic-theme-md3',
     );
     expect(links.map((link) => link.href)).toContain(
+      'https://rdlabo.dev/articles/ionic-theme-reusable-css-v9-1',
+    );
+    expect(links.map((link) => link.href)).toContain(
       'https://rdlabo.dev/articles/ionic-themes-ionic9-major-update',
     );
     expect(compiled.textContent).toContain('Related articles');
@@ -92,14 +95,19 @@ describe('LandingPageComponent', () => {
       ),
     ).toBe(true);
     const dates = Array.from(compiled.querySelectorAll<HTMLTimeElement>('time'));
-    expect(dates.map((date) => date.dateTime)).toEqual(['2026-08-25', '2026-08-24']);
+    expect(dates.map((date) => date.dateTime)).toEqual([
+      '2026-09-04',
+      '2026-08-25',
+      '2026-08-24',
+    ]);
     expect(dates.map((date) => date.textContent?.trim())).toEqual([
+      'September 4, 2026',
       'August 25, 2026',
       'August 24, 2026',
     ]);
     expect(compiled.querySelectorAll('.project-feature')).toHaveLength(3);
     expect(compiled.querySelectorAll('.project-feature a')).toHaveLength(0);
-    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(2);
+    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(3);
   });
 
   it('labels related English articles on the Japanese landing page', async () => {
@@ -119,7 +127,7 @@ describe('LandingPageComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.textContent).toContain('Related articles');
-    expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(2);
+    expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(3);
     expect(
       Array.from(compiled.querySelectorAll('.related-article-lang')).every(
         (badge) => badge.textContent?.trim() === 'English',

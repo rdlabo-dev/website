@@ -82,7 +82,7 @@ describe('App', () => {
     const projectButtons = compiled.querySelectorAll<HTMLButtonElement>(
       'nav[aria-label="Primary navigation"] button[id^="project-button-"]',
     );
-    expect(projectButtons).toHaveLength(19);
+    expect(projectButtons).toHaveLength(22);
     for (const button of Array.from(projectButtons)) {
       expect(button.getAttribute('aria-expanded')).toBe('false');
       expect(button.getAttribute('aria-controls')).toMatch(/^project-panel-/);
@@ -99,7 +99,7 @@ describe('App', () => {
     );
     expect(projectOverviewLinks.length).toBeGreaterThanOrEqual(19);
     const panels = compiled.querySelectorAll<HTMLElement>('[id^="project-panel-"]');
-    expect(panels).toHaveLength(19);
+    expect(panels).toHaveLength(22);
     for (const panel of Array.from(panels)) {
       expect(panel.hasAttribute('inert')).toBe(true);
       expect(panel.getAttribute('aria-hidden')).toBe('true');

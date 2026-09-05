@@ -6,6 +6,8 @@ import {
   DOCS_PORTAL_REPOSITORY_URL,
   DOCS_PORTAL_REF,
   canonicalizePortalSource,
+  fetchEnglishProjectMarkdown,
+  fetchEnglishProjectReadme,
   pinPackageSourceLinks,
   parseRepositoryUrl,
   repositoryRawUrl,
@@ -33,6 +35,31 @@ test('pins English docs to the installed package tag unless an immutable ref is 
       }),
     /must be immutable/,
   );
+});
+
+test('resolves Workers workspace guides and README within the selected package', async (t) => {
+  const requests: string[] = [];
+  t.mock.method(globalThis, 'fetch', async (input: string) => {
+    requests.push(String(input));
+    if (String(input).endsWith('/docs/readme.md')) return new Response('', { status: 404 });
+    return new Response('# Package documentation');
+  });
+  for (const [name, directory] of [
+    ['workers-timezone', 'timezone'],
+    ['workers-mysql', 'mysql'],
+  ]) {
+    const project = {
+      repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+      englishDocsRef: '0123456789abcdef0123456789abcdef01234567',
+      packageName: `@rdlabo/${name}`,
+      sourceDirectory: name,
+    };
+    const guide = await fetchEnglishProjectMarkdown(project, 'api.md');
+    assert.equal(guide.repositoryPath, `packages/${directory}/docs/api.md`);
+    const readme = await fetchEnglishProjectReadme(project);
+    assert.equal(readme?.repositoryPath, `packages/${directory}/README.md`);
+  }
+  assert.ok(requests.every((url) => /\/packages\/(timezone|mysql)\//.test(url)));
 });
 
 test('parses GitHub repository URLs', () => {

@@ -73,6 +73,22 @@ async function englishGuideSource(
   return normalizePackageMarkdown(stripLeadingH1(stripRdlaboDocsOmit(content)));
 }
 
+test('new Local LLM and Workers guides keep Japanese code identical to pinned package sources', async () => {
+  for (const id of ['capacitor-local-llm', 'workers-timezone', 'workers-mysql']) {
+    const project = projectDefinitions.find((entry) => entry.id === id);
+    assert.ok(project, `${id} must be registered`);
+    for (const page of project.pages) {
+      const english = await englishGuideSource(project, page.file);
+      const japanese = await readFile(join('projects/docs/src', id, 'docs/ja', page.file), 'utf8');
+      assert.ok(yamlTitle(japanese));
+      assert.deepEqual(fencedCodeBlocks(japanese), fencedCodeBlocks(english), `${id}/${page.file}`);
+      await assert.rejects(access(join('projects/docs/src', id, 'docs', page.file)), {
+        code: 'ENOENT',
+      });
+    }
+  }
+});
+
 test('pins every documentation source to the installed package version', async () => {
   const packageJson = JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),
@@ -1372,12 +1388,12 @@ test('locks production anyScript budgets after catalog growth', async () => {
     'docs'
   ].architect.build.configurations.production.budgets.find((budget) => budget.type === 'anyScript');
   assert.ok(anyScript);
-  assert.equal(anyScript.maximumWarning, '425kB');
-  assert.equal(anyScript.maximumError, '450kB');
+  assert.equal(anyScript.maximumWarning, '460kB');
+  assert.equal(anyScript.maximumError, '485kB');
 
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  assert.match(readme, /anyScript.*425kB/s);
-  assert.match(readme, /450kB/);
+  assert.match(readme, /anyScript.*460kB/s);
+  assert.match(readme, /485kB/);
 });
 
 const packageEnglishOnlyProjects = new Set([

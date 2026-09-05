@@ -46,6 +46,7 @@ describe('PluginIndexComponent', () => {
       'Stripe Terminal',
       'AdMob',
       'Facebook Login',
+      'Local LLM',
       'Code Scanner',
       'Screenshot Event',
       'Printer',
@@ -57,18 +58,20 @@ describe('PluginIndexComponent', () => {
       'Ionic Theme iOS26',
       'Ionic Theme MD3',
       'Ionic Angular Collect Icons',
+      'Workers Timezone',
+      'Workers MySQL',
       'Workers Hono Kit',
       'ESLint Plugin Rules',
       'Docgen',
     ]);
-    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(21);
+    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(24);
   });
 
   it('keeps Japanese catalog metadata and lazy documentation in parity', async () => {
     const japaneseProjects = projectsForLocale('ja');
     const englishProjects = projectsForLocale('en');
     expect(japaneseProjects).toHaveLength(projectCatalog.length);
-    expect(projectCatalog).toHaveLength(21);
+    expect(projectCatalog).toHaveLength(24);
     expect(englishProjects.find((project) => project.id === 'ionic-docs')).toEqual(
       expect.objectContaining({
         category: 'translations',
@@ -158,7 +161,7 @@ describe('PluginIndexComponent', () => {
     expect(restrictTryBlock?.html).toContain('allowPromise');
     expect(restrictTryBlock?.html).toMatch(/誤り|Incorrect/i);
     const hono = await loadProject('workers-hono-kit', 'ja');
-    expect(hono?.version).toBe('0.10.6');
+    expect(hono?.version).toBe('0.11.1');
     expect(hono?.pages.find((page) => page.slug === 'data-layer')?.html).toContain(
       'primaryHyperdrive',
     );
@@ -232,6 +235,6 @@ describe('PluginIndexComponent', () => {
         ?.projects.map((project) => project.id)
         .slice()
         .sort(),
-    ).toEqual(['capacitor-docgen', 'eslint-plugin-rules', 'workers-hono-kit'].sort());
+    ).toEqual(['capacitor-docgen', 'eslint-plugin-rules', 'workers-hono-kit', 'workers-mysql', 'workers-timezone'].sort());
   });
 });

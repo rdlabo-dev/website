@@ -88,8 +88,8 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
     id: 'capacitor-plugins',
     label: text('Capacitor plugins', 'Capacitorプラグイン'),
     description: text(
-      'Native payments, identity verification, social login, in-person payments, mobile ads, scanning, screenshot events, and printing for Capacitor applications.',
-      'Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷を提供します。',
+      'Native payments, identity verification, social login, in-person payments, mobile ads, scanning, screenshot events, printing, and on-device AI for Capacitor applications.',
+      'Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷、オンデバイスAIを提供します。',
     ),
     order: 10,
   },
@@ -864,6 +864,118 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
   },
   {
+    id: 'workers-timezone',
+    slug: 'workers-timezone',
+    sourceDirectory: 'workers-timezone',
+    name: 'rdlabo Workers Timezone',
+    shortName: 'Workers Timezone',
+    packageName: '@rdlabo/workers-timezone',
+    repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    englishDocsRef: '1fc2f78532b44d94ba230823662d01d86fc98e7f',
+    category: 'developer-tools',
+    icon: 'server',
+    adapter: 'markdown',
+    description: text(
+      'IANA timezone and calendar utilities for Cloudflare Workers.',
+      'Cloudflare Workers向けのIANAタイムゾーン・カレンダーユーティリティ。',
+    ),
+    headline: text(
+      'Convert instants and local calendar dates',
+      '時刻とローカルのカレンダー日付を変換する',
+    ),
+    overview: text(
+      'Choose an application timezone or pass per-call overrides, with explicit daylight-saving behavior and no Hono or database dependency.',
+      'アプリのタイムゾーン設定と呼び出しごとの指定に対応します。夏時間の扱いを明確にし、Honoやデータベースには依存しません。',
+    ),
+    featuresHeading: text('Calendar building blocks', 'カレンダー処理の基本機能'),
+    features: [
+      {
+        title: text('IANA timezones', 'IANAタイムゾーン'),
+        description: text(
+          'Convert between UTC instants and timezone-local wall clocks.',
+          'UTCの時刻とタイムゾーンごとのローカル時刻を相互変換します。',
+        ),
+      },
+      {
+        title: text('Calendar boundaries', '日付の境界'),
+        description: text(
+          'Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic.',
+          '夏時間の重複・欠落とカレンダー日付の加算を扱います。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page(
+        'Timezones and calendar dates',
+        'タイムゾーンと日付',
+        'timezones',
+        'timezones.md',
+        'Guides',
+        'ガイド',
+      ),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+    ],
+  },
+  {
+    id: 'workers-mysql',
+    slug: 'workers-mysql',
+    sourceDirectory: 'workers-mysql',
+    name: 'rdlabo Workers MySQL',
+    shortName: 'Workers MySQL',
+    packageName: '@rdlabo/workers-mysql',
+    repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    englishDocsRef: '1fc2f78532b44d94ba230823662d01d86fc98e7f',
+    category: 'developer-tools',
+    icon: 'server',
+    adapter: 'markdown',
+    description: text(
+      'MySQL and Hyperdrive infrastructure for Cloudflare Workers.',
+      'Cloudflare Workers向けのMySQL・Hyperdrive基盤。',
+    ),
+    headline: text(
+      'Separate database runtime from application policy',
+      'データベース基盤とアプリの方針を分離する',
+    ),
+    overview: text(
+      'Compose primary/replica access, deadlock retries, optional Drizzle adapters, and Node.js migration/testing tools without a Hono dependency.',
+      'primary/replica接続、デッドロック再試行、任意のDrizzle連携、Node.jsの移行・テストツールをHonoへの依存なしで構成します。',
+    ),
+    featuresHeading: text('Database building blocks', 'データベースの基本機能'),
+    features: [
+      {
+        title: text('Hyperdrive runtime', 'Hyperdriveランタイム'),
+        description: text(
+          'Use invocation-scoped connections and explicit primary/replica read paths.',
+          '呼び出し単位の接続と明示的なprimary/replicaの読み取り経路を利用します。',
+        ),
+      },
+      {
+        title: text('Optional Drizzle integration', '任意のDrizzle連携'),
+        description: text(
+          'Keep schemas in the application and share one Drizzle type identity.',
+          'スキーマをアプリで管理し、Drizzleの型を同じ依存から共有します。',
+        ),
+      },
+      {
+        title: text('Tooling boundaries', 'ツールの境界'),
+        description: text(
+          'Keep migration and destructive test helpers separate from Worker bundles.',
+          '移行処理や破壊的テストヘルパーをWorkerのバンドルから分離します。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Runtime', 'ランタイム', 'runtime', 'runtime.md', 'Guides', 'ガイド'),
+      page('Drizzle and dates', 'Drizzleと日付', 'drizzle', 'drizzle.md', 'Guides', 'ガイド'),
+      page('Migrations and testing', '移行とテスト', 'tooling', 'tooling.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+    ],
+  },
+  {
     id: 'workers-hono-kit',
     slug: 'workers-hono-kit',
     sourceDirectory: 'workers-hono-kit',
@@ -1582,6 +1694,68 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       page('Configuration', '設定', 'configuration', 'configuration.md', 'Guides', 'ガイド'),
       page('Authentication', '認証', 'authentication', 'authentication.md', 'Guides', 'ガイド'),
       page('App Events', 'App Events', 'app-events', 'app-events.md', 'Guides', 'ガイド'),
+    ],
+  },
+  {
+    id: 'capacitor-local-llm',
+    slug: 'capacitor-local-llm',
+    sourceDirectory: 'capacitor-local-llm',
+    name: 'rdlabo Capacitor Local LLM',
+    shortName: 'Local LLM',
+    packageName: '@rdlabo/capacitor-local-llm',
+    repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-local-llm',
+    category: 'capacitor-plugins',
+    icon: 'app',
+    description: text(
+      'On-device text generation and image features for Capacitor iOS and Android apps.',
+      'CapacitorのiOS・Androidアプリ向けオンデバイステキスト生成・画像機能。',
+    ),
+    headline: text('Run AI on the device', 'デバイス上でAIを実行する'),
+    overview: text(
+      'Use native chat, streaming, cancellation, and availability checks. Image capabilities depend on the OS, build toolchain, and selected backend. Independently maintained fork of Ionic Local LLM.',
+      'ネイティブのチャット、ストリーミング、キャンセル、利用可否確認を提供します。画像機能はOS・ビルド環境・バックエンドに依存します。Ionic Local LLMの独立管理フォークです。',
+    ),
+    featuresHeading: text('Native AI features', 'ネイティブAI機能'),
+    features: [
+      {
+        title: text('Chat lifecycle', 'チャットのライフサイクル'),
+        description: text(
+          'Create chats, stream responses, observe generation state, and cancel work.',
+          'チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。',
+        ),
+      },
+      {
+        title: text('Availability first', '利用可否を先に確認'),
+        description: text(
+          'Check text and image capabilities separately before generation.',
+          '生成前にテキストと画像それぞれの利用可否を確認します。',
+        ),
+      },
+      {
+        title: text('Explicit Android fallback', '明示的なAndroidフォールバック'),
+        description: text(
+          'Configure an app-managed LiteRT-LM model when needed; validate on physical devices.',
+          '必要に応じてアプリ管理のLiteRT-LMモデルを設定します。実機検証が必要です。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Setup', 'セットアップ', 'setup', 'setup.md', 'Guides', 'ガイド'),
+      page('Availability', '利用可否', 'availability', 'availability.md', 'Guides', 'ガイド'),
+      page('Chat', 'チャット', 'chat', 'chat.md', 'Guides', 'ガイド'),
+      page('Images', '画像', 'images', 'images.md', 'Guides', 'ガイド'),
+      page(
+        'Android fallback model',
+        'Androidフォールバックモデル',
+        'android-fallback',
+        'android-fallback.md',
+        'Guides',
+        'ガイド',
+      ),
+      page('Events', 'イベント', 'events', 'events.md', 'Guides', 'ガイド'),
+      page('Error Handling', 'エラー処理', 'errors', 'errors.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
     ],
   },
   {

@@ -23,6 +23,7 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | Capacitor Community AdMob | `projects/docs/src/admob/docs` |
 | Capacitor Community Facebook Login | `projects/docs/src/facebook-login/docs` |
 | rdlabo Capacitor Code Scanner | `projects/docs/src/capacitor-codescanner/docs` |
+| rdlabo Capacitor Local LLM | `projects/docs/src/capacitor-local-llm/docs` |
 | rdlabo Capacitor Screenshot Event | `projects/docs/src/capacitor-screenshot-event/docs` |
 | rdlabo Capacitor Printer | `projects/docs/src/capacitor-printer/docs` |
 | rdlabo Capacitor Brother Print | `projects/docs/src/capacitor-brotherprint/docs` |
@@ -34,6 +35,8 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | rdlabo Ionic Theme Material Design 3 | `projects/docs/src/ionic-theme-md3/docs` |
 | rdlabo Ionic Angular Collect Icons | `projects/docs/src/ionic-angular-collect-icons/docs` |
 | rdlabo Workers Hono Kit | `projects/docs/src/workers-hono-kit/docs` |
+| rdlabo Workers Timezone | `projects/docs/src/workers-timezone/docs` |
+| rdlabo Workers MySQL | `projects/docs/src/workers-mysql/docs` |
 | rdlabo ESLint Plugin Rules | `projects/docs/src/eslint-plugin-rules/docs` |
 | rdlabo Capacitor Docgen | `projects/docs/src/capacitor-docgen/docs` |
 
@@ -131,10 +134,10 @@ Documentation-source packages are inspected at generation time and are never imp
 bundle. `.npmrc` enables legacy peer resolution because those packages may document a different
 Angular major than the portal itself; every source version remains exact in `package-lock.json`.
 
-Production `anyScript` budgets in `angular.json` warn at 425kB and fail at 450kB. The warning
-baseline covers the shared bilingual catalog and GitHub Star UI for 19 projects (the current
-production main is about 419.1kB); documentation bodies remain lazy-loaded, so the hard error stays
-at 450kB.
+Production `anyScript` budgets in `angular.json` warn at 460kB and fail at 485kB. The warning
+baseline covers the shared bilingual catalog and GitHub Star UI for 24 projects (the current
+production main is about 460.3kB); documentation bodies remain lazy-loaded, so the hard error stays
+at 485kB.
 
 ## Top site (`projects/web-site`)
 

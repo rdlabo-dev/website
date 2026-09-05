@@ -9,7 +9,7 @@ export const PROJECT_CATEGORIES_EN = [
   {
     "id": "capacitor-plugins",
     "label": "Capacitor plugins",
-    "description": "Native payments, identity verification, social login, in-person payments, mobile ads, scanning, screenshot events, and printing for Capacitor applications.",
+    "description": "Native payments, identity verification, social login, in-person payments, mobile ads, scanning, screenshot events, printing, and on-device AI for Capacitor applications.",
     "order": 10
   },
   {
@@ -36,7 +36,7 @@ export const PROJECT_CATEGORIES_JA = [
   {
     "id": "capacitor-plugins",
     "label": "Capacitorプラグイン",
-    "description": "Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷を提供します。",
+    "description": "Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷、オンデバイスAIを提供します。",
     "order": 10
   },
   {
@@ -691,6 +691,136 @@ export const PROJECTS_EN = [
     ]
   },
   {
+    "id": "workers-timezone",
+    "slug": "workers-timezone",
+    "name": "rdlabo Workers Timezone",
+    "shortName": "Workers Timezone",
+    "packageName": "@rdlabo/workers-timezone",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.1.0",
+    "description": "IANA timezone and calendar utilities for Cloudflare Workers.",
+    "headline": "Convert instants and local calendar dates",
+    "overview": "Choose an application timezone or pass per-call overrides, with explicit daylight-saving behavior and no Hono or database dependency.",
+    "featuresHeading": "Calendar building blocks",
+    "features": [
+      {
+        "title": "IANA timezones",
+        "description": "Convert between UTC instants and timezone-local wall clocks."
+      },
+      {
+        "title": "Calendar boundaries",
+        "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
+      }
+    ],
+    "path": "/projects/workers-timezone",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Quickstart",
+        "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "Timezones and calendar dates",
+        "navTitle": "Timezones and calendar dates",
+        "slug": "timezones",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/timezones"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Reference",
+        "path": "/projects/workers-timezone/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-mysql",
+    "slug": "workers-mysql",
+    "name": "rdlabo Workers MySQL",
+    "shortName": "Workers MySQL",
+    "packageName": "@rdlabo/workers-mysql",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.1.0",
+    "description": "MySQL and Hyperdrive infrastructure for Cloudflare Workers.",
+    "headline": "Separate database runtime from application policy",
+    "overview": "Compose primary/replica access, deadlock retries, optional Drizzle adapters, and Node.js migration/testing tools without a Hono dependency.",
+    "featuresHeading": "Database building blocks",
+    "features": [
+      {
+        "title": "Hyperdrive runtime",
+        "description": "Use invocation-scoped connections and explicit primary/replica read paths."
+      },
+      {
+        "title": "Optional Drizzle integration",
+        "description": "Keep schemas in the application and share one Drizzle type identity."
+      },
+      {
+        "title": "Tooling boundaries",
+        "description": "Keep migration and destructive test helpers separate from Worker bundles."
+      }
+    ],
+    "path": "/projects/workers-mysql",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Quickstart",
+        "path": "/projects/workers-mysql/docs/readme"
+      },
+      {
+        "title": "Runtime",
+        "navTitle": "Runtime",
+        "slug": "runtime",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/runtime"
+      },
+      {
+        "title": "Drizzle and dates",
+        "navTitle": "Drizzle and dates",
+        "slug": "drizzle",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/drizzle"
+      },
+      {
+        "title": "Migrations and testing",
+        "navTitle": "Migrations and testing",
+        "slug": "tooling",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/tooling"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Reference",
+        "path": "/projects/workers-mysql/docs/api"
+      }
+    ]
+  },
+  {
     "id": "workers-hono-kit",
     "slug": "workers-hono-kit",
     "name": "rdlabo Workers Hono Kit",
@@ -699,7 +829,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.10.6",
+    "version": "0.11.1",
     "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
     "headline": "Build consistent Hono APIs on Cloudflare Workers",
     "overview": "Compose validation, authentication, errors, observability, data access, queues, realtime connections, offline replicas, and test infrastructure from focused entry points.",
@@ -1452,6 +1582,108 @@ export const PROJECTS_EN = [
         "slug": "api",
         "section": "Reference",
         "path": "/projects/capacitor-facebook-login/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-local-llm",
+    "slug": "capacitor-local-llm",
+    "name": "rdlabo Capacitor Local LLM",
+    "shortName": "Local LLM",
+    "packageName": "@rdlabo/capacitor-local-llm",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.1.0",
+    "description": "On-device text generation and image features for Capacitor iOS and Android apps.",
+    "headline": "Run AI on the device",
+    "overview": "Use native chat, streaming, cancellation, and availability checks. Image capabilities depend on the OS, build toolchain, and selected backend. Independently maintained fork of Ionic Local LLM.",
+    "featuresHeading": "Native AI features",
+    "features": [
+      {
+        "title": "Chat lifecycle",
+        "description": "Create chats, stream responses, observe generation state, and cancel work."
+      },
+      {
+        "title": "Availability first",
+        "description": "Check text and image capabilities separately before generation."
+      },
+      {
+        "title": "Explicit Android fallback",
+        "description": "Configure an app-managed LiteRT-LM model when needed; validate on physical devices."
+      }
+    ],
+    "path": "/projects/capacitor-local-llm",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Quickstart",
+        "path": "/projects/capacitor-local-llm/docs/readme"
+      },
+      {
+        "title": "Setup",
+        "navTitle": "Setup",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "Availability",
+        "navTitle": "Availability",
+        "slug": "availability",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/availability"
+      },
+      {
+        "title": "Chat",
+        "navTitle": "Chat",
+        "slug": "chat",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/chat"
+      },
+      {
+        "title": "Images",
+        "navTitle": "Images",
+        "slug": "images",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/images"
+      },
+      {
+        "title": "Android fallback model",
+        "navTitle": "Android fallback model",
+        "slug": "android-fallback",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/android-fallback"
+      },
+      {
+        "title": "Events",
+        "navTitle": "Events",
+        "slug": "events",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/events"
+      },
+      {
+        "title": "Error Handling",
+        "navTitle": "Error Handling",
+        "slug": "errors",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/errors"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Reference",
+        "path": "/projects/capacitor-local-llm/docs/api"
       }
     ]
   },
@@ -2335,6 +2567,136 @@ export const PROJECTS_JA = [
     ]
   },
   {
+    "id": "workers-timezone",
+    "slug": "workers-timezone",
+    "name": "rdlabo Workers Timezone",
+    "shortName": "Workers Timezone",
+    "packageName": "@rdlabo/workers-timezone",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.1.0",
+    "description": "Cloudflare Workers向けのIANAタイムゾーン・カレンダーユーティリティ。",
+    "headline": "時刻とローカルのカレンダー日付を変換する",
+    "overview": "アプリのタイムゾーン設定と呼び出しごとの指定に対応します。夏時間の扱いを明確にし、Honoやデータベースには依存しません。",
+    "featuresHeading": "カレンダー処理の基本機能",
+    "features": [
+      {
+        "title": "IANAタイムゾーン",
+        "description": "UTCの時刻とタイムゾーンごとのローカル時刻を相互変換します。"
+      },
+      {
+        "title": "日付の境界",
+        "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
+      }
+    ],
+    "path": "/projects/workers-timezone",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "クイックスタート",
+        "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "タイムゾーンと日付",
+        "navTitle": "タイムゾーンと日付",
+        "slug": "timezones",
+        "section": "ガイド",
+        "path": "/projects/workers-timezone/docs/timezones"
+      },
+      {
+        "title": "移行",
+        "navTitle": "移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/workers-timezone/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "リファレンス",
+        "path": "/projects/workers-timezone/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-mysql",
+    "slug": "workers-mysql",
+    "name": "rdlabo Workers MySQL",
+    "shortName": "Workers MySQL",
+    "packageName": "@rdlabo/workers-mysql",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.1.0",
+    "description": "Cloudflare Workers向けのMySQL・Hyperdrive基盤。",
+    "headline": "データベース基盤とアプリの方針を分離する",
+    "overview": "primary/replica接続、デッドロック再試行、任意のDrizzle連携、Node.jsの移行・テストツールをHonoへの依存なしで構成します。",
+    "featuresHeading": "データベースの基本機能",
+    "features": [
+      {
+        "title": "Hyperdriveランタイム",
+        "description": "呼び出し単位の接続と明示的なprimary/replicaの読み取り経路を利用します。"
+      },
+      {
+        "title": "任意のDrizzle連携",
+        "description": "スキーマをアプリで管理し、Drizzleの型を同じ依存から共有します。"
+      },
+      {
+        "title": "ツールの境界",
+        "description": "移行処理や破壊的テストヘルパーをWorkerのバンドルから分離します。"
+      }
+    ],
+    "path": "/projects/workers-mysql",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "クイックスタート",
+        "path": "/projects/workers-mysql/docs/readme"
+      },
+      {
+        "title": "ランタイム",
+        "navTitle": "ランタイム",
+        "slug": "runtime",
+        "section": "ガイド",
+        "path": "/projects/workers-mysql/docs/runtime"
+      },
+      {
+        "title": "Drizzleと日付",
+        "navTitle": "Drizzleと日付",
+        "slug": "drizzle",
+        "section": "ガイド",
+        "path": "/projects/workers-mysql/docs/drizzle"
+      },
+      {
+        "title": "移行とテスト",
+        "navTitle": "移行とテスト",
+        "slug": "tooling",
+        "section": "ガイド",
+        "path": "/projects/workers-mysql/docs/tooling"
+      },
+      {
+        "title": "移行",
+        "navTitle": "移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/workers-mysql/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "リファレンス",
+        "path": "/projects/workers-mysql/docs/api"
+      }
+    ]
+  },
+  {
     "id": "workers-hono-kit",
     "slug": "workers-hono-kit",
     "name": "rdlabo Workers Hono Kit",
@@ -2343,7 +2705,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.10.6",
+    "version": "0.11.1",
     "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
     "headline": "Cloudflare Workers上のHono APIを一貫した構成で実装する",
     "overview": "検証、認証、エラー、可観測性、データアクセス、Queue、Realtime接続、Offline Replica、テスト基盤を用途別エントリポイントから構成します。",
@@ -3096,6 +3458,108 @@ export const PROJECTS_JA = [
         "slug": "api",
         "section": "リファレンス",
         "path": "/projects/capacitor-facebook-login/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-local-llm",
+    "slug": "capacitor-local-llm",
+    "name": "rdlabo Capacitor Local LLM",
+    "shortName": "Local LLM",
+    "packageName": "@rdlabo/capacitor-local-llm",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.1.0",
+    "description": "CapacitorのiOS・Androidアプリ向けオンデバイステキスト生成・画像機能。",
+    "headline": "デバイス上でAIを実行する",
+    "overview": "ネイティブのチャット、ストリーミング、キャンセル、利用可否確認を提供します。画像機能はOS・ビルド環境・バックエンドに依存します。Ionic Local LLMの独立管理フォークです。",
+    "featuresHeading": "ネイティブAI機能",
+    "features": [
+      {
+        "title": "チャットのライフサイクル",
+        "description": "チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。"
+      },
+      {
+        "title": "利用可否を先に確認",
+        "description": "生成前にテキストと画像それぞれの利用可否を確認します。"
+      },
+      {
+        "title": "明示的なAndroidフォールバック",
+        "description": "必要に応じてアプリ管理のLiteRT-LMモデルを設定します。実機検証が必要です。"
+      }
+    ],
+    "path": "/projects/capacitor-local-llm",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "クイックスタート",
+        "path": "/projects/capacitor-local-llm/docs/readme"
+      },
+      {
+        "title": "セットアップ",
+        "navTitle": "セットアップ",
+        "slug": "setup",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "利用可否とプラットフォームの動作",
+        "navTitle": "利用可否",
+        "slug": "availability",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/availability"
+      },
+      {
+        "title": "チャット",
+        "navTitle": "チャット",
+        "slug": "chat",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/chat"
+      },
+      {
+        "title": "画像",
+        "navTitle": "画像",
+        "slug": "images",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/images"
+      },
+      {
+        "title": "Androidフォールバックモデル",
+        "navTitle": "Androidフォールバックモデル",
+        "slug": "android-fallback",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/android-fallback"
+      },
+      {
+        "title": "イベント",
+        "navTitle": "イベント",
+        "slug": "events",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/events"
+      },
+      {
+        "title": "エラー処理",
+        "navTitle": "エラー処理",
+        "slug": "errors",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/errors"
+      },
+      {
+        "title": "移行",
+        "navTitle": "移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "リファレンス",
+        "path": "/projects/capacitor-local-llm/docs/api"
       }
     ]
   },

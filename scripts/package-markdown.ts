@@ -168,7 +168,12 @@ export function rewritePackageDocLinks(
     const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
     const hashId = hash.slice(1).toLowerCase();
 
-    if (!path || path === '../README.md' || path === './README.md') {
+    if (
+      !path ||
+      path === '../README.md' ||
+      path === './README.md' ||
+      path === `/docs/${landingSlug}`
+    ) {
       if (hashId === 'api') return '](/docs/api)';
       const apiFragment = hashId ? apiAnchors.get(hashId) : undefined;
       if (apiFragment) return `](/docs/api#${apiFragment})`;

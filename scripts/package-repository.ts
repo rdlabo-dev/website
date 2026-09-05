@@ -206,6 +206,12 @@ function packageScopedDirectory(project: {
 }): string | undefined {
   const { repositoryUrl, sourceDirectory } = project;
 
+  if (repositoryUrl === 'https://github.com/rdlabo-dev/workers-hono-kit') {
+    if (sourceDirectory === 'workers-timezone') return 'packages/timezone';
+    if (sourceDirectory === 'workers-mysql') return 'packages/mysql';
+    return undefined;
+  }
+
   if (repositoryUrl === 'https://github.com/capacitor-community/stripe') {
     if (sourceDirectory === 'stripe') return 'packages/payment';
     if (sourceDirectory === 'stripe-identity') return 'packages/identity';

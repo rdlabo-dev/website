@@ -28,6 +28,14 @@ export const PROJECT_LOADERS = {
     en: () => import('./projects/ionic-angular-collect-icons.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/ionic-angular-collect-icons.ja.generated').then((module) => module.PROJECT),
   },
+  "workers-timezone": {
+    en: () => import('./projects/workers-timezone.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/workers-timezone.ja.generated').then((module) => module.PROJECT),
+  },
+  "workers-mysql": {
+    en: () => import('./projects/workers-mysql.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/workers-mysql.ja.generated').then((module) => module.PROJECT),
+  },
   "workers-hono-kit": {
     en: () => import('./projects/workers-hono-kit.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/workers-hono-kit.ja.generated').then((module) => module.PROJECT),
@@ -59,6 +67,10 @@ export const PROJECT_LOADERS = {
   "facebook-login": {
     en: () => import('./projects/facebook-login.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/facebook-login.ja.generated').then((module) => module.PROJECT),
+  },
+  "capacitor-local-llm": {
+    en: () => import('./projects/capacitor-local-llm.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/capacitor-local-llm.ja.generated').then((module) => module.PROJECT),
   },
   "capacitor-codescanner": {
     en: () => import('./projects/capacitor-codescanner.en.generated').then((module) => module.PROJECT),

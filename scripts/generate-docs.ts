@@ -15,7 +15,7 @@ import { localizedPublicPath } from '../projects/docs/src/app/locale-path';
 import { SITE_CONFIG } from '../projects/docs/src/app/site-config';
 import { enforceGeneratedHtmlPolicy } from './html-policy';
 import { normalizeImportedReadmeHeadings } from './markdown-headings';
-import { splitDocgenReadme } from './docgen-readme';
+import { docgenApiAnchors, normalizeDocgenAnchors, splitDocgenReadme } from './docgen-readme';
 import { prepareDocgenMarkdown, restoreDocgenInlineCode } from './docgen-inline-code';
 import {
   fetchEnglishProjectMarkdown,
@@ -331,6 +331,13 @@ async function generateProject(
   let docgenApiPage: SourcePage | undefined;
   const declaresApiPage = project.pages.some((entry) => entry.slug === 'api');
   const repositoryCache = new Map<string, string>();
+  if (!isHostedDocumentation && !declaresApiPage) {
+    const readme = await fetchEnglishProjectReadme(project, repositoryCache);
+    const docgenApi = readme && extractPackageReadmeParts(readme.content).api;
+    if (docgenApi) {
+      for (const [name, fragment] of docgenApiAnchors(docgenApi)) apiAnchors.set(name, fragment);
+    }
+  }
   for (const declaredPage of project.pages) {
     const { file } = declaredPage;
     const resolved = await resolvePageSource(project, locale, declaredPage, repositoryCache);
@@ -390,7 +397,7 @@ async function generateProject(
           slug: 'api',
           file,
         },
-        body: splitReadme.api,
+        body: rewritePackageDocLinks(splitReadme.api, apiAnchors, packageLandingSlug),
         useFrontMatterTitle: false,
         parsed,
         sourcePath: resolved.sourcePath,
@@ -413,7 +420,7 @@ async function generateProject(
             slug: 'api',
             file: 'readme.md',
           },
-          body: extracted.api,
+          body: rewritePackageDocLinks(extracted.api, apiAnchors, packageLandingSlug),
           useFrontMatterTitle: false,
           parsed: fm(''),
           sourcePath: repositorySourceLabel(
@@ -520,7 +527,10 @@ async function generateProject(
       }
     }
     restoreDocgenInlineCode(htmlDocument, preparedDocgen.inlineCodes);
-    if (annotateDocgen) annotateDocgenApiEntries(htmlDocument);
+    if (annotateDocgen) {
+      normalizeDocgenAnchors(htmlDocument);
+      annotateDocgenApiEntries(htmlDocument);
+    }
     formatApiEntries(htmlDocument);
     if (slug === 'api') formatApiReference(htmlDocument);
     html = enforceGeneratedHtmlPolicy(htmlDocument.body.innerHTML, context);

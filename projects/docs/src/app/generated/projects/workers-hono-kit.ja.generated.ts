@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
   "category": "developer-tools",
   "icon": "server",
-  "version": "0.10.6",
+  "version": "0.11.1",
   "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
   "headline": "Cloudflare Workers上のHono APIを一貫した構成で実装する",
   "overview": "検証、認証、エラー、可観測性、データアクセス、Queue、Realtime接続、Offline Replica、テスト基盤を用途別エントリポイントから構成します。",

@@ -8,6 +8,8 @@ title: はじめに
 npm install @rdlabo/ionic-angular-kit
 ```
 
+Kitのパターンを導入するときは、[ESLintでKitの使い方をチェック](/ionic-angular-kit/docs/eslint)してください。
+
 ## 要件
 
 | Package                                         | 対応version |

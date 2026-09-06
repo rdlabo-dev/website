@@ -117,6 +117,8 @@ lintが再び成功し、末尾に追加した行は `2026-01-02` を出力し�
 
 既存のESLint設定に統合し、CIでlintを実行します。
 
+アプリとCIへの導入は [ESLintで日時のバグを防ぐ](/workers-timezone/docs/eslint) を参照してください。
+
 [検出範囲](/eslint-plugin-rules/docs/rules/no-implicit-timezone)と[夏時間の動作](/docs/timezones)を確認してください。
 
 MySQLの固定 `+09:00` 保存は[Workers MySQL](/workers-mysql/docs/quickstart)が所有する別の契約です。IANA表示タイムゾーンを変えてもDB通信のタイムゾーンは変わりません。

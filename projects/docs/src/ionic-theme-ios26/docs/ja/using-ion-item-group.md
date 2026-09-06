@@ -22,6 +22,8 @@ title: ion-item-groupの使用方法
 
 Ionic Angularアプリケーションでは、`@rdlabo/rules` の [`require-ion-item-group`](/eslint-plugin-rules/docs/rules/require-ion-item-group) ruleを使うと、`ion-list` 内の `ion-item` が対応するgroup componentで囲まれていることをESLintで検査できます。このruleはrecommended presetに含まれ、一部の問題は自動修正できます。
 
+設定とCIについては [ESLintでリストの構造を整える](/ionic-theme-ios26/docs/eslint) を参照してください。
+
 ## wrapperが必要な理由
 
 Ionicは通常、`ion-list` 自体に背景を設定するため、`ion-list-header` もitemと同じsurface内に表示されます。iOS 26のlayoutではheaderとitemのsurfaceを分離します。

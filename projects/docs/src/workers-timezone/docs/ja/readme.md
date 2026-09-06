@@ -32,39 +32,7 @@ localDateTimeToInstant('2026-07-01', '09:00:00');
 
 初期化はモジュール評価時に一度だけ行い、リクエストやテナントごとには行わないでください。未初期化時の既定値は `Asia/Tokyo` です。ユーザー別の変換にはタイムゾーンを明示指定します。
 
-## ESLintで再発を防ぐ
-
-`@rdlabo/eslint-plugin-rules` のコンパニオンpreset `workers-timezone/recommended` を使うと、host localの `Date` や `Intl` で変換処理を迂回するコードを検出できます。暗黙のparse、生成、フィールド参照、表示は1つのルールで検査し、別のルールで `initializeTimezone` を明確なモジュール直下の1箇所に限定します。`toISOString()` など、明示的な時刻APIは利用できます。
-
-ESLint pluginを開発依存へ追加します。
-
-```sh
-npm install --save-dev eslint @eslint/js typescript typescript-eslint @rdlabo/eslint-plugin-rules
-```
-
-```js
-// eslint.config.mjs
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import rdlabo from '@rdlabo/eslint-plugin-rules/typescript';
-
-const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
-
-export default tseslint.config(
-  eslint.configs.recommended,
-  {
-    files: ['**/*.ts'],
-    extends: [...tseslint.configs.recommendedTypeChecked],
-    languageOptions: {
-      parserOptions: { projectService: true, tsconfigRootDir },
-    },
-    plugins: { '@rdlabo/rules': rdlabo },
-  },
-  ...rdlabo.configs['workers-timezone/recommended'],
-);
-```
+typed lintingとタイムゾーンpresetの有効化は [ESLintで日時のバグを防ぐ](/workers-timezone/docs/eslint) を参照してください。タイムゾーンのテストとあわせて、CIでもlintを実行します。
 
 ## ドキュメント
 

@@ -52,8 +52,8 @@ describe('LandingPageComponent', () => {
     expect(compiled.querySelector('.project-actions a')?.getAttribute('href')).toBe('/projects/workers-timezone/docs/quickstart');
     expect(Array.from(compiled.querySelectorAll('.entry-guide a')).map((link) => link.getAttribute('href'))).toEqual([
       '/projects/workers-timezone/docs/readme',
+      '/projects/workers-timezone/docs/eslint',
       '/projects/workers-timezone/docs/timezones',
-      '/projects/workers-timezone/docs/migration',
       '/projects/workers-timezone/docs/api',
     ]);
     expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');

@@ -302,7 +302,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: ionicAngularLibraryDocsRef,
+    englishDocsRef: '8c0088386acdfc34660a85d8f135f9726172e74c',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -357,6 +357,25 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
+      ),
+      page(
+        'Check your Kit integration with ESLint',
+        'ESLintでKitの使い方をチェック',
+        'eslint',
+        'eslint.md',
+        'Guide',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Check Ionic Angular Kit integration with ESLint | rdlabo',
+            'Ionic Angular Kitの使い方をESLintでチェック | rdlabo',
+          ),
+          seoDescription: text(
+            'Configure ESLint checks for Ionic Angular Kit modal launchers, async action handlers, and Signal Forms error text.',
+            'Ionic Angular Kitのモーダル起動、非同期操作、Signal Formsのエラー表示をESLintで検査する設定と例を紹介します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
       ),
       page(
         'Storage and Overlays',
@@ -673,6 +692,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
+    englishDocsRef: 'fe2952cdae3676591e11088ea08c88ac7fce4a8e',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -711,6 +731,25 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page(
+        'Keep lists consistent with ESLint',
+        'ESLintでリストの構造を整える',
+        'eslint',
+        'eslint.md',
+        'Guides',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Check Ionic iOS 26 list markup with ESLint | rdlabo',
+            'Ionic iOS 26のリスト構造をESLintで検査 | rdlabo',
+          ),
+          seoDescription: text(
+            'Catch missing item groups in Ionic Angular templates with a focused ESLint rule for the iOS 26 theme.',
+            'iOS 26テーマ向けのESLintルールで、Ionic Angularテンプレートのリストグループ漏れを検出します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page(
         'Using ion-item-group',
         'ion-item-groupの使用方法',
@@ -752,6 +791,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
+    englishDocsRef: '228b1363b2fadbbf88a950dda93e0a100380de26',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -793,6 +833,25 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Documentation', 'ドキュメント'),
+      page(
+        'Keep lists consistent with ESLint',
+        'ESLintでリストの構造を整える',
+        'eslint',
+        'eslint.md',
+        'Guides',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Check Ionic Material Design 3 lists with ESLint | rdlabo',
+            'Ionic Material Design 3のリスト構造をESLintで検査 | rdlabo',
+          ),
+          seoDescription: text(
+            'Check Ionic Angular list grouping for the Material Design 3 theme with ESLint, locally and in CI.',
+            'Material Design 3テーマのIonic Angularリスト構造を、ESLintでローカルとCIから検査します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page(
         'Special markup',
         '特別なマークアップ',
@@ -883,7 +942,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    englishDocsRef: '679f74d48e3b8b08e347c01689a7323e9fbecede',
     seoTitle: text(
       'Cloudflare Workers timezone utilities + ESLint | rdlabo',
       'Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo',
@@ -958,6 +1017,25 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
+      page(
+        'Catch timezone bugs with ESLint',
+        'ESLintで日時のバグを防ぐ',
+        'eslint',
+        'eslint.md',
+        'Guides',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Catch Cloudflare Workers timezone bugs with ESLint | rdlabo',
+            'Cloudflare Workersの日時のバグをESLintで防ぐ | rdlabo',
+          ),
+          seoDescription: text(
+            'Pair workers-timezone with typed ESLint checks to detect host-local Date and Intl operations and request-scoped initialization in Cloudflare Workers.',
+            'Cloudflare Workersのworkers-timezoneに型情報付きESLintを併用し、Date・Intlの暗黙のタイムゾーン依存とリクエスト内の初期化を検出します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page(
         'Timezones and calendar dates',
         'タイムゾーンと日付',

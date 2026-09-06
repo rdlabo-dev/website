@@ -35,6 +35,8 @@ DEMOはこちら: https://ionic-theme-md3.rdlabo.dev/
 
 [インストール](#インストール) のあと、テーマ CSS をインポートし、下のとおり `navAnimation` を設定します。
 
+Ionic Angularアプリでは、画面を追加するときに [ESLintでリストの構造を整える](/ionic-theme-md3/docs/eslint) でlist構造を検査できます。
+
 ## インストール
 
 これはIonicプロジェクトを拡張するためのCSSテーマです。単体では動作しないため、Ionic Frameworkと一緒に使ってください。

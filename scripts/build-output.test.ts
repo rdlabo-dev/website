@@ -325,12 +325,12 @@ test('builds bounded English and Japanese search indexes with the component UI',
   assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
   assert.equal(
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    180,
+    184,
     'English search index must contain only canonical pages',
   );
   assert.equal(
     files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    180,
+    184,
     'Japanese search index must contain only canonical pages',
   );
   const sizes = await Promise.all(
@@ -374,7 +374,7 @@ test('Workers landing pages and guides expose distinct Cloudflare Workers metada
           assert.match(document.querySelector('h1')?.textContent ?? '', /Cloudflare Workers/, path);
       }
     }
-    assert.equal(titles.size, 22);
+    assert.equal(titles.size, 23);
   }
 });
 
@@ -407,6 +407,42 @@ test('project entry pages link to localized onboarding, references, and support'
         assert.ok(href?.startsWith(`/${locale}projects/${project.slug}/docs/`));
         await access(new URL(`../dist/docs/browser${href}/index.html`, import.meta.url));
       }
+      dom.window.close();
+    }
+  }
+});
+
+test('ESLint companion guides are reachable from each project entry and introduction', async () => {
+  for (const locale of ['', 'ja/']) {
+    for (const [slug, intro] of [
+      ['workers-timezone', 'readme'],
+      ['ionic-theme-ios26', 'readme'],
+      ['ionic-theme-md3', 'readme'],
+      ['ionic-angular-kit', 'getting-started'],
+    ]) {
+      const path = `/${locale}projects/${slug}`;
+      for (const entry of ['', `/docs/${intro}`]) {
+        const html = await readFile(
+          new URL(`../dist/docs/browser${path}${entry}/index.html`, import.meta.url),
+          'utf8',
+        );
+        const dom = new JSDOM(html);
+        const content = dom.window.document.querySelector(entry ? '.znc' : '.project-landing');
+        assert.ok(
+          content?.querySelector(`a[href="${path}/docs/eslint"]`),
+          `${path}${entry}: direct ESLint guide link`,
+        );
+        dom.window.close();
+      }
+      const html = await readFile(
+        new URL(`../dist/docs/browser${path}/docs/eslint/index.html`, import.meta.url),
+        'utf8',
+      );
+      const dom = new JSDOM(html);
+      assert.match(dom.window.document.querySelector('h1')?.textContent ?? '', /ESLint/);
+      assert.ok(
+        dom.window.document.querySelector('.znc')?.textContent?.includes('--max-warnings 0'),
+      );
       dom.window.close();
     }
   }

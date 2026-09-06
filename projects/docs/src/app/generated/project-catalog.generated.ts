@@ -160,6 +160,13 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-angular-kit/docs/getting-started"
       },
       {
+        "title": "Check your Kit integration with ESLint",
+        "navTitle": "Check your Kit integration with ESLint",
+        "slug": "eslint",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
         "title": "Storage and Overlays",
         "navTitle": "Storage and Overlays",
         "slug": "storage-overlays",
@@ -490,6 +497,13 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios26/docs/readme"
       },
       {
+        "title": "Keep lists consistent with ESLint",
+        "navTitle": "Keep lists consistent with ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
         "title": "Using ion-item-group",
         "navTitle": "Using ion-item-group",
         "slug": "using-ion-item-group",
@@ -578,6 +592,13 @@ export const PROJECTS_EN = [
         "slug": "readme",
         "section": "Documentation",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Keep lists consistent with ESLint",
+        "navTitle": "Keep lists consistent with ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/eslint"
       },
       {
         "title": "Special markup",
@@ -734,6 +755,13 @@ export const PROJECTS_EN = [
         "slug": "readme",
         "section": "Quickstart",
         "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "Catch timezone bugs with ESLint",
+        "navTitle": "Catch timezone bugs with ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/eslint"
       },
       {
         "title": "Timezones and calendar dates",
@@ -2092,6 +2120,13 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-kit/docs/getting-started"
       },
       {
+        "title": "ESLintでKitの使い方をチェック",
+        "navTitle": "ESLintでKitの使い方をチェック",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
         "title": "Storage・Overlay",
         "navTitle": "Storage・Overlay",
         "slug": "storage-overlays",
@@ -2422,6 +2457,13 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios26/docs/readme"
       },
       {
+        "title": "ESLintでリストの構造を整える",
+        "navTitle": "ESLintでリストの構造を整える",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
         "title": "ion-item-groupの使用方法",
         "navTitle": "ion-item-groupの使用方法",
         "slug": "using-ion-item-group",
@@ -2510,6 +2552,13 @@ export const PROJECTS_JA = [
         "slug": "readme",
         "section": "ドキュメント",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "ESLintでリストの構造を整える",
+        "navTitle": "ESLintでリストの構造を整える",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-md3/docs/eslint"
       },
       {
         "title": "特別なマークアップ",
@@ -2666,6 +2715,13 @@ export const PROJECTS_JA = [
         "slug": "readme",
         "section": "クイックスタート",
         "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "ESLintで日時のバグを防ぐ",
+        "navTitle": "ESLintで日時のバグを防ぐ",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/workers-timezone/docs/eslint"
       },
       {
         "title": "タイムゾーンと日付",

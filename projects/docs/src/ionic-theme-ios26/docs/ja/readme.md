@@ -25,6 +25,8 @@ Android Design（Material Design 3）テーマも作成中です。ぜひチェ�
 
 [インストール](#インストール) のあと、テーマ CSS をインポートします。詳細は下のインストールです。
 
+Ionic Angularアプリでは、画面を追加するときに [ESLintでリストの構造を整える](/ionic-theme-ios26/docs/eslint) でlist構造を検査できます。
+
 ## インストール
 
 これはIonicプロジェクトを拡張するためのCSSテーマです。単体では動作しないため、Ionic Frameworkと一緒に使ってください。

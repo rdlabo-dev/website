@@ -914,7 +914,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-angular-collect-icons',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-collect-icons',
     // The translated migration guide follows this reviewed immutable docs revision.
-    englishDocsRef: 'c96d1be6d82d30fa9c0d511a10f9bbe7ce0585c9',
+    englishDocsRef: 'c38d732e0973c979e174ce4c7c06f8c9ae608faa',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',

@@ -9,13 +9,7 @@ scrollActiveLine: []
 アプリ内報酬を渡さない場合に使います。[初期化](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。事前に準備し、先にリスナーを登録し、準備ができてから表示します。
 
 ```ts
-import {
-  AdLoadInfo,
-  AdMob,
-  AdMobRevenueData,
-  AdOptions,
-  InterstitialAdPluginEvents,
-} from '@capacitor-community/admob';
+import { AdLoadInfo, AdMob, AdMobRevenueData, AdOptions, InterstitialAdPluginEvents } from '@capacitor-community/admob';
 
 await AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
   console.log('Interstitial loaded', info.adUnitId);

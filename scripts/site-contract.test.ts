@@ -763,7 +763,7 @@ test('imports the remaining rdlabo utility READMEs from exact public releases', 
     const expectedGroupSlugs: Record<string, readonly string[]> = {
       'capacitor-codescanner': ['code-scanner'],
       'capacitor-screenshot-event': ['screenshot-event'],
-      'capacitor-printer': ['pdf', 'web'],
+      'capacitor-printer': ['web', 'pdf'],
       'capacitor-brotherprint': ['installation', 'search', 'print', 'events'],
     };
     const groupSlugs = expectedGroupSlugs[projectId];
@@ -818,8 +818,12 @@ test('imports the remaining rdlabo utility READMEs from exact public releases', 
     return [english, japanese] as const;
   };
   for (const markdown of await docs('capacitor-codescanner', 'code-scanner.md')) {
-    assert.match(markdown, /CodeTypes: \['qr'\]/);
-    assert.doesNotMatch(markdown, /^\s*(?:metadataObjectTypes|detectionX|detectionY):/m);
+    // v8.0.3 mismatch: public types use metadataObjectTypes; native uses CodeTypes.
+    assert.match(markdown, /isMulti:\s*false/);
+    assert.doesNotMatch(markdown, /^\s*(?:CodeTypes|metadataObjectTypes|detectionX|detectionY):/m);
+    assert.match(markdown, /8\.0\.3/);
+    assert.match(markdown, /metadataObjectTypes/);
+    assert.match(markdown, /CodeTypes/);
   }
   for (const markdown of await docs('capacitor-codescanner')) {
     assert.match(markdown, /upper right corner|右上/);
@@ -1056,8 +1060,17 @@ test('documents the exact capacitor-docgen inheritance enhancement over upstream
   assert.match(english, /collection order/);
   assert.match(japanese, /収集順/);
   for (const markdown of [englishGettingStarted, japaneseGettingStarted]) {
-    assert.match(markdown, /npx docgen --api MyPlugin/);
-    assert.doesNotMatch(markdown, /^docgen --api MyPlugin/m);
+    const shellBlocks = fencedCodeBlocks(markdown).filter((block) =>
+      /^(?:sh|bash|shell|zsh)$/i.test(block.language.trim()),
+    );
+    assert.ok(
+      shellBlocks.some(
+        (block) =>
+          /\bnpx\s+docgen\b/.test(block.body) &&
+          /(?:--project\s+tsconfig\.json\s+)?--api\s+MyPlugin/.test(block.body),
+      ),
+      'Getting Started shell example must use npx docgen with --api MyPlugin',
+    );
   }
 });
 
@@ -1501,12 +1514,12 @@ test('loads AdMob English pages from GitHub', async () => {
       'readme',
       'configuration',
       'consent',
+      'testing',
       'banner',
       'interstitial',
       'rewarded',
       'app-open',
       'events',
-      'testing',
       'migration',
     ],
   );

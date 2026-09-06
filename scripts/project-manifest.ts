@@ -1727,9 +1727,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Capacitor Stripe PaymentSheet API | rdlabo',
             'Capacitor Stripe PaymentSheet API リファレンス | rdlabo',
           ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
-      page('PaymentFlow', 'PaymentFlow', 'payment-flow', 'payment-flow.md', 'Methods', 'メソッド'),
+      page('PaymentFlow', 'PaymentFlow', 'payment-flow', 'payment-flow.md', 'Methods', 'メソッド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Apple Pay', 'Apple Pay', 'apple-pay', 'apple-pay.md', 'Methods', 'メソッド', {
         seoTitle: text(
           'Capacitor Stripe Apple Pay Integration | rdlabo',
@@ -1739,7 +1742,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Apple Pay payments in a Capacitor app with @capacitor-community/stripe on supported Apple devices.',
           '@capacitor-community/stripeを使い、対応するApple端末のCapacitorアプリでApple Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Google Pay', 'Google Pay', 'google-pay', 'google-pay.md', 'Methods', 'メソッド', {
         seoTitle: text(
@@ -1750,7 +1753,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Google Pay payments in a Capacitor app with @capacitor-community/stripe on supported Android devices.',
           '@capacitor-community/stripeを使い、対応するAndroid端末のCapacitorアプリでGoogle Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],

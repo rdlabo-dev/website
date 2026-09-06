@@ -1,12 +1,7 @@
 ---
 title: "PaymentSheet"
 code: ["/docs/stripe/payment-sheet/payment-sheet.ts.md"]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "1.-createpaymentsheet", activeLine: {['payment-sheet.ts']: [9, 22]}},
-  {id: "2.-presentpaymentsheet", activeLine: {['payment-sheet.ts']: [22, 28]}},
-  {id: "3.-addlistener", activeLine: {['payment-sheet.ts']: [4, 8]}}
-]
+scrollActiveLine: []
 ---
 
 PaymentSheet collects payment details and confirms the Intent in one presentation. If you need a pending card plus a later confirmation step, use [PaymentFlow](/docs/payment-flow).
@@ -27,21 +22,25 @@ Web does not render the native PaymentSheet. On web, `createPaymentSheet` uses `
 
 ## 1. createPaymentSheet
 
-Fetch client-safe secrets from your backend, then call `createPaymentSheet`. The plugin does not talk to Stripe's secret API. Use `HttpClient`, `fetch`, or any HTTP client.
+Fetch client-safe secrets from your backend, then call `createPaymentSheet`. The plugin does not talk to Stripe's secret API. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration).
 
 On iOS and Android, provide **either** `paymentIntentClientSecret` **or** `setupIntentClientSecret`. On web, provide `paymentIntentClientSecret`. `customerId` and `customerEphemeralKeySecret` are optional together. If you set `customerId`, you must also set `customerEphemeralKeySecret`. A PaymentIntent without a Customer is valid; see the demo `intent/without-customer` shape in [Server Integration](/docs/server-integration).
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-    ephemeralKey: string;
-    customer: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+};
 
 await Stripe.createPaymentSheet({
   paymentIntentClientSecret: paymentIntent,

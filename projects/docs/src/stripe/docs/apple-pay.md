@@ -1,13 +1,7 @@
 ---
 title: "ApplePay"
 code: ["/docs/stripe/apple-pay/apple-pay.ts.md"]
-scrollActiveLine: [
-{id: "", activeLine: {}},
-{id: "1.-isapplepayavailable", activeLine: {['apple-pay.ts']: [4, 10]}},
-{id: "2.-createapplepay", activeLine: {['apple-pay.ts']: [15, 31]}},
-{id: "3.-presentapplepay", activeLine: {['apple-pay.ts']: [31, 37]}},
-{id: "4.-addlistener", activeLine: {['apple-pay.ts']: [11, 14]}}
-]
+scrollActiveLine: []
 ---
 
 Apple Pay confirms a PaymentIntent in one presentation.
@@ -54,16 +48,19 @@ try {
 
 ## 2. createApplePay
 
-Fetch a PaymentIntent client secret from your backend. See [Server Integration](/docs/server-integration). Then pass `paymentIntentClientSecret`, `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
+Fetch a PaymentIntent client secret from your backend. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration). Then pass `paymentIntentClientSecret`, `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
 
 ```ts
-import { firstValueFrom } from 'rxjs';
-
-const { paymentIntent } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent } = (await response.json()) as {
+  paymentIntent: string;
+};
 
 await Stripe.createApplePay({
   paymentIntentClientSecret: paymentIntent,

@@ -5,15 +5,7 @@ code: [
   "/docs/stripe/google-pay/android-manifest.xml.md",
   "/docs/stripe/google-pay/google-pay.ts.md"
 ]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "strings.xml", activeLine: {['strings.xml']: [7, 14]}},
-  {id: "androidmanifest.xml", activeLine: {['AndroidManifest.xml']: [36, 60]}},
-  {id: "1.-isgooglepayavailable", activeLine: {['google-pay.ts']: [4, 10]}},
-  {id: "2.-creategooglepay", activeLine: {['google-pay.ts']: [15, 33]}},
-  {id: "3.-presentgooglepay", activeLine: {['google-pay.ts']: [33, 39]}},
-  {id: "4.-addlistener", activeLine: {['google-pay.ts']: [11, 14]}}
-]
+scrollActiveLine: []
 ---
 
 Google Pay confirms a PaymentIntent in one presentation. The Android implementation also accepts a SetupIntent; the web implementation does not.
@@ -157,16 +149,19 @@ try {
 
 ## 2. createGooglePay
 
-Fetch a PaymentIntent client secret from your backend. On Android, you may instead pass a SetupIntent client secret. See [Server Integration](/docs/server-integration). The option is named `paymentIntentClientSecret` for both Intent types. Web also needs `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
+Fetch a PaymentIntent client secret from your backend. On Android, you may instead pass a SetupIntent client secret. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration). The option is named `paymentIntentClientSecret` for both Intent types. Web also needs `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
 
 ```ts
-import { firstValueFrom } from 'rxjs';
-
-const { paymentIntent } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent } = (await response.json()) as {
+  paymentIntent: string;
+};
 
 await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,

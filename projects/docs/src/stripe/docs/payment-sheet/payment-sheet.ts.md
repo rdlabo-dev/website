@@ -3,20 +3,25 @@ file: "payment-sheet.ts"
 ---
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 
 (async () => {
-  Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
+  await Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
     console.log('PaymentSheetEventsEnum.Completed');
   });
 
-  // Connect to your backend endpoint, and get every key.
-  const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(this.http.post<{
+  // Replace `/your-intent-endpoint` with your backend from Server Integration.
+  const response = await fetch('/your-intent-endpoint', {
+    method: 'POST',
+  });
+  if (!response.ok) {
+    throw new Error(`Intent request failed: ${response.status}`);
+  }
+  const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
     paymentIntent: string;
     ephemeralKey: string;
     customer: string;
-  }>(environment.api + 'intent', {}));
+  };
 
   // prepare PaymentSheet with CreatePaymentSheetOption.
   await Stripe.createPaymentSheet({
@@ -28,7 +33,7 @@ import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
   // present PaymentSheet and get result.
   const result = await Stripe.presentPaymentSheet();
   if (result.paymentResult === PaymentSheetEventsEnum.Completed) {
-    // Happy path
+    // Update UI only. Fulfill orders from a verified server webhook.
   }
 })();
 ```

@@ -3,7 +3,6 @@ file: "apple-pay.ts"
 ---
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { ApplePayEventsEnum, Stripe } from '@capacitor-community/stripe';
 
 (async () => {
@@ -13,14 +12,20 @@ import { ApplePayEventsEnum, Stripe } from '@capacitor-community/stripe';
     return;
   }
 
-  Stripe.addListener(ApplePayEventsEnum.Completed, () => {
+  await Stripe.addListener(ApplePayEventsEnum.Completed, () => {
     console.log('ApplePayEventsEnum.Completed');
   });
 
-  // Connect to your backend endpoint, and get paymentIntent.
-  const { paymentIntent } = await firstValueFrom(this.http.post<{
+  // Replace `/your-intent-endpoint` with your backend from Server Integration.
+  const response = await fetch('/your-intent-endpoint', {
+    method: 'POST',
+  });
+  if (!response.ok) {
+    throw new Error(`Intent request failed: ${response.status}`);
+  }
+  const { paymentIntent } = (await response.json()) as {
     paymentIntent: string;
-  }>(environment.api + 'intent', {}));
+  };
 
   // Prepare Apple Pay
   await Stripe.createApplePay({
@@ -37,7 +42,7 @@ import { ApplePayEventsEnum, Stripe } from '@capacitor-community/stripe';
   // Present Apple Pay
   const result = await Stripe.presentApplePay();
   if (result.paymentResult === ApplePayEventsEnum.Completed) {
-    // Happy path
+    // Update UI only. Fulfill orders from a verified server webhook.
   }
 })();
 ```

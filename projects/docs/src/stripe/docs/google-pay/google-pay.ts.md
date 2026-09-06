@@ -3,7 +3,6 @@ file: "google-pay.ts"
 ---
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { GooglePayEventsEnum, Stripe } from '@capacitor-community/stripe';
 
 (async () => {
@@ -13,14 +12,20 @@ import { GooglePayEventsEnum, Stripe } from '@capacitor-community/stripe';
     return;
   }
 
-  Stripe.addListener(GooglePayEventsEnum.Completed, () => {
+  await Stripe.addListener(GooglePayEventsEnum.Completed, () => {
     console.log('GooglePayEventsEnum.Completed');
   });
 
-  // Connect to your backend endpoint, and get paymentIntent.
-  const { paymentIntent } = await firstValueFrom(this.http.post<{
+  // Replace `/your-intent-endpoint` with your backend from Server Integration.
+  const response = await fetch('/your-intent-endpoint', {
+    method: 'POST',
+  });
+  if (!response.ok) {
+    throw new Error(`Intent request failed: ${response.status}`);
+  }
+  const { paymentIntent } = (await response.json()) as {
     paymentIntent: string;
-  }>(environment.api + 'intent', {}));
+  };
 
   // Prepare Google Pay
   await Stripe.createGooglePay({
@@ -39,7 +44,7 @@ import { GooglePayEventsEnum, Stripe } from '@capacitor-community/stripe';
   // Present Google Pay
   const result = await Stripe.presentGooglePay();
   if (result.paymentResult === GooglePayEventsEnum.Completed) {
-    // Happy path
+    // Update UI only. Fulfill orders from a verified server webhook.
   }
 })();
 ```

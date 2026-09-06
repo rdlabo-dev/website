@@ -1,13 +1,7 @@
 ---
 title: "PaymentFlow"
 code: ["/docs/stripe/payment-flow/payment-flow.ts.md"]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "1.-createpaymentflow", activeLine: {['payment-flow.ts']: [9, 23]}},
-  {id: "2.-presentpaymentflow", activeLine: {['payment-flow.ts']: [23, 27]}},
-  {id: "3.-confirmpaymentflow", activeLine: {['payment-flow.ts']: [27, 33]}},
-  {id: "4.-addlistener", activeLine: {['payment-flow.ts']: [4, 8]}}
-]
+scrollActiveLine: []
 ---
 
 PaymentFlow splits collection and confirmation. `presentPaymentFlow` collects the payment method and returns a pending card. `confirmPaymentFlow` confirms the Intent later, usually after a review screen.
@@ -28,19 +22,23 @@ Web supports `paymentIntentClientSecret` or `setupIntentClientSecret`, plus opti
 
 ## 1. createPaymentFlow
 
-Fetch client-safe secrets from your backend, then call `createPaymentFlow`. Provide **either** `paymentIntentClientSecret` **or** `setupIntentClientSecret`. `customerId` and `customerEphemeralKeySecret` are optional together. If you set `customerId`, you must also set `customerEphemeralKeySecret`.
+Fetch client-safe secrets from your backend, then call `createPaymentFlow`. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration). Provide **either** `paymentIntentClientSecret` **or** `setupIntentClientSecret`. `customerId` and `customerEphemeralKeySecret` are optional together. If you set `customerId`, you must also set `customerEphemeralKeySecret`.
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { PaymentFlowEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-    ephemeralKey: string;
-    customer: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+};
 
 await Stripe.createPaymentFlow({
   paymentIntentClientSecret: paymentIntent,

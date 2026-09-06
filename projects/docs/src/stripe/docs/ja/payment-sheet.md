@@ -1,12 +1,7 @@
 ---
 title: "PaymentSheet"
 code: ["/docs/stripe/payment-sheet/payment-sheet.ts.md"]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "1.-createpaymentsheet", activeLine: {['payment-sheet.ts']: [9, 22]}},
-  {id: "2.-presentpaymentsheet", activeLine: {['payment-sheet.ts']: [22, 28]}},
-  {id: "3.-addlistener", activeLine: {['payment-sheet.ts']: [4, 8]}}
-]
+scrollActiveLine: []
 ---
 
 PaymentSheet は支払い情報の入力と Intent の確定を一度の表示で行います。カードを保留状態にして後から確定する必要がある場合は [PaymentFlow](/docs/payment-flow)を使用してください。
@@ -27,21 +22,25 @@ Web はネイティブ PaymentSheet を表示しません。Web の `createPayme
 
 ## 1. createPaymentSheet
 
-バックエンドからクライアントへ安全に渡せるシークレットを取得し、`createPaymentSheet` を呼びます。プラグインは Stripe のシークレット API を呼びません。`HttpClient`、`fetch` などを利用してください。
+バックエンドからクライアントへ安全に渡せるシークレットを取得し、`createPaymentSheet` を呼びます。プラグインは Stripe のシークレット API を呼びません。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。
 
 iOS と Android では `paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を、Web では `paymentIntentClientSecret` を渡します。`customerId` と `customerEphemeralKeySecret` は任意ですが、`customerId` を設定する場合は両方が必要です。Customer を持たない PaymentIntent も有効です。
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-    ephemeralKey: string;
-    customer: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+};
 
 await Stripe.createPaymentSheet({
   paymentIntentClientSecret: paymentIntent,

@@ -5,15 +5,7 @@ code: [
   "/docs/stripe/google-pay/android-manifest.xml.md",
   "/docs/stripe/google-pay/google-pay.ts.md"
 ]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "strings.xml", activeLine: {['strings.xml']: [7, 14]}},
-  {id: "androidmanifest.xml", activeLine: {['AndroidManifest.xml']: [36, 60]}},
-  {id: "1.-isgooglepayavailable", activeLine: {['google-pay.ts']: [4, 10]}},
-  {id: "2.-creategooglepay", activeLine: {['google-pay.ts']: [15, 33]}},
-  {id: "3.-presentgooglepay", activeLine: {['google-pay.ts']: [33, 39]}},
-  {id: "4.-addlistener", activeLine: {['google-pay.ts']: [11, 14]}}
-]
+scrollActiveLine: []
 ---
 
 Google Pay は一度の表示で PaymentIntent を確定します。Android は SetupIntent にも対応しますが、Web は対応していません。
@@ -149,16 +141,19 @@ try {
 
 ## 2. createGooglePay
 
-バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
+バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
 
 ```ts
-import { firstValueFrom } from 'rxjs';
-
-const { paymentIntent } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent } = (await response.json()) as {
+  paymentIntent: string;
+};
 
 await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,

@@ -1,13 +1,7 @@
 ---
 title: "PaymentFlow"
 code: ["/docs/stripe/payment-flow/payment-flow.ts.md"]
-scrollActiveLine: [
-  {id: "", activeLine: {}},
-  {id: "1.-createpaymentflow", activeLine: {['payment-flow.ts']: [9, 23]}},
-  {id: "2.-presentpaymentflow", activeLine: {['payment-flow.ts']: [23, 27]}},
-  {id: "3.-confirmpaymentflow", activeLine: {['payment-flow.ts']: [27, 33]}},
-  {id: "4.-addlistener", activeLine: {['payment-flow.ts']: [4, 8]}}
-]
+scrollActiveLine: []
 ---
 
 PaymentFlow は支払い方法の収集と確定を分離します。`presentPaymentFlow` で支払い方法を収集してカードを保留状態にし、通常は確認画面を挟んでから `confirmPaymentFlow` で Intent を確定します。
@@ -28,19 +22,23 @@ Web は `paymentIntentClientSecret` または `setupIntentClientSecret` と、�
 
 ## 1. createPaymentFlow
 
-バックエンドからクライアントへ安全に渡せるシークレットを取得し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
+バックエンドからクライアントへ安全に渡せるシークレットを取得し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
 
 ```ts
-import { firstValueFrom } from 'rxjs';
 import { PaymentFlowEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
-  this.http.post<{
-    paymentIntent: string;
-    ephemeralKey: string;
-    customer: string;
-  }>(environment.api + 'intent', {}),
-);
+// Replace `/your-intent-endpoint` with your backend from Server Integration.
+const response = await fetch('/your-intent-endpoint', {
+  method: 'POST',
+});
+if (!response.ok) {
+  throw new Error(`Intent request failed: ${response.status}`);
+}
+const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+};
 
 await Stripe.createPaymentFlow({
   paymentIntentClientSecret: paymentIntent,

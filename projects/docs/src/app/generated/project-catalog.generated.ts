@@ -249,13 +249,6 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-angular-photo-editor/docs/readme"
       },
       {
-        "title": "Theme",
-        "navTitle": "Theme",
-        "slug": "theme",
-        "section": "Guides",
-        "path": "/projects/ionic-angular-photo-editor/docs/theme"
-      },
-      {
         "title": "PhotoFileService",
         "navTitle": "PhotoFileService",
         "slug": "photo-file",
@@ -283,6 +276,13 @@ export const PROJECTS_EN = [
         "slug": "viewer",
         "section": "Guides",
         "path": "/projects/ionic-angular-photo-editor/docs/viewer"
+      },
+      {
+        "title": "Theme",
+        "navTitle": "Theme",
+        "slug": "theme",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-photo-editor/docs/theme"
       },
       {
         "title": "API",
@@ -1006,18 +1006,18 @@ export const PROJECTS_EN = [
         "path": "/projects/eslint-plugin-rules/docs/configuration"
       },
       {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guide",
-        "path": "/projects/eslint-plugin-rules/docs/migration"
-      },
-      {
         "title": "Rules",
         "navTitle": "Rules",
         "slug": "rules",
         "section": "Reference",
         "path": "/projects/eslint-plugin-rules/docs/rules"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guide",
+        "path": "/projects/eslint-plugin-rules/docs/migration"
       },
       {
         "title": "API",
@@ -1194,7 +1194,7 @@ export const PROJECTS_EN = [
     "version": "0.4.1",
     "description": "Upstream-compatible Capacitor documentation generator with interface inheritance.",
     "headline": "Generate Capacitor plugin docs with inherited interfaces",
-    "overview": "Keep the upstream docgen CLI, placeholders, output helpers, and exported functions while expanding inherited interface members into generated documentation.",
+    "overview": "Generate Markdown and JSON from TypeScript interfaces and JSDoc, including inherited members, using the familiar docgen command.",
     "featuresHeading": "Why use the fork",
     "features": [
       {
@@ -1238,6 +1238,11 @@ export const PROJECTS_EN = [
     "shortName": "Stripe",
     "packageName": "@capacitor-community/stripe",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "entryGuideSlugs": [
+      "vanilla-js",
+      "server-integration",
+      "payment-sheet"
+    ],
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
@@ -1537,6 +1542,13 @@ export const PROJECTS_EN = [
         "path": "/projects/capacitor-admob/docs/consent"
       },
       {
+        "title": "Testing",
+        "navTitle": "Testing",
+        "slug": "testing",
+        "section": "Guides",
+        "path": "/projects/capacitor-admob/docs/testing"
+      },
+      {
         "title": "Banner Ads",
         "navTitle": "Banner Ads",
         "slug": "banner",
@@ -1570,13 +1582,6 @@ export const PROJECTS_EN = [
         "slug": "events",
         "section": "Guides",
         "path": "/projects/capacitor-admob/docs/events"
-      },
-      {
-        "title": "Testing",
-        "navTitle": "Testing",
-        "slug": "testing",
-        "section": "Guides",
-        "path": "/projects/capacitor-admob/docs/testing"
       },
       {
         "title": "Migration",
@@ -1790,8 +1795,8 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "8.0.3",
     "description": "Barcode and QR scanning for Capacitor through a native modal.",
-    "headline": "Scan codes in a native modal without touching web assets",
-    "overview": "Present a modal scanner, listen for catch events, and configure the detection area and continuous multi-scan—without manipulating web assets.",
+    "headline": "Scan QR codes and barcodes in a native modal",
+    "overview": "Read a code into your app, or keep the camera open for consecutive scans. Configure the detection area, light, and feedback.",
     "featuresHeading": "What you can do",
     "features": [
       {
@@ -1848,16 +1853,12 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
-        "title": "Start watching",
-        "description": "Call startWatchEvent to begin listening for screenshot activity."
+        "title": "React after a capture",
+        "description": "Show a message or update app UI when a screenshot event arrives."
       },
       {
-        "title": "Screenshot listener",
-        "description": "Handle userDidTakeScreenshot when the user captures the screen."
-      },
-      {
-        "title": "Stop watching",
-        "description": "Call removeWatchEvent when screenshot monitoring is no longer needed."
+        "title": "Watch while a screen is open",
+        "description": "Start watching on entry and release the watcher and listener when leaving."
       }
     ],
     "path": "/projects/capacitor-screenshot-event",
@@ -1923,18 +1924,18 @@ export const PROJECTS_EN = [
         "path": "/projects/capacitor-printer/docs/readme"
       },
       {
-        "title": "PDF",
-        "navTitle": "PDF",
-        "slug": "pdf",
-        "section": "Guides",
-        "path": "/projects/capacitor-printer/docs/pdf"
-      },
-      {
-        "title": "Web",
-        "navTitle": "Web",
+        "title": "Print the WebView",
+        "navTitle": "Print the WebView",
         "slug": "web",
         "section": "Guides",
         "path": "/projects/capacitor-printer/docs/web"
+      },
+      {
+        "title": "Print PDF and files",
+        "navTitle": "Print PDF and files",
+        "slug": "pdf",
+        "section": "Guides",
+        "path": "/projects/capacitor-printer/docs/pdf"
       },
       {
         "title": "API",
@@ -2217,13 +2218,6 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-photo-editor/docs/readme"
       },
       {
-        "title": "Theme",
-        "navTitle": "テーマ",
-        "slug": "theme",
-        "section": "ガイド",
-        "path": "/projects/ionic-angular-photo-editor/docs/theme"
-      },
-      {
         "title": "PhotoFileService",
         "navTitle": "PhotoFileService",
         "slug": "photo-file",
@@ -2251,6 +2245,13 @@ export const PROJECTS_JA = [
         "slug": "viewer",
         "section": "ガイド",
         "path": "/projects/ionic-angular-photo-editor/docs/viewer"
+      },
+      {
+        "title": "Theme",
+        "navTitle": "テーマ",
+        "slug": "theme",
+        "section": "ガイド",
+        "path": "/projects/ionic-angular-photo-editor/docs/theme"
       },
       {
         "title": "API",
@@ -2974,18 +2975,18 @@ export const PROJECTS_JA = [
         "path": "/projects/eslint-plugin-rules/docs/configuration"
       },
       {
-        "title": "移行",
-        "navTitle": "移行",
-        "slug": "migration",
-        "section": "ガイド",
-        "path": "/projects/eslint-plugin-rules/docs/migration"
-      },
-      {
         "title": "ルール一覧",
         "navTitle": "ルール一覧",
         "slug": "rules",
         "section": "リファレンス",
         "path": "/projects/eslint-plugin-rules/docs/rules"
+      },
+      {
+        "title": "移行",
+        "navTitle": "移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/eslint-plugin-rules/docs/migration"
       },
       {
         "title": "API",
@@ -3162,7 +3163,7 @@ export const PROJECTS_JA = [
     "version": "0.4.1",
     "description": "interface継承に対応した、本家互換のCapacitorドキュメント生成CLI。",
     "headline": "継承したinterfaceを含めてCapacitorプラグインドキュメントを生成する",
-    "overview": "本家docgenのCLI、placeholder、出力helper、export functionを維持しつつ、継承したinterface memberを生成ドキュメントへ展開します。",
+    "overview": "使い慣れたdocgenコマンドで、TypeScriptのinterfaceとJSDocからMarkdown・JSONを生成。継承したメンバーも出力に含めます。",
     "featuresHeading": "forkを使う理由",
     "features": [
       {
@@ -3206,6 +3207,11 @@ export const PROJECTS_JA = [
     "shortName": "Stripe",
     "packageName": "@capacitor-community/stripe",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "entryGuideSlugs": [
+      "vanilla-js",
+      "server-integration",
+      "payment-sheet"
+    ],
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
@@ -3505,6 +3511,13 @@ export const PROJECTS_JA = [
         "path": "/projects/capacitor-admob/docs/consent"
       },
       {
+        "title": "テスト",
+        "navTitle": "テスト",
+        "slug": "testing",
+        "section": "ガイド",
+        "path": "/projects/capacitor-admob/docs/testing"
+      },
+      {
         "title": "バナー広告",
         "navTitle": "バナー広告",
         "slug": "banner",
@@ -3538,13 +3551,6 @@ export const PROJECTS_JA = [
         "slug": "events",
         "section": "ガイド",
         "path": "/projects/capacitor-admob/docs/events"
-      },
-      {
-        "title": "テスト",
-        "navTitle": "テスト",
-        "slug": "testing",
-        "section": "ガイド",
-        "path": "/projects/capacitor-admob/docs/testing"
       },
       {
         "title": "移行",
@@ -3758,8 +3764,8 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "8.0.3",
     "description": "ネイティブモーダルでバーコード・QRコードをスキャンするCapacitorプラグイン。",
-    "headline": "Webアセットを操作せずネイティブモーダルでコードをスキャンする",
-    "overview": "モーダルでスキャナーを表示し、検出イベントを受け取り、検出エリアと連続マルチスキャンを設定できます。Webアセットの操作は不要です。",
+    "headline": "QR・バーコードをネイティブモーダルで読み取る",
+    "overview": "読み取ったコードをアプリで受け取り、連続スキャンにも対応。検出エリア、ライト、読み取り時のフィードバックを設定できます。",
     "featuresHeading": "できること",
     "features": [
       {
@@ -3816,16 +3822,12 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
-        "title": "監視開始",
-        "description": "startWatchEventを呼び出し、スクリーンショットの監視を開始します。"
+        "title": "撮影後の案内",
+        "description": "スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。"
       },
       {
-        "title": "スクリーンショットリスナー",
-        "description": "ユーザーが画面を撮影したときにuserDidTakeScreenshotを処理します。"
-      },
-      {
-        "title": "監視停止",
-        "description": "監視が不要になったらremoveWatchEventを呼び出します。"
+        "title": "画面に合わせて監視",
+        "description": "画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。"
       }
     ],
     "path": "/projects/capacitor-screenshot-event",
@@ -3891,18 +3893,18 @@ export const PROJECTS_JA = [
         "path": "/projects/capacitor-printer/docs/readme"
       },
       {
-        "title": "PDF",
-        "navTitle": "PDF",
-        "slug": "pdf",
-        "section": "ガイド",
-        "path": "/projects/capacitor-printer/docs/pdf"
-      },
-      {
-        "title": "Web",
-        "navTitle": "Web",
+        "title": "WebViewを印刷",
+        "navTitle": "WebViewを印刷",
         "slug": "web",
         "section": "ガイド",
         "path": "/projects/capacitor-printer/docs/web"
+      },
+      {
+        "title": "PDF・ファイルを印刷",
+        "navTitle": "PDF・ファイルを印刷",
+        "slug": "pdf",
+        "section": "ガイド",
+        "path": "/projects/capacitor-printer/docs/pdf"
       },
       {
         "title": "API",

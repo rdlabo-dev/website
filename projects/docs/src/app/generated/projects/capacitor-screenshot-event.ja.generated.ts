@@ -15,16 +15,12 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
-      "title": "監視開始",
-      "description": "startWatchEventを呼び出し、スクリーンショットの監視を開始します。"
+      "title": "撮影後の案内",
+      "description": "スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。"
     },
     {
-      "title": "スクリーンショットリスナー",
-      "description": "ユーザーが画面を撮影したときにuserDidTakeScreenshotを処理します。"
-    },
-    {
-      "title": "監視停止",
-      "description": "監視が不要になったらremoveWatchEventを呼び出します。"
+      "title": "画面に合わせて監視",
+      "description": "画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。"
     }
   ],
   "path": "/projects/capacitor-screenshot-event",
@@ -32,11 +28,12 @@ export const PROJECT = {
     {
       "title": "はじめに",
       "navTitle": "はじめに",
+      "updatedAt": "2026-09-06",
       "slug": "readme",
       "file": "readme.md",
       "section": "クイックスタート",
       "path": "/projects/capacitor-screenshot-event/docs/readme",
-      "html": "<p data-line=\"0\" class=\"code-line\">ユーザーがスクリーンショットを撮ったときに Capacitor アプリへ通知します。</p>\n<p data-line=\"2\" class=\"code-line\">このプラグインは iOS と Android のスクリーンショットを監視し、Capacitor のイベントリスナー経由で Web 層へ届けます。分析、セキュリティ確認、コンテンツ保護のフローに使えます。</p>\n<h2 id=\"%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\" aria-hidden=\"true\"></a> インストール</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"6\"><span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> install</span><span style=\"color:#9ECBFF\"> @rdlabo/capacitor-screenshot-event</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npx</span><span style=\"color:#9ECBFF\"> cap</span><span style=\"color:#9ECBFF\"> sync</span></span>\n<span class=\"line\"></span></code></pre></div><h2 id=\"%E4%BD%BF%E3%81%84%E6%96%B9\" data-line=\"11\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E4%BD%BF%E3%81%84%E6%96%B9\" aria-hidden=\"true\"></a> 使い方</h2>\n<p data-line=\"13\" class=\"code-line\">監視、処理、停止は <a href=\"/ja/projects/capacitor-screenshot-event/docs/screenshot-event\">ScreenshotEvent</a> です。</p>\n<h2 id=\"%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%8B\" data-line=\"15\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%8B\" aria-hidden=\"true\"></a> いつ使うか</h2>\n<p data-line=\"17\" class=\"code-line\">アプリ内でスクリーンショットに反応したいときに使います。例:</p>\n<ul data-line=\"19\" class=\"code-line\">\n<li data-line=\"19\" class=\"code-line\">撮影後に確認や警告を出す</li>\n<li data-line=\"20\" class=\"code-line\">分析や監査のためにイベントを記録する</li>\n<li data-line=\"21\" class=\"code-line\">機密コンテンツをぼかすなど UI を変える</li>\n</ul>\n<h2 id=\"%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0\" data-line=\"23\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0\" aria-hidden=\"true\"></a> プラットフォーム</h2>\n<ul data-line=\"25\" class=\"code-line\">\n<li data-line=\"25\" class=\"code-line\"><strong>iOS</strong>: <code>UIApplication.userDidTakeScreenshotNotification</code> を使います。</li>\n<li data-line=\"26\" class=\"code-line\"><strong>Android</strong>: メディアストアのコンテンツ変更を監視します。</li>\n<li data-line=\"27\" class=\"code-line\"><strong>Web</strong>: ブラウザがスクリーンショットイベントを公開しないため非対応です。</li>\n</ul>\n",
+      "html": "<p data-line=\"0\" class=\"code-line\">ユーザーがスクリーンショットを撮ったあと、Capacitor アプリへ通知します。</p>\n<p data-line=\"2\" class=\"code-line\">撮影後の案内やアプリ内 UI の更新（トーストや分析ログなど）に使います。通知は撮影後に届くため、撮影前のコンテンツ保護やぼかしにはなりません。</p>\n<h2 id=\"%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\" aria-hidden=\"true\"></a> インストール</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"6\"><span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> install</span><span style=\"color:#9ECBFF\"> @rdlabo/capacitor-screenshot-event</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npx</span><span style=\"color:#9ECBFF\"> cap</span><span style=\"color:#9ECBFF\"> sync</span></span>\n<span class=\"line\"></span></code></pre></div><h2 id=\"%E4%BD%BF%E3%81%84%E6%96%B9\" data-line=\"11\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E4%BD%BF%E3%81%84%E6%96%B9\" aria-hidden=\"true\"></a> 使い方</h2>\n<p data-line=\"13\" class=\"code-line\">リスナー登録、監視開始、実機での物理スクリーンショット確認、停止とハンドル削除は <a href=\"/ja/projects/capacitor-screenshot-event/docs/screenshot-event\">ScreenshotEvent</a> です。</p>\n<h2 id=\"%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0\" data-line=\"15\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0\" aria-hidden=\"true\"></a> プラットフォーム</h2>\n<ul data-line=\"17\" class=\"code-line\">\n<li data-line=\"17\" class=\"code-line\"><strong>iOS</strong>: <code>UIApplication.userDidTakeScreenshotNotification</code> を使います。</li>\n<li data-line=\"18\" class=\"code-line\"><strong>Android</strong>（8.0.0）: 外部ストレージ配下の固定パス <code>Pictures/Screenshots/</code> に対する <code>FileObserver.CREATE</code> を監視します。そのディレクトリへ保存される場合に検知します。MediaStore の変更監視ではなく、すべての Android 端末や OEM のギャラリー保存先で確実とは限りません。</li>\n<li data-line=\"19\" class=\"code-line\"><strong>Web</strong>: ブラウザがスクリーンショットイベントを公開しないため非対応です。</li>\n</ul>\n",
       "headings": [
         {
           "id": "%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB",
@@ -46,11 +43,6 @@ export const PROJECT = {
         {
           "id": "%E4%BD%BF%E3%81%84%E6%96%B9",
           "text": "使い方",
-          "level": 2
-        },
-        {
-          "id": "%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%8B",
-          "text": "いつ使うか",
           "level": 2
         },
         {
@@ -66,46 +58,17 @@ export const PROJECT = {
     {
       "title": "ScreenshotEvent",
       "navTitle": "ScreenshotEvent",
+      "updatedAt": "2026-09-06",
       "slug": "screenshot-event",
       "file": "screenshot-event.md",
       "section": "ガイド",
       "path": "/projects/capacitor-screenshot-event/docs/screenshot-event",
-      "html": "<p data-line=\"0\" class=\"code-line\"><code>ScreenshotEvent</code> はスクリーンショットを監視します。<a href=\"/ja/projects/capacitor-screenshot-event/docs/readme#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\">インストール</a> のあとで呼び出します。最初のスクリーンショットを取りこぼさないよう、<code>startWatchEvent</code> より前に <code>addListener</code> を登録します。</p>\n<h2 id=\"addlistener\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#addlistener\" aria-hidden=\"true\"></a> addListener</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"4\"><span class=\"line\"><span style=\"color:#F97583\">import</span><span style=\"color:#E1E4E8\"> { ScreenshotEvent } </span><span style=\"color:#F97583\">from</span><span style=\"color:#9ECBFF\"> '@rdlabo/capacitor-screenshot-event'</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">const</span><span style=\"color:#79B8FF\"> handle</span><span style=\"color:#F97583\"> =</span><span style=\"color:#F97583\"> await</span><span style=\"color:#E1E4E8\"> ScreenshotEvent.</span><span style=\"color:#B392F0\">addListener</span><span style=\"color:#E1E4E8\">(</span><span style=\"color:#9ECBFF\">'userDidTakeScreenshot'</span><span style=\"color:#E1E4E8\">, () </span><span style=\"color:#F97583\">=&gt;</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#a0aab5\">  // Notice take screenshot</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">});</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">await</span><span style=\"color:#E1E4E8\"> handle.</span><span style=\"color:#B392F0\">remove</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"></span></code></pre></div><section class=\"api-entry\"><h4 id=\"method-addlistener('userdidtakescreenshot'%2C-...)\" data-line=\"14\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#method-addlistener('userdidtakescreenshot'%2C-...)\" aria-hidden=\"true\"></a> <code>method</code> addListener('userDidTakeScreenshot', ...)</h4><p data-line=\"17\" class=\"code-line api-signature\"><code>addListener(eventName: 'userDidTakeScreenshot', listenerFunc: () =&gt; void) =&gt; Promise&lt;PluginListenerHandle&gt;</code></p></section>\n\n<section class=\"api-entry\"><h4 id=\"interface-pluginlistenerhandle\" data-line=\"20\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#interface-pluginlistenerhandle\" aria-hidden=\"true\"></a> <code>interface</code> PluginListenerHandle</h4><table data-line=\"22\" class=\"code-line\">\n<thead data-line=\"22\" class=\"code-line\">\n<tr data-line=\"22\" class=\"code-line\">\n<th>Prop</th>\n<th>Type</th>\n</tr>\n</thead>\n<tbody data-line=\"24\" class=\"code-line\">\n<tr data-line=\"24\" class=\"code-line\">\n<td><strong><code>remove</code></strong></td>\n<td><code>() =&gt; Promise&lt;void&gt;</code></td>\n</tr>\n</tbody>\n</table></section>\n\n<h2 id=\"startwatchevent\" data-line=\"27\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#startwatchevent\" aria-hidden=\"true\"></a> startWatchEvent</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"29\"><span class=\"line\"><span style=\"color:#F97583\">import</span><span style=\"color:#E1E4E8\"> { ScreenshotEvent } </span><span style=\"color:#F97583\">from</span><span style=\"color:#9ECBFF\"> '@rdlabo/capacitor-screenshot-event'</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">ScreenshotEvent.</span><span style=\"color:#B392F0\">addListener</span><span style=\"color:#E1E4E8\">(</span><span style=\"color:#9ECBFF\">'userDidTakeScreenshot'</span><span style=\"color:#E1E4E8\">, () </span><span style=\"color:#F97583\">=&gt;</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#a0aab5\">  // Notice take screenshot</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">});</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">ScreenshotEvent.</span><span style=\"color:#B392F0\">startWatchEvent</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"></span></code></pre></div><section class=\"api-entry\"><h4 id=\"method-startwatchevent()\" data-line=\"39\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#method-startwatchevent()\" aria-hidden=\"true\"></a> <code>method</code> startWatchEvent()</h4><p data-line=\"42\" class=\"code-line api-signature\"><code>startWatchEvent() =&gt; Promise&lt;void&gt;</code></p></section>\n\n<h2 id=\"removewatchevent\" data-line=\"45\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#removewatchevent\" aria-hidden=\"true\"></a> removeWatchEvent</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"47\"><span class=\"line\"><span style=\"color:#F97583\">import</span><span style=\"color:#E1E4E8\"> { ScreenshotEvent } </span><span style=\"color:#F97583\">from</span><span style=\"color:#9ECBFF\"> '@rdlabo/capacitor-screenshot-event'</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">ScreenshotEvent.</span><span style=\"color:#B392F0\">removeWatchEvent</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"></span></code></pre></div><section class=\"api-entry\"><h4 id=\"method-removewatchevent()\" data-line=\"53\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#method-removewatchevent()\" aria-hidden=\"true\"></a> <code>method</code> removeWatchEvent()</h4><p data-line=\"56\" class=\"code-line api-signature\"><code>removeWatchEvent() =&gt; Promise&lt;void&gt;</code></p></section>\n\n",
+      "html": "<p data-line=\"0\" class=\"code-line\"><code>ScreenshotEvent</code> はスクリーンショットを監視します。<a href=\"/ja/projects/capacitor-screenshot-event/docs/readme#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB\">インストール</a> のあとで呼び出します。最初のスクリーンショットを取りこぼさないよう、<code>startWatchEvent</code> より前に <code>addListener</code> を登録します。通知が必要なあいだ監視を続け、実機で物理スクリーンショットを確認し、画面破棄時に監視停止とハンドル削除を行います。</p>\n<h2 id=\"%E7%9B%A3%E8%A6%96%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#%E7%9B%A3%E8%A6%96%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB\" aria-hidden=\"true\"></a> 監視のライフサイクル</h2>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"4\"><span class=\"line\"><span style=\"color:#F97583\">import</span><span style=\"color:#E1E4E8\"> { ScreenshotEvent } </span><span style=\"color:#F97583\">from</span><span style=\"color:#9ECBFF\"> '@rdlabo/capacitor-screenshot-event'</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#F97583\">import</span><span style=\"color:#F97583\"> type</span><span style=\"color:#E1E4E8\"> { PluginListenerHandle } </span><span style=\"color:#F97583\">from</span><span style=\"color:#9ECBFF\"> '@capacitor/core'</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">let</span><span style=\"color:#E1E4E8\"> handle</span><span style=\"color:#F97583\">:</span><span style=\"color:#B392F0\"> PluginListenerHandle</span><span style=\"color:#F97583\"> |</span><span style=\"color:#79B8FF\"> undefined</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">const</span><span style=\"color:#B392F0\"> start</span><span style=\"color:#F97583\"> =</span><span style=\"color:#F97583\"> async</span><span style=\"color:#E1E4E8\"> () </span><span style=\"color:#F97583\">=&gt;</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583\">  if</span><span style=\"color:#E1E4E8\"> (handle) </span><span style=\"color:#F97583\">return</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">  handle </span><span style=\"color:#F97583\">=</span><span style=\"color:#F97583\"> await</span><span style=\"color:#E1E4E8\"> ScreenshotEvent.</span><span style=\"color:#B392F0\">addListener</span><span style=\"color:#E1E4E8\">(</span><span style=\"color:#9ECBFF\">'userDidTakeScreenshot'</span><span style=\"color:#E1E4E8\">, () </span><span style=\"color:#F97583\">=&gt;</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">    console.</span><span style=\"color:#B392F0\">log</span><span style=\"color:#E1E4E8\">(</span><span style=\"color:#9ECBFF\">'Screenshot was taken'</span><span style=\"color:#E1E4E8\">);</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">  });</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">  await</span><span style=\"color:#E1E4E8\"> ScreenshotEvent.</span><span style=\"color:#B392F0\">startWatchEvent</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"><span style=\"color:#a0aab5\">  // Take a physical screenshot on the device and confirm the listener runs.</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">};</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583\">const</span><span style=\"color:#B392F0\"> stop</span><span style=\"color:#F97583\"> =</span><span style=\"color:#F97583\"> async</span><span style=\"color:#E1E4E8\"> () </span><span style=\"color:#F97583\">=&gt;</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583\">  await</span><span style=\"color:#E1E4E8\"> ScreenshotEvent.</span><span style=\"color:#B392F0\">removeWatchEvent</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"><span style=\"color:#F97583\">  await</span><span style=\"color:#E1E4E8\"> handle?.</span><span style=\"color:#B392F0\">remove</span><span style=\"color:#E1E4E8\">();</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">  handle </span><span style=\"color:#F97583\">=</span><span style=\"color:#79B8FF\"> undefined</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">};</span></span>\n<span class=\"line\"></span></code></pre></div><p data-line=\"27\" class=\"code-line\">画面がアクティブになったら <code>start</code>、破棄時に <code>stop</code> を呼び出します。リスナーを登録してすぐ <code>remove</code> するだけの例にはしないでください。</p>\n<p data-line=\"29\" class=\"code-line\">監視とリスナーの型は<a href=\"/ja/projects/capacitor-screenshot-event/docs/api\">API</a>を参照してください。</p>\n",
       "headings": [
         {
-          "id": "addlistener",
-          "text": "addListener",
+          "id": "%E7%9B%A3%E8%A6%96%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB",
+          "text": "監視のライフサイクル",
           "level": 2
-        },
-        {
-          "id": "method-addlistener('userdidtakescreenshot'%2C-...)",
-          "text": "method addListener('userDidTakeScreenshot', ...)",
-          "level": 4
-        },
-        {
-          "id": "interface-pluginlistenerhandle",
-          "text": "interface PluginListenerHandle",
-          "level": 4
-        },
-        {
-          "id": "startwatchevent",
-          "text": "startWatchEvent",
-          "level": 2
-        },
-        {
-          "id": "method-startwatchevent()",
-          "text": "method startWatchEvent()",
-          "level": 4
-        },
-        {
-          "id": "removewatchevent",
-          "text": "removeWatchEvent",
-          "level": 2
-        },
-        {
-          "id": "method-removewatchevent()",
-          "text": "method removeWatchEvent()",
-          "level": 4
         }
       ],
       "codes": [],

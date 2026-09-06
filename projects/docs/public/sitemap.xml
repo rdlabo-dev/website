@@ -50,15 +50,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/auth-http</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-kit/docs/auth-http</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/offline-realtime</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-kit/docs/offline-realtime</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/optional-features</loc>
@@ -80,33 +84,41 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/photo-file</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/photo-file</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/editor</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/editor</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/viewer</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/viewer</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/theme</loc>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/theme</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/photo-file</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/photo-file</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/editor</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/editor</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/viewer</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-photo-editor/docs/viewer</loc>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/api</loc>
@@ -122,29 +134,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-scroll-header/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-scroll-header/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-scroll-header/docs/ion-content</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-scroll-header/docs/ion-content</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-scroll-header/docs/virtual-scroll</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-scroll-header/docs/virtual-scroll</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-scroll-header/docs/safe-area</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-scroll-header/docs/safe-area</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-scroll-header/docs/api</loc>
@@ -160,35 +178,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies/docs/readme</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ngx-cdk-scroll-strategies/docs/readme</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies/docs/simple</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ngx-cdk-scroll-strategies/docs/simple</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies/docs/advanced</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ngx-cdk-scroll-strategies/docs/advanced</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies/docs/reverse</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ngx-cdk-scroll-strategies/docs/reverse</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies/docs/faq</loc>
@@ -326,21 +344,27 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-collect-icons/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/initialize</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-collect-icons/docs/initialize</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/usage</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-collect-icons/docs/usage</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/options</loc>
@@ -350,9 +374,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/faq</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-collect-icons/docs/faq</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/migration</loc>
@@ -438,9 +464,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-mysql/docs/runtime</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle</loc>
@@ -492,9 +520,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/http-auth</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/http-auth</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer</loc>
@@ -506,9 +536,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/realtime-offline</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/realtime-offline</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/testing-operations</loc>
@@ -542,9 +574,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration</loc>
@@ -555,19 +589,19 @@
     <lastmod>2026-09-06</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration</loc>
-    <lastmod>2026-09-06</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/migration</loc>
-    <lastmod>2026-09-06</lastmod>
-  </url>
-  <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules</loc>
     <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/migration</loc>
     <lastmod>2026-09-06</lastmod>
   </url>
   <url>
@@ -724,9 +758,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-docgen/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-docgen/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-docgen/docs/upstream-differences</loc>
@@ -748,29 +784,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/configuration</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/configuration</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/vanilla-js</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/vanilla-js</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/angular</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/angular</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/react</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/react</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/learn/event-listeners</loc>
@@ -786,9 +828,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/initialize</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/initialize</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe/docs/payment-sheet</loc>
@@ -832,15 +876,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/configuration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/configuration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe-identity/docs/identity-verification-sheet</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/api</loc>
@@ -856,15 +904,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-terminal/docs/configuration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe-terminal/docs/configuration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-terminal/docs/collect-a-payment</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-stripe-terminal/docs/collect-a-payment</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-stripe-terminal/docs/reader-lifecycle</loc>
@@ -892,11 +944,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/readme</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-admob/docs/readme</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration</loc>
@@ -909,6 +961,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-admob/docs/consent</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/capacitor-admob/docs/testing</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/banner</loc>
@@ -943,12 +1003,6 @@
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-admob/docs/events</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/capacitor-admob/docs/testing</loc>
-  </url>
-  <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration</loc>
   </url>
   <url>
@@ -968,9 +1022,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-facebook-login/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-facebook-login/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-facebook-login/docs/configuration</loc>
@@ -980,9 +1036,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-facebook-login/docs/authentication</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-facebook-login/docs/authentication</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-facebook-login/docs/app-events</loc>
@@ -1090,15 +1148,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-codescanner/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-codescanner/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-codescanner/docs/code-scanner</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-codescanner/docs/code-scanner</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-codescanner/docs/api</loc>
@@ -1114,15 +1176,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-screenshot-event/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-screenshot-event/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-screenshot-event/docs/screenshot-event</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-screenshot-event/docs/screenshot-event</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-screenshot-event/docs/api</loc>
@@ -1138,21 +1204,27 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-printer/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-printer/docs/readme</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/projects/capacitor-printer/docs/pdf</loc>
-  </url>
-  <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/capacitor-printer/docs/pdf</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-printer/docs/web</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-printer/docs/web</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/capacitor-printer/docs/pdf</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/capacitor-printer/docs/pdf</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-printer/docs/api</loc>
@@ -1168,27 +1240,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-brotherprint/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-brotherprint/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-brotherprint/docs/installation</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-brotherprint/docs/installation</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-brotherprint/docs/search</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-brotherprint/docs/search</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-brotherprint/docs/print</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-brotherprint/docs/print</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-brotherprint/docs/events</loc>

@@ -2370,7 +2370,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-brotherprint',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-brotherprint',
     // v8.1.1 predates the portal guides; pin the reviewed immutable docs revision.
-    englishDocsRef: '50e534904821a792220ba1567d92fd60766caf0b',
+    englishDocsRef: '7f37373bee4bbb37b8c043472f6ded0b917fb067',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',

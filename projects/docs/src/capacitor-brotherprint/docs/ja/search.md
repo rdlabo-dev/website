@@ -94,6 +94,4 @@ await BrotherPrint.cancelSearchWiFiPrinter();
 await BrotherPrint.cancelSearchBluetoothPrinter();
 ```
 
-!::cancelSearchWiFiPrinter::
-
-!::cancelSearchBluetoothPrinter::
+停止メソッドのシグネチャは [API](/docs/api#cancelsearchwifiprinter) を参照してください。

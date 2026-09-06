@@ -2,9 +2,9 @@
 title: エラー処理
 ---
 
-ネイティブCapacitorエラーとWeb stubが公開する安定したエラーコードです。[チャット](/docs/chat)、[利用可否](/docs/availability)、[画像](/docs/images)、[移行](/docs/migration)も参照してください。
+ネイティブCapacitorエラーとWeb実装が公開する安定したエラーコードです。[チャット](/docs/chat)、[利用可否](/docs/availability)、[画像](/docs/images)、[移行](/docs/migration)も参照してください。
 
-エラーの文字列 `code` は `LocalLLMErrorCode` に対応します。Webでは `Error` を継承し `code` を持つ `LocalLLMException` をthrowします。
+ネイティブCapacitorエラーとWeb実装は、`LocalLLMErrorCode` に対応する安定した文字列 `code` を公開します。Webでは `Error` を継承し `code` を持つ `LocalLLMException` をthrowします。
 
 ```typescript
 import { LocalLLM, LocalLLMException } from '@rdlabo/capacitor-local-llm';

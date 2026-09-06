@@ -13,3 +13,5 @@ title: イベント
 
 返された `PluginListenerHandle.remove()` または `removeAllListeners()` でリスナーを解除します。
 
+Webでは `downloadProgress.progress` はChromeの正規化されたダウンロード進捗（0–1）由来で、バイト数は省略されます。利用可否イベントはプラグインの利用可否確認とセッション作成/ダウンロードで観測した変化を反映します。ストリーミングと生成ライフサイクルのイベント契約はネイティブと同じです。
+

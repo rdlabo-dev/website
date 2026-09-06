@@ -13,8 +13,8 @@ title: 利用可否とプラットフォームの動作
 | `available` | テキストモデルが生成可能です。 |
 | `device-not-eligible` | デバイスまたはOSがテキストモデル非対応です。iOSはこの理由を返しますが、Androidの `FeatureStatus.UNAVAILABLE` は理由を公開しないため `unavailable` に対応します。 |
 | `not-enabled` | 対応デバイスですが利用者がオンデバイスAIを有効にしていません。主にiOSで報告されます。 |
-| `downloadable` | モデルをダウンロードできます（Android）。 |
-| `downloading` | モデルのダウンロード中です（Android）。 |
+| `downloadable` | モデルをダウンロードできます（Android/Chrome）。 |
+| `downloading` | モデルのダウンロード中です（Android/Chrome）。 |
 | `not-ready` | モデルは存在しますが初期化中です。 |
 | `unavailable` | その他の理由で利用できません。 |
 
@@ -44,4 +44,8 @@ title: 利用可否とプラットフォームの動作
 - 画像解析のバックエンド選択は[画像](/docs/images)で説明します。
 - バックグラウンドではオンデバイスモデルを使えず、推論リクエストは失敗します。
 - AICoreにはアプリ単位の推論quotaがあります。過剰なリクエストではbusy/quotaエラーになるため、指数バックオフを検討してください。
+
+### Web（Chrome）
+
+テキストの利用可否はChromeの `available`、`downloadable`、`downloading`、`unavailable` をそのまま対応づけます。APIが無い場合は `unavailable` です。利用可否イベントはバックグラウンドポーリングではなく、プラグインの確認とセッション作成/ダウンロードで観測した変化を反映します。画像解析は現時点で `unavailable` を報告します。セットアップ、対応メソッド、生成制御は[Web（Chrome）](/docs/web)を参照してください。
 

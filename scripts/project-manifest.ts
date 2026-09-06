@@ -2051,19 +2051,30 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Local LLM',
     packageName: '@rdlabo/capacitor-local-llm',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-local-llm',
+    seoTitle: text(
+      'Capacitor Local LLM for iOS, Android and Chrome | rdlabo',
+      'Capacitor Local LLM：iOS・Android・ChromeでAIを実行 | rdlabo',
+    ),
     category: 'capacitor-plugins',
     icon: 'app',
     description: text(
-      'On-device text generation and image features for Capacitor iOS and Android apps.',
-      'CapacitorのiOS・Androidアプリ向けオンデバイステキスト生成・画像機能。',
+      'On-device text generation for Capacitor iOS, Android, and supported desktop Chrome, plus native image features.',
+      'CapacitorのiOS・Android・対応デスクトップChromeでオンデバイステキスト生成。ネイティブの画像機能も提供します。',
     ),
     headline: text('Run AI on the device', 'デバイス上でAIを実行する'),
     overview: text(
-      'Use native chat, streaming, cancellation, and availability checks. Image capabilities depend on the OS, build toolchain, and selected backend. Independently maintained fork of Ionic Local LLM.',
-      'ネイティブのチャット、ストリーミング、キャンセル、利用可否確認を提供します。画像機能はOS・ビルド環境・バックエンドに依存します。Ionic Local LLMの独立管理フォークです。',
+      'Use one chat API for native apps and supported desktop Chrome, with streaming, cancellation, and availability checks. Image features use native backends. Independently maintained fork of Ionic Local LLM.',
+      'ネイティブアプリと対応デスクトップChromeで共通のチャットAPIを使い、ストリーミング、キャンセル、利用可否を扱えます。画像機能はネイティブのバックエンドを利用します。Ionic Local LLMの独立管理フォークです。',
     ),
-    featuresHeading: text('Native AI features', 'ネイティブAI機能'),
+    featuresHeading: text('On-device AI features', 'オンデバイスAI機能'),
     features: [
+      {
+        title: text('Text generation in Chrome', 'Chromeでテキスト生成'),
+        description: text(
+          'Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting.',
+          'Chrome内蔵のPrompt APIで、サーバーやAPIキーなしに生成します。開始前にモデルの利用可否を確認します。',
+        ),
+      },
       {
         title: text('Chat lifecycle', 'チャットのライフサイクル'),
         description: text(
@@ -2087,10 +2098,29 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('Setup', 'セットアップ', 'setup', 'setup.md', 'Guides', 'ガイド'),
-      page('Availability', '利用可否', 'availability', 'availability.md', 'Guides', 'ガイド'),
-      page('Chat', 'チャット', 'chat', 'chat.md', 'Guides', 'ガイド'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Setup', 'セットアップ', 'setup', 'setup.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Web (Chrome)', 'Web（Chrome）', 'web', 'web.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'On-device AI in Chrome with Capacitor Local LLM | rdlabo',
+          'Capacitor Local LLMでChromeのオンデバイスAIを使う | rdlabo',
+        ),
+        seoDescription: text(
+          'Set up Chrome Prompt API text generation with Capacitor Local LLM: model availability, downloads, streaming, cancellation, and Web limitations.',
+          'Capacitor Local LLMでChrome Prompt APIを利用。モデルの利用可否・ダウンロード、ストリーミング、キャンセル、Webの制約を解説します。',
+        ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Availability', '利用可否', 'availability', 'availability.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Chat', 'チャット', 'chat', 'chat.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Images', '画像', 'images', 'images.md', 'Guides', 'ガイド'),
       page(
         'Android fallback model',
@@ -2100,8 +2130,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
       ),
-      page('Events', 'イベント', 'events', 'events.md', 'Guides', 'ガイド'),
-      page('Error Handling', 'エラー処理', 'errors', 'errors.md', 'Guides', 'ガイド'),
+      page('Events', 'イベント', 'events', 'events.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Error Handling', 'エラー処理', 'errors', 'errors.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
     ],
   },

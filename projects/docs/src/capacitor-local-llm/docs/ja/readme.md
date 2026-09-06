@@ -6,7 +6,7 @@ title: はじめに
 
 iOSではApple Intelligence（Foundation Models）、AndroidではGemini Nanoを使い、デバイス上でLLMを実行します。推論にAPIキーは不要で、プロンプトや応答はデバイス外へ送信されません。Androidの `downloadModel()` によるモデル取得にはネットワークを使う場合があります。
 
-オンデバイスLLMには対応ハードウェアが必要です。Androidエミュレーターは非対応です。iOSシミュレーターはホストMacがApple Intelligenceに対応し、有効にしている場合に利用できます。
+iOS/AndroidのオンデバイスLLMには対応ハードウェアが必要です。Androidエミュレーターは非対応です。iOSシミュレーターはホストMacがApple Intelligenceに対応し、有効にしている場合に利用できます。
 
 ## インストール
 
@@ -15,7 +15,7 @@ npm install @rdlabo/capacitor-local-llm
 npx cap sync
 ```
 
-Capacitor 8以降が必要です。Web実行は非対応で、iOSまたはAndroidのネイティブ実装を使います。
+Capacitor 8以降が必要です。対応デスクトップChromeでは組み込みPrompt APIによるテキスト生成も利用できます。要件と制限は[Web（Chrome）](/docs/web)を参照してください。
 
 READMEとガイドは参照元のソースを説明しています。npm版を使う場合は対応するGitタグのドキュメントとAPIの `Since` を確認してください。`2.1.0` と記載されたAPIが `2.0.0` にも存在すると考えないでください。
 
@@ -25,6 +25,7 @@ READMEとガイドは参照元のソースを説明しています。npm版を�
 | --- | --- | --- |
 | iOS | 18.4 | 画像生成は18.4以降、テキストLLMは26以降。画像解析はXcode 27 / Swift 6.4でビルドした場合にiOS 27以降のFoundation Models `Attachment` を使います。 |
 | Android | API 29（Android 10） | ML Kit経由のGemini Nanoには対応実機（Pixel 9以降など）が必要です。 |
+| Web | 対応デスクトップChrome | HTTPSまたはlocalhostのセキュアコンテキスト。Prompt APIによるテキスト生成。詳細は[Web（Chrome）](/docs/web)。 |
 
 SPMのdeployment target、`minSdkVersion`、モデルダウンロードは[セットアップ](/docs/setup)を参照してください。
 
@@ -60,6 +61,7 @@ try {
 ## ドキュメント
 
 - [セットアップ](/docs/setup)：プラットフォーム要件、SPM、Android SDK、モデル取得。
+- [Web（Chrome）](/docs/web)：デスクトップChromeのPrompt API、要件、制限。
 - [Androidフォールバックモデル](/docs/android-fallback)：Gemini Nano非対応時のLiteRT-LM。
 - [利用可否](/docs/availability)：状態値とプラットフォームの動作。
 - [チャット](/docs/chat)：寿命、ストリーミング、キャンセル、ウォームアップ。

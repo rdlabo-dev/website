@@ -15,7 +15,7 @@ iOS・Androidの要件とネイティブ設定を説明します。[Androidフ�
 
 CocoaPodsでは追加設定は不要です。Foundation ModelsとImage Playgroundはシステムフレームワークで、対応デバイスでApple Intelligenceを有効にすると利用できます。
 
-Swift Package Managerを使うCapacitorプロジェクトでは、現在のCLIが `CapApp-SPM/Package.swift` のiOS deployment targetを18.0として生成し、必要なマイナーバージョンを保持しません。`npx cap sync ios` のたびに `platforms: [.iOS("18.4")]` へ変更します。同梱サンプルの `npm run cap:sync` はこれを自動化しています。[sync-capacitor.mjs](https://github.com/rdlabo-dev/capacitor-local-llm/blob/v2.1.0/example-app/scripts/sync-capacitor.mjs)を参照してください。
+Swift Package Managerを使うCapacitorプロジェクトでは、現在のCLIが `CapApp-SPM/Package.swift` のiOS deployment targetを18.0として生成し、必要なマイナーバージョンを保持しません。`npx cap sync ios` のたびに `platforms: [.iOS("18.4")]` へ変更します。同梱サンプルの `npm run cap:sync` はこれを自動化しています。[sync-capacitor.mjs](https://github.com/rdlabo-dev/capacitor-local-llm/blob/v2.2.0/example-app/scripts/sync-capacitor.mjs)を参照してください。
 
 チャット作成・生成前に `getAvailability()` でテキストモデルの準備を確認します。画像入力には別途 `getImageAnalysisAvailability()` を使います。テキストと画像の利用可否は異なる場合があります。[画像](/docs/images)も確認してください。
 
@@ -65,4 +65,8 @@ if (status === 'downloadable') {
 await availabilityListener.remove();
 await progressListener.remove();
 ```
+
+## Webセットアップ
+
+対応デスクトップChromeでは組み込みPrompt APIでテキスト生成を実行します。[Webセットアップと制限](/docs/web)を参照してください。localhostでの確認は `example-app` で `npm run dev` を実行します。
 

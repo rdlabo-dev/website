@@ -1678,12 +1678,17 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
-    "description": "On-device text generation and image features for Capacitor iOS and Android apps.",
+    "version": "2.2.0",
+    "seoTitle": "Capacitor Local LLM for iOS, Android and Chrome | rdlabo",
+    "description": "On-device text generation for Capacitor iOS, Android, and supported desktop Chrome, plus native image features.",
     "headline": "Run AI on the device",
-    "overview": "Use native chat, streaming, cancellation, and availability checks. Image capabilities depend on the OS, build toolchain, and selected backend. Independently maintained fork of Ionic Local LLM.",
-    "featuresHeading": "Native AI features",
+    "overview": "Use one chat API for native apps and supported desktop Chrome, with streaming, cancellation, and availability checks. Image features use native backends. Independently maintained fork of Ionic Local LLM.",
+    "featuresHeading": "On-device AI features",
     "features": [
+      {
+        "title": "Text generation in Chrome",
+        "description": "Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting."
+      },
       {
         "title": "Chat lifecycle",
         "description": "Create chats, stream responses, observe generation state, and cancel work."
@@ -1712,6 +1717,13 @@ export const PROJECTS_EN = [
         "slug": "setup",
         "section": "Guides",
         "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "Web (Chrome)",
+        "navTitle": "Web (Chrome)",
+        "slug": "web",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/web"
       },
       {
         "title": "Availability",
@@ -3638,12 +3650,17 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
-    "description": "CapacitorのiOS・Androidアプリ向けオンデバイステキスト生成・画像機能。",
+    "version": "2.2.0",
+    "seoTitle": "Capacitor Local LLM：iOS・Android・ChromeでAIを実行 | rdlabo",
+    "description": "CapacitorのiOS・Android・対応デスクトップChromeでオンデバイステキスト生成。ネイティブの画像機能も提供します。",
     "headline": "デバイス上でAIを実行する",
-    "overview": "ネイティブのチャット、ストリーミング、キャンセル、利用可否確認を提供します。画像機能はOS・ビルド環境・バックエンドに依存します。Ionic Local LLMの独立管理フォークです。",
-    "featuresHeading": "ネイティブAI機能",
+    "overview": "ネイティブアプリと対応デスクトップChromeで共通のチャットAPIを使い、ストリーミング、キャンセル、利用可否を扱えます。画像機能はネイティブのバックエンドを利用します。Ionic Local LLMの独立管理フォークです。",
+    "featuresHeading": "オンデバイスAI機能",
     "features": [
+      {
+        "title": "Chromeでテキスト生成",
+        "description": "Chrome内蔵のPrompt APIで、サーバーやAPIキーなしに生成します。開始前にモデルの利用可否を確認します。"
+      },
       {
         "title": "チャットのライフサイクル",
         "description": "チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。"
@@ -3672,6 +3689,13 @@ export const PROJECTS_JA = [
         "slug": "setup",
         "section": "ガイド",
         "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "Web（Chrome）",
+        "navTitle": "Web（Chrome）",
+        "slug": "web",
+        "section": "ガイド",
+        "path": "/projects/capacitor-local-llm/docs/web"
       },
       {
         "title": "利用可否とプラットフォームの動作",

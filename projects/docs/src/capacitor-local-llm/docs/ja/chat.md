@@ -18,13 +18,13 @@ if (status !== 'available') {
 
 const { id: chatId } = await LocalLLM.createChat({
   instructions: 'You are a helpful assistant.',
-  history: { maxMessages: 20, maxCharacters: 12000 }, // both platforms; iOS trims the Foundation Models transcript
+  history: { maxMessages: 20, maxCharacters: 12000 }, // all platforms; iOS trims the Foundation Models transcript
 });
 
 const { text } = await LocalLLM.generateText({
   chatId,
   prompt: 'What is the capital of France?',
-  options: { temperature: 0.2, maxOutputTokens: 256 },
+  // Native only: options: { temperature: 0.2, maxOutputTokens: 256 },
 });
 
 const followUp = await LocalLLM.generateText({
@@ -81,13 +81,13 @@ const streamPromise = LocalLLM.streamText({ chatId, prompt: 'Write a long essay.
 try {
   await streamPromise;
 } catch (err) {
-  // LOCAL_LLM_GENERATION_CANCELLED on both platforms when cancellation is observed
+  // LOCAL_LLM_GENERATION_CANCELLED on all platforms when cancellation is observed
 } finally {
   await stateListener.remove();
 }
 ```
 
-`generationStateChange` は `generateText()` と `streamText()` の両方で通知されます。ネイティブ層が生成を受け付けると、最初のチャンクより前に `started` を送り、最後に `completed`、`cancelled`、`failed` のいずれか1つを送ります。対象を確実に指定するには、その `generationId` を使います。`deleteChat()` も当該チャットの実行中生成をキャンセルします。
+`generationStateChange` は `generateText()` と `streamText()` の両方で通知されます。プラグインが生成を受け付けると、最初のチャンクより前に `started` を送り、最後に `completed`、`cancelled`、`failed` のいずれか1つを送ります。対象を確実に指定するには、その `generationId` を使います。`deleteChat()` も当該チャットの実行中生成をキャンセルします。
 
 ## ウォームアップで初回応答を短縮
 
@@ -99,6 +99,7 @@ const { id: chatId } = await LocalLLM.createChat({
 });
 
 // iOS: prewarm this chat. Android: global model warmup (chatId ignored).
+// Web: create and release a temporary session using this chat (promptPrefix ignored).
 await LocalLLM.warmup({ chatId, promptPrefix: 'You are a customer support agent for Acme Corp.' });
 ```
 

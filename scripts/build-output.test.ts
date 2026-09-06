@@ -325,12 +325,12 @@ test('builds bounded English and Japanese search indexes with the component UI',
   assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
   assert.equal(
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    184,
+    185,
     'English search index must contain only canonical pages',
   );
   assert.equal(
     files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    184,
+    185,
     'Japanese search index must contain only canonical pages',
   );
   const sizes = await Promise.all(
@@ -445,5 +445,53 @@ test('ESLint companion guides are reachable from each project entry and introduc
       );
       dom.window.close();
     }
+  }
+});
+
+test('Local LLM 2.2 documents Chrome text support in both locales', async () => {
+  for (const locale of ['', 'ja/']) {
+    const base = `/${locale}projects/capacitor-local-llm`;
+    const landing = new JSDOM(
+      await readFile(new URL(`../dist/docs/browser${base}/index.html`, import.meta.url), 'utf8'),
+    );
+    assert.match(
+      landing.window.document.querySelector('.project-version')?.textContent ?? '',
+      /2\.2\.0/,
+    );
+    assert.match(
+      landing.window.document.querySelector('.project-summary')?.textContent ?? '',
+      /Chrome/,
+    );
+    assert.ok(landing.window.document.querySelector(`.entry-guide a[href="${base}/docs/web"]`));
+    landing.window.close();
+    const web = new JSDOM(
+      await readFile(
+        new URL(`../dist/docs/browser${base}/docs/web/index.html`, import.meta.url),
+        'utf8',
+      ),
+    );
+    assert.match(web.window.document.querySelector('h1')?.textContent ?? '', /Chrome/);
+    const content = web.window.document.querySelector('.znc')?.textContent ?? '';
+    for (const term of [
+      'Prompt API',
+      'localhost',
+      'LOCAL_LLM_INVALID_OPTIONS',
+      'LOCAL_LLM_UNSUPPORTED',
+    ]) {
+      assert.ok(content.includes(term), `${locale}: ${term}`);
+    }
+    web.window.close();
+    const intro = new JSDOM(
+      await readFile(
+        new URL(`../dist/docs/browser${base}/docs/readme/index.html`, import.meta.url),
+        'utf8',
+      ),
+    );
+    assert.ok(intro.window.document.querySelector(`.znc a[href="${base}/docs/web"]`));
+    assert.doesNotMatch(
+      intro.window.document.querySelector('.znc')?.textContent ?? '',
+      /Web execution is unsupported|Web実行は非対応/,
+    );
+    intro.window.close();
   }
 });

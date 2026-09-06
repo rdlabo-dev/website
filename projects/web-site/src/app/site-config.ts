@@ -18,7 +18,7 @@ export const SITE = {
   name: 'rdlabo.dev',
   tagline: 'Engineering notes and open-source tools for modern application teams.',
   description:
-    'Engineering notes and maintained open-source tools for Ionic, Angular, Capacitor, and Cloudflare applications.',
+    'Engineering notes and maintained open-source tools for Ionic, Angular, Capacitor, and Cloudflare Workers applications.',
   docsUrl: 'https://docs.rdlabo.dev',
   supportUrl: 'https://docs.rdlabo.dev/support',
   sponsorUrl: 'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-home',
@@ -68,3 +68,21 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
     docsUrl: 'https://docs.rdlabo.dev/projects/ngx-cdk-scroll-strategies',
   },
 ];
+
+export const WORKERS_PROJECTS = [
+  {
+    name: 'Hono API toolkit',
+    description: 'Validation, authentication, queues, and testing.',
+    docsUrl: 'https://docs.rdlabo.dev/projects/workers-hono-kit',
+  },
+  {
+    name: 'MySQL + Hyperdrive',
+    description: 'Database connections, retries, and Drizzle.',
+    docsUrl: 'https://docs.rdlabo.dev/projects/workers-mysql',
+  },
+  {
+    name: 'Timezone + ESLint',
+    description: 'Explicit date conversions with lint checks.',
+    docsUrl: 'https://docs.rdlabo.dev/projects/workers-timezone',
+  },
+] as const;

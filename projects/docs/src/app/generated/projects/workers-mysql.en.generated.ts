@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "MySQL and Hyperdrive infrastructure for Cloudflare Workers.",
-  "headline": "Run MySQL queries with clear connection and retry boundaries",
+  "seoTitle": "Cloudflare Workers MySQL + Hyperdrive library | rdlabo",
+  "description": "MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.",
+  "headline": "MySQL and Hyperdrive for Cloudflare Workers",
   "overview": "MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.",
   "featuresHeading": "Database building blocks",
   "features": [
@@ -32,6 +33,8 @@ export const PROJECT = {
     {
       "title": "Run your first query",
       "navTitle": "Run your first query",
+      "seoTitle": "Cloudflare Workers MySQL: local query to Hyperdrive | rdlabo",
+      "seoDescription": "Run a local MySQL query with workers-mysql, then use a Hyperdrive binding in Cloudflare Workers. Includes setup, code, and expected output.",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -62,6 +65,8 @@ export const PROJECT = {
     {
       "title": "Getting Started",
       "navTitle": "Getting Started",
+      "seoTitle": "Cloudflare Workers MySQL library: setup | rdlabo",
+      "seoDescription": "Install workers-mysql for Cloudflare Workers. Configure nodejs_compat and choose Hyperdrive runtime, Drizzle, or migration and testing entry points.",
       "updatedAt": "2026-09-06",
       "slug": "readme",
       "file": "readme.md",
@@ -112,6 +117,8 @@ export const PROJECT = {
     {
       "title": "Runtime",
       "navTitle": "Runtime",
+      "seoTitle": "Cloudflare Workers MySQL connections with Hyperdrive | rdlabo",
+      "seoDescription": "Manage Cloudflare Workers MySQL connections with Hyperdrive, primary/replica routing, transactions, and deadlock retries using workers-mysql.",
       "slug": "runtime",
       "file": "runtime.md",
       "section": "Guides",
@@ -141,6 +148,8 @@ export const PROJECT = {
     {
       "title": "Drizzle and dates",
       "navTitle": "Drizzle and dates",
+      "seoTitle": "Cloudflare Workers MySQL: Drizzle and date handling | rdlabo",
+      "seoDescription": "Use Drizzle with MySQL on Cloudflare Workers. Configure ORM integration and fixed +09:00 storage helpers separately from IANA display timezones.",
       "slug": "drizzle",
       "file": "drizzle.md",
       "section": "Guides",
@@ -165,6 +174,8 @@ export const PROJECT = {
     {
       "title": "Migrations and testing",
       "navTitle": "Migrations and testing",
+      "seoTitle": "Cloudflare Workers MySQL: migrations and testing | rdlabo",
+      "seoDescription": "Run Node.js migration and database test tooling for Cloudflare Workers MySQL projects. Keep these tools separate from the Worker runtime.",
       "slug": "tooling",
       "file": "tooling.md",
       "section": "Guides",
@@ -194,6 +205,8 @@ export const PROJECT = {
     {
       "title": "Migration",
       "navTitle": "Migration",
+      "seoTitle": "Cloudflare Workers MySQL package migration | rdlabo",
+      "seoDescription": "Move database imports from workers-hono-kit to workers-mysql for Cloudflare Workers, including Hyperdrive runtime and the Hono adapter.",
       "updatedAt": "2026-09-06",
       "slug": "migration",
       "file": "migration.md",
@@ -208,6 +221,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers MySQL API reference | rdlabo",
+      "seoDescription": "API reference for workers-mysql: Cloudflare Workers Hyperdrive connections, transactions, retries, Drizzle integration, and Node.js tooling.",
       "slug": "api",
       "file": "api.md",
       "section": "Reference",

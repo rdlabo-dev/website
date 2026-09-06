@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
-  "headline": "小さなHono APIで共通のHTTP動作を試す",
+  "seoTitle": "Cloudflare WorkersのHono API開発ツールキット | rdlabo",
+  "description": "Cloudflare WorkersのHono API向けに、バリデーション、Firebase認証、JSONエラー、Queue、テストヘルパーを提供します。",
+  "headline": "Cloudflare WorkersのHono API開発を支える",
   "overview": "バリデーション、認証、JSONエラー、Queue、テストヘルパーを組み合わせてHono APIを構築できます。",
   "featuresHeading": "提供するインフラ領域",
   "features": [
@@ -36,6 +37,8 @@ export const PROJECT = {
     {
       "title": "Hono APIをローカルで試す",
       "navTitle": "Hono APIをローカルで試す",
+      "seoTitle": "Cloudflare Workers向けHono APIをローカルで試す | rdlabo",
+      "seoDescription": "Cloudflare Workers向けworkers-hono-kitをHonoのapp.requestで試します。health応答、weak ETag、JSONエラーをローカルで確認できます。",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -71,6 +74,8 @@ export const PROJECT = {
     {
       "title": "はじめに",
       "navTitle": "はじめに",
+      "seoTitle": "Cloudflare WorkersのHono Kit：インストールと設定 | rdlabo",
+      "seoDescription": "Cloudflare WorkersのHono APIにworkers-hono-kitを導入。HTTP、認証、Queue、テストに必要なエントリポイントを紹介します。",
       "updatedAt": "2026-09-06",
       "slug": "getting-started",
       "file": "getting-started.md",
@@ -111,6 +116,8 @@ export const PROJECT = {
     {
       "title": "HTTP・認証",
       "navTitle": "HTTP・認証",
+      "seoTitle": "Cloudflare WorkersのHono：バリデーションとFirebase認証 | rdlabo",
+      "seoDescription": "Cloudflare WorkersのHono APIでバリデーション、Firebase認証、共通JSONエラー、レスポンス確定のヘルパーを利用する方法を解説します。",
       "slug": "http-auth",
       "file": "http-auth.md",
       "section": "ガイド",
@@ -145,6 +152,8 @@ export const PROJECT = {
     {
       "title": "データ層",
       "navTitle": "データ層",
+      "seoTitle": "Cloudflare WorkersのHonoとMySQL・Hyperdrive連携 | rdlabo",
+      "seoDescription": "Cloudflare WorkersのHonoコンテナーとworkers-mysqlを接続。Hyperdrive adapter、日時ヘルパー、DB再試行の使い方を解説します。",
       "updatedAt": "2026-09-06",
       "slug": "data-layer",
       "file": "data-layer.md",
@@ -185,6 +194,8 @@ export const PROJECT = {
     {
       "title": "Realtime・Offline",
       "navTitle": "Realtime・Offline",
+      "seoTitle": "Cloudflare WorkersのHono：WebSocketとオフライン同期 | rdlabo",
+      "seoDescription": "Cloudflare Workers向けworkers-hono-kitのDurable Object WebSocketパターンと、オフラインレプリカ・同期の契約を解説します。",
       "slug": "realtime-offline",
       "file": "realtime-offline.md",
       "section": "ガイド",
@@ -209,6 +220,8 @@ export const PROJECT = {
     {
       "title": "テスト・運用",
       "navTitle": "テスト・運用",
+      "seoTitle": "Cloudflare WorkersのHono：テスト・Queue・ログ | rdlabo",
+      "seoDescription": "Cloudflare WorkersのHono APIをテスト・運用。service fake、DB fixture、Queueのエラーログ、運用CLIの使い方を紹介します。",
       "updatedAt": "2026-09-06",
       "slug": "testing-operations",
       "file": "testing-operations.md",
@@ -244,6 +257,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers Hono Kit APIリファレンス | rdlabo",
+      "seoDescription": "Cloudflare Workers向けworkers-hono-kitのAPI。HTTP、Firebase認証、DB adapter、Queue、Realtime、テストのエントリポイントを掲載。",
       "updatedAt": "2026-09-06",
       "slug": "api",
       "file": "api.md",

@@ -21,7 +21,7 @@ export const PROJECT_CATEGORIES_EN = [
   {
     "id": "developer-tools",
     "label": "Developer tools",
-    "description": "Backend infrastructure and code-quality tooling for TypeScript projects.",
+    "description": "Cloudflare Workers libraries and code-quality tools for TypeScript.",
     "order": 30
   }
 ] as const;
@@ -48,7 +48,7 @@ export const PROJECT_CATEGORIES_JA = [
   {
     "id": "developer-tools",
     "label": "開発ツール",
-    "description": "TypeScriptプロジェクト向けのバックエンド基盤とコード品質ツールです。",
+    "description": "Cloudflare Workers向けライブラリとTypeScriptのコード品質ツールです。",
     "order": 30
   }
 ] as const;
@@ -700,8 +700,9 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Timezone utilities for Cloudflare Workers, paired with ESLint checks.",
-    "headline": "Adopt timezone utilities and ESLint together",
+    "seoTitle": "Cloudflare Workers timezone utilities + ESLint | rdlabo",
+    "description": "IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.",
+    "headline": "Timezone conversion and ESLint for Cloudflare Workers",
     "overview": "Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.",
     "featuresHeading": "Calendar building blocks",
     "features": [
@@ -767,8 +768,9 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "MySQL and Hyperdrive infrastructure for Cloudflare Workers.",
-    "headline": "Run MySQL queries with clear connection and retry boundaries",
+    "seoTitle": "Cloudflare Workers MySQL + Hyperdrive library | rdlabo",
+    "description": "MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.",
+    "headline": "MySQL and Hyperdrive for Cloudflare Workers",
     "overview": "MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.",
     "featuresHeading": "Database building blocks",
     "features": [
@@ -848,8 +850,9 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
-    "headline": "Try consistent HTTP behavior in a small Hono API",
+    "seoTitle": "Hono for Cloudflare Workers: API toolkit | rdlabo",
+    "description": "Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, JSON errors, queues, and testing helpers.",
+    "headline": "Hono API helpers for Cloudflare Workers",
     "overview": "Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.",
     "featuresHeading": "Infrastructure areas",
     "features": [
@@ -2629,8 +2632,9 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Cloudflare Workersの日時処理とESLintによる検査をセットで提供。",
-    "headline": "日時処理とESLintをセットで導入する",
+    "seoTitle": "Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo",
+    "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
+    "headline": "Cloudflare Workersの日時変換とESLint",
     "overview": "IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
     "featuresHeading": "カレンダー処理の基本機能",
     "features": [
@@ -2696,8 +2700,9 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Cloudflare Workers向けのMySQL・Hyperdrive基盤。",
-    "headline": "接続と再試行の境界を明確にしてMySQLを使う",
+    "seoTitle": "Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo",
+    "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。",
+    "headline": "Cloudflare WorkersのMySQL・Hyperdrive連携",
     "overview": "Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック再試行、Drizzle連携を提供します。",
     "featuresHeading": "データベースの基本機能",
     "features": [
@@ -2777,8 +2782,9 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
-    "headline": "小さなHono APIで共通のHTTP動作を試す",
+    "seoTitle": "Cloudflare WorkersのHono API開発ツールキット | rdlabo",
+    "description": "Cloudflare WorkersのHono API向けに、バリデーション、Firebase認証、JSONエラー、Queue、テストヘルパーを提供します。",
+    "headline": "Cloudflare WorkersのHono API開発を支える",
     "overview": "バリデーション、認証、JSONエラー、Queue、テストヘルパーを組み合わせてHono APIを構築できます。",
     "featuresHeading": "提供するインフラ領域",
     "features": [

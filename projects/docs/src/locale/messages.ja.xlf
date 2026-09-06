@@ -96,7 +96,7 @@
       <trans-unit id="relatedArticles"><source>Related articles</source><target>関連記事（英語）</target></trans-unit>
       <trans-unit id="relatedArticleLanguage"><source>English</source><target>英語</target></trans-unit>
       <trans-unit id="docsHomeNav"><source>docs</source><target>docs</target></trans-unit>
-      <trans-unit id="siteDescription"><source>Documentation for personal open source projects created and maintained by rdlabo.</source><target>rdlabo個人が開発・管理するオープンソースプロジェクトの公式ドキュメントです。</target></trans-unit>
+      <trans-unit id="siteDescription"><source>Guides and API references for rdlabo open-source libraries: Cloudflare Workers, Hono, MySQL, timezones, Ionic, Angular, and Capacitor.</source><target>Cloudflare Workers・Hono・MySQL・日時処理、Ionic・Angular・Capacitor向けOSSの導入ガイドとAPIリファレンス。rdlaboが開発・管理しています。</target></trans-unit>
       <trans-unit id="supportEyebrow"><source>Community-supported open source</source><target>コミュニティで支えるオープンソース</target></trans-unit>
       <trans-unit id="supportHeading"><source>Help build a community around independent OSS</source><target>独立したOSSを支えるコミュニティへ</target></trans-unit>
       <trans-unit id="supportIntro"><source>Monthly sponsorships start at $5 and support ongoing public OSS work. The long-term vision is a community of 100 monthly sponsors supporting the collection broadly rather than depending on any single organization.</source><target>月額スポンサーは5ドルから、継続的な公開OSS活動を支えます。ひとつの組織に依存せず、100人の月額スポンサーがプロジェクト全体を広く支えるコミュニティを長期的な目標にしています。</target></trans-unit>

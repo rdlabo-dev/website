@@ -26,7 +26,7 @@ describe('PluginIndexComponent', () => {
   it('renders documentation categories and project links', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(TestBed.inject(Title).getTitle()).toBe(
-      'Ionic, Angular, and Capacitor OSS Documentation | rdlabo',
+      'Cloudflare Workers, Ionic & Capacitor OSS Docs | rdlabo',
     );
     expect(compiled.querySelector('h1')?.textContent).toContain('Documentation');
     expect(compiled.textContent).toContain('developed and maintained personally by rdlabo');

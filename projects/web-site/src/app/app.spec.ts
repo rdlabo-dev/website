@@ -96,6 +96,15 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelectorAll('.featured-project-card')).toHaveLength(4);
+    expect(
+      [...compiled.querySelectorAll<HTMLAnchorElement>('.workers-projects a')].map(
+        (link) => link.href,
+      ),
+    ).toEqual([
+      'https://docs.rdlabo.dev/projects/workers-hono-kit',
+      'https://docs.rdlabo.dev/projects/workers-mysql',
+      'https://docs.rdlabo.dev/projects/workers-timezone',
+    ]);
     expect(compiled.querySelector<HTMLAnchorElement>('.featured-project-card')?.href).toBe(
       'https://docs.rdlabo.dev/projects/capacitor-stripe',
     );

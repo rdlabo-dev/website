@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { access, constants, readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import test from 'node:test';
+import { JSDOM } from 'jsdom';
+import { projectDefinitions } from './project-manifest';
 import {
   CURRENT_SPONSORS,
   PAST_SPONSORS,
@@ -339,4 +341,37 @@ test('builds bounded English and Japanese search indexes with the component UI',
     sizes.reduce((total, size) => total + size, 0) < 5 * 1024 * 1024,
     'Search bundle must remain under 5 MiB',
   );
+});
+
+test('Workers landing pages and guides expose distinct Cloudflare Workers metadata in both locales', async () => {
+  for (const locale of ['en', 'ja']) {
+    const titles = new Set<string>();
+    const descriptions = new Set<string>();
+    for (const project of projectDefinitions.filter((entry) => entry.id.startsWith('workers-'))) {
+      for (const page of [undefined, ...project.pages]) {
+        const path = `${locale === 'ja' ? '/ja' : ''}/projects/${project.slug}${page ? `/docs/${page.slug}` : ''}`;
+        const html = await readFile(
+          new URL(`../dist/docs/browser${path}/index.html`, import.meta.url),
+          'utf8',
+        );
+        const document = new JSDOM(html).window.document;
+        const title = document.title;
+        const description =
+          document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+        assert.match(title, /Cloudflare Workers/, path);
+        assert.match(description, /Cloudflare Workers/, path);
+        assert.ok(!titles.has(title), `duplicate title: ${path}`);
+        assert.ok(!descriptions.has(description), `duplicate description: ${path}`);
+        titles.add(title);
+        descriptions.add(description);
+        assert.equal(
+          document.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+          `https://docs.rdlabo.dev${path}`,
+        );
+        if (!page)
+          assert.match(document.querySelector('h1')?.textContent ?? '', /Cloudflare Workers/, path);
+      }
+    }
+    assert.equal(titles.size, 22);
+  }
 });

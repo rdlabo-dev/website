@@ -63,9 +63,9 @@ export class PluginIndexComponent implements OnInit {
   ngOnInit(): void {
     const homeTitle =
       this.#locale.toLowerCase().startsWith('ja')
-        ? 'Ionic・Angular・Capacitor OSSドキュメント | rdlabo'
-        : 'Ionic, Angular, and Capacitor OSS Documentation | rdlabo';
-    const description = $localize`:@@siteDescription:Documentation for personal open source projects created and maintained by rdlabo.`;
+        ? 'Cloudflare Workers・Ionic・CapacitorのOSSドキュメント | rdlabo'
+        : 'Cloudflare Workers, Ionic & Capacitor OSS Docs | rdlabo';
+    const description = $localize`:@@siteDescription:Guides and API references for rdlabo open-source libraries: Cloudflare Workers, Hono, MySQL, timezones, Ionic, Angular, and Capacitor.`;
     this.#seo.setPage({
       title: homeTitle,
       description,

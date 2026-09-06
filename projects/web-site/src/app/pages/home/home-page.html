@@ -7,7 +7,8 @@
           Libraries for apps.<br /><span>Notes from building them.</span>
         </h1>
         <p class="home-hero__lead">
-          Open-source libraries and engineering notes for Ionic, Angular, Capacitor, and Cloudflare.
+          Open-source libraries and engineering notes for Ionic, Angular, Capacitor, and Cloudflare
+          Workers.
         </p>
         <div class="home-hero__actions">
           <a class="button button--primary" [href]="site.docsUrl">Browse documentation</a>
@@ -50,6 +51,19 @@
           </li>
         }
       </ul>
+      <section class="workers-projects" aria-labelledby="workers-projects-heading">
+        <h3 id="workers-projects-heading">Cloudflare Workers</h3>
+        <ul>
+          @for (project of workersProjects; track project.docsUrl) {
+            <li>
+              <a [href]="project.docsUrl"
+                ><span>{{ project.name }} <span aria-hidden="true">→</span></span>
+                <p>{{ project.description }}</p></a
+              >
+            </li>
+          }
+        </ul>
+      </section>
       <div class="project-grid__all">
         <a class="button button--secondary" [href]="site.docsUrl">All Projects</a>
       </div>

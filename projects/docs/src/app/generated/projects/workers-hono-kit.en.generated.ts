@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
-  "headline": "Try consistent HTTP behavior in a small Hono API",
+  "seoTitle": "Hono for Cloudflare Workers: API toolkit | rdlabo",
+  "description": "Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, JSON errors, queues, and testing helpers.",
+  "headline": "Hono API helpers for Cloudflare Workers",
   "overview": "Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.",
   "featuresHeading": "Infrastructure areas",
   "features": [
@@ -36,6 +37,8 @@ export const PROJECT = {
     {
       "title": "Try a Hono API locally",
       "navTitle": "Try a Hono API locally",
+      "seoTitle": "Cloudflare Workers Hono API: local quickstart | rdlabo",
+      "seoDescription": "Try workers-hono-kit for Cloudflare Workers locally with Hono app.request. Verify a health response, weak ETags, and JSON errors.",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -71,6 +74,8 @@ export const PROJECT = {
     {
       "title": "Getting Started",
       "navTitle": "Getting Started",
+      "seoTitle": "Cloudflare Workers Hono Kit: installation and setup | rdlabo",
+      "seoDescription": "Install workers-hono-kit for Hono APIs on Cloudflare Workers. Choose entry points for HTTP, authentication, queues, and testing.",
       "updatedAt": "2026-09-06",
       "slug": "getting-started",
       "file": "getting-started.md",
@@ -116,6 +121,8 @@ export const PROJECT = {
     {
       "title": "HTTP and Authentication",
       "navTitle": "HTTP and Authentication",
+      "seoTitle": "Cloudflare Workers Hono: validation and Firebase auth | rdlabo",
+      "seoDescription": "Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, consistent JSON errors, and response finalization helpers.",
       "slug": "http-auth",
       "file": "http-auth.md",
       "section": "Guide",
@@ -155,6 +162,8 @@ export const PROJECT = {
     {
       "title": "Data Layer",
       "navTitle": "Data Layer",
+      "seoTitle": "Cloudflare Workers Hono: MySQL and Hyperdrive | rdlabo",
+      "seoDescription": "Connect Hono request containers to workers-mysql on Cloudflare Workers. Use the Hyperdrive adapter, timezone helpers, and database retry utilities.",
       "updatedAt": "2026-09-06",
       "slug": "data-layer",
       "file": "data-layer.md",
@@ -195,6 +204,8 @@ export const PROJECT = {
     {
       "title": "Realtime and Offline",
       "navTitle": "Realtime and Offline",
+      "seoTitle": "Cloudflare Workers Hono: WebSockets and offline sync | rdlabo",
+      "seoDescription": "Use Durable Object WebSocket patterns and offline replica contracts with workers-hono-kit for Cloudflare Workers applications.",
       "slug": "realtime-offline",
       "file": "realtime-offline.md",
       "section": "Guide",
@@ -224,6 +235,8 @@ export const PROJECT = {
     {
       "title": "Testing and Operations",
       "navTitle": "Testing and Operations",
+      "seoTitle": "Cloudflare Workers Hono: testing, queues and logging | rdlabo",
+      "seoDescription": "Test and operate Hono APIs on Cloudflare Workers with service fakes, database fixtures, Queue error logging, and operational CLIs.",
       "updatedAt": "2026-09-06",
       "slug": "testing-operations",
       "file": "testing-operations.md",
@@ -264,6 +277,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers Hono Kit API reference | rdlabo",
+      "seoDescription": "API reference for workers-hono-kit on Cloudflare Workers: HTTP, Firebase auth, database adapters, queues, realtime, and testing helpers.",
       "updatedAt": "2026-09-06",
       "slug": "api",
       "file": "api.md",

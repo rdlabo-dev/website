@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "Cloudflare Workers向けのMySQL・Hyperdrive基盤。",
-  "headline": "接続と再試行の境界を明確にしてMySQLを使う",
+  "seoTitle": "Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo",
+  "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。",
+  "headline": "Cloudflare WorkersのMySQL・Hyperdrive連携",
   "overview": "Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック再試行、Drizzle連携を提供します。",
   "featuresHeading": "データベースの基本機能",
   "features": [
@@ -32,6 +33,8 @@ export const PROJECT = {
     {
       "title": "最初のMySQLクエリを実行する",
       "navTitle": "最初のクエリを実行する",
+      "seoTitle": "Cloudflare WorkersのMySQL入門：ローカルからHyperdriveへ | rdlabo",
+      "seoDescription": "workers-mysqlでローカルMySQLのクエリを実行し、Cloudflare WorkersのHyperdrive接続へ進みます。設定・コード・実行結果を掲載。",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -62,6 +65,8 @@ export const PROJECT = {
     {
       "title": "はじめに",
       "navTitle": "はじめに",
+      "seoTitle": "Cloudflare WorkersのMySQLライブラリを導入する | rdlabo",
+      "seoDescription": "Cloudflare Workersにworkers-mysqlを導入。nodejs_compat設定と、Hyperdrive・Drizzle・移行・テスト用エントリポイントを紹介します。",
       "updatedAt": "2026-09-06",
       "slug": "readme",
       "file": "readme.md",
@@ -107,6 +112,8 @@ export const PROJECT = {
     {
       "title": "ランタイム",
       "navTitle": "ランタイム",
+      "seoTitle": "Cloudflare WorkersとHyperdriveのMySQL接続管理 | rdlabo",
+      "seoDescription": "workers-mysqlでCloudflare WorkersのMySQL接続を管理。Hyperdrive、primary/replica、transaction、デッドロック再試行を解説します。",
       "slug": "runtime",
       "file": "runtime.md",
       "section": "ガイド",
@@ -136,6 +143,8 @@ export const PROJECT = {
     {
       "title": "Drizzleと日付",
       "navTitle": "Drizzleと日付",
+      "seoTitle": "Cloudflare WorkersのMySQL・Drizzleと日時の扱い | rdlabo",
+      "seoDescription": "Cloudflare WorkersのMySQLでDrizzleを利用。ORM連携と固定+09:00の保存ヘルパーを、表示用IANAタイムゾーンと分けて解説します。",
       "slug": "drizzle",
       "file": "drizzle.md",
       "section": "ガイド",
@@ -160,6 +169,8 @@ export const PROJECT = {
     {
       "title": "移行とテスト",
       "navTitle": "移行とテスト",
+      "seoTitle": "Cloudflare Workers向けMySQLのマイグレーションとテスト | rdlabo",
+      "seoDescription": "Cloudflare WorkersのMySQLプロジェクト向けに、Node.jsで動かすマイグレーションとDBテストツールの設定・使い方を解説します。",
       "slug": "tooling",
       "file": "tooling.md",
       "section": "ガイド",
@@ -189,6 +200,8 @@ export const PROJECT = {
     {
       "title": "移行",
       "navTitle": "移行",
+      "seoTitle": "Cloudflare WorkersのDB処理をworkers-mysqlへ移行 | rdlabo",
+      "seoDescription": "Cloudflare WorkersのDB処理をworkers-hono-kitからworkers-mysqlへ移行。import、Hyperdriveランタイム、Hono adapterを整理します。",
       "updatedAt": "2026-09-06",
       "slug": "migration",
       "file": "migration.md",
@@ -203,6 +216,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers向けMySQL APIリファレンス | rdlabo",
+      "seoDescription": "Cloudflare Workers向けworkers-mysqlのAPI。Hyperdrive接続、transaction、再試行、Drizzle連携、Node.jsツールの関数と型を掲載。",
       "slug": "api",
       "file": "api.md",
       "section": "リファレンス",

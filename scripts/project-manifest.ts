@@ -106,8 +106,8 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
     id: 'developer-tools',
     label: text('Developer tools', '開発ツール'),
     description: text(
-      'Backend infrastructure and code-quality tooling for TypeScript projects.',
-      'TypeScriptプロジェクト向けのバックエンド基盤とコード品質ツールです。',
+      'Cloudflare Workers libraries and code-quality tools for TypeScript.',
+      'Cloudflare Workers向けライブラリとTypeScriptのコード品質ツールです。',
     ),
     order: 30,
   },
@@ -884,16 +884,20 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
     englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    seoTitle: text(
+      'Cloudflare Workers timezone utilities + ESLint | rdlabo',
+      'Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo',
+    ),
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
     description: text(
-      'Timezone utilities for Cloudflare Workers, paired with ESLint checks.',
-      'Cloudflare Workersの日時処理とESLintによる検査をセットで提供。',
+      'IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.',
+      'Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。',
     ),
     headline: text(
-      'Adopt timezone utilities and ESLint together',
-      '日時処理とESLintをセットで導入する',
+      'Timezone conversion and ESLint for Cloudflare Workers',
+      'Cloudflare Workersの日時変換とESLint',
     ),
     overview: text(
       'Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.',
@@ -932,10 +936,26 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Quickstart',
         'クイックスタート',
         {
+          seoTitle: text(
+            'Cloudflare Workers timezone + ESLint quickstart | rdlabo',
+            'Cloudflare Workersの日時変換とESLintを試す | rdlabo',
+          ),
+          seoDescription: text(
+            'Try IANA timezone conversions for Cloudflare Workers locally, then detect implicit Date and Intl timezone usage with ESLint.',
+            'Cloudflare Workers向けのIANAタイムゾーン変換をローカルで実行。ESLintでDate・Intlの暗黙のタイムゾーン依存を検出・修正します。',
+          ),
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        seoTitle: text(
+          'Cloudflare Workers timezone library: setup | rdlabo',
+          'Cloudflare Workersのタイムゾーン設定・導入 | rdlabo',
+        ),
+        seoDescription: text(
+          'Set up workers-timezone for Cloudflare Workers: initialize an IANA timezone, convert UTC and local dates, and enable the companion ESLint preset.',
+          'Cloudflare Workersにworkers-timezoneを導入。IANAタイムゾーンの初期化、UTCとローカル日時の変換、併用するESLint presetの設定を紹介します。',
+        ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page(
@@ -945,9 +965,37 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'timezones.md',
         'Guides',
         'ガイド',
+        {
+          seoTitle: text(
+            'Cloudflare Workers: timezones, dates and DST | rdlabo',
+            'Cloudflare Workersのタイムゾーン・日付計算・夏時間 | rdlabo',
+          ),
+          seoDescription: text(
+            'Handle local dates and daylight saving time in Cloudflare Workers with IANA timezones, calendar-day arithmetic, and explicit conversion policies.',
+            'Cloudflare WorkersでIANAタイムゾーンを指定し、ローカル日付・日付加算・夏時間の重複と欠落を扱う方法を解説します。',
+          ),
+        },
       ),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers timezone migration guide | rdlabo',
+          'Cloudflare Workersの日時処理をworkers-timezoneへ移行 | rdlabo',
+        ),
+        seoDescription: text(
+          'Migrate Cloudflare Workers date handling to workers-timezone. Update imports and review changes to historical offsets, invalid dates, and DST behavior.',
+          'Cloudflare Workersの日時処理をworkers-timezoneへ移行。import変更、過去のUTCオフセット、不正日付、夏時間の動作変更を確認できます。',
+        ),
+      }),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        seoTitle: text(
+          'Cloudflare Workers timezone API reference | rdlabo',
+          'Cloudflare Workers向け日時変換APIリファレンス | rdlabo',
+        ),
+        seoDescription: text(
+          'API reference for workers-timezone on Cloudflare Workers: initialization, IANA timezones, local date conversion, and calendar helpers.',
+          'Cloudflare Workers向けworkers-timezoneのAPI。初期化、IANAタイムゾーン、ローカル日時変換、カレンダー処理の関数と型を確認できます。',
+        ),
+      }),
     ],
   },
   {
@@ -960,16 +1008,20 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
     englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    seoTitle: text(
+      'Cloudflare Workers MySQL + Hyperdrive library | rdlabo',
+      'Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo',
+    ),
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
     description: text(
-      'MySQL and Hyperdrive infrastructure for Cloudflare Workers.',
-      'Cloudflare Workers向けのMySQL・Hyperdrive基盤。',
+      'MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.',
+      'Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。',
     ),
     headline: text(
-      'Run MySQL queries with clear connection and retry boundaries',
-      '接続と再試行の境界を明確にしてMySQLを使う',
+      'MySQL and Hyperdrive for Cloudflare Workers',
+      'Cloudflare WorkersのMySQL・Hyperdrive連携',
     ),
     overview: text(
       'MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.',
@@ -1008,19 +1060,79 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Quickstart',
         'クイックスタート',
         {
+          seoTitle: text(
+            'Cloudflare Workers MySQL: local query to Hyperdrive | rdlabo',
+            'Cloudflare WorkersのMySQL入門：ローカルからHyperdriveへ | rdlabo',
+          ),
+          seoDescription: text(
+            'Run a local MySQL query with workers-mysql, then use a Hyperdrive binding in Cloudflare Workers. Includes setup, code, and expected output.',
+            'workers-mysqlでローカルMySQLのクエリを実行し、Cloudflare WorkersのHyperdrive接続へ進みます。設定・コード・実行結果を掲載。',
+          ),
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL library: setup | rdlabo',
+          'Cloudflare WorkersのMySQLライブラリを導入する | rdlabo',
+        ),
+        seoDescription: text(
+          'Install workers-mysql for Cloudflare Workers. Configure nodejs_compat and choose Hyperdrive runtime, Drizzle, or migration and testing entry points.',
+          'Cloudflare Workersにworkers-mysqlを導入。nodejs_compat設定と、Hyperdrive・Drizzle・移行・テスト用エントリポイントを紹介します。',
+        ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('Runtime', 'ランタイム', 'runtime', 'runtime.md', 'Guides', 'ガイド'),
-      page('Drizzle and dates', 'Drizzleと日付', 'drizzle', 'drizzle.md', 'Guides', 'ガイド'),
-      page('Migrations and testing', '移行とテスト', 'tooling', 'tooling.md', 'Guides', 'ガイド'),
+      page('Runtime', 'ランタイム', 'runtime', 'runtime.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL connections with Hyperdrive | rdlabo',
+          'Cloudflare WorkersとHyperdriveのMySQL接続管理 | rdlabo',
+        ),
+        seoDescription: text(
+          'Manage Cloudflare Workers MySQL connections with Hyperdrive, primary/replica routing, transactions, and deadlock retries using workers-mysql.',
+          'workers-mysqlでCloudflare WorkersのMySQL接続を管理。Hyperdrive、primary/replica、transaction、デッドロック再試行を解説します。',
+        ),
+      }),
+      page('Drizzle and dates', 'Drizzleと日付', 'drizzle', 'drizzle.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL: Drizzle and date handling | rdlabo',
+          'Cloudflare WorkersのMySQL・Drizzleと日時の扱い | rdlabo',
+        ),
+        seoDescription: text(
+          'Use Drizzle with MySQL on Cloudflare Workers. Configure ORM integration and fixed +09:00 storage helpers separately from IANA display timezones.',
+          'Cloudflare WorkersのMySQLでDrizzleを利用。ORM連携と固定+09:00の保存ヘルパーを、表示用IANAタイムゾーンと分けて解説します。',
+        ),
+      }),
+      page('Migrations and testing', '移行とテスト', 'tooling', 'tooling.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL: migrations and testing | rdlabo',
+          'Cloudflare Workers向けMySQLのマイグレーションとテスト | rdlabo',
+        ),
+        seoDescription: text(
+          'Run Node.js migration and database test tooling for Cloudflare Workers MySQL projects. Keep these tools separate from the Worker runtime.',
+          'Cloudflare WorkersのMySQLプロジェクト向けに、Node.jsで動かすマイグレーションとDBテストツールの設定・使い方を解説します。',
+        ),
+      }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL package migration | rdlabo',
+          'Cloudflare WorkersのDB処理をworkers-mysqlへ移行 | rdlabo',
+        ),
+        seoDescription: text(
+          'Move database imports from workers-hono-kit to workers-mysql for Cloudflare Workers, including Hyperdrive runtime and the Hono adapter.',
+          'Cloudflare WorkersのDB処理をworkers-hono-kitからworkers-mysqlへ移行。import、Hyperdriveランタイム、Hono adapterを整理します。',
+        ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        seoTitle: text(
+          'Cloudflare Workers MySQL API reference | rdlabo',
+          'Cloudflare Workers向けMySQL APIリファレンス | rdlabo',
+        ),
+        seoDescription: text(
+          'API reference for workers-mysql: Cloudflare Workers Hyperdrive connections, transactions, retries, Drizzle integration, and Node.js tooling.',
+          'Cloudflare Workers向けworkers-mysqlのAPI。Hyperdrive接続、transaction、再試行、Drizzle連携、Node.jsツールの関数と型を掲載。',
+        ),
+      }),
     ],
   },
   {
@@ -1033,16 +1145,20 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
     englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    seoTitle: text(
+      'Hono for Cloudflare Workers: API toolkit | rdlabo',
+      'Cloudflare WorkersのHono API開発ツールキット | rdlabo',
+    ),
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
     description: text(
-      'Infrastructure building blocks for Hono APIs on Cloudflare Workers.',
-      'Cloudflare Workers上のHono API向けインフラストラクチャ部品集。',
+      'Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, JSON errors, queues, and testing helpers.',
+      'Cloudflare WorkersのHono API向けに、バリデーション、Firebase認証、JSONエラー、Queue、テストヘルパーを提供します。',
     ),
     headline: text(
-      'Try consistent HTTP behavior in a small Hono API',
-      '小さなHono APIで共通のHTTP動作を試す',
+      'Hono API helpers for Cloudflare Workers',
+      'Cloudflare WorkersのHono API開発を支える',
     ),
     overview: text(
       'Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.',
@@ -1088,6 +1204,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Quickstart',
         'クイックスタート',
         {
+          seoTitle: text(
+            'Cloudflare Workers Hono API: local quickstart | rdlabo',
+            'Cloudflare Workers向けHono APIをローカルで試す | rdlabo',
+          ),
+          seoDescription: text(
+            'Try workers-hono-kit for Cloudflare Workers locally with Hono app.request. Verify a health response, weak ETags, and JSON errors.',
+            'Cloudflare Workers向けworkers-hono-kitをHonoのapp.requestで試します。health応答、weak ETag、JSONエラーをローカルで確認できます。',
+          ),
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
@@ -1098,10 +1222,45 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        {
+          seoTitle: text(
+            'Cloudflare Workers Hono Kit: installation and setup | rdlabo',
+            'Cloudflare WorkersのHono Kit：インストールと設定 | rdlabo',
+          ),
+          seoDescription: text(
+            'Install workers-hono-kit for Hono APIs on Cloudflare Workers. Choose entry points for HTTP, authentication, queues, and testing.',
+            'Cloudflare WorkersのHono APIにworkers-hono-kitを導入。HTTP、認証、Queue、テストに必要なエントリポイントを紹介します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
       ),
-      page('HTTP and Authentication', 'HTTP・認証', 'http-auth', 'http-auth.md', 'Guide', 'ガイド'),
+      page(
+        'HTTP and Authentication',
+        'HTTP・認証',
+        'http-auth',
+        'http-auth.md',
+        'Guide',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Cloudflare Workers Hono: validation and Firebase auth | rdlabo',
+            'Cloudflare WorkersのHono：バリデーションとFirebase認証 | rdlabo',
+          ),
+          seoDescription: text(
+            'Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, consistent JSON errors, and response finalization helpers.',
+            'Cloudflare WorkersのHono APIでバリデーション、Firebase認証、共通JSONエラー、レスポンス確定のヘルパーを利用する方法を解説します。',
+          ),
+        },
+      ),
       page('Data Layer', 'データ層', 'data-layer', 'data-layer.md', 'Guide', 'ガイド', {
+        seoTitle: text(
+          'Cloudflare Workers Hono: MySQL and Hyperdrive | rdlabo',
+          'Cloudflare WorkersのHonoとMySQL・Hyperdrive連携 | rdlabo',
+        ),
+        seoDescription: text(
+          'Connect Hono request containers to workers-mysql on Cloudflare Workers. Use the Hyperdrive adapter, timezone helpers, and database retry utilities.',
+          'Cloudflare WorkersのHonoコンテナーとworkers-mysqlを接続。Hyperdrive adapter、日時ヘルパー、DB再試行の使い方を解説します。',
+        ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page(
@@ -1111,6 +1270,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'realtime-offline.md',
         'Guide',
         'ガイド',
+        {
+          seoTitle: text(
+            'Cloudflare Workers Hono: WebSockets and offline sync | rdlabo',
+            'Cloudflare WorkersのHono：WebSocketとオフライン同期 | rdlabo',
+          ),
+          seoDescription: text(
+            'Use Durable Object WebSocket patterns and offline replica contracts with workers-hono-kit for Cloudflare Workers applications.',
+            'Cloudflare Workers向けworkers-hono-kitのDurable Object WebSocketパターンと、オフラインレプリカ・同期の契約を解説します。',
+          ),
+        },
       ),
       page(
         'Testing and Operations',
@@ -1119,9 +1288,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'testing-operations.md',
         'Reference',
         'リファレンス',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        {
+          seoTitle: text(
+            'Cloudflare Workers Hono: testing, queues and logging | rdlabo',
+            'Cloudflare WorkersのHono：テスト・Queue・ログ | rdlabo',
+          ),
+          seoDescription: text(
+            'Test and operate Hono APIs on Cloudflare Workers with service fakes, database fixtures, Queue error logging, and operational CLIs.',
+            'Cloudflare WorkersのHono APIをテスト・運用。service fake、DB fixture、Queueのエラーログ、運用CLIの使い方を紹介します。',
+          ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        seoTitle: text(
+          'Cloudflare Workers Hono Kit API reference | rdlabo',
+          'Cloudflare Workers Hono Kit APIリファレンス | rdlabo',
+        ),
+        seoDescription: text(
+          'API reference for workers-hono-kit on Cloudflare Workers: HTTP, Firebase auth, database adapters, queues, realtime, and testing helpers.',
+          'Cloudflare Workers向けworkers-hono-kitのAPI。HTTP、Firebase認証、DB adapter、Queue、Realtime、テストのエントリポイントを掲載。',
+        ),
         localEnglishSource: true,
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),

@@ -10,7 +10,6 @@ export const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    title: 'rdlabo.dev — Engineering notes and open source for application teams',
   },
   {
     path: 'articles',

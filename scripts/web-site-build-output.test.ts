@@ -1,3 +1,4 @@
+import { JSDOM } from 'jsdom';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
@@ -145,5 +146,26 @@ test('builds the English search index with the component UI', async () => {
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
     2 + ARTICLE_YEARS.length + ARTICLE_SUMMARIES.length,
     'Search index must contain the home, article list, every archive, and every article',
+  );
+});
+
+test('home title retains Cloudflare Workers context after router rendering', async () => {
+  const html = await readFile(
+    new URL('../dist/web-site/browser/index.html', import.meta.url),
+    'utf8',
+  );
+  const document = new JSDOM(html).window.document;
+  assert.match(document.title, /Cloudflare Workers/);
+  assert.equal(
+    document.querySelector('meta[property="og:title"]')?.getAttribute('content'),
+    document.title,
+  );
+  assert.deepEqual(
+    [...document.querySelectorAll('.workers-projects a')].map((link) => link.getAttribute('href')),
+    [
+      'https://docs.rdlabo.dev/projects/workers-hono-kit',
+      'https://docs.rdlabo.dev/projects/workers-mysql',
+      'https://docs.rdlabo.dev/projects/workers-timezone',
+    ],
   );
 });

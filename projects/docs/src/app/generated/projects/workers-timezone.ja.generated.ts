@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "Cloudflare Workersの日時処理とESLintによる検査をセットで提供。",
-  "headline": "日時処理とESLintをセットで導入する",
+  "seoTitle": "Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo",
+  "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
+  "headline": "Cloudflare Workersの日時変換とESLint",
   "overview": "IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
   "featuresHeading": "カレンダー処理の基本機能",
   "features": [
@@ -32,6 +33,8 @@ export const PROJECT = {
     {
       "title": "日時変換とESLintをセットで試す",
       "navTitle": "日時変換とlintを試す",
+      "seoTitle": "Cloudflare Workersの日時変換とESLintを試す | rdlabo",
+      "seoDescription": "Cloudflare Workers向けのIANAタイムゾーン変換をローカルで実行。ESLintでDate・Intlの暗黙のタイムゾーン依存を検出・修正します。",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -67,6 +70,8 @@ export const PROJECT = {
     {
       "title": "はじめに",
       "navTitle": "はじめに",
+      "seoTitle": "Cloudflare Workersのタイムゾーン設定・導入 | rdlabo",
+      "seoDescription": "Cloudflare Workersにworkers-timezoneを導入。IANAタイムゾーンの初期化、UTCとローカル日時の変換、併用するESLint presetの設定を紹介します。",
       "updatedAt": "2026-09-06",
       "slug": "readme",
       "file": "readme.md",
@@ -107,6 +112,8 @@ export const PROJECT = {
     {
       "title": "タイムゾーンと日付",
       "navTitle": "タイムゾーンと日付",
+      "seoTitle": "Cloudflare Workersのタイムゾーン・日付計算・夏時間 | rdlabo",
+      "seoDescription": "Cloudflare WorkersでIANAタイムゾーンを指定し、ローカル日付・日付加算・夏時間の重複と欠落を扱う方法を解説します。",
       "slug": "timezones",
       "file": "timezones.md",
       "section": "ガイド",
@@ -136,6 +143,8 @@ export const PROJECT = {
     {
       "title": "移行",
       "navTitle": "移行",
+      "seoTitle": "Cloudflare Workersの日時処理をworkers-timezoneへ移行 | rdlabo",
+      "seoDescription": "Cloudflare Workersの日時処理をworkers-timezoneへ移行。import変更、過去のUTCオフセット、不正日付、夏時間の動作変更を確認できます。",
       "slug": "migration",
       "file": "migration.md",
       "section": "ガイド",
@@ -155,6 +164,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers向け日時変換APIリファレンス | rdlabo",
+      "seoDescription": "Cloudflare Workers向けworkers-timezoneのAPI。初期化、IANAタイムゾーン、ローカル日時変換、カレンダー処理の関数と型を確認できます。",
       "slug": "api",
       "file": "api.md",
       "section": "リファレンス",

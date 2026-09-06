@@ -9,8 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "Timezone utilities for Cloudflare Workers, paired with ESLint checks.",
-  "headline": "Adopt timezone utilities and ESLint together",
+  "seoTitle": "Cloudflare Workers timezone utilities + ESLint | rdlabo",
+  "description": "IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.",
+  "headline": "Timezone conversion and ESLint for Cloudflare Workers",
   "overview": "Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.",
   "featuresHeading": "Calendar building blocks",
   "features": [
@@ -32,6 +33,8 @@ export const PROJECT = {
     {
       "title": "Try conversions and lint",
       "navTitle": "Try conversions and lint",
+      "seoTitle": "Cloudflare Workers timezone + ESLint quickstart | rdlabo",
+      "seoDescription": "Try IANA timezone conversions for Cloudflare Workers locally, then detect implicit Date and Intl timezone usage with ESLint.",
       "updatedAt": "2026-09-06",
       "slug": "quickstart",
       "file": "quickstart.md",
@@ -67,6 +70,8 @@ export const PROJECT = {
     {
       "title": "Getting Started",
       "navTitle": "Getting Started",
+      "seoTitle": "Cloudflare Workers timezone library: setup | rdlabo",
+      "seoDescription": "Set up workers-timezone for Cloudflare Workers: initialize an IANA timezone, convert UTC and local dates, and enable the companion ESLint preset.",
       "updatedAt": "2026-09-06",
       "slug": "readme",
       "file": "readme.md",
@@ -107,6 +112,8 @@ export const PROJECT = {
     {
       "title": "Timezones and calendar dates",
       "navTitle": "Timezones and calendar dates",
+      "seoTitle": "Cloudflare Workers: timezones, dates and DST | rdlabo",
+      "seoDescription": "Handle local dates and daylight saving time in Cloudflare Workers with IANA timezones, calendar-day arithmetic, and explicit conversion policies.",
       "slug": "timezones",
       "file": "timezones.md",
       "section": "Guides",
@@ -136,6 +143,8 @@ export const PROJECT = {
     {
       "title": "Migration",
       "navTitle": "Migration",
+      "seoTitle": "Cloudflare Workers timezone migration guide | rdlabo",
+      "seoDescription": "Migrate Cloudflare Workers date handling to workers-timezone. Update imports and review changes to historical offsets, invalid dates, and DST behavior.",
       "slug": "migration",
       "file": "migration.md",
       "section": "Guides",
@@ -155,6 +164,8 @@ export const PROJECT = {
     {
       "title": "API",
       "navTitle": "API",
+      "seoTitle": "Cloudflare Workers timezone API reference | rdlabo",
+      "seoDescription": "API reference for workers-timezone on Cloudflare Workers: initialization, IANA timezones, local date conversion, and calendar helpers.",
       "slug": "api",
       "file": "api.md",
       "section": "Reference",

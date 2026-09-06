@@ -204,7 +204,9 @@ test('prerendered docs mark current location and hide empty search hosts', async
   assert.match(japaneseLanding, /related-article-lang[^>]*>英語</);
   assert.match(japaneseLanding, /lang="en"/);
   assert.doesNotMatch(landing, /関連記事（英語）/);
-  assert.doesNotMatch(landing, /related-article-lang/);
+  const landingDom = new JSDOM(landing);
+  assert.equal(landingDom.window.document.querySelector('.related-article-lang'), null);
+  landingDom.window.close();
 
   const [docsStyles, siteStyles] = await Promise.all([
     readFile(new URL('../projects/docs/src/styles.css', import.meta.url), 'utf8'),
@@ -373,5 +375,39 @@ test('Workers landing pages and guides expose distinct Cloudflare Workers metada
       }
     }
     assert.equal(titles.size, 22);
+  }
+});
+
+test('project entry pages link to localized onboarding, references, and support', async () => {
+  for (const locale of ['', 'ja/']) {
+    for (const project of projectDefinitions.filter((project) => !project.hostedUrl)) {
+      const html = await readFile(
+        new URL(
+          `../dist/docs/browser/${locale}projects/${project.slug}/index.html`,
+          import.meta.url,
+        ),
+        'utf8',
+      );
+      const dom = new JSDOM(html);
+      const document = dom.window.document;
+      const landing = document.querySelector('.project-landing');
+      assert.ok(landing, `${locale}${project.slug}: landing page`);
+      assert.equal(landing.querySelectorAll('h1').length, 1);
+      assert.equal(
+        landing.querySelector('.project-support a')?.getAttribute('href'),
+        `/${locale}support`,
+      );
+      const start = landing.querySelector('.project-actions a')?.getAttribute('href');
+      assert.ok(
+        start?.startsWith(`/${locale}projects/${project.slug}/docs/`),
+        `${project.slug}: onboarding`,
+      );
+      for (const link of landing.querySelectorAll('.entry-guide a')) {
+        const href = link.getAttribute('href');
+        assert.ok(href?.startsWith(`/${locale}projects/${project.slug}/docs/`));
+        await access(new URL(`../dist/docs/browser${href}/index.html`, import.meta.url));
+      }
+      dom.window.close();
+    }
   }
 });

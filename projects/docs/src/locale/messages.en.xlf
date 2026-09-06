@@ -472,5 +472,25 @@
     </unit>
       <unit id="documentationTitle"><segment><source>Documentation</source></segment></unit>
     <unit id="projectCategoriesNav"><segment><source>Project categories</source></segment></unit>
+    <unit id="projectDocumentation">
+      <segment>
+        <source>Documentation</source>
+      </segment>
+    </unit>
+    <unit id="projectApiReference">
+      <segment>
+        <source>API reference</source>
+      </segment>
+    </unit>
+    <unit id="projectSupportPrompt">
+      <segment>
+        <source>Help keep this library maintained.</source>
+      </segment>
+    </unit>
+    <unit id="projectSponsorLink">
+      <segment>
+        <source>Sponsor this project</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

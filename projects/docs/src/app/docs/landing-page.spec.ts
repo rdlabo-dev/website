@@ -47,6 +47,18 @@ describe('LandingPageComponent', () => {
     expect(starLink?.textContent).toContain('1.2K');
   });
 
+  it('takes Workers visitors to the paired quickstart and exposes guides and API', async () => {
+    const compiled = await setup('workers-timezone');
+    expect(compiled.querySelector('.project-actions a')?.getAttribute('href')).toBe('/projects/workers-timezone/docs/quickstart');
+    expect(Array.from(compiled.querySelectorAll('.entry-guide a')).map((link) => link.getAttribute('href'))).toEqual([
+      '/projects/workers-timezone/docs/readme',
+      '/projects/workers-timezone/docs/timezones',
+      '/projects/workers-timezone/docs/migration',
+      '/projects/workers-timezone/docs/api',
+    ]);
+    expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
+  });
+
   it('renders AdMob from the same project presentation model', async () => {
     const compiled = await setup('admob');
     expect(compiled.querySelector('h1')?.textContent).toContain(
@@ -62,9 +74,9 @@ describe('LandingPageComponent', () => {
   it('links library documentation to related articles', async () => {
     const compiled = await setup('ionic-theme-md3');
     const actionLabels = Array.from(
-      compiled.querySelectorAll<HTMLAnchorElement>('article > div > div.mt-9 > a'),
+      compiled.querySelectorAll<HTMLAnchorElement>('.project-actions > a'),
     ).map((link) => link.textContent?.trim());
-    expect(actionLabels.slice(0, 3)).toEqual(['Get started', 'Demo', 'View source']);
+    expect(actionLabels).toEqual(['Get started', 'Demo']);
     expect(
       compiled.querySelector<HTMLAnchorElement>(
         'a[href="https://ionic-theme-md3.rdlabo.dev/"]',
@@ -126,6 +138,7 @@ describe('LandingPageComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
+    expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
     expect(compiled.textContent).toContain('Related articles');
     expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(3);
     expect(

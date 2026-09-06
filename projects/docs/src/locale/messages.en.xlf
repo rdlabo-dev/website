@@ -87,7 +87,7 @@
         <note category="location">projects/docs/src/app/app.html:160,163</note>
       </notes>
       <segment>
-        <source>Support</source>
+        <source>Sponsor</source>
       </segment>
     </unit>
     <unit id="overviewNav">
@@ -470,5 +470,7 @@
         <source>Join the community supporting independent open-source projects maintained by rdlabo.</source>
       </segment>
     </unit>
+      <unit id="documentationTitle"><segment><source>Documentation</source></segment></unit>
+    <unit id="projectCategoriesNav"><segment><source>Project categories</source></segment></unit>
   </file>
 </xliff>

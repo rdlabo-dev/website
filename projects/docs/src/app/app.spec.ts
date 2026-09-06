@@ -307,7 +307,7 @@ describe('App', () => {
 
     await router.navigateByUrl('/support');
     fixture.detectChanges();
-    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Support']);
+    expect(currentLinks().map((link) => link.textContent?.trim())).toEqual(['Sponsor']);
 
     await router.navigateByUrl('/projects/capacitor-stripe');
     fixture.detectChanges();

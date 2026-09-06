@@ -11,12 +11,14 @@ import { FEATURED_PROJECTS, SITE } from '../../site-config';
   selector: 'app-home-page',
   imports: [RouterLink, FeaturedProjectCard],
   templateUrl: './home-page.html',
+  styleUrl: './home-page.css',
 })
 export class HomePage {
   readonly #seo = inject(SeoService);
   protected readonly site = SITE;
   protected readonly featuredProjects = FEATURED_PROJECTS;
-  protected readonly latestArticles = articleSummaries.slice(0, 3);
+  protected readonly heroArticle = articleSummaries[0];
+  protected readonly latestArticles = articleSummaries.slice(1, 4);
   protected readonly formatArticleDate = formatArticleDate;
 
   constructor() {

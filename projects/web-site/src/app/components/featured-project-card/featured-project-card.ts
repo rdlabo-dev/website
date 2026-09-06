@@ -39,11 +39,11 @@ import { FeaturedProject } from '../../site-config';
       .featured-project-card {
         display: flex;
         height: 100%;
-        min-height: 16.25rem;
+        min-height: 14rem;
         flex-direction: column;
-        padding: 1.75rem;
-        border: 1px solid #e5d9d3;
-        border-radius: 1.5rem;
+        padding: 1.5rem;
+        border: 1px solid var(--rd-line);
+        border-radius: 0.75rem;
         background: #fff;
         color: #292320;
         text-decoration: none;
@@ -57,8 +57,7 @@ import { FeaturedProject } from '../../site-config';
 
       .featured-project-card:hover {
         border-color: #ea572a;
-        box-shadow: 0 18px 50px rgba(72, 43, 30, 0.1);
-        transform: translateY(-4px);
+        box-shadow: 0 4px 16px #29232008;
       }
 
       .featured-project-card:focus-visible {
@@ -68,11 +67,11 @@ import { FeaturedProject } from '../../site-config';
 
       .featured-project-card__icon {
         display: flex;
-        width: 3.5rem;
-        height: 3.5rem;
+        width: 2.25rem;
+        height: 2.25rem;
         align-items: center;
         justify-content: center;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         background: #fff0ea;
         color: #d64a23;
         transition:
@@ -91,8 +90,8 @@ import { FeaturedProject } from '../../site-config';
       }
 
       .featured-project-card__title {
-        margin: 1.75rem 0 0;
-        font-size: 1.5rem;
+        margin: 1rem 0 0;
+        font-size: 1.2rem;
         font-weight: 600;
         line-height: 1.2;
         letter-spacing: -0.035em;
@@ -105,19 +104,21 @@ import { FeaturedProject } from '../../site-config';
           monospace;
         font-size: 0.75rem;
         line-height: 1.25rem;
-        color: #c44320;
+        color: var(--rd-muted);
+        overflow-wrap: anywhere;
       }
 
       .featured-project-card__description {
         flex: 1 1 auto;
-        margin: 1rem 0 0;
-        line-height: 1.75rem;
+        margin: 0.85rem 0 0;
+        font-size: 0.9rem;
+        line-height: 1.65;
         color: #6f6661;
       }
 
       .featured-project-card__cta {
         margin-top: auto;
-        padding-top: 1.75rem;
+        padding-top: 1.1rem;
         font-size: 0.875rem;
         font-weight: 600;
         color: #c44320;

@@ -1,21 +1,22 @@
 @import 'zenn-content-css/lib/index.css';
 @import '../../shared/styles/external-link.css';
+@import '../../shared/styles/brand.css';
 @import '../../shared/styles/zenn-content-overrides.css';
 
 :root {
   color-scheme: light;
 
-  --site-bg: #fffcfa;
+  --site-bg: var(--rd-paper);
   --site-bg-muted: #faf6f2;
   --site-bg-hero: linear-gradient(165deg, #fff8f3 0%, #fffdfb 42%, #faf6f2 100%);
   --site-surface: #ffffff;
-  --site-ink: #292320;
+  --site-ink: var(--rd-ink);
   --site-ink-muted: #6f6661;
   --site-ink-soft: #796e68;
   --site-accent: #ea572a;
-  --site-accent-strong: #c44320;
+  --site-accent-strong: var(--rd-accent);
   --site-accent-soft: #fff0ea;
-  --site-border: #eadfd9;
+  --site-border: var(--rd-line);
   --site-border-strong: #ded3cd;
   --site-footer-bg: #27211e;
   --site-footer-text: #d8cec9;
@@ -24,7 +25,7 @@
   --site-focus: #ea572a;
   --site-shadow: 0 18px 40px rgba(42, 27, 20, 0.08);
 
-  --site-font-sans: 'Helvetica Neue', Arial, sans-serif;
+  --site-font-sans: var(--rd-sans);
 
   --site-max-width: 72rem;
   --site-radius: 1rem;
@@ -1226,5 +1227,18 @@ app-article-sidebar {
   :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger.site-search .pf-trigger-text,
   :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger.site-search .pf-trigger-shortcut {
     display: none;
+  }
+}
+
+/* Keep room for search and the primary navigation on narrow screens. */
+@media (max-width: 480px) {
+  .site-brand__name {
+    display: none;
+  }
+  .site-brand {
+    margin-inline: 0.75rem;
+  }
+  .site-nav__link {
+    padding-inline: 0.65rem;
   }
 }

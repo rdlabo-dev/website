@@ -30,7 +30,7 @@ export const SITE = {
 export const NAV_LINKS: readonly NavLink[] = [
   { label: 'Articles', href: '/articles' },
   { label: 'Docs', href: SITE.docsUrl, sameSite: true },
-  { label: 'Support', href: SITE.supportUrl, sameSite: true },
+  { label: 'Sponsor', href: SITE.supportUrl, sameSite: true },
   { label: 'GitHub', href: SITE.githubUrl, external: true, mobile: false },
 ];
 

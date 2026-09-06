@@ -1,25 +1,37 @@
 <article class="home-page">
   <section class="home-hero" aria-labelledby="home-hero-heading">
     <div class="home-hero__inner">
-      <p class="home-hero__eyebrow">Open source by rdlabo</p>
-      <h1 id="home-hero-heading" class="home-hero__title">
-        Practical libraries for Ionic, Angular, and Capacitor teams.
-      </h1>
-      <p class="home-hero__lead">
-        rdlabo.dev brings together maintained OSS and engineering notes from shipping real-world
-        Ionic, Angular, Capacitor, and Cloudflare applications.
-      </p>
-      <div class="home-hero__actions">
-        <a class="button button--primary" [href]="site.docsUrl">Browse documentation</a>
-        <a
-          class="button button--secondary external-link"
-          [href]="site.githubUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub
-        </a>
+      <div class="home-hero__copy">
+        <p class="home-hero__eyebrow">Open source by rdlabo</p>
+        <h1 id="home-hero-heading" class="home-hero__title">
+          Libraries for apps.<br /><span>Notes from building them.</span>
+        </h1>
+        <p class="home-hero__lead">
+          Open-source libraries and engineering notes for Ionic, Angular, Capacitor, and Cloudflare.
+        </p>
+        <div class="home-hero__actions">
+          <a class="button button--primary" [href]="site.docsUrl">Browse documentation</a>
+          <a
+            class="button button--secondary external-link"
+            [href]="site.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+        </div>
       </div>
+      @if (heroArticle; as article) {
+        <a class="hero-note" [routerLink]="['/articles', article.slug]">
+          <span class="hero-note__label">Latest note <span aria-hidden="true">→</span></span>
+          <time [attr.datetime]="article.publishedDate">{{
+            formatArticleDate(article.publishedDate)
+          }}</time>
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.description }}</p>
+          <span class="hero-note__cta">Read article <span aria-hidden="true">→</span></span>
+        </a>
+      }
     </div>
   </section>
 
@@ -27,10 +39,8 @@
     <div class="home-section__inner">
       <header class="section-heading">
         <p class="section-heading__eyebrow">Featured OSS</p>
-        <h2 id="featured-projects-heading" class="section-heading__title">Projects I maintain</h2>
-        <p class="section-heading__lead">
-          Start with these libraries — each has full guides and API reference on docs.rdlabo.dev.
-        </p>
+        <h2 id="featured-projects-heading" class="section-heading__title">Selected projects</h2>
+        <p class="section-heading__lead">Libraries, plugins, and UI tools.</p>
       </header>
 
       <ul class="project-grid">
@@ -46,53 +56,12 @@
     </div>
   </section>
 
-  <section class="community-cta" aria-labelledby="community-cta-heading">
-    <div class="community-cta__inner">
-      <div class="community-cta__copy">
-        <p class="community-cta__eyebrow">Community-supported OSS</p>
-        <h2 id="community-cta-heading" class="community-cta__title">
-          Help keep this work independent and available to everyone.
-        </h2>
-        <p class="community-cta__lead">
-          Monthly sponsorships help maintain public libraries, documentation, compatibility updates,
-          and releases. If you'd like to support that work, you can start at $5 a month.
-        </p>
-        <p class="community-cta__vision">Current milestone: 10 monthly sponsors.</p>
-      </div>
-      <a
-        class="button button--primary external-link"
-        [href]="site.sponsorUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        >View sponsorship options</a
-      >
-    </div>
-  </section>
-
-  <section class="docs-cta" aria-labelledby="docs-cta-heading">
-    <div class="docs-cta__inner">
-      <div class="docs-cta__copy">
-        <p class="docs-cta__eyebrow">Documentation portal</p>
-        <h2 id="docs-cta-heading" class="docs-cta__title">
-          Everything you need on docs.rdlabo.dev
-        </h2>
-        <p class="docs-cta__lead">
-          Install guides, feature walkthroughs, and formal API references for every rdlabo project —
-          bilingual where it matters, always up to date with released packages.
-        </p>
-      </div>
-      <a class="button button--inverse" [href]="site.docsUrl">Go to docs.rdlabo.dev</a>
-    </div>
-  </section>
-
   <section class="home-section home-section--articles" aria-labelledby="latest-articles-heading">
     <div class="home-section__inner">
       <header class="section-heading section-heading--split">
         <div>
           <p class="section-heading__eyebrow">Engineering Notes</p>
-          <h2 id="latest-articles-heading" class="section-heading__title">
-            Lessons from building and maintaining production systems
-          </h2>
+          <h2 id="latest-articles-heading" class="section-heading__title">Recent writing</h2>
         </div>
         <a class="text-link" routerLink="/articles">All articles</a>
       </header>
@@ -128,6 +97,28 @@
           </p>
         </div>
       }
+    </div>
+  </section>
+  <section class="community-cta" aria-labelledby="community-cta-heading">
+    <div class="community-cta__inner">
+      <div class="community-cta__copy">
+        <p class="community-cta__eyebrow">Community-supported OSS</p>
+        <h2 id="community-cta-heading" class="community-cta__title">
+          Help keep this work independent and available to everyone.
+        </h2>
+        <p class="community-cta__lead">
+          Monthly sponsorships help maintain public libraries, documentation, compatibility updates,
+          and releases. If you'd like to support that work, you can start at $5 a month.
+        </p>
+        <p class="community-cta__vision">Current milestone: 10 monthly sponsors.</p>
+      </div>
+      <a
+        class="button button--primary external-link"
+        [href]="site.sponsorUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View sponsorship options</a
+      >
     </div>
   </section>
 </article>

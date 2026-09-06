@@ -23,15 +23,20 @@ describe('PluginIndexComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders the rdlabo.dev brand and project catalog', () => {
+  it('renders documentation categories and project links', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(TestBed.inject(Title).getTitle()).toBe(
       'Ionic, Angular, and Capacitor OSS Documentation | rdlabo',
     );
-    expect(compiled.querySelector('h1')?.textContent).toContain('rdlabo.dev');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Documentation');
     expect(compiled.textContent).toContain('developed and maintained personally by rdlabo');
     expect(compiled.textContent).toContain('independent of the incorporated association');
-    expect(compiled.querySelector('img[src="/assets/brand/rdlabo-logo.svg"]')).not.toBeNull();
+    const categoryLinks = compiled.querySelectorAll<HTMLAnchorElement>('.category-nav a');
+    expect(categoryLinks.length).toBe(projectGroupsForLocale('en').length);
+    for (const link of categoryLinks) {
+      const section = compiled.querySelector(link.getAttribute('href')!);
+      expect(section?.querySelector('h2')?.textContent?.trim()).toBe(link.textContent?.trim());
+    }
 
     const cards = Array.from(compiled.querySelectorAll<HTMLAnchorElement>('li > a'));
     const groupedProjects = projectGroupsForLocale('en').flatMap((group) => group.projects);

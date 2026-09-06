@@ -34,7 +34,7 @@ describe('App', () => {
     const navLabels = Array.from(compiled.querySelectorAll('.site-nav__link')).map((link) =>
       link.textContent?.trim(),
     );
-    expect(navLabels).toEqual(['Articles', 'Docs', 'Support', 'GitHub']);
+    expect(navLabels).toEqual(['Articles', 'Docs', 'Sponsor', 'GitHub']);
     expect(compiled.querySelector('pagefind-modal-trigger')).toBeTruthy();
     expect(compiled.querySelector('pagefind-modal')).toBeTruthy();
   });
@@ -89,7 +89,7 @@ describe('App', () => {
     fixture.destroy();
   });
 
-  it('renders four featured projects and the three latest translated articles', async () => {
+  it('renders four featured projects and four distinct recent articles', async () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -117,6 +117,10 @@ describe('App', () => {
     );
     expect(compiled.querySelectorAll('.article-preview')).toHaveLength(3);
     expect(compiled.querySelectorAll('a.article-preview')).toHaveLength(3);
+    const articleLinks = [
+      ...compiled.querySelectorAll<HTMLAnchorElement>('.hero-note, a.article-preview'),
+    ];
+    expect(new Set(articleLinks.map((link) => link.getAttribute('href'))).size).toBe(4);
     expect(
       Array.from(compiled.querySelectorAll('.article-preview__cta')).every(
         (cta) => cta.textContent?.trim() === 'Read article →',

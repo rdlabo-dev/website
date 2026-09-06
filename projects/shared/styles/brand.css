@@ -1,0 +1,30 @@
+:root {
+  --rd-paper: #fcfbf9;
+  --rd-ink: #26231f;
+  --rd-muted: #6d6862;
+  --rd-line: #e6e2dc;
+  --rd-accent: #b94523;
+  --rd-tint: #fcf0e9;
+  --rd-sans:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  --rd-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+::selection {
+  color: var(--rd-ink);
+  background: #f8d9c9;
+}
+:focus-visible {
+  outline: 2px solid var(--rd-accent);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}

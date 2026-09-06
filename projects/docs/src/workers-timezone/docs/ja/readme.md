@@ -2,6 +2,8 @@
 title: はじめに
 ---
 
+[日時変換とESLintをセットで試す](/docs/quickstart)では、日付の違いを確認し、host localのDate呼び出しをわざと追加してlintの検出と修正を体験できます。
+
 Cloudflare Workers向けのタイムゾーン対応カレンダー・ローカル時刻ユーティリティです。UTCの時刻を扱うWorkersで、IANAタイムゾーンを指定してローカル日付との相互変換や夏時間の処理を行えます。
 
 ## 日時処理とESLintをセットで導入する

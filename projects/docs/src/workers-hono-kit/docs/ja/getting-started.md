@@ -2,6 +2,8 @@
 title: はじめに
 ---
 
+[Hono APIをローカルで試す](/docs/quickstart)では、アカウントなしでhealth応答・weak ETag・404 JSONを確認できます。まずhelperを1つ使い、必要な機能を追加していきましょう。
+
 Cloudflare WorkersのHono API向けに、weak ETag、NestJS形式の検証・エラーレスポンス、Firebase認証、AWS、AI Gateway、Stripe、KV、Queue、Realtime、Offlineの共通部品を提供します。ドメインロジックとDBスキーマは利用側で管理します。
 
 ## エントリポイント

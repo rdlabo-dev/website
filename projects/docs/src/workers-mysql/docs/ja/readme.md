@@ -2,6 +2,8 @@
 title: はじめに
 ---
 
+[最初のMySQLクエリを実行する](/docs/quickstart)では、使い捨てのローカルDBへ接続し、テーブルを作らず実際のSELECT結果を確認できます。その後、Hyperdriveの完全なWorker例へ進めます。
+
 Cloudflare Workers向けのMySQL、Hyperdrive、Drizzle基盤です。
 
 mysql2がNode.jsのネットワークAPIを使うため、WorkerでNode.js互換モードを有効にします。

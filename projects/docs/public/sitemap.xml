@@ -337,6 +337,14 @@
     <loc>https://docs.rdlabo.dev/ja/projects/workers-timezone</loc>
   </url>
   <url>
+    <loc>https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/workers-timezone/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
     <loc>https://docs.rdlabo.dev/projects/workers-timezone/docs/readme</loc>
     <lastmod>2026-09-06</lastmod>
   </url>
@@ -367,6 +375,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-mysql</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/workers-mysql/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/readme</loc>
@@ -413,6 +429,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/getting-started</loc>
@@ -463,6 +487,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/quickstart</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/getting-started</loc>

@@ -882,6 +882,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Timezone',
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    // Reviewed runnable guides; API package versions remain pinned independently.
+    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -922,6 +924,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
+      page(
+        'Try conversions and lint',
+        '日時変換とlintを試す',
+        'quickstart',
+        'quickstart.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
@@ -945,6 +958,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers MySQL',
     packageName: '@rdlabo/workers-mysql',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    // Reviewed runnable guides; API package versions remain pinned independently.
+    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -953,12 +968,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'Cloudflare Workers向けのMySQL・Hyperdrive基盤。',
     ),
     headline: text(
-      'Separate database runtime from application policy',
-      'データベース基盤とアプリの方針を分離する',
+      'Run MySQL queries with clear connection and retry boundaries',
+      '接続と再試行の境界を明確にしてMySQLを使う',
     ),
     overview: text(
-      'Compose primary/replica access, deadlock retries, optional Drizzle adapters, and Node.js migration/testing tools without a Hono dependency.',
-      'primary/replica接続、デッドロック再試行、任意のDrizzle連携、Node.jsの移行・テストツールをHonoへの依存なしで構成します。',
+      'Read a real query result in the local exercise, then move to invocation-scoped Hyperdrive connections. The package handles MySQL access and retries; your application keeps its schema and transaction policy. Hono is optional.',
+      'ローカルで実際のクエリ結果を確認し、呼び出し単位のHyperdrive接続へ進めます。パッケージはMySQLアクセスと再試行を担当し、スキーマとtransactionの方針はアプリが所有します。Honoは必須ではありません。',
     ),
     featuresHeading: text('Database building blocks', 'データベースの基本機能'),
     features: [
@@ -985,6 +1000,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
+      page(
+        'Run your first query',
+        '最初のクエリを実行する',
+        'quickstart',
+        'quickstart.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
@@ -1005,6 +1031,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Hono Kit',
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
+    // Reviewed runnable guides; API package versions remain pinned independently.
+    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -1013,12 +1041,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'Cloudflare Workers上のHono API向けインフラストラクチャ部品集。',
     ),
     headline: text(
-      'Build consistent Hono APIs on Cloudflare Workers',
-      'Cloudflare Workers上のHono APIを一貫した構成で実装する',
+      'Try consistent HTTP behavior in a small Hono API',
+      '小さなHono APIで共通のHTTP動作を試す',
     ),
     overview: text(
-      'Compose validation, authentication, errors, observability, data access, queues, realtime connections, offline replicas, and test infrastructure from focused entry points.',
-      '検証、認証、エラー、可観測性、データアクセス、Queue、Realtime接続、Offline Replica、テスト基盤を用途別エントリポイントから構成します。',
+      'Start with a health response, weak ETags, and predictable JSON errors without creating a Cloudflare account. Add authentication, queues, or other helpers when needed. Your routes and business rules stay in your application; database access and timezone conversions have dedicated packages.',
+      'Cloudflareアカウントなしで、health応答・weak ETag・共通形式のJSONエラーを確認できます。必要に応じて認証やQueueなどを追加し、ルートと業務ルールはアプリに残します。DBアクセスと日時変換には専用パッケージがあります。',
     ),
     featuresHeading: text('Infrastructure areas', '提供するインフラ領域'),
     features: [
@@ -1052,6 +1080,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
+      page(
+        'Try a Hono API locally',
+        'Hono APIをローカルで試す',
+        'quickstart',
+        'quickstart.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page(
         'Getting Started',
         'はじめに',
@@ -1096,6 +1135,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
+    // Reviewed runnable guides; API package versions remain pinned independently.
+    englishDocsRef: '5fdcc9423849d0ed6e752e87a54959263c565c37',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -1104,12 +1145,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。',
     ),
     headline: text(
-      'Keep frontend and Workers architecture consistent',
-      'フロントエンドとWorkersの設計規約を一貫させる',
+      'See code conventions work before code review',
+      'コード規約をレビュー前に実行できる検査にする',
     ),
     overview: text(
-      'Adopt focused flat-config presets for Signals, component boundaries, Ionic interactions, Workers error boundaries, and timezone-safe code.',
-      '用途別のFlat Config presetで、Signal、Component境界、Ionic操作、Workersのエラー境界、タイムゾーン安全性を自動検査します。',
+      'Try one TypeScript rule: introduce a violation, inspect its diagnostics, and apply an autofix. Then choose Angular/Ionic, Workers error-boundary, or timezone presets for your application. The plugin checks code during development; runtime behavior remains the job of your application and libraries.',
+      'まずTypeScriptの1ルールで、違反の検出・診断・自動修正を試せます。その後、アプリに合うAngular・Ionic、Workersのエラー境界、タイムゾーンのpresetを選びます。pluginは開発時にコードを検査し、実行時の処理はアプリとライブラリが担当します。',
     ),
     featuresHeading: text('What the plugin covers', 'プラグインが検査する領域'),
     features: [
@@ -1143,6 +1184,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
+      page(
+        'Try detection and autofix',
+        '検出と自動修正を試す',
+        'quickstart',
+        'quickstart.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          updatedAt: text('2026-09-06', '2026-09-06'),
+        },
+      ),
       page(
         'Getting Started',
         'はじめに',

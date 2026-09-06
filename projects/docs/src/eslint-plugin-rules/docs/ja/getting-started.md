@@ -2,6 +2,8 @@
 title: はじめに
 ---
 
+このpluginは、Angular・IonicのComponentやtemplate、Workersのエラー境界、日時コードの規約を開発時に検査します。[検出と自動修正を試す](/docs/quickstart)では、Angular・IonicなしでTypeScriptの1ルールを体験できます。日時処理は[Timezoneとのセット演習](/workers-timezone/docs/quickstart)から始めてください。
+
 開発依存関係としてプラグインをインストールします。
 
 ```sh

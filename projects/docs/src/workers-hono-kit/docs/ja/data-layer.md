@@ -71,7 +71,7 @@ import { createContainerRuntime } from '@rdlabo/workers-hono-kit/mysql';
 
 ## 書き込みと再試行
 
-- `retryWhenDeadlock()` は `ER_LOCK_DEADLOCK` を指数バックオフで再試行します。
+- `retryWhenDeadlock()` は `ER_LOCK_DEADLOCK` を試行間に `delay × attempt` 待って再試行します。
 - `insertIdOf()`、`affectedRowsOf()`、`insertedIdsOf()` は書き込み結果を正規化します。
 - `withMysqlConnections()` はスコープ付き処理のprimary・replica接続を並列で開きます。
 

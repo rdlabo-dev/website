@@ -91,6 +91,24 @@ test('new Local LLM and Workers guides keep Japanese code identical to pinned pa
   }
 });
 
+test('OSS entry points lead to runnable guides with matching Japanese examples', async () => {
+  for (const id of [
+    'workers-hono-kit',
+    'workers-mysql',
+    'workers-timezone',
+    'eslint-plugin-rules',
+  ]) {
+    const project = projectDefinitions.find((entry) => entry.id === id);
+    assert.ok(project);
+    const entry = project.pages[0];
+    assert.equal(entry.slug, 'quickstart', `${id} Get started must open the runnable guide`);
+    assert.ok(!entry.localEnglishSource, `${id} English must come from the OSS source`);
+    const english = await englishGuideSource(project, entry.file);
+    const japanese = await readFile(join('projects/docs/src', id, 'docs/ja', entry.file), 'utf8');
+    assert.deepEqual(fencedCodeBlocks(japanese), fencedCodeBlocks(english), `${id} quickstart`);
+  }
+});
+
 test('pins every documentation source to the installed package version', async () => {
   const packageJson = JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),

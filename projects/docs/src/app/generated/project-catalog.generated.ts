@@ -721,6 +721,13 @@ export const PROJECTS_EN = [
     "path": "/projects/workers-timezone",
     "pages": [
       {
+        "title": "Try conversions and lint",
+        "navTitle": "Try conversions and lint",
+        "slug": "quickstart",
+        "section": "Quickstart",
+        "path": "/projects/workers-timezone/docs/quickstart"
+      },
+      {
         "title": "Getting Started",
         "navTitle": "Getting Started",
         "slug": "readme",
@@ -761,8 +768,8 @@ export const PROJECTS_EN = [
     "icon": "server",
     "version": "0.12.2",
     "description": "MySQL and Hyperdrive infrastructure for Cloudflare Workers.",
-    "headline": "Separate database runtime from application policy",
-    "overview": "Compose primary/replica access, deadlock retries, optional Drizzle adapters, and Node.js migration/testing tools without a Hono dependency.",
+    "headline": "Run MySQL queries with clear connection and retry boundaries",
+    "overview": "Read a real query result in the local exercise, then move to invocation-scoped Hyperdrive connections. The package handles MySQL access and retries; your application keeps its schema and transaction policy. Hono is optional.",
     "featuresHeading": "Database building blocks",
     "features": [
       {
@@ -780,6 +787,13 @@ export const PROJECTS_EN = [
     ],
     "path": "/projects/workers-mysql",
     "pages": [
+      {
+        "title": "Run your first query",
+        "navTitle": "Run your first query",
+        "slug": "quickstart",
+        "section": "Quickstart",
+        "path": "/projects/workers-mysql/docs/quickstart"
+      },
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
@@ -835,8 +849,8 @@ export const PROJECTS_EN = [
     "icon": "server",
     "version": "0.12.2",
     "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
-    "headline": "Build consistent Hono APIs on Cloudflare Workers",
-    "overview": "Compose validation, authentication, errors, observability, data access, queues, realtime connections, offline replicas, and test infrastructure from focused entry points.",
+    "headline": "Try consistent HTTP behavior in a small Hono API",
+    "overview": "Start with a health response, weak ETags, and predictable JSON errors without creating a Cloudflare account. Add authentication, queues, or other helpers when needed. Your routes and business rules stay in your application; database access and timezone conversions have dedicated packages.",
     "featuresHeading": "Infrastructure areas",
     "features": [
       {
@@ -858,6 +872,13 @@ export const PROJECTS_EN = [
     ],
     "path": "/projects/workers-hono-kit",
     "pages": [
+      {
+        "title": "Try a Hono API locally",
+        "navTitle": "Try a Hono API locally",
+        "slug": "quickstart",
+        "section": "Quickstart",
+        "path": "/projects/workers-hono-kit/docs/quickstart"
+      },
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
@@ -913,8 +934,8 @@ export const PROJECTS_EN = [
     "icon": "lint",
     "version": "22.1.0",
     "description": "Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.",
-    "headline": "Keep frontend and Workers architecture consistent",
-    "overview": "Adopt focused flat-config presets for Signals, component boundaries, Ionic interactions, Workers error boundaries, and timezone-safe code.",
+    "headline": "See code conventions work before code review",
+    "overview": "Try one TypeScript rule: introduce a violation, inspect its diagnostics, and apply an autofix. Then choose Angular/Ionic, Workers error-boundary, or timezone presets for your application. The plugin checks code during development; runtime behavior remains the job of your application and libraries.",
     "featuresHeading": "What the plugin covers",
     "features": [
       {
@@ -936,6 +957,13 @@ export const PROJECTS_EN = [
     ],
     "path": "/projects/eslint-plugin-rules",
     "pages": [
+      {
+        "title": "Try detection and autofix",
+        "navTitle": "Try detection and autofix",
+        "slug": "quickstart",
+        "section": "Quickstart",
+        "path": "/projects/eslint-plugin-rules/docs/quickstart"
+      },
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
@@ -2622,6 +2650,13 @@ export const PROJECTS_JA = [
     "path": "/projects/workers-timezone",
     "pages": [
       {
+        "title": "日時変換とESLintをセットで試す",
+        "navTitle": "日時変換とlintを試す",
+        "slug": "quickstart",
+        "section": "クイックスタート",
+        "path": "/projects/workers-timezone/docs/quickstart"
+      },
+      {
         "title": "はじめに",
         "navTitle": "はじめに",
         "slug": "readme",
@@ -2662,8 +2697,8 @@ export const PROJECTS_JA = [
     "icon": "server",
     "version": "0.12.2",
     "description": "Cloudflare Workers向けのMySQL・Hyperdrive基盤。",
-    "headline": "データベース基盤とアプリの方針を分離する",
-    "overview": "primary/replica接続、デッドロック再試行、任意のDrizzle連携、Node.jsの移行・テストツールをHonoへの依存なしで構成します。",
+    "headline": "接続と再試行の境界を明確にしてMySQLを使う",
+    "overview": "ローカルで実際のクエリ結果を確認し、呼び出し単位のHyperdrive接続へ進めます。パッケージはMySQLアクセスと再試行を担当し、スキーマとtransactionの方針はアプリが所有します。Honoは必須ではありません。",
     "featuresHeading": "データベースの基本機能",
     "features": [
       {
@@ -2681,6 +2716,13 @@ export const PROJECTS_JA = [
     ],
     "path": "/projects/workers-mysql",
     "pages": [
+      {
+        "title": "最初のMySQLクエリを実行する",
+        "navTitle": "最初のクエリを実行する",
+        "slug": "quickstart",
+        "section": "クイックスタート",
+        "path": "/projects/workers-mysql/docs/quickstart"
+      },
       {
         "title": "はじめに",
         "navTitle": "はじめに",
@@ -2736,8 +2778,8 @@ export const PROJECTS_JA = [
     "icon": "server",
     "version": "0.12.2",
     "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
-    "headline": "Cloudflare Workers上のHono APIを一貫した構成で実装する",
-    "overview": "検証、認証、エラー、可観測性、データアクセス、Queue、Realtime接続、Offline Replica、テスト基盤を用途別エントリポイントから構成します。",
+    "headline": "小さなHono APIで共通のHTTP動作を試す",
+    "overview": "Cloudflareアカウントなしで、health応答・weak ETag・共通形式のJSONエラーを確認できます。必要に応じて認証やQueueなどを追加し、ルートと業務ルールはアプリに残します。DBアクセスと日時変換には専用パッケージがあります。",
     "featuresHeading": "提供するインフラ領域",
     "features": [
       {
@@ -2759,6 +2801,13 @@ export const PROJECTS_JA = [
     ],
     "path": "/projects/workers-hono-kit",
     "pages": [
+      {
+        "title": "Hono APIをローカルで試す",
+        "navTitle": "Hono APIをローカルで試す",
+        "slug": "quickstart",
+        "section": "クイックスタート",
+        "path": "/projects/workers-hono-kit/docs/quickstart"
+      },
       {
         "title": "はじめに",
         "navTitle": "はじめに",
@@ -2814,8 +2863,8 @@ export const PROJECTS_JA = [
     "icon": "lint",
     "version": "22.1.0",
     "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。",
-    "headline": "フロントエンドとWorkersの設計規約を一貫させる",
-    "overview": "用途別のFlat Config presetで、Signal、Component境界、Ionic操作、Workersのエラー境界、タイムゾーン安全性を自動検査します。",
+    "headline": "コード規約をレビュー前に実行できる検査にする",
+    "overview": "まずTypeScriptの1ルールで、違反の検出・診断・自動修正を試せます。その後、アプリに合うAngular・Ionic、Workersのエラー境界、タイムゾーンのpresetを選びます。pluginは開発時にコードを検査し、実行時の処理はアプリとライブラリが担当します。",
     "featuresHeading": "プラグインが検査する領域",
     "features": [
       {
@@ -2837,6 +2886,13 @@ export const PROJECTS_JA = [
     ],
     "path": "/projects/eslint-plugin-rules",
     "pages": [
+      {
+        "title": "lintの検出と修正を試す",
+        "navTitle": "検出と自動修正を試す",
+        "slug": "quickstart",
+        "section": "クイックスタート",
+        "path": "/projects/eslint-plugin-rules/docs/quickstart"
+      },
       {
         "title": "はじめに",
         "navTitle": "はじめに",

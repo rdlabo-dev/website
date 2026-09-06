@@ -27,7 +27,7 @@ Use `hyperdriveConnectionOptions()` when constructing lower-level mysql2 connect
 
 ## Writes and retries
 
-- `retryWhenDeadlock()` retries `ER_LOCK_DEADLOCK` with exponential backoff.
+- `retryWhenDeadlock()` retries `ER_LOCK_DEADLOCK` with a wait of `delay × attempt` between attempts.
 - `insertIdOf()`, `affectedRowsOf()`, and `insertedIdsOf()` normalize mysql2 write results.
 - `withMysqlConnections()` opens primary and replica connections in parallel for a scoped operation.
 

@@ -22,12 +22,7 @@ module.exports = tseslint.config(
     languageOptions: {
       parserOptions: { projectService: true, tsconfigRootDir: __dirname },
     },
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-    ],
+    extends: [eslint.configs.recommended, ...tseslint.configs.recommended, ...tseslint.configs.stylistic, ...angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,
   },
   {
@@ -42,11 +37,17 @@ Do not place `rdlabo.configs.recommended` inside a scoped `extends`. The `typesc
 ## Framework-independent TypeScript
 
 ```js
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import tseslint from 'typescript-eslint';
 import rdlabo from '@rdlabo/eslint-plugin-rules/typescript';
 
 export default tseslint.config({
   files: ['**/*.ts'],
+  extends: [...tseslint.configs.recommendedTypeChecked],
+  languageOptions: {
+    parserOptions: { projectService: true, tsconfigRootDir: dirname(fileURLToPath(import.meta.url)) },
+  },
   plugins: { '@rdlabo/rules': rdlabo },
   rules: {
     '@rdlabo/rules/deny-soft-private-modifier': 'error',
@@ -68,6 +69,45 @@ Typed linting is required for the full Promise and RxJS checks in `restrict-try-
 
 ## Recommended preset
 
-The preset enables the common Signal, component boundary, lifecycle, overlay, readonly, and try-block rules for TypeScript. Its HTML config enables Ionic attribute checking, denied overlay elements, and double-action prevention.
+The Ionic/Angular preset enables the common Signal, component boundary, lifecycle, overlay, readonly, form, and try-block rules. `deny-constructor-di` is deprecated and is not included.
 
-`deny-constructor-di` is deprecated and is not in the preset. Prefer Angular's `inject()` migration.
+## Cloudflare Workers
+
+The framework-independent entry point provides two independent presets:
+
+- `workers/recommended` keeps `try/catch` boundaries small and explicit.
+- `workers-timezone/recommended` prevents implicit host-timezone behavior and enforces one clear module-level `@rdlabo/workers-timezone` initialization site.
+
+Enable either preset independently, or combine both:
+
+```js
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import rdlabo from '@rdlabo/eslint-plugin-rules/typescript';
+
+const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  {
+    files: ['**/*.ts'],
+    extends: [...tseslint.configs.recommendedTypeChecked],
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir },
+    },
+    plugins: { '@rdlabo/rules': rdlabo },
+  },
+  ...rdlabo.configs['workers/recommended'],
+  ...rdlabo.configs['workers-timezone/recommended'],
+);
+```
+
+```sh
+npm install --save-dev eslint @eslint/js typescript typescript-eslint @rdlabo/eslint-plugin-rules
+```
+
+The timezone preset is a companion to `@rdlabo/workers-timezone`; neither package depends on the other at runtime. The Workers preset deliberately does not include the timezone preset, so each policy remains explicit.
+
+The recommended HTML config includes `require-ion-error-text`. See the [rule](/docs/rules/require-ion-error-text) and [22.1 migration](/docs/migration).

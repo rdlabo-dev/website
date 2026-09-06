@@ -4,7 +4,7 @@ title: テスト・運用
 
 ## Testing entry point
 
-`@rdlabo/workers-hono-kit/testing` はDB peer dependencyを必要とし、production codeからは読み込みません。
+`@rdlabo/workers-hono-kit/testing` はproduction codeから読み込みません。DB helperは `@rdlabo/workers-mysql/testing` への非推奨の互換exportで、Firebase・HTTP・Stripe・KV・Queueのfakeはkitが提供します。DB helperを静的に再公開するため、DB以外のfakeだけを使う場合も `@rdlabo/workers-mysql` と `drizzle-orm` が必要です。
 
 | Helper                                                          | 用途                                                      |
 | --------------------------------------------------------------- | --------------------------------------------------------- |
@@ -27,3 +27,5 @@ title: テスト・運用
 ## Trust boundary
 
 AWS、Firebase、AI Gateway、Stripe、DB clientはアプリ側で設定します。Domain固有credential、schema、認可policyを共有kitへ置かないでください。`createRolePolicy()` はstorage非依存のrole・relation mappingに限定し、roleとpermissionの正本はアプリが所有します。
+
+DB baselineの正本は `workers-mysql-db-baseline` です。旧 `workers-hono-kit-db-baseline` は互換コマンドとして委譲します。

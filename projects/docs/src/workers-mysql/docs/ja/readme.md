@@ -88,5 +88,4 @@ npm install @rdlabo/workers-mysql @rdlabo/workers-hono-kit
 
 ## workers-hono-kitからの移行
 
-kit `0.12.0` でimportの境界が変わります。旧 `/db` とDB関連の `/testing` exportは一時的に非推奨の互換パスとして残ります。対応表は[移行](/docs/migration)を参照してください。
-
+kit `0.12.0` でimportの境界が変わります。旧 `/db` とDB関連の `/testing` exportは `@deprecated` 付きの互換パスとして維持され、削除予定はありません。新規コードでは独立パッケージを利用してください。対応表は[移行](/docs/migration)を参照してください。

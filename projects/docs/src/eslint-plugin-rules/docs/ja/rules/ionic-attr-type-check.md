@@ -80,5 +80,5 @@ string literal属性に無効なstring値が指定されている場合、許容
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.0.0/src/rules/ionic-attr-type-check.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.0.0/tests/rules/ionic-attr-type-check.ts)
+- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/ionic-attr-type-check.ts)
+- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/ionic-attr-type-check.ts)

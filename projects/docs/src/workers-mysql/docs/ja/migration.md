@@ -13,7 +13,7 @@ kit `0.12.0` でDBユーティリティが独立しました。`@rdlabo/workers-
 | kit `/db` のbaselineヘルパー | `@rdlabo/workers-mysql/migrations` |
 | kit `/testing` のDBヘルパー | `@rdlabo/workers-mysql/testing` |
 
-旧 `/db` とDB関連 `/testing` は一時的な非推奨の再エクスポートです。新しいWorkerコードでは旧集約 `/db` を使わず専用のランタイムimportでNode専用migrationコードを除外してください。設定更新時には `honoDrizzleConfig` を `workersDrizzleConfig` に置き換えます。
+旧 `/db` とDB関連 `/testing` は`@deprecated` 付きの保守対象の互換再エクスポートとして維持され、削除予定はありません。新しいWorkerコードでは旧集約 `/db` を使わず専用のランタイムimportでNode専用migrationコードを除外してください。設定更新時には `honoDrizzleConfig` を `workersDrizzleConfig` に置き換えます。
 
 Honoへの依存は不要です。固定JST保存と変更可能な業務タイムゾーンも独立しています。[Drizzleと日付](/docs/drizzle)を参照してください。
 

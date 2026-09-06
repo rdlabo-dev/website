@@ -161,14 +161,17 @@ const eslintRuleNames = [
   'deny-overlay-create',
   'deny-soft-private-modifier',
   'implements-ionic-lifecycle',
+  'initialize-timezone-at-module-scope',
   'ionic-attr-type-check',
   'no-component-method-except-lifecycle',
   'no-component-writable-signal',
+  'no-implicit-timezone',
   'no-reactive-forms',
   'no-template-driven-forms',
   'prefer-disable-handler',
   'prefer-ionic-standalone',
   'prefer-modal-launcher',
+  'require-ion-error-text',
   'require-ion-item-group',
   'require-viewmodel',
   'restrict-try-block',
@@ -177,7 +180,15 @@ const eslintRuleNames = [
 ] as const;
 
 const eslintRulePages = eslintRuleNames.map((ruleName) =>
-  page(ruleName, ruleName, `rules/${ruleName}`, `rules/${ruleName}.md`, 'Rules', 'ルール'),
+  page(ruleName, ruleName, `rules/${ruleName}`, `rules/${ruleName}.md`, 'Rules', 'ルール', {
+    ...([
+      'require-ion-error-text',
+      'initialize-timezone-at-module-scope',
+      'no-implicit-timezone',
+    ].includes(ruleName)
+      ? { updatedAt: text('2026-09-06', '2026-09-06') }
+      : {}),
+  }),
 );
 
 export const projectDefinitions: readonly ProjectDefinition[] = [
@@ -871,7 +882,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Timezone',
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    englishDocsRef: '1fc2f78532b44d94ba230823662d01d86fc98e7f',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -884,8 +894,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '時刻とローカルのカレンダー日付を変換する',
     ),
     overview: text(
-      'Choose an application timezone or pass per-call overrides, with explicit daylight-saving behavior and no Hono or database dependency.',
-      'アプリのタイムゾーン設定と呼び出しごとの指定に対応します。夏時間の扱いを明確にし、Honoやデータベースには依存しません。',
+      'Choose an application timezone or pass per-call overrides, handle daylight-saving boundaries, and prevent implicit host-timezone regressions with a companion ESLint preset.',
+      'アプリのタイムゾーン設定と呼び出しごとの指定、夏時間の境界処理に対応し、コンパニオンESLint presetでhost timezoneへの暗黙依存の再混入を防ぎます。',
     ),
     featuresHeading: text('Calendar building blocks', 'カレンダー処理の基本機能'),
     features: [
@@ -903,9 +913,18 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           '夏時間の重複・欠落とカレンダー日付の加算を扱います。',
         ),
       },
+      {
+        title: text('ESLint guardrails', 'ESLintによる再発防止'),
+        description: text(
+          'Detect implicit Date and Intl timezone behavior and keep initialization out of request scope.',
+          'Date・Intlの暗黙のタイムゾーン依存と、リクエストスコープでの初期化を検出します。',
+        ),
+      },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page(
         'Timezones and calendar dates',
         'タイムゾーンと日付',
@@ -926,7 +945,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers MySQL',
     packageName: '@rdlabo/workers-mysql',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    englishDocsRef: '1fc2f78532b44d94ba230823662d01d86fc98e7f',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -967,11 +985,15 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Runtime', 'ランタイム', 'runtime', 'runtime.md', 'Guides', 'ガイド'),
       page('Drizzle and dates', 'Drizzleと日付', 'drizzle', 'drizzle.md', 'Guides', 'ガイド'),
       page('Migrations and testing', '移行とテスト', 'tooling', 'tooling.md', 'Guides', 'ガイド'),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },
@@ -983,8 +1005,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Hono Kit',
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    // The portal documents the reviewed post-release guide set at this immutable revision.
-    englishDocsRef: '66c1fdfd9aa606a21f8fe2c34adbb56dc9bb4fac',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -1012,8 +1032,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       {
         title: text('Workers data layer', 'Workersデータ層'),
         description: text(
-          'Use Hyperdrive, Drizzle, MySQL helpers, deadlock retry, and JST business-time primitives.',
-          'Hyperdrive、Drizzle、MySQL helper、deadlock retry、JST business-timeを利用します。',
+          'Connect standalone MySQL and timezone packages through the Hono container adapter.',
+          '独立したMySQL・タイムゾーンパッケージをHonoコンテナーアダプターと組み合わせます。',
         ),
       },
       {
@@ -1039,9 +1059,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page('HTTP and Authentication', 'HTTP・認証', 'http-auth', 'http-auth.md', 'Guide', 'ガイド'),
-      page('Data Layer', 'データ層', 'data-layer', 'data-layer.md', 'Guide', 'ガイド'),
+      page('Data Layer', 'データ層', 'data-layer', 'data-layer.md', 'Guide', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page(
         'Realtime and Offline',
         'Realtime・Offline',
@@ -1057,8 +1080,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'testing-operations.md',
         'Reference',
         'リファレンス',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
     ],
   },
   {
@@ -1069,22 +1096,20 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
-    // The Japanese migration guide follows this reviewed immutable docs revision.
-    englishDocsRef: 'f405c0e67b208756bde6b79ff704f42f26e748a6',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
     description: text(
-      'Opinionated Angular, Ionic, and TypeScript rules for maintainable applications.',
-      '保守しやすいアプリケーションのためのAngular・Ionic・TypeScript向けESLintルール集。',
+      'Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.',
+      '保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。',
     ),
     headline: text(
-      'Keep Angular and Ionic architecture consistent',
-      'Angular・Ionicの設計規約を一貫させる',
+      'Keep frontend and Workers architecture consistent',
+      'フロントエンドとWorkersの設計規約を一貫させる',
     ),
     overview: text(
-      'Adopt a flat-config preset or select individual rules for Signals, component boundaries, Ionic overlays, forms, and safe asynchronous code.',
-      'Flat Configプリセットまたは個別ルールを使い、Signal、Component境界、Ionic Overlay、フォーム、非同期コードの規約を自動検査します。',
+      'Adopt focused flat-config presets for Signals, component boundaries, Ionic interactions, Workers error boundaries, and timezone-safe code.',
+      '用途別のFlat Config presetで、Signal、Component境界、Ionic操作、Workersのエラー境界、タイムゾーン安全性を自動検査します。',
     ),
     featuresHeading: text('What the plugin covers', 'プラグインが検査する領域'),
     features: [
@@ -1112,8 +1137,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       {
         title: text('Framework-independent TypeScript', '汎用TypeScript'),
         description: text(
-          'Use the /typescript entry point for rules that do not load Angular or Ionic.',
-          'AngularやIonicを読み込まないルールは/typescriptエントリポイントから利用できます。',
+          'Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic.',
+          'AngularやIonicを読み込まず、/typescriptからWorkersのエラー境界・タイムゾーンpresetを利用できます。',
         ),
       },
     ],
@@ -1135,9 +1160,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Configure @rdlabo/eslint-plugin-rules with flat config presets for Angular, Ionic, or framework-independent TypeScript projects.',
           '@rdlabo/eslint-plugin-rulesのFlat Configを使い、Angular・Ionic・汎用TypeScript向けのESLintプリセットを設定します。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Rules', 'ルール一覧', 'rules', 'rules.md', 'Reference', 'リファレンス', {
         seoTitle: text(
           'Angular, Ionic, and TypeScript ESLint Rules | rdlabo',
@@ -1147,9 +1174,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.',
           'Angular Signal、Ionic Component、Component境界、フォーム、安全な非同期処理を検査する@rdlabo/eslint-plugin-rulesのルール一覧です。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       ...eslintRulePages,
     ],
   },

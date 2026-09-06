@@ -78,13 +78,15 @@ test('new Local LLM and Workers guides keep Japanese code identical to pinned pa
     const project = projectDefinitions.find((entry) => entry.id === id);
     assert.ok(project, `${id} must be registered`);
     for (const page of project.pages) {
-      const english = await englishGuideSource(project, page.file);
+      const localEnglishPath = join('projects/docs/src', id, 'docs', page.file);
+      const english = page.localEnglishSource
+        ? await readFile(localEnglishPath, 'utf8')
+        : await englishGuideSource(project, page.file);
       const japanese = await readFile(join('projects/docs/src', id, 'docs/ja', page.file), 'utf8');
       assert.ok(yamlTitle(japanese));
       assert.deepEqual(fencedCodeBlocks(japanese), fencedCodeBlocks(english), `${id}/${page.file}`);
-      await assert.rejects(access(join('projects/docs/src', id, 'docs', page.file)), {
-        code: 'ENOENT',
-      });
+      if (page.localEnglishSource) await access(localEnglishPath);
+      else await assert.rejects(access(localEnglishPath), { code: 'ENOENT' });
     }
   }
 });
@@ -321,20 +323,36 @@ test('imports every installed ESLint rule README with matching EN/JA code fences
     .map((page) => page.slug.slice('rules/'.length))
     .sort();
   const installedRuleNames = await installedEslintRuleNames();
-
-  assert.equal(manifestRuleNames.length, 19);
   assert.deepEqual(manifestRuleNames, installedRuleNames);
 
   const docsRoot = new URL('../projects/docs/src/eslint-plugin-rules/docs/', import.meta.url);
+  const rulesIndexPage = eslintProject.pages.find((page) => page.file === 'rules.md');
+  assert.ok(rulesIndexPage);
   const [englishRulesIndex, japaneseRulesIndex] = await Promise.all([
-    englishGuideSource(eslintProject, 'rules.md'),
+    rulesIndexPage.localEnglishSource
+      ? readFile(new URL('rules.md', docsRoot), 'utf8')
+      : englishGuideSource(eslintProject, 'rules.md'),
     readFile(new URL('ja/rules.md', docsRoot), 'utf8'),
   ]);
 
+  for (const [locale, index] of [
+    ['EN', englishRulesIndex],
+    ['JA', japaneseRulesIndex],
+  ] as const) {
+    const listedRules = [...index.matchAll(/^\|\s*\[`([^`]+)`\]/gm)]
+      .map((match) => match[1])
+      .sort();
+    assert.deepEqual(listedRules, installedRuleNames, `${locale} must list each rule exactly once`);
+  }
+
   for (const ruleName of manifestRuleNames) {
     const japanesePath = new URL(`ja/rules/${ruleName}.md`, docsRoot);
+    const page = eslintProject.pages.find((candidate) => candidate.slug === `rules/${ruleName}`);
+    assert.ok(page);
     const [english, japanese] = await Promise.all([
-      englishGuideSource(eslintProject, `rules/${ruleName}.md`),
+      page.localEnglishSource
+        ? readFile(new URL(`rules/${ruleName}.md`, docsRoot), 'utf8')
+        : englishGuideSource(eslintProject, `rules/${ruleName}.md`),
       readFile(japanesePath, 'utf8'),
     ]);
 
@@ -365,7 +383,7 @@ test('imports every installed ESLint rule README with matching EN/JA code fences
           /https:\/\/github\.com\/rdlabo-dev\/eslint-plugin-rules\/blob\/[^\s)\]]+/g,
         ),
       ].map((match) => match[0]);
-      if (locale === 'JA') {
+      if (locale === 'JA' && !page.localEnglishSource) {
         assert.ok(
           githubBlobLinks.length > 0,
           `${locale} ${ruleName} must include GitHub blob implementation/test links`,

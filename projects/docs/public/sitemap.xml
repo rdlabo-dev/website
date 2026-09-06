@@ -338,9 +338,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-timezone/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-timezone/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones</loc>
@@ -368,9 +370,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-mysql/docs/readme</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime</loc>
@@ -392,9 +396,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/migration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-mysql/docs/migration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-mysql/docs/api</loc>
@@ -410,9 +416,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/getting-started</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/http-auth</loc>
@@ -422,9 +430,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/data-layer</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/realtime-offline</loc>
@@ -434,15 +444,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/testing-operations</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/testing-operations</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/workers-hono-kit/docs/api</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/workers-hono-kit/docs/api</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules</loc>
@@ -458,31 +472,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/configuration</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/migration</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/api</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/api</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/component-property-use-readonly</loc>
@@ -521,6 +539,14 @@
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/implements-ionic-lifecycle</loc>
   </url>
   <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check</loc>
   </url>
   <url>
@@ -537,6 +563,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-reactive-forms</loc>
@@ -567,6 +601,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-error-text</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/require-ion-error-text</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group</loc>

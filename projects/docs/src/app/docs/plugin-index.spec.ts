@@ -149,7 +149,7 @@ describe('PluginIndexComponent', () => {
       '<code>method</code> login(...)',
     );
     const eslint = await loadProject('eslint-plugin-rules', 'ja');
-    expect(eslint?.version).toBe('22.0.0');
+    expect(eslint?.version).toBe('22.1.0');
     expect(eslint?.pages.find((page) => page.slug === 'rules')?.html).toContain(
       'signal-use-as-signal-template',
     );
@@ -161,7 +161,7 @@ describe('PluginIndexComponent', () => {
     expect(restrictTryBlock?.html).toContain('allowPromise');
     expect(restrictTryBlock?.html).toMatch(/誤り|Incorrect/i);
     const hono = await loadProject('workers-hono-kit', 'ja');
-    expect(hono?.version).toBe('0.11.1');
+    expect(hono?.version).toBe('0.12.2');
     expect(hono?.pages.find((page) => page.slug === 'data-layer')?.html).toContain(
       'primaryHyperdrive',
     );

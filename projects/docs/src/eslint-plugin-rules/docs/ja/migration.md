@@ -2,6 +2,23 @@
 title: 移行
 ---
 
+## 22.0から22.1へ
+
+22.1では推奨presetに `require-ion-error-text` が追加されました。既定では `[formField]` を指定した、`errorText` 対応の6種類のIonicコントロールを検査します。空でない静的な `errorText` または `[errorText]` が必要です。
+
+`KitIonicFormField` を利用する場合、対象のstandalone componentすべてにAngularの `FormField` とkitアダプターをimportしたうえで、次を有効にできます。アプリの `provideKitIonicSignalForms()` 登録も必要です。
+
+```js
+{
+  files: ['**/*.html'],
+  rules: {
+    '@rdlabo/rules/require-ion-error-text': ['error', { formFieldProvidesErrorText: true }],
+  },
+}
+```
+
+`[formField]` のないコントロールにも文言を要求する場合だけ `checkAll: true` を指定します。既定ではフィルターや設定項目は対象外です。`ignoreReadonly: true` は `checkAll` 有効時の `ion-input`・`ion-textarea` の静的な `readonly` 属性だけに適用され、動的な `[readonly]` は検査されます。
+
 ## 21.xから22.xへ
 
 version 22はAngular 21・22とIonic Framework 9を対象にします。Ionic 8のアプリケーションでは、このpluginのversion 21を使い続けてください。

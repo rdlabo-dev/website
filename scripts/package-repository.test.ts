@@ -47,6 +47,7 @@ test('resolves Workers workspace guides and README within the selected package',
   for (const [name, directory] of [
     ['workers-timezone', 'timezone'],
     ['workers-mysql', 'mysql'],
+    ['workers-hono-kit', 'hono-kit'],
   ]) {
     const project = {
       repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
@@ -59,7 +60,12 @@ test('resolves Workers workspace guides and README within the selected package',
     const readme = await fetchEnglishProjectReadme(project);
     assert.equal(readme?.repositoryPath, `packages/${directory}/README.md`);
   }
-  assert.ok(requests.every((url) => /\/packages\/(timezone|mysql)\//.test(url)));
+  assert.ok(
+    requests
+      .filter((url) => url.includes('/rdlabo-dev/workers-hono-kit/'))
+      .every((url) => /\/packages\/(timezone|mysql|hono-kit)\//.test(url)),
+    `unexpected Workers package request: ${requests.join(', ')}`,
+  );
 });
 
 test('parses GitHub repository URLs', () => {

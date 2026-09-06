@@ -209,6 +209,7 @@ function packageScopedDirectory(project: {
   if (repositoryUrl === 'https://github.com/rdlabo-dev/workers-hono-kit') {
     if (sourceDirectory === 'workers-timezone') return 'packages/timezone';
     if (sourceDirectory === 'workers-mysql') return 'packages/mysql';
+    if (sourceDirectory === 'workers-hono-kit') return 'packages/hono-kit';
     return undefined;
   }
 

@@ -2,30 +2,54 @@
 title: API
 ---
 
-`@rdlabo/workers-hono-kit` v0.10.6 のpublic entry point一覧です。Worker bundleに必要な基盤だけを含めるため、最も狭いentry pointからimportします。
-
-## Entry point
+`@rdlabo/workers-hono-kit` v0.12.2 と独立MySQL・タイムゾーンパッケージのエントリポイントです。
 
 #### `module` @rdlabo/workers-hono-kit
 
-Core HTTP、Authentication、Firebase検証、AWS署名、Error処理、Pagination、Validation、Logging、Middlewareのexportです。
+MySQLの実行時依存を持たないHono・インフラhelper
+
+#### `module` @rdlabo/workers-mysql
+
+MySQL・Hyperdriveランタイム
+
+#### `module` @rdlabo/workers-mysql/drizzle
+
+Drizzle設定・JSTカラム
+
+#### `module` @rdlabo/workers-mysql/migrations
+
+Node.js migration・brownfield baseline
+
+#### `module` @rdlabo/workers-mysql/testing
+
+MySQL・DrizzleテストDB・fake
+
+#### `module` @rdlabo/workers-timezone
+
+IANAカレンダー・日時変換
+
+#### `module` @rdlabo/workers-hono-kit/mysql
+
+MySQL用Honoコンテナーアダプター
 
 #### `module` @rdlabo/workers-hono-kit/db
 
-Drizzle設定、Secret解決、Decimal・JST Column helper、Baseline Migration、Guarded Payment Recoveryです。
+MySQLへの非推奨の互換export
 
 #### `module` @rdlabo/workers-hono-kit/business-time
 
-Branded Business Date・Datetimeと、Parse、Format、日境界、日付計算、年齢計算です。
+workers-timezoneを必要とする非推奨の互換export
 
 #### `module` @rdlabo/workers-hono-kit/offline
 
-Snapshot Cursor、Journal Retention・Mutation helper、Offline Wire Compatibility negotiationです。
+テーブル非依存の変換・Replica wire helper
 
 #### `module` @rdlabo/workers-hono-kit/realtime
 
-Cloudflare Durable Object WebSocketのUpgrade、Hibernation、Broadcast、Close、Retry、Invocation、Protocol helperです。
+Durable Object WebSocket・retry helper
 
 #### `module` @rdlabo/workers-hono-kit/testing
 
-決定論的なtest向けのDatabase、Firebase、Authentication、Stripe fixture、KV、Queue、Configurable Fakeです。
+Test DB・fake・fixture・binding double
+
+詳細は[データ層](/docs/data-layer)、[Realtime・Offline](/docs/realtime-offline)、[テスト・運用](/docs/testing-operations)を参照してください。

@@ -699,10 +699,10 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.1.0",
+    "version": "0.12.2",
     "description": "IANA timezone and calendar utilities for Cloudflare Workers.",
     "headline": "Convert instants and local calendar dates",
-    "overview": "Choose an application timezone or pass per-call overrides, with explicit daylight-saving behavior and no Hono or database dependency.",
+    "overview": "Choose an application timezone or pass per-call overrides, handle daylight-saving boundaries, and prevent implicit host-timezone regressions with a companion ESLint preset.",
     "featuresHeading": "Calendar building blocks",
     "features": [
       {
@@ -712,6 +712,10 @@ export const PROJECTS_EN = [
       {
         "title": "Calendar boundaries",
         "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
+      },
+      {
+        "title": "ESLint guardrails",
+        "description": "Detect implicit Date and Intl timezone behavior and keep initialization out of request scope."
       }
     ],
     "path": "/projects/workers-timezone",
@@ -755,7 +759,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.1.0",
+    "version": "0.12.2",
     "description": "MySQL and Hyperdrive infrastructure for Cloudflare Workers.",
     "headline": "Separate database runtime from application policy",
     "overview": "Compose primary/replica access, deadlock retries, optional Drizzle adapters, and Node.js migration/testing tools without a Hono dependency.",
@@ -829,7 +833,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.11.1",
+    "version": "0.12.2",
     "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
     "headline": "Build consistent Hono APIs on Cloudflare Workers",
     "overview": "Compose validation, authentication, errors, observability, data access, queues, realtime connections, offline replicas, and test infrastructure from focused entry points.",
@@ -841,7 +845,7 @@ export const PROJECTS_EN = [
       },
       {
         "title": "Workers data layer",
-        "description": "Use Hyperdrive, Drizzle, MySQL helpers, deadlock retry, and JST business-time primitives."
+        "description": "Connect standalone MySQL and timezone packages through the Hono container adapter."
       },
       {
         "title": "Realtime and offline",
@@ -907,10 +911,10 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.0.0",
-    "description": "Opinionated Angular, Ionic, and TypeScript rules for maintainable applications.",
-    "headline": "Keep Angular and Ionic architecture consistent",
-    "overview": "Adopt a flat-config preset or select individual rules for Signals, component boundaries, Ionic overlays, forms, and safe asynchronous code.",
+    "version": "22.1.0",
+    "description": "Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.",
+    "headline": "Keep frontend and Workers architecture consistent",
+    "overview": "Adopt focused flat-config presets for Signals, component boundaries, Ionic interactions, Workers error boundaries, and timezone-safe code.",
     "featuresHeading": "What the plugin covers",
     "features": [
       {
@@ -927,7 +931,7 @@ export const PROJECTS_EN = [
       },
       {
         "title": "Framework-independent TypeScript",
-        "description": "Use the /typescript entry point for rules that do not load Angular or Ionic."
+        "description": "Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic."
       }
     ],
     "path": "/projects/eslint-plugin-rules",
@@ -1010,6 +1014,13 @@ export const PROJECTS_EN = [
         "path": "/projects/eslint-plugin-rules/docs/rules/implements-ionic-lifecycle"
       },
       {
+        "title": "initialize-timezone-at-module-scope",
+        "navTitle": "initialize-timezone-at-module-scope",
+        "slug": "rules/initialize-timezone-at-module-scope",
+        "section": "Rules",
+        "path": "/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope"
+      },
+      {
         "title": "ionic-attr-type-check",
         "navTitle": "ionic-attr-type-check",
         "slug": "rules/ionic-attr-type-check",
@@ -1029,6 +1040,13 @@ export const PROJECTS_EN = [
         "slug": "rules/no-component-writable-signal",
         "section": "Rules",
         "path": "/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal"
+      },
+      {
+        "title": "no-implicit-timezone",
+        "navTitle": "no-implicit-timezone",
+        "slug": "rules/no-implicit-timezone",
+        "section": "Rules",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone"
       },
       {
         "title": "no-reactive-forms",
@@ -1064,6 +1082,13 @@ export const PROJECTS_EN = [
         "slug": "rules/prefer-modal-launcher",
         "section": "Rules",
         "path": "/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher"
+      },
+      {
+        "title": "require-ion-error-text",
+        "navTitle": "require-ion-error-text",
+        "slug": "rules/require-ion-error-text",
+        "section": "Rules",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-error-text"
       },
       {
         "title": "require-ion-item-group",
@@ -2575,10 +2600,10 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.1.0",
+    "version": "0.12.2",
     "description": "Cloudflare Workers向けのIANAタイムゾーン・カレンダーユーティリティ。",
     "headline": "時刻とローカルのカレンダー日付を変換する",
-    "overview": "アプリのタイムゾーン設定と呼び出しごとの指定に対応します。夏時間の扱いを明確にし、Honoやデータベースには依存しません。",
+    "overview": "アプリのタイムゾーン設定と呼び出しごとの指定、夏時間の境界処理に対応し、コンパニオンESLint presetでhost timezoneへの暗黙依存の再混入を防ぎます。",
     "featuresHeading": "カレンダー処理の基本機能",
     "features": [
       {
@@ -2588,6 +2613,10 @@ export const PROJECTS_JA = [
       {
         "title": "日付の境界",
         "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
+      },
+      {
+        "title": "ESLintによる再発防止",
+        "description": "Date・Intlの暗黙のタイムゾーン依存と、リクエストスコープでの初期化を検出します。"
       }
     ],
     "path": "/projects/workers-timezone",
@@ -2631,7 +2660,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.1.0",
+    "version": "0.12.2",
     "description": "Cloudflare Workers向けのMySQL・Hyperdrive基盤。",
     "headline": "データベース基盤とアプリの方針を分離する",
     "overview": "primary/replica接続、デッドロック再試行、任意のDrizzle連携、Node.jsの移行・テストツールをHonoへの依存なしで構成します。",
@@ -2705,7 +2734,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.11.1",
+    "version": "0.12.2",
     "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
     "headline": "Cloudflare Workers上のHono APIを一貫した構成で実装する",
     "overview": "検証、認証、エラー、可観測性、データアクセス、Queue、Realtime接続、Offline Replica、テスト基盤を用途別エントリポイントから構成します。",
@@ -2717,7 +2746,7 @@ export const PROJECTS_JA = [
       },
       {
         "title": "Workersデータ層",
-        "description": "Hyperdrive、Drizzle、MySQL helper、deadlock retry、JST business-timeを利用します。"
+        "description": "独立したMySQL・タイムゾーンパッケージをHonoコンテナーアダプターと組み合わせます。"
       },
       {
         "title": "Realtime・Offline",
@@ -2783,10 +2812,10 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.0.0",
-    "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript向けESLintルール集。",
-    "headline": "Angular・Ionicの設計規約を一貫させる",
-    "overview": "Flat Configプリセットまたは個別ルールを使い、Signal、Component境界、Ionic Overlay、フォーム、非同期コードの規約を自動検査します。",
+    "version": "22.1.0",
+    "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。",
+    "headline": "フロントエンドとWorkersの設計規約を一貫させる",
+    "overview": "用途別のFlat Config presetで、Signal、Component境界、Ionic操作、Workersのエラー境界、タイムゾーン安全性を自動検査します。",
     "featuresHeading": "プラグインが検査する領域",
     "features": [
       {
@@ -2803,7 +2832,7 @@ export const PROJECTS_JA = [
       },
       {
         "title": "汎用TypeScript",
-        "description": "AngularやIonicを読み込まないルールは/typescriptエントリポイントから利用できます。"
+        "description": "AngularやIonicを読み込まず、/typescriptからWorkersのエラー境界・タイムゾーンpresetを利用できます。"
       }
     ],
     "path": "/projects/eslint-plugin-rules",
@@ -2886,6 +2915,13 @@ export const PROJECTS_JA = [
         "path": "/projects/eslint-plugin-rules/docs/rules/implements-ionic-lifecycle"
       },
       {
+        "title": "initialize-timezone-at-module-scope",
+        "navTitle": "initialize-timezone-at-module-scope",
+        "slug": "rules/initialize-timezone-at-module-scope",
+        "section": "ルール",
+        "path": "/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope"
+      },
+      {
         "title": "ionic-attr-type-check",
         "navTitle": "ionic-attr-type-check",
         "slug": "rules/ionic-attr-type-check",
@@ -2905,6 +2941,13 @@ export const PROJECTS_JA = [
         "slug": "rules/no-component-writable-signal",
         "section": "ルール",
         "path": "/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal"
+      },
+      {
+        "title": "no-implicit-timezone",
+        "navTitle": "no-implicit-timezone",
+        "slug": "rules/no-implicit-timezone",
+        "section": "ルール",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone"
       },
       {
         "title": "no-reactive-forms",
@@ -2940,6 +2983,13 @@ export const PROJECTS_JA = [
         "slug": "rules/prefer-modal-launcher",
         "section": "ルール",
         "path": "/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher"
+      },
+      {
+        "title": "require-ion-error-text",
+        "navTitle": "require-ion-error-text",
+        "slug": "rules/require-ion-error-text",
+        "section": "ルール",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-error-text"
       },
       {
         "title": "require-ion-item-group",

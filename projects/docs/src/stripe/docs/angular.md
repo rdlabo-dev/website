@@ -54,3 +54,5 @@ const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
   }>(environment.api + 'intent', {}),
 );
 ```
+
+Next: create those secrets on your server ([Server Integration](/docs/server-integration)), then present [PaymentSheet](/docs/payment-sheet).

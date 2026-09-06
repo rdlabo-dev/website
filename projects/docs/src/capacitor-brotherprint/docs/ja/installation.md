@@ -4,69 +4,55 @@ code: []
 scrollActiveLine: []
 ---
 
-## Install
+## インストール
 
 ```
-% npm install @rdlabo/capacitor-brotherprint
+npm install @rdlabo/capacitor-brotherprint
 ```
 
-## Initialize the Brother SDK
+公開プラグインパッケージは、アプリルート配下の **ローカル** Brother キットへの SPM 依存を宣言します。
 
-### Android configuration
+`ios/LocalPackages/BRLMPrinterKit`
 
-1. Place the following files in the android folder of your Capacitor project:
+パスは `node_modules/@rdlabo/capacitor-brotherprint` から見て `../../../ios/LocalPackages/BRLMPrinterKit` です。下記のとおり Capacitor アプリの `ios` ツリーへ Brother iOS SDK を置き、`npx cap sync` を実行してください。このプラグインは **iOS 15** と **Swift Package Manager** のみです（CocoaPods / Podfile 手順はありません）。
+
+このプラグインは Brother SDK を再配布しません。各プラットフォーム向けの公式ページから取得してください。
+
+## Brother SDK の初期化
+
+### Android 設定
+
+1. Capacitor プロジェクトの android フォルダに次を置きます。
 
 - `android/BrotherPrintLibrary/BrotherPrintLibrary.aar`
 - `android/BrotherPrintLibrary/build.gradle`
 
-The `BrotherPrintLibrary.aar` file is the Brother Print SDK library, which you can download from the Brother website: https://support.brother.co.jp/j/s/es/dev/ja/mobilesdk/android/index.html?c=jp&lang=ja&navi=offall&comple=on&redirect=on#ver4
+Android SDK の入手先: https://support.brother.co.jp/j/s/es/dev/ja/mobilesdk/android/index.html?c=jp&lang=ja&navi=offall&comple=on&redirect=on#ver4
 
-2. In the `android/BrotherPrintLibrary/build.gradle file`, include the following content:
+2. `android/BrotherPrintLibrary/build.gradle` に次を含めます。
 
 ```
-configurations.maybeCreate(“default”)
-artifacts.add(“default”, file('BrotherPrintLibrary.aar'))
+configurations.maybeCreate("default")
+artifacts.add("default", file('BrotherPrintLibrary.aar'))
 ```
 
-3. Open `android/settings.gradle` and add the following lines:
+3. `android/settings.gradle` を開き、次を追加します。
 
 ```
 include ':BrotherPrintLibrary'
 project(':BrotherPrintLibrary').projectDir = new File('./BrotherPrintLibrary/')
 ```
 
-These steps will integrate the Brother Print SDK with your Capacitor Android project.
+### iOS 設定
 
-### iOS configuration
-
-1. Place the following files in the ios folder of your Capacitor project:
+1. Capacitor アプリ配下（`node_modules` 内ではない）に次を置きます。
 
 - `ios/LocalPackages/BRLMPrinterKit/Sources/BRLMPrinterKit.xcframework`
-- `ios/LocalPackages/BRLMPrinterKit/BRLMPrinterKit.podspec`
 - `ios/LocalPackages/BRLMPrinterKit/Package.swift`
 
-The `BRLMPrinterKit.xcframework` file is the Brother Print SDK library, which you can download from the Brother website: https://support.brother.co.jp/j/s/es/dev/ja/mobilesdk/android/index.html?c=jp&lang=ja&navi=offall&comple=on&redirect=on#ver4
+iOS SDK の入手先: https://support.brother.com/g/s/es/dev/en/mobilesdk/ios/index.html
 
-`BRLMPrinterKit.podspec` content is here:
-
-```podspec
-Pod::Spec.new do |s|
-  s.name             = 'BRLMPrinterKit'
-  s.version          = '4.12.0'
-  s.homepage         = 'https://support.brother.co.jp/j/s/support/html/mobilesdk/index.html'
-  s.source           = { :path => './Sources' }
-  s.summary          = "Pod for the BRLMPrinterKit / Brother's printers"
-  s.description      = "This project is only a Pod for the Brother SDK v#{s.version}"
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Masahiko Sakakibara' => 'sakakibara@rdlabo.jp' }
-  s.ios.deployment_target = '11.0'
-  s.ios.vendored_frameworks = 'Sources/BRLMPrinterKit.xcframework'
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-end
-```
-
-`Package.swift` content is here:
+2. ローカルバイナリ用の `ios/LocalPackages/BRLMPrinterKit/Package.swift` を作成します（プラグインに合わせて最低 iOS 15）。
 
 ```swift
 // swift-tools-version: 5.9
@@ -75,7 +61,7 @@ import PackageDescription
 let package = Package(
     name: "BRLMPrinterKit",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v15)
     ],
     products: [
         .library(name: "BRLMPrinterKit", targets: ["BRLMPrinterKit"])
@@ -89,23 +75,13 @@ let package = Package(
 )
 ```
 
-2. Update the `ios/App/Podfile` file at your project.
+3. SDK ファイルを配置したら `npx cap sync` を実行し、アプリの iOS プロジェクトがプラグインとローカルパッケージパスを拾うようにします。
 
-```diff
-  target 'App' do
-    capacitor_pods
-    # Add your Pods here
-+   pod 'BRLMPrinterKit', :path => '../LocalPackages/BRLMPrinterKit'
-  end
-```
+## 権限設定
 
-After set, run `pod update` in the `ios` directory.
+### Android 設定
 
-## Permission configuration
-
-### Android configuration
-
-Update `AndroidManifest.xml` to include the following permissions:
+`AndroidManifest.xml` に次の権限を追加します。
 
 ```diff
 - <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -127,11 +103,11 @@ Update `AndroidManifest.xml` to include the following permissions:
 +         tools:targetApi="s" />
 ```
 
-More information is here: https://support.brother.co.jp/j/s/support/html/mobilesdk/guide/getting-started/getting-started-android.html
+詳細: https://support.brother.co.jp/j/s/support/html/mobilesdk/guide/getting-started/getting-started-android.html
 
-### iOS configuration
+### iOS 設定
 
-Update `Info.plist` to include the following permissions:
+`Info.plist` に次のキーを追加します。`UISupportedExternalAccessoryProtocols` は **文字列の配列** である必要があります。
 
 ```diff
 + <key>NSBluetoothAlwaysUsageDescription</key>
@@ -147,7 +123,9 @@ Update `Info.plist` to include the following permissions:
 + <key>NSLocalNetworkUsageDescription</key>
 + <string>【Why use WiFi for your app.】</string>
 + <key>UISupportedExternalAccessoryProtocols</key>
-+ <string>com.brother.ptcbp</string>
++ <array>
++ 	<string>com.brother.ptcbp</string>
++ </array>
 ```
 
-More information is here: https://support.brother.co.jp/j/s/support/html/mobilesdk/guide/getting-started/getting-started-ios.html
+詳細: https://support.brother.co.jp/j/s/support/html/mobilesdk/guide/getting-started/getting-started-ios.html

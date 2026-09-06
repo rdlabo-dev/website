@@ -4,17 +4,6 @@ title: Hono APIをローカルで試す
 
 Hono APIへ共通のHTTP動作を追加します。health応答のweak ETagと、存在しないルートのJSON応答を、ポート起動やCloudflareアカウントなしで確認できます。
 
-## 目的に合うパッケージを選ぶ
-
-| 必要なもの | 最初に使うもの |
-| --- | --- |
-| HonoのHTTP・認証・Queueの共通処理 | `@rdlabo/workers-hono-kit` |
-| Honoの有無に依存しないMySQLアクセス | [Workers MySQL](/workers-mysql/docs/quickstart) |
-| 日時変換と新しいコードの検査 | [Workers Timezone＋ESLint](/workers-timezone/docs/quickstart) |
-| 開発時のコード規約チェック | [ESLint Plugin Rules](/eslint-plugin-rules/docs/quickstart) |
-
-kitは再利用する基盤処理を提供します。ルート、業務ルール、認証情報、DBスキーマはアプリが所有します。まず必要なhelperを1つ導入でき、すべてのエントリポイントを採用する必要はありません。
-
 ## 1. 小さなプロジェクトを作る
 
 この演習はNode.js 24とnpmを使います。コマンドは対象のkitリリースを固定しています。npmは必須peerも導入します。peerを自動導入しない設定では[インストール要件](/docs/getting-started)を確認してください。
@@ -66,6 +55,17 @@ kitが追加するHTTP動作を確認できました。この演習ではWorkers
 
 ## 3. 実アプリへ組み込む
 
-middlewareとルート登録を残し、動作確認用のリクエストを取り除いて `app` をWorker handlerとしてexportします。次は[HTTP・認証](/docs/http-auth)へ進みます。DBが必要になったら[MySQLアダプター](/docs/data-layer)、ローカル日付を扱う場合は[TimezoneとESLintのセット導入](/workers-timezone/docs/quickstart)を追加してください。
+middlewareとルート登録を残し、動作確認用のリクエストを取り除いて `app` をWorker handlerとしてexportします。次は[HTTP・認証](/docs/http-auth)へ進みます。DBが必要になったら[MySQLアダプター](/docs/data-layer)を追加してください。
 
 既存kitから更新する場合は[0.12のimport移行](/docs/data-layer)を確認します。旧 `/db`・`/business-time` は互換exportで、新しい連携には独立パッケージを使います。
+
+## 次のステップ
+
+| 必要なもの | 最初に使うもの |
+| --- | --- |
+| HonoのHTTP・認証・Queueの共通処理 | `@rdlabo/workers-hono-kit` |
+| Honoの有無に依存しないMySQLアクセス | [Workers MySQL](/workers-mysql/docs/quickstart) |
+| 日時変換と新しいコードの検査 | [Workers Timezone＋ESLint](/workers-timezone/docs/quickstart) |
+| 開発時のコード規約チェック | [ESLint Plugin Rules](/eslint-plugin-rules/docs/quickstart) |
+
+kitは再利用する基盤処理を提供します。ルート、業務ルール、認証情報、DBスキーマはアプリが所有します。まず必要なhelperを1つ導入でき、すべてのエントリポイントを採用する必要はありません。

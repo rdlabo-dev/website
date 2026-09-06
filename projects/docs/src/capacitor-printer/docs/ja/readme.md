@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 Capacitor アプリからファイルまたは現在の WebView を印刷します。
 
-このプラグインは iOS と Android のネイティブ印刷 UI をラップします。アプリ内で生成した PDF などのローカルファイル、または現在の WebView の内容を印刷できます。
+このプラグインは iOS と Android のネイティブ印刷 UI をラップします。外部ファイルなしで現在の WebView から始めるか、アプリ内で生成した PDF などのローカルファイルを印刷できます。
 
 ## インストール
 
@@ -17,7 +17,7 @@ npx cap sync
 
 ## 使い方
 
-ファイルの印刷は [PDF](/docs/pdf)、現在の WebView の印刷は [Web](/docs/web) です。
+ボタンから現在の WebView を印刷してシステム印刷 UI を開くには [WebViewを印刷](/docs/web) です。実在するローカル PDF などのファイルは [PDF・ファイルを印刷](/docs/pdf) です。
 
 ## いつ使うか
 

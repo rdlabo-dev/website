@@ -4,19 +4,19 @@ code: []
 scrollActiveLine: []
 ---
 
-CLI を入れて `addIcons` を配線します。[使い方](/docs/usage) も見てください。
+[インストール](/docs/readme#インストール) のあとで `addIcons` を配線します。[使い方](/docs/usage) も見てください。
 
-```bash
-npm install @rdlabo/ionic-angular-collect-icons --save-dev
-```
+生成コードはこのパッケージのランタイムを読み込むため、ビルド環境でも開発依存をインストールしてください。ランタイムはアプリにバンドルされます。
 
-### 🤖 自動設定
+### 自動設定
 
 ```bash
 npx @rdlabo/ionic-angular-collect-icons --initialize true
 ```
 
-### 📝 手動設定
+`src/use-icons.ts` と、`main.ts` / `app.config.ts` への `addIcons` 登録を確認してください。
+
+### 手動設定
 
 #### 1. CLI を実行する
 

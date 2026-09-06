@@ -43,3 +43,7 @@ Use a Material Components theme in `android/app/src/main/res/values/styles.xml`:
 Any Material Components parent theme can be used. See [Material Components theming](https://m2.material.io/develop/android/theming/dark/) and [Stripe's Android Material theme guide](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme).
 
 The Android implementation uses the application `ic_launcher` mipmap as the Identity Verification Sheet icon. No extra icon configuration is required beyond a standard launcher icon.
+
+## Next step
+
+Continue with [Identity Verification Sheet](/docs/identity-verification-sheet) to fetch a session, present the sheet, and confirm the first submission result.

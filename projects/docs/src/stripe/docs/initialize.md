@@ -89,30 +89,10 @@ Use the same setup with `createPaymentFlow`. The custom scheme in `Info.plist`, 
 
 The method is not implemented on Android or web. Only pass matching Stripe return URLs to it. If Stripe does not handle the URL, the promise rejects and you should continue with your normal deep-link handling.
 
-## Example
+## Framework wiring
 
-### Angular
+Call `initialize` from your chosen framework bootstrap. Prefer the canonical startup path on each guide:
 
-Initialize from the root component. See [Angular](/docs/angular).
-
-```ts:src/app/app.component.ts
-import { Component } from '@angular/core';
-import { Stripe } from '@capacitor-community/stripe';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
-export class AppComponent {
-  constructor() {
-    void Stripe.initialize({
-      publishableKey: 'Your Publishable Key',
-    });
-  }
-}
-```
-
-### React
-
-`CapacitorStripeProvider` initializes the plugin for you. See [React](/docs/react).
+- [Vanilla JS](/docs/vanilla-js) — call `initialize` after `defineCustomElements()`
+- [Angular](/docs/angular) — `provideAppInitializer` at application startup
+- [React](/docs/react) — `CapacitorStripeProvider` initializes the plugin for you

@@ -54,6 +54,8 @@ export interface ProjectDefinition {
   repositoryUrl: string;
   /** Optional interactive demo linked from the project Overview. */
   demoUrl?: string;
+  /** Optional landing-page guide priorities; sidebar order remains unchanged. */
+  entryGuideSlugs?: readonly string[];
   /** Hosted documentation URL for catalog-only projects that are not rendered by this portal. */
   hostedUrl?: string;
   category: ProjectCategoryId;
@@ -72,7 +74,7 @@ export interface ProjectDefinition {
 }
 
 const text = (en: string, ja: string): LocalizedText => ({ en, ja });
-const ionicAngularLibraryDocsRef = 'v22.0.0';
+const ionicAngularLibraryDocsRef = 'daf7864a1bc7c0a7b4376811ec3429270d319974';
 
 export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = [
   {
@@ -136,8 +138,11 @@ const page = (
   ...options,
 });
 
-const groupPage = (object: string, slug: string): ProjectPageDefinition =>
-  page(object, object, slug, `${slug}.md`, 'Guides', 'ガイド');
+const groupPage = (
+  object: string,
+  slug: string,
+  options: PageOptions = {},
+): ProjectPageDefinition => page(object, object, slug, `${slug}.md`, 'Guides', 'ガイド', options);
 
 const interactiveDemo = (
   url: string,
@@ -302,7 +307,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'b28211c80b181d873bbe9c9935c3e28f9805eaff',
+    englishDocsRef: 'daf7864a1bc7c0a7b4376811ec3429270d319974',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -397,7 +402,15 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
-      page('Authentication and HTTP', '認証・HTTP', 'auth-http', 'auth-http.md', 'Guide', 'ガイド'),
+      page(
+        'Authentication and HTTP',
+        '認証・HTTP',
+        'auth-http',
+        'auth-http.md',
+        'Guide',
+        'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
+      ),
       page(
         'Offline and Realtime',
         'Offline・Realtime',
@@ -405,6 +418,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'offline-realtime.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page(
         'Optional Features',
@@ -464,8 +478,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('Theme', 'テーマ', 'theme', 'theme.md', 'Guides', 'ガイド'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page(
         'PhotoFileService',
         'PhotoFileService',
@@ -473,6 +488,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'photo-file.md',
         'Guides',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page('Photo Editor', 'Photo Editor', 'editor', 'editor.md', 'Guides', 'ガイド', {
         demo: interactiveDemo(
@@ -480,6 +496,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Interactive Photo Editor demo',
           'Photo Editorの操作デモ',
         ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Photo Viewer', 'Photo Viewer', 'viewer', 'viewer.md', 'Guides', 'ガイド', {
         demo: interactiveDemo(
@@ -487,7 +504,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Interactive Photo Viewer demo',
           'Photo Viewerの操作デモ',
         ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
+      page('Theme', 'テーマ', 'theme', 'theme.md', 'Guides', 'ガイド'),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
   },
@@ -541,13 +560,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('IonContent', 'IonContent', 'ion-content', 'ion-content.md', 'Guides', 'ガイド', {
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
           'Interactive IonContent scroll header demo',
           'IonContent Scroll Headerの操作デモ',
         ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page(
         'Virtual Scroll',
@@ -562,6 +584,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Interactive virtual scroll header demo',
             'Virtual Scroll Headerの操作デモ',
           ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page('Safe Area', 'Safe Area', 'safe-area', 'safe-area.md', 'Guides', 'ガイド', {
@@ -573,7 +596,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Configure hidden safe-area headers and always-visible native headers with @rdlabo/ionic-angular-scroll-header for Ionic content layouts.',
           'Ionic・Angular CDKのScroll連動Headerで、Safe Area用の非表示Headerと常時表示するNative Headerを設定する方法を解説します。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -637,14 +660,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Angular CDK Variable Height Virtual Scroll Setup | rdlabo',
           'Angular CDK可変高さVirtual Scrollの導入方法 | rdlabo',
         ),
-        updatedAt: text('2026-08-25', '2026-08-25'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Simple Usage', 'シンプルな使い方', 'simple', 'simple.md', 'Guides', 'ガイド', {
         seoTitle: text(
           'Angular CDK Virtual Scroll: Variable Height Example | rdlabo',
           'Angular CDK Virtual Scrollの可変高さサンプル | rdlabo',
         ),
-        updatedAt: text('2026-08-25', '2026-08-25'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple',
           'Interactive simple virtual scroll demo',
@@ -656,7 +679,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Angular CDK Virtual Scroll: Dynamic Item Height | rdlabo',
           'Angular CDK Virtual Scrollで動的なItem Heightを計測 | rdlabo',
         ),
-        updatedAt: text('2026-08-25', '2026-08-25'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced',
           'Interactive advanced virtual scroll demo',
@@ -668,7 +691,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Angular CDK Reverse Virtual Scroll for Chat UIs | rdlabo',
           'Angular CDK Reverse Virtual ScrollでChat UIを実装 | rdlabo',
         ),
-        updatedAt: text('2026-08-25', '2026-08-25'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
         demo: interactiveDemo(
           'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse',
           'Interactive reverse virtual scroll demo',
@@ -891,7 +914,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-angular-collect-icons',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-collect-icons',
     // The translated migration guide follows this reviewed immutable docs revision.
-    englishDocsRef: '3786a8a70cfa9f02e225ccba35d1b43f1fbdb78d',
+    englishDocsRef: 'c96d1be6d82d30fa9c0d511a10f9bbe7ce0585c9',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -932,11 +955,19 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('Initialize', '初期化', 'initialize', 'initialize.md', 'Guides', 'ガイド'),
-      page('Usage', '使い方', 'usage', 'usage.md', 'Guides', 'ガイド'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Initialize', '初期化', 'initialize', 'initialize.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Usage', '使い方', 'usage', 'usage.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('CLI Options', 'CLI オプション', 'options', 'options.md', 'Guides', 'ガイド'),
-      page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド'),
+      page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
       page('CLI API', 'CLI API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -950,7 +981,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'b009183e97fb8f2e641f8034040e5946613b465b',
+    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Cloudflare Workers timezone utilities + ESLint | rdlabo',
       'Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo',
@@ -1083,7 +1114,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-mysql',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Cloudflare Workers MySQL + Hyperdrive library | rdlabo',
       'Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo',
@@ -1167,6 +1198,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Manage Cloudflare Workers MySQL connections with Hyperdrive, primary/replica routing, transactions, and deadlock retries using workers-mysql.',
           'workers-mysqlでCloudflare WorkersのMySQL接続を管理。Hyperdrive、primary/replica、transaction、デッドロック再試行を解説します。',
         ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Drizzle and dates', 'Drizzleと日付', 'drizzle', 'drizzle.md', 'Guides', 'ガイド', {
         seoTitle: text(
@@ -1220,7 +1252,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
+    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Hono for Cloudflare Workers: API toolkit | rdlabo',
       'Cloudflare WorkersのHono API開発ツールキット | rdlabo',
@@ -1326,6 +1358,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, consistent JSON errors, and response finalization helpers.',
             'Cloudflare WorkersのHono APIでバリデーション、Firebase認証、共通JSONエラー、レスポンス確定のヘルパーを利用する方法を解説します。',
           ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page('Data Layer', 'データ層', 'data-layer', 'data-layer.md', 'Guide', 'ガイド', {
@@ -1355,6 +1388,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Use Durable Object WebSocket patterns and offline replica contracts with workers-hono-kit for Cloudflare Workers applications.',
             'Cloudflare Workers向けworkers-hono-kitのDurable Object WebSocketパターンと、オフラインレプリカ・同期の契約を解説します。',
           ),
+          updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page(
@@ -1399,7 +1433,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: '5fdcc9423849d0ed6e752e87a54959263c565c37',
+    englishDocsRef: '4f7aa80c5bfd443b53fe746e66fcaf07375da275',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -1465,6 +1499,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page('Configuration', '設定', 'configuration', 'configuration.md', 'Guide', 'ガイド', {
         seoTitle: text(
@@ -1477,9 +1512,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
-      }),
       page('Rules', 'ルール一覧', 'rules', 'rules.md', 'Reference', 'リファレンス', {
         seoTitle: text(
           'Angular, Ionic, and TypeScript ESLint Rules | rdlabo',
@@ -1489,6 +1521,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.',
           'Angular Signal、Ionic Component、Component境界、フォーム、安全な非同期処理を検査する@rdlabo/eslint-plugin-rulesのルール一覧です。',
         ),
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
@@ -1507,7 +1542,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-docgen',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-docgen',
     // v0.4.1 predates the portal guide; pin the reviewed immutable docs revision.
-    englishDocsRef: 'e8c125387d9ccc86ee19a73bc915df35926c8244',
+    englishDocsRef: 'bcec66c8cedd896bc0ecb620c2f95875d372328e',
     category: 'developer-tools',
     icon: 'docs',
     adapter: 'markdown',
@@ -1520,8 +1555,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '継承したinterfaceを含めてCapacitorプラグインドキュメントを生成する',
     ),
     overview: text(
-      'Keep the upstream docgen CLI, placeholders, output helpers, and exported functions while expanding inherited interface members into generated documentation.',
-      '本家docgenのCLI、placeholder、出力helper、export functionを維持しつつ、継承したinterface memberを生成ドキュメントへ展開します。',
+      'Generate Markdown and JSON from TypeScript interfaces and JSDoc, including inherited members, using the familiar docgen command.',
+      '使い慣れたdocgenコマンドで、TypeScriptのinterfaceとJSDocからMarkdown・JSONを生成。継承したメンバーも出力に含めます。',
     ),
     featuresHeading: text('Why use the fork', 'forkを使う理由'),
     features: [
@@ -1548,6 +1583,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page(
         'Differences from Upstream',
@@ -1562,6 +1598,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
   },
   {
     id: 'stripe',
+    entryGuideSlugs: ['vanilla-js', 'server-integration', 'payment-sheet'],
     slug: 'capacitor-stripe',
     sourceDirectory: 'stripe',
     name: 'Capacitor Community Stripe',
@@ -1641,7 +1678,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Configure @capacitor-community/stripe with a publishable key and platform settings before presenting PaymentSheet, Apple Pay, or Google Pay.',
             '@capacitor-community/stripeに公開可能キーと各Platformの設定を追加し、PaymentSheet、Apple Pay、Google Payを利用する準備をします。',
           ),
-          updatedAt: text('2026-08-31', '2026-08-31'),
+          updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
       page(
@@ -1651,9 +1688,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'vanilla-js.md',
         'Quickstart',
         'クイックスタート',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
-      page('Angular', 'Angular', 'angular', 'angular.md', 'Quickstart', 'クイックスタート'),
-      page('React', 'React', 'react', 'react.md', 'Quickstart', 'クイックスタート'),
+      page('Angular', 'Angular', 'angular', 'angular.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('React', 'React', 'react', 'react.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page(
         'Event Listeners',
         'イベントリスナー',
@@ -1670,7 +1712,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Learn',
         '学ぶ',
       ),
-      page('Initialize', '初期化', 'initialize', 'initialize.md', 'Methods', 'メソッド'),
+      page('Initialize', '初期化', 'initialize', 'initialize.md', 'Methods', 'メソッド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page(
         'PaymentSheet',
         'PaymentSheet',
@@ -1765,6 +1809,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page(
         'Identity Verification Sheet',
@@ -1773,6 +1818,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'identity-verification-sheet.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -1838,6 +1884,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page(
         'Collect a Payment',
@@ -1846,6 +1893,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'collect-a-payment.md',
         'Guides',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
       page(
         'Reader Lifecycle',
@@ -1868,7 +1916,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@capacitor-community/admob',
     repositoryUrl: 'https://github.com/capacitor-community/admob',
     // v8.1.0 does not publish the guide tree; pin the reviewed immutable docs revision.
-    englishDocsRef: '7e4b1ddb943ab0dd5a8e46ea10b26af699bd73cb',
+    englishDocsRef: '9fa5cfe6a64cae7a204eb6f94fa5a41bb81f8300',
     category: 'capacitor-plugins',
     icon: 'ads',
     seoTitle: text(
@@ -1928,7 +1976,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.',
           '@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。',
         ),
-        updatedAt: text('2026-08-31', '2026-08-31'),
+        updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page(
         'Initialize',
@@ -1939,6 +1987,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'クイックスタート',
       ),
       page('Consent', '同意管理', 'consent', 'consent.md', 'Guides', 'ガイド'),
+      page('Testing', 'テスト', 'testing', 'testing.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Banner Ads', 'バナー広告', 'banner', 'banner.md', 'Ad formats', '広告フォーマット'),
       page(
         'Interstitial Ads',
@@ -1976,7 +2027,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         '広告フォーマット',
       ),
       page('Ad Events', '広告イベント', 'events', 'events.md', 'Guides', 'ガイド'),
-      page('Testing', 'テスト', 'testing', 'testing.md', 'Guides', 'ガイド'),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
     ],
   },
@@ -1988,6 +2038,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Facebook Login',
     packageName: '@capacitor-community/facebook-login',
     repositoryUrl: 'https://github.com/capacitor-community/facebook-login',
+    englishDocsRef: 'd2211380c2058eff6c00c8b5ba403b19dcaadd95',
     category: 'capacitor-plugins',
     icon: 'identity',
     adapter: 'markdown',
@@ -2035,9 +2086,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('Configuration', '設定', 'configuration', 'configuration.md', 'Guides', 'ガイド'),
-      page('Authentication', '認証', 'authentication', 'authentication.md', 'Guides', 'ガイド'),
+      page('Authentication', '認証', 'authentication', 'authentication.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
       page('App Events', 'App Events', 'app-events', 'app-events.md', 'Guides', 'ガイド'),
     ],
   },
@@ -2049,6 +2104,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Local LLM',
     packageName: '@rdlabo/capacitor-local-llm',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-local-llm',
+    englishDocsRef: '0b71e934169367909f9cee3158722b3989933093',
     seoTitle: text(
       'Capacitor Local LLM for iOS, Android and Chrome | rdlabo',
       'Capacitor Local LLM：iOS・Android・ChromeでAIを実行 | rdlabo',
@@ -2146,7 +2202,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-codescanner',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-codescanner',
     // v8.0.3 predates the portal guide; pin the reviewed immutable docs revision.
-    englishDocsRef: 'c0c9b2e15d41e44a83569e574f0300dc67e46767',
+    englishDocsRef: 'c892241e308bdafad9c043c25f9b7f4b74cc1149',
     category: 'capacitor-plugins',
     icon: 'app',
     adapter: 'markdown',
@@ -2155,12 +2211,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'ネイティブモーダルでバーコード・QRコードをスキャンするCapacitorプラグイン。',
     ),
     headline: text(
-      'Scan codes in a native modal without touching web assets',
-      'Webアセットを操作せずネイティブモーダルでコードをスキャンする',
+      'Scan QR codes and barcodes in a native modal',
+      'QR・バーコードをネイティブモーダルで読み取る',
     ),
     overview: text(
-      'Present a modal scanner, listen for catch events, and configure the detection area and continuous multi-scan—without manipulating web assets.',
-      'モーダルでスキャナーを表示し、検出イベントを受け取り、検出エリアと連続マルチスキャンを設定できます。Webアセットの操作は不要です。',
+      'Read a code into your app, or keep the camera open for consecutive scans. Configure the detection area, light, and feedback.',
+      '読み取ったコードをアプリで受け取り、連続スキャンにも対応。検出エリア、ライト、読み取り時のフィードバックを設定できます。',
     ),
     featuresHeading: text('What you can do', 'できること'),
     features: [
@@ -2187,8 +2243,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      groupPage('CodeScanner', 'code-scanner'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      groupPage('CodeScanner', 'code-scanner', { updatedAt: text('2026-09-06', '2026-09-06') }),
     ],
   },
   {
@@ -2200,7 +2258,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-screenshot-event',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-screenshot-event',
     // v8.0.0 predates the portal guide; pin the reviewed immutable docs revision.
-    englishDocsRef: 'dbd409d0f9e0e13907f37f8cd664ae9c367c2c8c',
+    englishDocsRef: '2b6c185faade51cc5cae3eb569ad12288d3bb6ac',
     category: 'capacitor-plugins',
     icon: 'app',
     adapter: 'markdown',
@@ -2216,30 +2274,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
-        title: text('Start watching', '監視開始'),
+        title: text('React after a capture', '撮影後の案内'),
         description: text(
-          'Call startWatchEvent to begin listening for screenshot activity.',
-          'startWatchEventを呼び出し、スクリーンショットの監視を開始します。',
+          'Show a message or update app UI when a screenshot event arrives.',
+          'スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。',
         ),
       },
       {
-        title: text('Screenshot listener', 'スクリーンショットリスナー'),
+        title: text('Watch while a screen is open', '画面に合わせて監視'),
         description: text(
-          'Handle userDidTakeScreenshot when the user captures the screen.',
-          'ユーザーが画面を撮影したときにuserDidTakeScreenshotを処理します。',
-        ),
-      },
-      {
-        title: text('Stop watching', '監視停止'),
-        description: text(
-          'Call removeWatchEvent when screenshot monitoring is no longer needed.',
-          '監視が不要になったらremoveWatchEventを呼び出します。',
+          'Start watching on entry and release the watcher and listener when leaving.',
+          '画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。',
         ),
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      groupPage('ScreenshotEvent', 'screenshot-event'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      groupPage('ScreenshotEvent', 'screenshot-event', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
     ],
   },
   {
@@ -2251,7 +2306,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-printer',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-printer',
     // v8.0.1 predates the portal guides; pin the reviewed immutable docs revision.
-    englishDocsRef: 'ba3e9caaabf64f0933a918079ce7ad36a9eea18b',
+    englishDocsRef: 'c3e2ed59b345207d3c451cc656fecdf2bb084685',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',
@@ -2292,9 +2347,15 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      groupPage('PDF', 'pdf'),
-      groupPage('Web', 'web'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Print the WebView', 'WebViewを印刷', 'web', 'web.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Print PDF and files', 'PDF・ファイルを印刷', 'pdf', 'pdf.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
     ],
   },
   {
@@ -2306,7 +2367,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-brotherprint',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-brotherprint',
     // v8.1.1 predates the portal guides; pin the reviewed immutable docs revision.
-    englishDocsRef: 'b877460a79c1d671603c7af9d59201841ffa891f',
+    englishDocsRef: '50e534904821a792220ba1567d92fd60766caf0b',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',
@@ -2347,10 +2408,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
-      page('Installation', 'インストール', 'installation', 'installation.md', 'Guides', 'ガイド'),
-      groupPage('Search', 'search'),
-      groupPage('Print', 'print'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page('Installation', 'インストール', 'installation', 'installation.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      groupPage('Search', 'search', { updatedAt: text('2026-09-06', '2026-09-06') }),
+      groupPage('Print', 'print', { updatedAt: text('2026-09-06', '2026-09-06') }),
       groupPage('Events', 'events'),
     ],
   },

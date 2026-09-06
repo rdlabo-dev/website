@@ -18,6 +18,17 @@ Stripe Identity は、Capacitor のアプリケーションコードを保った
 
 ネイティブでは `verificationId` と `ephemeralKeySecret` で Stripe Identity Verification Sheet を表示します。Web では `initialize` 後、`clientSecret` を指定して `verifyIdentity` を呼びます。
 
+## 最初の本人確認経路
+
+最初の送信完了までは次の順で進めます。
+
+1. バックエンドで VerificationSession を作成し、下のクライアント向けフィールドを返す。
+2. アプリケーション起動時に一度だけ、`present()` より前に `VerificationResult` リスナーを登録する。
+3. Web では公開可能キーで `initialize` を呼ぶ。
+4. `create` のあと `present()` を呼ぶ。
+
+端末での最初の成功は、シートが開き、テストフローで書類アップロード完了後に `Completed` を受け取ることです。`Completed` は送信完了であり審査完了ではありません。正式結果はサーバーの Identity Webhook で確認してください。コードパネルも同じ経路です。
+
 ## 結果を受け取る
 
 結果リスナーはアプリケーション起動時に一度だけ、`present()` より前に登録します。Android ではネイティブシート表示中に Activity と JavaScript ランタイムが再生成されることがあるため、早期登録によって結果の取りこぼしを防ぎます。

@@ -43,3 +43,7 @@ Xcode が `CFBundleIconFiles` を書き込めるよう、iOS のアセットカ�
 Material Components の任意の親テーマを利用できます。[Material Components のテーマ設定](https://m2.material.io/develop/android/theming/dark/)と [Stripe の Android Material テーマガイド](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme)を参照してください。
 
 Android 実装はアプリケーションの `ic_launcher` mipmap を本人確認シートのアイコンとして使用します。標準のランチャーアイコン以外の設定は不要です。
+
+## 次のステップ
+
+続けて [本人確認シート](/docs/identity-verification-sheet) でセッションを取得し、シートを表示して、最初の送信完了結果を確認します。

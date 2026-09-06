@@ -4,8 +4,6 @@ title: 最初のMySQLクエリを実行する
 
 テーブルやアプリのスキーマを作らず、パッケージを通して実際のMySQLの結果を読みます。その後、ローカルNode.js接続からWorkersのHyperdrive bindingへ移す際の違いを確認します。
 
-IANA表示日付は[Workers Timezone＋ESLint](/workers-timezone/docs/quickstart)の領域で、DBの固定 `+09:00` 保存ヘルパーとは独立しています。
-
 ## 1. ローカルの演習環境を用意する
 
 Node.js 24、npm、Docker、未使用のローカルポート3307が必要です。次のコマンドは使い捨てのローカルDBを作ります。記載のパスワードはこのlocalhost演習専用です。

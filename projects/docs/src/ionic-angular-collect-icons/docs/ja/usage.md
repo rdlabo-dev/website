@@ -10,9 +10,9 @@ scrollActiveLine: []
 npx @rdlabo/ionic-angular-collect-icons
 ```
 
-### 実行を自動化する
+### ビルド前に自動化する
 
-本番ビルドの前に毎回コマンドを実行するのは非効率なので、npm スクリプトに入れて自動化します。例:
+コレクターを npm スクリプトに入れ、本番ビルドで `src/use-icons.ts` を更新します。
 
 ```diff
   "scripts": {
@@ -24,3 +24,11 @@ npx @rdlabo/ionic-angular-collect-icons
 
 > [!WARNING]
 > この方法は、npm スクリプトを使わない本番ビルドでは利用できません。
+
+### 本番確認
+
+1. テンプレートに静的アイコンを1つ追加します。例: `<ion-icon name="home"></ion-icon>`。
+2. コレクターを実行し、対応するexportが `src/use-icons.ts` に出ることを確認します。
+3. `npm run build` を実行します。
+
+動的な `[name]` は収集されません。手動で登録するか、[FAQ](/docs/faq) のバインディング説明を見てください。

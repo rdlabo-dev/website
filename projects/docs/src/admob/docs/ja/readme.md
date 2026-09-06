@@ -6,58 +6,7 @@ scrollActiveLine: []
 
 ## 概要
 
-Capacitor 向けのコミュニティ製ネイティブ AdMob プラグインです。iOS と Android の Google Mobile Ads SDK をラップし、Capacitor アプリでバナー、インタースティシャル、リワード、リワード付きインタースティシャル、アプリ起動時広告を表示できます。
-
-## 機能
-
-- バナー広告（アダプティブバナーを含む）
-- インタースティシャル広告
-- リワード動画広告
-- リワード付きインタースティシャル広告
-- アプリ起動時広告
-- Google User Messaging Platform（UMP）による同意
-- App Tracking Transparency（iOS のトラッキング許可）ヘルパー
-
-### 目的から選ぶ
-
-| 目的 | 広告形式 | ガイド |
-| --- | --- | --- |
-| アプリのコンテンツと並べて広告を出し続ける | バナー | [バナー広告](/docs/banner) |
-| 報酬なしで、自然な区切りにフルスクリーン広告を出す | インタースティシャル | [インタースティシャル広告](/docs/interstitial) |
-| 専用のリワード体験を提供する | リワード | [リワード広告](/docs/rewarded) |
-| 自然な遷移で報酬を提供する | リワード付きインタースティシャル | [リワード広告](/docs/rewarded) |
-| アプリ起動の体験を収益化する | アプリ起動時 | [アプリ起動時広告](/docs/app-open) |
-
-## クイックスタート
-
-[インストール](#インストール) のあと、SDK を初期化し、同意を取り、バナーを表示します。
-
-```ts
-import { AdMob, AdmobConsentStatus, BannerAdOptions, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
-
-async function startAdMob() {
-  await AdMob.initialize();
-
-  let consentInfo = await AdMob.requestConsentInfo();
-  if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
-    consentInfo = await AdMob.showConsentForm();
-  }
-
-  if (!consentInfo.canRequestAds) {
-    return;
-  }
-
-  const options: BannerAdOptions = {
-    adId: 'YOUR_AD_UNIT_ID',
-    adSize: BannerAdSize.ADAPTIVE_BANNER,
-    position: BannerAdPosition.BOTTOM_CENTER,
-    margin: 0,
-  };
-  await AdMob.showBanner(options);
-}
-```
-
-バナーは WebView の上のネイティブ画面に載るため、HTML を覆うことがあります。レイアウトを空ける方法は [バナー広告](/docs/banner) を見てください。詳細は [初期化](/docs/configuration)、[同意管理](/docs/consent)、各形式のガイドです。
+Capacitor 向けのコミュニティ製ネイティブ AdMob プラグインです。iOS と Android の Google Mobile Ads SDK をラップし、バナー、インタースティシャル、リワード、リワード付きインタースティシャル、アプリ起動時広告を表示できます。Google User Messaging Platform（UMP）による同意と、iOS の App Tracking Transparency ヘルパーにも対応します。
 
 ## インストール
 
@@ -139,17 +88,67 @@ CocoaPods が `Google-Mobile-Ads-SDK` を解決できない場合:
 
 `ios/` で `pod repo update` を実行してから、`npx cap sync ios` を再実行します。
 
+## 最初のテストバナー
+
+インストールとプラットフォーム設定のあと、SDK を初期化し、同意を取り、Google のデモバナーを表示します。広告ユニット ID は [テスト](/docs/testing) のプラットフォーム別バナー ID を使い、この初回確認では自分のユニットを作らないでください。
+
+`startAdMob` はモジュール評価時だけではなく、ユーザー操作や UI 準備後（ボタンや遷移後など）から呼び出してください。
+
+```ts
+import { Capacitor } from '@capacitor/core';
+import { AdMob, AdmobConsentStatus, BannerAdOptions, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
+
+const bannerAdId =
+  Capacitor.getPlatform() === 'ios'
+    ? 'ca-app-pub-3940256099942544/2934735716'
+    : 'ca-app-pub-3940256099942544/6300978111';
+
+async function startAdMob() {
+  await AdMob.initialize();
+
+  let consentInfo = await AdMob.requestConsentInfo();
+  if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
+    consentInfo = await AdMob.showConsentForm();
+  }
+
+  if (!consentInfo.canRequestAds) {
+    // Consent not ready — no banner is shown.
+    return;
+  }
+
+  const options: BannerAdOptions = {
+    adId: bannerAdId,
+    adSize: BannerAdSize.ADAPTIVE_BANNER,
+    position: BannerAdPosition.BOTTOM_CENTER,
+    margin: 0,
+  };
+  await AdMob.showBanner(options);
+}
+```
+
+期待結果: `canRequestAds` が true のとき、画面下部に Google のテストバナーが表示されます。`canRequestAds` が false のときは何も表示せずに return します。バナーは WebView の上のネイティブ画面に載るため HTML を覆うことがあります。レイアウトを空ける方法は [バナー広告](/docs/banner) を見てください。詳細は [初期化](/docs/configuration)、[同意管理](/docs/consent)、[テスト](/docs/testing) です。
+
+## 目的から選ぶ
+
+| 目的 | 広告形式 | ガイド |
+| --- | --- | --- |
+| アプリのコンテンツと並べて広告を出し続ける | バナー | [バナー広告](/docs/banner) |
+| 報酬なしで、自然な区切りにフルスクリーン広告を出す | インタースティシャル | [インタースティシャル広告](/docs/interstitial) |
+| 専用のリワード体験を提供する | リワード | [リワード広告](/docs/rewarded) |
+| 自然な遷移で報酬を提供する | リワード付きインタースティシャル | [リワード広告](/docs/rewarded) |
+| アプリ起動の体験を収益化する | アプリ起動時 | [アプリ起動時広告](/docs/app-open) |
+
 ## ドキュメント
 
-上の [インストール](#インストール) から始め、広告をロードする前に [初期化](/docs/configuration) と [同意管理](/docs/consent) を見てください。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルは GitHub リポジトリにあります。メソッドのシグネチャは API 節にあります。
+上の [インストール](#インストール) から始め、[初期化](/docs/configuration) と [同意管理](/docs/consent) を見たあと、最初のテストバナーを実行してください。デモユニットとデバイスは [テスト](/docs/testing) です。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルは GitHub リポジトリにあります。メソッドのシグネチャは API 節にあります。
 
 - [初期化](/docs/configuration) — `AdMob.initialize` と SDK オプション。
 - [同意管理](/docs/consent) — プライバシー同意と iOS のトラッキング許可。
+- [テスト](/docs/testing) — デモ広告ユニット、テストデバイス、同意のテスト。
 - [バナー広告](/docs/banner) — バナーのオプション、ライフサイクル、イベント。
 - フルスクリーン広告:
   - [インタースティシャル広告](/docs/interstitial) — ロード、表示、複数準備。
   - [リワード広告](/docs/rewarded) — リワード動画、リワード付きインタースティシャル、サーバーサイド検証。
 - [アプリ起動時広告](/docs/app-open) — フォアグラウンド遷移でのロードと表示。
 - [広告イベント](/docs/events) — 共通のライフサイクル、エラー、売上データ。
-- [テスト](/docs/testing) — デモ広告ユニット、テストデバイス、同意のテスト。
 - [移行ガイド](/docs/migration) — 古いプラグイン版からの変更点。

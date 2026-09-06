@@ -2,6 +2,8 @@
 title: Realtime・Offline
 ---
 
+Durable Object WebSocket helperと、table非依存のOffline Replica契約です。Product schema、Zod shape、domain policyはアプリ側に残します。
+
 ## Durable Object Realtime
 
 Rootと `/realtime` entry pointは同じRealtime基本機能を公開します。
@@ -29,3 +31,7 @@ Wire helperは値を正規化します。
 - `replicaNowIso(clock?)` → 注入可能な現在時刻
 
 Journal helperはcursor coverage、retention、mutation transaction、rebaselineを検査します。Wire compatibility helperはcanonical fingerprintを保ちつつ、明示した旧fingerprintを受理できます。
+
+## 次のステップ
+
+[テスト・運用](/docs/testing-operations)、またはconverter・wireの詳細は[Offline API](/docs/api-offline)を参照してください。

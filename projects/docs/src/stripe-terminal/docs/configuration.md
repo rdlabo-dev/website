@@ -22,9 +22,9 @@ The plugin is `@capacitor-community/stripe-terminal` **v8.2.1**. Official demos:
 | iOS                     | 15.0    |
 | Android `minSdkVersion` | 26      |
 
-## Platform and connection types
+## Choose a platform and connection type
 
-`discoverReaders` takes a `TerminalConnectTypes` value. Support is not the same on every platform.
+`discoverReaders` takes a `TerminalConnectTypes` value. Pick the connection type your platform supports, then apply only that platform's required settings below.
 
 | `TerminalConnectTypes` | Web                               | iOS                              | Android                        |
 | ---------------------- | --------------------------------- | -------------------------------- | ------------------------------ |
@@ -38,31 +38,6 @@ The plugin is `@capacitor-community/stripe-terminal` **v8.2.1**. Official demos:
 On every platform, pass `isTest: true` to `initialize` when you want simulated readers for a **supported** connection type. Do not rely on `TerminalConnectTypes.Simulated` on iOS or web; use `Internet`, `Bluetooth`, or `TapToPay` with `isTest: true` instead.
 
 Web `discoverReaders` rejects with an unavailable error for any type other than `Internet`.
-
-### Platform-only APIs
-
-| API                          | Web                  | iOS                                 | Android                                               |
-| ---------------------------- | -------------------- | ----------------------------------- | ----------------------------------------------------- |
-| `setTapToPayUxConfiguration` | No-op (logs only)    | Unimplemented                       | Yes — call after `initialize`, before `connectReader` |
-| `isTapToPayAccountLinked`    | Unavailable (throws) | Yes — iOS 16.4+, after `initialize` | Unimplemented                                         |
-
-See [Tap to Pay](/docs/tap-to-pay) for the setup sequence and limitations.
-
-### Web no-op and unsupported lifecycle methods
-
-These methods exist on the plugin interface but do not drive the Stripe Terminal JS SDK on web:
-
-- `cancelDiscoverReaders` — no-op
-- `setSimulatorConfiguration` — no-op
-- `installAvailableUpdate` — no-op
-- `cancelInstallUpdate` — no-op
-- `rebootReader` — no-op
-- `cancelReaderReconnection` — no-op
-- `setTapToPayUxConfiguration` — no-op
-
-`isTapToPayAccountLinked` throws `unavailable` on web.
-
-Internet readers on web still support `initialize`, `discoverReaders`, `connectReader`, `getConnectedReader`, `disconnectReader`, `collectPaymentMethod`, `cancelCollectPaymentMethod`, `confirmPaymentIntent`, `setReaderDisplay`, `clearReaderDisplay`, `setConnectionToken`, and the connection / payment status listeners.
 
 ## Web configuration
 
@@ -96,3 +71,34 @@ And update `minSdkVersion` to `26` in your `android/variables.gradle` file:
 ```
 
 If you are developing apps for Stripe Android devices (for example Stripe Reader S700) and using `TerminalConnectTypes.HandOff`, follow [Stripe's client-side setup guide](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app).
+
+## Next step
+
+After the required platform settings above, continue with [Collect a Payment](/docs/collect-a-payment).
+
+## Platform reference
+
+### Platform-only APIs
+
+| API                          | Web                  | iOS                                 | Android                                               |
+| ---------------------------- | -------------------- | ----------------------------------- | ----------------------------------------------------- |
+| `setTapToPayUxConfiguration` | No-op (logs only)    | Unimplemented                       | Yes — call after `initialize`, before `connectReader` |
+| `isTapToPayAccountLinked`    | Unavailable (throws) | Yes — iOS 16.4+, after `initialize` | Unimplemented                                         |
+
+See [Tap to Pay](/docs/tap-to-pay) for the setup sequence and limitations.
+
+### Web no-op and unsupported lifecycle methods
+
+These methods exist on the plugin interface but do not drive the Stripe Terminal JS SDK on web:
+
+- `cancelDiscoverReaders` — no-op
+- `setSimulatorConfiguration` — no-op
+- `installAvailableUpdate` — no-op
+- `cancelInstallUpdate` — no-op
+- `rebootReader` — no-op
+- `cancelReaderReconnection` — no-op
+- `setTapToPayUxConfiguration` — no-op
+
+`isTapToPayAccountLinked` throws `unavailable` on web.
+
+Internet readers on web still support `initialize`, `discoverReaders`, `connectReader`, `getConnectedReader`, `disconnectReader`, `collectPaymentMethod`, `cancelCollectPaymentMethod`, `confirmPaymentIntent`, `setReaderDisplay`, `clearReaderDisplay`, `setConnectionToken`, and the connection / payment status listeners.

@@ -57,4 +57,6 @@ export const PaymentSheet: React.FC = () => {
 
 Register result listeners once during application startup, not inside a payment button handler. See [Event Listeners](/docs/learn/event-listeners).
 
+Next: create a test Intent on your server ([Server Integration](/docs/server-integration)), then present [PaymentSheet](/docs/payment-sheet).
+
 The official React demo is at [capacitor-community/stripe/demo/react](https://github.com/capacitor-community/stripe/tree/main/demo/react).

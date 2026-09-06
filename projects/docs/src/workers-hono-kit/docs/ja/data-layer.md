@@ -2,7 +2,9 @@
 title: データ層
 ---
 
-DBの基盤は `@rdlabo/workers-mysql`、Honoコンテナー連携はkitの `/mysql` を使います。固定 `+09:00` の保存処理とIANA表示タイムゾーンは独立しています。`mysql2` は独立パッケージの直接依存で、`/drizzle` または `/testing` 利用時に `drizzle-orm` を追加します。
+DBの基盤は `@rdlabo/workers-mysql`、Honoコンテナー連携はkitの `/mysql` を使います。固定 `+09:00` の保存処理とIANA表示タイムゾーンは独立しています。
+
+DB helperは `@rdlabo/workers-mysql` からimportします。`mysql2` は独立パッケージの直接依存で、`/drizzle` または `/testing` 利用時に `drizzle-orm` を追加します。旧 `@rdlabo/workers-hono-kit/db` は非推奨の互換re-exportです。
 
 Workersでmysql2のNode.jsネットワークAPIを使うため、次を設定します。
 
@@ -18,24 +20,9 @@ npm install -D @types/node@20
 
 開発用tarballの導入は[Development](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.12.2/packages/hono-kit/docs/development.md)を参照してください。
 
-## 0.12.0への移行
-
-パッケージ境界に破壊的変更があります。更新前にimportを変更してください。
-
-| 旧import | 移行先 |
-| --- | --- |
-| kitルートの `createContainerRuntime` | `@rdlabo/workers-hono-kit/mysql` |
-| kitルートの `retryWhenDeadlock` | `@rdlabo/workers-mysql` |
-| kit `/db` のDB helper | `@rdlabo/workers-mysql`、`/drizzle`、`/migrations` |
-| kit `/testing` のDB helper | `@rdlabo/workers-mysql/testing` |
-
-旧 `/db` とDB関連 `/testing` は `@deprecated` 付きの互換exportとして維持され、削除予定はありません。kitの `/mysql` は非推奨ではありません。`/testing` はDB helperを静的に再公開するため、FirebaseやKVのfakeだけを使う場合もMySQLパッケージと `drizzle-orm` が必要です。
-
 ## Hyperdriveデータベース
 
-`createHyperdriveDatabase()` はprimary・replica接続を遅延作成します。`read()` はreplica、`query()` は書き込み直後の整合性が必要なprimaryの生SELECT、書き込みとtransactionはprimary Drizzleを使います。
-
-`readTransaction()` はDrizzleと生SQLの読み取りを1つのprimary repeatable-read snapshotで実行します。専用のキャッシュ接続上で直列化し、通常のprimary処理や他のtransactionと境界が混ざらないようにします。mysql2の致命的接続エラー時は単独readまたは読み取りtransaction全体を新しい接続で最大1回再試行します。書き込みはcommit状態が曖昧なため再試行しません。呼び出し終了時の接続解放はWorkersが行います。
+`createHyperdriveDatabase()` はprimary・replica接続を遅延作成します。読み取り・書き込み経路、再試行の境界、呼び出し寿命は[Workers MySQL ランタイム](/workers-mysql/docs/runtime)を参照してください。
 
 ```ts
 import { createHyperdriveDatabase } from '@rdlabo/workers-mysql';
@@ -94,6 +81,19 @@ toBusinessDateTime(new Date('2026-07-05T21:00:00Z'));
 addBusinessDays('2026-07-06', 3);
 // '2026-07-09'
 ```
+
+## 0.12.0への移行
+
+パッケージ境界に破壊的変更があります。更新前にimportを変更してください。
+
+| 旧import | 移行先 |
+| --- | --- |
+| kitルートの `createContainerRuntime` | `@rdlabo/workers-hono-kit/mysql` |
+| kitルートの `retryWhenDeadlock` | `@rdlabo/workers-mysql` |
+| kit `/db` のDB helper | `@rdlabo/workers-mysql`、`/drizzle`、`/migrations` |
+| kit `/testing` のDB helper | `@rdlabo/workers-mysql/testing` |
+
+旧 `/db` とDB関連 `/testing` は `@deprecated` 付きの互換exportとして維持され、削除予定はありません。kitの `/mysql` は非推奨ではありません。`/testing` はDB helperを静的に再公開するため、FirebaseやKVのfakeだけを使う場合もMySQLパッケージと `drizzle-orm` が必要です。
 
 ## 次のステップ
 

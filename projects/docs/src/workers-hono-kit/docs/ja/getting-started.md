@@ -2,23 +2,9 @@
 title: はじめに
 ---
 
-[Hono APIをローカルで試す](/docs/quickstart)では、アカウントなしでhealth応答・weak ETag・404 JSONを確認できます。まずhelperを1つ使い、必要な機能を追加していきましょう。
+Cloudflare WorkersのHono API向けに、weak ETag、NestJS形式の検証・エラーレスポンス、Firebase認証、AWS、AI Gateway、Stripe、KV、Queue、Realtime、Offlineの共通部品を提供します。
 
-Cloudflare WorkersのHono API向けに、weak ETag、NestJS形式の検証・エラーレスポンス、Firebase認証、AWS、AI Gateway、Stripe、KV、Queue、Realtime、Offlineの共通部品を提供します。ドメインロジックとDBスキーマは利用側で管理します。
-
-## エントリポイント
-
-| Import | 責務 |
-| --- | --- |
-| `@rdlabo/workers-hono-kit` | HTTP、認証、Firebase、AWS、AI、Stripe、KV、Queue |
-| `@rdlabo/workers-hono-kit/mysql` | `@rdlabo/workers-mysql` 向けHonoコンテナーアダプター |
-| `@rdlabo/workers-hono-kit/offline` | Offline Replicaのwire・cursor・journal・互換性契約 |
-| `@rdlabo/workers-hono-kit/realtime` | Durable Object WebSocket・retry |
-| `@rdlabo/workers-hono-kit/testing` | 認証helper、fake、Stripe fixture、互換DBテストexport |
-| `@rdlabo/workers-hono-kit/db` | workers-mysqlへの非推奨の互換パス |
-| `@rdlabo/workers-hono-kit/business-time` | workers-timezoneへの非推奨の互換パス |
-
-ルートはMySQL、Drizzle、Node専用migrationを読み込みません。MySQL利用側は独立パッケージを導入し、Hono固有の接続は `/mysql` に置きます。
+[Hono APIをローカルで試す](/docs/quickstart)では、アカウントなしでhealth応答・weak ETag・404 JSONを確認できます。
 
 ## インストール
 
@@ -32,7 +18,13 @@ npm install @rdlabo/workers-hono-kit
 npm install hono zod @hono/zod-validator jose aws4fetch ai-gateway-provider
 ```
 
-任意の機能は別途導入します。AI SDKのモデルwrapperには `ai`、MySQL・Hyperdriveには `@rdlabo/workers-mysql` と必要に応じて `drizzle-orm`、IANAタイムゾーンには `@rdlabo/workers-timezone` を使います。
+任意の機能は別途導入します。
+
+| 機能 | インストール |
+| --- | --- |
+| AI SDKのモデルwrapper | `ai` |
+| MySQL・Hyperdrive | [`@rdlabo/workers-mysql`](/workers-mysql/docs/readme) と必要に応じて `drizzle-orm` |
+| IANAタイムゾーン | [`@rdlabo/workers-timezone`](/workers-timezone/docs/readme) |
 
 0.12.0以降の `/testing` はDB互換exportを静的に再公開します。FirebaseやKVのfakeだけを使う場合も `@rdlabo/workers-mysql` と `drizzle-orm` が必要です。
 
@@ -56,6 +48,20 @@ app.get('/health', (c) => c.json({ ok: true }));
 
 export default app;
 ```
+
+## エントリポイント
+
+| Import | 責務 |
+| --- | --- |
+| `@rdlabo/workers-hono-kit` | HTTP、認証、Firebase、AWS、AI、Stripe、KV、Queue |
+| `@rdlabo/workers-hono-kit/mysql` | `@rdlabo/workers-mysql` 向けHonoコンテナーアダプター |
+| `@rdlabo/workers-hono-kit/offline` | Offline Replicaのwire・cursor・journal・互換性契約 |
+| `@rdlabo/workers-hono-kit/realtime` | Durable Object WebSocket・retry |
+| `@rdlabo/workers-hono-kit/testing` | 認証helper、fake、Stripe fixture、互換DBテストexport |
+| `@rdlabo/workers-hono-kit/db` | workers-mysqlへの非推奨の互換パス |
+| `@rdlabo/workers-hono-kit/business-time` | workers-timezoneへの非推奨の互換パス |
+
+ルートはMySQL、Drizzle、Node専用migrationを読み込みません。MySQL利用側は独立パッケージを導入し、Hono固有の接続は `/mysql` に置きます。
 
 ## 互換importの非推奨化
 

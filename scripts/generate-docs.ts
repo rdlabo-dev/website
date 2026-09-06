@@ -148,6 +148,23 @@ function formatApiReference(document: Document): void {
 }
 
 function localizeProject(project: ProjectDefinition, locale: Locale, version: string) {
+  if (project.entryGuideSlugs) {
+    const slugs = project.entryGuideSlugs;
+    if (
+      slugs.length > 3 ||
+      new Set(slugs).size !== slugs.length ||
+      slugs.some(
+        (slug) =>
+          slug === project.pages[0]?.slug ||
+          slug === 'api' ||
+          !project.pages.some((page) => page.slug === slug),
+      )
+    ) {
+      throw new Error(
+        `${project.id}: entryGuideSlugs must select up to three distinct guide pages`,
+      );
+    }
+  }
   return {
     id: project.id,
     slug: project.slug,
@@ -158,6 +175,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
     packageName: project.packageName,
     repositoryUrl: project.repositoryUrl,
     demoUrl: project.demoUrl,
+    ...(project.entryGuideSlugs ? { entryGuideSlugs: project.entryGuideSlugs } : {}),
     hostedUrl: project.hostedUrl,
     category: project.category,
     icon: project.icon,

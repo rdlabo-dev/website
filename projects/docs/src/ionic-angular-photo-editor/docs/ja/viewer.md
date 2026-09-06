@@ -2,34 +2,45 @@
 title: Photo Viewer
 ---
 
-Ionic Modalで `PhotoViewerPage` を表示します。[Installation](/docs/readme#installation)の後に呼び出してください。
+Buttonまたは既存pageのmethodから、Ionic Modalで `PhotoViewerPage` を表示します。[Installation](/docs/readme#installation)の後に呼び出してください。Viewerを使う場合は `swiper` をinstallします。
 
 ```typescript
+import { Component, inject } from '@angular/core';
+import { ModalController, IonButton } from '@ionic/angular';
 import { PhotoViewerProps, PhotoViewerResult } from '@rdlabo/ionic-angular-photo-editor';
 import { PhotoViewerPage } from '@rdlabo/ionic-angular-photo-editor/viewer';
 
-(async () => {
-  const componentProps = {
-    imageUrls: ['https://picsum.photos/200/300', 'https://picsum.photos/200/301'],
-    index: 0,
-    isCircle: false,
-    enableDelete: true,
-    toolbarColorScheme: 'dark',
-    imageAlt: (url, index) => `Photo ${index + 1}`,
-    labels: {
-      delete: 'Delete',
-    },
-  } satisfies PhotoViewerProps;
-  const modal = await this.modalCtrl.create({
-    component: PhotoViewerPage,
-    componentProps,
-  });
-  await modal.present();
-  const { data } = await modal.onWillDismiss<PhotoViewerResult>();
-  if (data?.action === 'delete') {
-    console.log(data.index, data.value);
+@Component({
+  selector: 'app-view-photos',
+  imports: [IonButton],
+  template: `<ion-button type="button" (click)="openViewer()">View photos</ion-button>`,
+})
+export class ViewPhotosPage {
+  private readonly modalCtrl = inject(ModalController);
+
+  async openViewer(): Promise<void> {
+    const componentProps = {
+      imageUrls: ['https://picsum.photos/200/300', 'https://picsum.photos/200/301'],
+      index: 0,
+      isCircle: false,
+      enableDelete: true,
+      toolbarColorScheme: 'dark',
+      imageAlt: (url, index) => `Photo ${index + 1}`,
+      labels: {
+        delete: 'Delete',
+      },
+    } satisfies PhotoViewerProps;
+    const modal = await this.modalCtrl.create({
+      component: PhotoViewerPage,
+      componentProps,
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss<PhotoViewerResult>();
+    if (data?.action === 'delete') {
+      console.log(data.index, data.value);
+    }
   }
-})();
+}
 ```
 
 ## Modal result
@@ -44,45 +55,45 @@ interface PhotoViewerResult {
 }
 ```
 
-Closeまたはswipe downではdataなしでdismissします。
+閉じる、または下へswipeすると、dataなしでdismissします。
 
-## Option
+## Options
 
 ### imageUrls: string[]
 
-**必須。** 表示するImage URLまたはData URLです。
+**必須。** 表示するImage URLまたはdata URL。
 
 ### index: number
 
-最初に表示するslide indexです。Defaultは `0` です。
+初期slide index。Defaultは `0`。
 
 ### isCircle: boolean
 
-`true` の場合、画像を円形でrenderします。
+`true` の場合、画像を円形で描画します。
 
 ### enableDelete: boolean
 
-`true` の場合、Delete Buttonを表示します。
+`true` の場合、Delete buttonを表示します。
 
 ### enableFooterSafeArea: boolean
 
-`true` の場合、iOSでFooterのSafe Area paddingを追加します。
+`true` の場合、iOSでfooterのsafe-area paddingを追加します。
 
 ### toolbarColorScheme: 'light' | 'dark'
 
-**必須。** 暗色・黒色の `ion-toolbar` には `dark`、明色・白色のToolbarには `light` を使います。[Theme](./theme.md)も参照してください。
+**必須。** 暗い／黒い `ion-toolbar` には `dark`、明るい／白いtoolbarには `light` を使います。[Theme](/docs/theme)を参照してください。
 
 ### imageAlt: string | ((url: string, index: number) => string)
 
-各slide画像のaccessibleな `alt` textです。Defaultは空文字列です。Alt textがURLまたはindexに依存する場合はfunctionを渡します。
+各slide画像のaccessibleな `alt` 文言。Defaultは空文字です。URLまたはindexに依存する場合はfunctionを渡します。
 
 ### labels: Partial&lt;PhotoViewerLabels&gt;
 
-Default UI stringを上書きします。指定しないkeyはbuilt-inの日本語defaultを維持します。
+DefaultのUI文言を上書きします。未指定のkeyは組み込みの日本語defaultのままです。
 
-| Key    | Default（ja） |
-| ------ | ------------- |
-| close  | 閉じる        |
-| delete | 削除          |
+| Key    | Default (ja) |
+| ------ | ------------ |
+| close  | 閉じる       |
+| delete | 削除         |
 
-Close Buttonの `aria-label` にも `close` labelを使います。
+Close buttonの `aria-label` にも `close` labelが使われます。

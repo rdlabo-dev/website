@@ -2,7 +2,7 @@
 title: ランタイム
 ---
 
-Workerで `nodejs_compat` を有効にし、[はじめに](/docs/readme)の依存を追加してください。`mysql2` は含まれており、Honoには依存しません。アプリがHyperdrive binding、スキーマ、ORMファクトリーを渡します。
+Workerで `nodejs_compat` を有効にし、[はじめに](/docs/readme)の依存を追加してください。`mysql2` は含まれています。アプリがHyperdrive binding、スキーマ、ORMファクトリーを渡します。
 
 ## 呼び出し単位の寿命
 

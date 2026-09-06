@@ -52,3 +52,5 @@ async function onChatClick() {
 6. Prompt APIのないブラウザで、利用可否が `unavailable` となり、生成がページをクラッシュさせずに `LOCAL_LLM_UNSUPPORTED` を報告することを確認します。
 
 モデルの文言は非決定的です。推論成功とライフサイクル動作は、生成テキストの一字一句とは分けて判定してください。
+
+ストリーミングとキャンセルは [チャット](/docs/chat) へ続きます。状態の扱いは [利用可否](/docs/availability)、安定したエラーコードは [エラー処理](/docs/errors) です。

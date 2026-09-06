@@ -35,6 +35,12 @@ describe('LandingPageComponent', () => {
     );
     expect(compiled.textContent).toContain('@capacitor-community/stripe');
     expect(compiled.textContent).toContain('PaymentSheet');
+    expect(Array.from(compiled.querySelectorAll('.entry-guide a')).map((link) => link.getAttribute('href'))).toEqual([
+      '/projects/capacitor-stripe/docs/vanilla-js',
+      '/projects/capacitor-stripe/docs/server-integration',
+      '/projects/capacitor-stripe/docs/payment-sheet',
+      '/projects/capacitor-stripe/docs/api',
+    ]);
     expect(
       compiled.querySelector('a[href="/projects/capacitor-stripe/docs/configuration"]'),
     ).not.toBeNull();

@@ -2,6 +2,8 @@
 title: HTTP・認証
 ---
 
+Hono Workers API向けのValidation、Firebase認証、NestJS形式の共通エラーレスポンス、レスポンス最終処理です。
+
 ## Validation
 
 `validate(target, schema, options?)` はZod schemaをHonoへ接続し、NestJS `ValidationPipe`互換形状の `400` を返します。任意のreporterを一度だけ束縛するには `createValidate({ sentry })` を使います。
@@ -38,3 +40,7 @@ app.get('/items', validate('query', querySchema), async (c) => {
 ## Background処理・可観測性
 
 `createWaitUntilDefer(ctx)` はbackground workを `waitUntil` へ登録し、rejectを記録します。`perfLog()` はapplication latency、colo、cold/warm、route、statusをWorkers Logsと任意のAnalytics Engineへ出力します。
+
+## 次のステップ
+
+MySQL・Hyperdriveは[データ層](/docs/data-layer)、export一覧は[API](/docs/api)を参照してください。

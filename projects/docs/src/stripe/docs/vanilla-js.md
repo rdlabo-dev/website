@@ -24,3 +24,5 @@ await Stripe.initialize({
 `stripe-pwa-elements` is a Stencil library. If you need the loader details, see the [Stencil documentation](https://stenciljs.com/docs/overview).
 
 Web PaymentSheet and PaymentFlow render a card modal, not the native Stripe PaymentSheet. Apple Pay and Google Pay use the Payment Request Button and require HTTPS. Many native-only options such as `defaultBillingDetails`, `billingDetailsCollectionConfiguration`, `enableApplePay`, and `enableGooglePay` are ignored on web.
+
+Next: create a test Intent on your server ([Server Integration](/docs/server-integration)), then present [PaymentSheet](/docs/payment-sheet).

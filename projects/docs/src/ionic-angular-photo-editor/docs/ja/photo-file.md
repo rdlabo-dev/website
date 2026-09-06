@@ -2,15 +2,69 @@
 title: PhotoFileService
 ---
 
-CameraまたはAlbumから写真を読み込みます。[Installation](/docs/readme#installation)の後に呼び出してください。
+Browserのfile picker、またはNative platformではCamera・Albumから写真を読み込みます。[Installation](/docs/readme#installation)の後に呼び出してください。
+
+## Browser: 選んで表示する
+
+`loadPhoto` は常にimage-editor adapter経由でresizeするため、`createImageEditor` が必要です。Web専用アプリでは `loadCamera` を省略します。
 
 ```typescript
+import { Component, inject, signal } from '@angular/core';
+import type { ApplicationConfig } from '@angular/core';
+import { IonButton, IonImg } from '@ionic/angular';
 import { providePhotoEditor, PhotoLoadError } from '@rdlabo/ionic-angular-photo-editor';
 import { createTuiImageEditor } from '@rdlabo/ionic-angular-photo-editor/editor/tui';
 import { PhotoFileService } from '@rdlabo/ionic-angular-photo-editor/file';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    providePhotoEditor({
+      maxSize: 1000,
+      createImageEditor: createTuiImageEditor,
+    }),
+  ],
+};
+
+@Component({
+  selector: 'app-photo-pick',
+  imports: [IonButton, IonImg],
+  template: `
+    <ion-button type="button" (click)="pick()">Select photo</ion-button>
+    @if (previewUrl()) {
+      <ion-img [src]="previewUrl()" alt="Selected photo"></ion-img>
+    }
+  `,
+})
+export class PhotoPickPage {
+  private readonly photoFileService = inject(PhotoFileService);
+  readonly previewUrl = signal('');
+
+  async pick(): Promise<void> {
+    try {
+      const files = await this.photoFileService.loadPhoto({
+        limit: 1,
+        maxSize: 1000,
+      });
+      this.previewUrl.set(files[0] ?? '');
+    } catch (error) {
+      if (error instanceof PhotoLoadError && error.code === 'cancelled') {
+        return;
+      }
+      throw error;
+    }
+  }
+}
+```
+
+## Native Camera・Album
+
+`@capacitor/camera` をinstallし、platform permissionを設定してから `loadCapacitorPhotoCamera` を登録します。Native platformではAction SheetでCameraまたはAlbumを選びます。Per-requestの `labels` は `providePhotoEditor({ labels })` の値へmergeされます。
+
+```typescript
+import { providePhotoEditor } from '@rdlabo/ionic-angular-photo-editor';
+import { createTuiImageEditor } from '@rdlabo/ionic-angular-photo-editor/editor/tui';
 import { loadCapacitorPhotoCamera } from '@rdlabo/ionic-angular-photo-editor/file/capacitor';
 
-// app.config.ts — optional global defaults
 export const appConfig = {
   providers: [
     providePhotoEditor({
@@ -25,88 +79,48 @@ export const appConfig = {
     }),
   ],
 };
-
-// component
-export class AppComponent {
-  private photoFileService = inject(PhotoFileService);
-
-  async upload() {
-    try {
-      const files = await this.photoFileService.loadPhoto({
-        limit: 1,
-        maxSize: 1000,
-        labels: { camera: 'Camera' }, // merges over configured defaults
-      });
-      if (files.length > 0) {
-        // upload files
-      }
-    } catch (error) {
-      if (error instanceof PhotoLoadError && error.code === 'cancelled') {
-        return;
-      }
-      throw error;
-    }
-  }
-}
 ```
 
 ## loadPhoto(options?)
 
-PlatformのPhoto Pickerを開き、正規化したData URLを返します。
+Platformのphoto pickerを開き、正規化したdata URLを返します。
 
-| Option    | Default                        | 説明                                             |
-| --------- | ------------------------------ | ------------------------------------------------ |
-| `limit`   | `1`                            | 最大画像数（Album・Webのみ）。                   |
-| `maxSize` | 設定済みの `maxSize` または `1000` | Resize後の長辺pixel数。                          |
-| `labels`  | 設定済みの `labels`              | Action SheetのButton text（Capacitorのみ）。     |
+| Option    | Default                        | Description                                    |
+| --------- | ------------------------------ | ---------------------------------------------- |
+| `limit`   | `1`                            | 画像の最大数（AlbumとWebのみ）。 |
+| `maxSize` | configured `maxSize` or `1000` | Resize後の最長辺（pixel）。           |
+| `labels`  | configured `labels`            | Action Sheetのbutton文言（Capacitorのみ）。     |
 
-### Browserでの動作
+### Browserの動作
 
-Webでは、`loadPhoto()` がhiddenな `<input type="file">` を同期的に作成し、`document.body` へattachして、callerのgestureと同じturnで `click()` を呼びます。これによりWebKitのtransient user activationが維持されます。Inputには固定IDがなく、選択またはcancel後に削除されます。
+Webでは、`loadPhoto()` がhiddenな `<input type="file">` を同期的に作成して `document.body` へattachし、呼び出し側のgestureと同じturnで `click()` します。これによりWebKitのtransient user activationを維持します。Inputに固定idはなく、選択またはキャンセル後に削除されます。
 
-`index.html` へstaticなfile inputを追加しないでください。
+`index.html` にstaticなfile inputを追加しないでください。
 
-### Capacitorでの動作
+### Capacitorの動作
 
-Native platformではAction SheetでCameraまたはAlbumを選択します。Requestごとの `labels` は `providePhotoEditor({ labels })` の値にmergeされます。
+`/file/capacitor` から `loadCapacitorPhotoCamera` を登録します。Baseの `/file` entry pointは、`@capacitor/camera` なしのBrowser専用アプリでも使えます。
 
-`/file/capacitor` の `loadCapacitorPhotoCamera` を登録してください。Baseの `/file` entry pointは、`@capacitor/camera` のないBrowser専用アプリでも利用できます。
+### Errors
 
-### Error
+想定される失敗は `PhotoLoadError` をthrowします。
 
-想定される失敗では `PhotoLoadError` をthrowします。
+| Code           | When                                                     |
+| -------------- | -------------------------------------------------------- |
+| `cancelled`    | UserがpickerまたはAction Sheetを閉じた                |
+| `invalid-type` | 選択したfileが画像でない（Webのみ）                 |
+| `unavailable`  | Permission、plugin、picker、file-read、またはresizeの失敗 |
 
-| Code           | 発生条件                                                          |
-| -------------- | ----------------------------------------------------------------- |
-| `cancelled`    | UserがPickerまたはAction Sheetを閉じた                            |
-| `invalid-type` | 選択fileが画像ではない（Webのみ）                                 |
-| `unavailable`  | Permission、Plugin、Picker、File read、Resizeの失敗                |
+## Default labels (ja)
 
-## Default label（ja）
+Globalまたはper-requestの `labels` を指定しない場合:
 
-Global・request単位の `labels` がない場合は次の値を使います。
-
-| Key    | Default（ja）     |
-| ------ | ----------------- |
-| camera | カメラ撮影        |
-| album  | アルバムから選択  |
-| cancel | キャンセル        |
+| Key    | Default (ja)     |
+| ------ | ---------------- |
+| camera | カメラ撮影       |
+| album  | アルバムから選択 |
+| cancel | キャンセル       |
 
 ## providePhotoEditor(config?)
 
-`app.config.ts` でアプリ全体のdefaultを登録します。
-
-```typescript
-export const appConfig = {
-  providers: [
-    providePhotoEditor({
-      maxSize: 1200,
-      labels: { camera: '…', album: '…', cancel: '…' },
-      createImageEditor: createTuiImageEditor,
-      loadCamera: loadCapacitorPhotoCamera, // omit in browser-only applications
-    }),
-  ],
-};
-```
-
-`PhotoFileService` はこの設定からadapterとglobalの `maxSize`・`labels` defaultを読み取ります。同名のrequest単位の値は、その呼び出しだけdefaultを上書きします。Resizeには `createImageEditor`、Native Pickerには `loadCamera` が必要です。Adapterがない場合は、`code: 'unavailable'` の `PhotoLoadError` をthrowします。
+`app.config.ts` でアプリ全体のdefaultを登録します。`PhotoFileService` はこれらのadapterと、globalな `maxSize`・`labels` defaultをこの設定から読みます。同じ名前のper-request値が1回の呼び出しを上書きします。Resizeには `createImageEditor`、Native pickerには `loadCamera` が必要です。Adapterがない場合は `code: 'unavailable'` の `PhotoLoadError` をthrowします。

@@ -2,7 +2,11 @@
 title: はじめに
 ---
 
-このpluginは、Angular・IonicのComponentやtemplate、Workersのエラー境界、日時コードの規約を開発時に検査します。[検出と自動修正を試す](/docs/quickstart)では、Angular・IonicなしでTypeScriptの1ルールを体験できます。日時処理は[Timezoneとのセット演習](/workers-timezone/docs/quickstart)から始めてください。
+Angular・Ionicアプリ向けの共有コード規約と、Cloudflare Workers向けのフレームワーク非依存TypeScript presetです。Component境界、templateの使い方、暗黙のタイムゾーン操作を、レビュー前のlintで検出します。
+
+[検出と自動修正を試す](/docs/quickstart)では、Angular・Ionicなしで小さなTypeScriptプロジェクトから始められます。
+
+## インストール
 
 開発依存関係としてプラグインをインストールします。
 
@@ -10,7 +14,7 @@ title: はじめに
 npm install --save-dev @rdlabo/eslint-plugin-rules
 ```
 
-パッケージルートはAngular・Ionic向けルールを公開します。これらを使う場合は `@angular-eslint/template-parser`、`@ionic/angular`、`@ionic/core` もインストールしてください。Angular・Ionicに依存しないTypeScriptプロジェクトでは、これらを読み込まない `/typescript` エントリポイントを利用できます。
+Angular・Ionicルールを使う場合は、下表のframework peerもインストールしてください。完全なセットアップは[設定](/docs/configuration)を参照してください。
 
 ## 要件
 
@@ -25,11 +29,16 @@ npm install --save-dev @rdlabo/eslint-plugin-rules
 
 ## エントリポイントを選ぶ
 
-- Angular・Ionicアプリでは `@rdlabo/eslint-plugin-rules` を使います。
-- バックエンドなどの汎用TypeScriptでは `@rdlabo/eslint-plugin-rules/typescript` を使います。
+| Preset | エントリポイント | 用途 |
+| --- | --- | --- |
+| `recommended` | `@rdlabo/eslint-plugin-rules` | Angular・IonicのTypeScriptとHTML規約 |
+| `workers/recommended` | `@rdlabo/eslint-plugin-rules/typescript` | Workersの `try/catch` ポリシー（opt-in） |
+| `workers-timezone/recommended` | `@rdlabo/eslint-plugin-rules/typescript` | `@rdlabo/workers-timezone` 向けcompanionポリシー（opt-in） |
 
-推奨プリセットはESLint Flat Config向けです。TypeScriptとHTMLの対象指定を維持するため、設定のトップレベルへ追加します。
+Angularの `recommended` はパッケージルートに含まれます。Workersの2つのpresetは `/typescript` 上の独立したopt-inで、互いに含み合いません。日時変換と検査は[`@rdlabo/workers-timezone`](/workers-timezone/docs/readme)と組み合わせてください。Flat Configの対象指定とIonic list構造は[設定](/docs/configuration)にあります。
 
-Ionic templateでは、推奨プリセットが `ion-list` 内の `ion-item` に対し、`ion-item-group`、`ion-reorder-group`、`ion-radio-group`、または `ion-accordion-group` 内の `ion-accordion` を使うことも要求します。これはiOS 26とMaterial Design 3のlist構造に対応するためです。
+## ドキュメント
 
-次は[設定](/eslint-plugin-rules/docs/configuration)で推奨プリセットまたは個別ルールを有効にします。
+- [設定](/docs/configuration) — Angular/Ionic・TypeScript・Workers向けの構成例
+- [ルール](/docs/rules) — presetの範囲、オプション、例
+- [移行ガイド](/docs/migration) — 既存インストールの更新

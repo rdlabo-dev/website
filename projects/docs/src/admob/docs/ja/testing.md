@@ -10,9 +10,16 @@ scrollActiveLine: []
 
 ## デモ広告ユニット
 
-Google は常にテスト広告を返す [デモ広告ユニット](https://developers.google.com/admob/android/test-ads#demo_ad_units) を提供しています。開発中はこれを優先してください。
+Google は常にテスト広告を返す [デモ広告ユニット](https://developers.google.com/admob/android/test-ads#demo_ad_units) を提供しています。開発中はこれを優先してください。このプラグインはネイティブの iOS と Android のみ対応するため、プラットフォームに合った ID を使います。
 
-バナー、インタースティシャル、リワード、リワード付きインタースティシャルでは `isTesting: true` も使えます。アプリ起動時広告に `isTesting` はないので、`adId` にデモ広告ユニットを渡します。
+このプラグインとデモが使うバナー用デモユニット:
+
+| プラットフォーム | バナー `adId` |
+| --- | --- |
+| Android | `ca-app-pub-3940256099942544/6300978111` |
+| iOS | `ca-app-pub-3940256099942544/2934735716` |
+
+他形式のデモ ID は上の Google テスト広告ガイドにあります。バナー、インタースティシャル、リワード、リワード付きインタースティシャルでは `isTesting: true` も使えます。アプリ起動時広告に `isTesting` はないので、`adId` にデモ広告ユニットを渡します。
 
 ## テストデバイス
 

@@ -54,3 +54,5 @@ const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
   }>(environment.api + 'intent', {}),
 );
 ```
+
+次はサーバーでシークレットを作成し（[サーバー連携](/docs/server-integration)）、[PaymentSheet](/docs/payment-sheet) を表示します。

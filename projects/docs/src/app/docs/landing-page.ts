@@ -123,9 +123,14 @@ export class LandingPageComponent implements OnInit {
   };
   protected readonly project = signal<ProjectDocs | undefined>(undefined);
 
-  protected readonly entryGuides = computed(() =>
-    (this.project()?.pages ?? []).slice(1).filter((page) => page.slug !== 'api' && !page.slug.startsWith('rules/')).slice(0, 3),
-  );
+  protected readonly entryGuides = computed(() => {
+    const project = this.project();
+    const pages = project?.pages ?? [];
+    if (project?.entryGuideSlugs) {
+      return project.entryGuideSlugs.flatMap((slug) => pages.filter((page) => page.slug === slug));
+    }
+    return pages.slice(1).filter((page) => page.slug !== 'api' && !page.slug.startsWith('rules/')).slice(0, 3);
+  });
   protected readonly apiPage = computed(() => this.project()?.pages.find((page) => page.slug === 'api'));
 
   ngOnInit(): void {

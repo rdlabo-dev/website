@@ -88,30 +88,10 @@ await Stripe.createPaymentSheet({
 
 このメソッドは Android または Web では未実装です。一致する Stripe の returnURL のみを渡してください。Stripe が URL を処理できない場合、Promise は拒否されるため、通常のディープリンク処理を続けてください。
 
-## 使用例
+## フレームワークでの配線
 
-### Angular
+選んだフレームワークの起動処理から `initialize` を呼び出します。各ガイドの標準パスを使ってください。
 
-ルートコンポーネントから初期化します。[Angular](/docs/angular)を参照してください。
-
-```ts:src/app/app.component.ts
-import { Component } from '@angular/core';
-import { Stripe } from '@capacitor-community/stripe';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
-export class AppComponent {
-  constructor() {
-    void Stripe.initialize({
-      publishableKey: 'Your Publishable Key',
-    });
-  }
-}
-```
-
-### React
-
-`CapacitorStripeProvider` がプラグインを初期化します。[React](/docs/react)を参照してください。
+- [Vanilla JS](/docs/vanilla-js) — `defineCustomElements()` のあとで `initialize`
+- [Angular](/docs/angular) — アプリケーション起動時の `provideAppInitializer`
+- [React](/docs/react) — `CapacitorStripeProvider` がプラグインを初期化

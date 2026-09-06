@@ -25,6 +25,17 @@ scrollActiveLine:
 
 リスナーの早期登録、プラグイン初期化、リーダー接続、PaymentIntent の確定という順で Stripe Terminal の対面決済を処理します。
 
+## 初回テストに必要なもの
+
+最初の収集の前に次を用意します。
+
+- [設定](/docs/configuration) のプラットフォーム設定（必要な場合は Android 権限を含む）
+- アプリから呼べる認証付き接続トークンエンドポイント
+- サーバーで作成した `card_present` 付きのテスト PaymentIntent
+- 探索する接続方式に対応する Stripe Terminal の `locationId`
+
+最初の到達状態は、リーダー接続 → 支払い方法の収集 → PaymentIntent 確定と `ConfirmedPaymentIntent` の確認です。履行は Stripe Webhook を待ってから行います。シミュレーションリーダーは [設定](/docs/configuration) のとおり、**対応する**接続方式と `isTest: true` を組み合わせてください。`TerminalConnectTypes.Simulated` を全プラットフォーム共通とは見なさないでください。
+
 ## アプリケーションレベルのリスナーを登録する
 
 Terminal のイベントリスナーは JavaScript アプリケーションの起動ごとに一度だけ、初期化や操作開始より前に登録し、所有者が存続する間は保持します。
@@ -38,6 +49,14 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 `RequestedConnectionToken` と `setConnectionToken` を使ったアプリ側の認証付きリクエストを推奨します。通常の認証情報を付与し、失敗を検証できます。SDK は必要になるたび新しい一回限りの接続トークンを要求するため、リスナーを `initialize` より前に登録します。開発中は `isTest` を設定します。
 
 !::initialize::
+
+Web の `initialize` は新しいプラグインインスタンスを必要とし、成功後の再呼び出しは例外になります。
+
+## 接続トークンを安全に渡す
+
+`tokenProviderEndpoint` を省略し、`initialize` より前に `RequestedConnectionToken` を登録します。通常の認証方式で取得し、成功レスポンスと `secret` を検証して `setConnectionToken({ token })` へ渡します。取得要求中だけ呼び出し、レスポンスやトークンをログへ出さないでください。
+
+!::setConnectionToken::
 
 ### `tokenProviderEndpoint` 互換モード
 
@@ -54,14 +73,6 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 :::message
 v8.2.1 では Android が `tokenProviderEndpoint` の `secret` を、Web が `setConnectionToken` のオプションをログへ出力します。修正版へ更新できるまで Android の endpoint モードと本番 Web のコンソール保持を避けてください。
 :::
-
-Web の `initialize` は新しいプラグインインスタンスを必要とし、成功後の再呼び出しは例外になります。
-
-## 接続トークンを安全に渡す
-
-`tokenProviderEndpoint` を省略し、`initialize` より前に `RequestedConnectionToken` を登録します。通常の認証方式で取得し、成功レスポンスと `secret` を検証して `setConnectionToken({ token })` へ渡します。取得要求中だけ呼び出し、レスポンスやトークンをログへ出さないでください。
-
-!::setConnectionToken::
 
 ## バックエンドでPaymentIntentを作成する
 
@@ -129,3 +140,7 @@ Promise に加えて `DiscoveredReaders` も監視してください。
 支払いフロー完了後、またはリーダーが不要になったときに切断します。
 
 !::disconnectReader::
+
+## 最初の成功のあと
+
+切断・再接続・更新は [リーダーのライフサイクル](/docs/reader-lifecycle) を参照してください。端末だけで受け付ける場合は [Tap to Pay](/docs/tap-to-pay) です。正式なシグネチャは [API](/docs/api) にあります。

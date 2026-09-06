@@ -24,3 +24,5 @@ await Stripe.initialize({
 `stripe-pwa-elements` は Stencil ライブラリです。ローダーの詳細は [Stencil のドキュメント](https://stenciljs.com/docs/overview)を参照してください。
 
 Web の PaymentSheet と PaymentFlow は、ネイティブの Stripe PaymentSheet ではなくカード入力モーダルを表示します。Apple Pay と Google Pay は Payment Request Button を使用し、HTTPS が必要です。`defaultBillingDetails`、`billingDetailsCollectionConfiguration`、`enableApplePay`、`enableGooglePay` など、ネイティブ専用の多くのオプションは Web では無視されます。
+
+次はサーバーでテスト用 Intent を作成し（[サーバー連携](/docs/server-integration)）、[PaymentSheet](/docs/payment-sheet) を表示します。

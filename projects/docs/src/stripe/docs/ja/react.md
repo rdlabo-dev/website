@@ -57,4 +57,6 @@ export const PaymentSheet: React.FC = () => {
 
 結果リスナーは支払いボタンのハンドラー内ではなく、アプリケーション起動時に一度だけ登録します。[イベントリスナー](/docs/learn/event-listeners)を参照してください。
 
+次はサーバーでテスト用 Intent を作成し（[サーバー連携](/docs/server-integration)）、[PaymentSheet](/docs/payment-sheet) を表示します。
+
 公式 React デモは [capacitor-community/stripe/demo/react](https://github.com/capacitor-community/stripe/tree/main/demo/react) にあります。

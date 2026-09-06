@@ -19,6 +19,17 @@ The plugin depends on Capacitor 8 or later. Web also needs the `stripe-pwa-eleme
 | iOS | 15.0 |
 | Android `minSdkVersion` | 24 |
 
+## First payment path
+
+Use this order for the first successful PaymentSheet run:
+
+1. Finish the platform steps on this page.
+2. Pick **one** framework guide and initialize Stripe there ([Vanilla JS](/docs/vanilla-js), [Angular](/docs/angular), or [React](/docs/react)).
+3. Create a test PaymentIntent on your server and return the client secret. See [Server Integration](/docs/server-integration).
+4. Present [PaymentSheet](/docs/payment-sheet), then confirm the listener result (`Completed`, `Canceled`, or `Failed`). Final payment state still comes from your Stripe webhooks.
+
+PaymentFlow, Apple Pay, and Google Pay are later options after PaymentSheet works.
+
 ## Android configuration
 
 No extra Gradle or `MainActivity` registration is required for the plugin itself.
@@ -48,6 +59,10 @@ For 3D Secure redirects, set `returnURL` when you create PaymentSheet or Payment
 
 Install `stripe-pwa-elements` and call `defineCustomElements()` once during bootstrap. Serve the app over HTTPS in development and production.
 
+Choose **one** framework quick start (they are alternatives, not a sequence):
+
 - [Vanilla JS Quick start](/docs/vanilla-js)
 - [Angular Quick start](/docs/angular)
 - [React Quick start](/docs/react)
+
+After initialization, continue with [Server Integration](/docs/server-integration), then [PaymentSheet](/docs/payment-sheet).

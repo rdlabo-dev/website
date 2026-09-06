@@ -8,28 +8,6 @@ scrollActiveLine: []
 
 Android、iOS、Web向けのFacebook LoginとFacebook App Eventsを提供するCapacitor Communityプラグインです。AndroidとiOSではネイティブのMeta SDK、WebではFacebook JavaScript SDKを使用します。
 
-## 機能
-
-- Facebookへのログインとログアウト、ネイティブでのデータアクセス再認証
-- 現在のアクセストークン取得
-- Facebook Graph APIによるプロフィール取得
-- 文字列・数値パラメータに対応したFacebook App Events
-- ネイティブのApp Eventと広告主向け設定
-
-## クイックスタート
-
-[インストール](#インストール)と各プラットフォームの設定を完了したあと、アプリに必要な権限をリクエストします。
-
-```ts
-import { FacebookLogin } from '@capacitor-community/facebook-login';
-
-const result = await FacebookLogin.login({ permissions: ['email'] });
-
-if (result.accessToken) {
-  console.log('Facebook login completed.');
-}
-```
-
 ## インストール
 
 このプラグインはCapacitor 8、iOS 15以降、Android API 24以降を対象としています。CocoaPodsとSwift Package Managerの両方で、ネイティブFacebook SDKへの依存関係を宣言します。
@@ -48,6 +26,28 @@ Capacitorのメジャーバージョンと一致するプラグインのメジ�
 | 6         | 6.x    |
 
 プラグインを呼び出す前に、[設定](/docs/configuration)に記載されたネイティブとWebの必須設定を完了してください。
+
+## 最初の email ログイン
+
+[インストール](#インストール)と[設定](/docs/configuration)のあと、ボタンクリックなどのユーザー操作からログインを呼び出します。初回確認では `email` だけをリクエストします。
+
+```ts
+import { FacebookLogin } from '@capacitor-community/facebook-login';
+
+async function onLoginClick() {
+  const result = await FacebookLogin.login({ permissions: ['email'] });
+
+  if (result.accessToken) {
+    console.log('Facebook login succeeded.');
+  } else {
+    console.log('Facebook login canceled or returned no token.');
+  }
+}
+```
+
+期待結果: 成功時は `accessToken` オブジェクトが返ります（生の token 文字列はログに出さないでください）。Android と iOS でキャンセルすると token なしで resolve します。Web では失敗時に reject します。
+
+iOS Limited Login は Graph API access token ではなく OIDC authentication token（JWT）を返します。Graph によるプロフィール取得には別の token 条件が必要です。[認証](/docs/authentication)を参照してください。
 
 ## ドキュメント
 

@@ -22,6 +22,17 @@ scrollActiveLine:
 
 Collect an in-person payment with Stripe Terminal by registering listeners early, initializing the plugin, connecting a reader, and confirming a PaymentIntent.
 
+## First test requirements
+
+Before the first collect attempt, have:
+
+- Platform setup from [Configuration](/docs/configuration) (including Android permissions when needed)
+- An authenticated connection-token endpoint your app can call
+- A test PaymentIntent with `card_present` created on your server
+- A Stripe Terminal `locationId` that matches the connection type you will discover
+
+Reachable first success is: connect a reader → collect a payment method → confirm the PaymentIntent and see `ConfirmedPaymentIntent`. Fulfillment still waits on your Stripe webhook. For simulated readers, use a **supported** connection type with `isTest: true` as described in [Configuration](/docs/configuration)—do not treat `TerminalConnectTypes.Simulated` as universal.
+
 ## Register application-level listeners
 
 Register Terminal event listeners once per JavaScript application startup, as early as possible during bootstrap—for example from `main.ts`, an application initializer, or a singleton service initialized at startup—and before initializing or starting an operation. Keep them registered for the lifetime of their application-level owner.
@@ -35,6 +46,16 @@ Typed `addListener` overloads cover most of these members. `DiscoveringReaders` 
 Prefer an authenticated app-side request through `RequestedConnectionToken` and `setConnectionToken`. This lets your app attach its normal authorization credentials and validate failures. Register the listener before `initialize`; the Terminal SDK asks for a new, single-use connection token whenever it needs one. Set `isTest` while developing.
 
 !::initialize::
+
+Web `initialize` requires a fresh plugin instance: calling it again after a successful init throws `Stripe Terminal has already been initialized`.
+
+## Supply a connection token securely
+
+Omit `tokenProviderEndpoint` and register `RequestedConnectionToken` **before** `initialize`. When the SDK needs a token, the plugin emits that event and waits for `setConnectionToken({ token })`.
+
+Fetch with your normal authorization mechanism, require a successful response, validate `secret`, and pass it as `token`. Call `setConnectionToken` only while a fetch is pending; Android and iOS reject extra calls with `Stripe Terminal do not pending fetchConnectionToken`. Never log the response or token.
+
+!::setConnectionToken::
 
 ### `tokenProviderEndpoint` compatibility mode
 
@@ -53,16 +74,6 @@ The official demo exposes `POST /connection/token` and returns `{ secret }`; ada
 :::message
 In v8.2.1, Android logs the `secret` returned through `tokenProviderEndpoint`, and web logs the options passed to `setConnectionToken`. Avoid endpoint mode on Android until the upstream logging is removed, avoid production web console retention, and update to a fixed plugin release when available.
 :::
-
-Web `initialize` requires a fresh plugin instance: calling it again after a successful init throws `Stripe Terminal has already been initialized`.
-
-## Supply a connection token securely
-
-Omit `tokenProviderEndpoint` and register `RequestedConnectionToken` **before** `initialize`. When the SDK needs a token, the plugin emits that event and waits for `setConnectionToken({ token })`.
-
-Fetch with your normal authorization mechanism, require a successful response, validate `secret`, and pass it as `token`. Call `setConnectionToken` only while a fetch is pending; Android and iOS reject extra calls with `Stripe Terminal do not pending fetchConnectionToken`. Never log the response or token.
-
-!::setConnectionToken::
 
 ## Create a PaymentIntent on your backend
 
@@ -145,3 +156,7 @@ Process and confirm the collected PaymentIntent. `confirmPaymentIntent` rejects 
 Disconnect when the payment flow is finished or the reader is no longer needed.
 
 !::disconnectReader::
+
+## After first success
+
+Use [Reader Lifecycle](/docs/reader-lifecycle) for disconnect, reconnect, and updates. For phone-as-reader acceptance, see [Tap to Pay](/docs/tap-to-pay). Formal signatures remain on the [API](/docs/api) page.

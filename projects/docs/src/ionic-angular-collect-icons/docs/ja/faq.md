@@ -12,7 +12,7 @@ scrollActiveLine: []
 
 - ユニットテストはサポートしていますか？
 
-ChromeHeadless でのユニットテストは `main.ts` を読みません。そのため、各テストで `addIcons` を追加するか、`src/test.ts` で `addIcons` を追加する必要があります。
+テストランナーが `main.ts` を実行しない場合は、テストのsetupファイル、または各テストで `addIcons` を呼び出してください。Karma系でまだ `src/test.ts` を使う場合はそこに登録し、Vitestなどではそのランナーのsetupファイルを使います。
 
 - アイコン名のバインディングはサポートしていますか？
 

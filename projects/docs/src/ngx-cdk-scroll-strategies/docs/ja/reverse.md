@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 [インストール](/docs/readme#インストール) のあとで使います。
 
-> 可変Item HeightとReverse Virtual Scrollを組み合わせ、WeChatのようなChat UIを実装するデモです。
+> [シンプルな使い方](/docs/simple) のデータモデル、`dynamicSize` computed、`trackBy`、Viewport importをそのまま使い、このページではChat型List向けにReverse Layout CSSと `[isReverse]="true"` を追加します。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse
 - Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.0/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
@@ -37,7 +37,7 @@ scrollActiveLine: []
 ```css
 cdk-virtual-scroll-viewport {
   width: 100%;
-  height: 100%;
+  height: 320px;
 
   /* .reverse-scroll class is added from this directive. */
   &.reverse-scroll {

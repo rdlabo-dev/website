@@ -2,9 +2,7 @@
 title: はじめに
 ---
 
-[最初のMySQLクエリを実行する](/docs/quickstart)では、使い捨てのローカルDBへ接続し、テーブルを作らず実際のSELECT結果を確認できます。その後、Hyperdriveの完全なWorker例へ進めます。
-
-Cloudflare Workers向けのMySQL、Hyperdrive、Drizzle基盤です。
+Cloudflare Workers向けのMySQL、Hyperdrive、Drizzle基盤です。呼び出し単位のprimary/replicaアクセス、デッドロック再試行、任意のDrizzle helper、Node.jsのmigration・テストツールを組み合わせ、スキーマと認証情報はアプリが所有します。
 
 mysql2がNode.jsのネットワークAPIを使うため、WorkerでNode.js互換モードを有効にします。
 
@@ -37,6 +35,10 @@ pnpm add -D @types/node@20
 
 ツール環境に合う対応メジャーバージョンを使ってください。pnpmではpeerの自動インストールだけではグローバル型がコンパイラから見えない場合があります。
 
+## 最初のクエリを実行する
+
+[最初のMySQLクエリを実行する](/docs/quickstart)では、使い捨てのローカルDBへ接続し、テーブルを作らず実際のSELECT結果を確認できます。その後、Hyperdriveの完全なWorker例へ進めます。
+
 ## エントリポイント
 
 | import | 責務 |
@@ -46,7 +48,7 @@ pnpm add -D @types/node@20
 | `@rdlabo/workers-mysql/migrations` | Node.jsのmigration・既存DBベースライン |
 | `@rdlabo/workers-mysql/testing` | ローカルMySQL/DrizzleテストDBとfake |
 
-## ランタイム
+## クイックスタート
 
 Workerの呼び出しごとにデータベースを作成します。以下の断片では `env` がアプリのHyperdrive binding、`schema` がアプリ所有のDrizzleスキーマです。
 
@@ -64,9 +66,11 @@ const db = createHyperdriveDatabase({
 
 `nodejs_compat` を有効にすればルートimportはWorkersで利用でき、DrizzleやNode専用のmigrationコードを読み込みません。
 
+固定 `+09:00` の保存ヘルパーはMySQLの通信契約です。[`@rdlabo/workers-timezone`](/workers-timezone/docs/readme) のIANA表示タイムゾーンには追従しません。
+
 ## Hono連携
 
-Hono middlewareは `@rdlabo/workers-hono-kit/mysql` のアダプターに残ります。データベースパッケージ自体はHonoに依存しません。
+Honoのリクエストコンテナーは `@rdlabo/workers-hono-kit/mysql` のアダプターを使います。
 
 ```ts
 import { createContainerRuntime } from '@rdlabo/workers-hono-kit/mysql';
@@ -90,4 +94,4 @@ npm install @rdlabo/workers-mysql @rdlabo/workers-hono-kit
 
 ## workers-hono-kitからの移行
 
-kit `0.12.0` でimportの境界が変わります。旧 `/db` とDB関連の `/testing` exportは `@deprecated` 付きの互換パスとして維持され、削除予定はありません。新規コードでは独立パッケージを利用してください。対応表は[移行](/docs/migration)を参照してください。
+kit `0.12.0` でimportの境界が変わります。旧 `/db` とDB関連の `/testing` exportは `@deprecated` 付きの互換パスとして維持され、削除予定はありません。対応表は[移行](/docs/migration)を参照してください。

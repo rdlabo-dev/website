@@ -22,23 +22,24 @@ scrollActiveLine: []
 
 ## ログイン
 
-アプリが使用する権限だけをリクエストします。
+アプリが使用する権限だけをリクエストします。`login` はボタンクリックなどのユーザー操作から呼び出してください。
 
 ```ts
 import { FacebookLogin } from '@capacitor-community/facebook-login';
 
 const result = await FacebookLogin.login({
-  permissions: ['email', 'user_birthday'],
+  permissions: ['email'],
 });
 
 if (result.accessToken) {
-  console.log(`Facebook token: ${result.accessToken.token}`);
+  console.log('Facebook login succeeded.');
 } else {
-  // No token was returned by the native platform.
+  // Cancelled or no token returned by the native platform.
+  console.log('Facebook login canceled or returned no token.');
 }
 ```
 
-WebではFacebookが使用可能なtokenを返さない場合にrejectします。AndroidとiOSではログインをキャンセルするとtokenなしでresolveします。
+`accessToken.token` をログに出さないでください。WebではFacebookが使用可能なtokenを返さない場合にrejectします。AndroidとiOSではログインをキャンセルするとtokenなしでresolveします。
 
 ### iOSのtracking modeとnonce
 
@@ -58,7 +59,10 @@ Limited Login tokenはbackendでOIDC tokenとして検証してください。Gr
 const result = await FacebookLogin.getCurrentAccessToken();
 
 if (result.accessToken) {
-  console.log(`Current Facebook token: ${result.accessToken.token}`);
+  console.log('Current Facebook token is available.', {
+    isExpired: result.accessToken.isExpired,
+    permissions: result.accessToken.permissions,
+  });
 }
 ```
 

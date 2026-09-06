@@ -4,9 +4,9 @@ code: []
 scrollActiveLine: []
 ---
 
-ネイティブモーダルを開く Capacitor 向けバーコードスキャナーです。
+ネイティブモーダルで QR コードとバーコードを読み取ります。
 
-camera-preview 系のスキャナーと違い、このプラグインはモーダル内でカメラを動かします。Web アセット側でカメラビューを管理する必要はありません。複数のバーコード種別と、連続マルチスキャンに対応します。
+カメラはモーダル内で動作するため、Web アセット側でカメラビューを管理する必要はありません。単発スキャンまたは連続マルチスキャンに対応し、検出ごとに `event.code` を届けます。
 
 ## インストール
 
@@ -15,9 +15,20 @@ npm install @rdlabo/capacitor-codescanner
 npx cap sync
 ```
 
+### カメラ権限（初回スキャン前に必須）
+
+プラグインは端末のカメラを使います。iOS ではアプリの `Info.plist`（例: `ios/App/App/Info.plist`）に用途説明を追加します。
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>This app needs camera access to scan QR codes and barcodes.</string>
+```
+
+Android はプラグインのマニフェストで `android.permission.CAMERA` を宣言します。スキャナー表示時に OS が実行時許可を求める場合があります。ネイティブ設定を変えたあとは `npx cap sync` し、Xcode / Android Studio など通常の Capacitor ネイティブビルドでアプリを再構築してください。
+
 ## 使い方
 
-モーダルを出してスキャン結果を受け取るには [CodeScanner](/docs/code-scanner) です。
+モーダルを出してスキャン結果を受け取るには [CodeScanner](/docs/code-scanner) です。インストールとカメラ設定のあと、ボタンなどユーザー操作から開始します。
 
 ## いつ使うか
 
@@ -25,7 +36,6 @@ npx cap sync
 
 - レシート、商品、チケットの QR / バーコードを読む
 - `isMulti: true` で 1 セッションに複数コードを集める
-- Web 側でカメラ権限やプレビュー配線を避けたい
 
 ## 機能
 

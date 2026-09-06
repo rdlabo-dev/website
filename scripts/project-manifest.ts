@@ -886,16 +886,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     icon: 'server',
     adapter: 'markdown',
     description: text(
-      'IANA timezone and calendar utilities for Cloudflare Workers.',
-      'Cloudflare Workers向けのIANAタイムゾーン・カレンダーユーティリティ。',
+      'Cloudflare Workers timezone utilities with a companion ESLint preset for human and AI contributions.',
+      'Cloudflare Workersの日時処理と、新人・AIの変更を検査するESLint presetをセットで提供。',
     ),
     headline: text(
-      'Convert instants and local calendar dates',
-      '時刻とローカルのカレンダー日付を変換する',
+      'Adopt timezone utilities and ESLint together',
+      '日時処理とESLintをセットで導入する',
     ),
     overview: text(
-      'Choose an application timezone or pass per-call overrides, handle daylight-saving boundaries, and prevent implicit host-timezone regressions with a companion ESLint preset.',
-      'アプリのタイムゾーン設定と呼び出しごとの指定、夏時間の境界処理に対応し、コンパニオンESLint presetでhost timezoneへの暗黙依存の再混入を防ぎます。',
+      'Use @rdlabo/workers-timezone for explicit IANA timezone conversions and @rdlabo/eslint-plugin-rules to check new code. Adopt both so newcomers and AI coding agents receive feedback when they reintroduce host-local Date or Intl behavior. Recommended setup includes installing the plugin separately, enabling workers-timezone/recommended with typed linting, and running lint in CI. Static checks cover supported operations and do not replace timezone tests.',
+      '@rdlabo/workers-timezoneでIANAタイムゾーンを明示して日時を変換し、@rdlabo/eslint-plugin-rulesで新しく書かれるコードを検査します。新人やAIがhost localのDate・Intlを再導入したときにも検出できるよう、両方の導入を推奨します。pluginを別途インストールし、typed lintingとworkers-timezone/recommendedを有効にしてCIでlintを実行するところまでが推奨の導入手順です。静的解析は対応する操作を検査し、タイムゾーンのテストを置き換えるものではありません。',
     ),
     featuresHeading: text('Calendar building blocks', 'カレンダー処理の基本機能'),
     features: [

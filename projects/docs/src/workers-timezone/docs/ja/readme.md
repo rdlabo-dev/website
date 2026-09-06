@@ -4,6 +4,18 @@ title: はじめに
 
 Cloudflare Workers向けのタイムゾーン対応カレンダー・ローカル時刻ユーティリティです。UTCの時刻を扱うWorkersで、IANAタイムゾーンを指定してローカル日付との相互変換や夏時間の処理を行えます。
 
+## 日時処理とESLintをセットで導入する
+
+`@rdlabo/workers-timezone` と、`@rdlabo/eslint-plugin-rules` の `workers-timezone/recommended` は、組み合わせて使うためのライブラリと検査presetです。日時変換をライブラリへ移すだけでなく、新人やAIが後から書くコードにも検査を適用してください。既存コードが正しくても、host localの `Date`・`Intl` やリクエスト内の初期化を再導入すると、タイムゾーンの不具合が戻る可能性があります。
+
+推奨の導入完了条件は次の3点です。新人向けの手順書やAIへの実装指示にも、この3点を含めてください。
+
+1. 日時処理に `@rdlabo/workers-timezone` を使い、変換するタイムゾーンを明確にする。
+2. ESLint pluginを開発依存へ追加し、typed lintingと `workers-timezone/recommended` を有効にする。
+3. 変更後にlintを実行し、CIでもlintの違反を検出して修正する。
+
+ライブラリとpluginは別パッケージで、実行時の相互依存はありません。両方を使うには、それぞれのインストールと設定が必要です。presetの静的解析には対象外もあるため、境界値や夏時間のテストも必要です。[ESLint設定ガイド](/eslint-plugin-rules/docs/configuration)に詳細があります。
+
 Hono、データベース、Node.js互換モードへの依存はありません。
 
 ## インストール

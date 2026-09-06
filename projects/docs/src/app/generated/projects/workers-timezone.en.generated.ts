@@ -9,9 +9,9 @@ export const PROJECT = {
   "category": "developer-tools",
   "icon": "server",
   "version": "0.12.2",
-  "description": "IANA timezone and calendar utilities for Cloudflare Workers.",
-  "headline": "Convert instants and local calendar dates",
-  "overview": "Choose an application timezone or pass per-call overrides, handle daylight-saving boundaries, and prevent implicit host-timezone regressions with a companion ESLint preset.",
+  "description": "Cloudflare Workers timezone utilities with a companion ESLint preset for human and AI contributions.",
+  "headline": "Adopt timezone utilities and ESLint together",
+  "overview": "Use @rdlabo/workers-timezone for explicit IANA timezone conversions and @rdlabo/eslint-plugin-rules to check new code. Adopt both so newcomers and AI coding agents receive feedback when they reintroduce host-local Date or Intl behavior. Recommended setup includes installing the plugin separately, enabling workers-timezone/recommended with typed linting, and running lint in CI. Static checks cover supported operations and do not replace timezone tests.",
   "featuresHeading": "Calendar building blocks",
   "features": [
     {

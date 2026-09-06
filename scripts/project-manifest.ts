@@ -302,7 +302,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: '8c0088386acdfc34660a85d8f135f9726172e74c',
+    englishDocsRef: 'b28211c80b181d873bbe9c9935c3e28f9805eaff',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -315,8 +315,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '一貫性と耐障害性を備えたIonic Angularアプリを構築する',
     ),
     overview: text(
-      'Compose typed storage, overlays, authentication, HTTP policy, realtime connections, offline replicas, themes, reviews, printing, Firebase, and Live Updates from focused entry points.',
-      '型安全なStorage、Overlay、認証、HTTPポリシー、Realtime接続、Offline Replica、Theme、Review、印刷、Firebase、Live Updateを用途別エントリポイントから構成します。',
+      'Save typed preferences, open modals with typed results, and connect Ionic controls to Angular Signal Forms. Add authentication and native features as your app grows.',
+      '型安全な設定の保存、戻り値に型が付くモーダル、IonicとAngular Signal Formsの連携から始められます。認証やNative機能は必要に応じて追加できます。',
     ),
     featuresHeading: text('Application infrastructure', '提供するアプリケーション基盤'),
     features: [
@@ -335,10 +335,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
-        title: text('Offline and realtime', 'Offline・Realtime'),
+        title: text('Signal Forms', 'Signal Forms'),
         description: text(
-          'Coordinate scoped local replicas, durable outboxes, reconnecting WebSockets, and resync.',
-          'スコープ付きLocal Replica、Durable Outbox、WebSocket再接続、再同期を連携します。',
+          'Connect Ionic controls to Angular Signal Forms with validation messages and field state.',
+          'Ionicの入力欄をAngular Signal Formsに接続し、検証メッセージとフィールドの状態を連携します。',
         ),
       },
       {
@@ -357,7 +357,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
       ),
+      page(
+        'Storage and Overlays',
+        'Storage・Overlay',
+        'storage-overlays',
+        'storage-overlays.md',
+        'Guide',
+        'ガイド',
+      ),
+      page('Forms', 'フォーム', 'forms', 'forms.md', 'Guide', 'ガイド', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+        seoTitle: text(
+          'Angular Signal Forms for Ionic Controls | rdlabo',
+          'Ionic向けAngular Signal Forms | rdlabo',
+        ),
+        seoDescription: text(
+          'Adapt Angular 22 Signal Forms to Ionic controls with automatic errorText, localized validation messages, and state classes.',
+          'Angular 22 Signal FormsをIonic controlへ統合し、errorTextの自動設定、validation messageの多言語化、state classを利用する方法を解説します。',
+        ),
+      }),
       page(
         'Check your Kit integration with ESLint',
         'ESLintでKitの使い方をチェック',
@@ -377,25 +397,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
-      page(
-        'Storage and Overlays',
-        'Storage・Overlay',
-        'storage-overlays',
-        'storage-overlays.md',
-        'Guide',
-        'ガイド',
-      ),
       page('Authentication and HTTP', '認証・HTTP', 'auth-http', 'auth-http.md', 'Guide', 'ガイド'),
-      page('Forms', 'フォーム', 'forms', 'forms.md', 'Guide', 'ガイド', {
-        seoTitle: text(
-          'Angular Signal Forms for Ionic Controls | rdlabo',
-          'Ionic向けAngular Signal Forms | rdlabo',
-        ),
-        seoDescription: text(
-          'Adapt Angular 22 Signal Forms to Ionic controls with automatic errorText, localized validation messages, and state classes.',
-          'Angular 22 Signal FormsをIonic controlへ統合し、errorTextの自動設定、validation messageの多言語化、state classを利用する方法を解説します。',
-        ),
-      }),
       page(
         'Offline and Realtime',
         'Offline・Realtime',
@@ -692,7 +694,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
-    englishDocsRef: 'fe2952cdae3676591e11088ea08c88ac7fce4a8e',
+    englishDocsRef: 'f477eb5312b178584b686bfe939b314ddedfa0db',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -730,7 +732,26 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page(
+        'Using ion-item-group',
+        'ion-item-groupの使用方法',
+        'using-ion-item-group',
+        'using-ion-item-group.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
+      ),
+      page(
+        'Special markup and classes',
+        '特別なマークアップとクラス',
+        'special-markup',
+        'special-markup.md',
+        'Guides',
+        'ガイド',
+      ),
       page(
         'Keep lists consistent with ESLint',
         'ESLintでリストの構造を整える',
@@ -750,23 +771,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
-      page(
-        'Using ion-item-group',
-        'ion-item-groupの使用方法',
-        'using-ion-item-group',
-        'using-ion-item-group.md',
-        'Guides',
-        'ガイド',
-      ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド'),
-      page(
-        'Special markup and classes',
-        '特別なマークアップとクラス',
-        'special-markup',
-        'special-markup.md',
-        'Guides',
-        'ガイド',
-      ),
       page(
         'Experimental Animation',
         '実験的なアニメーション',
@@ -791,7 +796,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
-    englishDocsRef: '228b1363b2fadbbf88a950dda93e0a100380de26',
+    englishDocsRef: 'a293f6974d21e0e839ac8d0a5591e9bd891f9cb9',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -832,7 +837,26 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       },
     ],
     pages: [
-      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Documentation', 'ドキュメント'),
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Documentation', 'ドキュメント', {
+        updatedAt: text('2026-09-06', '2026-09-06'),
+      }),
+      page(
+        'Using ion-item-group',
+        'ion-item-groupの使用方法',
+        'using-ion-item-group',
+        'using-ion-item-group.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-06', '2026-09-06') },
+      ),
+      page(
+        'Special markup',
+        '特別なマークアップ',
+        'special-markup',
+        'special-markup.md',
+        'Guides',
+        'ガイド',
+      ),
       page(
         'Keep lists consistent with ESLint',
         'ESLintでリストの構造を整える',
@@ -851,22 +875,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           ),
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
-      ),
-      page(
-        'Special markup',
-        '特別なマークアップ',
-        'special-markup',
-        'special-markup.md',
-        'Guides',
-        'ガイド',
-      ),
-      page(
-        'Using ion-item-group',
-        'ion-item-groupの使用方法',
-        'using-ion-item-group',
-        'using-ion-item-group.md',
-        'Guides',
-        'ガイド',
       ),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
@@ -942,7 +950,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: '679f74d48e3b8b08e347c01689a7323e9fbecede',
+    englishDocsRef: 'b009183e97fb8f2e641f8034040e5946613b465b',
     seoTitle: text(
       'Cloudflare Workers timezone utilities + ESLint | rdlabo',
       'Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo',
@@ -954,10 +962,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.',
       'Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。',
     ),
-    headline: text(
-      'Timezone conversion and ESLint for Cloudflare Workers',
-      'Cloudflare Workersの日時変換とESLint',
-    ),
+    headline: text('Timezone conversion for Cloudflare Workers', 'Cloudflare Workersの日時変換'),
     overview: text(
       'Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.',
       'IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。',
@@ -976,13 +981,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         description: text(
           'Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic.',
           '夏時間の重複・欠落とカレンダー日付の加算を扱います。',
-        ),
-      },
-      {
-        title: text('ESLint guardrails', 'ESLintによる再発防止'),
-        description: text(
-          'Detect implicit Date and Intl timezone behavior and keep initialization out of request scope.',
-          'Date・Intlの暗黙のタイムゾーン依存と、リクエストスコープでの初期化を検出します。',
         ),
       },
     ],

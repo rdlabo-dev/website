@@ -12,34 +12,11 @@ IonicアプリケーションにMaterial Design 3デザインシステムを適�
 
 DEMOはこちら: https://ionic-theme-md3.rdlabo.dev/
 
-## 概要
-
-このライブラリは、IonicアプリケーションにMaterial Design 3デザインシステムをもたらすCSS/JSファイルを提供します。Ionicコンポーネントの見た目を、最新のMaterial Design 3ガイドラインに合わせて更新します。
-
-このプロジェクトはIonicのコアコンセプトに可能な限り沿いながら、`@rdlabo/ionic-theme-ios26` との互換性を特に重視しています。Ionicが単一のHTML構造からiosテーマでもmdテーマでも美しいスタイルを提供するのと同じように、このテーマと `@rdlabo/ionic-theme-ios26` が十分に互換であることを目指しています。
-
-`@rdlabo/ionic-theme-ios26` をまだご存じでない方は、ぜひ試してみてください！
-
-👉️[rdlabo-dev/ionic-theme-ios26](https://github.com/rdlabo-dev/ionic-theme-ios26)
-
-### 関連プロジェクト
-
-より包括的なMaterial Design 3実装が必要な場合は、次も参考になるかもしれません:
-
-- **[md3-for-ionic](https://github.com/danielkleebinder/md3-for-ionic)** by danielkleebinder
-
-> **Note:** このテーマは Ionic の設計方針と `@rdlabo/ionic-theme-ios26` との互換性を目的に作られており、厳密で完全な MD3 再現を意図したものではありません。
-
-
-## クイックスタート
-
-[インストール](#インストール) のあと、テーマ CSS をインポートし、下のとおり `navAnimation` を設定します。
-
-Ionic Angularアプリでは、画面を追加するときに [ESLintでリストの構造を整える](/ionic-theme-md3/docs/eslint) でlist構造を検査できます。
+`@rdlabo/ionic-theme-ios26` との互換性を重視し、単一のマークアップで Ionic の両モードをスタイルできるようにしています。
 
 ## インストール
 
-これはIonicプロジェクトを拡張するためのCSSテーマです。単体では動作しないため、Ionic Frameworkと一緒に使ってください。
+既存のIonicプロジェクトにインストールします。
 
 ```bash
 npm install @rdlabo/ionic-theme-md3
@@ -52,6 +29,49 @@ Note: **@ionic/core@ < 8.8.0 を使う場合は**、@rdlabo/ionic-theme-md3@1.0.
 ```css
 @import '@rdlabo/ionic-theme-md3/dist/css/default-variables.css';
 @import '@rdlabo/ionic-theme-md3/dist/css/ionic-theme-md3.css';
+```
+
+### アニメーションを設定する
+
+MD3テーマだけをインストールした場合は、次のようにアニメーションを設定します。
+
+```ts
+import { isPlatform } from '@ionic/core'; // or @ionic/angular (Ionic 9), @ionic/angular/standalone (Ionic 8), @ionic/react, @ionic/vue
+import { mdTransitionAnimation } from '@rdlabo/ionic-theme-md3';
+
+// Angular
+provideIonicAngular({
+    ...
+    navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
+});
+
+// React
+setupIonicReact({
+    ...
+    navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
+});
+
+// Vue
+createApp(App)
+    .use(IonicVue, {
+        ...
+        navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
+})
+```
+
+### テーマの適用を確認する
+
+Androidで確認してください。デスクトップでプレビューする場合は、既存のフレームワーク初期化設定で Ionic の mode を `md` にしてください（例: `mode: 'md'`）。
+
+次のマークアップで inset のグループ化されたリストの見た目をプレビューできます。テーマが想定するリスト構造は [ion-item-groupの使用方法](/docs/using-ion-item-group) を参照してください。
+
+```html
+<ion-list mode="md" inset="true">
+  <ion-item-group>
+    <ion-item><ion-label>Notifications</ion-label></ion-item>
+    <ion-item><ion-label>Appearance</ion-label></ion-item>
+  </ion-item-group>
+</ion-list>
 ```
 
 ### オプション: MD3テーマとiOS 26テーマを併用する
@@ -110,37 +130,18 @@ createApp(App)
     });
 ```
 
-MD3テーマだけをインストールした場合は、次のようにアニメーションを設定します。
-
-```ts
-import { isPlatform } from '@ionic/core'; // or @ionic/angular (Ionic 9), @ionic/angular/standalone (Ionic 8), @ionic/react, @ionic/vue
-import { mdTransitionAnimation } from '@rdlabo/ionic-theme-md3';
-
-// Angular
-provideIonicAngular({
-    ...
-    navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
-});
-
-// React
-setupIonicReact({
-    ...
-    navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
-});
-
-// Vue
-createApp(App)
-    .use(IonicVue, {
-        ...
-        navAnimation: isPlatform('ios') ? undefined: mdTransitionAnimation,
-})
-```
-
 
 ## ドキュメント
 
-上の [インストール](#インストール) から始めてください。同じマークアップで両プラットフォームが必要なときは [@rdlabo/ionic-theme-ios26](/ionic-theme-ios26/) と組み合わせます。
-
-- [特別なマークアップ](/docs/special-markup) — demoで使う任意のコンポーネント構造。
 - [ion-item-groupの使用方法](/docs/using-ion-item-group) — iOS 26とMD3で共有するinset listのマークアップ。
+- [特別なマークアップ](/docs/special-markup) — demoで使う任意のコンポーネント構造。
+- [ESLint](/docs/eslint) — リスト構造を ESLint で整える。
 - [移行](/docs/migration) — テーマのマークアップ更新時に必要な変更。
+
+## 関連プロジェクト
+
+より包括的なMaterial Design 3実装が必要な場合は、次も参考になるかもしれません:
+
+- **[md3-for-ionic](https://github.com/danielkleebinder/md3-for-ionic)** by danielkleebinder
+
+> **Note:** このテーマは Ionic の設計方針と `@rdlabo/ionic-theme-ios26` との互換性を目的に作られており、厳密で完全な MD3 再現を意図したものではありません。

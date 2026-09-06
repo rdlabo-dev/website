@@ -18,11 +18,7 @@ title: ion-item-groupの使用方法
 
 `inset="true"` を使わないlistでは、このwrapperは不要です。
 
-## Angular templateでの検査
-
-Ionic Angularアプリケーションでは、`@rdlabo/rules` の [`require-ion-item-group`](/eslint-plugin-rules/docs/rules/require-ion-item-group) ruleを使うと、`ion-list` 内の `ion-item` が対応するgroup componentで囲まれていることをESLintで検査できます。このruleはrecommended presetに含まれ、一部の問題は自動修正できます。
-
-設定とCIについては [ESLintでリストの構造を整える](/ionic-theme-ios26/docs/eslint) を参照してください。
+[ESLintでリストの構造を整える](/docs/eslint)。
 
 ## wrapperが必要な理由
 

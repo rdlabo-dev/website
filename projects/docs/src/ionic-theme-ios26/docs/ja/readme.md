@@ -12,24 +12,9 @@ IonicアプリケーションにiOS26デザインシステムを適用するCSS/
 
 DEMOはこちら: https://ionic-theme-ios26.rdlabo.dev/
 
-## 概要
-
-このライブラリは、IonicアプリケーションにiOS26デザインシステムをもたらすCSS/JSファイルを提供します。Ionicコンポーネントの見た目を、最新のiOS26デザインガイドラインに合わせて更新します。
-
-Android Design（Material Design 3）テーマも作成中です。ぜひチェックしてください！
-
-👉️[rdlabo-dev/ionic-theme-md3](https://github.com/rdlabo-dev/ionic-theme-md3)
-
-
-## クイックスタート
-
-[インストール](#インストール) のあと、テーマ CSS をインポートします。詳細は下のインストールです。
-
-Ionic Angularアプリでは、画面を追加するときに [ESLintでリストの構造を整える](/ionic-theme-ios26/docs/eslint) でlist構造を検査できます。
-
 ## インストール
 
-これはIonicプロジェクトを拡張するためのCSSテーマです。単体では動作しないため、Ionic Frameworkと一緒に使ってください。
+既存のIonicプロジェクトにインストールします。
 
 ```bash
 npm install @rdlabo/ionic-theme-ios26
@@ -65,6 +50,55 @@ Note: **@ionic/core@ < 8.8.1 を使う場合は**、@rdlabo/ionic-theme-ios26@2.
  * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26-dark-system.css'
  * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26-dark-class.css'
  */
+```
+
+### アニメーションを設定する
+
+iOS 26テーマだけをインストールした場合は、次のようにアニメーションを設定します。
+
+```ts
+import { isPlatform } from '@ionic/core'; // or @ionic/angular (Ionic 9), @ionic/angular/standalone (Ionic 8), @ionic/react, @ionic/vue
+import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
+
+// Angular
+provideIonicAngular({
+    ...
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
+});
+
+// React
+setupIonicReact({
+    ...
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
+});
+
+// Vue
+createApp(App)
+    .use(IonicVue, {
+        ...
+        navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+        popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+        popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
+})
+```
+
+### テーマの適用を確認する
+
+iOSで確認してください。デスクトップでプレビューする場合は、既存のフレームワーク初期化設定で Ionic の mode を `ios` にしてください（例: `mode: 'ios'`）。
+
+次のマークアップで inset のグループ化されたリストの見た目をプレビューできます。テーマが想定するリスト構造は [ion-item-groupの使用方法](/docs/using-ion-item-group) を参照してください。
+
+```html
+<ion-list mode="ios" inset="true">
+  <ion-item-group>
+    <ion-item><ion-label>Notifications</ion-label></ion-item>
+    <ion-item><ion-label>Appearance</ion-label></ion-item>
+  </ion-item-group>
+</ion-list>
 ```
 
 ### オプション: iOS 26テーマとMD3テーマを併用する
@@ -123,45 +157,12 @@ createApp(App)
     });
 ```
 
-iOS 26テーマだけをインストールした場合は、次のようにアニメーションを設定します。
-
-```ts
-import { isPlatform } from '@ionic/core'; // or @ionic/angular (Ionic 9), @ionic/angular/standalone (Ionic 8), @ionic/react, @ionic/vue
-import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
-
-// Angular
-provideIonicAngular({
-    ...
-    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
-    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
-    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
-});
-
-// React
-setupIonicReact({
-    ...
-    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
-    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
-    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
-});
-
-// Vue
-createApp(App)
-    .use(IonicVue, {
-        ...
-        navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
-        popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
-        popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
-})
-```
-
 
 ## ドキュメント
 
-上の [インストール](#インストール) から始め、inset リストでは [ion-item-groupの使用方法](/docs/using-ion-item-group) を見てください。
-
 - [ion-item-groupの使用方法](/docs/using-ion-item-group) — inset リストに必要なマークアップ。
 - [特別なマークアップとクラス](/docs/special-markup) — テーマで使う任意のマークアップとutility class。
+- [ESLint](/docs/eslint) — リスト構造を ESLint で整える。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
 - [実験的なアニメーション](/docs/experimental-animation) — タブバーと Searchable。
 - [iOS 18](/docs/ios-18) — iOS 26 だけでテーマを読む。

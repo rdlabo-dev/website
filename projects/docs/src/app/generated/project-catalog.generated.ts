@@ -130,7 +130,7 @@ export const PROJECTS_EN = [
     "version": "22.0.0",
     "description": "Shared application infrastructure for Ionic Angular projects.",
     "headline": "Build consistent, resilient Ionic Angular applications",
-    "overview": "Compose typed storage, overlays, authentication, HTTP policy, realtime connections, offline replicas, themes, reviews, printing, Firebase, and Live Updates from focused entry points.",
+    "overview": "Save typed preferences, open modals with typed results, and connect Ionic controls to Angular Signal Forms. Add authentication and native features as your app grows.",
     "featuresHeading": "Application infrastructure",
     "features": [
       {
@@ -142,8 +142,8 @@ export const PROJECTS_EN = [
         "description": "Share route guards, access capability state, auth headers, safe retries, and error hooks."
       },
       {
-        "title": "Offline and realtime",
-        "description": "Coordinate scoped local replicas, durable outboxes, reconnecting WebSockets, and resync."
+        "title": "Signal Forms",
+        "description": "Connect Ionic controls to Angular Signal Forms with validation messages and field state."
       },
       {
         "title": "Optional native features",
@@ -160,13 +160,6 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-angular-kit/docs/getting-started"
       },
       {
-        "title": "Check your Kit integration with ESLint",
-        "navTitle": "Check your Kit integration with ESLint",
-        "slug": "eslint",
-        "section": "Guide",
-        "path": "/projects/ionic-angular-kit/docs/eslint"
-      },
-      {
         "title": "Storage and Overlays",
         "navTitle": "Storage and Overlays",
         "slug": "storage-overlays",
@@ -174,18 +167,25 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-angular-kit/docs/storage-overlays"
       },
       {
-        "title": "Authentication and HTTP",
-        "navTitle": "Authentication and HTTP",
-        "slug": "auth-http",
-        "section": "Guide",
-        "path": "/projects/ionic-angular-kit/docs/auth-http"
-      },
-      {
         "title": "Forms",
         "navTitle": "Forms",
         "slug": "forms",
         "section": "Guide",
         "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
+        "title": "Check your Kit integration with ESLint",
+        "navTitle": "Check your Kit integration with ESLint",
+        "slug": "eslint",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
+        "title": "Authentication and HTTP",
+        "navTitle": "Authentication and HTTP",
+        "slug": "auth-http",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/auth-http"
       },
       {
         "title": "Offline and Realtime",
@@ -497,13 +497,6 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios26/docs/readme"
       },
       {
-        "title": "Keep lists consistent with ESLint",
-        "navTitle": "Keep lists consistent with ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
         "title": "Using ion-item-group",
         "navTitle": "Using ion-item-group",
         "slug": "using-ion-item-group",
@@ -511,18 +504,25 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
       },
       {
-        "title": "Features",
-        "navTitle": "Features",
-        "slug": "features",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
         "title": "Special markup and classes",
         "navTitle": "Special markup and classes",
         "slug": "special-markup",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios26/docs/special-markup"
+      },
+      {
+        "title": "Keep lists consistent with ESLint",
+        "navTitle": "Keep lists consistent with ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
+        "title": "Features",
+        "navTitle": "Features",
+        "slug": "features",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/features"
       },
       {
         "title": "Experimental Animation",
@@ -594,11 +594,11 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-md3/docs/readme"
       },
       {
-        "title": "Keep lists consistent with ESLint",
-        "navTitle": "Keep lists consistent with ESLint",
-        "slug": "eslint",
+        "title": "Using ion-item-group",
+        "navTitle": "Using ion-item-group",
+        "slug": "using-ion-item-group",
         "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
+        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
       },
       {
         "title": "Special markup",
@@ -608,11 +608,11 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-md3/docs/special-markup"
       },
       {
-        "title": "Using ion-item-group",
-        "navTitle": "Using ion-item-group",
-        "slug": "using-ion-item-group",
+        "title": "Keep lists consistent with ESLint",
+        "navTitle": "Keep lists consistent with ESLint",
+        "slug": "eslint",
         "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
+        "path": "/projects/ionic-theme-md3/docs/eslint"
       },
       {
         "title": "Migration",
@@ -723,7 +723,7 @@ export const PROJECTS_EN = [
     "version": "0.12.2",
     "seoTitle": "Cloudflare Workers timezone utilities + ESLint | rdlabo",
     "description": "IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.",
-    "headline": "Timezone conversion and ESLint for Cloudflare Workers",
+    "headline": "Timezone conversion for Cloudflare Workers",
     "overview": "Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.",
     "featuresHeading": "Calendar building blocks",
     "features": [
@@ -734,10 +734,6 @@ export const PROJECTS_EN = [
       {
         "title": "Calendar boundaries",
         "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
-      },
-      {
-        "title": "ESLint guardrails",
-        "description": "Detect implicit Date and Intl timezone behavior and keep initialization out of request scope."
       }
     ],
     "path": "/projects/workers-timezone",
@@ -2102,7 +2098,7 @@ export const PROJECTS_JA = [
     "version": "22.0.0",
     "description": "Ionic Angularプロジェクト向けの共有アプリケーション基盤。",
     "headline": "一貫性と耐障害性を備えたIonic Angularアプリを構築する",
-    "overview": "型安全なStorage、Overlay、認証、HTTPポリシー、Realtime接続、Offline Replica、Theme、Review、印刷、Firebase、Live Updateを用途別エントリポイントから構成します。",
+    "overview": "型安全な設定の保存、戻り値に型が付くモーダル、IonicとAngular Signal Formsの連携から始められます。認証やNative機能は必要に応じて追加できます。",
     "featuresHeading": "提供するアプリケーション基盤",
     "features": [
       {
@@ -2114,8 +2110,8 @@ export const PROJECTS_JA = [
         "description": "Route Guard、アクセス権限状態、認証Header、安全なretry、error hookを共有します。"
       },
       {
-        "title": "Offline・Realtime",
-        "description": "スコープ付きLocal Replica、Durable Outbox、WebSocket再接続、再同期を連携します。"
+        "title": "Signal Forms",
+        "description": "Ionicの入力欄をAngular Signal Formsに接続し、検証メッセージとフィールドの状態を連携します。"
       },
       {
         "title": "任意のNative機能",
@@ -2132,13 +2128,6 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-kit/docs/getting-started"
       },
       {
-        "title": "ESLintでKitの使い方をチェック",
-        "navTitle": "ESLintでKitの使い方をチェック",
-        "slug": "eslint",
-        "section": "ガイド",
-        "path": "/projects/ionic-angular-kit/docs/eslint"
-      },
-      {
         "title": "Storage・Overlay",
         "navTitle": "Storage・Overlay",
         "slug": "storage-overlays",
@@ -2146,18 +2135,25 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-angular-kit/docs/storage-overlays"
       },
       {
-        "title": "認証・HTTP",
-        "navTitle": "認証・HTTP",
-        "slug": "auth-http",
-        "section": "ガイド",
-        "path": "/projects/ionic-angular-kit/docs/auth-http"
-      },
-      {
         "title": "フォーム",
         "navTitle": "フォーム",
         "slug": "forms",
         "section": "ガイド",
         "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
+        "title": "ESLintでKitの使い方をチェック",
+        "navTitle": "ESLintでKitの使い方をチェック",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
+        "title": "認証・HTTP",
+        "navTitle": "認証・HTTP",
+        "slug": "auth-http",
+        "section": "ガイド",
+        "path": "/projects/ionic-angular-kit/docs/auth-http"
       },
       {
         "title": "Offline・Realtime",
@@ -2469,13 +2465,6 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios26/docs/readme"
       },
       {
-        "title": "ESLintでリストの構造を整える",
-        "navTitle": "ESLintでリストの構造を整える",
-        "slug": "eslint",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
         "title": "ion-item-groupの使用方法",
         "navTitle": "ion-item-groupの使用方法",
         "slug": "using-ion-item-group",
@@ -2483,18 +2472,25 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
       },
       {
-        "title": "機能",
-        "navTitle": "機能",
-        "slug": "features",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
         "title": "特別なマークアップとクラス",
         "navTitle": "特別なマークアップとクラス",
         "slug": "special-markup",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios26/docs/special-markup"
+      },
+      {
+        "title": "ESLintでリストの構造を整える",
+        "navTitle": "ESLintでリストの構造を整える",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
+        "title": "機能",
+        "navTitle": "機能",
+        "slug": "features",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios26/docs/features"
       },
       {
         "title": "実験的なアニメーション",
@@ -2566,11 +2562,11 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-md3/docs/readme"
       },
       {
-        "title": "ESLintでリストの構造を整える",
-        "navTitle": "ESLintでリストの構造を整える",
-        "slug": "eslint",
+        "title": "ion-item-groupの使用方法",
+        "navTitle": "ion-item-groupの使用方法",
+        "slug": "using-ion-item-group",
         "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
+        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
       },
       {
         "title": "特別なマークアップ",
@@ -2580,11 +2576,11 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-md3/docs/special-markup"
       },
       {
-        "title": "ion-item-groupの使用方法",
-        "navTitle": "ion-item-groupの使用方法",
-        "slug": "using-ion-item-group",
+        "title": "ESLintでリストの構造を整える",
+        "navTitle": "ESLintでリストの構造を整える",
+        "slug": "eslint",
         "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
+        "path": "/projects/ionic-theme-md3/docs/eslint"
       },
       {
         "title": "移行",
@@ -2695,7 +2691,7 @@ export const PROJECTS_JA = [
     "version": "0.12.2",
     "seoTitle": "Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo",
     "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
-    "headline": "Cloudflare Workersの日時変換とESLint",
+    "headline": "Cloudflare Workersの日時変換",
     "overview": "IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
     "featuresHeading": "カレンダー処理の基本機能",
     "features": [
@@ -2706,10 +2702,6 @@ export const PROJECTS_JA = [
       {
         "title": "日付の境界",
         "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
-      },
-      {
-        "title": "ESLintによる再発防止",
-        "description": "Date・Intlの暗黙のタイムゾーン依存と、リクエストスコープでの初期化を検出します。"
       }
     ],
     "path": "/projects/workers-timezone",

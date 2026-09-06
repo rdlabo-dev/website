@@ -56,13 +56,4 @@ export const appConfig: ApplicationConfig = {
 
 Angularは複数の `provideSignalFormsConfig` class設定をmergeしません。アプリが独自設定を提供する場合は、両方のproviderを登録して順序に依存せず、必要なclass mappingを1つのproviderへまとめてください。
 
-`@rdlabo/eslint-plugin-rules` を使う場合は、関連するstandalone componentすべてがadapterをimportした後にだけadapter-aware modeを有効にします。
-
-```js
-{
-  files: ['**/*.html'],
-  rules: {
-    '@rdlabo/rules/require-ion-error-text': ['error', { formFieldProvidesErrorText: true }],
-  },
-}
-```
+検査の設定は [ESLintでKitの使い方をチェック](/docs/eslint) を参照してください。

@@ -883,21 +883,21 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
+    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
     description: text(
-      'Cloudflare Workers timezone utilities with a companion ESLint preset for human and AI contributions.',
-      'Cloudflare Workersの日時処理と、新人・AIの変更を検査するESLint presetをセットで提供。',
+      'Timezone utilities for Cloudflare Workers, paired with ESLint checks.',
+      'Cloudflare Workersの日時処理とESLintによる検査をセットで提供。',
     ),
     headline: text(
       'Adopt timezone utilities and ESLint together',
       '日時処理とESLintをセットで導入する',
     ),
     overview: text(
-      'Use @rdlabo/workers-timezone for explicit IANA timezone conversions and @rdlabo/eslint-plugin-rules to check new code. Adopt both so newcomers and AI coding agents receive feedback when they reintroduce host-local Date or Intl behavior. Recommended setup includes installing the plugin separately, enabling workers-timezone/recommended with typed linting, and running lint in CI. Static checks cover supported operations and do not replace timezone tests.',
-      '@rdlabo/workers-timezoneでIANAタイムゾーンを明示して日時を変換し、@rdlabo/eslint-plugin-rulesで新しく書かれるコードを検査します。新人やAIがhost localのDate・Intlを再導入したときにも検出できるよう、両方の導入を推奨します。pluginを別途インストールし、typed lintingとworkers-timezone/recommendedを有効にしてCIでlintを実行するところまでが推奨の導入手順です。静的解析は対応する操作を検査し、タイムゾーンのテストを置き換えるものではありません。',
+      'Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.',
+      'IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。',
     ),
     featuresHeading: text('Calendar building blocks', 'カレンダー処理の基本機能'),
     features: [
@@ -959,7 +959,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-mysql',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
+    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -972,8 +972,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '接続と再試行の境界を明確にしてMySQLを使う',
     ),
     overview: text(
-      'Read a real query result in the local exercise, then move to invocation-scoped Hyperdrive connections. The package handles MySQL access and retries; your application keeps its schema and transaction policy. Hono is optional.',
-      'ローカルで実際のクエリ結果を確認し、呼び出し単位のHyperdrive接続へ進めます。パッケージはMySQLアクセスと再試行を担当し、スキーマとtransactionの方針はアプリが所有します。Honoは必須ではありません。',
+      'MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.',
+      'Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック再試行、Drizzle連携を提供します。',
     ),
     featuresHeading: text('Database building blocks', 'データベースの基本機能'),
     features: [
@@ -1032,7 +1032,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
     // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'd7eba18bbc826ff01884cbc3bd0daf1319910c2a',
+    englishDocsRef: 'b4b40bb35b5ec3220f61bad89658c065718b2c3a',
     category: 'developer-tools',
     icon: 'server',
     adapter: 'markdown',
@@ -1045,8 +1045,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       '小さなHono APIで共通のHTTP動作を試す',
     ),
     overview: text(
-      'Start with a health response, weak ETags, and predictable JSON errors without creating a Cloudflare account. Add authentication, queues, or other helpers when needed. Your routes and business rules stay in your application; database access and timezone conversions have dedicated packages.',
-      'Cloudflareアカウントなしで、health応答・weak ETag・共通形式のJSONエラーを確認できます。必要に応じて認証やQueueなどを追加し、ルートと業務ルールはアプリに残します。DBアクセスと日時変換には専用パッケージがあります。',
+      'Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.',
+      'バリデーション、認証、JSONエラー、Queue、テストヘルパーを組み合わせてHono APIを構築できます。',
     ),
     featuresHeading: text('Infrastructure areas', '提供するインフラ領域'),
     features: [
@@ -1149,8 +1149,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'コード規約をレビュー前に実行できる検査にする',
     ),
     overview: text(
-      'Try one TypeScript rule: introduce a violation, inspect its diagnostics, and apply an autofix. Then choose Angular/Ionic, Workers error-boundary, or timezone presets for your application. The plugin checks code during development; runtime behavior remains the job of your application and libraries.',
-      'まずTypeScriptの1ルールで、違反の検出・診断・自動修正を試せます。その後、アプリに合うAngular・Ionic、Workersのエラー境界、タイムゾーンのpresetを選びます。pluginは開発時にコードを検査し、実行時の処理はアプリとライブラリが担当します。',
+      'ESLint presets for Angular/Ionic conventions, Workers error boundaries, and timezone-safe code.',
+      'Angular・Ionicの設計規約、Workersのエラー境界、日時処理を検査するESLint presetを提供します。',
     ),
     featuresHeading: text('What the plugin covers', 'プラグインが検査する領域'),
     features: [

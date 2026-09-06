@@ -11,7 +11,7 @@ export const PROJECT = {
   "version": "22.1.0",
   "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。",
   "headline": "コード規約をレビュー前に実行できる検査にする",
-  "overview": "まずTypeScriptの1ルールで、違反の検出・診断・自動修正を試せます。その後、アプリに合うAngular・Ionic、Workersのエラー境界、タイムゾーンのpresetを選びます。pluginは開発時にコードを検査し、実行時の処理はアプリとライブラリが担当します。",
+  "overview": "Angular・Ionicの設計規約、Workersのエラー境界、日時処理を検査するESLint presetを提供します。",
   "featuresHeading": "プラグインが検査する領域",
   "features": [
     {

@@ -11,7 +11,7 @@ export const PROJECT = {
   "version": "22.1.0",
   "description": "Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.",
   "headline": "See code conventions work before code review",
-  "overview": "Try one TypeScript rule: introduce a violation, inspect its diagnostics, and apply an autofix. Then choose Angular/Ionic, Workers error-boundary, or timezone presets for your application. The plugin checks code during development; runtime behavior remains the job of your application and libraries.",
+  "overview": "ESLint presets for Angular/Ionic conventions, Workers error boundaries, and timezone-safe code.",
   "featuresHeading": "What the plugin covers",
   "features": [
     {

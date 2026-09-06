@@ -11,7 +11,7 @@ export const PROJECT = {
   "version": "0.12.2",
   "description": "Infrastructure building blocks for Hono APIs on Cloudflare Workers.",
   "headline": "Try consistent HTTP behavior in a small Hono API",
-  "overview": "Start with a health response, weak ETags, and predictable JSON errors without creating a Cloudflare account. Add authentication, queues, or other helpers when needed. Your routes and business rules stay in your application; database access and timezone conversions have dedicated packages.",
+  "overview": "Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.",
   "featuresHeading": "Infrastructure areas",
   "features": [
     {

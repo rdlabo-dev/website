@@ -4,7 +4,7 @@ title: 最初のMySQLクエリを実行する
 
 テーブルやアプリのスキーマを作らず、パッケージを通して実際のMySQLの結果を読みます。その後、ローカルNode.js接続からWorkersのHyperdrive bindingへ移す際の違いを確認します。
 
-Workers MySQLはDBアクセスと再試行を担当します。Honoは必須ではなく、スキーマやクエリの方針はアプリが所有します。IANA表示日付は[Workers Timezone＋ESLint](/workers-timezone/docs/quickstart)の領域で、DBの固定 `+09:00` 保存ヘルパーとは独立しています。
+IANA表示日付は[Workers Timezone＋ESLint](/workers-timezone/docs/quickstart)の領域で、DBの固定 `+09:00` 保存ヘルパーとは独立しています。
 
 ## 1. ローカルの演習環境を用意する
 
@@ -81,7 +81,7 @@ docker stop workers-mysql-docs-demo
 
 ## 3. Workers・Hyperdriveへ移す
 
-Node.jsではアプリがpoolを所有して閉じます。Workersでは `nodejs_compat` を有効にし、DBへ接続する `DB` というHyperdrive bindingを設定して、呼び出しごとにデータベースを生成します。この段階にはアカウントと設定済みbindingが必要です。npmパッケージのインストールだけでは作成されません。
+Node.jsではアプリがpoolを所有して閉じます。Workersでは `nodejs_compat` を有効にし、DBへ接続する `DB` というHyperdrive bindingを設定して、呼び出しごとにデータベースを生成します。
 
 bindingの設定後、次の完全なWorker例で `[{"value":42}]` を返せます。両方の役割に1つのbindingを使い、生SQLを実行するためスキーマは不要です。
 

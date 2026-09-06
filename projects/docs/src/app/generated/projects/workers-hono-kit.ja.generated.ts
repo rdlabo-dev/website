@@ -11,7 +11,7 @@ export const PROJECT = {
   "version": "0.12.2",
   "description": "Cloudflare Workers上のHono API向けインフラストラクチャ部品集。",
   "headline": "小さなHono APIで共通のHTTP動作を試す",
-  "overview": "Cloudflareアカウントなしで、health応答・weak ETag・共通形式のJSONエラーを確認できます。必要に応じて認証やQueueなどを追加し、ルートと業務ルールはアプリに残します。DBアクセスと日時変換には専用パッケージがあります。",
+  "overview": "バリデーション、認証、JSONエラー、Queue、テストヘルパーを組み合わせてHono APIを構築できます。",
   "featuresHeading": "提供するインフラ領域",
   "features": [
     {

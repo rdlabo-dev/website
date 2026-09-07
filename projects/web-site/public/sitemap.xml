@@ -34,7 +34,8 @@
   <url><loc>https://rdlabo.dev/articles/workers-hono-container-lifecycle</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-perflog-vs-tracing</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-hyperdrive-connection-lifecycle</loc></url>
-  <url><loc>https://rdlabo.dev/articles/workers-hono-mysql-jst-timezone</loc></url>
+  <url><loc>https://rdlabo.dev/articles/workers-hono-mysql-jst-timezone</loc>
+    <lastmod>2026-09-07</lastmod></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-firebase-id-token</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-aws-credentials</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-wrangler-dev-aws-profile</loc></url>

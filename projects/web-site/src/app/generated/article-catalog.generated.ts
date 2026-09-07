@@ -318,7 +318,8 @@ export const ARTICLE_SUMMARIES = [
   {
     "slug": "workers-hono-mysql-jst-timezone",
     "title": "Dates Shifted by 9 Hours After Moving to Cloudflare Workers—Aligning DB Connections and Business Time to JST",
-    "description": "Fix implicit local timezone drift with mysql2 timezone '+09:00', JST business-time helpers, ESLint guards, and real MySQL wire tests.",
+    "description": "Fix implicit local timezone drift with mysql2 timezone '+09:00', @rdlabo/workers-timezone, ESLint guards, and real MySQL wire tests.",
+    "updatedAt": "2026-09-07",
     "image": "https://rdlabo.dev/article-images/workers-hono-mysql-jst-timezone.svg",
     "imageWidth": 1200,
     "imageHeight": 630,

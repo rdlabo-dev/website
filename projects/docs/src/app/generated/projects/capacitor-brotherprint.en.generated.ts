@@ -28,6 +28,15 @@ export const PROJECT = {
     }
   ],
   "path": "/projects/capacitor-brotherprint",
+  "relatedArticles": [
+    {
+      "slug": "capacitor-brotherprint-bluetooth-v8-2",
+      "title": "From Capacitor to Brother Printers: Official Bluetooth Support in v8.2.0",
+      "description": "Brother Print v8.2.0 fixes the iOS Bluetooth discovery crash, corrects Android permissions, and adds optional printer filtering and SDK-free regression tests.",
+      "publishedDate": "2026-09-09",
+      "url": "https://rdlabo.dev/articles/capacitor-brotherprint-bluetooth-v8-2"
+    }
+  ],
   "pages": [
     {
       "title": "Getting Started",

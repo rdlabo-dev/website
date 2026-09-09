@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import ts from 'typescript';
+import { normalizeTranslationCode } from './translation-code';
 import { projectDefinitions } from './project-manifest';
 import {
   extractPackageReadme,
@@ -52,7 +53,8 @@ function fencedCodeBlocks(markdown: string): { language: string; body: string }[
   const blocks: { language: string; body: string }[] = [];
   const pattern = /^```([^\n`]*)\r?\n([\s\S]*?)^```/gm;
   for (const match of markdown.matchAll(pattern)) {
-    blocks.push({ language: match[1], body: match[2] });
+    const normalized = normalizeTranslationCode(match[0]);
+    blocks.push({ language: match[1], body: normalized.slice(normalized.indexOf('\n') + 1, -3) });
   }
   return blocks;
 }
@@ -384,7 +386,7 @@ test('imports every installed ESLint rule README with matching EN/JA code fences
     assert.deepEqual(
       japaneseBlocks,
       englishBlocks,
-      `${ruleName} fenced code blocks must match byte-for-byte between EN and JA`,
+      `${ruleName} non-comment code must match byte-for-byte between EN and JA`,
     );
 
     for (const [locale, markdown] of [
@@ -497,7 +499,7 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
       assert.deepEqual(
         fencedCodeBlocks(japanese),
         fencedCodeBlocks(english),
-        `${projectId}/${pageFile} fenced code blocks must match byte-for-byte between EN and JA`,
+        `${projectId}/${pageFile} non-comment code must match byte-for-byte between EN and JA`,
       );
     }
     for (const markdown of [...allEnglish, ...allJapanese]) {
@@ -607,7 +609,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
       assert.deepEqual(
         fencedCodeBlocks(japanese),
         fencedCodeBlocks(english),
-        `${projectId}/${pageFile} fenced code blocks must match byte-for-byte between EN and JA`,
+        `${projectId}/${pageFile} non-comment code must match byte-for-byte between EN and JA`,
       );
       for (const markdown of [english, japanese]) {
         assert.doesNotMatch(markdown, new RegExp(['rdlabo', 'team'].join('-')));
@@ -790,7 +792,7 @@ test('imports the remaining rdlabo utility READMEs from exact public releases', 
       assert.deepEqual(
         fencedCodeBlocks(japanese),
         fencedCodeBlocks(english),
-        `${projectId}/${pageFile} fenced code blocks must match byte-for-byte between EN and JA`,
+        `${projectId}/${pageFile} non-comment code must match byte-for-byte between EN and JA`,
       );
       for (const markdown of [english, japanese]) {
         assert.doesNotMatch(markdown, new RegExp(['rdlabo', 'team'].join('-')));

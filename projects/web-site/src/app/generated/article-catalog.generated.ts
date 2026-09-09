@@ -4,6 +4,7 @@ export const ARTICLE_SUMMARIES = [
     "slug": "capacitor-brotherprint-bluetooth-v8-2",
     "title": "From Capacitor to Brother Printers: Official Bluetooth Support in v8.2.0",
     "description": "Brother Print v8.2.0 fixes the iOS Bluetooth discovery crash, corrects Android permissions, and adds optional printer filtering and SDK-free regression tests.",
+    "updatedAt": "2026-09-09",
     "image": "https://rdlabo.dev/article-images/capacitor-brotherprint-bluetooth-v8-2.svg",
     "imageWidth": 1200,
     "imageHeight": 630,

@@ -2,6 +2,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import fm from 'front-matter';
 import { isTranslationArticle } from './import-zenn-articles';
+import { normalizeTranslationCode } from './translation-code';
 
 interface TranslationFrontMatter {
   title?: string;
@@ -105,20 +106,19 @@ async function validate(): Promise<void> {
     if (target.attributes.emoji !== source.attributes.emoji) errors.push(`${slug}: emoji changed`);
 
     const sourceCode = extractFencedCodeBlocks(source.body);
+    const matchesCode = (blocks: string[]): boolean =>
+      JSON.stringify(sourceCode.map(normalizeTranslationCode)) ===
+      JSON.stringify(blocks.map(normalizeTranslationCode));
     let targetCode = extractFencedCodeBlocks(target.body);
-    if (
-      fixCode &&
-      sourceCode.length === targetCode.length &&
-      JSON.stringify(sourceCode) !== JSON.stringify(targetCode)
-    ) {
+    if (fixCode && sourceCode.length === targetCode.length && !matchesCode(targetCode)) {
       const restoredBody = restoreFencedCodeBlocks(target.body, sourceCode);
       targetRaw = targetRaw.slice(0, targetRaw.length - target.body.length) + restoredBody;
       await writeFile(targetPath, targetRaw, 'utf8');
       target = fm<TranslationFrontMatter>(targetRaw);
       targetCode = extractFencedCodeBlocks(target.body);
     }
-    if (JSON.stringify(sourceCode) !== JSON.stringify(targetCode)) {
-      errors.push(`${slug}: fenced code blocks differ from the Japanese source`);
+    if (!matchesCode(targetCode)) {
+      errors.push(`${slug}: fenced code differs from the Japanese source beyond comments`);
     }
 
     if (

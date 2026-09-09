@@ -3,6 +3,7 @@ title: "From Capacitor to Brother Printers: Official Bluetooth Support in v8.2.0
 description: "Brother Print v8.2.0 fixes the iOS Bluetooth discovery crash, corrects Android permissions, and adds optional printer filtering and SDK-free regression tests."
 zennSlug: capacitor-brotherprint-bluetooth-v8-2
 emoji: "🖨️"
+updatedAt: "2026-09-09"
 relatedLibraries:
   - capacitor-brotherprint
 ---
@@ -32,7 +33,7 @@ Instead of returning an error to JavaScript, the native exception terminated the
 The cause was the `Info.plist` example in our repository. It declared `UISupportedExternalAccessoryProtocols` as a string rather than an array.
 
 ```xml
-<!-- 修正前 -->
+<!-- Before -->
 <key>UISupportedExternalAccessoryProtocols</key>
 <string>com.brother.ptcbp</string>
 ```
@@ -40,7 +41,7 @@ The cause was the `Info.plist` example in our repository. It declared `UISupport
 The correct configuration is:
 
 ```xml
-<!-- 修正後 -->
+<!-- After -->
 <key>UISupportedExternalAccessoryProtocols</key>
 <array>
     <string>com.brother.ptcbp</string>
@@ -91,7 +92,7 @@ import {
 
 await BrotherPrint.search({
   port: BRLMPrinterPort.bluetooth,
-  searchDuration: 15, // 型上は必須ですが、Bluetooth Classicでは使用しません
+  searchDuration: 15, // Required by the type, but not used for Bluetooth Classic
   bluetoothPrintersOnly: true,
 });
 ```

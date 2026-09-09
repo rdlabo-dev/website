@@ -81,7 +81,7 @@ Archive and article pages are prerendered from generated catalog data (`app.rout
 
 - Translate prose into natural English suitable for developer documentation.
 - Technical terms (class names, method names, package names) remain untranslated.
-- **Fenced code blocks must remain byte-for-byte identical to the Japanese Zenn source.** Do not translate code comments or examples inside fences.
+- **Translate explanatory code comments into English. Keep all non-comment code byte-for-byte identical to the Japanese Zenn source**, including literals, identifiers, commands, and whitespace outside comments. Never change compiler directives or other behavior-affecting comments. The validator permits comment translation in JavaScript/TypeScript and HTML/XML; other languages currently retain exact comparison and require extending the validator before translating their comments.
 - note remains the Japanese source of truth; this repo owns the reviewed English Markdown and localized image assets. Keep note automatic translation disabled so the canonical English version stays on `rdlabo.dev`.
 
 ### Zenn article workflow (LLM-maintained, feed-discovered)
@@ -91,7 +91,7 @@ Zenn candidates are discovered automatically; do not require the user to provide
 1. Run `npm run articles:stage-zenn`. If a local checkout of the Japanese Zenn Markdown is available, pass it with `npm run articles:stage-zenn -- --source {articles-directory}` so code fences and Markdown are preserved from the local source.
 2. Read `tmp/zenn-import/inventory.json`. The importer fetches the full public RSS feed, excludes slugs already translated in `projects/web-site/src/articles`, non-public entries, English articles, and Japanese articles that are themselves translations. It stages eligible missing Japanese articles under `tmp/zenn-import/`, newest first in the inventory.
 3. Select the newest eligible staged entry unless the user names a different Zenn article. Copy its staged Markdown to `projects/web-site/src/articles/{zennSlug}.md` and use an LLM to translate the prose, title, and description into natural English.
-4. Keep every fenced code block byte-for-byte identical to the staged Japanese source, including comments and whitespace. Preserve heading levels and order, technical identifiers, `zennSlug`, and `emoji`.
+4. Translate explanatory comments inside code fences; preserve all non-comment code and whitespace exactly. Preserve heading levels and order, technical identifiers, `zennSlug`, and `emoji`.
 5. Run `npm run articles:validate-translations`. Resolve every reported error and untranslated-prose warning; do not use `--fix-code` without reviewing the resulting diff.
 6. Run `npm run articles:generate`, then the normal CI sequence.
 
@@ -170,7 +170,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 ### Translation rules
 
-- **Fenced code blocks must be byte-for-byte identical between EN and JA.** Do not translate code comments or examples.
+- **Translate explanatory code comments into the target language; keep all non-comment code byte-for-byte identical between EN and JA.** Preserve literals, identifiers, commands, whitespace outside comments, and behavior-affecting directives. The validator supports comment translation in JavaScript/TypeScript and HTML/XML; extend its language support before translating comments in other languages.
 - Translate prose into natural Japanese suitable for developer documentation.
 - Technical terms (class names, method names, package names) remain untranslated.
 - Localize page titles for guides and narrative pages. Identifiers, product names, rule names, and generic titles (`API`, `CLI API`, `@rdlabo/...`) may remain the same in both locales.

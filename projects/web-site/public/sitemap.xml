@@ -9,7 +9,8 @@
   <url><loc>https://rdlabo.dev/articles/archive/2022</loc></url>
   <url><loc>https://rdlabo.dev/articles/archive/2021</loc></url>
   <url><loc>https://rdlabo.dev/articles/archive/2020</loc></url>
-  <url><loc>https://rdlabo.dev/articles/capacitor-brotherprint-bluetooth-v8-2</loc></url>
+  <url><loc>https://rdlabo.dev/articles/capacitor-brotherprint-bluetooth-v8-2</loc>
+    <lastmod>2026-09-09</lastmod></url>
   <url><loc>https://rdlabo.dev/articles/ionic-theme-reusable-css-v9-1</loc></url>
   <url><loc>https://rdlabo.dev/articles/cloudflare-workers-ai-model-benchmark</loc></url>
   <url><loc>https://rdlabo.dev/articles/playwright-visual-regression-ci-baseline</loc>

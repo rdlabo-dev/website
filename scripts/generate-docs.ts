@@ -195,6 +195,14 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
 function rewriteInternalLinks(html: string, project: ProjectDefinition, locale: Locale): string {
   const localePrefix = locale === 'ja' ? '/ja' : '';
   let rewritten = html.replace(
+    /<a\b[^>]*\bhref="https:\/\/docs\.rdlabo\.dev(\/projects\/[^" ]*)"[^>]*>/g,
+    (tag, path: string) =>
+      tag
+        .replace(`https://docs.rdlabo.dev${path}`, `${localePrefix}${path}`)
+        .replace(/ target="_blank"/g, '')
+        .replace(/ rel="[^"]*"/g, ''),
+  );
+  rewritten = rewritten.replace(
     /href="\/docs\//g,
     `href="${localePrefix}/projects/${project.slug}/docs/`,
   );

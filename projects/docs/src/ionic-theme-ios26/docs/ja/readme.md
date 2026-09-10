@@ -38,7 +38,7 @@ Note: **@ionic/core@ < 8.8.1 を使う場合は**、@rdlabo/ionic-theme-ios26@2.
 
 /**
  * If you will use the design of ion-item-group with ion-list on Android as well, import it.
- * More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v9.2.0/docs/using-ion-item-group.md
+ * More info: https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/using-ion-item-group
  * Note: This stylesheet is included in `@rdlabo/ionic-theme-md3`.
  * @import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css';
  */

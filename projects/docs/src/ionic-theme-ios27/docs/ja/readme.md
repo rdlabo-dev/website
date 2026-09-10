@@ -46,7 +46,7 @@ npm install @rdlabo/ionic-theme-ios27
 
 /**
  * If you will use the design of ion-item-group with ion-list on Android as well, import it.
- * More info: ./docs/using-ion-item-group.md
+ * More info: https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group
  * Note: This stylesheet is included in `@rdlabo/ionic-theme-md3`.
  * @import '@rdlabo/ionic-theme-ios27/dist/css/md-ion-list-inset.css';
  */

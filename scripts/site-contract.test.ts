@@ -676,9 +676,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
   );
   assert.match(
     iosReadme,
-    new RegExp(
-      `https://github\\.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v${iosExpected.version}/docs/using-ion-item-group\\.md`,
-    ),
+    /More info: https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-ios26\/docs\/using-ion-item-group/,
   );
 
   assert.equal(yamlTitle(usingDocJa), 'ion-item-groupの使用方法');
@@ -1612,4 +1610,13 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
   assert.match(oldGuide!.editUrl, /\/edit\/ios26\/docs\/migration\.md$/);
   assert.match(newGuide!.editUrl, /\/edit\/main\/docs\/migration\.md$/);
   assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
+});
+
+test('imported portal links stay in the current tab', () => {
+  const html = ionicThemeIos27En.pages.map((page) => page.html).join('');
+  assert.doesNotMatch(html, /href="https:\/\/docs\.rdlabo\.dev\/projects\//);
+  for (const tag of html.match(/<a\b[^>]*href="\/projects\/[^>]*>/g) ?? []) {
+    assert.doesNotMatch(tag, /target="_blank"/);
+  }
+  assert.match(html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
 });

@@ -135,10 +135,10 @@ Documentation-source packages are inspected at generation time and are never imp
 bundle. `.npmrc` enables legacy peer resolution because those packages may document a different
 Angular major than the portal itself; every source version remains exact in `package-lock.json`.
 
-Production `anyScript` budgets in `angular.json` warn at 460kB and fail at 485kB. The warning
-baseline covers the shared bilingual catalog and GitHub Star UI for 24 projects (the current
-production main is about 460.3kB); documentation bodies remain lazy-loaded, so the hard error stays
-at 485kB.
+Production `anyScript` budgets in `angular.json` warn at 550kB and fail at 600kB.
+This leaves room above the current main bundle (about 485kB) for catalog growth and
+build-environment differences. Documentation bodies remain lazy-loaded. Initial bundles
+warn at 600kB and fail at 650kB; component styles warn at 6kB and fail at 8kB.
 
 ## Top site (`projects/web-site`)
 

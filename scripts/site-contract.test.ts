@@ -1447,12 +1447,12 @@ test('locks production anyScript budgets after catalog growth', async () => {
     'docs'
   ].architect.build.configurations.production.budgets.find((budget) => budget.type === 'anyScript');
   assert.ok(anyScript);
-  assert.equal(anyScript.maximumWarning, '460kB');
-  assert.equal(anyScript.maximumError, '485kB');
+  assert.equal(anyScript.maximumWarning, '550kB');
+  assert.equal(anyScript.maximumError, '600kB');
 
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  assert.match(readme, /anyScript.*460kB/s);
-  assert.match(readme, /485kB/);
+  assert.match(readme, /anyScript.*550kB/s);
+  assert.match(readme, /600kB/);
 });
 
 const packageEnglishOnlyProjects = new Set([

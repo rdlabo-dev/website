@@ -29,6 +29,7 @@ export interface ProjectPageDefinition {
 }
 
 export interface ProjectFeatureDefinition {
+  icon?: string;
   title: LocalizedText;
   description: LocalizedText;
 }
@@ -1740,6 +1741,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can build', '実装できること'),
     features: [
       {
+        icon: 'sheet',
         title: text('PaymentSheet', 'PaymentSheet'),
         description: text(
           'Collect payment in a single native flow with PaymentIntent or SetupIntent.',
@@ -1747,6 +1749,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'flow',
         title: text('PaymentFlow', 'PaymentFlow'),
         description: text(
           'Collect payment details first, then confirm after an intermediate step in your app.',
@@ -1754,6 +1757,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'wallet',
         title: text('Apple Pay', 'Apple Pay'),
         description: text(
           'Present Apple Pay for instant checkout where it is available.',
@@ -1761,6 +1765,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'contactless',
         title: text('Google Pay', 'Google Pay'),
         description: text(
           'Present Google Pay for instant checkout where it is available.',
@@ -1768,6 +1773,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'web',
         title: text('Web integration', 'Web連携'),
         description: text(
           'Use the same plugin APIs with web frameworks and browsers alongside native apps.',
@@ -1897,6 +1903,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'identity',
         title: text('Identity Verification Sheet', '本人確認シート'),
         description: text(
           'Create and present the verification sheet after your backend supplies the required session credentials.',
@@ -1904,6 +1911,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'devices',
         title: text('Native and web', 'ネイティブとWeb'),
         description: text(
           'Use one API across platforms, including supported browser integrations.',
@@ -1911,6 +1919,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'events',
         title: text('Result events', '結果イベント'),
         description: text(
           'Register listeners before presenting the sheet so verification outcomes are not missed.',
@@ -1965,6 +1974,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'card',
         title: text('In-person payments', '対面決済'),
         description: text(
           'Collect a payment method on a connected reader and confirm the PaymentIntent.',
@@ -1972,6 +1982,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'search',
         title: text('Reader discovery', 'リーダーの探索'),
         description: text(
           'Discover nearby or simulated readers, then connect before collecting payment details.',
@@ -1979,6 +1990,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'events',
         title: text('Reader events', 'リーダーイベント'),
         description: text(
           'Handle display, status, input, and software update events during checkout.',
@@ -1986,6 +1998,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'phone',
         title: text('Tap to Pay', 'Tap to Pay'),
         description: text(
           'Connect with Tap to Pay on devices and configurations that support it.',
@@ -2055,6 +2068,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'banner',
         title: text('Banner ads', 'バナー広告'),
         description: text(
           'Place adaptive or fixed-size banners at the top or bottom of the native view.',
@@ -2062,6 +2076,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'expand',
         title: text('Full-screen ads', 'フルスクリーン広告'),
         description: text(
           'Prepare and show interstitial, rewarded, and rewarded interstitial ads.',
@@ -2069,6 +2084,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'launch',
         title: text('App open ads', 'アプリ起動時広告'),
         description: text(
           'Load and present ads when users bring your app to the foreground.',
@@ -2076,6 +2092,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'shield',
         title: text('Consent controls', '同意管理'),
         description: text(
           'Use Google UMP and iOS tracking authorization APIs before requesting ads.',
@@ -2174,6 +2191,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'shield',
         title: text('Facebook authentication', 'Facebook認証'),
         description: text(
           'Log in, log out, inspect the current token, and renew data access.',
@@ -2181,6 +2199,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'profile',
         title: text('Profile requests', 'プロフィール取得'),
         description: text(
           'Request permitted profile fields from the Facebook Graph API.',
@@ -2188,6 +2207,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'events',
         title: text('App Events', 'App Events'),
         description: text(
           'Log custom events and configure automatic event and advertiser settings.',
@@ -2195,6 +2215,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'devices',
         title: text('Native and web', 'ネイティブとWeb'),
         description: text(
           'Use one Capacitor API across Android, iOS, and Web.',
@@ -2240,6 +2261,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('On-device AI features', 'オンデバイスAI機能'),
     features: [
       {
+        icon: 'web',
         title: text('Text generation in Chrome', 'Chromeでテキスト生成'),
         description: text(
           'Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting.',
@@ -2247,6 +2269,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'chat',
         title: text('Chat lifecycle', 'チャットのライフサイクル'),
         description: text(
           'Create chats, stream responses, observe generation state, and cancel work.',
@@ -2254,6 +2277,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'check',
         title: text('Availability first', '利用可否を先に確認'),
         description: text(
           'Check text and image capabilities separately before generation.',
@@ -2261,6 +2285,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'download',
         title: text('Explicit Android fallback', '明示的なAndroidフォールバック'),
         description: text(
           'Configure an app-managed LiteRT-LM model when needed; validate on physical devices.',
@@ -2338,6 +2363,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'scan',
         title: text('Modal scanning', 'モーダルスキャン'),
         description: text(
           'Open a native modal and scan inside it so web assets do not need to change.',
@@ -2345,6 +2371,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('Continuous multi-scan', '連続マルチスキャン'),
         description: text(
           'Keep scanning successive codes with isMulti mode.',
@@ -2352,6 +2379,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'flash',
         title: text('Light and feedback', 'ライトとフィードバック'),
         description: text(
           'Use automatic light control, vibration, and visible detection highlighting.',
@@ -2391,6 +2419,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'capture',
         title: text('React after a capture', '撮影後の案内'),
         description: text(
           'Show a message or update app UI when a screenshot event arrives.',
@@ -2398,6 +2427,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'eye',
         title: text('Watch while a screen is open', '画面に合わせて監視'),
         description: text(
           'Start watching on entry and release the watcher and listener when leaving.',
@@ -2442,6 +2472,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'file',
         title: text('Print files', 'ファイル印刷'),
         description: text(
           'Present the printing UI for a file path or local URL on Android and iOS.',
@@ -2449,6 +2480,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'web',
         title: text('Print WebView', 'WebView印刷'),
         description: text(
           'Present the printing UI for the current WebView content.',
@@ -2456,6 +2488,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'shield',
         title: text('Safe file lifecycle', '安全なファイルライフサイクル'),
         description: text(
           'Await printFile until the OS no longer needs the source, then delete it safely.',
@@ -2502,6 +2535,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What you can do', 'できること'),
     features: [
       {
+        icon: 'search',
         title: text('Printer discovery', 'プリンター探索'),
         description: text(
           'Search nearby Brother printers by port and receive availability events.',
@@ -2509,6 +2543,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'image',
         title: text('Image printing', '画像印刷'),
         description: text(
           'Send base64 images with model, label, and channel settings to printImage.',
@@ -2516,6 +2551,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'events',
         title: text('Print lifecycle events', '印刷ライフサイクルイベント'),
         description: text(
           'Listen for print success, communication failure, and print error outcomes.',

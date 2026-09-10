@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "search",
       "title": "プリンター探索",
       "description": "ポート指定でBrotherプリンターを探索し、利用可能イベントを受け取ります。"
     },
     {
+      "icon": "image",
       "title": "画像印刷",
       "description": "モデル・ラベル・チャネル設定付きのbase64画像をprintImageへ送ります。"
     },
     {
+      "icon": "events",
       "title": "印刷ライフサイクルイベント",
       "description": "印刷成功、通信失敗、印刷エラーの結果をリスナーで受け取ります。"
     }

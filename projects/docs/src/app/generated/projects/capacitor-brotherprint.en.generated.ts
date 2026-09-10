@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "search",
       "title": "Printer discovery",
       "description": "Search nearby Brother printers by port and receive availability events."
     },
     {
+      "icon": "image",
       "title": "Image printing",
       "description": "Send base64 images with model, label, and channel settings to printImage."
     },
     {
+      "icon": "events",
       "title": "Print lifecycle events",
       "description": "Listen for print success, communication failure, and print error outcomes."
     }

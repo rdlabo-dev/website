@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "On-device AI features",
   "features": [
     {
+      "icon": "web",
       "title": "Text generation in Chrome",
       "description": "Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting."
     },
     {
+      "icon": "chat",
       "title": "Chat lifecycle",
       "description": "Create chats, stream responses, observe generation state, and cancel work."
     },
     {
+      "icon": "check",
       "title": "Availability first",
       "description": "Check text and image capabilities separately before generation."
     },
     {
+      "icon": "download",
       "title": "Explicit Android fallback",
       "description": "Configure an app-managed LiteRT-LM model when needed; validate on physical devices."
     }

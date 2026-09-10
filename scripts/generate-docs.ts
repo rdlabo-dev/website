@@ -186,6 +186,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
     overview: localize(project.overview, locale),
     featuresHeading: localize(project.featuresHeading, locale),
     features: project.features.map((feature) => ({
+      ...(feature.icon ? { icon: feature.icon } : {}),
       title: localize(feature.title, locale),
       description: localize(feature.description, locale),
     })),

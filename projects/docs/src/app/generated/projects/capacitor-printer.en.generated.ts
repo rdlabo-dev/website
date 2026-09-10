@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "file",
       "title": "Print files",
       "description": "Present the printing UI for a file path or local URL on Android and iOS."
     },
     {
+      "icon": "web",
       "title": "Print WebView",
       "description": "Present the printing UI for the current WebView content."
     },
     {
+      "icon": "shield",
       "title": "Safe file lifecycle",
       "description": "Await printFile until the OS no longer needs the source, then delete it safely."
     }

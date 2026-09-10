@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "card",
       "title": "対面決済",
       "description": "接続したリーダーで支払い方法を収集し、PaymentIntentを確定します。"
     },
     {
+      "icon": "search",
       "title": "リーダーの探索",
       "description": "近くのリーダーまたはシミュレーションリーダーを探索し、支払い情報を収集する前に接続します。"
     },
     {
+      "icon": "events",
       "title": "リーダーイベント",
       "description": "会計中の画面、状態、入力、ソフトウェア更新イベントを処理します。"
     },
     {
+      "icon": "phone",
       "title": "Tap to Pay",
       "description": "対応する端末と設定でTap to Payへ接続します。"
     }

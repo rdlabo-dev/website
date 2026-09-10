@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "identity",
       "title": "本人確認シート",
       "description": "バックエンドから必要なセッション認証情報を受け取り、Capacitorから本人確認シートを作成・表示します。"
     },
     {
+      "icon": "devices",
       "title": "ネイティブとWeb",
       "description": "プラットフォーム共通のAPIを使用し、対応ブラウザにも統合します。"
     },
     {
+      "icon": "events",
       "title": "結果イベント",
       "description": "結果を取りこぼさないよう、シート表示前に本人確認結果のリスナーを登録します。"
     }

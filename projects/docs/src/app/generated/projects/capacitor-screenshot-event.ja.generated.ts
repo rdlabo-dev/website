@@ -15,10 +15,12 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "capture",
       "title": "撮影後の案内",
       "description": "スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。"
     },
     {
+      "icon": "eye",
       "title": "画面に合わせて監視",
       "description": "画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。"
     }

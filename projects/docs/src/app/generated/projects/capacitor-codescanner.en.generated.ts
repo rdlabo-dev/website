@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "scan",
       "title": "Modal scanning",
       "description": "Open a native modal and scan inside it so web assets do not need to change."
     },
     {
+      "icon": "layers",
       "title": "Continuous multi-scan",
       "description": "Keep scanning successive codes with isMulti mode."
     },
     {
+      "icon": "flash",
       "title": "Light and feedback",
       "description": "Use automatic light control, vibration, and visible detection highlighting."
     }

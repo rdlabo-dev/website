@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "scan",
       "title": "モーダルスキャン",
       "description": "ネイティブモーダルを開きその中でスキャンするため、Webアセットの変更は不要です。"
     },
     {
+      "icon": "layers",
       "title": "連続マルチスキャン",
       "description": "isMultiモードでコードを連続スキャンできます。"
     },
     {
+      "icon": "flash",
       "title": "ライトとフィードバック",
       "description": "自動ライト制御、バイブレーション、検出エリアの視覚表示を使います。"
     }

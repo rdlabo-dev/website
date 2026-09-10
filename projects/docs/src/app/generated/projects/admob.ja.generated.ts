@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "banner",
       "title": "バナー広告",
       "description": "ネイティブビューの上部または下部に、アダプティブまたは固定サイズのバナーを表示します。"
     },
     {
+      "icon": "expand",
       "title": "フルスクリーン広告",
       "description": "インタースティシャル、リワード、リワード付きインタースティシャル広告を準備して表示します。"
     },
     {
+      "icon": "launch",
       "title": "アプリ起動時広告",
       "description": "ユーザーがアプリをフォアグラウンドに戻したときに広告をロードして表示します。"
     },
     {
+      "icon": "shield",
       "title": "同意管理",
       "description": "広告のリクエスト前にGoogle UMPとiOSのトラッキング許可APIを使います。"
     }

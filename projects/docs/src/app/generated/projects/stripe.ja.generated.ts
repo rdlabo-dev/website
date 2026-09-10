@@ -21,22 +21,27 @@ export const PROJECT = {
   "featuresHeading": "実装できること",
   "features": [
     {
+      "icon": "sheet",
       "title": "PaymentSheet",
       "description": "PaymentIntentまたはSetupIntentを使い、ひとつのネイティブフローで支払いを受け付けます。"
     },
     {
+      "icon": "flow",
       "title": "PaymentFlow",
       "description": "先に支払い情報を収集し、アプリ内の確認ステップを挟んでから確定します。"
     },
     {
+      "icon": "wallet",
       "title": "Apple Pay",
       "description": "対応環境でApple Payによるすばやい決済を表示します。"
     },
     {
+      "icon": "contactless",
       "title": "Google Pay",
       "description": "対応環境でGoogle Payによるすばやい決済を表示します。"
     },
     {
+      "icon": "web",
       "title": "Web連携",
       "description": "ネイティブアプリと同じプラグインAPIをWebフレームワークやブラウザでも利用します。"
     }

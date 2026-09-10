@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "identity",
       "title": "Identity Verification Sheet",
       "description": "Create and present the verification sheet after your backend supplies the required session credentials."
     },
     {
+      "icon": "devices",
       "title": "Native and web",
       "description": "Use one API across platforms, including supported browser integrations."
     },
     {
+      "icon": "events",
       "title": "Result events",
       "description": "Register listeners before presenting the sheet so verification outcomes are not missed."
     }

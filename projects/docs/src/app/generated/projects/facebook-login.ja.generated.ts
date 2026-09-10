@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "shield",
       "title": "Facebook認証",
       "description": "ログイン、ログアウト、現在のトークン取得、データアクセスの再認証を行います。"
     },
     {
+      "icon": "profile",
       "title": "プロフィール取得",
       "description": "Facebook Graph APIから許可されたプロフィール項目を取得します。"
     },
     {
+      "icon": "events",
       "title": "App Events",
       "description": "カスタムイベントを記録し、自動イベントと広告主向け設定を構成します。"
     },
     {
+      "icon": "devices",
       "title": "ネイティブとWeb",
       "description": "Android・iOS・Webで共通のCapacitor APIを利用します。"
     }

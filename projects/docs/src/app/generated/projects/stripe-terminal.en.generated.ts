@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "card",
       "title": "In-person payments",
       "description": "Collect a payment method on a connected reader and confirm the PaymentIntent."
     },
     {
+      "icon": "search",
       "title": "Reader discovery",
       "description": "Discover nearby or simulated readers, then connect before collecting payment details."
     },
     {
+      "icon": "events",
       "title": "Reader events",
       "description": "Handle display, status, input, and software update events during checkout."
     },
     {
+      "icon": "phone",
       "title": "Tap to Pay",
       "description": "Connect with Tap to Pay on devices and configurations that support it."
     }

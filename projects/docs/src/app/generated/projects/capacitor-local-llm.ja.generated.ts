@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "オンデバイスAI機能",
   "features": [
     {
+      "icon": "web",
       "title": "Chromeでテキスト生成",
       "description": "Chrome内蔵のPrompt APIで、サーバーやAPIキーなしに生成します。開始前にモデルの利用可否を確認します。"
     },
     {
+      "icon": "chat",
       "title": "チャットのライフサイクル",
       "description": "チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。"
     },
     {
+      "icon": "check",
       "title": "利用可否を先に確認",
       "description": "生成前にテキストと画像それぞれの利用可否を確認します。"
     },
     {
+      "icon": "download",
       "title": "明示的なAndroidフォールバック",
       "description": "必要に応じてアプリ管理のLiteRT-LMモデルを設定します。実機検証が必要です。"
     }

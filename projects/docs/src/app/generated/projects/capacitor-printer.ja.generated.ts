@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "できること",
   "features": [
     {
+      "icon": "file",
       "title": "ファイル印刷",
       "description": "AndroidとiOSでファイルパスまたはローカルURLの印刷UIを表示します。"
     },
     {
+      "icon": "web",
       "title": "WebView印刷",
       "description": "現在のWebView内容の印刷UIを表示します。"
     },
     {
+      "icon": "shield",
       "title": "安全なファイルライフサイクル",
       "description": "OSがソースを必要としなくなるまでprintFileを待ち、その後安全に削除できます。"
     }

@@ -58,22 +58,9 @@ import { SafeHtmlPipe } from './safe-html.pipe';
             @for (feature of p.features; track feature.title) {
               <li class="project-feature">
                 <div class="feature-icon" aria-hidden="true">
-                  @if (p.icon === 'theme') {
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      @switch ($index) {
-                        @case (0) {
-                          <rect x="5" y="5" width="22" height="22" rx="6" fill="currentColor" fill-opacity=".1" />
-                          <path d="M5 13h22M13 13v14" />
-                        }
-                        @case (1) {
-                          <rect x="12" y="5" width="14" height="22" rx="4" fill="currentColor" fill-opacity=".1" />
-                          <path d="M7 9H4m3 7H2m5 7H4m12-12 5 5-5 5" />
-                        }
-                        @default {
-                          <path d="M25 20A11 11 0 0 1 12 5a11 11 0 1 0 13 15Z" fill="currentColor" fill-opacity=".15" />
-                          <path d="M24 3v6m-3-3h6" />
-                        }
-                      }
+                  @if (feature.icon || p.icon === 'theme') {
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <use [attr.href]="'/feature-icons.svg#' + (feature.icon || ['layout', 'motion', 'dark'][$index])" />
                     </svg>
                   } @else {
                     <app-project-icon [kind]="p.icon" />

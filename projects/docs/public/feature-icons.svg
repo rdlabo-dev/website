@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="sheet" viewBox="0 0 32 32"><path d="M6 4h20v24H6z M10 10h12 M10 16h8 M10 22h5"/></symbol>
+  <symbol id="flow" viewBox="0 0 32 32"><path d="M4 8h8v8H4z M20 16h8v8h-8z M12 12h8v4 M17 13l3 3 3-3"/></symbol>
+  <symbol id="wallet" viewBox="0 0 32 32"><path d="M5 9V7a3 3 0 0 1 3-3h17v6 M5 10h22v17H5z M21 16h6v6h-6z"/></symbol>
+  <symbol id="contactless" viewBox="0 0 32 32"><path d="M8 11a8 8 0 0 1 0 10 M13 7a14 14 0 0 1 0 18 M18 3a20 20 0 0 1 0 26 M5 16h.01"/></symbol>
+  <symbol id="web" viewBox="0 0 32 32"><path d="M4 5h24v22H4z M4 11h24 M8 8h.01 M12 8h.01 M12 15l-4 4 4 4 M20 15l4 4-4 4"/></symbol>
+  <symbol id="identity" viewBox="0 0 32 32"><path d="M4 7h24v18H4z M10 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6 M6 22a4 4 0 0 1 8 0 M19 12h5 M19 17h5"/></symbol>
+  <symbol id="devices" viewBox="0 0 32 32"><path d="M3 5h18v17H3z M7 27h10 M12 22v5 M23 12h6v15h-6z"/></symbol>
+  <symbol id="events" viewBox="0 0 32 32"><path d="M4 25h24 M7 21v-6 M13 21V8 M19 21v-9 M25 21V4"/></symbol>
+  <symbol id="card" viewBox="0 0 32 32"><path d="M4 8h24v17H4z M4 13h24 M8 20h5"/></symbol>
+  <symbol id="search" viewBox="0 0 32 32"><path d="M21 13a8 8 0 1 0-16 0 8 8 0 0 0 16 0 M19 19l9 9"/></symbol>
+  <symbol id="phone" viewBox="0 0 32 32"><path d="M9 3h14v26H9z M14 25h4 M12 7h8"/></symbol>
+  <symbol id="banner" viewBox="0 0 32 32"><path d="M4 5h24v22H4z M4 19h24 M9 23h14"/></symbol>
+  <symbol id="expand" viewBox="0 0 32 32"><path d="M12 5H5v7 M20 5h7v7 M27 20v7h-7 M12 27H5v-7 M11 11h10v10H11z"/></symbol>
+  <symbol id="launch" viewBox="0 0 32 32"><path d="M7 27h18 M10 27V5h13v22 M3 16h14 M13 12l4 4-4 4"/></symbol>
+  <symbol id="shield" viewBox="0 0 32 32"><path d="M16 3l11 5v8c0 6-5 10-11 13C10 26 5 22 5 16V8z M11 16l4 4 7-8"/></symbol>
+  <symbol id="profile" viewBox="0 0 32 32"><path d="M22 10a6 6 0 1 0-12 0 6 6 0 0 0 12 0 M5 28a11 11 0 0 1 22 0"/></symbol>
+  <symbol id="chat" viewBox="0 0 32 32"><path d="M4 5h24v18H14l-7 5v-5H4z M9 11h14 M9 17h10"/></symbol>
+  <symbol id="check" viewBox="0 0 32 32"><path d="M27 16a11 11 0 1 1-6-10 M11 14l5 5L28 5"/></symbol>
+  <symbol id="download" viewBox="0 0 32 32"><path d="M16 3v18 M10 15l6 6 6-6 M5 23v5h22v-5"/></symbol>
+  <symbol id="scan" viewBox="0 0 32 32"><path d="M11 4H4v7 M21 4h7v7 M28 21v7h-7 M11 28H4v-7 M9 11v10 M14 11v10 M18 11v10 M23 11v10 M3 16h26"/></symbol>
+  <symbol id="layers" viewBox="0 0 32 32"><path d="M16 3 2 11l14 8 14-8z M3 17l13 8 13-8 M3 23l13 7 13-7"/></symbol>
+  <symbol id="flash" viewBox="0 0 32 32"><path d="M18 2 6 18h9l-1 12 12-18h-9z"/></symbol>
+  <symbol id="capture" viewBox="0 0 32 32"><path d="M10 5H4v6 M22 5h6v6 M28 22v6h-6 M10 28H4v-6 M11 12h10v9H11z M15 9h2"/></symbol>
+  <symbol id="eye" viewBox="0 0 32 32"><path d="M2 16s5-9 14-9 14 9 14 9-5 9-14 9S2 16 2 16 M20 16a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/></symbol>
+  <symbol id="file" viewBox="0 0 32 32"><path d="M7 3h12l6 6v20H7z M19 3v7h6 M11 16h10 M11 22h7"/></symbol>
+  <symbol id="image" viewBox="0 0 32 32"><path d="M4 5h24v22H4z M4 23l8-9 7 7 4-5 5 6 M23 10h.01"/></symbol>
+  <symbol id="layout" viewBox="0 0 32 32" stroke-width="2"><rect x="5" y="5" width="22" height="22" rx="6" fill="currentColor" fill-opacity=".1"/><path d="M5 13h22M13 13v14"/></symbol>
+  <symbol id="motion" viewBox="0 0 32 32" stroke-width="2"><rect x="12" y="5" width="14" height="22" rx="4" fill="currentColor" fill-opacity=".1"/><path d="M7 9H4m3 7H2m5 7H4m12-12 5 5-5 5"/></symbol>
+  <symbol id="dark" viewBox="0 0 32 32" stroke-width="2"><path d="M25 20A11 11 0 0 1 12 5a11 11 0 1 0 13 15Z" fill="currentColor" fill-opacity=".15"/><path d="M24 3v6m-3-3h6"/></symbol>
+</svg>

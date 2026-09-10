@@ -21,22 +21,27 @@ export const PROJECT = {
   "featuresHeading": "What you can build",
   "features": [
     {
+      "icon": "sheet",
       "title": "PaymentSheet",
       "description": "Collect payment in a single native flow with PaymentIntent or SetupIntent."
     },
     {
+      "icon": "flow",
       "title": "PaymentFlow",
       "description": "Collect payment details first, then confirm after an intermediate step in your app."
     },
     {
+      "icon": "wallet",
       "title": "Apple Pay",
       "description": "Present Apple Pay for instant checkout where it is available."
     },
     {
+      "icon": "contactless",
       "title": "Google Pay",
       "description": "Present Google Pay for instant checkout where it is available."
     },
     {
+      "icon": "web",
       "title": "Web integration",
       "description": "Use the same plugin APIs with web frameworks and browsers alongside native apps."
     }

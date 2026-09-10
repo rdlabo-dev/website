@@ -1350,22 +1350,27 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can build",
     "features": [
       {
+        "icon": "sheet",
         "title": "PaymentSheet",
         "description": "Collect payment in a single native flow with PaymentIntent or SetupIntent."
       },
       {
+        "icon": "flow",
         "title": "PaymentFlow",
         "description": "Collect payment details first, then confirm after an intermediate step in your app."
       },
       {
+        "icon": "wallet",
         "title": "Apple Pay",
         "description": "Present Apple Pay for instant checkout where it is available."
       },
       {
+        "icon": "contactless",
         "title": "Google Pay",
         "description": "Present Google Pay for instant checkout where it is available."
       },
       {
+        "icon": "web",
         "title": "Web integration",
         "description": "Use the same plugin APIs with web frameworks and browsers alongside native apps."
       }
@@ -1474,14 +1479,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "identity",
         "title": "Identity Verification Sheet",
         "description": "Create and present the verification sheet after your backend supplies the required session credentials."
       },
       {
+        "icon": "devices",
         "title": "Native and web",
         "description": "Use one API across platforms, including supported browser integrations."
       },
       {
+        "icon": "events",
         "title": "Result events",
         "description": "Register listeners before presenting the sheet so verification outcomes are not missed."
       }
@@ -1527,18 +1535,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "card",
         "title": "In-person payments",
         "description": "Collect a payment method on a connected reader and confirm the PaymentIntent."
       },
       {
+        "icon": "search",
         "title": "Reader discovery",
         "description": "Discover nearby or simulated readers, then connect before collecting payment details."
       },
       {
+        "icon": "events",
         "title": "Reader events",
         "description": "Handle display, status, input, and software update events during checkout."
       },
       {
+        "icon": "phone",
         "title": "Tap to Pay",
         "description": "Connect with Tap to Pay on devices and configurations that support it."
       }
@@ -1599,18 +1611,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "banner",
         "title": "Banner ads",
         "description": "Place adaptive or fixed-size banners at the top or bottom of the native view."
       },
       {
+        "icon": "expand",
         "title": "Full-screen ads",
         "description": "Prepare and show interstitial, rewarded, and rewarded interstitial ads."
       },
       {
+        "icon": "launch",
         "title": "App open ads",
         "description": "Load and present ads when users bring your app to the foreground."
       },
       {
+        "icon": "shield",
         "title": "Consent controls",
         "description": "Use Google UMP and iOS tracking authorization APIs before requesting ads."
       }
@@ -1712,18 +1728,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "shield",
         "title": "Facebook authentication",
         "description": "Log in, log out, inspect the current token, and renew data access."
       },
       {
+        "icon": "profile",
         "title": "Profile requests",
         "description": "Request permitted profile fields from the Facebook Graph API."
       },
       {
+        "icon": "events",
         "title": "App Events",
         "description": "Log custom events and configure automatic event and advertiser settings."
       },
       {
+        "icon": "devices",
         "title": "Native and web",
         "description": "Use one Capacitor API across Android, iOS, and Web."
       }
@@ -1784,18 +1804,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "On-device AI features",
     "features": [
       {
+        "icon": "web",
         "title": "Text generation in Chrome",
         "description": "Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting."
       },
       {
+        "icon": "chat",
         "title": "Chat lifecycle",
         "description": "Create chats, stream responses, observe generation state, and cancel work."
       },
       {
+        "icon": "check",
         "title": "Availability first",
         "description": "Check text and image capabilities separately before generation."
       },
       {
+        "icon": "download",
         "title": "Explicit Android fallback",
         "description": "Configure an app-managed LiteRT-LM model when needed; validate on physical devices."
       }
@@ -1897,14 +1921,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "scan",
         "title": "Modal scanning",
         "description": "Open a native modal and scan inside it so web assets do not need to change."
       },
       {
+        "icon": "layers",
         "title": "Continuous multi-scan",
         "description": "Keep scanning successive codes with isMulti mode."
       },
       {
+        "icon": "flash",
         "title": "Light and feedback",
         "description": "Use automatic light control, vibration, and visible detection highlighting."
       }
@@ -1950,10 +1977,12 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "capture",
         "title": "React after a capture",
         "description": "Show a message or update app UI when a screenshot event arrives."
       },
       {
+        "icon": "eye",
         "title": "Watch while a screen is open",
         "description": "Start watching on entry and release the watcher and listener when leaving."
       }
@@ -1999,14 +2028,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "file",
         "title": "Print files",
         "description": "Present the printing UI for a file path or local URL on Android and iOS."
       },
       {
+        "icon": "web",
         "title": "Print WebView",
         "description": "Present the printing UI for the current WebView content."
       },
       {
+        "icon": "shield",
         "title": "Safe file lifecycle",
         "description": "Await printFile until the OS no longer needs the source, then delete it safely."
       }
@@ -2059,14 +2091,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "What you can do",
     "features": [
       {
+        "icon": "search",
         "title": "Printer discovery",
         "description": "Search nearby Brother printers by port and receive availability events."
       },
       {
+        "icon": "image",
         "title": "Image printing",
         "description": "Send base64 images with model, label, and channel settings to printImage."
       },
       {
+        "icon": "events",
         "title": "Print lifecycle events",
         "description": "Listen for print success, communication failure, and print error outcomes."
       }
@@ -3430,22 +3465,27 @@ export const PROJECTS_JA = [
     "featuresHeading": "実装できること",
     "features": [
       {
+        "icon": "sheet",
         "title": "PaymentSheet",
         "description": "PaymentIntentまたはSetupIntentを使い、ひとつのネイティブフローで支払いを受け付けます。"
       },
       {
+        "icon": "flow",
         "title": "PaymentFlow",
         "description": "先に支払い情報を収集し、アプリ内の確認ステップを挟んでから確定します。"
       },
       {
+        "icon": "wallet",
         "title": "Apple Pay",
         "description": "対応環境でApple Payによるすばやい決済を表示します。"
       },
       {
+        "icon": "contactless",
         "title": "Google Pay",
         "description": "対応環境でGoogle Payによるすばやい決済を表示します。"
       },
       {
+        "icon": "web",
         "title": "Web連携",
         "description": "ネイティブアプリと同じプラグインAPIをWebフレームワークやブラウザでも利用します。"
       }
@@ -3554,14 +3594,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "identity",
         "title": "本人確認シート",
         "description": "バックエンドから必要なセッション認証情報を受け取り、Capacitorから本人確認シートを作成・表示します。"
       },
       {
+        "icon": "devices",
         "title": "ネイティブとWeb",
         "description": "プラットフォーム共通のAPIを使用し、対応ブラウザにも統合します。"
       },
       {
+        "icon": "events",
         "title": "結果イベント",
         "description": "結果を取りこぼさないよう、シート表示前に本人確認結果のリスナーを登録します。"
       }
@@ -3607,18 +3650,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "card",
         "title": "対面決済",
         "description": "接続したリーダーで支払い方法を収集し、PaymentIntentを確定します。"
       },
       {
+        "icon": "search",
         "title": "リーダーの探索",
         "description": "近くのリーダーまたはシミュレーションリーダーを探索し、支払い情報を収集する前に接続します。"
       },
       {
+        "icon": "events",
         "title": "リーダーイベント",
         "description": "会計中の画面、状態、入力、ソフトウェア更新イベントを処理します。"
       },
       {
+        "icon": "phone",
         "title": "Tap to Pay",
         "description": "対応する端末と設定でTap to Payへ接続します。"
       }
@@ -3679,18 +3726,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "banner",
         "title": "バナー広告",
         "description": "ネイティブビューの上部または下部に、アダプティブまたは固定サイズのバナーを表示します。"
       },
       {
+        "icon": "expand",
         "title": "フルスクリーン広告",
         "description": "インタースティシャル、リワード、リワード付きインタースティシャル広告を準備して表示します。"
       },
       {
+        "icon": "launch",
         "title": "アプリ起動時広告",
         "description": "ユーザーがアプリをフォアグラウンドに戻したときに広告をロードして表示します。"
       },
       {
+        "icon": "shield",
         "title": "同意管理",
         "description": "広告のリクエスト前にGoogle UMPとiOSのトラッキング許可APIを使います。"
       }
@@ -3792,18 +3843,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "shield",
         "title": "Facebook認証",
         "description": "ログイン、ログアウト、現在のトークン取得、データアクセスの再認証を行います。"
       },
       {
+        "icon": "profile",
         "title": "プロフィール取得",
         "description": "Facebook Graph APIから許可されたプロフィール項目を取得します。"
       },
       {
+        "icon": "events",
         "title": "App Events",
         "description": "カスタムイベントを記録し、自動イベントと広告主向け設定を構成します。"
       },
       {
+        "icon": "devices",
         "title": "ネイティブとWeb",
         "description": "Android・iOS・Webで共通のCapacitor APIを利用します。"
       }
@@ -3864,18 +3919,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "オンデバイスAI機能",
     "features": [
       {
+        "icon": "web",
         "title": "Chromeでテキスト生成",
         "description": "Chrome内蔵のPrompt APIで、サーバーやAPIキーなしに生成します。開始前にモデルの利用可否を確認します。"
       },
       {
+        "icon": "chat",
         "title": "チャットのライフサイクル",
         "description": "チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。"
       },
       {
+        "icon": "check",
         "title": "利用可否を先に確認",
         "description": "生成前にテキストと画像それぞれの利用可否を確認します。"
       },
       {
+        "icon": "download",
         "title": "明示的なAndroidフォールバック",
         "description": "必要に応じてアプリ管理のLiteRT-LMモデルを設定します。実機検証が必要です。"
       }
@@ -3977,14 +4036,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "scan",
         "title": "モーダルスキャン",
         "description": "ネイティブモーダルを開きその中でスキャンするため、Webアセットの変更は不要です。"
       },
       {
+        "icon": "layers",
         "title": "連続マルチスキャン",
         "description": "isMultiモードでコードを連続スキャンできます。"
       },
       {
+        "icon": "flash",
         "title": "ライトとフィードバック",
         "description": "自動ライト制御、バイブレーション、検出エリアの視覚表示を使います。"
       }
@@ -4030,10 +4092,12 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "capture",
         "title": "撮影後の案内",
         "description": "スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。"
       },
       {
+        "icon": "eye",
         "title": "画面に合わせて監視",
         "description": "画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。"
       }
@@ -4079,14 +4143,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "file",
         "title": "ファイル印刷",
         "description": "AndroidとiOSでファイルパスまたはローカルURLの印刷UIを表示します。"
       },
       {
+        "icon": "web",
         "title": "WebView印刷",
         "description": "現在のWebView内容の印刷UIを表示します。"
       },
       {
+        "icon": "shield",
         "title": "安全なファイルライフサイクル",
         "description": "OSがソースを必要としなくなるまでprintFileを待ち、その後安全に削除できます。"
       }
@@ -4139,14 +4206,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "できること",
     "features": [
       {
+        "icon": "search",
         "title": "プリンター探索",
         "description": "ポート指定でBrotherプリンターを探索し、利用可能イベントを受け取ります。"
       },
       {
+        "icon": "image",
         "title": "画像印刷",
         "description": "モデル・ラベル・チャネル設定付きのbase64画像をprintImageへ送ります。"
       },
       {
+        "icon": "events",
         "title": "印刷ライフサイクルイベント",
         "description": "印刷成功、通信失敗、印刷エラーの結果をリスナーで受け取ります。"
       }

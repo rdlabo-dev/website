@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "shield",
       "title": "Facebook authentication",
       "description": "Log in, log out, inspect the current token, and renew data access."
     },
     {
+      "icon": "profile",
       "title": "Profile requests",
       "description": "Request permitted profile fields from the Facebook Graph API."
     },
     {
+      "icon": "events",
       "title": "App Events",
       "description": "Log custom events and configure automatic event and advertiser settings."
     },
     {
+      "icon": "devices",
       "title": "Native and web",
       "description": "Use one Capacitor API across Android, iOS, and Web."
     }

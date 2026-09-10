@@ -15,10 +15,12 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "capture",
       "title": "React after a capture",
       "description": "Show a message or update app UI when a screenshot event arrives."
     },
     {
+      "icon": "eye",
       "title": "Watch while a screen is open",
       "description": "Start watching on entry and release the watcher and listener when leaving."
     }

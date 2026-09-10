@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "What you can do",
   "features": [
     {
+      "icon": "banner",
       "title": "Banner ads",
       "description": "Place adaptive or fixed-size banners at the top or bottom of the native view."
     },
     {
+      "icon": "expand",
       "title": "Full-screen ads",
       "description": "Prepare and show interstitial, rewarded, and rewarded interstitial ads."
     },
     {
+      "icon": "launch",
       "title": "App open ads",
       "description": "Load and present ads when users bring your app to the foreground."
     },
     {
+      "icon": "shield",
       "title": "Consent controls",
       "description": "Use Google UMP and iOS tracking authorization APIs before requesting ads."
     }

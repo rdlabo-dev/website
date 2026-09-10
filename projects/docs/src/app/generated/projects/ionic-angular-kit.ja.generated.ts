@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "提供するアプリケーション基盤",
   "features": [
     {
+      "icon": "layers",
       "title": "Storage・Overlay",
       "description": "書き込み損失を防ぎ、型安全なIonic Modal、Popover、Toast、Alertを表示します。"
     },
     {
+      "icon": "shield",
       "title": "認証・HTTP",
       "description": "Route Guard、アクセス権限状態、認証Header、安全なretry、error hookを共有します。"
     },
     {
+      "icon": "sheet",
       "title": "Signal Forms",
       "description": "Ionicの入力欄をAngular Signal Formsに接続し、検証メッセージとフィールドの状態を連携します。"
     },
     {
+      "icon": "phone",
       "title": "任意のNative機能",
       "description": "Theme、Review、印刷、Firebase認証、Live Updateをsubpath単位で追加します。"
     }

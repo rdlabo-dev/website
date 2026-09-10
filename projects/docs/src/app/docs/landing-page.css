@@ -350,7 +350,6 @@
 }
 
 @media (max-width: 639px) {
-  .feature-grid,
   .related-articles {
     grid-template-columns: minmax(0, 1fr);
   }

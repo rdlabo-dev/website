@@ -17,14 +17,17 @@ export const PROJECT = {
   "featuresHeading": "可変高さのVirtual Scroll",
   "features": [
     {
+      "icon": "resize",
       "title": "可変Item Height",
       "description": "各List Itemに、既知または計測した個別のPixel Heightを指定します。"
     },
     {
+      "icon": "ruler",
       "title": "正確なScroll Geometry",
       "description": "RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。"
     },
     {
+      "icon": "reverse",
       "title": "Reverse Virtual Scroll",
       "description": "Chat形式のReverse Layoutと論理Index Scrollに対応します。"
     }

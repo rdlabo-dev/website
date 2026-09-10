@@ -28,4 +28,14 @@
   <symbol id="layout" viewBox="0 0 32 32" stroke-width="2"><rect x="5" y="5" width="22" height="22" rx="6" fill="currentColor" fill-opacity=".1"/><path d="M5 13h22M13 13v14"/></symbol>
   <symbol id="motion" viewBox="0 0 32 32" stroke-width="2"><rect x="12" y="5" width="14" height="22" rx="4" fill="currentColor" fill-opacity=".1"/><path d="M7 9H4m3 7H2m5 7H4m12-12 5 5-5 5"/></symbol>
   <symbol id="dark" viewBox="0 0 32 32" stroke-width="2"><path d="M25 20A11 11 0 0 1 12 5a11 11 0 1 0 13 15Z" fill="currentColor" fill-opacity=".15"/><path d="M24 3v6m-3-3h6"/></symbol>
+  <symbol id="edit" viewBox="0 0 32 32"><path d="M5 27l2-8L22 4l6 6-15 15z M19 7l6 6 M7 19l6 6"/></symbol>
+  <symbol id="scroll" viewBox="0 0 32 32"><path d="M10 7l6-5 6 5 M16 2v28 M10 25l6 5 6-5 M4 11h5 M4 16h5 M4 21h5 M23 11h5 M23 16h5 M23 21h5"/></symbol>
+  <symbol id="resize" viewBox="0 0 32 32"><path d="M4 4h24v24H4z M4 12h24 M4 22h24 M20 15v4 M18 17l2-2 2 2"/></symbol>
+  <symbol id="ruler" viewBox="0 0 32 32"><path d="M4 8h24v16H4z M9 8v7 M14 8v4 M19 8v7 M24 8v4"/></symbol>
+  <symbol id="reverse" viewBox="0 0 32 32"><path d="M7 26V6 M3 10l4-4 4 4 M15 8h13 M15 15h13 M15 22h13"/></symbol>
+  <symbol id="terminal" viewBox="0 0 32 32"><path d="M3 6h26v21H3z M8 12l5 4-5 4 M17 21h7"/></symbol>
+  <symbol id="globe" viewBox="0 0 32 32"><path d="M28 16a12 12 0 1 0-24 0 12 12 0 0 0 24 0 M4 16h24 M16 4c-8 7-8 17 0 24 M16 4c8 7 8 17 0 24"/></symbol>
+  <symbol id="calendar" viewBox="0 0 32 32"><path d="M5 7h22v21H5z M10 3v8 M22 3v8 M5 14h22 M10 19h4 M18 19h4 M10 24h4"/></symbol>
+  <symbol id="database" viewBox="0 0 32 32"><path d="M27 8c0 3-5 5-11 5S5 11 5 8s5-5 11-5 11 2 11 5 M5 8v16c0 3 5 5 11 5s11-2 11-5V8 M5 16c0 3 5 5 11 5s11-2 11-5"/></symbol>
+  <symbol id="sync" viewBox="0 0 32 32"><path d="M26 12a11 11 0 0 0-19-5L3 11 M3 4v7h7 M6 20a11 11 0 0 0 19 5l4-4 M29 28v-7h-7"/></symbol>
 </svg>

@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Database building blocks",
   "features": [
     {
+      "icon": "database",
       "title": "Hyperdrive runtime",
       "description": "Use invocation-scoped connections and explicit primary/replica read paths."
     },
     {
+      "icon": "layers",
       "title": "Optional Drizzle integration",
       "description": "Keep schemas in the application and share one Drizzle type identity."
     },
     {
+      "icon": "terminal",
       "title": "Tooling boundaries",
       "description": "Keep migration and destructive test helpers separate from Worker bundles."
     }

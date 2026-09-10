@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Photo workflow",
   "features": [
     {
+      "icon": "image",
       "title": "Camera and album",
       "description": "Load and resize photos through Capacitor Camera and browser file input flows."
     },
     {
+      "icon": "edit",
       "title": "Editor modal",
       "description": "Crop and edit images with configurable square requirements and labels."
     },
     {
+      "icon": "eye",
       "title": "Viewer modal",
       "description": "Browse multiple images with optional deletion, circular display, and safe-area support."
     }

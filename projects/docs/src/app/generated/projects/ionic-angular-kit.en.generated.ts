@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "Application infrastructure",
   "features": [
     {
+      "icon": "layers",
       "title": "Storage and overlays",
       "description": "Prevent lost writes and present typed Ionic modals, popovers, toasts, and alerts."
     },
     {
+      "icon": "shield",
       "title": "Authentication and HTTP",
       "description": "Share route guards, access capability state, auth headers, safe retries, and error hooks."
     },
     {
+      "icon": "sheet",
       "title": "Signal Forms",
       "description": "Connect Ionic controls to Angular Signal Forms with validation messages and field state."
     },
     {
+      "icon": "phone",
       "title": "Optional native features",
       "description": "Add theme, review, printing, Firebase authentication, and Live Update support by subpath."
     }

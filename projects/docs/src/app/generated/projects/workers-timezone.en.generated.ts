@@ -16,10 +16,12 @@ export const PROJECT = {
   "featuresHeading": "Calendar building blocks",
   "features": [
     {
+      "icon": "globe",
       "title": "IANA timezones",
       "description": "Convert between UTC instants and timezone-local wall clocks."
     },
     {
+      "icon": "calendar",
       "title": "Calendar boundaries",
       "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
     }

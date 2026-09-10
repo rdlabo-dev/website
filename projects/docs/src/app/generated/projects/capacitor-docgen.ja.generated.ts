@@ -15,10 +15,12 @@ export const PROJECT = {
   "featuresHeading": "forkを使う理由",
   "features": [
     {
+      "icon": "terminal",
       "title": "本家互換CLI",
       "description": "@capacitor/docgenと同じdocgenバイナリ、flag、placeholder、出力command、export functionを維持します。"
     },
     {
+      "icon": "flow",
       "title": "interface継承",
       "description": "TypeScriptのextends句を解決し、primary APIを含む継承method・propertyを生成ドキュメントへ追加します。"
     }

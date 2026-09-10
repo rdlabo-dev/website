@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "テーマの機能",
   "features": [
     {
+      "icon": "layout",
       "title": "iOS 27のCSSとデザイン",
       "description": "Ionicコンポーネントを最新のiOS 27デザイン言語に合わせて再スタイルします。"
     },
     {
+      "icon": "motion",
       "title": "トランジションとLiquid Glass",
       "description": "iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。"
     },
     {
+      "icon": "dark",
       "title": "ダークモードと段階的移行",
       "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
     }

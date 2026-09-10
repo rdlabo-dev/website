@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "提供するインフラ領域",
   "features": [
     {
+      "icon": "shield",
       "title": "HTTP・認証",
       "description": "検証、Firebase認証、エラー、メンテナンス、レスポンス確定を標準化します。"
     },
     {
+      "icon": "database",
       "title": "Workersデータ層",
       "description": "独立したMySQL・タイムゾーンパッケージをHonoコンテナーアダプターと組み合わせます。"
     },
     {
+      "icon": "sync",
       "title": "Realtime・Offline",
       "description": "Durable Object WebSocketパターンとテーブル非依存のOffline Replica契約を共有します。"
     },
     {
+      "icon": "check",
       "title": "テスト・運用",
       "description": "DB fixture、service fake、性能ログ、Queue、運用CLIを再利用します。"
     }

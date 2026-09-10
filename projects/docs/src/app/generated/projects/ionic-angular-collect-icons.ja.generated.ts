@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "アイコンワークフロー",
   "features": [
     {
+      "icon": "layers",
       "title": "テンプレート収集",
       "description": "テンプレートを走査し、本番ビルド前に一意なionIconsエクスポートを生成します。"
     },
     {
+      "icon": "flash",
       "title": "開発時の利便性",
       "description": "開発時はaddIconsに全アイコンを登録し、ストレスなく反復できます。"
     },
     {
+      "icon": "terminal",
       "title": "初期化CLI",
       "description": "--initializeでaddIconsを自動配線し、コンポーネント単位の呼び出しを削除します。"
     }

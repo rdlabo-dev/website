@@ -15,10 +15,12 @@ export const PROJECT = {
   "featuresHeading": "Why use the fork",
   "features": [
     {
+      "icon": "terminal",
       "title": "Upstream-compatible CLI",
       "description": "Keep the same docgen binary, flags, placeholders, output commands, and exported functions as @capacitor/docgen."
     },
     {
+      "icon": "flow",
       "title": "Interface inheritance",
       "description": "Resolve TypeScript extends clauses and append inherited methods and properties, including on the primary API."
     }

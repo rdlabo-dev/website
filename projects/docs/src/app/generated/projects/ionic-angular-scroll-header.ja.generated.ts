@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Header動作",
   "features": [
     {
+      "icon": "scroll",
       "title": "IonContent Scroll",
       "description": "Ionic ContentへScroll連動動作を直接追加します。"
     },
     {
+      "icon": "layers",
       "title": "CDK Virtual Scroll",
       "description": "Angular CDKのVirtual ViewportとHeaderを連携します。"
     },
     {
+      "icon": "layout",
       "title": "Safe Area Layout",
       "description": "Safe Area用の非表示Headerと常時表示Native Headerを扱います。"
     }

@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "What the plugin covers",
   "features": [
     {
+      "icon": "events",
       "title": "Angular Signals",
       "description": "Catch Signals used as plain values in TypeScript and templates."
     },
     {
+      "icon": "layers",
       "title": "Component boundaries",
       "description": "Enforce ViewModel ownership, readonly properties, and lifecycle contracts."
     },
     {
+      "icon": "phone",
       "title": "Ionic interaction",
       "description": "Standardize overlays, standalone imports, attribute bindings, and double-tap prevention."
     },
     {
+      "icon": "web",
       "title": "Framework-independent TypeScript",
       "description": "Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic."
     }

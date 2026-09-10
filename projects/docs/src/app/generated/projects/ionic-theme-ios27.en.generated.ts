@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Theme capabilities",
   "features": [
     {
+      "icon": "layout",
       "title": "iOS 27 CSS and design",
       "description": "Restyle Ionic components to follow the latest iOS 27 design language."
     },
     {
+      "icon": "motion",
       "title": "Transitions and Liquid Glass",
       "description": "Use iOS-oriented navigation animations and Liquid Glass interaction effects."
     },
     {
+      "icon": "dark",
       "title": "Dark mode and selective migration",
       "description": "Adopt dark-mode styles and migrate component by component when needed."
     }

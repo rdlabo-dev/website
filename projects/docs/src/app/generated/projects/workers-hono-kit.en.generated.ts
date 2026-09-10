@@ -16,18 +16,22 @@ export const PROJECT = {
   "featuresHeading": "Infrastructure areas",
   "features": [
     {
+      "icon": "shield",
       "title": "HTTP and auth",
       "description": "Standardize validation, Firebase authentication, errors, maintenance, and response finalization."
     },
     {
+      "icon": "database",
       "title": "Workers data layer",
       "description": "Connect standalone MySQL and timezone packages through the Hono container adapter."
     },
     {
+      "icon": "sync",
       "title": "Realtime and offline",
       "description": "Share Durable Object WebSocket patterns and table-agnostic offline replica contracts."
     },
     {
+      "icon": "check",
       "title": "Testing and operations",
       "description": "Reuse database fixtures, service fakes, performance logging, queues, and operational CLIs."
     }

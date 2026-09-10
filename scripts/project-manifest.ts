@@ -228,6 +228,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Highlights', '主なポイント'),
     features: [
       {
+        icon: 'layout',
         title: text('Web UI toolkit', 'Web UI toolkit'),
         description: text(
           'Build performant mobile UX with HTML, CSS, and JavaScript components.',
@@ -235,6 +236,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'devices',
         title: text('Cross-platform', 'Cross-platform'),
         description: text(
           'Ship one codebase to iOS, Android, and the mobile web.',
@@ -242,6 +244,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('Framework integrations', 'Framework integrations'),
         description: text(
           'Use Ionic with Angular, React, Vue, or as standalone Web Components.',
@@ -279,6 +282,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Highlights', '主なポイント'),
     features: [
       {
+        icon: 'phone',
         title: text('Native runtime', 'Native runtime'),
         description: text(
           'Run modern web apps natively on iOS, Android, and beyond.',
@@ -286,6 +290,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'flow',
         title: text('Native SDK access', 'Native SDK access'),
         description: text(
           'Reach device features through a consistent Plugin API when you need it.',
@@ -293,6 +298,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'web',
         title: text('Web-first workflow', 'Web-first workflow'),
         description: text(
           'Keep a web-first development flow without giving up native capabilities.',
@@ -329,6 +335,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Application infrastructure', '提供するアプリケーション基盤'),
     features: [
       {
+        icon: 'layers',
         title: text('Storage and overlays', 'Storage・Overlay'),
         description: text(
           'Prevent lost writes and present typed Ionic modals, popovers, toasts, and alerts.',
@@ -336,6 +343,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'shield',
         title: text('Authentication and HTTP', '認証・HTTP'),
         description: text(
           'Share route guards, access capability state, auth headers, safe retries, and error hooks.',
@@ -343,6 +351,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'sheet',
         title: text('Signal Forms', 'Signal Forms'),
         description: text(
           'Connect Ionic controls to Angular Signal Forms with validation messages and field state.',
@@ -350,6 +359,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'phone',
         title: text('Optional native features', '任意のNative機能'),
         description: text(
           'Add theme, review, printing, Firebase authentication, and Live Update support by subpath.',
@@ -459,6 +469,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Photo workflow', '写真ワークフロー'),
     features: [
       {
+        icon: 'image',
         title: text('Camera and album', 'カメラ・アルバム'),
         description: text(
           'Load and resize photos through Capacitor Camera and browser file input flows.',
@@ -466,6 +477,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'edit',
         title: text('Editor modal', 'Editor Modal'),
         description: text(
           'Crop and edit images with configurable square requirements and labels.',
@@ -473,6 +485,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'eye',
         title: text('Viewer modal', 'Viewer Modal'),
         description: text(
           'Browse multiple images with optional deletion, circular display, and safe-area support.',
@@ -541,6 +554,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Header behavior', 'Header動作'),
     features: [
       {
+        icon: 'scroll',
         title: text('IonContent scrolling', 'IonContent Scroll'),
         description: text(
           'Attach scroll-aware behavior directly to Ionic content.',
@@ -548,6 +562,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('CDK virtual scrolling', 'CDK Virtual Scroll'),
         description: text(
           'Coordinate headers with Angular CDK virtual viewports.',
@@ -555,6 +570,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layout',
         title: text('Safe-area layouts', 'Safe Area Layout'),
         description: text(
           'Support hidden safe-area headers and always-visible native headers.',
@@ -636,6 +652,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Variable-height virtual scrolling', '可変高さのVirtual Scroll'),
     features: [
       {
+        icon: 'resize',
         title: text('Variable item heights', '可変Item Height'),
         description: text(
           'Give every list item its own known or measured pixel height.',
@@ -643,6 +660,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'ruler',
         title: text('Exact scroll geometry', '正確なScroll Geometry'),
         description: text(
           'Avoid average-size estimation when calculating ranges and index offsets.',
@@ -650,6 +668,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'reverse',
         title: text('Reverse virtual scroll', 'Reverse Virtual Scroll'),
         description: text(
           'Support chat-style reverse layouts and logical index scrolling.',
@@ -737,6 +756,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Theme capabilities', 'テーマの機能'),
     features: [
       {
+        icon: 'layout',
         title: text('iOS 27 CSS and design', 'iOS 27のCSSとデザイン'),
         description: text(
           'Restyle Ionic components to follow the latest iOS 27 design language.',
@@ -744,6 +764,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'motion',
         title: text('Transitions and Liquid Glass', 'トランジションとLiquid Glass'),
         description: text(
           'Use iOS-oriented navigation animations and Liquid Glass interaction effects.',
@@ -751,6 +772,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'dark',
         title: text('Dark mode and selective migration', 'ダークモードと段階的移行'),
         description: text(
           'Adopt dark-mode styles and migrate component by component when needed.',
@@ -848,6 +870,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Theme capabilities', 'テーマの機能'),
     features: [
       {
+        icon: 'layout',
         title: text('iOS 26 CSS and design', 'iOS 26のCSSとデザイン'),
         description: text(
           'Restyle Ionic components to follow the latest iOS 26 design language.',
@@ -855,6 +878,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'motion',
         title: text('Transitions and Liquid Glass', 'トランジションとLiquid Glass'),
         description: text(
           'Use iOS-oriented navigation animations and Liquid Glass interaction effects.',
@@ -862,6 +886,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'dark',
         title: text('Dark mode and selective migration', 'ダークモードと段階的移行'),
         description: text(
           'Adopt dark-mode styles and migrate component by component when needed.',
@@ -953,6 +978,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Theme capabilities', 'テーマの機能'),
     features: [
       {
+        icon: 'layout',
         title: text('Material Design 3 styling', 'Material Design 3スタイル'),
         description: text(
           'Update Ionic components to follow Material Design 3 guidelines.',
@@ -960,6 +986,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('iOS 26-compatible markup', 'iOS 26互換マークアップ'),
         description: text(
           'Share one HTML structure with `@rdlabo/ionic-theme-ios26` across platforms.',
@@ -967,6 +994,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'motion',
         title: text('Transition animation', 'トランジションアニメーション'),
         description: text(
           'Configure MD3 navigation transitions for non-iOS platforms.',
@@ -1048,6 +1076,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Icon workflow', 'アイコンワークフロー'),
     features: [
       {
+        icon: 'layers',
         title: text('Template collection', 'テンプレート収集'),
         description: text(
           'Scan templates and generate a unique ionIcons export before production builds.',
@@ -1055,6 +1084,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'flash',
         title: text('Development convenience', '開発時の利便性'),
         description: text(
           'Register all icons with addIcons during development for stress-free iteration.',
@@ -1062,6 +1092,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'terminal',
         title: text('Initialize CLI', '初期化CLI'),
         description: text(
           'Wire addIcons automatically with --initialize and remove per-component calls.',
@@ -1116,6 +1147,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Calendar building blocks', 'カレンダー処理の基本機能'),
     features: [
       {
+        icon: 'globe',
         title: text('IANA timezones', 'IANAタイムゾーン'),
         description: text(
           'Convert between UTC instants and timezone-local wall clocks.',
@@ -1123,6 +1155,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'calendar',
         title: text('Calendar boundaries', '日付の境界'),
         description: text(
           'Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic.',
@@ -1252,6 +1285,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Database building blocks', 'データベースの基本機能'),
     features: [
       {
+        icon: 'database',
         title: text('Hyperdrive runtime', 'Hyperdriveランタイム'),
         description: text(
           'Use invocation-scoped connections and explicit primary/replica read paths.',
@@ -1259,6 +1293,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('Optional Drizzle integration', '任意のDrizzle連携'),
         description: text(
           'Keep schemas in the application and share one Drizzle type identity.',
@@ -1266,6 +1301,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'terminal',
         title: text('Tooling boundaries', 'ツールの境界'),
         description: text(
           'Keep migration and destructive test helpers separate from Worker bundles.',
@@ -1390,6 +1426,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Infrastructure areas', '提供するインフラ領域'),
     features: [
       {
+        icon: 'shield',
         title: text('HTTP and auth', 'HTTP・認証'),
         description: text(
           'Standardize validation, Firebase authentication, errors, maintenance, and response finalization.',
@@ -1397,6 +1434,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'database',
         title: text('Workers data layer', 'Workersデータ層'),
         description: text(
           'Connect standalone MySQL and timezone packages through the Hono container adapter.',
@@ -1404,6 +1442,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'sync',
         title: text('Realtime and offline', 'Realtime・Offline'),
         description: text(
           'Share Durable Object WebSocket patterns and table-agnostic offline replica contracts.',
@@ -1411,6 +1450,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'check',
         title: text('Testing and operations', 'テスト・運用'),
         description: text(
           'Reuse database fixtures, service fakes, performance logging, queues, and operational CLIs.',
@@ -1567,6 +1607,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('What the plugin covers', 'プラグインが検査する領域'),
     features: [
       {
+        icon: 'events',
         title: text('Angular Signals', 'Angular Signals'),
         description: text(
           'Catch Signals used as plain values in TypeScript and templates.',
@@ -1574,6 +1615,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'layers',
         title: text('Component boundaries', 'Component境界'),
         description: text(
           'Enforce ViewModel ownership, readonly properties, and lifecycle contracts.',
@@ -1581,6 +1623,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'phone',
         title: text('Ionic interaction', 'Ionic操作'),
         description: text(
           'Standardize overlays, standalone imports, attribute bindings, and double-tap prevention.',
@@ -1588,6 +1631,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'web',
         title: text('Framework-independent TypeScript', '汎用TypeScript'),
         description: text(
           'Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic.',
@@ -1676,6 +1720,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     featuresHeading: text('Why use the fork', 'forkを使う理由'),
     features: [
       {
+        icon: 'terminal',
         title: text('Upstream-compatible CLI', '本家互換CLI'),
         description: text(
           'Keep the same docgen binary, flags, placeholders, output commands, and exported functions as @capacitor/docgen.',
@@ -1683,6 +1728,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
       },
       {
+        icon: 'flow',
         title: text('Interface inheritance', 'interface継承'),
         description: text(
           'Resolve TypeScript extends clauses and append inherited methods and properties, including on the primary API.',

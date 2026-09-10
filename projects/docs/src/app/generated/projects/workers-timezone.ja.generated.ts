@@ -16,10 +16,12 @@ export const PROJECT = {
   "featuresHeading": "カレンダー処理の基本機能",
   "features": [
     {
+      "icon": "globe",
       "title": "IANAタイムゾーン",
       "description": "UTCの時刻とタイムゾーンごとのローカル時刻を相互変換します。"
     },
     {
+      "icon": "calendar",
       "title": "日付の境界",
       "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
     }

@@ -15,18 +15,22 @@ export const PROJECT = {
   "featuresHeading": "プラグインが検査する領域",
   "features": [
     {
+      "icon": "events",
       "title": "Angular Signals",
       "description": "TypeScriptとテンプレートでSignalを通常値として誤用するケースを検出します。"
     },
     {
+      "icon": "layers",
       "title": "Component境界",
       "description": "ViewModel所有、readonlyプロパティ、ライフサイクル契約を検査します。"
     },
     {
+      "icon": "phone",
       "title": "Ionic操作",
       "description": "Overlay、standalone import、属性バインディング、二重操作防止を標準化します。"
     },
     {
+      "icon": "web",
       "title": "汎用TypeScript",
       "description": "AngularやIonicを読み込まず、/typescriptからWorkersのエラー境界・タイムゾーンpresetを利用できます。"
     }

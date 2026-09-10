@@ -15,14 +15,17 @@ export const PROJECT = {
   "featuresHeading": "Icon workflow",
   "features": [
     {
+      "icon": "layers",
       "title": "Template collection",
       "description": "Scan templates and generate a unique ionIcons export before production builds."
     },
     {
+      "icon": "flash",
       "title": "Development convenience",
       "description": "Register all icons with addIcons during development for stress-free iteration."
     },
     {
+      "icon": "terminal",
       "title": "Initialize CLI",
       "description": "Wire addIcons automatically with --initialize and remove per-component calls."
     }

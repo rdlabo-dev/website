@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Header behavior",
   "features": [
     {
+      "icon": "scroll",
       "title": "IonContent scrolling",
       "description": "Attach scroll-aware behavior directly to Ionic content."
     },
     {
+      "icon": "layers",
       "title": "CDK virtual scrolling",
       "description": "Coordinate headers with Angular CDK virtual viewports."
     },
     {
+      "icon": "layout",
       "title": "Safe-area layouts",
       "description": "Support hidden safe-area headers and always-visible native headers."
     }

@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "写真ワークフロー",
   "features": [
     {
+      "icon": "image",
       "title": "カメラ・アルバム",
       "description": "Capacitor Cameraとブラウザのファイル入力から写真を読み込み、リサイズします。"
     },
     {
+      "icon": "edit",
       "title": "Editor Modal",
       "description": "正方形切り抜き要件やラベルを設定して画像を編集します。"
     },
     {
+      "icon": "eye",
       "title": "Viewer Modal",
       "description": "削除、円形表示、Safe Area対応を設定して複数画像を閲覧します。"
     }

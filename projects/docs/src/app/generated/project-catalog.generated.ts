@@ -71,14 +71,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Highlights",
     "features": [
       {
+        "icon": "layout",
         "title": "Web UI toolkit",
         "description": "Build performant mobile UX with HTML, CSS, and JavaScript components."
       },
       {
+        "icon": "devices",
         "title": "Cross-platform",
         "description": "Ship one codebase to iOS, Android, and the mobile web."
       },
       {
+        "icon": "layers",
         "title": "Framework integrations",
         "description": "Use Ionic with Angular, React, Vue, or as standalone Web Components."
       }
@@ -103,14 +106,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Highlights",
     "features": [
       {
+        "icon": "phone",
         "title": "Native runtime",
         "description": "Run modern web apps natively on iOS, Android, and beyond."
       },
       {
+        "icon": "flow",
         "title": "Native SDK access",
         "description": "Reach device features through a consistent Plugin API when you need it."
       },
       {
+        "icon": "web",
         "title": "Web-first workflow",
         "description": "Keep a web-first development flow without giving up native capabilities."
       }
@@ -134,18 +140,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "Application infrastructure",
     "features": [
       {
+        "icon": "layers",
         "title": "Storage and overlays",
         "description": "Prevent lost writes and present typed Ionic modals, popovers, toasts, and alerts."
       },
       {
+        "icon": "shield",
         "title": "Authentication and HTTP",
         "description": "Share route guards, access capability state, auth headers, safe retries, and error hooks."
       },
       {
+        "icon": "sheet",
         "title": "Signal Forms",
         "description": "Connect Ionic controls to Angular Signal Forms with validation messages and field state."
       },
       {
+        "icon": "phone",
         "title": "Optional native features",
         "description": "Add theme, review, printing, Firebase authentication, and Live Update support by subpath."
       }
@@ -227,14 +237,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Photo workflow",
     "features": [
       {
+        "icon": "image",
         "title": "Camera and album",
         "description": "Load and resize photos through Capacitor Camera and browser file input flows."
       },
       {
+        "icon": "edit",
         "title": "Editor modal",
         "description": "Crop and edit images with configurable square requirements and labels."
       },
       {
+        "icon": "eye",
         "title": "Viewer modal",
         "description": "Browse multiple images with optional deletion, circular display, and safe-area support."
       }
@@ -310,14 +323,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Header behavior",
     "features": [
       {
+        "icon": "scroll",
         "title": "IonContent scrolling",
         "description": "Attach scroll-aware behavior directly to Ionic content."
       },
       {
+        "icon": "layers",
         "title": "CDK virtual scrolling",
         "description": "Coordinate headers with Angular CDK virtual viewports."
       },
       {
+        "icon": "layout",
         "title": "Safe-area layouts",
         "description": "Support hidden safe-area headers and always-visible native headers."
       }
@@ -387,14 +403,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Variable-height virtual scrolling",
     "features": [
       {
+        "icon": "resize",
         "title": "Variable item heights",
         "description": "Give every list item its own known or measured pixel height."
       },
       {
+        "icon": "ruler",
         "title": "Exact scroll geometry",
         "description": "Avoid average-size estimation when calculating ranges and index offsets."
       },
       {
+        "icon": "reverse",
         "title": "Reverse virtual scroll",
         "description": "Support chat-style reverse layouts and logical index scrolling."
       }
@@ -474,14 +493,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Theme capabilities",
     "features": [
       {
+        "icon": "layout",
         "title": "iOS 27 CSS and design",
         "description": "Restyle Ionic components to follow the latest iOS 27 design language."
       },
       {
+        "icon": "motion",
         "title": "Transitions and Liquid Glass",
         "description": "Use iOS-oriented navigation animations and Liquid Glass interaction effects."
       },
       {
+        "icon": "dark",
         "title": "Dark mode and selective migration",
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
@@ -571,14 +593,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Theme capabilities",
     "features": [
       {
+        "icon": "layout",
         "title": "iOS 26 CSS and design",
         "description": "Restyle Ionic components to follow the latest iOS 26 design language."
       },
       {
+        "icon": "motion",
         "title": "Transitions and Liquid Glass",
         "description": "Use iOS-oriented navigation animations and Liquid Glass interaction effects."
       },
       {
+        "icon": "dark",
         "title": "Dark mode and selective migration",
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
@@ -668,14 +693,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Theme capabilities",
     "features": [
       {
+        "icon": "layout",
         "title": "Material Design 3 styling",
         "description": "Update Ionic components to follow Material Design 3 guidelines."
       },
       {
+        "icon": "layers",
         "title": "iOS 26-compatible markup",
         "description": "Share one HTML structure with `@rdlabo/ionic-theme-ios26` across platforms."
       },
       {
+        "icon": "motion",
         "title": "Transition animation",
         "description": "Configure MD3 navigation transitions for non-iOS platforms."
       }
@@ -743,14 +771,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Icon workflow",
     "features": [
       {
+        "icon": "layers",
         "title": "Template collection",
         "description": "Scan templates and generate a unique ionIcons export before production builds."
       },
       {
+        "icon": "flash",
         "title": "Development convenience",
         "description": "Register all icons with addIcons during development for stress-free iteration."
       },
       {
+        "icon": "terminal",
         "title": "Initialize CLI",
         "description": "Wire addIcons automatically with --initialize and remove per-component calls."
       }
@@ -825,10 +856,12 @@ export const PROJECTS_EN = [
     "featuresHeading": "Calendar building blocks",
     "features": [
       {
+        "icon": "globe",
         "title": "IANA timezones",
         "description": "Convert between UTC instants and timezone-local wall clocks."
       },
       {
+        "icon": "calendar",
         "title": "Calendar boundaries",
         "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
       }
@@ -896,14 +929,17 @@ export const PROJECTS_EN = [
     "featuresHeading": "Database building blocks",
     "features": [
       {
+        "icon": "database",
         "title": "Hyperdrive runtime",
         "description": "Use invocation-scoped connections and explicit primary/replica read paths."
       },
       {
+        "icon": "layers",
         "title": "Optional Drizzle integration",
         "description": "Keep schemas in the application and share one Drizzle type identity."
       },
       {
+        "icon": "terminal",
         "title": "Tooling boundaries",
         "description": "Keep migration and destructive test helpers separate from Worker bundles."
       }
@@ -978,18 +1014,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "Infrastructure areas",
     "features": [
       {
+        "icon": "shield",
         "title": "HTTP and auth",
         "description": "Standardize validation, Firebase authentication, errors, maintenance, and response finalization."
       },
       {
+        "icon": "database",
         "title": "Workers data layer",
         "description": "Connect standalone MySQL and timezone packages through the Hono container adapter."
       },
       {
+        "icon": "sync",
         "title": "Realtime and offline",
         "description": "Share Durable Object WebSocket patterns and table-agnostic offline replica contracts."
       },
       {
+        "icon": "check",
         "title": "Testing and operations",
         "description": "Reuse database fixtures, service fakes, performance logging, queues, and operational CLIs."
       }
@@ -1063,18 +1103,22 @@ export const PROJECTS_EN = [
     "featuresHeading": "What the plugin covers",
     "features": [
       {
+        "icon": "events",
         "title": "Angular Signals",
         "description": "Catch Signals used as plain values in TypeScript and templates."
       },
       {
+        "icon": "layers",
         "title": "Component boundaries",
         "description": "Enforce ViewModel ownership, readonly properties, and lifecycle contracts."
       },
       {
+        "icon": "phone",
         "title": "Ionic interaction",
         "description": "Standardize overlays, standalone imports, attribute bindings, and double-tap prevention."
       },
       {
+        "icon": "web",
         "title": "Framework-independent TypeScript",
         "description": "Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic."
       }
@@ -1295,10 +1339,12 @@ export const PROJECTS_EN = [
     "featuresHeading": "Why use the fork",
     "features": [
       {
+        "icon": "terminal",
         "title": "Upstream-compatible CLI",
         "description": "Keep the same docgen binary, flags, placeholders, output commands, and exported functions as @capacitor/docgen."
       },
       {
+        "icon": "flow",
         "title": "Interface inheritance",
         "description": "Resolve TypeScript extends clauses and append inherited methods and properties, including on the primary API."
       }
@@ -2186,14 +2232,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "主なポイント",
     "features": [
       {
+        "icon": "layout",
         "title": "Web UI toolkit",
         "description": "HTML・CSS・JavaScriptのコンポーネントで、高性能なモバイルUXを構築します。"
       },
       {
+        "icon": "devices",
         "title": "Cross-platform",
         "description": "ひとつのコードベースからiOS、Android、モバイルWebへ配信します。"
       },
       {
+        "icon": "layers",
         "title": "Framework integrations",
         "description": "Angular、React、Vue、またはスタンドアロンのWeb Componentsとして利用できます。"
       }
@@ -2218,14 +2267,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "主なポイント",
     "features": [
       {
+        "icon": "phone",
         "title": "Native runtime",
         "description": "モダンなWebアプリをiOS、Androidをはじめとするプラットフォームでネイティブ実行します。"
       },
       {
+        "icon": "flow",
         "title": "Native SDK access",
         "description": "必要なときに一貫したPlugin API経由でデバイス機能へアクセスします。"
       },
       {
+        "icon": "web",
         "title": "Web-first workflow",
         "description": "ネイティブ機能を犠牲にせず、Webファーストの開発フローを維持します。"
       }
@@ -2249,18 +2301,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "提供するアプリケーション基盤",
     "features": [
       {
+        "icon": "layers",
         "title": "Storage・Overlay",
         "description": "書き込み損失を防ぎ、型安全なIonic Modal、Popover、Toast、Alertを表示します。"
       },
       {
+        "icon": "shield",
         "title": "認証・HTTP",
         "description": "Route Guard、アクセス権限状態、認証Header、安全なretry、error hookを共有します。"
       },
       {
+        "icon": "sheet",
         "title": "Signal Forms",
         "description": "Ionicの入力欄をAngular Signal Formsに接続し、検証メッセージとフィールドの状態を連携します。"
       },
       {
+        "icon": "phone",
         "title": "任意のNative機能",
         "description": "Theme、Review、印刷、Firebase認証、Live Updateをsubpath単位で追加します。"
       }
@@ -2342,14 +2398,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "写真ワークフロー",
     "features": [
       {
+        "icon": "image",
         "title": "カメラ・アルバム",
         "description": "Capacitor Cameraとブラウザのファイル入力から写真を読み込み、リサイズします。"
       },
       {
+        "icon": "edit",
         "title": "Editor Modal",
         "description": "正方形切り抜き要件やラベルを設定して画像を編集します。"
       },
       {
+        "icon": "eye",
         "title": "Viewer Modal",
         "description": "削除、円形表示、Safe Area対応を設定して複数画像を閲覧します。"
       }
@@ -2425,14 +2484,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "Header動作",
     "features": [
       {
+        "icon": "scroll",
         "title": "IonContent Scroll",
         "description": "Ionic ContentへScroll連動動作を直接追加します。"
       },
       {
+        "icon": "layers",
         "title": "CDK Virtual Scroll",
         "description": "Angular CDKのVirtual ViewportとHeaderを連携します。"
       },
       {
+        "icon": "layout",
         "title": "Safe Area Layout",
         "description": "Safe Area用の非表示Headerと常時表示Native Headerを扱います。"
       }
@@ -2502,14 +2564,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "可変高さのVirtual Scroll",
     "features": [
       {
+        "icon": "resize",
         "title": "可変Item Height",
         "description": "各List Itemに、既知または計測した個別のPixel Heightを指定します。"
       },
       {
+        "icon": "ruler",
         "title": "正確なScroll Geometry",
         "description": "RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。"
       },
       {
+        "icon": "reverse",
         "title": "Reverse Virtual Scroll",
         "description": "Chat形式のReverse Layoutと論理Index Scrollに対応します。"
       }
@@ -2589,14 +2654,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "テーマの機能",
     "features": [
       {
+        "icon": "layout",
         "title": "iOS 27のCSSとデザイン",
         "description": "Ionicコンポーネントを最新のiOS 27デザイン言語に合わせて再スタイルします。"
       },
       {
+        "icon": "motion",
         "title": "トランジションとLiquid Glass",
         "description": "iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。"
       },
       {
+        "icon": "dark",
         "title": "ダークモードと段階的移行",
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
@@ -2686,14 +2754,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "テーマの機能",
     "features": [
       {
+        "icon": "layout",
         "title": "iOS 26のCSSとデザイン",
         "description": "Ionicコンポーネントを最新のiOS 26デザイン言語に合わせて再スタイルします。"
       },
       {
+        "icon": "motion",
         "title": "トランジションとLiquid Glass",
         "description": "iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。"
       },
       {
+        "icon": "dark",
         "title": "ダークモードと段階的移行",
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
@@ -2783,14 +2854,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "テーマの機能",
     "features": [
       {
+        "icon": "layout",
         "title": "Material Design 3スタイル",
         "description": "IonicコンポーネントをMaterial Design 3ガイドラインに合わせて更新します。"
       },
       {
+        "icon": "layers",
         "title": "iOS 26互換マークアップ",
         "description": "プラットフォームをまたぎ `@rdlabo/ionic-theme-ios26` と同じHTML構造を共有します。"
       },
       {
+        "icon": "motion",
         "title": "トランジションアニメーション",
         "description": "非iOSプラットフォーム向けにMD3のナビゲーショントランジションを設定します。"
       }
@@ -2858,14 +2932,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "アイコンワークフロー",
     "features": [
       {
+        "icon": "layers",
         "title": "テンプレート収集",
         "description": "テンプレートを走査し、本番ビルド前に一意なionIconsエクスポートを生成します。"
       },
       {
+        "icon": "flash",
         "title": "開発時の利便性",
         "description": "開発時はaddIconsに全アイコンを登録し、ストレスなく反復できます。"
       },
       {
+        "icon": "terminal",
         "title": "初期化CLI",
         "description": "--initializeでaddIconsを自動配線し、コンポーネント単位の呼び出しを削除します。"
       }
@@ -2940,10 +3017,12 @@ export const PROJECTS_JA = [
     "featuresHeading": "カレンダー処理の基本機能",
     "features": [
       {
+        "icon": "globe",
         "title": "IANAタイムゾーン",
         "description": "UTCの時刻とタイムゾーンごとのローカル時刻を相互変換します。"
       },
       {
+        "icon": "calendar",
         "title": "日付の境界",
         "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
       }
@@ -3011,14 +3090,17 @@ export const PROJECTS_JA = [
     "featuresHeading": "データベースの基本機能",
     "features": [
       {
+        "icon": "database",
         "title": "Hyperdriveランタイム",
         "description": "呼び出し単位の接続と明示的なprimary/replicaの読み取り経路を利用します。"
       },
       {
+        "icon": "layers",
         "title": "任意のDrizzle連携",
         "description": "スキーマをアプリで管理し、Drizzleの型を同じ依存から共有します。"
       },
       {
+        "icon": "terminal",
         "title": "ツールの境界",
         "description": "移行処理や破壊的テストヘルパーをWorkerのバンドルから分離します。"
       }
@@ -3093,18 +3175,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "提供するインフラ領域",
     "features": [
       {
+        "icon": "shield",
         "title": "HTTP・認証",
         "description": "検証、Firebase認証、エラー、メンテナンス、レスポンス確定を標準化します。"
       },
       {
+        "icon": "database",
         "title": "Workersデータ層",
         "description": "独立したMySQL・タイムゾーンパッケージをHonoコンテナーアダプターと組み合わせます。"
       },
       {
+        "icon": "sync",
         "title": "Realtime・Offline",
         "description": "Durable Object WebSocketパターンとテーブル非依存のOffline Replica契約を共有します。"
       },
       {
+        "icon": "check",
         "title": "テスト・運用",
         "description": "DB fixture、service fake、性能ログ、Queue、運用CLIを再利用します。"
       }
@@ -3178,18 +3264,22 @@ export const PROJECTS_JA = [
     "featuresHeading": "プラグインが検査する領域",
     "features": [
       {
+        "icon": "events",
         "title": "Angular Signals",
         "description": "TypeScriptとテンプレートでSignalを通常値として誤用するケースを検出します。"
       },
       {
+        "icon": "layers",
         "title": "Component境界",
         "description": "ViewModel所有、readonlyプロパティ、ライフサイクル契約を検査します。"
       },
       {
+        "icon": "phone",
         "title": "Ionic操作",
         "description": "Overlay、standalone import、属性バインディング、二重操作防止を標準化します。"
       },
       {
+        "icon": "web",
         "title": "汎用TypeScript",
         "description": "AngularやIonicを読み込まず、/typescriptからWorkersのエラー境界・タイムゾーンpresetを利用できます。"
       }
@@ -3410,10 +3500,12 @@ export const PROJECTS_JA = [
     "featuresHeading": "forkを使う理由",
     "features": [
       {
+        "icon": "terminal",
         "title": "本家互換CLI",
         "description": "@capacitor/docgenと同じdocgenバイナリ、flag、placeholder、出力command、export functionを維持します。"
       },
       {
+        "icon": "flow",
         "title": "interface継承",
         "description": "TypeScriptのextends句を解決し、primary APIを含む継承method・propertyを生成ドキュメントへ追加します。"
       }

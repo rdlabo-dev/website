@@ -17,14 +17,17 @@ export const PROJECT = {
   "featuresHeading": "Variable-height virtual scrolling",
   "features": [
     {
+      "icon": "resize",
       "title": "Variable item heights",
       "description": "Give every list item its own known or measured pixel height."
     },
     {
+      "icon": "ruler",
       "title": "Exact scroll geometry",
       "description": "Avoid average-size estimation when calculating ranges and index offsets."
     },
     {
+      "icon": "reverse",
       "title": "Reverse virtual scroll",
       "description": "Support chat-style reverse layouts and logical index scrolling."
     }

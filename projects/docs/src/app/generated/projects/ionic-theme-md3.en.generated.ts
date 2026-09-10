@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "Theme capabilities",
   "features": [
     {
+      "icon": "layout",
       "title": "Material Design 3 styling",
       "description": "Update Ionic components to follow Material Design 3 guidelines."
     },
     {
+      "icon": "layers",
       "title": "iOS 26-compatible markup",
       "description": "Share one HTML structure with `@rdlabo/ionic-theme-ios26` across platforms."
     },
     {
+      "icon": "motion",
       "title": "Transition animation",
       "description": "Configure MD3 navigation transitions for non-iOS platforms."
     }

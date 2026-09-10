@@ -16,14 +16,17 @@ export const PROJECT = {
   "featuresHeading": "データベースの基本機能",
   "features": [
     {
+      "icon": "database",
       "title": "Hyperdriveランタイム",
       "description": "呼び出し単位の接続と明示的なprimary/replicaの読み取り経路を利用します。"
     },
     {
+      "icon": "layers",
       "title": "任意のDrizzle連携",
       "description": "スキーマをアプリで管理し、Drizzleの型を同じ依存から共有します。"
     },
     {
+      "icon": "terminal",
       "title": "ツールの境界",
       "description": "移行処理や破壊的テストヘルパーをWorkerのバンドルから分離します。"
     }

@@ -2052,7 +2052,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.1.1",
+    "version": "8.2.1",
     "description": "Native Brother Print SDK bindings for Capacitor on iOS and Android.",
     "headline": "Print to Brother label printers from Capacitor",
     "overview": "Search Brother printers over USB, Wi-Fi, Bluetooth, or BLE and print images to supported QL and TD models.",
@@ -2084,28 +2084,42 @@ export const PROJECTS_EN = [
         "title": "Installation",
         "navTitle": "Installation",
         "slug": "installation",
-        "section": "Guides",
+        "section": "Quickstart",
         "path": "/projects/capacitor-brotherprint/docs/installation"
+      },
+      {
+        "title": "JavaScript printer helpers",
+        "navTitle": "JavaScript printer helpers",
+        "slug": "connection-management",
+        "section": "JavaScript helpers",
+        "path": "/projects/capacitor-brotherprint/docs/connection-management"
+      },
+      {
+        "title": "Helper design decisions",
+        "navTitle": "Helper design decisions",
+        "slug": "helper-design",
+        "section": "JavaScript helpers",
+        "path": "/projects/capacitor-brotherprint/docs/helper-design"
       },
       {
         "title": "Search",
         "navTitle": "Search",
         "slug": "search",
-        "section": "Guides",
+        "section": "Plugin API",
         "path": "/projects/capacitor-brotherprint/docs/search"
       },
       {
         "title": "Print",
         "navTitle": "Print",
         "slug": "print",
-        "section": "Guides",
+        "section": "Plugin API",
         "path": "/projects/capacitor-brotherprint/docs/print"
       },
       {
         "title": "Events",
         "navTitle": "Events",
         "slug": "events",
-        "section": "Guides",
+        "section": "Plugin API",
         "path": "/projects/capacitor-brotherprint/docs/events"
       },
       {
@@ -4118,7 +4132,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.1.1",
+    "version": "8.2.1",
     "description": "iOS・Android向けのネイティブBrother Print SDKをCapacitorから利用するプラグイン。",
     "headline": "CapacitorからBrotherラベルプリンターへ印刷する",
     "overview": "USB・Wi-Fi・Bluetooth・BLEでBrotherプリンターを検索し、対応するQL・TDモデルへ画像を印刷します。",
@@ -4150,28 +4164,42 @@ export const PROJECTS_JA = [
         "title": "インストール",
         "navTitle": "インストール",
         "slug": "installation",
-        "section": "ガイド",
+        "section": "クイックスタート",
         "path": "/projects/capacitor-brotherprint/docs/installation"
+      },
+      {
+        "title": "JavaScriptプリンターヘルパー",
+        "navTitle": "JavaScriptプリンターヘルパー",
+        "slug": "connection-management",
+        "section": "JavaScriptヘルパー",
+        "path": "/projects/capacitor-brotherprint/docs/connection-management"
+      },
+      {
+        "title": "ヘルパーの設計方針",
+        "navTitle": "ヘルパーの設計方針",
+        "slug": "helper-design",
+        "section": "JavaScriptヘルパー",
+        "path": "/projects/capacitor-brotherprint/docs/helper-design"
       },
       {
         "title": "Search",
         "navTitle": "Search",
         "slug": "search",
-        "section": "ガイド",
+        "section": "プラグインAPI",
         "path": "/projects/capacitor-brotherprint/docs/search"
       },
       {
         "title": "Print",
         "navTitle": "Print",
         "slug": "print",
-        "section": "ガイド",
+        "section": "プラグインAPI",
         "path": "/projects/capacitor-brotherprint/docs/print"
       },
       {
         "title": "Events",
         "navTitle": "Events",
         "slug": "events",
-        "section": "ガイド",
+        "section": "プラグインAPI",
         "path": "/projects/capacitor-brotherprint/docs/events"
       },
       {

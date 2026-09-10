@@ -33,7 +33,7 @@ const printImage = async (printer: BRLMChannelResult, encodedImage: string) => {
 
 完全なページはデモを見てください:
 
-https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.1.1/demo/src/app/home/home.page.ts
+https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/demo/src/app/home/home.page.ts
 
 !::printImage::
 

@@ -325,12 +325,12 @@ test('builds bounded English and Japanese search indexes with the component UI',
   assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
   assert.equal(
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    195,
+    197,
     'English search index must contain only canonical pages',
   );
   assert.equal(
     files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    195,
+    197,
     'Japanese search index must contain only canonical pages',
   );
   const sizes = await Promise.all(

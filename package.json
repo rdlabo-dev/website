@@ -71,7 +71,7 @@
     "@capacitor-community/stripe-identity": "8.2.1",
     "@capacitor/docgen": "0.3.1",
     "@eslint/js": "^10.0.1",
-    "@rdlabo/capacitor-brotherprint": "8.1.1",
+    "@rdlabo/capacitor-brotherprint": "8.2.1",
     "@rdlabo/capacitor-codescanner": "8.0.3",
     "@rdlabo/capacitor-docgen": "0.4.1",
     "@rdlabo/capacitor-local-llm": "2.2.0",

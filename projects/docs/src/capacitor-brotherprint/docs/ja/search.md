@@ -52,11 +52,33 @@ const stopSearching = async () => {
 探索ボタンから `searchWifiPrinters` を呼び、画面を離れるときに `stopSearching` を待って監視を解放します。
 
 
+### BluetoothとBLE
+
+iOSの`bluetooth`は、最初に接続済みのMFiプリンターを一覧にします。接続済みの機器がない場合はシステムのBluetoothアクセサリ選択画面を表示し、プリンターを選択・ペアリングできます。探索のPromiseは選択画面のコールバック後に完了し、選択画面のエラーではrejectします。
+
+BLE対応プリンターには`port: BRLMPrinterPort.bluetoothLowEnergy`を使います。iOSではBluetoothアクセサリ選択画面を使わず、`startBLESearch`で探索します。探索結果の`channelInfo`（BLEローカル名）を変更せず、`isChannelAvailable`や`printImage`へ渡してください。BLE探索エラーではPromiseがrejectします。QL-820NWB/QL-820NWBcはBLE印刷に対応していないため、`bluetooth`または`wifi`を使います。
+
+Androidでは、`bluetooth`で探索する前にシステム設定でペアリングしてください。SDKはペアリング済みプリンターを一覧にし、iOSのようなアクセサリ選択画面は提供しません。Bluetooth・BLEの探索は完了時にresolveし、SDKエラーではrejectします。Android 12以降は「付近のデバイス」、Android 11以前のBLEでは位置情報の権限を要求します。Bluetoothの権限がない場合、`isChannelAvailable`は`false`を返します。
+
 `searchDuration` は `wifi` と `bluetoothLowEnergy` で使います。`usb` は Android のみです。見つからない場合はエラーにはならず、プリンターも届きません。
 
 !::search::
 
 !::BRLMSearchOption::
+
+### Androidでプリンターのクラスに絞る
+
+AndroidのBluetooth Classic探索はペアリング済み端末を返します。Bluetooth Imaging/Printerクラスを報告する端末だけに絞るには、次のように指定します。
+
+```typescript
+await BrotherPrint.search({
+  port: BRLMPrinterPort.bluetooth,
+  searchDuration: 15,
+  bluetoothPrintersOnly: true,
+});
+```
+
+`bluetoothPrintersOnly`の既定値は`false`で、従来どおり絞り込まずに返します。iOSやBLEを含む他のポートでは無視します。このフィルターは端末名を使わず、Brother製品を特定するものでもないため、他社のプリンターが含まれる場合があります。有効にすると、Bluetoothクラスが不明またはプリンター以外の端末は除外します。
 
 ## isChannelAvailable
 

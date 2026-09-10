@@ -223,3 +223,72 @@ pagefind-modal-trigger.docs-search:empty {
     font-size: 1rem;
   }
 }
+
+.doc-pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.doc-pagination .pagination-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--rd-line);
+  border-radius: 0.75rem;
+  color: var(--rd-ink);
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    background-color 150ms,
+    border-color 150ms;
+}
+
+.doc-pagination .pagination-link:hover {
+  background: var(--rd-tint);
+  border-color: #dccac0;
+  text-decoration: none;
+}
+
+.doc-pagination .pagination-link:focus-visible {
+  outline: 2px solid var(--rd-accent);
+  outline-offset: 3px;
+}
+
+.doc-pagination .pagination-direction {
+  color: var(--rd-muted);
+  font-size: 0.75rem;
+}
+
+.doc-pagination .pagination-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.doc-pagination .pagination-title > span {
+  flex-shrink: 0;
+  color: var(--rd-accent);
+}
+
+.doc-pagination .pagination-next {
+  grid-column: 2;
+  text-align: right;
+  align-items: flex-end;
+}
+
+@media (max-width: 480px) {
+  .doc-pagination {
+    gap: 0.5rem;
+  }
+  .doc-pagination .pagination-link {
+    padding: 0.85rem;
+  }
+}

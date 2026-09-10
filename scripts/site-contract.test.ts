@@ -717,7 +717,7 @@ test('imports the remaining rdlabo utility READMEs from exact public releases', 
       ['@rdlabo/capacitor-screenshot-event', '8.0.0', 'capacitor-plugins'],
     ],
     ['capacitor-printer', ['@rdlabo/capacitor-printer', '8.0.1', 'capacitor-plugins']],
-    ['capacitor-brotherprint', ['@rdlabo/capacitor-brotherprint', '8.1.1', 'capacitor-plugins']],
+    ['capacitor-brotherprint', ['@rdlabo/capacitor-brotherprint', '8.2.1', 'capacitor-plugins']],
     [
       'ionic-angular-collect-icons',
       ['@rdlabo/ionic-angular-collect-icons', '3.0.0', 'frontend-tools'],
@@ -767,7 +767,14 @@ test('imports the remaining rdlabo utility READMEs from exact public releases', 
       'capacitor-codescanner': ['code-scanner'],
       'capacitor-screenshot-event': ['screenshot-event'],
       'capacitor-printer': ['web', 'pdf'],
-      'capacitor-brotherprint': ['installation', 'search', 'print', 'events'],
+      'capacitor-brotherprint': [
+        'installation',
+        'connection-management',
+        'helper-design',
+        'search',
+        'print',
+        'events',
+      ],
     };
     const groupSlugs = expectedGroupSlugs[projectId];
     if (groupSlugs) {

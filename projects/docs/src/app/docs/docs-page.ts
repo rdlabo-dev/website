@@ -109,17 +109,17 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                 </div>
               }
               @if (previousPage() || nextPage()) {
-                <nav class="mt-10 grid grid-cols-2 gap-4 pt-6" aria-label="Documentation pages" i18n-aria-label="@@documentationPages">
+                <nav class="doc-pagination" aria-label="Documentation pages" i18n-aria-label="@@documentationPages">
                   @if (previousPage(); as previous) {
-                    <a class="min-w-0 rounded-lg border border-slate-200 p-4 no-underline hover:border-[#bd4521] focus-visible:outline-2 focus-visible:outline-offset-2" [routerLink]="previous.path" rel="prev">
-                      <span class="block text-sm text-[#796e68]" i18n="@@previousPage">Previous</span>
-                      <span class="block break-words">{{ previous.navTitle || previous.title }}</span>
+                    <a class="pagination-link" [routerLink]="previous.path" rel="prev">
+                      <span class="pagination-direction" i18n="@@previousPage">Previous</span>
+                      <span class="pagination-title"><span aria-hidden="true">←</span>{{ previous.navTitle || previous.title }}</span>
                     </a>
                   }
                   @if (nextPage(); as next) {
-                    <a class="col-start-2 min-w-0 rounded-lg border border-slate-200 p-4 text-right no-underline hover:border-[#bd4521] focus-visible:outline-2 focus-visible:outline-offset-2" [routerLink]="next.path" rel="next">
-                      <span class="block text-sm text-[#796e68]" i18n="@@nextPage">Next</span>
-                      <span class="block break-words">{{ next.navTitle || next.title }}</span>
+                    <a class="pagination-link pagination-next" [routerLink]="next.path" rel="next">
+                      <span class="pagination-direction" i18n="@@nextPage">Next</span>
+                      <span class="pagination-title">{{ next.navTitle || next.title }}<span aria-hidden="true">→</span></span>
                     </a>
                   }
                 </nav>

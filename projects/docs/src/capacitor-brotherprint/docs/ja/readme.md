@@ -31,7 +31,7 @@ SDK の配置、SPM レイアウト、権限の詳細は [インストール](/d
 | ------------------------------------- | ------------ | -------- | ------ | ------- | ----------- | ------------ | ---------- | ----------- |
 | QL-810W                               | QL_810W      | ✗        | ✗      | ✗       | ◯           | ✗            | ✗          | ✗           |
 | [QL-820NWB](https://amzn.to/3BXQ1aj)  | QL_820NWB    | ◯        | ※1     | ✗       | △           | ◯            | △          | ✗           |
-| [QL-820NWBc](https://amzn.to/4fjhUIe)  | QL_820NWB    | ◯        | ※2     | ✗       | ✗           | ◯            | ◯          | ✗           |
+| [QL-820NWBc](https://amzn.to/4fjhUIe)  | QL_820NWB    | ◯        | ◯      | ✗       | ✗           | ◯            | ◯          | ✗           |
 | [TD-2320D](https://amzn.to/48EFCN3)   | TD_2320D_203 | ✗        | ✗      | ✗       | △           | ✗            | ✗          | ✗           |
 | [TD-2350D](https://amzn.to/48ma6TK)   | TD_2350D_300 | ◯        | △      | △       | ◯           | ◯            | ◯          | △           |
 
@@ -50,4 +50,7 @@ Amazon アソシエイト: **https://amzn.to/3AiiOFT**
 
 ※1 Bluetooth の版が古く、iOS では接続できません。参照: https://okbizcs.okwave.jp/brother/qa/q9932082.html
 
-※2 QL-820NWBc の iOS/BT 実装は入っていますが、正しく動くかは不明です。Brother 公式アプリでもうまく動かないため、実装の問題かは切り分けられていません。
+
+## JavaScriptヘルパー
+
+`BrotherPrinterSession`は、印刷画面の探索結果、印刷リスナー、終了処理を管理します。純粋関数でモデルや接続方法を選択でき、ステートレスな接続ヘルパーも利用できます。AngularやIonicには依存しません。[接続管理](/docs/connection-management)を参照してください。

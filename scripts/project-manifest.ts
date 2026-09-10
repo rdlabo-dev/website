@@ -2483,8 +2483,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Brother Print',
     packageName: '@rdlabo/capacitor-brotherprint',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-brotherprint',
-    // v8.1.1 predates the portal guides; pin the reviewed immutable docs revision.
-    englishDocsRef: '7f37373bee4bbb37b8c043472f6ded0b917fb067',
+    englishDocsRef: 'c3486da72432a88512d8870a634f0c6a6868f901',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',
@@ -2526,14 +2525,44 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-10', '2026-09-10'),
+      }),
+      page(
+        'Installation',
+        'インストール',
+        'installation',
+        'installation.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          updatedAt: text('2026-09-10', '2026-09-10'),
+        },
+      ),
+      page(
+        'JavaScript printer helpers',
+        'JavaScriptプリンターヘルパー',
+        'connection-management',
+        'connection-management.md',
+        'JavaScript helpers',
+        'JavaScriptヘルパー',
+        { updatedAt: text('2026-09-10', '2026-09-10') },
+      ),
+      page(
+        'Helper design decisions',
+        'ヘルパーの設計方針',
+        'helper-design',
+        'helper-design.md',
+        'JavaScript helpers',
+        'JavaScriptヘルパー',
+        { updatedAt: text('2026-09-10', '2026-09-10') },
+      ),
+      page('Search', 'Search', 'search', 'search.md', 'Plugin API', 'プラグインAPI', {
+        updatedAt: text('2026-09-10', '2026-09-10'),
+      }),
+      page('Print', 'Print', 'print', 'print.md', 'Plugin API', 'プラグインAPI', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('Installation', 'インストール', 'installation', 'installation.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
-      }),
-      groupPage('Search', 'search', { updatedAt: text('2026-09-06', '2026-09-06') }),
-      groupPage('Print', 'print', { updatedAt: text('2026-09-06', '2026-09-06') }),
-      groupPage('Events', 'events'),
+      page('Events', 'Events', 'events', 'events.md', 'Plugin API', 'プラグインAPI'),
     ],
   },
 ];

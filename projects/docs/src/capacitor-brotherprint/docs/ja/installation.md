@@ -128,4 +128,10 @@ let package = Package(
 + </array>
 ```
 
+#### Bluetoothのplist型（2026年9月9日確認）
+
+`UISupportedExternalAccessoryProtocols`は、`com.brother.ptcbp`だけを指定する場合も**文字列の配列**にします。以前のリポジトリの例は単一の`<string>`を使っており、Bluetooth探索時に`-[__NSCFString count]: unrecognized selector`でクラッシュする原因となっていました。上記の`<array>`を使ってください。[Appleの型定義](https://developer.apple.com/documentation/bundleresources/information-property-list/uisupportedexternalaccessoryprotocols)も参照できます。
+
+`NSBluetoothAlwaysUsageDescription`と`NSBluetoothPeripheralUsageDescription`の値は配列ではなく**文字列**です。[Brother公式iOSセットアップガイド](https://support.brother.com/g/s/es/htmldoc/mobilesdk/guide/getting-started/getting-started-ios.html)のこれらのキーの例は2026年9月9日時点で正しく、今回のクラッシュ原因ではありません。Brotherのガイドは`UISupportedExternalAccessoryProtocols`に`com.brother.ptcbp`を項目として追加するよう別途説明しています。また、`NSBluetoothPeripheralUsageDescription`の追加を要求するのはデプロイ先がiOS 13未満の場合です。
+
 詳細: https://support.brother.co.jp/j/s/support/html/mobilesdk/guide/getting-started/getting-started-ios.html

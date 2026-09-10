@@ -35,12 +35,6 @@ describe('LandingPageComponent', () => {
     );
     expect(compiled.textContent).toContain('@capacitor-community/stripe');
     expect(compiled.textContent).toContain('PaymentSheet');
-    expect(Array.from(compiled.querySelectorAll('.entry-guide a')).map((link) => link.getAttribute('href'))).toEqual([
-      '/projects/capacitor-stripe/docs/vanilla-js',
-      '/projects/capacitor-stripe/docs/server-integration',
-      '/projects/capacitor-stripe/docs/payment-sheet',
-      '/projects/capacitor-stripe/docs/api',
-    ]);
     expect(
       compiled.querySelector('a[href="/projects/capacitor-stripe/docs/configuration"]'),
     ).not.toBeNull();
@@ -56,13 +50,18 @@ describe('LandingPageComponent', () => {
   it('takes Workers visitors to the paired quickstart and exposes guides and API', async () => {
     const compiled = await setup('workers-timezone');
     expect(compiled.querySelector('.project-actions a')?.getAttribute('href')).toBe('/projects/workers-timezone/docs/quickstart');
-    expect(Array.from(compiled.querySelectorAll('.entry-guide a')).map((link) => link.getAttribute('href'))).toEqual([
-      '/projects/workers-timezone/docs/readme',
-      '/projects/workers-timezone/docs/eslint',
-      '/projects/workers-timezone/docs/timezones',
-      '/projects/workers-timezone/docs/api',
-    ]);
     expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
+  });
+
+  it('lists every documentation page once in the full index', async () => {
+    const element = await setup('ionic-theme-ios27');
+    const project = (await loadProject('ionic-theme-ios27'))!;
+    const links = Array.from(element.querySelectorAll('#documentation a')).map((link) => link.getAttribute('href'));
+    expect(element.querySelector('.entry-guide')).toBeNull();
+    const sections = Array.from(element.querySelectorAll('.project-hero, #documentation, .project-media, .project-section'));
+    expect(sections.indexOf(element.querySelector('.project-media')!)).toBeLessThan(sections.indexOf(element.querySelector('#documentation')!));
+    expect(links).toHaveLength(project.pages.length);
+    expect(new Set(links)).toEqual(new Set(project.pages.map((page) => page.path)));
   });
 
   it('renders AdMob from the same project presentation model', async () => {

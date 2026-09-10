@@ -7,6 +7,7 @@ import {
   OnInit,
   PLATFORM_ID,
   inject,
+  computed,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -106,6 +107,22 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                     </div>
                   }
                 </div>
+              }
+              @if (previousPage() || nextPage()) {
+                <nav class="mt-10 grid grid-cols-2 gap-4 pt-6" aria-label="Documentation pages" i18n-aria-label="@@documentationPages">
+                  @if (previousPage(); as previous) {
+                    <a class="min-w-0 rounded-lg border border-slate-200 p-4 no-underline hover:border-[#bd4521] focus-visible:outline-2 focus-visible:outline-offset-2" [routerLink]="previous.path" rel="prev">
+                      <span class="block text-sm text-[#796e68]" i18n="@@previousPage">Previous</span>
+                      <span class="block break-words">{{ previous.navTitle || previous.title }}</span>
+                    </a>
+                  }
+                  @if (nextPage(); as next) {
+                    <a class="col-start-2 min-w-0 rounded-lg border border-slate-200 p-4 text-right no-underline hover:border-[#bd4521] focus-visible:outline-2 focus-visible:outline-offset-2" [routerLink]="next.path" rel="next">
+                      <span class="block text-sm text-[#796e68]" i18n="@@nextPage">Next</span>
+                      <span class="block break-words">{{ next.navTitle || next.title }}</span>
+                    </a>
+                  }
+                </nav>
               }
               @if (!doc.codes.length) {
                 <div class="mt-8 border-t border-slate-200 pt-4 min-[1501px]:hidden">
@@ -211,6 +228,16 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
   readonly #destroyRef = inject(DestroyRef);
   protected readonly project = signal<ProjectDocs | undefined>(undefined);
   protected readonly page = signal<DocsPage | undefined>(undefined);
+  protected readonly previousPage = computed(() => {
+    const pages = this.project()?.pages ?? [];
+    const index = pages.findIndex((page) => page.slug === this.page()?.slug);
+    return index > 0 ? pages[index - 1] : undefined;
+  });
+  protected readonly nextPage = computed(() => {
+    const pages = this.project()?.pages ?? [];
+    const index = pages.findIndex((page) => page.slug === this.page()?.slug);
+    return index >= 0 ? pages[index + 1] : undefined;
+  });
   protected readonly headingKeys = signal<string[]>([]);
   protected readonly tocHeadings = signal<DocsHeading[]>([]);
   protected readonly activeToc = signal('');

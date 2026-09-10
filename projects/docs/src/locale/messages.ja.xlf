@@ -124,6 +124,10 @@
       <trans-unit id="projectApiReference"><source>API reference</source><target>APIリファレンス</target></trans-unit>
       <trans-unit id="projectSupportPrompt"><source>Help keep this library maintained.</source><target>このライブラリの継続的な開発を支える。</target></trans-unit>
       <trans-unit id="projectSponsorLink"><source>Sponsor this project</source><target>スポンサーになる</target></trans-unit>
+      <trans-unit id="allDocumentation"><source>All documentation</source><target>すべてのドキュメント</target></trans-unit>
+      <trans-unit id="documentationPages"><source>Documentation pages</source><target>ドキュメントの前後のページ</target></trans-unit>
+      <trans-unit id="previousPage"><source>Previous</source><target>前へ</target></trans-unit>
+      <trans-unit id="nextPage"><source>Next</source><target>次へ</target></trans-unit>
     </body>
   </file>
 </xliff>

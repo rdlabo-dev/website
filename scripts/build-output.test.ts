@@ -402,7 +402,7 @@ test('project entry pages link to localized onboarding, references, and support'
         start?.startsWith(`/${locale}projects/${project.slug}/docs/`),
         `${project.slug}: onboarding`,
       );
-      for (const link of landing.querySelectorAll('.entry-guide a')) {
+      for (const link of landing.querySelectorAll('#documentation a')) {
         const href = link.getAttribute('href');
         assert.ok(href?.startsWith(`/${locale}projects/${project.slug}/docs/`));
         await access(new URL(`../dist/docs/browser${href}/index.html`, import.meta.url));
@@ -462,7 +462,7 @@ test('Local LLM 2.2 documents Chrome text support in both locales', async () => 
       landing.window.document.querySelector('.project-summary')?.textContent ?? '',
       /Chrome/,
     );
-    assert.ok(landing.window.document.querySelector(`.entry-guide a[href="${base}/docs/web"]`));
+    assert.ok(landing.window.document.querySelector(`#documentation a[href="${base}/docs/web"]`));
     landing.window.close();
     const web = new JSDOM(
       await readFile(

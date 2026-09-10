@@ -48,19 +48,6 @@ import { SafeHtmlPipe } from './safe-html.pipe';
               </a>
             </div>
           </div>
-          @if (entryGuides().length || apiPage()) {
-            <nav class="entry-guide" aria-labelledby="project-documentation">
-              <h2 id="project-documentation" i18n="@@projectDocumentation">Documentation</h2>
-              <ul>
-                @for (page of entryGuides(); track page.path) {
-                  <li><a [routerLink]="page.path"><span>{{ page.navTitle || page.title }}</span><span aria-hidden="true">→</span></a></li>
-                }
-              </ul>
-              @if (apiPage(); as api) {
-                <a class="entry-reference" [routerLink]="api.path"><span i18n="@@projectApiReference">API reference</span><span aria-hidden="true">→</span></a>
-              }
-            </nav>
-          }
         </div>
         @if (p.overviewHtml) {
           <div class="project-media znc [&_img]:mx-auto [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-xl [&_p]:m-0 [&_p:has(>img+img)]:flex [&_p:has(>img+img)]:items-start" [innerHTML]="p.overviewHtml | safeHtml"></div>
@@ -69,10 +56,51 @@ import { SafeHtmlPipe } from './safe-html.pipe';
           <h2>{{ p.featuresHeading }}</h2>
           <ul class="feature-grid">
             @for (feature of p.features; track feature.title) {
-              <li class="project-feature"><h3>{{ feature.title }}</h3><p>{{ feature.description }}</p></li>
+              <li class="project-feature">
+                <div class="feature-icon" aria-hidden="true">
+                  @if (p.icon === 'theme') {
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      @switch ($index) {
+                        @case (0) {
+                          <rect x="5" y="5" width="22" height="22" rx="6" fill="currentColor" fill-opacity=".1" />
+                          <path d="M5 13h22M13 13v14" />
+                        }
+                        @case (1) {
+                          <rect x="12" y="5" width="14" height="22" rx="4" fill="currentColor" fill-opacity=".1" />
+                          <path d="M7 9H4m3 7H2m5 7H4m12-12 5 5-5 5" />
+                        }
+                        @default {
+                          <path d="M25 20A11 11 0 0 1 12 5a11 11 0 1 0 13 15Z" fill="currentColor" fill-opacity=".15" />
+                          <path d="M24 3v6m-3-3h6" />
+                        }
+                      }
+                    </svg>
+                  } @else {
+                    <app-project-icon [kind]="p.icon" />
+                  }
+                </div>
+                <h3>{{ feature.title }}</h3><p>{{ feature.description }}</p>
+              </li>
             }
           </ul>
         </section>
+        @if (p.pages.length) {
+          <section id="documentation" class="project-section scroll-mt-8" aria-labelledby="all-documentation">
+            <h2 id="all-documentation" i18n="@@allDocumentation">All documentation</h2>
+            <div class="mt-6 border-t border-[var(--rd-line)]">
+              @for (group of documentationGroups(); track group.section) {
+                <div class="grid gap-4 border-b border-[var(--rd-line)] py-5 sm:grid-cols-[160px_1fr]">
+                  <h3 class="m-0 pt-3 text-sm font-semibold text-slate-500">{{ group.section }}</h3>
+                  <ul class="m-0 grid list-none gap-x-6 p-0 lg:grid-cols-2">
+                    @for (page of group.pages; track page.path) {
+                      <li class="min-w-0"><a class="flex min-h-12 items-center justify-between gap-4 rounded-md px-3 py-3 text-sm no-underline hover:bg-[#fcf3ee] hover:text-[var(--rd-accent)] focus-visible:outline" [routerLink]="page.path"><span class="[overflow-wrap:anywhere]">{{ page.navTitle || page.title }}</span><span class="shrink-0 text-slate-400" aria-hidden="true">→</span></a></li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </section>
+        }
         <aside class="project-support">
           <p i18n="@@projectSupportPrompt">Help keep this library maintained.</p>
           <a routerLink="/support"><span i18n="@@projectSponsorLink">Sponsor this project</span><span aria-hidden="true"> →</span></a>
@@ -123,15 +151,13 @@ export class LandingPageComponent implements OnInit {
   };
   protected readonly project = signal<ProjectDocs | undefined>(undefined);
 
-  protected readonly entryGuides = computed(() => {
-    const project = this.project();
-    const pages = project?.pages ?? [];
-    if (project?.entryGuideSlugs) {
-      return project.entryGuideSlugs.flatMap((slug) => pages.filter((page) => page.slug === slug));
-    }
-    return pages.slice(1).filter((page) => page.slug !== 'api' && !page.slug.startsWith('rules/')).slice(0, 3);
+  protected readonly documentationGroups = computed(() => {
+    const pages = this.project()?.pages ?? [];
+    return [...new Set(pages.map((page) => page.section))].map((section) => ({
+      section,
+      pages: pages.filter((page) => page.section === section),
+    }));
   });
-  protected readonly apiPage = computed(() => this.project()?.pages.find((page) => page.slug === 'api'));
 
   ngOnInit(): void {
     const project = this.#route.snapshot.data['project'] as ProjectDocs | undefined;

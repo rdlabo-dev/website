@@ -16,6 +16,10 @@ export const PROJECT_LOADERS = {
     en: () => import('./projects/ngx-cdk-scroll-strategies.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/ngx-cdk-scroll-strategies.ja.generated').then((module) => module.PROJECT),
   },
+  "ionic-theme-ios27": {
+    en: () => import('./projects/ionic-theme-ios27.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/ionic-theme-ios27.ja.generated').then((module) => module.PROJECT),
+  },
   "ionic-theme-ios26": {
     en: () => import('./projects/ionic-theme-ios26.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/ionic-theme-ios26.ja.generated').then((module) => module.PROJECT),

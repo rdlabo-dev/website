@@ -15,6 +15,8 @@ import {
   stripRdlaboDocsOmit,
 } from './package-markdown';
 import { fetchEnglishProjectMarkdown } from './package-repository';
+import { PROJECT as ionicThemeIos27En } from '../projects/docs/src/app/generated/projects/ionic-theme-ios27.en.generated';
+import { PROJECT as ionicThemeIos27Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-ios27.ja.generated';
 import { PROJECT as ionicThemeIos26En } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.en.generated';
 import { PROJECT as ionicThemeIos26Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.ja.generated';
 import { PROJECT as ionicThemeMd3En } from '../projects/docs/src/app/generated/projects/ionic-theme-md3.en.generated';
@@ -538,7 +540,8 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
-    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.1.0' }],
+    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.2.0' }],
+    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '0.1.0-1' }],
     ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
   ]);
   const packageJson = JSON.parse(
@@ -614,12 +617,12 @@ test('lists ionic theme packages and pins localized README imports', async () =>
       for (const markdown of [english, japanese]) {
         assert.doesNotMatch(markdown, new RegExp(['rdlabo', 'team'].join('-')));
         assert.doesNotMatch(markdown, new RegExp(`${projectId}/(?:blob|tree)/main`));
-        if (pageFile === 'readme.md') {
+        if (pageFile === 'readme.md' && projectId !== 'ionic-theme-ios27') {
           const portalReadme = await readFile(new URL(pageFile, docsRoot), 'utf8');
           assert.match(
             portalReadme,
             new RegExp(
-              `raw\\.githubusercontent\\.com/rdlabo-dev/${projectId}/v${expected.version}/screenshots/`,
+              `raw\\.githubusercontent\\.com/rdlabo-dev/${projectId}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
             ),
           );
         }
@@ -627,7 +630,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
           new RegExp(`https://github\\.com/rdlabo-dev/${projectId}/(?:blob|tree)/[^\\s)\\]]+`, 'g'),
         )) {
           assert.ok(
-            link[0].includes(`/v${expected.version}/`),
+            link[0].includes(`/${project.releaseTagPrefix ?? 'v'}${expected.version}/`),
             `${projectId} source link must use v${expected.version}: ${link[0]}`,
           );
         }
@@ -674,7 +677,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
   assert.match(
     iosReadme,
     new RegExp(
-      `https://github\\.com/rdlabo-dev/ionic-theme-ios26/blob/v${iosExpected.version}/docs/using-ion-item-group\\.md`,
+      `https://github\\.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v${iosExpected.version}/docs/using-ion-item-group\\.md`,
     ),
   );
 
@@ -1593,4 +1596,20 @@ test('declares authorized Ionic and Capacitor documentation translations', async
     assert.match(project.overview.en, /authorized/i);
     assert.match(project.overview.ja, /公認/);
   }
+});
+
+test('separates iOS 26 and iOS 27 documentation, source branches, and screenshots', () => {
+  for (const project of [ionicThemeIos27En, ionicThemeIos27Ja]) {
+    assert.equal(project.version, '0.1.0-1');
+    assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
+    assert.equal((project.overviewHtml.match(/<img /g) ?? []).length, 3);
+    assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
+    assert.match(project.overviewHtml, /ios27-v0\.1\.0-1\/screenshots\/ios27-settings\.png/);
+    assert.ok(project.pages.some((page) => page.slug === 'ios-adaptive'));
+  }
+  const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
+  const newGuide = ionicThemeIos27En.pages.find((page) => page.slug === 'migration');
+  assert.match(oldGuide!.editUrl, /\/edit\/ios26\/docs\/migration\.md$/);
+  assert.match(newGuide!.editUrl, /\/edit\/main\/docs\/migration\.md$/);
+  assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
 });

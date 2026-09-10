@@ -141,3 +141,19 @@ test('keeps fork-fetched portal pages editable in the canonical repository', () 
     },
   );
 });
+
+test('supports prefixed release tags for renamed theme packages', async () => {
+  const project = {
+    packageName: '@rdlabo/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    releaseTagPrefix: 'ios27-v',
+  };
+  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v0.1.0-1');
+  assert.equal(
+    await pinPackageSourceLinks(
+      project,
+      '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/main/src/index.ts)',
+    ),
+    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.1.0-1/src/index.ts)',
+  );
+});

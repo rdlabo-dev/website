@@ -458,16 +458,113 @@ export const PROJECTS_EN = [
     ]
   },
   {
+    "id": "ionic-theme-ios27",
+    "slug": "ionic-theme-ios27",
+    "name": "rdlabo Ionic Theme iOS27",
+    "shortName": "Ionic Theme iOS27",
+    "packageName": "@rdlabo/ionic-theme-ios27",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "0.1.0-1",
+    "description": "iOS 27 design styling for Ionic applications (release candidate).",
+    "headline": "Bring iOS 27 design to Ionic apps",
+    "overview": "Apply iOS 27 CSS, transitions, and Liquid Glass interactions to Ionic components. Versions before 1.0.0 are release candidates and may include breaking changes.",
+    "featuresHeading": "Theme capabilities",
+    "features": [
+      {
+        "title": "iOS 27 CSS and design",
+        "description": "Restyle Ionic components to follow the latest iOS 27 design language."
+      },
+      {
+        "title": "Transitions and Liquid Glass",
+        "description": "Use iOS-oriented navigation animations and Liquid Glass interaction effects."
+      },
+      {
+        "title": "Dark mode and selective migration",
+        "description": "Adopt dark-mode styles and migrate component by component when needed."
+      }
+    ],
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
+    "path": "/projects/ionic-theme-ios27",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Quickstart",
+        "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "Using ion-item-group",
+        "navTitle": "Using ion-item-group",
+        "slug": "using-ion-item-group",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
+      },
+      {
+        "title": "Special markup and classes",
+        "navTitle": "Special markup and classes",
+        "slug": "special-markup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/special-markup"
+      },
+      {
+        "title": "Keep lists consistent with ESLint",
+        "navTitle": "Keep lists consistent with ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/eslint"
+      },
+      {
+        "title": "Features",
+        "navTitle": "Features",
+        "slug": "features",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/features"
+      },
+      {
+        "title": "Experimental Animation",
+        "navTitle": "Experimental Animation",
+        "slug": "experimental-animation",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/experimental-animation"
+      },
+      {
+        "title": "Adaptive iOS themes",
+        "navTitle": "Adaptive iOS themes",
+        "slug": "ios-adaptive",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/ios-adaptive"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Reference",
+        "path": "/projects/ionic-theme-ios27/docs/api"
+      }
+    ]
+  },
+  {
     "id": "ionic-theme-ios26",
     "slug": "ionic-theme-ios26",
     "name": "rdlabo Ionic Theme iOS26",
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
-    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios26",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.0",
+    "version": "9.2.0",
     "description": "iOS 26 design styling for Ionic applications.",
     "headline": "Bring iOS 26 design to Ionic apps",
     "overview": "Apply iOS 26 CSS, transitions, and Liquid Glass interactions to Ionic components, with dark mode and selective migration support.",
@@ -486,7 +583,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.1.0/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -2427,16 +2524,113 @@ export const PROJECTS_JA = [
     ]
   },
   {
+    "id": "ionic-theme-ios27",
+    "slug": "ionic-theme-ios27",
+    "name": "rdlabo Ionic Theme iOS27",
+    "shortName": "Ionic Theme iOS27",
+    "packageName": "@rdlabo/ionic-theme-ios27",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "0.1.0-1",
+    "description": "Ionicアプリ向けのiOS 27デザインスタイル（RC版）。",
+    "headline": "IonicアプリにiOS 27デザインを取り入れる",
+    "overview": "IonicコンポーネントへiOS 27のCSS、トランジション、Liquid Glassインタラクションを適用します。1.0.0まではRC版で、互換性のない変更が入る場合があります。",
+    "featuresHeading": "テーマの機能",
+    "features": [
+      {
+        "title": "iOS 27のCSSとデザイン",
+        "description": "Ionicコンポーネントを最新のiOS 27デザイン言語に合わせて再スタイルします。"
+      },
+      {
+        "title": "トランジションとLiquid Glass",
+        "description": "iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。"
+      },
+      {
+        "title": "ダークモードと段階的移行",
+        "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
+      }
+    ],
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
+    "path": "/projects/ionic-theme-ios27",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "クイックスタート",
+        "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "ion-item-groupの使用方法",
+        "navTitle": "ion-item-groupの使用方法",
+        "slug": "using-ion-item-group",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
+      },
+      {
+        "title": "特別なマークアップとクラス",
+        "navTitle": "特別なマークアップとクラス",
+        "slug": "special-markup",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/special-markup"
+      },
+      {
+        "title": "ESLintでリストの構造を整える",
+        "navTitle": "ESLintでリストの構造を整える",
+        "slug": "eslint",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/eslint"
+      },
+      {
+        "title": "機能",
+        "navTitle": "機能",
+        "slug": "features",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/features"
+      },
+      {
+        "title": "実験的なアニメーション",
+        "navTitle": "実験的なアニメーション",
+        "slug": "experimental-animation",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/experimental-animation"
+      },
+      {
+        "title": "iOSテーマの切り替え",
+        "navTitle": "iOSテーマの切り替え",
+        "slug": "ios-adaptive",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/ios-adaptive"
+      },
+      {
+        "title": "移行",
+        "navTitle": "移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "リファレンス",
+        "path": "/projects/ionic-theme-ios27/docs/api"
+      }
+    ]
+  },
+  {
     "id": "ionic-theme-ios26",
     "slug": "ionic-theme-ios26",
     "name": "rdlabo Ionic Theme iOS26",
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
-    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios26",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.0",
+    "version": "9.2.0",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
     "headline": "IonicアプリにiOS 26デザインを取り入れる",
     "overview": "IonicコンポーネントへiOS 26のCSS、トランジション、Liquid Glassインタラクションを適用し、ダークモードと段階的な移行にも対応します。",
@@ -2455,7 +2649,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/v9.1.0/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {

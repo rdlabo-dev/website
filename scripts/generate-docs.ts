@@ -221,7 +221,10 @@ async function renderProjectOverview(
   locale: Locale,
 ): Promise<string> {
   const context = `${project.id}/overview (${locale})`;
-  const html = rewriteInternalLinks(await markdownToHtml(markdown), project, locale).replace(
+  const rendered = /^<p>\s*(?:<img\b[^>]*\/?>(?:\s*))+<\/p>$/.test(markdown.trim())
+    ? markdown
+    : await markdownToHtml(markdown);
+  const html = rewriteInternalLinks(rendered, project, locale).replace(
     'loading="lazy"',
     'loading="eager" fetchpriority="high"',
   );
@@ -236,9 +239,10 @@ function pageEditUrl(
   file: string,
   sourcePath: string,
   repositoryPath?: string,
+  editBranch = 'main',
 ): string {
   if (fromPackage && repositoryPath) {
-    return `${repositoryUrl}/edit/main/${repositoryPath}`;
+    return `${repositoryUrl}/edit/${editBranch}/${repositoryPath}`;
   }
   if (fromPackage) {
     const packagePath = sourcePath.endsWith('README.md') ? 'README.md' : `docs/${file}`;
@@ -595,6 +599,7 @@ async function generateProject(
         file,
         sourcePath,
         repositoryPath,
+        project.englishDocsEditBranch,
       ),
     });
   }

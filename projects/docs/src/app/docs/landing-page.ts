@@ -63,7 +63,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
           }
         </div>
         @if (p.overviewHtml) {
-          <div class="project-media znc [&_img]:mx-auto [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-xl [&_p]:m-0" [innerHTML]="p.overviewHtml | safeHtml"></div>
+          <div class="project-media znc [&_img]:mx-auto [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-xl [&_p]:m-0 [&_p:has(>img+img)]:flex [&_p:has(>img+img)]:items-start" [innerHTML]="p.overviewHtml | safeHtml"></div>
         }
         <section class="project-section">
           <h2>{{ p.featuresHeading }}</h2>

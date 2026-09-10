@@ -7,14 +7,14 @@ CSS変数とSass mixinでテーマをカスタマイズしたり、コンポー�
 ## CSS変数
 
 ライブラリのデフォルトスタイルをデザインに合わせてカスタマイズできるよう、複数のCSS変数を提供しています。詳細は次のファイルを参照してください。
-https://github.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v9.2.0/src/styles/default-variables.scss
+https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.1.0-1/src/styles/default-variables.scss
 
 ## Liquid Glass mixin
 
 Liquid Glass mixinを使うには、メインパッケージからSCSSファイルをimportします。
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/utils/api.scss';
+@use '@rdlabo/ionic-theme-ios27/src/styles/utils/api.scss';
 
 ion-textarea label.textarea-wrapper {
   @include api.glass-background;
@@ -26,10 +26,10 @@ ion-textarea label.textarea-wrapper {
 段階的に導入する場合は、テーマ全体ではなく個別のコンポーネントをimportできます。
 
 ```css
-@import '@rdlabo/ionic-theme-ios26/dist/css/utils/translucent';
-@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-action-sheet';
-@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-alert';
-@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-button';
+@import '@rdlabo/ionic-theme-ios27/dist/css/utils/translucent';
+@import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-action-sheet';
+@import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-alert';
+@import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-button';
 /* Import the remaining components your application uses. */
 ```
 
@@ -40,7 +40,7 @@ Dark Mode対応のコンポーネントを個別にimportする場合は、Alway
 Always:
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
 
 :root {
   @include theme-dark.default-variables;
@@ -54,7 +54,7 @@ Always:
 System:
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -70,7 +70,7 @@ System:
 Class:
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
 
 .ion-palette-dark {
   @include theme-dark.default-variables;
@@ -83,6 +83,4 @@ Class:
 
 ## インタラクティブな例
 
-[デモでrender済みの例を見る](https://ionic-theme-ios26.rdlabo.dev/main/docs)。
-
-旧名の `ios26-disabled` と `--ios26-*` はdeprecatedの互換名・フォールバックとして利用できます。両方のCSS変数を指定した場合は `--ios-theme-*` が優先されます。詳しくは[移行ガイド](/docs/migration)を参照してください。
+[デモでrender済みの例を見る](https://ionic-theme-ios27.rdlabo.dev/main/docs)。

@@ -60,6 +60,7 @@ describe('PluginIndexComponent', () => {
       'Ionic Angular Photo Editor',
       'Ionic Angular Scroll Header',
       'Angular CDK Scroll Strategies',
+      'Ionic Theme iOS27',
       'Ionic Theme iOS26',
       'Ionic Theme MD3',
       'Ionic Angular Collect Icons',
@@ -69,14 +70,14 @@ describe('PluginIndexComponent', () => {
       'ESLint Plugin Rules',
       'Docgen',
     ]);
-    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(24);
+    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(25);
   });
 
   it('keeps Japanese catalog metadata and lazy documentation in parity', async () => {
     const japaneseProjects = projectsForLocale('ja');
     const englishProjects = projectsForLocale('en');
     expect(japaneseProjects).toHaveLength(projectCatalog.length);
-    expect(projectCatalog).toHaveLength(24);
+    expect(projectCatalog).toHaveLength(25);
     expect(englishProjects.find((project) => project.id === 'ionic-docs')).toEqual(
       expect.objectContaining({
         category: 'translations',
@@ -185,7 +186,7 @@ describe('PluginIndexComponent', () => {
     expect(codeScannerApi?.html).toContain('<code>method</code> present(...)');
     expect(codeScannerApi?.html).toMatch(/<code>interface<\/code>[\s\S]*?ScannerOption/);
     const iosTheme = await loadProject('ionic-theme-ios26', 'ja');
-    expect(iosTheme?.version).toBe('9.1.0');
+    expect(iosTheme?.version).toBe('9.2.0');
     expect(iosTheme?.pages.find((page) => page.slug === 'readme')?.html).toContain(
       'iosTransitionAnimation',
     );
@@ -230,6 +231,7 @@ describe('PluginIndexComponent', () => {
         'ionic-angular-scroll-header',
         'ngx-cdk-scroll-strategies',
         'ionic-theme-ios26',
+        'ionic-theme-ios27',
         'ionic-theme-md3',
         'ionic-angular-collect-icons',
       ].sort(),

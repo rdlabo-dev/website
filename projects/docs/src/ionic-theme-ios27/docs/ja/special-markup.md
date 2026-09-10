@@ -77,7 +77,7 @@ segment buttonを利用可能な幅に均等配置する場合は `.segment-expa
 
 ## condense header内のclassic search bar
 
-Themeはdefaultでsearch barにiOS 26の外観を適用します。`collapse="condense"` を指定した `ion-header` のlarge titleの下に表示するsearch fieldには、`.searchbar-classic` を追加します。従来の塗りつぶされたiOSの外観になり、固定headerに残らずlarge titleと一緒にcollapseします。
+Themeはdefaultでsearch barにiOS 27の外観を適用します。`collapse="condense"` を指定した `ion-header` のlarge titleの下に表示するsearch fieldには、`.searchbar-classic` を追加します。従来の塗りつぶされたiOSの外観になり、固定headerに残らずlarge titleと一緒にcollapseします。
 
 `color="light"` など、colorを指定したtoolbar内に配置してください。classic背景は、そのcolorのcontrast値から生成されます。
 
@@ -134,12 +134,12 @@ search barとstartまたはend buttonを組み合わせる `ion-toolbar` には�
 
 ## Themeを無効にする
 
-個別のIonic componentで標準のiOS styleを維持する場合は `.ios26-disabled` を追加します。
+個別のIonic componentで標準のiOS styleを維持する場合は `.ios-theme-disabled` を追加します。
 
 ```html preview
-<ion-button>iOS 26 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
+<ion-button>iOS 27 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
 Inset listの背景modelについては [ion-item-groupの使用方法](/docs/using-ion-item-group) を参照してください。
 
-旧名の `ios26-disabled` と `--ios26-*` はdeprecatedの互換名・フォールバックとして利用できます。両方のCSS変数を指定した場合は `--ios-theme-*` が優先されます。詳しくは[移行ガイド](/docs/migration)を参照してください。
+`ios26-disabled` はdeprecatedですが、`ios-theme-disabled` と同じ動作の互換名として引き続き利用できます。新規コードでは `ios-theme-disabled` を使ってください。

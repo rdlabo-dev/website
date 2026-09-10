@@ -63,6 +63,8 @@ export interface ProjectDefinition {
   adapter?: 'capacitor-docs-json' | 'markdown';
   /** Immutable Git ref override for English guides (default: installed package tag). */
   englishDocsRef?: string;
+  releaseTagPrefix?: string;
+  englishDocsEditBranch?: string;
   /** Optional intent-focused document title for the project landing page SEO `<title>`. */
   seoTitle?: LocalizedText;
   description: LocalizedText;
@@ -709,15 +711,125 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
   },
   {
+    id: 'ionic-theme-ios27',
+    slug: 'ionic-theme-ios27',
+    sourceDirectory: 'ionic-theme-ios27',
+    name: 'rdlabo Ionic Theme iOS27',
+    shortName: 'Ionic Theme iOS27',
+    packageName: '@rdlabo/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
+    releaseTagPrefix: 'ios27-v',
+    category: 'frontend-tools',
+    icon: 'theme',
+    adapter: 'markdown',
+    description: text(
+      'iOS 27 design styling for Ionic applications (release candidate).',
+      'Ionicアプリ向けのiOS 27デザインスタイル（RC版）。',
+    ),
+    headline: text('Bring iOS 27 design to Ionic apps', 'IonicアプリにiOS 27デザインを取り入れる'),
+    overview: text(
+      'Apply iOS 27 CSS, transitions, and Liquid Glass interactions to Ionic components. Versions before 1.0.0 are release candidates and may include breaking changes.',
+      'IonicコンポーネントへiOS 27のCSS、トランジション、Liquid Glassインタラクションを適用します。1.0.0まではRC版で、互換性のない変更が入る場合があります。',
+    ),
+    featuresHeading: text('Theme capabilities', 'テーマの機能'),
+    features: [
+      {
+        title: text('iOS 27 CSS and design', 'iOS 27のCSSとデザイン'),
+        description: text(
+          'Restyle Ionic components to follow the latest iOS 27 design language.',
+          'Ionicコンポーネントを最新のiOS 27デザイン言語に合わせて再スタイルします。',
+        ),
+      },
+      {
+        title: text('Transitions and Liquid Glass', 'トランジションとLiquid Glass'),
+        description: text(
+          'Use iOS-oriented navigation animations and Liquid Glass interaction effects.',
+          'iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。',
+        ),
+      },
+      {
+        title: text('Dark mode and selective migration', 'ダークモードと段階的移行'),
+        description: text(
+          'Adopt dark-mode styles and migrate component by component when needed.',
+          '必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: text('2026-09-10', '2026-09-10'),
+      }),
+      page(
+        'Using ion-item-group',
+        'ion-item-groupの使用方法',
+        'using-ion-item-group',
+        'using-ion-item-group.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-10', '2026-09-10') },
+      ),
+      page(
+        'Special markup and classes',
+        '特別なマークアップとクラス',
+        'special-markup',
+        'special-markup.md',
+        'Guides',
+        'ガイド',
+      ),
+      page(
+        'Keep lists consistent with ESLint',
+        'ESLintでリストの構造を整える',
+        'eslint',
+        'eslint.md',
+        'Guides',
+        'ガイド',
+        {
+          seoTitle: text(
+            'Check Ionic iOS 27 list markup with ESLint | rdlabo',
+            'Ionic iOS 27のリスト構造をESLintで検査 | rdlabo',
+          ),
+          seoDescription: text(
+            'Catch missing item groups in Ionic Angular templates with a focused ESLint rule for the iOS 27 theme.',
+            'iOS 27テーマ向けのESLintルールで、Ionic Angularテンプレートのリストグループ漏れを検出します。',
+          ),
+          updatedAt: text('2026-09-10', '2026-09-10'),
+        },
+      ),
+      page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド'),
+      page(
+        'Experimental Animation',
+        '実験的なアニメーション',
+        'experimental-animation',
+        'experimental-animation.md',
+        'Guides',
+        'ガイド',
+      ),
+      page(
+        'Adaptive iOS themes',
+        'iOSテーマの切り替え',
+        'ios-adaptive',
+        'ios-adaptive.md',
+        'Guides',
+        'ガイド',
+      ),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+      }),
+    ],
+  },
+  {
     id: 'ionic-theme-ios26',
     slug: 'ionic-theme-ios26',
     sourceDirectory: 'ionic-theme-ios26',
     name: 'rdlabo Ionic Theme iOS26',
     shortName: 'Ionic Theme iOS26',
     packageName: '@rdlabo/ionic-theme-ios26',
-    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
+    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    englishDocsEditBranch: 'ios26',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
-    englishDocsRef: 'f477eb5312b178584b686bfe939b314ddedfa0db',
+    releaseTagPrefix: 'ios26-v',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',

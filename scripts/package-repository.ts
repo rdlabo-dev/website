@@ -39,6 +39,7 @@ async function pinnedVersionFor(packageName: string): Promise<string | undefined
 
 export async function resolveEnglishSourceRef(project: {
   englishDocsRef?: string;
+  releaseTagPrefix?: string;
   packageName: string;
 }): Promise<string> {
   if (project.englishDocsRef) {
@@ -48,37 +49,50 @@ export async function resolveEnglishSourceRef(project: {
     return project.englishDocsRef;
   }
   const version = await pinnedVersionFor(project.packageName);
-  return version ? `v${version}` : 'main';
+  return version ? `${project.releaseTagPrefix ?? 'v'}${version}` : 'main';
 }
 
 export async function pinPackageSourceLinks(
-  project: { repositoryUrl: string; packageName: string },
+  project: { repositoryUrl: string; packageName: string; releaseTagPrefix?: string },
   content: string,
 ): Promise<string> {
   const version = await pinnedVersionFor(project.packageName);
   if (!version) return content;
 
+  const tag = `${project.releaseTagPrefix ?? 'v'}${version}`;
   const { owner, repo } = parseRepositoryUrl(project.repositoryUrl);
   const escapedOwner = owner.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const escapedRepo = repo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedRepo =
+    project.packageName === '@rdlabo/ionic-theme-ios26'
+      ? '(?:ionic-theme-ios26|ionic-theme-ios27)'
+      : repo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return content
     .replace(
-      /\(\.\.\/\.\.\/(src|tests)\//g,
-      `(https://github.com/${owner}/${repo}/blob/v${version}/$1/`,
+      /(src=["'])\.\/screenshots\//g,
+      `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
     )
+    .replace(
+      /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/tree\/ios26(?=[)#\s]|$)/g,
+      '/ionic-theme-ios26/',
+    )
+    .replace(
+      /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/blob\/ios26\/docs\/migration\.md/g,
+      '/ionic-theme-ios26/docs/migration',
+    )
+    .replace(/\(\.\.\/\.\.\/(src|tests)\//g, `(https://github.com/${owner}/${repo}/blob/${tag}/$1/`)
     .replace(
       new RegExp(
         `(https://github\\.com/${escapedOwner}/${escapedRepo}/(?:blob|tree)/)[A-Za-z0-9._-]+/`,
         'g',
       ),
-      `$1v${version}/`,
+      `$1${tag}/`,
     )
     .replace(
       new RegExp(
         `(https://raw\\.githubusercontent\\.com/${escapedOwner}/${escapedRepo}/)[A-Za-z0-9._-]+/`,
         'g',
       ),
-      `$1v${version}/`,
+      `$1${tag}/`,
     );
 }
 
@@ -243,6 +257,7 @@ export async function fetchEnglishProjectMarkdown(
   project: {
     repositoryUrl: string;
     englishDocsRef?: string;
+    releaseTagPrefix?: string;
     packageName: string;
     sourceDirectory: string;
   },
@@ -285,7 +300,7 @@ export async function fetchEnglishProjectMarkdown(
         if (version) {
           rewrittenContent = rewrittenContent.replace(
             /More info:\s+\.\.?\/docs\/using-ion-item-group\.md/g,
-            `More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/v${version}/docs/using-ion-item-group.md`,
+            `More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/${project.releaseTagPrefix ?? 'v'}${version}/docs/using-ion-item-group.md`,
           );
         }
       }
@@ -320,6 +335,7 @@ export async function fetchEnglishProjectReadme(
   project: {
     repositoryUrl: string;
     englishDocsRef?: string;
+    releaseTagPrefix?: string;
     packageName: string;
     sourceDirectory: string;
   },

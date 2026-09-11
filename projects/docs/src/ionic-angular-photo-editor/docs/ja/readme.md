@@ -96,4 +96,4 @@ ComponentとServiceは、そのentry pointからだけimportしてください�
 | Modalで切り抜き・編集する              | [Photo Editor](/docs/editor)            |
 | Modalで画像を閲覧する                  | [Photo Viewer](/docs/viewer)            |
 | Editorの色を上書きする                 | [Theme](/docs/theme)                    |
-| 以前のreleaseからupgradeする           | [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/docs/migration.md#rdlaboionic-angular-photo-editor) |
+| 以前のreleaseからupgradeする           | [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/docs/migration.md#rdlaboionic-angular-photo-editor) |

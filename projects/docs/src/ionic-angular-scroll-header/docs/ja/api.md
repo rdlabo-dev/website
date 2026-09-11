@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-scroll-header` v22.0.0 が公開するstandalone directiveのリファレンスです。
+`@rdlabo/ionic-angular-scroll-header` v22.0.3 が公開するstandalone directiveのリファレンスです。
 
 ## Directive
 

@@ -7,7 +7,7 @@ scrollActiveLine: []
 既存のCDK Virtual Scroll Viewportへ、Scroll連動Headerを拡張します。Header／Safe Areaの形は [IonContent](/docs/ion-content) を起点にし、Scroll HostをViewportへ置き換えます。[インストール](/docs/readme#インストール) のあとで呼び出します。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';

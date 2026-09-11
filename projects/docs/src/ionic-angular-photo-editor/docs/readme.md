@@ -18,7 +18,7 @@ Photo editor and viewer modal pages for Ionic Angular applications, with Capacit
 | Crop and edit in a modal          | [Photo Editor](/docs/editor)                                             |
 | Browse images in a modal          | [Photo Viewer](/docs/viewer)                                             |
 | Override editor colors            | [Theme](/docs/theme)                                                     |
-| Upgrade from an earlier release   | [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/docs/migration.md#rdlaboionic-angular-photo-editor) |
+| Upgrade from an earlier release   | [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/docs/migration.md#rdlaboionic-angular-photo-editor) |
 
 ## Quick start
 
@@ -93,4 +93,4 @@ Start with [Installation](#installation), then pick a guide.
 - [Photo Editor](/docs/editor) — crop and edit in a modal.
 - [Photo Viewer](/docs/viewer) — browse images in a modal.
 - [Theme](/docs/theme) — CSS variables and toolbar color scheme.
-- [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/docs/migration.md#rdlaboionic-angular-photo-editor) — breaking changes and required consumer updates.
+- [Migration guide](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/docs/migration.md#rdlaboionic-angular-photo-editor) — breaking changes and required consumer updates.

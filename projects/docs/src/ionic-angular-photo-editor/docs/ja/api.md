@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-photo-editor` v22.0.0が公開するpublic entry pointのリファレンスです。Component、Service、任意実装は、それぞれ専用のsecondary entry pointからimportしてください。
+`@rdlabo/ionic-angular-photo-editor` v22.0.3が公開するpublic entry pointのリファレンスです。Component、Service、任意実装は、それぞれ専用のsecondary entry pointからimportしてください。
 
 ## Entry point
 

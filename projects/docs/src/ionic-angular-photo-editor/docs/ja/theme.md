@@ -23,7 +23,7 @@ Default colorはlibrary stylesheetで定義されています。CSS variableで�
 }
 ```
 
-Source reference: [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.0/projects/photo-editor/src/lib/pages/core.scss)
+Source reference: [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/photo-editor/src/lib/pages/core.scss)
 
 ## Toolbar color scheme
 

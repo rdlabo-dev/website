@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ngx-cdk-scroll-strategies` v22.0.0 が公開するAPIのリファレンスです。
+`@rdlabo/ngx-cdk-scroll-strategies` v22.0.3 が公開するAPIのリファレンスです。
 
 ## Directive
 

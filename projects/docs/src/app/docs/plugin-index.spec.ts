@@ -172,7 +172,7 @@ describe('PluginIndexComponent', () => {
       'primaryHyperdrive',
     );
     const ionic = await loadProject('ionic-angular-kit', 'ja');
-    expect(ionic?.version).toBe('22.0.0');
+    expect(ionic?.version).toBe('22.0.3');
     expect(ionic?.pages.find((page) => page.slug === 'offline-realtime')?.html).toContain(
       'createOfflineAuthBridge',
     );

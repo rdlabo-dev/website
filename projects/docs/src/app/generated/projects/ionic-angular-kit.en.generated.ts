@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
   "category": "frontend-tools",
   "icon": "app",
-  "version": "22.0.0",
+  "version": "22.0.3",
   "description": "Shared application infrastructure for Ionic Angular projects.",
   "headline": "Build consistent, resilient Ionic Angular applications",
   "overview": "Save typed preferences, open modals with typed results, and connect Ionic controls to Angular Signal Forms. Add authentication and native features as your app grows.",

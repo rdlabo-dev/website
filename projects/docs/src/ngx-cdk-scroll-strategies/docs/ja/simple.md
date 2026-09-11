@@ -9,7 +9,7 @@ scrollActiveLine: []
 > 各Itemの可変Heightがすでに分かっている場合に使います。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.0/projects/demo/src/app/scroll-strategies/pages/scroll-simple
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.3/projects/demo/src/app/scroll-strategies/pages/scroll-simple
 
 ViewportにはグローバルCSSで確定した高さを与えます。
 

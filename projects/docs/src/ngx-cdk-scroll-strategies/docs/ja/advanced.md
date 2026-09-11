@@ -9,7 +9,7 @@ scrollActiveLine: []
 > 各Scroll Itemを別Componentにして高さを測り、その結果を `[itemDynamicSizes]` を駆動するサイズモデルへ書き戻します。
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced
-- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.0/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
+- Source: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.3/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
 
 `trackId` をキーにした計測cacheを保持します。Itemの描画後に高さを読み、cacheを更新します。親の `computed` がItemを `itemDynamicSize[]` へ写像し、cacheがあればそれを使い、初回計測までは一時的な見積りを置きます。
 

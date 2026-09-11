@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the public entry points exported by `@rdlabo/ionic-angular-photo-editor` v22.0.0. Import components, services, and optional implementations from their dedicated secondary entry points.
+Reference for the public entry points exported by `@rdlabo/ionic-angular-photo-editor` v22.0.3. Import components, services, and optional implementations from their dedicated secondary entry points.
 
 ## Entry points
 

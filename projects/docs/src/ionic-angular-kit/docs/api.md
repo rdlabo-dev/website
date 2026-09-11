@@ -2,7 +2,7 @@
 title: API
 ---
 
-Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.0. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
+Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.3. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
 
 ## Core
 

@@ -1,3 +1,4 @@
+import { posix } from 'node:path';
 import { splitDocgenReadme } from './docgen-readme';
 
 const LANDING_START = /^## Overview[ \t]*$/m;
@@ -157,10 +158,35 @@ export function normalizePackageMarkdown(markdown: string): string {
     .replaceAll(`${LEGACY_GITHUB_OWNER}/`, 'rdlabo-dev/');
 }
 
+const RELATIVE_DOC_FILE_PATTERN =
+  /^(?:\.\.\/)*(?:\.\/)?(?:docs\/)?((?:[a-z0-9-]+\/)*[a-z0-9-]+)\.md$/i;
+
+/** Resolves a relative `*.md` link against the containing page's directory into a page slug. */
+export function resolveRelativeDocSlug(path: string, pageFile?: string): string | undefined {
+  if (!RELATIVE_DOC_FILE_PATTERN.test(path)) return undefined;
+  const pageDirectory = pageFile ? posix.dirname(pageFile) : '.';
+  const resolved = posix.normalize(posix.join(pageDirectory, path));
+  return resolved
+    .replace(/^(?:\.\.\/)+/, '')
+    .replace(/^docs\//, '')
+    .replace(/\.md$/i, '');
+}
+
+export function rewriteRelativeDocLinks(markdown: string, pageFile: string): string {
+  return markdown.replace(/\]\((?!https?:|mailto:)([^)]+)\)/g, (match, target: string) => {
+    const hashIndex = target.indexOf('#');
+    const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
+    const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
+    const slug = resolveRelativeDocSlug(path, pageFile);
+    return slug ? `](/docs/${slug}${hash})` : match;
+  });
+}
+
 export function rewritePackageDocLinks(
   markdown: string,
   apiAnchors: Map<string, string>,
   landingSlug = 'readme',
+  pageFile?: string,
 ): string {
   return markdown.replace(/\]\((?!https?:|mailto:)([^)]+)\)/g, (match, target: string) => {
     const hashIndex = target.indexOf('#');
@@ -180,10 +206,8 @@ export function rewritePackageDocLinks(
       return `](/docs/${landingSlug}${hash})`;
     }
 
-    const docFile = path.match(
-      /^(?:\.\.\/)?(?:\.\/)?(?:docs\/)?((?:[a-z0-9-]+\/)*[a-z0-9-]+)\.md$/i,
-    );
-    if (docFile) return `](/docs/${docFile[1]}${hash})`;
+    const slug = resolveRelativeDocSlug(path, pageFile);
+    if (slug) return `](/docs/${slug}${hash})`;
     return match;
   });
 }

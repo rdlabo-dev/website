@@ -29,6 +29,7 @@ import {
   extractRdlaboDocsPick,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
+  rewriteRelativeDocLinks,
   stripLeadingH1,
   stripRdlaboDocsOmit,
 } from './package-markdown';
@@ -375,6 +376,9 @@ async function generateProject(
     const parsed = fm<any>(resolved.content);
     const isPackageLanding = resolved.fromPackage && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;
+    if (!resolved.fromPackage) {
+      preparedBody = rewriteRelativeDocLinks(preparedBody, file);
+    }
     if (!resolved.fromPackage && file === 'readme.md') {
       const extracted = extractRdlaboDocsPick(preparedBody);
       preparedBody = extracted.markdown;
@@ -405,6 +409,7 @@ async function generateProject(
             stripLeadingH1(stripRdlaboDocsOmit(parsed.body || resolved.content)),
             apiAnchors,
             packageLandingSlug,
+            file,
           ),
         );
       }

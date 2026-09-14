@@ -12,9 +12,9 @@ IonicアプリケーションにiOS27デザインシステムを適用するCSS/
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0-1/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -24,6 +24,8 @@ DEMOはこちら: https://ionic-theme-ios27.rdlabo.dev/
 ## インストール
 
 既存のIonicプロジェクトにインストールします。
+
+Capacitorアプリでは、実験的な[Native UI Shell](/docs/native-ui-shell)も選択できます。固定ナビゲーションと操作部品をUIKitとシステムのLiquid Glassで描画し、ページ内容・アプリのロジック・ルーティングはWebViewに維持します。導入方法、対応部品、Web描画へのフォールバックは専用ガイドを参照してください。
 
 ```bash
 npm install @rdlabo/ionic-theme-ios27
@@ -171,6 +173,7 @@ createApp(App)
 - [特別なマークアップとクラス](/docs/special-markup) — テーマで使う任意のマークアップとutility class。
 - [ESLint](/docs/eslint) — リスト構造を ESLint で整える。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
-- [実験的なアニメーション](/docs/experimental-animation) — タブバーと Searchable。
+- [Native UI Shell（実験的機能）](/docs/native-ui-shell) — 同梱のCapacitorプラグインでWebコンテンツの周囲にネイティブの操作部品を表示します。
+- [アニメーション](/docs/experimental-animation) — タブバーと Searchable。
 - [iOSテーマの切り替え](/docs/ios-adaptive) — iOS 26／27をブラウザ機能に応じて切り替える。
 - [移行](/docs/migration) — major version更新時に必要な変更。

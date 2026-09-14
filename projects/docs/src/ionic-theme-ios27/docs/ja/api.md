@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v0.1.0-1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v0.1.0 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -71,3 +71,54 @@ iOS Popoverのenter animationを生成します。
 `(baseEl: HTMLElement) => Animation`
 
 iOS Popoverのleave animationを生成します。
+
+## Searchbar
+
+#### `function` supportSeachbarCancelButtonIcon
+
+`(searchbar: HTMLIonSearchbarElement) => SearchbarCancelButtonIconSupport`
+
+iOS modeでIonicの `cancelButtonIcon` を描画する一時的な補助です。公開API名の `Seachbar` はこの綴りでimportします。初期化済みの要素を渡してください。
+
+#### `interface` SearchbarCancelButtonIconSupport
+
+| Member | Type | Description |
+| --- | --- | --- |
+| **`refresh`** | `() => void` | JavaScriptプロパティで変更した `cancelButtonIcon` を再読込します。 |
+| **`destroy`** | `() => void` | observerと挿入アイコンを削除して文字表示を復元します。 |
+
+## Native UI Shell (Experimental)
+
+次のAPIと型は `@rdlabo/ionic-theme-ios27/native` からimportします。[Native UI Shellガイド](/docs/native-ui-shell)に導入条件とフォールバックを記載しています。
+
+#### `function` enableNativeUIShell
+
+`() => Promise<NativeUIShellHandle>`
+
+起動時に一度呼びます。繰り返し呼んでも稼働中のruntimeを共有します。非対応環境ではWeb状態のhandleを返します。
+
+#### `interface` NativeUIShellHandle
+
+| Member | Type | Description |
+| --- | --- | --- |
+| **`getStatus`** | `() => NativeUIShellStatus` | 現在の状態を取得します。 |
+| **`destroy`** | `() => Promise<void>` | Web描画を復元し、ネイティブ部品とruntimeを破棄します。 |
+
+#### `interface` NativeUIShellStatus
+
+```ts
+interface NativeUIShellStatus {
+  state: 'web' | 'native' | 'stopped';
+  projected: number;
+  updates: number;
+  reason?: string;
+}
+```
+
+`projected` はネイティブ描画中の部品数、`updates` は更新数、`reason` はWebフォールバック・停止理由です。bridge障害による `stopped` から自動再接続はしません。handleを `destroy()` してから再度有効化します。
+
+#### `type alias` NativeUIShellComponent
+
+`'ion-button' | 'ion-buttons' | 'ion-back-button' | 'ion-menu-button' | 'ion-tab-bar' | 'ion-segment' | 'ion-fab'`
+
+runtimeが扱うコンポーネントtagのunionです。個別の対応条件はガイドを参照してください。

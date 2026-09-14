@@ -230,11 +230,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
@@ -246,29 +246,43 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/special-markup</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/eslint</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/native-ui-shell</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/features</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/features</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/experimental-animation</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/experimental-animation</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/ios-adaptive</loc>
@@ -278,15 +292,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/migration</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/migration</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/api</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/api</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26</loc>

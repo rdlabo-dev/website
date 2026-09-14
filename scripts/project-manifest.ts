@@ -738,7 +738,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
-    englishDocsRef: '2ad5b0e84f9755ab3e806c3925ccd9e719e4512b',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     releaseTagPrefix: 'ios27-v',
     category: 'frontend-tools',
@@ -767,8 +766,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         icon: 'motion',
         title: text('Transitions and Liquid Glass', 'トランジションとLiquid Glass'),
         description: text(
-          'Use iOS-oriented navigation animations and Liquid Glass interaction effects.',
-          'iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。',
+          'Use production-ready Web animations and optionally project fixed controls with the experimental Native UI Shell.',
+          '実用段階のWebアニメーションと、固定コントロールをネイティブ描画する実験的なNative UI Shellを利用できます。',
         ),
       },
       {
@@ -782,7 +781,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-10', '2026-09-10'),
+        updatedAt: text('2026-09-15', '2026-09-15'),
       }),
       page(
         'Using ion-item-group',
@@ -800,6 +799,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
+        { updatedAt: text('2026-09-15', '2026-09-15') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -817,17 +817,29 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Catch missing item groups in Ionic Angular templates with a focused ESLint rule for the iOS 27 theme.',
             'iOS 27テーマ向けのESLintルールで、Ionic Angularテンプレートのリストグループ漏れを検出します。',
           ),
-          updatedAt: text('2026-09-10', '2026-09-10'),
+          updatedAt: text('2026-09-15', '2026-09-15'),
         },
       ),
-      page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド'),
       page(
-        'Experimental Animation',
-        '実験的なアニメーション',
+        'Native UI Shell (Experimental)',
+        'Native UI Shell（実験的機能）',
+        'native-ui-shell',
+        'native-ui-shell.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-15', '2026-09-15') },
+      ),
+      page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-15', '2026-09-15'),
+      }),
+      page(
+        'Animation',
+        'アニメーション',
         'experimental-animation',
         'experimental-animation.md',
         'Guides',
         'ガイド',
+        { updatedAt: text('2026-09-15', '2026-09-15') },
       ),
       page(
         'Adaptive iOS themes',
@@ -837,9 +849,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
       ),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-15', '2026-09-15'),
+      }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
+        updatedAt: text('2026-09-15', '2026-09-15'),
       }),
     ],
   },

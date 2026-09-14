@@ -6,13 +6,7 @@ title: 特別なマークアップとクラス
 
 ## Primaryのsubmit button
 
-solidのPrimary submit buttonは、foregroundとborderの表現に `--ion-color-primary-brightness` を使います。Primary colorに対して十分なcontrastを確保できる値を定義してください。
-
-```css
-:root {
-  --ion-color-primary-brightness: #96feff;
-}
-```
+solidの送信ボタンは前景にIonicの色のcontrast値を使います。iOS 27の強調ボタンに合わせた方向性のある縁取りを適用するため、追加のbrightness色は不要です。
 
 ```html preview
 <ion-button type="submit" color="primary">Submit</ion-button>
@@ -20,6 +14,36 @@ solidのPrimary submit buttonは、foregroundとborderの表現に `--ion-color-
 ```
 
 buttonに `type="submit"` を指定できない場合に同じstyleを適用するには、`.button-submit` を使います。
+
+## 推奨するオーバーレイ操作
+
+iOSのalertとaction sheetでは、ボタンに `role: 'preferred'` を設定すると、背景が `--ion-color-primary`、文字とアイコンが `--ion-color-primary-contrast` になります。押下中の背景は `--ion-color-primary-shade` です。Ionicのカスタムroleを使うテーマの規約であり、操作の自動選択・実行はしません。閉じた際のroleは `preferred` です。
+
+```ts
+buttons: [
+  { text: 'Cancel', role: 'cancel' },
+  { text: 'Continue', role: 'preferred' },
+];
+```
+
+roleなしと `default` は通常の文字色を使います。`cancel` はIonicのキャンセル処理、`selected` は選択状態を維持し、`destructive` は `--ios-theme-destructive-color` を使います。既存の `confirm` は推奨操作として扱いません。単に確定する操作ではなく、推奨する操作に `preferred` を使います。
+
+## iPadのフローティングシート
+
+sheet modalに `expandToScroll: false` を設定すると、iPadで下側の角を丸め、下端に20pxの隙間を設けます。Ionicが各breakpointの表示領域を決めるため、テーマはCSSだけで装飾できます。現在のbreakpoint内で内容がスクロールし、ハンドルのドラッグでサイズを変えられます。既定の `expandToScroll: true` では、下端に接した配置とスクロールによる展開を維持します。
+
+## タブバーの配置
+
+iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、`tab-bar-position-end` のいずれかを追加すると、safe area内でバー全体の配置を指定できます。`slot="top"` と `slot="bottom"` の両方で幅と押下アニメーションを維持します。startとendは文字方向に従い、RTLでは反転します。classなしの配置は変わりません。
+
+```html
+<ion-tab-bar slot="bottom" class="tab-bar-position-center">
+  <ion-tab-button tab="home">Home</ion-tab-button>
+  <ion-tab-button tab="settings">Settings</ion-tab-button>
+</ion-tab-bar>
+```
+
+別の `ion-fab` の位置は変わらないため、そのスペースも確保してください。
 
 ## 2行のinset list item
 
@@ -65,6 +89,10 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 ```
 
 ## 幅いっぱいのsegment
+
+色付きsegmentにはIonicの `color`（例: `color="primary"`、`color="secondary"`）を使います。選択面はパレットのbase色、選択ラベルはcontrast色になります。任意の移動するglassも同じ面の色を引き継ぎ、独自のIonicパレットも追加登録なしで使えます。
+
+segmentの最小高さはコンテンツ内では32px、`ion-toolbar` 内では48pxです。`.segment-expand` はtoolbar内でもコンパクトな32pxを維持します。コンパクトなsegmentはIonicの平坦な背景とindicator色を使います。通常のtoolbar版だけがglass containerを持ち、押下時に外側のcontainerが拡大します。コンテンツ内とexpanded版の外枠は変わりません。任意の移動するglass lensはcontainer背景と独立しています。
 
 segment buttonを利用可能な幅に均等配置する場合は `.segment-expand` を追加します。`registerSegmentEffect` を使う場合、このclassはLiquid Glass effectのsizeも変更します。
 

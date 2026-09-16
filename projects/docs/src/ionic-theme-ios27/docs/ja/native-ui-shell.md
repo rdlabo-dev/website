@@ -22,6 +22,14 @@ import { enableNativeUIShell } from '@rdlabo/ionic-theme-ios27/native';
 void enableNativeUIShell();
 ```
 
+`enableNativeUIShell()` はWebViewの左上の有効な角丸半径も読み取り、画面遷移へ適用します。ネイティブ部品を有効にせず、画面遷移だけを設定する場合は次を呼びます。
+
+```ts
+import { configureNativeTransition } from '@rdlabo/ionic-theme-ios27/native';
+
+await configureNativeTransition();
+```
+
 既存の `navAnimation: iosTransitionAnimation` 設定を維持してください。ページごとの登録、コンポーネント一覧、ネイティブcallback、Swift view controllerは不要です。インストール・更新後に `npx cap sync ios` を実行します。ネイティブプラグインはSwift Package Manager（SPM）を使います。既存のCocoaPodsアプリでは `npx cap spm-migration-assistant` を実行し、生成された `CapApp-SPM` パッケージをXcodeでアプリのtargetにリンクします。Xcode 26以降とCapacitor 8でビルドし、ネイティブglassにはiOS 26以降が必要です。Web、Android、SSR、古いiOSではWeb実装を維持します。
 
 明示的に有効化する機能です。通常のパッケージentry pointはCapacitorをimportせず、`@capacitor/core` は任意のpeer dependencyです。ただし、Capacitorプロジェクトへパッケージをインストールすると、`enableNativeUIShell()` を呼ばなくてもsyncがネイティブソースを検出してビルドします。
@@ -124,16 +132,75 @@ console.log(shell.getStatus()); // 状態、描画部品数、更新数、失敗
 await shell.destroy(); // DOM復元、ネイティブ部品削除、listenerとcacheの解放
 ```
 
+ネイティブ描画は既定ですべての対応部品に有効です。一部だけを使う場合は、対象を指定します。全体を無効にすると、すべての部品がWeb描画に戻ります。
+
+```ts
+const shell = await enableNativeUIShell({
+  enabled: true,
+  controls: {
+    tabs: true,
+  },
+});
+
+// Native UI Shellを使わず、すべての部品をWebで描画します。
+const disabledShell = await enableNativeUIShell({ enabled: false });
+```
+
+`controls` を省略するとすべての対応部品が対象です。指定した場合は `true` の部品だけがネイティブ描画の対象になります。指定できる項目は `tabs`、`toolbar`、`segment`、`fab` です。
+
+自動検出できない独自のmodalやoverlayを表示する前は、一時停止を取得します。取得が完了すると対象部品はWeb描画に戻っています。閉じた後は必ず再開してください。
+
+```ts
+const suspension = await shell.suspend();
+
+try {
+  await modal.present();
+  await modal.onDidDismiss();
+} finally {
+  await suspension.resume();
+}
+```
+
+一時停止は重ねて取得でき、`resume()` は繰り返し呼んでも安全です。すべての一時停止を解除すると、現在のDOMからネイティブ描画を再評価します。
+
 ネイティブの素材と外観は実行中のiOSに従います。このテーマを入れるだけでiOS 26端末がiOS 27の外観になるわけではありません。
+
+## Native UI Shell API
+
+`enableNativeUIShell()` が返すhandleの操作です。型と起動オプションは[APIリファレンス](/docs/api)も参照してください。
+
+### getStatus()
+
+```typescript
+getStatus() => NativeUIShellStatus
+```
+
+現在のWeb・ネイティブ描画の状態を返します。
+
+### suspend()
+
+```typescript
+suspend() => Promise<NativeUIShellSuspension>
+```
+
+対象部品を一時的にWeb描画へ戻し、再開用のleaseを返します。
+
+### destroy()
+
+```typescript
+destroy() => Promise<void>
+```
+
+同期を止め、Web描画を復元してネイティブのリソースを解放します。
 
 ## ソース構成
 
-[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.1.0/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
+[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.2.1/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
 
-iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.1.0/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
+iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.2.1/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
 
 ## デモと検証
 
-ブラウザテスト、Simulatorテスト、npmパッケージから構築する独立したSPM consumerは[デモと検証ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.1.0/demo/native-ui-shell.md)を参照してください。
+ブラウザテスト、Simulatorテスト、npmパッケージから構築する独立したSPM consumerは[デモと検証ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.2.1/demo/native-ui-shell.md)を参照してください。
 
 検索controllerはUIKit管理のtransitionを維持し、通常部品の取得時crossfadeからは除外されます。

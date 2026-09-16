@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v0.1.0. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v0.2.1. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 
@@ -60,6 +60,18 @@ Attaches the searchable tab-bar transition and returns its event handler.
 
 Builds the package's iOS navigation transition.
 
+#### `function` setConfig
+
+`(config: Partial<IosTransitionConfig>) => void`
+
+Sets the page-transition radius. It defaults to `0`; native apps can supply the measured WebView radius.
+
+#### `interface` IosTransitionConfig
+
+| Prop         | Type     | Description                      |
+| ------------ | -------- | -------------------------------- |
+| **`radius`** | `number` | Page-transition corner radius.   |
+
 #### `function` popoverEnterAnimation
 
 `(baseEl: HTMLElement, opts?: any) => Animation`
@@ -93,16 +105,51 @@ Import these APIs and types from `@rdlabo/ionic-theme-ios27/native`. See the [Na
 
 #### `function` enableNativeUIShell
 
-`() => Promise<NativeUIShellHandle>`
+`(options?: NativeUIShellOptions) => Promise<NativeUIShellHandle>`
 
-Call once at startup. Repeated calls share the active runtime. Unsupported environments return a handle in the Web state.
+Call once at startup. Repeated calls share the active runtime. Unsupported environments return a handle in the Web state. Set `enabled: false` to stop active projection and use Web controls.
+
+#### `function` configureNativeTransition
+
+`() => Promise<WebViewMetrics>`
+
+Reads the native WebView radius and applies it to page transitions without enabling native controls. On other platforms, the radius is `0`.
+
+#### `interface` NativeUIShellOptions
+
+| Prop           | Type                    | Description                                              |
+| -------------- | ----------------------- | -------------------------------------------------------- |
+| **`enabled`**  | `boolean`               | Enable native projection globally; defaults to `true`.   |
+| **`controls`** | `NativeUIShellControls` | When set, only controls explicitly set to `true` qualify. |
+
+#### `interface` NativeUIShellControls
+
+| Prop          | Type      | Description                              |
+| ------------- | --------- | ---------------------------------------- |
+| **`tabs`**    | `boolean` | Tab bars and native search.              |
+| **`toolbar`** | `boolean` | Toolbar, back, and menu buttons.         |
+| **`segment`** | `boolean` | Segments.                                |
+| **`fab`**     | `boolean` | Floating action buttons.                |
 
 #### `interface` NativeUIShellHandle
 
 | Member | Type | Description |
 | --- | --- | --- |
 | **`getStatus`** | `() => NativeUIShellStatus` | Read the current status. |
+| **`suspend`** | `() => Promise<NativeUIShellSuspension>` | Restore controls to the Web until the lease is resumed. |
 | **`destroy`** | `() => Promise<void>` | Restore Web rendering and release native controls and the runtime. |
+
+#### `interface` NativeUIShellSuspension
+
+| Member | Type | Description |
+| --- | --- | --- |
+| **`resume`** | `() => Promise<void>` | Release this suspension. Native projection resumes after all active suspensions are released. |
+
+#### `interface` WebViewMetrics
+
+| Prop         | Type     | Description                 |
+| ------------ | -------- | --------------------------- |
+| **`radius`** | `number` | Native WebView corner radius. |
 
 #### `interface` NativeUIShellStatus
 

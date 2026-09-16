@@ -486,7 +486,7 @@ export const PROJECTS_EN = [
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "description": "iOS 27 design styling for Ionic applications (release candidate).",
     "headline": "Bring iOS 27 design to Ionic apps",
     "overview": "Apply iOS 27 CSS, transitions, and Liquid Glass interactions to Ionic components. Versions before 1.0.0 are release candidates and may include breaking changes.",
@@ -508,7 +508,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -2654,7 +2654,7 @@ export const PROJECTS_JA = [
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "description": "Ionicアプリ向けのiOS 27デザインスタイル（RC版）。",
     "headline": "IonicアプリにiOS 27デザインを取り入れる",
     "overview": "IonicコンポーネントへiOS 27のCSS、トランジション、Liquid Glassインタラクションを適用します。1.0.0まではRC版で、互換性のない変更が入る場合があります。",
@@ -2676,7 +2676,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.1.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v0.2.1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {

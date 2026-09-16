@@ -7,9 +7,11 @@ CSS変数とSass mixinでテーマをカスタマイズしたり、コンポー�
 ## CSS変数
 
 ライブラリのデフォルトスタイルをデザインに合わせてカスタマイズできるよう、複数のCSS変数を提供しています。詳細は次のファイルを参照してください。
-https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.1.0/src/styles/default-variables.scss
+https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.2.1/src/styles/default-variables.scss
 
 メニューの背景RGBは `--ios-theme-menu-background-rgb`（ライト: `225, 230, 240`、ダーク: `26, 31, 34`）、不透明度は `--ios-theme-menu-background-opacity`（既定値: `0.96`）で指定します。どちらも `ion-menu` に設定できる公開CSS変数です。
+
+ボタン押下時の拡縮は `:active` に従い、少しovershootします。継続時間は共通のactivated transition変数ではなく、`--ios-theme-button-press-duration`（既定値: `380ms`）で変更します。
 
 ## Liquid Glass mixin
 

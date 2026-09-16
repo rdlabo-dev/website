@@ -44,12 +44,12 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
     docsUrl: 'https://docs.rdlabo.dev/projects/capacitor-stripe',
   },
   {
-    name: 'Ionic Theme iOS26',
-    packageName: '@rdlabo/ionic-theme-ios26',
+    name: 'Ionic Theme iOS27',
+    packageName: '@rdlabo/ionic-theme-ios27',
     description:
-      'Bring iOS 26 design, transitions, and Liquid Glass interactions to Ionic components with dark mode support.',
-    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios26',
-    docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-ios26',
+      'iOS 27 styling, navigation transitions, and Liquid Glass for Ionic, with an experimental native UI shell for Capacitor iOS.',
+    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27',
   },
   {
     name: 'Ionic Theme MD3',

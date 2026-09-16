@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v0.1.0 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v0.2.1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -60,6 +60,18 @@ Searchable Tab Barのtransitionを設定し、event handlerを返します。
 
 PackageのiOS navigation transitionを生成します。
 
+#### `function` setConfig
+
+`(config: Partial<IosTransitionConfig>) => void`
+
+画面遷移の角丸半径を設定します。既定値は `0` で、ネイティブアプリでは計測したWebViewの半径を渡せます。
+
+#### `interface` IosTransitionConfig
+
+| Prop         | Type     | Description          |
+| ------------ | -------- | -------------------- |
+| **`radius`** | `number` | 画面遷移の角丸半径。 |
+
 #### `function` popoverEnterAnimation
 
 `(baseEl: HTMLElement, opts?: any) => Animation`
@@ -93,16 +105,51 @@ iOS modeでIonicの `cancelButtonIcon` を描画する一時的な補助です�
 
 #### `function` enableNativeUIShell
 
-`() => Promise<NativeUIShellHandle>`
+`(options?: NativeUIShellOptions) => Promise<NativeUIShellHandle>`
 
-起動時に一度呼びます。繰り返し呼んでも稼働中のruntimeを共有します。非対応環境ではWeb状態のhandleを返します。
+起動時に一度呼びます。繰り返し呼んでも稼働中のruntimeを共有します。非対応環境ではWeb状態のhandleを返します。`enabled: false` で稼働中のネイティブ描画を停止し、Web描画に戻します。
+
+#### `function` configureNativeTransition
+
+`() => Promise<WebViewMetrics>`
+
+ネイティブWebViewの角丸半径を取得し、ネイティブ部品を有効にせず画面遷移へ適用します。他のプラットフォームでは半径は `0` です。
+
+#### `interface` NativeUIShellOptions
+
+| Prop           | Type                    | Description                                              |
+| -------------- | ----------------------- | -------------------------------------------------------- |
+| **`enabled`**  | `boolean`               | ネイティブ描画を全体で有効にします。既定値は `true`。    |
+| **`controls`** | `NativeUIShellControls` | 指定時は `true` の部品だけをネイティブ描画の対象にします。 |
+
+#### `interface` NativeUIShellControls
+
+| Prop          | Type      | Description                |
+| ------------- | --------- | -------------------------- |
+| **`tabs`**    | `boolean` | タブバーとネイティブ検索。 |
+| **`toolbar`** | `boolean` | toolbar、戻る・メニュー。 |
+| **`segment`** | `boolean` | segment。                 |
+| **`fab`**     | `boolean` | FAB。                     |
 
 #### `interface` NativeUIShellHandle
 
 | Member | Type | Description |
 | --- | --- | --- |
 | **`getStatus`** | `() => NativeUIShellStatus` | 現在の状態を取得します。 |
+| **`suspend`** | `() => Promise<NativeUIShellSuspension>` | `resume()` まで対象部品をWeb描画に戻します。 |
 | **`destroy`** | `() => Promise<void>` | Web描画を復元し、ネイティブ部品とruntimeを破棄します。 |
+
+#### `interface` NativeUIShellSuspension
+
+| Member       | Type                  | Description                                              |
+| ------------ | --------------------- | -------------------------------------------------------- |
+| **`resume`** | `() => Promise<void>` | 一時停止を解除します。すべて解除すると再描画を評価します。 |
+
+#### `interface` WebViewMetrics
+
+| Prop         | Type     | Description              |
+| ------------ | -------- | ------------------------ |
+| **`radius`** | `number` | WebViewの角丸半径。      |
 
 #### `interface` NativeUIShellStatus
 

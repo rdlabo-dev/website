@@ -781,7 +781,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-15', '2026-09-15'),
+        updatedAt: text('2026-09-16', '2026-09-16'),
       }),
       page(
         'Using ion-item-group',
@@ -827,10 +827,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'native-ui-shell.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-15', '2026-09-15') },
+        { updatedAt: text('2026-09-16', '2026-09-16') },
       ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-15', '2026-09-15'),
+        updatedAt: text('2026-09-16', '2026-09-16'),
       }),
       page(
         'Animation',
@@ -854,7 +854,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: text('2026-09-15', '2026-09-15'),
+        updatedAt: text('2026-09-16', '2026-09-16'),
       }),
     ],
   },

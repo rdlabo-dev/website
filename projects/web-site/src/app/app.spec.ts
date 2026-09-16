@@ -109,7 +109,7 @@ describe('App', () => {
       'https://docs.rdlabo.dev/projects/capacitor-stripe',
     );
     expect(compiled.textContent).toContain('@capacitor-community/stripe');
-    expect(compiled.textContent).toContain('@rdlabo/ionic-theme-ios26');
+    expect(compiled.textContent).toContain('@rdlabo/ionic-theme-ios27');
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-md3');
     expect(compiled.textContent).toContain('@rdlabo/ngx-cdk-scroll-strategies');
     const allProjects = compiled.querySelector<HTMLAnchorElement>('.project-grid__all a');

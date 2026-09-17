@@ -94,7 +94,9 @@ privateなclass名や固定のinset補正を使わず、ネイティブタブを
 
 登録しても配置制限は変わりません。検索バーと閉じるボタンは固定footer toolbarへ置きます。トリガーは `ion-content` 直下の `ion-fab[slot="fixed"]`、または既存の非スクロール `.ion-page` 直下の配置が必要です。スクロール内容内のwrapperはfixed slotではありません。
 
-検索を開いても選択中のIonicタブを維持し、キーボードは自動表示しません。検索欄をタップするか、既存の `ion-searchbar.setFocus()` を呼びます。展開、キーボード配置、通常タブへの復帰はUIKitが管理します。トリガーSVGと検索アイコンも `ion-icon name` を含めIonicから取得します。通常配置は `ion-tab-bar` と元のFAB中心の両座標で計測し、基準を維持できなければWeb検索を使います。
+登録が有効な間は、ページ遷移中や一時的に利用不可（`available: false`）でも検索コントローラーを維持し、別の通常タブとして作り直しません。検索前のAlbumを含む通常の表示は、一般のタブと同じ `UITabBar` と `ShellTabBar.fit` で配置します。利用可能な場合は検索トリガーをFABに固定し、検索中だけ `UISearchTab` を表示します。利用可否の変化や検索の開始・終了では両レイヤーをcrossfadeします。初回に通常タブを描画してから切り替わるのを防ぐため、遷移先ページの表示が終わる前（例: `ionViewWillEnter`）に登録してください。
+
+検索を開いても選択中のIonicタブを維持し、キーボードは自動表示しません（`automaticallyActivatesSearch` は無効のままです）。検索欄をタップするか `ion-searchbar.setFocus()` を呼びます。検索中はWebの配置投影を固定し、Capacitor Keyboardのresizeを `none` に保ちます。UIKitがタブと検索の操作部を管理するため、その間Ionic側の `fit` を繰り返しません。閉じると通常タブを `ion-tab-bar`、検索をFABに合わせて再計測します。通常タブの選択はWebの `selected` 状態が追いつくまで先行表示を維持します。検索が閉じるまで入力イベントとアプリからの `value` 更新をbridgeで同期します。トリガーSVGと検索アイコンも `ion-icon name` を含めIonicから取得します。
 
 ネイティブ編集はIonicの入力handlerを経由し、`ionInput` のdebounce、`ionChange`、`ionFocus`、`ionBlur`、`ionClear` を維持します。プログラムの `value` 変更では `ionInput` を発火せず、アプリによる同期的修正と古いネイティブ入力を区別します。変換中の文字とcaretはネイティブ編集が管理します。footerの閉じる操作は値を保持し、`ionCancel` や `ionClear` を発火しません。
 
@@ -195,12 +197,12 @@ destroy() => Promise<void>
 
 ## ソース構成
 
-[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.2.1/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
+[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.0.0/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
 
-iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v0.2.1/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
+iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.0.0/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
 
 ## デモと検証
 
-ブラウザテスト、Simulatorテスト、npmパッケージから構築する独立したSPM consumerは[デモと検証ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v0.2.1/demo/native-ui-shell.md)を参照してください。
+ブラウザテスト、Simulatorテスト、npmパッケージから構築する独立したSPM consumerは[デモと検証ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.0/demo/native-ui-shell.md)を参照してください。
 
 検索controllerはUIKit管理のtransitionを維持し、通常部品の取得時crossfadeからは除外されます。

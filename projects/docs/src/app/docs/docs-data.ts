@@ -89,6 +89,7 @@ export interface ProjectSummary {
   packageName: string;
   repositoryUrl: string;
   demoUrl?: string;
+  releaseNotesUrl?: string;
   entryGuideSlugs?: readonly string[];
   hostedUrl?: string;
   category: ProjectCategory;

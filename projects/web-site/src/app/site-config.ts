@@ -47,7 +47,7 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
     name: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
     description:
-      'iOS 27 styling, navigation transitions, and Liquid Glass for Ionic, with an experimental native UI shell for Capacitor iOS.',
+      'Stable iOS 27 styling, motion, and Liquid Glass for Ionic, with an experimental native UI shell for Capacitor iOS.',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27',
   },

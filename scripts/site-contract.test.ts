@@ -541,7 +541,7 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
     ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.2.0' }],
-    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '0.2.1' }],
+    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.0.0' }],
     ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
   ]);
   const packageJson = JSON.parse(
@@ -1306,6 +1306,14 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
         'https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check',
     },
     {
+      source: '/projects/ionic-theme-ios27/docs/ios-adaptive',
+      destination: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme',
+    },
+    {
+      source: '/ja/projects/ionic-theme-ios27/docs/ios-adaptive',
+      destination: 'https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme',
+    },
+    {
       source: '/docs/identity',
       destination:
         'https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet',
@@ -1605,12 +1613,16 @@ test('declares authorized Ionic and Capacitor documentation translations', async
 
 test('separates iOS 26 and iOS 27 documentation, source branches, and screenshots', () => {
   for (const project of [ionicThemeIos27En, ionicThemeIos27Ja]) {
-    assert.equal(project.version, '0.2.1');
+    assert.equal(project.version, '1.0.0');
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
+    assert.equal(
+      project.releaseNotesUrl,
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0',
+    );
     assert.equal((project.overviewHtml.match(/<img /g) ?? []).length, 3);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
-    assert.match(project.overviewHtml, /ios27-v0\.2\.1\/screenshots\/ios27-settings\.png/);
-    assert.ok(project.pages.some((page) => page.slug === 'ios-adaptive'));
+    assert.match(project.overviewHtml, /ios27-v1\.0\.0\/screenshots\/ios27-settings\.png/);
+    assert.ok(!project.pages.some((page) => page.slug === 'ios-adaptive'));
   }
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
   const newGuide = ionicThemeIos27En.pages.find((page) => page.slug === 'migration');

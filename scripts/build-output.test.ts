@@ -52,6 +52,14 @@ test('ships permanent edge redirects for canonical documentation paths', async (
     redirects,
     /^\/src\/rules\/ionic-attr-type-check\.ts https:\/\/docs\.rdlabo\.dev\/projects\/eslint-plugin-rules\/docs\/rules\/ionic-attr-type-check 301$/m,
   );
+  assert.match(
+    redirects,
+    /^\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+  );
+  assert.match(
+    redirects,
+    /^\/ja\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/docs\.rdlabo\.dev\/ja\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+  );
 });
 
 test('prerender output includes localized SEO metadata', async () => {
@@ -325,12 +333,12 @@ test('builds bounded English and Japanese search indexes with the component UI',
   assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
   assert.equal(
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    198,
+    197,
     'English search index must contain only canonical pages',
   );
   assert.equal(
     files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    198,
+    197,
     'Japanese search index must contain only canonical pages',
   );
   const sizes = await Promise.all(

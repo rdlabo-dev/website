@@ -41,6 +41,11 @@ import { SafeHtmlPipe } from './safe-html.pipe';
               <a class="external-link" [href]="p.repositoryUrl" target="_blank" rel="noopener noreferrer">
                 <ng-container i18n="@@viewSource">View source</ng-container>
               </a>
+              @if (p.releaseNotesUrl) {
+                <a class="external-link" [href]="p.releaseNotesUrl" target="_blank" rel="noopener noreferrer">
+                  <ng-container i18n="@@releaseNotes">Release notes</ng-container>
+                </a>
+              }
               <a class="project-stars" [href]="p.repositoryUrl" target="_blank" rel="noopener noreferrer">
                 <span aria-hidden="true">☆</span>
                 <ng-container i18n="@@starOnGitHub">Star on GitHub</ng-container>

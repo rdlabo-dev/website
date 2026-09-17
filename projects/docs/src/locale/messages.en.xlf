@@ -220,6 +220,11 @@
         <source>View source</source>
       </segment>
     </unit>
+    <unit id="releaseNotes">
+      <segment>
+        <source>Release notes</source>
+      </segment>
+    </unit>
     <unit id="starOnGitHub">
       <notes>
         <note category="location">projects/docs/src/app/docs/landing-page.ts:87,88</note>

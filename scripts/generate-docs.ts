@@ -175,6 +175,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
     packageName: project.packageName,
     repositoryUrl: project.repositoryUrl,
     demoUrl: project.demoUrl,
+    ...(project.releaseNotesUrl ? { releaseNotesUrl: project.releaseNotesUrl } : {}),
     ...(project.entryGuideSlugs ? { entryGuideSlugs: project.entryGuideSlugs } : {}),
     hostedUrl: project.hostedUrl,
     category: project.category,

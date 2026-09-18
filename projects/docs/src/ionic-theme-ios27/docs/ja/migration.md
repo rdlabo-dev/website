@@ -112,7 +112,7 @@ CSS変数にはバージョンに依存しない `--ios-theme-*` を使います
 
 テーマを除外するときは `ios-theme-disabled` を使います。`ios26-disabled` はdeprecatedの互換名として残ります。
 
-現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.0/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
+現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.1/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
 
 ## 送信ボタンの外観
 

@@ -11,9 +11,9 @@ IonicアプリにiOS 27のLiquid Glassとアニメーションを適用するテ
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.0/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.0/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -30,7 +30,7 @@ Liquid Glass、ツールバー、タブ、リスト、ボタン、検索、オ�
 
 **iOS 27のタブドラッグ:** 同じLibrary画面をNative UI Shellオフ（Web）とオン（UIKit）で比較しました。下段はタブバー周辺を拡大しています。
 
-[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.0/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.0/screenshots/native-ui-shell-drag/comparison.png)
+[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.1/screenshots/native-ui-shell-drag/comparison.png)
 
 ### 利用者の端末に合わせる
 
@@ -63,6 +63,16 @@ npm install @rdlabo/ionic-theme-ios26 @rdlabo/ionic-theme-ios27
   @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect');
 }
 ```
+
+~meta.load-css()~ で ~Can't find stylesheet to import.~ と表示された場合は、Sassから ~node_modules~ を参照できるようにします。Angularでは ~angular.json~ のアプリのビルド ~options~ に次を追加してください。
+
+```json
+"stylePreprocessorOptions": {
+  "includePaths": ["node_modules"]
+}
+```
+
+または、~meta.load-css()~ を書いたSassファイルからインストール済みパッケージへの相対パスを使います。例えば ~src/styles.scss~ なら ~../node_modules/@rdlabo/ionic-theme-ios27/src/styles/default-variables~ です。ファイルの位置に合わせて ~../~ の数を調整し、各テーマの読み込み先にも同じ変更を適用してください。
 
 これはOS判定ではなくブラウザの機能判定です。どちらにも対応しないブラウザはIonic標準のiOS外観を維持します。例ではclassベースのダークモードを使うため、[Ionic側の対応するダークパレット](https://ionicframework.com/docs/theming/dark-mode)も読み込んでください。system／alwaysの場合は両方の ~-dark-class~ を対応するvariantに置き換えます。~md-remove-ios-class-effect~ は、同じマークアップをMaterial Designモードでも使う場合のiOS固有クラスの影響を防ぎます。
 

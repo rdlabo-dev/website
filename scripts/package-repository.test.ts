@@ -148,12 +148,12 @@ test('supports prefixed release tags for renamed theme packages', async () => {
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
   };
-  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v1.0.0');
+  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v1.0.1');
   assert.equal(
     await pinPackageSourceLinks(
       project,
       '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/main/src/index.ts)',
     ),
-    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.0/src/index.ts)',
+    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.1/src/index.ts)',
   );
 });

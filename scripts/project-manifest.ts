@@ -743,6 +743,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0',
     releaseTagPrefix: 'ios27-v',
+    englishDocsRef: '255291ebe6cfcf768d5b136d814767113af6138a',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -835,15 +836,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-18', '2026-09-18'),
       }),
-      page(
-        'Animation',
-        'アニメーション',
-        'experimental-animation',
-        'experimental-animation.md',
-        'Guides',
-        'ガイド',
-        { updatedAt: text('2026-09-15', '2026-09-15') },
-      ),
+      page('Animation', 'アニメーション', 'animation', 'animation.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-09-15', '2026-09-15'),
+      }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-18', '2026-09-18'),
       }),

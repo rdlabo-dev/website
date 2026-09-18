@@ -19,25 +19,25 @@ npm install @rdlabo/ionic-theme-ios27
 グローバルSassで無条件に読み込んでいたiOS 26のスタイルを、排他的な2つの条件に置き換えます。classベースのダークモードの例です。
 
 ```diff
-+@use 'sass:meta';
++ @use 'sass:meta';
 +
--@use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect.scss';
-+@supports (overflow-anchor: auto) {
+- @use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect.scss';
++ @supports (overflow-anchor: auto) {
 +  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/default-variables');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect');
-+}
++ }
 +
-+@supports (text-wrap: pretty) and (not (overflow-anchor: auto)) {
++ @supports (text-wrap: pretty) and (not (overflow-anchor: auto)) {
 +  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/default-variables');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class');
 +  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect');
-+}
++ }
 ```
 
 Ionic側の対応するダークパレットも維持してください。system／alwaysの場合は両方の `-dark-class` を対応するvariantに変えます。`md-ion-list-inset` を使う場合は各条件内で対応するパッケージから読み込みます。どちらの条件も満たさないブラウザはIonic標準のスタイルを維持します。
@@ -47,10 +47,10 @@ Ionic側の対応するダークパレットも維持してください。system
 iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ機能で有効化します。Ionicの初期化前に設定してください。
 
 ```diff
--import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
-+import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios27';
+- import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
++ import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios27';
 +
-+function loadIOSAnimations() {
++ function loadIOSAnimations() {
 +  if (typeof CSS === 'undefined') return {};
 +  if (!CSS.supports('overflow-anchor: auto') && !CSS.supports('text-wrap: pretty')) return {};
 +
@@ -59,7 +59,7 @@ iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ�
 +    popoverEnter: popoverEnterAnimation,
 +    popoverLeave: popoverLeaveAnimation,
 +  };
-+}
++ }
 
   provideIonicAngular({
 -  navAnimation: isPlatform('ios') ? iosTransitionAnimation : undefined,
@@ -81,8 +81,8 @@ iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ�
 +  --ios-theme-content-box-shadow-rgb: 0, 0, 0;
   }
 
--<ion-button class="ios26-disabled">Standard Ionic button</ion-button>
-+<ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
+- <ion-button class="ios26-disabled">Standard Ionic button</ion-button>
++ <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
 旧名はdeprecatedのフォールバックとして残ります。対応ブラウザでライト・ダーク両モードの画面を確認してください。
@@ -92,14 +92,14 @@ iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ�
 iOS 26パッケージを削除し、スタイルシートとアニメーションのimportをiOS 27に変更します。スタイルの差分は次のとおりです。
 
 ```diff
--@use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class.scss';
--@use '@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect.scss';
-+@use '@rdlabo/ionic-theme-ios27/src/styles/default-variables.scss';
-+@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27.scss';
-+@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class.scss';
-+@use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class.scss';
+- @use '@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect.scss';
++ @use '@rdlabo/ionic-theme-ios27/src/styles/default-variables.scss';
++ @use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27.scss';
++ @use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class.scss';
++ @use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
 ```
 
 アニメーションのimport元も `@rdlabo/ionic-theme-ios26` から `@rdlabo/ionic-theme-ios27` に変更します。既存の `isPlatform('ios')` 設定はそのまま使えます。[iOS 27単体の導入手順](/#use-only-the-ios-27-theme)も参照してください。無条件のimportではIonic iOSモードを使う全ブラウザに新しいスタイルが適用されます。

@@ -203,6 +203,17 @@ iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1
 
 ## デモと検証
 
-ブラウザテスト、Simulatorテスト、npmパッケージから構築する独立したSPM consumerは[デモと検証ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.0/demo/native-ui-shell.md)を参照してください。
+デモには固定コントロールを確認する `native-ui-shell` ページがあります。リポジトリのルートからライブラリをビルドし、ブラウザテストを実行します。
+
+```sh
+npm ci
+npm run build
+cd demo
+npm ci
+npx --no-install playwright install chromium
+npx --no-install playwright test e2e/native-ui-shell.spec.ts e2e/native-ui-shell-edge.spec.ts
+```
+
+ネイティブ操作と配置のテストには、Xcode 26以降、XcodeGen、起動済みのiOS 26以降のSimulatorを使用します。リポジトリのルートで `sh scripts/verify-native-ui-shell.sh SIMULATOR_UDID` を実行してください。npmパッケージから独立したSwift Package Manager consumerもビルドします。検索タブの統合テストには `sh scripts/verify-native-search.sh SIMULATOR_UDID`、配置、画面遷移、キーボードの境界条件には同じコマンドの末尾に `edge` を付けます。テスト成果物の保存先は各スクリプトに表示されます。
 
 検索controllerはUIKit管理のtransitionを維持し、通常部品の取得時crossfadeからは除外されます。

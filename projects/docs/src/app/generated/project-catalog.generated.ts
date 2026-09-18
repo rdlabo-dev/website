@@ -557,9 +557,9 @@ export const PROJECTS_EN = [
       {
         "title": "Animation",
         "navTitle": "Animation",
-        "slug": "experimental-animation",
+        "slug": "animation",
         "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/experimental-animation"
+        "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
         "title": "Migration",
@@ -2719,9 +2719,9 @@ export const PROJECTS_JA = [
       {
         "title": "アニメーション",
         "navTitle": "アニメーション",
-        "slug": "experimental-animation",
+        "slug": "animation",
         "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/experimental-animation"
+        "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
         "title": "移行",

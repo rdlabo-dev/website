@@ -153,6 +153,6 @@ Ionicの対応するダークパレットも読み込んでください。Materi
 - [ESLint](/docs/eslint) — リスト構造を検査するルール。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
 - [Native UI Shell（実験的機能）](/docs/native-ui-shell) — 対応するIonicコントロールをUIKitで表示。
-- [アニメーション](/docs/experimental-animation) — タブ、セグメント、検索の効果。
+- [アニメーション](/docs/animation) — タブ、セグメント、検索の効果。
 - [iOS 26からの移行](/docs/migration) — 既存アプリの更新手順と差分。
 - [iOS 26の移行履歴](/ionic-theme-ios26/docs/migration) — 前のパッケージの移行案内。

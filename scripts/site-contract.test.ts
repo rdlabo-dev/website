@@ -1314,6 +1314,14 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
       destination: 'https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme',
     },
     {
+      source: '/projects/ionic-theme-ios27/docs/experimental-animation',
+      destination: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/animation',
+    },
+    {
+      source: '/ja/projects/ionic-theme-ios27/docs/experimental-animation',
+      destination: 'https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/animation',
+    },
+    {
       source: '/docs/identity',
       destination:
         'https://docs.rdlabo.dev/projects/capacitor-stripe-identity/docs/identity-verification-sheet',

@@ -102,6 +102,28 @@ test('pins only source links that belong to the package repository', async () =>
   );
 });
 
+test('resolves README screenshot paths against the pinned package release', async () => {
+  const project = {
+    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    packageName: '@rdlabo/ionic-theme-ios27',
+    releaseTagPrefix: 'ios27-v',
+  };
+  const markdown = [
+    '<img src="./screenshots/ios27-settings.png" />',
+    '[![Comparison](./screenshots/native-ui-shell-drag/comparison.png)](./screenshots/native-ui-shell-drag/comparison.png)',
+  ].join('\n');
+  const base =
+    'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/';
+
+  assert.equal(
+    await pinPackageSourceLinks(project, markdown),
+    [
+      `<img src="${base}ios27-settings.png" />`,
+      `[![Comparison](${base}native-ui-shell-drag/comparison.png)](${base}native-ui-shell-drag/comparison.png)`,
+    ].join('\n'),
+  );
+});
+
 test('builds raw and source labels for repository docs', () => {
   const repositoryUrl = 'https://github.com/capacitor-community/admob';
   assert.equal(

@@ -72,6 +72,10 @@ export async function pinPackageSourceLinks(
       `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
     )
     .replace(
+      /(\]\()\.\/screenshots\//g,
+      `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
+    )
+    .replace(
       /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/tree\/ios26(?=[)#\s]|$)/g,
       '/ionic-theme-ios26/',
     )

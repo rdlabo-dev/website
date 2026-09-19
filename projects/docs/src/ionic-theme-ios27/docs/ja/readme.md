@@ -143,18 +143,62 @@ iOS上で確認してください。デスクトップでプレビューする�
 
 ### MD3テーマと併用する
 
-上記のiOS 27単体構成では、~@rdlabo/ionic-theme-md3~ を追加すると両方のIonicモードをスタイルできます。グローバルSassではiOS 27のスタイルを先に読み込みます。
+iOS 27対応SafariではiOS 27テーマ、その直前のSafari世代ではiOS 26テーマを使い、IonicがMaterial Designモードで動作するときはMD3テーマを使うには、3つのテーマをすべてインストールします。いずれも`@ionic/core` 8.8.1以降が必要です。
 
-```scss
-@use '@rdlabo/ionic-theme-ios27/src/styles/default-variables.scss' as ios27-vars;
-@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27.scss';
-@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class.scss';
-@use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
-@use '@rdlabo/ionic-theme-md3/dist/css/default-variables.css' as md3-vars;
-@use '@rdlabo/ionic-theme-md3/dist/css/ionic-theme-md3.css';
+```bash
+npm install @rdlabo/ionic-theme-ios26 @rdlabo/ionic-theme-ios27 @rdlabo/ionic-theme-md3
 ```
 
-Ionicの対応するダークパレットも読み込んでください。Material DesignモードでMD3の画面遷移を使う場合は、`@rdlabo/ionic-theme-md3` から `mdTransitionAnimation` をimportし、`navAnimation` に `isPlatform('ios') ? iosTransitionAnimation : mdTransitionAnimation` を設定します。
+2つのiOSテーマにはデフォルト構成と同じブラウザ機能判定を適用し、MD3は無条件に読み込みます。すべて`meta.load-css()`で読み込むことで、生成されるCSSでも条件付きのiOSスタイルより後にMD3スタイルが配置されます。
+
+```scss
+@use 'sass:meta';
+
+@supports (overflow-anchor: auto) {
+  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/default-variables');
+  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27');
+  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class');
+  @include meta.load-css('@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect');
+}
+
+@supports (text-wrap: pretty) and (not (overflow-anchor: auto)) {
+  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/default-variables');
+  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26');
+  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class');
+  @include meta.load-css('@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect');
+}
+
+@include meta.load-css('@rdlabo/ionic-theme-md3/dist/css/default-variables.css');
+@include meta.load-css('@rdlabo/ionic-theme-md3/dist/css/ionic-theme-md3.css');
+```
+
+iOSスタイルはIonicの`ios`モードだけに適用され、MD3は`md`モードに適用されます。各iOS分岐の`md-remove-ios-class-effect`は、iOS専用のユーティリティクラスがMDモードへ影響するのを防ぎます。MD3にはinset listのスタイルが含まれるため、この構成ではiOSパッケージの任意の`md-ion-list-inset`を読み込まないでください。
+
+Ionicの対応するダークパレットも読み込んでください。この例はclassベースのダークモードです。systemまたはalways-darkを使う場合は、Ionicと両方のiOSテーマで同じ方式を選びます。
+
+両方のiOSテーマ世代ではiOS 27の画面遷移を使い、Material DesignモードではMD3の画面遷移を選択します。上記のアニメーション設定を次のように拡張します。
+
+```ts
+import { isPlatform, provideIonicAngular } from '@ionic/angular/standalone'; // Ionic 8
+import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios27';
+import { mdTransitionAnimation } from '@rdlabo/ionic-theme-md3';
+
+function loadAnimations() {
+  if (!isPlatform('ios')) return { navAnimation: mdTransitionAnimation };
+  if (typeof CSS === 'undefined') return {};
+  if (!CSS.supports('overflow-anchor: auto') && !CSS.supports('text-wrap: pretty')) return {};
+
+  return {
+    navAnimation: iosTransitionAnimation,
+    popoverEnter: popoverEnterAnimation,
+    popoverLeave: popoverLeaveAnimation,
+  };
+}
+
+provideIonicAngular(loadAnimations());
+```
+
+Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular`からimportします。ReactとVueでは、同じ戻り値を`setupIonicReact`または`IonicVue`へ渡せます。Sassが`meta.load-css()`内のパッケージを解決できない場合は、Get startedに記載した`stylePreprocessorOptions.includePaths`または相対パスの設定を使ってください。
 
 ## ドキュメント
 

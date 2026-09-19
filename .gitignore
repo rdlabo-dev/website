@@ -4,6 +4,7 @@
 /out-tsc
 /bazel-out
 /www
+/workers/generated
 .stencil/
 
 # Node

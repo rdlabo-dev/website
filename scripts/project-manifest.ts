@@ -743,7 +743,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-1',
     releaseTagPrefix: 'ios27-v',
-    englishDocsRef: '7e8a1d50337226b36798bd123497611e627d45ed',
+    englishDocsRef: '4f043d55bd7b5df98683b74438200713b8c34795',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',

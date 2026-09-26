@@ -60,9 +60,23 @@ const ionicConfig = {
 
 初期化前に、既存のIonic設定へこのオプションを統合します。Angularでは `provideIonicAngular()`、Reactでは `setupIonicReact()`、Vueでは `IonicVue` pluginのオプションへ渡してください。既存テーマのスタイルシートのimportは維持します。iOS 27テーマのスタイルシートは不要です。
 
+#### 本パッケージのiOSアニメーションを使う
+
+既にiOS 27の画面遷移を使っている場合は、この設定を維持します。ネイティブ連携のアダプターを含み、縦レイアウトでは水平の戻るボタンの効果を対象から外すため、追加のラップは不要です。このJavaScriptのentry pointをimportしても、テーマのスタイルシートは読み込まれません。
+
+```ts
+import { iosTransitionAnimation } from '@rdlabo/ionic-theme-ios27';
+
+const ionicConfig = {
+  navAnimation: iosTransitionAnimation,
+};
+```
+
+既存のiOS mode用設定へこのオプションを適用し、MD用設定は維持してください。
+
 #### 独自アニメーションを維持する
 
-既に `navAnimation` を設定している場合は、そのbuilderをラップします。
+`navAnimation` に他のbuilderを使っている場合は、それをラップします。
 
 ```ts
 import type { AnimationBuilder } from '@ionic/core';

@@ -6,7 +6,7 @@ title: 移行
 
 `withNativeUIShellTransition()` を使うと、既存のIonic画面遷移アニメーションを維持しながらNative UI Shellの部品を連携できます。
 
-- 本パッケージの `iosTransitionAnimation` を使っている場合、設定変更は不要です。内部で共通アダプターを使うため、追加のラップは不要です。
+- `@rdlabo/ionic-theme-ios27` から `iosTransitionAnimation` をimportしている場合は、[本パッケージのアニメーション設定](/docs/iphone-duo-with-original-theme#本パッケージのiosアニメーションを使う)を維持します。設定変更は不要です。内部で共通アダプターを使うため、追加のラップは不要です。
 - `navAnimation` を設定せずIonic標準のアニメーションを使っている場合は、[Ionicの標準アニメーションを維持する](/docs/iphone-duo-with-original-theme#ionicの標準アニメーションを維持する)を参照してください。遷移modeに応じてIonic標準のiOSまたはMD builderを選ぶ例を掲載しています。
 - Native UI Shellまたは独立したVertical Control Areaで独自の画面遷移を使う場合、Ionic設定時に既存のbuilderをラップします。
 

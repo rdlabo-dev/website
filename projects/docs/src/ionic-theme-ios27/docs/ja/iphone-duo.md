@@ -2,9 +2,11 @@
 title: iPhone Duo対応（実験的機能）
 ---
 
-iPhone Duo対応は実験的機能です。Vertical Control Area、デバイスのレイアウト情報、開閉状態に応じたsplit paneの配置を含みます。[Native UI Shell](/docs/native-ui-shell)と同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+IonicアプリをiPhone Duoへ対応させます。縦のシステム操作領域へナビゲーションと操作部品を置き、端末の開閉に合わせてsplit paneを調整できます。ラベル、アイコン、ルーティング、click handlerは既存のIonicマークアップが管理します。
 
-iPhone Duoはヒンジで折りたたみ、画面の片側に物理的なシステム操作領域を確保します。iOS 27.1以降では、その領域の端とsafe areaのinset、端末の開閉に伴うヒンジの状態をアプリへ通知します。
+**初めて使う場合は** [既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)から、Chromeで側面のレイアウトを試してください。このページは端末イベント、配置、split pane、APIを説明します。
+
+[Native UI Shell](/docs/native-ui-shell)とともに `1.2.0-0` で利用できる **実験的機能** です。APIと対応する動作は変更される可能性があります。実際のシステム操作領域とヒンジ情報には、iOS 27.1以降とXcode 27.1以降でビルドしたアプリが必要です。
 
 このパッケージは独立した3つの機能を提供します。それぞれ **iOS 27テーマのスタイルシートなし**、**完全なNative UI Shellなし** で利用できます。
 
@@ -20,7 +22,8 @@ iPhone Duoはヒンジで折りたたみ、画面の片側に物理的なシス�
 
 | 目的 | スタイルシート | Runtime |
 | --- | --- | --- |
-| ヒンジの状態だけを使う（split pane、レイアウト切り替え） | `vertical-bars.css` | 不要 — プラグインを直接購読します |
+| ヒンジの状態だけを使う（レイアウト切り替え） | 不要 | 不要 — プラグインを直接購読します |
+| 開閉状態に応じたsplit paneの幅 | `vertical-bars.css` | 不要 — プラグインを直接購読します |
 | タブとtoolbarの操作部品を縦の操作領域へ置く | `vertical-bars.css` | `enableVerticalControlArea()` |
 | Native UI Shellと縦の操作領域を併用する | `vertical-bars.css` | `enableNativeUIShell()` — 操作領域と開閉状態への対応を含みます |
 

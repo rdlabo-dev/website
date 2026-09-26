@@ -125,9 +125,9 @@ iOS上で確認してください。デスクトップでプレビューする�
 
 ### iOS 27テーマなしでiPhone Duoに対応する（実験的機能）
 
-iPhone Duo対応は実験的機能です。Native UI Shellと同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+既存のIonicテーマを維持し、タブと対応するtoolbarの操作部品を縦の側面領域へ移します。**まずChromeで試せます。** スタイルシート、appのクラス、`enableVerticalControlArea()` で始め、iPhone Duoの端末イベントと接続してシステム操作領域とヒンジの状態を利用できます。
 
-`@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` だけを読み込み、`ion-app` に `ios-theme-vertical-bars` を追加し、起動時に `@rdlabo/ionic-theme-ios27/vertical-bars` の `enableVerticalControlArea()` を呼びます。Vertical Control Areaの外はIonic標準の外観を使い、対応するiOSではその領域へ移した操作部品だけをネイティブ描画します。`ion-split-pane` の調整などヒンジの状態だけを使う場合は、runtimeを起動せずプラグインの `deviceLayoutChange` を購読します。実際のシステム操作領域にはXcode 27.1以降でのビルドが必要です。古いtoolchainでは互換モードでDOMによる操作領域を維持します。詳細は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
+ブラウザでのプレビューとiOSの設定は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)、共通のレイアウト規則とAPIは[iPhone Duo対応](/docs/iphone-duo)を参照してください。`1.2.0-0` で利用できる実験的機能で、APIと対応する動作は変更される可能性があります。
 
 ### iOS 27テーマだけを使う
 

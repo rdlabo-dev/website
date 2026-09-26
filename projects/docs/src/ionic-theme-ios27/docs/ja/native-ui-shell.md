@@ -171,7 +171,7 @@ try {
 
 ## iPhone Duo対応（実験的機能）
 
-Native UI Shellを使わない独立した利用も含め、iPhone Duo対応は実験的機能です。Native UI Shellと同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+Native UI Shellを使わない独立した利用も含め、iPhone Duo対応は実験的機能です。Native UI Shellとともに `1.2.0-0` のプレリリースで利用でき、APIと対応する動作は変更される可能性があります。
 
 独立したVertical Control Areaのentry point（`@rdlabo/ionic-theme-ios27/vertical-bars`）と `dist/css/vertical-bars.css` は、iOS 27テーマを読み込まずに動作します。この用途では `enableVerticalControlArea()` を呼び、縦の領域に置いた部品だけを描画します。既に `enableNativeUIShell()` を使うアプリは、両方を起動せず既存のruntimeを維持してください。ヒンジの状態やshellを使わないアプリのsplit pane配置を含む詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
 

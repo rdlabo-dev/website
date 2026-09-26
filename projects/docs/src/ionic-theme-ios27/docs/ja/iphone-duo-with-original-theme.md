@@ -12,14 +12,16 @@ title: 既存テーマでiPhone Duoに対応する（実験的機能）
 
 ### 1. インストールして専用スタイルシートを読み込む
 
+Ionic `>=8.8.1 <10` とCapacitor Core `>=8 <9` を使う既存アプリを前提とします。既存のCapacitor 8は再インストール不要です。別majorを使う場合は、Core・CLI・platformパッケージをまとめて移行してから進めてください。Capacitorを使わないWeb専用アプリでは `@capacitor/core@^8` もインストールします。JavaScriptのentry pointはChromeでもこの依存を必要とします。
+
 ```bash
-npm install @rdlabo/ionic-theme-ios27@1.2.0-0 @capacitor/core@^8
+npm install @rdlabo/ionic-theme-ios27@1.2.0-0
 ```
 
 既存テーマのimportを維持し、グローバルSassファイルに次を追加します。
 
 ```scss
-@use @rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css;
+@use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
 独立したJavaScriptのentry pointはChromeでも `@capacitor/core` を必要とします。iOS 27テーマのスタイルシートは不要です。
@@ -41,7 +43,7 @@ npm install @rdlabo/ionic-theme-ios27@1.2.0-0 @capacitor/core@^8
 `ion-app` がDOMに存在してから、アプリの起動処理で一度呼びます。
 
 ```ts
-import { enableVerticalControlArea } from @rdlabo/ionic-theme-ios27/vertical-bars;
+import { enableVerticalControlArea } from '@rdlabo/ionic-theme-ios27/vertical-bars';
 
 const rail = await enableVerticalControlArea();
 ```
@@ -67,15 +69,15 @@ Capacitor iOSでは `npx cap sync ios` を実行します。実際の操作領�
 ブラウザ用の起動コードを、`ion-app` のマウント後に実行する次のコードへ置き換えます。
 
 ```ts
-import { Capacitor, type PluginListenerHandle } from @capacitor/core;
-import { enableVerticalControlArea, IonicNativeUIShell } from @rdlabo/ionic-theme-ios27/vertical-bars;
+import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
+import { enableVerticalControlArea, IonicNativeUIShell } from '@rdlabo/ionic-theme-ios27/vertical-bars';
 
 const rail = await enableVerticalControlArea();
 let layoutListener: PluginListenerHandle | undefined;
 
-if (Capacitor.getPlatform() === ios) {
+if (Capacitor.getPlatform() === 'ios') {
   // Runtimeが既にレイアウトを監視しているため、購読だけを行います。
-  layoutListener = await IonicNativeUIShell.addListener(deviceLayoutChange, ({ placement }) =>
+  layoutListener = await IonicNativeUIShell.addListener('deviceLayoutChange', ({ placement }) =>
     rail.setPlacement(placement),
   );
   rail.setPlacement((await IonicNativeUIShell.getDeviceLayout()).placement);
@@ -88,7 +90,7 @@ const stopVerticalArea = async () => {
 };
 ```
 
-`setPlacement()` は実測insetを適用し、論理方向をdocumentの文字方向で解決します。`null` の端は操作領域のない端末で通常のレイアウトを復元します。古いtoolchainでは実際のシステム操作領域とヒンジの計測値なしで、DOMによる互換対応を維持します。
+`setPlacement()` は実測insetを適用し、論理方向をdocumentの文字方向で解決します。`null` の端は通常のレイアウトを復元します。操作領域のない端末や古いSDKでビルドしたアプリは `null` を返すため、この例では通常のレイアウトへ戻ります。そのようなiOSビルドで意図的にDOMの操作領域を試す場合は、nullの配置を適用する代わりにアプリが `rail.setPlacement('trailing')` で固定の端を選んでください。レイアウトのシミュレーションであり、実際のシステム操作領域やヒンジの計測値は得られません。
 
 対応するiOSでは操作領域の部品はシステムのSwiftUIの外観を使い、通常のコンテンツと水平の操作部品は独自のWebスタイルを維持します。WebとAndroidはWebクローンを使います。
 

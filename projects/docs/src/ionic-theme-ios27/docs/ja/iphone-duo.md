@@ -94,17 +94,24 @@ routerとコンポーネントの背景はviewport全体を維持します。`io
 アプリの起動時に、一度だけ独立したruntimeを起動します。
 
 ```ts
-import { Capacitor } from '@capacitor/core';
+import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
 import { enableVerticalControlArea, IonicNativeUIShell } from '@rdlabo/ionic-theme-ios27/vertical-bars';
 
 // Chromeでも起動します。クラスが付くまでWeb描画は待機します。
 const rail = await enableVerticalControlArea();
+let layoutListener: PluginListenerHandle | undefined;
 
 if (Capacitor.getPlatform() === 'ios') {
   // Runtimeが既にレイアウトを監視しているため、購読だけを行います。
-  await IonicNativeUIShell.addListener('deviceLayoutChange', ({ placement }) => rail.setPlacement(placement));
+  layoutListener = await IonicNativeUIShell.addListener('deviceLayoutChange', ({ placement }) => rail.setPlacement(placement));
   rail.setPlacement((await IonicNativeUIShell.getDeviceLayout()).placement);
 }
+
+// アプリを管理する所有者の破棄時に呼びます。
+const stopVerticalArea = async () => {
+  await layoutListener?.remove();
+  await rail.destroy();
+};
 ```
 
 handleの `setPlacement` とexportされた `setVerticalControlAreaPlacement` は同じ関数です。アプリが選んだ配置をCSSレイアウトと両方の描画へ適用します。マウント済みの `ion-app` が必要なので、アプリのrootが存在してから呼んでください。

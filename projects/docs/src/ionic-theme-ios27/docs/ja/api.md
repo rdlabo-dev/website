@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v1.2.0-0 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v1.2.0-1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -53,6 +53,12 @@ Searchable Tab Barのtransitionを設定し、event handlerを返します。
 `(event: Event, type: TabBarSearchableType) => Promise<void>`
 
 ## Animation
+
+#### `function` withNativeUIShellTransition
+
+`(builder: AnimationBuilder) => AnimationBuilder`
+
+Ionicの画面遷移builderをラップし、返されるアニメーションを維持しながら、ネイティブ部品の退避、スワイプの進捗、キャンセルを連携します。パッケージrootと `/vertical-bars` からexportされます。`navAnimation` に登録し、遷移ごとに新しい `Animation` を使ってください。本パッケージの `iosTransitionAnimation` には既に組み込まれています。Ionic標準と独自builderの設定は[既存テーマでの導入](/docs/iphone-duo-with-original-theme)を参照してください。
 
 #### `function` iosTransitionAnimation
 

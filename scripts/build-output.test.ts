@@ -9,6 +9,35 @@ import {
   PAST_SPONSORS,
 } from '../projects/docs/src/app/generated/sponsors.generated';
 
+test('transition guides link to existing localized onboarding headings', async () => {
+  for (const locale of ['', 'ja/']) {
+    const route = `${locale}projects/ionic-theme-ios27/docs/`;
+    const target = new JSDOM(
+      await readFile(`dist/docs/browser/${route}iphone-duo-with-original-theme/index.html`, 'utf8'),
+    ).window.document;
+    for (const page of ['migration', 'native-ui-shell']) {
+      const document = new JSDOM(
+        await readFile(`dist/docs/browser/${route}${page}/index.html`, 'utf8'),
+      ).window.document;
+      const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href]'))
+        .map(
+          (link) => new URL(link.getAttribute('href')!, `https://docs.rdlabo.dev/${route}${page}`),
+        )
+        .filter((url) => url.pathname.endsWith('/iphone-duo-with-original-theme') && url.hash);
+      assert.ok(links.length, `${locale}${page} should link to transition setup`);
+      for (const url of links) {
+        assert.equal(url.pathname, `/${route}iphone-duo-with-original-theme`);
+        const fragment = url.hash.slice(1);
+        // Japanese headings use URI-encoded IDs; English punctuation may be encoded in links.
+        assert.ok(
+          target.getElementById(fragment) ?? target.getElementById(decodeURIComponent(fragment)),
+          url.href,
+        );
+      }
+    }
+  }
+});
+
 test('places locale-specific static 404 pages in the browser output', async () => {
   const [english, japanese] = await Promise.all([
     readFile(new URL('../dist/docs/browser/404.html', import.meta.url), 'utf8'),

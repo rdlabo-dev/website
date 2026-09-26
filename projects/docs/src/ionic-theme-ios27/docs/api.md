@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-0. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-1. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 
@@ -53,6 +53,12 @@ Attaches the searchable tab-bar transition and returns its event handler.
 `(event: Event, type: TabBarSearchableType) => Promise<void>`
 
 ## Animations
+
+#### `function` withNativeUIShellTransition
+
+`(builder: AnimationBuilder) => AnimationBuilder`
+
+Wraps an Ionic navigation animation builder to coordinate native control retirement, swipe progress, and cancellation while preserving the returned animation. Exported from the package root and `/vertical-bars`. Register it as `navAnimation`; use a fresh `Animation` for each navigation. The package's `iosTransitionAnimation` already includes this adapter. See [existing-theme setup](/docs/iphone-duo-with-original-theme) for Ionic's default and custom builders.
 
 #### `function` iosTransitionAnimation
 

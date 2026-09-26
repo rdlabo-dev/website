@@ -38,7 +38,21 @@ npm install @rdlabo/ionic-theme-ios27@1.2.0-0
 
 プレビューは物理的な右側に `80px` を確保します。左側を試すには `ios-theme-vertical-bars-left` も追加します。
 
-### 3. App rootのマウント後に操作部品を起動する
+### 3. Ionicの初期化前に画面遷移を設定する
+
+画面遷移をimportし、Ionicの `navAnimation` に登録します。操作領域のruntimeを起動するだけでは、この設定は登録されません。このアニメーションは画面遷移前にネイティブ部品の退避を待ち、縦レイアウトでは水平の戻るボタンをアニメーション対象から外します。既存テーマのスタイルは維持しますが、iOSの画面遷移には本パッケージのアニメーションを使います。
+
+```ts
+import { iosTransitionAnimation } from '@rdlabo/ionic-theme-ios27';
+
+const ionicConfig = {
+  navAnimation: iosTransitionAnimation,
+};
+```
+
+初期化前に、既存のIonic設定の `ios` mode用設定へこのオプションを統合します。Angularでは `provideIonicAngular()`、Reactでは `setupIonicReact()`、Vueでは `IonicVue` pluginのオプションへ渡してください。既存の `md` 用アニメーション設定は維持します。JavaScriptのentry pointをimportしても、iOS 27テーマのスタイルシートは読み込まれません。
+
+### 4. App rootのマウント後に操作部品を起動する
 
 `ion-app` がDOMに存在してから、アプリの起動処理で一度呼びます。
 

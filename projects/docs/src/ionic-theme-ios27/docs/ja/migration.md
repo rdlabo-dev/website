@@ -2,6 +2,29 @@
 title: 移行
 ---
 
+## Native UI Shellの画面遷移アダプター
+
+`withNativeUIShellTransition()` を使うと、既存のIonic画面遷移アニメーションを維持しながらNative UI Shellの部品を連携できます。
+
+- `@rdlabo/ionic-theme-ios27` から `iosTransitionAnimation` をimportしている場合は、[本パッケージのアニメーション設定](/docs/iphone-duo-with-original-theme#本パッケージのiosアニメーションを使う)を維持します。設定変更は不要です。内部で共通アダプターを使うため、追加のラップは不要です。
+- `navAnimation` を設定せずIonic標準のアニメーションを使っている場合は、[Ionicの標準アニメーションを維持する](/docs/iphone-duo-with-original-theme#ionicの標準アニメーションを維持する)を参照してください。遷移modeに応じてIonic標準のiOSまたはMD builderを選ぶ例を掲載しています。
+- Native UI Shellまたは独立したVertical Control Areaで独自の画面遷移を使う場合、Ionic設定時に既存のbuilderをラップします。
+
+```diff
++ import { withNativeUIShellTransition } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+
+  const ionicConfig = {
+-   navAnimation: existingTransition,
++   navAnimation: withNativeUIShellTransition(existingTransition),
+  };
+```
+
+Ionicの初期化前に、既存設定へこのオプションを統合します。アダプターはアニメーションの効果、duration、easingを維持しながら、ネイティブ部品の退避、スワイプの進捗、キャンセルを連携します。既存テーマのスタイルシートのimportと、Native UI ShellまたはVertical Control Areaの起動処理は維持します。
+
+アダプターは画面遷移だけに使い、modalやpopoverのアニメーションは維持します。Ionicが遷移後に破棄するため、builderは遷移ごとに新しい `Animation` を作成してください。部品登録とアニメーションなしの遷移には、引き続きlifecycle eventを使います。独自builderが水平の戻るボタンを別途アニメーションする場合、`.ios-theme-vertical-bars` が有効な間はその効果を対象から外してください。
+
+導入手順と対応範囲は[画面遷移アニメーションを接続する](/docs/iphone-duo-with-original-theme#3.-画面遷移アニメーションを接続する)を参照してください。
+
 ## iOS 26テーマからの移行
 
 既存アプリが `@rdlabo/ionic-theme-ios26` を使っている場合は、iOS 26を残して `@rdlabo/ionic-theme-ios27` を追加する方法を推奨します。[READMEの導入手順](/docs/readme#get-started)では、ブラウザの機能に応じてiOS 26／27のスタイルを切り替え、どちらにも対応しないブラウザではIonic標準のiOS外観を維持します。
@@ -112,7 +135,7 @@ CSS変数にはバージョンに依存しない `--ios-theme-*` を使います
 
 テーマを除外するときは `ios-theme-disabled` を使います。`ios26-disabled` はdeprecatedの互換名として残ります。
 
-現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-0/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
+現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-1/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
 
 ## 送信ボタンの外観
 

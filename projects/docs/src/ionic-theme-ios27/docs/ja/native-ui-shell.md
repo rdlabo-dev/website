@@ -118,7 +118,7 @@ FABはIonicの `activated`、子ごとの `show`、`close()`、元のclick handl
 
 FAB、リスト、ボタンに独自host animationやtransitionがあれば、削除するまでWebです。transformは標準のidentityと隠れた子のscale(0)に対応し、独自scaleは非対応です。`display:none` 内の子では独自transformがあっても計算値が `none` になる場合があるため、配置可能になった時に検査し、必要ならFAB全体をWebへ戻します。stylesheetの解析や、非表示配置を予測するための一時的なリスト展開はしません。
 
-`src/transition/ios.transition.ts` はネイティブ表示の終了を待ってWebアニメーションを始めます。待機中のinteractive progressと完了・キャンセルはqueueに保持します。動かない共有タブは維持します。初回描画とanimation builderなしの遷移は、起動runtimeとIonic lifecycle eventで対応します。
+組み込みの `iosTransitionAnimation` はネイティブ表示の終了を待ってWebアニメーションを始めます。待機中のinteractive progressと完了・キャンセルはqueueに保持します。動かない共有タブは維持します。初回描画とanimation builderなしの遷移は、起動runtimeとIonic lifecycle eventで対応します。Ionic標準または独自の画面遷移builderには、パッケージrootと `/vertical-bars` からexportされる `withNativeUIShellTransition()` で同じ連携を追加できます。導入手順は[画面遷移アニメーションを接続する](/docs/iphone-duo-with-original-theme#3.-画面遷移アニメーションを接続する)を参照してください。
 
 タブ切り替えではWeb・ネイティブ間のcrossfadeを省き、終了するUIKitのsnapshotが次のタブへ重なるのを防ぎます。`ionViewWillLeave` でrouterのURLとまだ選択中のタブを比較し、vanilla環境では `ionTabsWillChange` / `ionTabsDidChange` のDOMイベントも使って検出します。スタックのpush・popでは通常の180msの引き継ぎを維持します。
 
@@ -213,9 +213,9 @@ destroy() => Promise<void>
 
 ## ソース構成
 
-[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-0/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
+[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-1/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
 
-iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-0/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
+iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-1/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
 
 ## デモと検証
 

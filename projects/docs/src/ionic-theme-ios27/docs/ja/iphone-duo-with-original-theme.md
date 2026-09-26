@@ -15,7 +15,7 @@ title: 既存テーマでiPhone Duoに対応する（実験的機能）
 Ionic `>=8.8.1 <10` とCapacitor Core `>=8 <9` を使う既存アプリを前提とします。既存のCapacitor 8は再インストール不要です。別majorを使う場合は、Core・CLI・platformパッケージをまとめて移行してから進めてください。Capacitorを使わないWeb専用アプリでは `@capacitor/core@^8` もインストールします。JavaScriptのentry pointはChromeでもこの依存を必要とします。
 
 ```bash
-npm install @rdlabo/ionic-theme-ios27@1.2.0-0
+npm install @rdlabo/ionic-theme-ios27@1.2.0-1
 ```
 
 既存テーマのimportを維持し、グローバルSassファイルに次を追加します。
@@ -38,9 +38,31 @@ npm install @rdlabo/ionic-theme-ios27@1.2.0-0
 
 プレビューは物理的な右側に `80px` を確保します。左側を試すには `ios-theme-vertical-bars-left` も追加します。
 
-### 3. Ionicの初期化前に画面遷移を設定する
+### 3. 画面遷移アニメーションを接続する
 
-画面遷移をimportし、Ionicの `navAnimation` に登録します。操作領域のruntimeを起動するだけでは、この設定は登録されません。このアニメーションは画面遷移前にネイティブ部品の退避を待ち、縦レイアウトでは水平の戻るボタンをアニメーション対象から外します。既存テーマのスタイルは維持しますが、iOSの画面遷移には本パッケージのアニメーションを使います。
+Ionicの初期化前に `navAnimation` を設定します。操作領域のruntimeを起動するだけでは、この設定は登録されません。アダプターは既存アニメーションを維持しながらネイティブ部品の退避を待ち、スワイプの進捗とキャンセルを連携します。
+
+#### Ionicの標準アニメーションを維持する
+
+`navAnimation` を設定していない場合は、Ionic標準のbuilderをラップします。Ionicが遷移時に渡す `mode` でbuilderを選び、`ios` と `md` のどちらも通常のアニメーションを維持します。
+
+```ts
+import { iosTransitionAnimation, mdTransitionAnimation, type AnimationBuilder } from '@ionic/core';
+import { withNativeUIShellTransition } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+
+const defaultTransition: AnimationBuilder = (baseEl, opts) =>
+  (opts.mode === 'ios' ? iosTransitionAnimation : mdTransitionAnimation)(baseEl, opts);
+
+const ionicConfig = {
+  navAnimation: withNativeUIShellTransition(defaultTransition),
+};
+```
+
+初期化前に、既存のIonic設定へこのオプションを統合します。Angularでは `provideIonicAngular()`、Reactでは `setupIonicReact()`、Vueでは `IonicVue` pluginのオプションへ渡してください。既存テーマのスタイルシートのimportは維持します。iOS 27テーマのスタイルシートは不要です。
+
+#### 本パッケージのiOSアニメーションを使う
+
+既にiOS 27の画面遷移を使っている場合は、この設定を維持します。ネイティブ連携のアダプターを含み、縦レイアウトでは水平の戻るボタンの効果を対象から外すため、追加のラップは不要です。このJavaScriptのentry pointをimportしても、テーマのスタイルシートは読み込まれません。
 
 ```ts
 import { iosTransitionAnimation } from '@rdlabo/ionic-theme-ios27';
@@ -50,7 +72,27 @@ const ionicConfig = {
 };
 ```
 
-初期化前に、既存のIonic設定の `ios` mode用設定へこのオプションを統合します。Angularでは `provideIonicAngular()`、Reactでは `setupIonicReact()`、Vueでは `IonicVue` pluginのオプションへ渡してください。既存の `md` 用アニメーション設定は維持します。JavaScriptのentry pointをimportしても、iOS 27テーマのスタイルシートは読み込まれません。
+既存のiOS mode用設定へこのオプションを適用し、MD用設定は維持してください。
+
+#### 独自アニメーションを維持する
+
+`navAnimation` に他のbuilderを使っている場合は、それをラップします。
+
+```ts
+import type { AnimationBuilder } from '@ionic/core';
+import { withNativeUIShellTransition } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+
+// アプリで既に使っているanimation builderを渡します。
+const configureNavigation = (existingTransition: AnimationBuilder) => ({
+  navAnimation: withNativeUIShellTransition(existingTransition),
+});
+```
+
+アダプターは元の `Animation` を返し、効果、duration、easingを維持します。画面遷移だけに使い、modalやpopoverのアニメーションには使いません。Ionicが遷移後に破棄するため、builderは遷移ごとに新しい `Animation` を返してください。部品登録とアニメーションなしの遷移には、引き続きlifecycle eventを使います。
+
+アダプターは、水平の戻るボタンへの効果を含むbuilderのアニメーション対象を維持します。縦レイアウトでその効果を除外するiOS 27の画面遷移が必要なら、`@rdlabo/ionic-theme-ios27` の `iosTransitionAnimation` を `navAnimation` に使ってください。こちらにはアダプターが組み込まれているため、ラップは不要です。
+
+`withNativeUIShellTransition()` は `1.2.0-1` 以降で利用できます。
 
 ### 4. App rootのマウント後に操作部品を起動する
 

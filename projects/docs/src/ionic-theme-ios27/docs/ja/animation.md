@@ -78,7 +78,7 @@ Ionic要素の初期化後（Angularなら `ngAfterViewInit` など）に登録�
 ```html
 <ion-content>...</ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button (click)="present($event)">
+  <ion-fab-button aria-label="Search" (click)="present($event)">
     <ion-icon name="search"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -89,7 +89,7 @@ Ionic要素の初期化後（Angularなら `ngAfterViewInit` など）に登録�
       <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon> </ion-button>
     </ion-buttons>
     <!-- User set `ionChange` or other events. -->
-    <ion-searchbar (ionChange)="example($event)"></ion-searchbar>
+    <ion-searchbar aria-label="Search" (ionChange)="example($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-footer>
 ```

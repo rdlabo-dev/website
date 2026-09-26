@@ -4,7 +4,7 @@ title: Native UI Shell（実験的機能）
 
 Native UI Shellは実験的機能です。APIと対応するコントロールは変更される可能性があります。
 
-IonicアプリのWebコンテンツの周囲に、ネイティブのナビゲーションと操作部品を表示します。同梱の任意のCapacitor iOSプラグインが、対応する固定IonicコントロールをUIKitとシステムのLiquid Glassで描画します。ページ内容、スクロール、アプリの状態、ルーティングはIonicのWebViewに残ります。
+IonicアプリのWebコンテンツの周囲に、ネイティブのナビゲーションと操作部品を表示します。同梱の任意のCapacitor iOSプラグインが、対応する固定IonicコントロールをUIKitまたはSwiftUIとシステムのLiquid Glassで描画します。ページ内容、スクロール、アプリの状態、ルーティングはIonicのWebViewに残ります。
 
 ## 背景
 
@@ -48,7 +48,7 @@ await configureNativeTransition();
 | `ion-segment` | 固定toolbar内、スクロールなし、各項目は文字または1アイコン | `UISegmentedControl` |
 | `ion-fab` / `ion-fab-button` / `ion-fab-list` | `ion-content` のfixed slot内のglass FAB、主ボタン1つと任意の方向別リスト | 各ボタンの永続的なglass `UIButton`、FAB単位の同期 |
 
-テーマ変数を読み込んだiOS modeのコンポーネントが対象です。要素または祖先の `ionic-theme-disabled`、`ios-theme-disabled`、旧 `ios26-disabled` は常に対象外にします。タブ・segmentの1項目でテーマを無効化すると、そのグループ全体がWeb描画になります。
+通常のNative UI Shellでは、テーマ変数を読み込んだiOS modeのコンポーネントが対象です。明示的に有効化したVertical Barsは、後述のとおりmodeから独立しています。要素または祖先の `ionic-theme-disabled`、`ios-theme-disabled`、旧 `ios26-disabled` は常に対象外にします。タブ・segmentの1項目でテーマを無効化すると、そのグループ全体がWeb描画になります。
 
 Webテーマを維持したままNative UI Shellだけを無効にするには、`ios-theme-shell-disabled` を使います。要素とすべての子孫が対象外になります。実行時にclassを追加・削除すると、自動的にWeb描画を復元したりネイティブ描画の適格性を再評価したりします。
 
@@ -60,7 +60,7 @@ Webテーマを維持したままNative UI Shellだけを無効にするには�
 
 共有面内の子が対象外になれば、ボタングループ、タブバー、segment、FABリストの面全体がWeb描画になります。検索FABや検索footerの一部を対象外にするとネイティブ検索連携が無効になりますが、タブバー自体は条件を満たせばネイティブ表示できます。
 
-glassの外観でも配置条件を満たす必要があります。ボタン、戻るボタン、メニューボタングループ、segmentは `ion-header` または `ion-footer` 直下のtoolbarに置き、コントロールの祖先に `ion-content` がないことが必要です。header/footer直下のボタン、単独toolbar、スクロール内容内のtoolbarやheaderはWeb描画を維持します。`slot="fixed"` のないFABも対象外です。ネイティブ表示中の部品を対象外の場所へ動かすとWebに戻り、元に戻すと再評価します。
+glassの外観でも配置条件を満たす必要があります。通常のNative UI Shellでは、ボタン、戻るボタン、メニューボタングループ、segmentは `ion-header` または `ion-footer` 直下のtoolbarに置き、コントロールの祖先に `ion-content` がないことが必要です。header/footer直下のボタン、単独toolbar、スクロール内容内のtoolbarやheaderはWeb描画を維持します。`slot="fixed"` のないFABも対象外です。ネイティブ表示中の部品を対象外の場所へ動かすとWebに戻り、元に戻すと再評価します。`.ios-theme-vertical-bars` を有効にすると、標準の `ion-back-button` はrouteのコンテンツ内や常設のapp shellなど固定toolbarの外からもVertical Control Areaへ描画できます。モードを有効にする場所とIonicのコンポーネントmodeはアプリが選び、Vertical Barsの描画に `ios` modeのクラスは不要です。overlay、縮小header、明示的に対象外にした部品、退出済みページは除外します。
 
 ネイティブタブは等幅項目とIonic既定の `layout="icon-top"` に対応します。バー内部だけで横方向compact・縦方向regularのsize classを使い、iPadと横向きでもWebのアイコン・ラベルの縦積みを維持します。アプリのsize classは変更しません。ラベルのサイズと太さはWebのsnapshotに従います。`icon-start`、`icon-end`、`icon-bottom`、`icon-hide`、`label-hide` や不均等幅ではバー全体がWeb描画です。start・center・end配置はRTLを含め元の `ion-tab-bar` に従い、方向性のある `ion-icon` のRTL反転も維持します。
 
@@ -120,6 +120,8 @@ FAB、リスト、ボタンに独自host animationやtransitionがあれば、�
 
 `src/transition/ios.transition.ts` はネイティブ表示の終了を待ってWebアニメーションを始めます。待機中のinteractive progressと完了・キャンセルはqueueに保持します。動かない共有タブは維持します。初回描画とanimation builderなしの遷移は、起動runtimeとIonic lifecycle eventで対応します。
 
+タブ切り替えではWeb・ネイティブ間のcrossfadeを省き、終了するUIKitのsnapshotが次のタブへ重なるのを防ぎます。`ionViewWillLeave` でrouterのURLとまだ選択中のタブを比較し、vanilla環境では `ionTabsWillChange` / `ionTabsDidChange` のDOMイベントも使って検出します。スタックのpush・popでは通常の180msの引き継ぎを維持します。
+
 標準Ionic overlayはdismissまでネイティブ表示を一時停止します。非対応の検索付きタブは既存Webアニメーションを使い、Web glass gestureと制御を共有します。対応する親面のCSS motion中も一時的にWeb表示になります。
 
 ネイティブ表示を終了するときは元要素を復元して描画させてから覆いを外し、開始するときは有効な最新のネイティブ応答を確認してから元要素を隠します。遅延応答は部品ごとに再検証します。既存の対象部品は内容更新中もネイティブ表示を維持し、削除・対象外の部品だけWebへ戻します。新規取得には正確な応答確認が必要です。通常のページ変更では全体clearを呼びません。UIKitタブinstanceと項目を維持し、同一frame・選択を再適用せず、重複・古い操作は破棄します。意図的な空白frameは避けますが、WebKitとUIKitは別描画でOSレベルの不可分な合成を保証しません。独自遷移・overlayは対象Simulatorで検証してください。未知のoverlay systemは自動連携の対象外です。
@@ -167,6 +169,20 @@ try {
 
 ネイティブの素材と外観は実行中のiOSに従います。このテーマを入れるだけでiOS 26端末がiOS 27の外観になるわけではありません。
 
+## iPhone Duo対応（実験的機能）
+
+Native UI Shellを使わない独立した利用も含め、iPhone Duo対応は実験的機能です。Native UI Shellと同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+
+独立したVertical Control Areaのentry point（`@rdlabo/ionic-theme-ios27/vertical-bars`）と `dist/css/vertical-bars.css` は、iOS 27テーマを読み込まずに動作します。この用途では `enableVerticalControlArea()` を呼び、縦の領域に置いた部品だけを描画します。既に `enableNativeUIShell()` を使うアプリは、両方を起動せず既存のruntimeを維持してください。ヒンジの状態やshellを使わないアプリのsplit pane配置を含む詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
+
+対応するiOSでは `.ios-theme-vertical-bars` を追加すると、システムが物理的な側面の領域へ移した部品だけが変わります。対象のタブ、戻る操作、メニューボタン、toolbarの操作部品をSwiftUIの `TabView` とtoolbarで表示します。iOS 27.1以降とリンクしたiPhone DuoでOSが領域の端を通知する場合、適用した配置と一致する必要があり、不一致ならWeb描画を維持します。端を通知できない古いtoolchainではDOMの配置を使います。SwiftUIが適応配置とLiquid Glassの外観を管理し、ラベル、アイコン、選択・disabled状態、ルーティング、フォーム送信、click handlerは引き続きIonicが管理します。
+
+SwiftUIの面のclipとhit testはシステム操作領域内に制限します。その外のWebコンテンツは表示と操作を維持します。runtimeは元の `ion-tab-button` へ操作を渡す前にタブ選択を先行更新し、他のネイティブ部品と同じイベント・古いrevisionの保護を使います。メニュー、modal、popoverは独立した面のままで、メインページの操作領域へ移動しません。
+
+このモードはSwiftUIがコンパクトな表示を決めるため、標準の `fill="default"` と `fill="clear"` の固定toolbarボタンに対応します。solid、outline、独自色、スクロールする部品、明示的に対象外にした部品はWebに残ります。水平Web toolbarに残すには、`ion-buttons` グループまたは個別の `ion-button` に `.ios-theme-horizontal-only` を追加します。Web、Android、古いiOS、セットアップ中にネイティブ描画が利用できない場合は、Web描画へフォールバックします。
+
+既存テーマを維持する独立した導入手順は、[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
+
 ## Native UI Shell API
 
 `enableNativeUIShell()` が返すhandleの操作です。型と起動オプションは[APIリファレンス](/docs/api)も参照してください。
@@ -197,9 +213,9 @@ destroy() => Promise<void>
 
 ## ソース構成
 
-[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.0.1/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
+[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-0/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
 
-iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.0.1/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
+iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-0/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
 
 ## デモと検証
 

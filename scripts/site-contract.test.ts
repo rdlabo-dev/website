@@ -541,7 +541,7 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
     ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.2.0' }],
-    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.0.1' }],
+    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.2.0-0' }],
     ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
   ]);
   const packageJson = JSON.parse(
@@ -1621,15 +1621,15 @@ test('declares authorized Ionic and Capacitor documentation translations', async
 
 test('separates iOS 26 and iOS 27 documentation, source branches, and screenshots', () => {
   for (const project of [ionicThemeIos27En, ionicThemeIos27Ja]) {
-    assert.equal(project.version, '1.0.1');
+    assert.equal(project.version, '1.2.0-0');
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
     assert.equal(
       project.releaseNotesUrl,
-      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0',
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-0',
     );
     assert.equal((project.overviewHtml.match(/<img /g) ?? []).length, 3);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
-    assert.match(project.overviewHtml, /ios27-v1\.0\.1\/screenshots\/ios27-settings\.png/);
+    assert.match(project.overviewHtml, /ios27-v1\.2\.0-0\/screenshots\/ios27-settings\.png/);
     assert.ok(!project.pages.some((page) => page.slug === 'ios-adaptive'));
   }
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
@@ -1637,6 +1637,40 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
   assert.match(oldGuide!.editUrl, /\/edit\/ios26\/docs\/migration\.md$/);
   assert.match(newGuide!.editUrl, /\/edit\/main\/docs\/migration\.md$/);
   assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
+});
+
+test('publishes experimental iPhone Duo guides and API links in both locales', () => {
+  for (const [project, prefix] of [
+    [ionicThemeIos27En, ''],
+    [ionicThemeIos27Ja, '/ja'],
+  ] as const) {
+    const duo = project.pages.find((page) => page.slug === 'iphone-duo');
+    assert.ok(duo, 'iPhone Duo must be a navigable guide');
+    assert.match(duo.title, /experimental|実験的機能/i);
+    assert.match(duo.html, /enableVerticalControlArea/);
+    assert.match(duo.html, /startDeviceLayoutMonitoring/);
+    assert.match(duo.html, /ios-theme-split-pane-half-open/);
+    for (const slug of ['special-markup', 'native-ui-shell', 'api']) {
+      const guide = project.pages.find((page) => page.slug === slug);
+      assert.ok(guide);
+      assert.ok(
+        guide.html.includes(`href="${prefix}/projects/ionic-theme-ios27/docs/iphone-duo"`),
+        `${slug} must link to the localized iPhone Duo guide`,
+      );
+    }
+    const standalone = project.pages.find((page) => page.slug === 'iphone-duo-with-original-theme');
+    assert.ok(standalone);
+    assert.match(standalone.title, /experimental|実験的機能/i);
+    assert.match(standalone.html, /enableVerticalControlArea/);
+    assert.ok(
+      duo.html.includes(
+        `href="${prefix}/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"`,
+      ),
+    );
+    const api = project.pages.find((page) => page.slug === 'api')!;
+    assert.match(api.html, /DeviceLayout/);
+    assert.match(api.html, /HingeStatus/);
+  }
 });
 
 test('imported portal links stay in the current tab', () => {

@@ -6,14 +6,14 @@ scrollActiveLine: []
 
 IonicアプリにiOS 27のLiquid Glassとアニメーションを適用するテーマです。Capacitor iOSアプリでは、対応する操作部品に実験的なNative UI Shellを選択できます。
 
-**[Ionic 9デモ](https://ionic-theme-ios27.rdlabo.dev/) · [Ionic 8デモ](https://ionic8-theme-ios27.rdlabo.dev/) · [1.0.0リリースノート](https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0)**
+**[Ionic 9デモ](https://ionic-theme-ios27.rdlabo.dev/) · [Ionic 8デモ](https://ionic8-theme-ios27.rdlabo.dev/) · [1.2.0-0リリースノート](https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-0)**
 
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-0/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-0/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -30,7 +30,7 @@ Liquid Glass、ツールバー、タブ、リスト、ボタン、検索、オ�
 
 **iOS 27のタブドラッグ:** 同じLibrary画面をNative UI Shellオフ（Web）とオン（UIKit）で比較しました。下段はタブバー周辺を拡大しています。
 
-[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.1/screenshots/native-ui-shell-drag/comparison.png)
+[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-0/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-0/screenshots/native-ui-shell-drag/comparison.png)
 
 ### 利用者の端末に合わせる
 
@@ -123,6 +123,12 @@ iOS上で確認してください。デスクトップでプレビューする�
 
 ## オプション構成
 
+### iOS 27テーマなしでiPhone Duoに対応する（実験的機能）
+
+iPhone Duo対応は実験的機能です。Native UI Shellと同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+
+`@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` だけを読み込み、`ion-app` に `ios-theme-vertical-bars` を追加し、起動時に `@rdlabo/ionic-theme-ios27/vertical-bars` の `enableVerticalControlArea()` を呼びます。Vertical Control Areaの外はIonic標準の外観を使い、対応するiOSではその領域へ移した操作部品だけをネイティブ描画します。`ion-split-pane` の調整などヒンジの状態だけを使う場合は、runtimeを起動せずプラグインの `deviceLayoutChange` を購読します。実際のシステム操作領域にはXcode 27.1以降でのビルドが必要です。古いtoolchainでは互換モードでDOMによる操作領域を維持します。詳細は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
+
 ### iOS 27テーマだけを使う
 
 ~@rdlabo/ionic-theme-ios27~ だけをインストールし、グローバルスタイルシートで無条件に読み込みます。
@@ -207,6 +213,8 @@ Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular
 - [ESLint](/docs/eslint) — リスト構造を検査するルール。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
 - [Native UI Shell（実験的機能）](/docs/native-ui-shell) — 対応するIonicコントロールをUIKitで表示。
+- [iPhone Duo対応（実験的機能）](/docs/iphone-duo) — 縦のシステム操作領域、ヒンジの状態、split paneの配置。テーマやshellなしでも利用できます。
+- [既存テーマでiPhone Duoに対応する（実験的機能）](/docs/iphone-duo-with-original-theme) — 既存のWebテーマを維持する独立した導入手順。
 - [アニメーション](/docs/animation) — タブ、セグメント、検索の効果。
 - [iOS 26からの移行](/docs/migration) — 既存アプリの更新手順と差分。
 - [iOS 26の移行履歴](/ionic-theme-ios26/docs/migration) — 前のパッケージの移行案内。

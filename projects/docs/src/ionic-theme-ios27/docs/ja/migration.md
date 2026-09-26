@@ -4,7 +4,7 @@ title: 移行
 
 ## iOS 26テーマからの移行
 
-既存アプリが `@rdlabo/ionic-theme-ios26` を使っている場合は、iOS 26を残して `@rdlabo/ionic-theme-ios27` を追加する方法を推奨します。[READMEの導入手順](/)では、ブラウザの機能に応じてiOS 26／27のスタイルを切り替え、どちらにも対応しないブラウザではIonic標準のiOS外観を維持します。
+既存アプリが `@rdlabo/ionic-theme-ios26` を使っている場合は、iOS 26を残して `@rdlabo/ionic-theme-ios27` を追加する方法を推奨します。[READMEの導入手順](/docs/readme#get-started)では、ブラウザの機能に応じてiOS 26／27のスタイルを切り替え、どちらにも対応しないブラウザではIonic標準のiOS外観を維持します。
 
 ### 1. 新しいパッケージを追加する
 
@@ -102,7 +102,7 @@ iOS 26パッケージを削除し、スタイルシートとアニメーショ�
 + @use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
 ```
 
-アニメーションのimport元も `@rdlabo/ionic-theme-ios26` から `@rdlabo/ionic-theme-ios27` に変更します。既存の `isPlatform('ios')` 設定はそのまま使えます。[iOS 27単体の導入手順](/#use-only-the-ios-27-theme)も参照してください。無条件のimportではIonic iOSモードを使う全ブラウザに新しいスタイルが適用されます。
+アニメーションのimport元も `@rdlabo/ionic-theme-ios26` から `@rdlabo/ionic-theme-ios27` に変更します。既存の `isPlatform('ios')` 設定はそのまま使えます。[iOS 27単体の導入手順](/docs/readme#use-only-the-ios-27-theme)も参照してください。無条件のimportではIonic iOSモードを使う全ブラウザに新しいスタイルが適用されます。
 
 ## iOS 27の命名
 
@@ -112,7 +112,7 @@ CSS変数にはバージョンに依存しない `--ios-theme-*` を使います
 
 テーマを除外するときは `ios-theme-disabled` を使います。`ios26-disabled` はdeprecatedの互換名として残ります。
 
-現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.0.1/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
+現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-0/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
 
 ## 送信ボタンの外観
 

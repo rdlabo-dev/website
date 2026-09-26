@@ -741,9 +741,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-0',
     releaseTagPrefix: 'ios27-v',
-    englishDocsRef: '24a4b5ef95f0611bfe4668046bfb25f323af81b0',
+    englishDocsRef: '093861db4797d46babac68a1c9565c92aa68f3b4',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -785,7 +785,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-18', '2026-09-18'),
+        updatedAt: text('2026-09-26', '2026-09-26'),
       }),
       page(
         'Using ion-item-group',
@@ -803,7 +803,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-15', '2026-09-15') },
+        { updatedAt: text('2026-09-26', '2026-09-26') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -831,20 +831,40 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'native-ui-shell.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-18', '2026-09-18') },
+        { updatedAt: text('2026-09-26', '2026-09-26') },
+      ),
+      page(
+        'iPhone Duo support (experimental)',
+        'iPhone Duo対応（実験的機能）',
+        'iphone-duo',
+        'iphone-duo.md',
+        'Guides',
+        'ガイド',
+        {
+          updatedAt: text('2026-09-26', '2026-09-26'),
+        },
+      ),
+      page(
+        'iPhone Duo with your existing theme (experimental)',
+        '既存テーマでiPhone Duoに対応する（実験的機能）',
+        'iphone-duo-with-original-theme',
+        'iphone-duo-with-original-theme.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-26', '2026-09-26') },
       ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-18', '2026-09-18'),
       }),
       page('Animation', 'アニメーション', 'animation', 'animation.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-15', '2026-09-15'),
+        updatedAt: text('2026-09-26', '2026-09-26'),
       }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-18', '2026-09-18'),
+        updatedAt: text('2026-09-26', '2026-09-26'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: text('2026-09-18', '2026-09-18'),
+        updatedAt: text('2026-09-26', '2026-09-26'),
       }),
     ],
   },

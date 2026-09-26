@@ -45,6 +45,14 @@ iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、
 
 別の `ion-fab` の位置は変わらないため、そのスペースも確保してください。
 
+## iPhone Duo対応（実験的機能）
+
+iPhone Duo対応は実験的機能です。Native UI Shellと同時にリリースする予定で、APIと対応する動作は変更される可能性があります。
+
+縦のシステム操作領域、ヒンジの状態、開閉状態に応じたsplit paneの配置は、iOS 27テーマと完全なNative UI Shellから独立しています。描画runtimeを使わないレイアウト監視を含め、詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
+
+既存テーマを維持する独立した導入手順は、[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
+
 ## 2行のinset list item
 
 slotを指定しない `ion-label` と `ion-note` を隣接させると、2行のitemとして表示します。iOS styleのinset list背景を使う場合はitemを `ion-item-group` で囲み、`ion-list-header` はgroupの外に置きます。
@@ -90,9 +98,16 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 
 ## 幅いっぱいのsegment
 
-色付きsegmentにはIonicの `color`（例: `color="primary"`、`color="secondary"`）を使います。選択面はパレットのbase色、選択ラベルはcontrast色になります。任意の移動するglassも同じ面の色を引き継ぎ、独自のIonicパレットも追加登録なしで使えます。
+`.segment-style-glass` を追加すると、タブバーと同じglass面と選択indicatorの処理を適用します。既存の寸法と文字色を維持し、スクロール可能なsegmentとIonicの公開 `--background` プロパティにも対応します。
 
-segmentの最小高さはコンテンツ内では32px、`ion-toolbar` 内では48pxです。`.segment-expand` はtoolbar内でもコンパクトな32pxを維持します。コンパクトなsegmentはIonicの平坦な背景とindicator色を使います。通常のtoolbar版だけがglass containerを持ち、押下時に外側のcontainerが拡大します。コンテンツ内とexpanded版の外枠は変わりません。任意の移動するglass lensはcontainer背景と独立しています。
+```html
+<ion-segment class="segment-style-glass" value="available">
+  <ion-segment-button value="available">Available</ion-segment-button>
+  <ion-segment-button value="away">Away</ion-segment-button>
+</ion-segment>
+```
+
+色付きsegmentにはIonicの `color`（例: `color="primary"`、`color="secondary"`）を使います。Ionicはパレットのbase色でtrackを淡く着色し、選択面とラベルはニュートラルに保ちます。周囲の色付きtoolbarはsegment自身に色指定がない場合だけ色を供給します。任意の移動するglassは選択面の色を引き継ぎ、独自のIonicパレットも追加登録なしで使えます。
 
 segment buttonを利用可能な幅に均等配置する場合は `.segment-expand` を追加します。`registerSegmentEffect` を使う場合、このclassはLiquid Glass effectのsizeも変更します。
 

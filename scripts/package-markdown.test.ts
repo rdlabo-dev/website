@@ -8,6 +8,7 @@ import {
   extractRdlaboDocsPick,
   normalizePackageMarkdown,
   rewritePackageDocLinks,
+  rewriteRelativeDocLinks,
   stripLeadingH1,
   stripRdlaboDocsOmit,
 } from './package-markdown';
@@ -352,5 +353,27 @@ test('rewrites nested package-relative guide links', () => {
       new Map(),
     ),
     'See [Event Listeners](/docs/learn/event-listeners) and [the same page](/docs/learn/event-listeners).',
+  );
+});
+
+test('resolves sibling links from nested package pages against the page directory', () => {
+  assert.equal(
+    rewritePackageDocLinks(
+      'See [deny-element](./deny-element.md#options), [setup](../README.md#installation), and [guide](../docs/guide.md).',
+      new Map(),
+      'readme',
+      'rules/prefer-modal-launcher.md',
+    ),
+    'See [deny-element](/docs/rules/deny-element#options), [setup](/docs/readme#installation), and [guide](/docs/guide).',
+  );
+});
+
+test('rewrites relative links on locally hosted nested pages', () => {
+  assert.equal(
+    rewriteRelativeDocLinks(
+      'See [deny-element](./deny-element.md), [root](/docs/api), and [external](https://example.com/a.md).',
+      'rules/prefer-modal-launcher.md',
+    ),
+    'See [deny-element](/docs/rules/deny-element), [root](/docs/api), and [external](https://example.com/a.md).',
   );
 });

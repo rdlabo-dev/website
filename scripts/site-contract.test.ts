@@ -1179,6 +1179,56 @@ test('redirects the trailing-slash legacy Stripe Angular URL before static asset
   assert.equal(delegatedRequest, request);
 });
 
+test('keeps the experimental docs agent router separate from static asset delivery', async () => {
+  const source = await readFile(
+    new URL('../wrangler.docs-agent-router.jsonc', import.meta.url),
+    'utf8',
+  );
+  const config = JSON.parse(source.replace(/^\s*\/\/.*$/gm, '').replace(/,(\s*[}\]])/g, '$1')) as {
+    name?: string;
+    account_id?: string;
+    main?: string;
+    workers_dev?: boolean;
+    preview_urls?: boolean;
+    ai?: { binding?: string };
+    vars?: Record<string, string>;
+    routes?: { pattern?: string; zone_name?: string }[];
+  };
+
+  assert.equal(config.name, 'docs-agent-router');
+  assert.equal(config.account_id, '09b7a8355cbc8a838af7de40ed9ec7f8');
+  assert.equal(config.main, './workers/docs-agent-router.ts');
+  assert.equal(config.workers_dev, false);
+  assert.equal(config.preview_urls, false);
+  assert.equal(config.ai, undefined);
+  assert.equal(config.vars?.['TYPESAFE_API_KEY'], undefined);
+  assert.equal(config.vars?.['JEV_ROUTING_MODE'], 'enforce');
+  assert.equal(config.vars?.['X402_NETWORK'], 'eip155:8453');
+  assert.equal(
+    config.vars?.['X402_FACILITATOR_URL'],
+    'https://api.cdp.coinbase.com/platform/v2/x402',
+  );
+  assert.equal(config.vars?.['X402_PRICE'], '$0.001');
+  assert.equal(config.vars?.['X402_PAY_TO'], undefined);
+  assert.equal(config.vars?.['CDP_API_KEY_ID'], undefined);
+  assert.equal(config.vars?.['CDP_API_KEY_SECRET'], undefined);
+  assert.deepEqual(config.routes, [
+    {
+      pattern: 'docs.rdlabo.dev/projects/*',
+      zone_name: 'rdlabo.dev',
+    },
+    {
+      pattern: 'docs.rdlabo.dev/ja/projects/*',
+      zone_name: 'rdlabo.dev',
+    },
+  ]);
+  await access(new URL('../workers/docs-agent-router.ts', import.meta.url), constants.F_OK);
+  await access(
+    new URL('../workers/generated/agent-markdown.generated.ts', import.meta.url),
+    constants.F_OK,
+  );
+});
+
 test('deploys verified main revisions to Cloudflare', async () => {
   const [workflow, workflowFiles] = await Promise.all([
     readFile(new URL('../.github/workflows/deploy-cloudflare.yml', import.meta.url), 'utf8'),

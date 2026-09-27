@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "types": ["@cloudflare/workers-types"]
+  },
+  "include": ["workers/docs-agent-router.ts", "workers/generated/**/*.ts"]
+}

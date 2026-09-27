@@ -1,0 +1,2 @@
+# Copy to .dev.vars and set your TypeSafe API key for local Jev classification.
+TYPESAFE_API_KEY=""

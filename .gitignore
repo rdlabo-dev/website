@@ -42,3 +42,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 .env
+.dev.vars*
+!.dev.vars.example
+/cdp_api_key.json

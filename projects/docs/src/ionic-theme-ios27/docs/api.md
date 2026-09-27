@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.0.1. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-1. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 
@@ -53,6 +53,12 @@ Attaches the searchable tab-bar transition and returns its event handler.
 `(event: Event, type: TabBarSearchableType) => Promise<void>`
 
 ## Animations
+
+#### `function` withNativeUIShellTransition
+
+`(builder: AnimationBuilder) => AnimationBuilder`
+
+Wraps an Ionic navigation animation builder to coordinate native control retirement, swipe progress, and cancellation while preserving the returned animation. Exported from the package root and `/vertical-bars`. Register it as `navAnimation`; use a fresh `Animation` for each navigation. The package's `iosTransitionAnimation` already includes this adapter. See [existing-theme setup](/docs/iphone-duo-with-original-theme) for Ionic's default and custom builders.
 
 #### `function` iosTransitionAnimation
 
@@ -107,7 +113,7 @@ Import these APIs and types from `@rdlabo/ionic-theme-ios27/native`. See the [Na
 
 `(options?: NativeUIShellOptions) => Promise<NativeUIShellHandle>`
 
-Call once at startup. Repeated calls share the active runtime. Unsupported environments return a handle in the Web state. Set `enabled: false` to stop active projection and use Web controls.
+Call once at startup. Repeated calls with the same configuration share the active runtime; a different configuration while it is active throws. Unsupported environments return a handle in the Web state. Set `enabled: false` to stop active projection and use Web controls.
 
 #### `function` configureNativeTransition
 
@@ -169,3 +175,69 @@ interface NativeUIShellStatus {
 `'ion-button' | 'ion-buttons' | 'ion-back-button' | 'ion-menu-button' | 'ion-tab-bar' | 'ion-segment' | 'ion-fab'`
 
 Union of component tags handled by the runtime. See the guide for individual eligibility requirements.
+
+## iPhone Duo / Vertical Control Area (Experimental)
+
+Import these APIs from `@rdlabo/ionic-theme-ios27/vertical-bars` or `@rdlabo/ionic-theme-ios27/native`. The standalone entry point works without the iOS 27 theme or the full Native UI Shell. See [iPhone Duo support](/docs/iphone-duo) for setup, toolchain requirements, and Web fallback.
+
+#### `function` enableVerticalControlArea
+
+`() => Promise<VerticalControlAreaHandle>`
+
+Starts the runtime for controls in the vertical area only. Start either this runtime or `enableNativeUIShell()`. Repeated calls with the same configuration share it; a different active configuration throws.
+
+#### `function` setVerticalControlAreaPlacement
+
+`(placement: VerticalBarEdge | VerticalBarPlacement, rtl?: boolean) => void`
+
+Applies the application's chosen placement to CSS and Web/native controls after `ion-app` is mounted. Logical edges resolve through the nearest `dir` attribute or explicit `rtl`. Pass `null` to restore ordinary layout.
+
+#### `interface` VerticalControlAreaHandle
+
+Extends `NativeUIShellHandle` with `setPlacement`, the same function as `setVerticalControlAreaPlacement`.
+
+| Member | Type | Description |
+| --- | --- | --- |
+| **`setPlacement`** | `(placement: VerticalBarEdge \| VerticalBarPlacement, rtl?: boolean) => void` | Apply placement to Web and native controls. |
+
+#### `type alias` VerticalBarEdge
+
+`'leading' | 'trailing' | null`
+
+Logical edge in the reading direction; `null` means no vertical rail.
+
+#### `interface` VerticalBarPlacement
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| **`edge`** | `VerticalBarEdge` | Logical rail edge. |
+| **`inset`** | `number` | UIKit safe-area inset in points. |
+
+#### `enum` HingeStatus
+
+| Member | Value |
+| --- | --- |
+| **`Closed`** | `"closed"` |
+| **`PartiallyOpen`** | `"partiallyOpen"` |
+| **`FullyOpen`** | `"fullyOpen"` |
+
+#### `interface` DeviceLayout
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| **`placement`** | `VerticalBarPlacement` | Rail edge and measured safe-area inset. |
+| **`hingeStatus`** | `HingeStatus \| null` | Hinge posture; `null` when unavailable. |
+| **`webViewMetrics`** | `WebViewMetrics` | Effective WebView corner radius. |
+
+#### `module` IonicNativeUIShell
+
+The bundled Capacitor plugin exposes device-layout reporting without starting a projection runtime. It has no Web implementation; guard calls with `Capacitor.getPlatform() === 'ios'`.
+
+| Member | Type | Description |
+| --- | --- | --- |
+| **`getDeviceLayout`** | `() => Promise<DeviceLayout>` | Read the initial layout or take a one-shot measurement. |
+| **`startDeviceLayoutMonitoring`** | `() => Promise<void>` | Acquire a monitoring reference. |
+| **`stopDeviceLayoutMonitoring`** | `() => Promise<void>` | Release a reference; events stop after the last release. |
+| **`addListener`** | `(name: 'deviceLayoutChange', listener: (event: DeviceLayout) => void) => Promise<PluginListenerHandle>` | Subscribe to layout changes; remove the returned listener when finished. |
+
+An active native projection runtime already holds a monitoring reference, so its consumers only subscribe and read the initial value. Bridge snapshot and activation methods are internal implementation details.

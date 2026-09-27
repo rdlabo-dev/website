@@ -484,10 +484,10 @@ export const PROJECTS_EN = [
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-1",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.0.1",
+    "version": "1.2.0-1",
     "description": "Stable iOS 27 styling and motion for Ionic, with an optional experimental Native UI Shell.",
     "headline": "Bring iOS 27 design to Ionic apps",
     "overview": "Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell remains experimental.",
@@ -509,7 +509,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -546,6 +546,20 @@ export const PROJECTS_EN = [
         "slug": "native-ui-shell",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
+      },
+      {
+        "title": "iPhone Duo support (experimental)",
+        "navTitle": "iPhone Duo support (experimental)",
+        "slug": "iphone-duo",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
+      },
+      {
+        "title": "iPhone Duo with your existing theme (experimental)",
+        "navTitle": "iPhone Duo with your existing theme (experimental)",
+        "slug": "iphone-duo-with-original-theme",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
       },
       {
         "title": "Features",
@@ -2646,10 +2660,10 @@ export const PROJECTS_JA = [
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.0.0",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-1",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.0.1",
+    "version": "1.2.0-1",
     "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。実験的なNative UI Shellも選択できます。",
     "headline": "IonicアプリにiOS 27デザインを取り入れる",
     "overview": "IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellは実験的機能です。",
@@ -2671,7 +2685,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.0.1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-1/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -2708,6 +2722,20 @@ export const PROJECTS_JA = [
         "slug": "native-ui-shell",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
+      },
+      {
+        "title": "iPhone Duo対応（実験的機能）",
+        "navTitle": "iPhone Duo対応（実験的機能）",
+        "slug": "iphone-duo",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
+      },
+      {
+        "title": "既存テーマでiPhone Duoに対応する（実験的機能）",
+        "navTitle": "既存テーマでiPhone Duoに対応する（実験的機能）",
+        "slug": "iphone-duo-with-original-theme",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
       },
       {
         "title": "機能",

@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v1.0.1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v1.2.0-1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -53,6 +53,12 @@ Searchable Tab Barのtransitionを設定し、event handlerを返します。
 `(event: Event, type: TabBarSearchableType) => Promise<void>`
 
 ## Animation
+
+#### `function` withNativeUIShellTransition
+
+`(builder: AnimationBuilder) => AnimationBuilder`
+
+Ionicの画面遷移builderをラップし、返されるアニメーションを維持しながら、ネイティブ部品の退避、スワイプの進捗、キャンセルを連携します。パッケージrootと `/vertical-bars` からexportされます。`navAnimation` に登録し、遷移ごとに新しい `Animation` を使ってください。本パッケージの `iosTransitionAnimation` には既に組み込まれています。Ionic標準と独自builderの設定は[既存テーマでの導入](/docs/iphone-duo-with-original-theme)を参照してください。
 
 #### `function` iosTransitionAnimation
 
@@ -107,7 +113,7 @@ iOS modeでIonicの `cancelButtonIcon` を描画する一時的な補助です�
 
 `(options?: NativeUIShellOptions) => Promise<NativeUIShellHandle>`
 
-起動時に一度呼びます。繰り返し呼んでも稼働中のruntimeを共有します。非対応環境ではWeb状態のhandleを返します。`enabled: false` で稼働中のネイティブ描画を停止し、Web描画に戻します。
+起動時に一度呼びます。同じ設定で繰り返すと稼働中のruntimeを共有し、稼働中に異なる設定を指定するとエラーになります。非対応環境ではWeb状態のhandleを返します。`enabled: false` で稼働中のネイティブ描画を停止し、Web描画に戻します。
 
 #### `function` configureNativeTransition
 
@@ -169,3 +175,69 @@ interface NativeUIShellStatus {
 `'ion-button' | 'ion-buttons' | 'ion-back-button' | 'ion-menu-button' | 'ion-tab-bar' | 'ion-segment' | 'ion-fab'`
 
 runtimeが扱うコンポーネントtagのunionです。個別の対応条件はガイドを参照してください。
+
+## iPhone Duo / Vertical Control Area（実験的機能）
+
+次のAPIは `@rdlabo/ionic-theme-ios27/vertical-bars` または `@rdlabo/ionic-theme-ios27/native` からimportします。独立したentry pointはiOS 27テーマや完全なNative UI Shellなしで動作します。導入方法、toolchainの要件、Webフォールバックは[iPhone Duo対応](/docs/iphone-duo)を参照してください。
+
+#### `function` enableVerticalControlArea
+
+`() => Promise<VerticalControlAreaHandle>`
+
+縦の領域の操作部品だけにruntimeを起動します。これと `enableNativeUIShell()` の一方だけを起動してください。同じ設定で繰り返すと共有し、稼働中に異なる設定を指定するとエラーになります。
+
+#### `function` setVerticalControlAreaPlacement
+
+`(placement: VerticalBarEdge | VerticalBarPlacement, rtl?: boolean) => void`
+
+`ion-app` のマウント後、アプリが選んだ配置をCSSとWeb・ネイティブの操作部品へ適用します。論理方向は最も近い `dir` 属性か明示的な `rtl` で解決します。`null` を渡すと通常のレイアウトへ戻ります。
+
+#### `interface` VerticalControlAreaHandle
+
+`NativeUIShellHandle` に `setPlacement` を追加した型です。`setVerticalControlAreaPlacement` と同じ関数です。
+
+| Member | Type | 説明 |
+| --- | --- | --- |
+| **`setPlacement`** | `(placement: VerticalBarEdge \| VerticalBarPlacement, rtl?: boolean) => void` | Webとネイティブの部品に配置を適用します。 |
+
+#### `type alias` VerticalBarEdge
+
+`'leading' | 'trailing' | null`
+
+読む方向に対する論理的な端です。`null` は縦の操作領域がない状態を表します。
+
+#### `interface` VerticalBarPlacement
+
+| Prop | Type | 説明 |
+| --- | --- | --- |
+| **`edge`** | `VerticalBarEdge` | 操作領域の論理的な端。 |
+| **`inset`** | `number` | UIKitのsafe area inset（ポイント）。 |
+
+#### `enum` HingeStatus
+
+| Member | Value |
+| --- | --- |
+| **`Closed`** | `"closed"` |
+| **`PartiallyOpen`** | `"partiallyOpen"` |
+| **`FullyOpen`** | `"fullyOpen"` |
+
+#### `interface` DeviceLayout
+
+| Prop | Type | 説明 |
+| --- | --- | --- |
+| **`placement`** | `VerticalBarPlacement` | 操作領域の端と実測したsafe area inset。 |
+| **`hingeStatus`** | `HingeStatus \| null` | ヒンジの状態。取得できない場合は `null`。 |
+| **`webViewMetrics`** | `WebViewMetrics` | WebViewの有効な角丸半径。 |
+
+#### `module` IonicNativeUIShell
+
+同梱のCapacitorプラグインは描画runtimeを起動せずレイアウト情報を取得できます。Web実装はないため、呼び出し前に `Capacitor.getPlatform() === 'ios'` を確認してください。
+
+| Member | Type | 説明 |
+| --- | --- | --- |
+| **`getDeviceLayout`** | `() => Promise<DeviceLayout>` | 初期値や一度だけの計測値を取得します。 |
+| **`startDeviceLayoutMonitoring`** | `() => Promise<void>` | 監視の参照を取得します。 |
+| **`stopDeviceLayoutMonitoring`** | `() => Promise<void>` | 参照を解放し、最後の解放でイベントが止まります。 |
+| **`addListener`** | `(name: 'deviceLayoutChange', listener: (event: DeviceLayout) => void) => Promise<PluginListenerHandle>` | レイアウト変更を購読します。終了時に返されたlistenerを削除します。 |
+
+ネイティブ描画runtimeが稼働中なら既に監視の参照を保持するため、利用元は購読と初期値の取得だけを行います。bridgeのsnapshotや操作イベントのメソッドは内部の実装詳細です。

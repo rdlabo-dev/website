@@ -741,9 +741,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-1',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3',
     releaseTagPrefix: 'ios27-v',
-    englishDocsRef: '22a35d481cf338a373c8cc569ff801ae03482c1a',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -785,7 +784,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-26', '2026-09-26'),
+        updatedAt: text('2026-09-28', '2026-09-28'),
       }),
       page(
         'Using ion-item-group',
@@ -831,7 +830,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'native-ui-shell.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-27', '2026-09-27') },
+        { updatedAt: text('2026-09-28', '2026-09-28') },
       ),
       page(
         'iPhone Duo support (experimental)',
@@ -841,7 +840,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
         {
-          updatedAt: text('2026-09-27', '2026-09-27'),
+          updatedAt: text('2026-09-28', '2026-09-28'),
         },
       ),
       page(
@@ -851,7 +850,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'iphone-duo-with-original-theme.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-27', '2026-09-27') },
+        {
+          // The released guide still installs -1, before its Foldable examples were added.
+          localEnglishSource: true,
+          updatedAt: text('2026-09-28', '2026-09-28'),
+        },
       ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-18', '2026-09-18'),
@@ -864,7 +867,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: text('2026-09-26', '2026-09-26'),
+        updatedAt: text('2026-09-28', '2026-09-28'),
       }),
     ],
   },

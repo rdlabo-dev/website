@@ -67,9 +67,16 @@ async function englishGuideSource(
     englishDocsRef?: string;
     packageName: string;
     sourceDirectory: string;
+    pages?: readonly { file: string; localEnglishSource?: boolean }[];
   },
   file: string,
 ): Promise<string> {
+  if (project.pages?.some((page) => page.file === file && page.localEnglishSource)) {
+    return readFile(
+      new URL(`../projects/docs/src/${project.sourceDirectory}/docs/${file}`, import.meta.url),
+      'utf8',
+    );
+  }
   const { content } = await fetchEnglishProjectMarkdown(project, file);
   if (file === 'readme.md' || file === 'getting-started.md') {
     return normalizePackageMarkdown(extractPackageReadme(content));
@@ -541,7 +548,7 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
     ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.2.0' }],
-    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.2.0-1' }],
+    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.2.0-3' }],
     ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
   ]);
   const packageJson = JSON.parse(
@@ -581,11 +588,15 @@ test('lists ionic theme packages and pins localized README imports', async () =>
       true,
       `${projectId} API must use localEnglishSource so portal EN wins over stale upstream`,
     );
-    assert.ok(
+    assert.deepEqual(
       project.pages
-        .filter((page) => page.file !== 'api.md')
-        .every((page) => !page.localEnglishSource),
-      `${projectId} must enable localEnglishSource only on the API page`,
+        .filter((page) => page.localEnglishSource)
+        .map((page) => page.file)
+        .sort(),
+      projectId === 'ionic-theme-ios27'
+        ? ['api.md', 'iphone-duo-with-original-theme.md']
+        : ['api.md'],
+      `${projectId} local English sources must match the documented portal overrides`,
     );
     const [englishApi, japaneseApi] = await Promise.all([
       readFile(new URL('api.md', docsRoot), 'utf8'),
@@ -1671,15 +1682,15 @@ test('declares authorized Ionic and Capacitor documentation translations', async
 
 test('separates iOS 26 and iOS 27 documentation, source branches, and screenshots', () => {
   for (const project of [ionicThemeIos27En, ionicThemeIos27Ja]) {
-    assert.equal(project.version, '1.2.0-1');
+    assert.equal(project.version, '1.2.0-3');
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
     assert.equal(
       project.releaseNotesUrl,
-      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-1',
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3',
     );
     assert.equal((project.overviewHtml.match(/<img /g) ?? []).length, 3);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
-    assert.match(project.overviewHtml, /ios27-v1\.2\.0-1\/screenshots\/ios27-settings\.png/);
+    assert.match(project.overviewHtml, /ios27-v1\.2\.0-3\/screenshots\/ios27-settings\.png/);
     assert.ok(!project.pages.some((page) => page.slug === 'ios-adaptive'));
   }
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
@@ -1698,7 +1709,9 @@ test('publishes experimental iPhone Duo guides and API links in both locales', (
     assert.ok(duo, 'iPhone Duo must be a navigable guide');
     assert.match(duo.title, /experimental|実験的機能/i);
     assert.match(duo.html, /enableVerticalControlArea/);
-    assert.match(duo.html, /startDeviceLayoutMonitoring/);
+    assert.match(duo.html, /getFoldState/);
+    assert.match(duo.html, /barPlacementChange/);
+    assert.match(duo.html, /nativeEdge/);
     assert.match(duo.html, /ios-theme-split-pane-half-open/);
     for (const slug of ['special-markup', 'native-ui-shell', 'api']) {
       const guide = project.pages.find((page) => page.slug === slug);

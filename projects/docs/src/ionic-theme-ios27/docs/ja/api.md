@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v1.2.0-1 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v1.2.0-3 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -211,33 +211,16 @@ runtimeが扱うコンポーネントtagのunionです。個別の対応条件�
 | Prop | Type | 説明 |
 | --- | --- | --- |
 | **`edge`** | `VerticalBarEdge` | 操作領域の論理的な端。 |
-| **`inset`** | `number` | UIKitのsafe area inset（ポイント）。 |
-
-#### `enum` HingeStatus
-
-| Member | Value |
-| --- | --- |
-| **`Closed`** | `"closed"` |
-| **`PartiallyOpen`** | `"partiallyOpen"` |
-| **`FullyOpen`** | `"fullyOpen"` |
-
-#### `interface` DeviceLayout
-
-| Prop | Type | 説明 |
-| --- | --- | --- |
-| **`placement`** | `VerticalBarPlacement` | 操作領域の端と実測したsafe area inset。 |
-| **`hingeStatus`** | `HingeStatus \| null` | ヒンジの状態。取得できない場合は `null`。 |
-| **`webViewMetrics`** | `WebViewMetrics` | WebViewの有効な角丸半径。 |
+| **`inset`** | `number` | CSSピクセルで指定する幅。省略時はCSSのsafe area規則を使います。 |
+| **`nativeEdge`** | `VerticalBarEdge` | アプリが通知するネイティブの論理方向。nullまたは未登録ならverticalBarsOnlyではWebの操作領域、それ以外では通常のNative UI Shell配置を使います。省略は前回値を維持します。 |
 
 #### `module` IonicNativeUIShell
 
-同梱のCapacitorプラグインは描画runtimeを起動せずレイアウト情報を取得できます。Web実装はないため、呼び出し前に `Capacitor.getPlatform() === 'ios'` を確認してください。
+同梱のCapacitorプラグインは描画用のWebView寸法を提供します。Web実装はないため、`Capacitor.getPlatform() === 'ios'` で呼び出しを制限してください。端末の開閉状態と操作領域の配置には、アプリ側で `@erkamyaman/capacitor-foldable` を使います。[iPhone Duo対応](/docs/iphone-duo)を参照してください。
 
 | Member | Type | 説明 |
 | --- | --- | --- |
-| **`getDeviceLayout`** | `() => Promise<DeviceLayout>` | 初期値や一度だけの計測値を取得します。 |
-| **`startDeviceLayoutMonitoring`** | `() => Promise<void>` | 監視の参照を取得します。 |
-| **`stopDeviceLayoutMonitoring`** | `() => Promise<void>` | 参照を解放し、最後の解放でイベントが止まります。 |
-| **`addListener`** | `(name: 'deviceLayoutChange', listener: (event: DeviceLayout) => void) => Promise<PluginListenerHandle>` | レイアウト変更を購読します。終了時に返されたlistenerを削除します。 |
+| **`getWebViewMetrics`** | `() => Promise<WebViewMetrics>` | WebViewの有効な角丸半径を取得します。 |
+| **`addListener`** | `(name: 'webViewMetricsChange', listener: (event: WebViewMetrics) => void) => Promise<PluginListenerHandle>` | WebView寸法の変更を購読します。終了時にlistenerを削除します。 |
 
-ネイティブ描画runtimeが稼働中なら既に監視の参照を保持するため、利用元は購読と初期値の取得だけを行います。bridgeのsnapshotや操作イベントのメソッドは内部の実装詳細です。
+スナップショットや操作のbridgeメソッドは内部実装です。従来の `DeviceLayout`、`HingeStatus`、`getDeviceLayout()` と端末レイアウトの監視APIは削除されています。

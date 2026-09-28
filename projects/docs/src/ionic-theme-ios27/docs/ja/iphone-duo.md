@@ -8,13 +8,12 @@ IonicアプリをiPhone Duoへ対応させます。縦のシステム操作領�
 
 [Native UI Shell](/docs/native-ui-shell)とともに `1.2.0-0` で利用できる **実験的機能** です。APIと対応する動作は変更される可能性があります。実際のシステム操作領域とヒンジ情報には、iOS 27.1以降とXcode 27.1以降でビルドしたアプリが必要です。
 
-このパッケージは独立した3つの機能を提供します。それぞれ **iOS 27テーマのスタイルシートなし**、**完全なNative UI Shellなし** で利用できます。
+このパッケージは独立した2つの機能を提供します。それぞれ **iOS 27テーマのスタイルシートなし**、**完全なNative UI Shellなし** で利用できます。
 
 - `dist/css/vertical-bars.css` — 操作領域のsafe areaを確保するopt-inクラスと、開閉状態に応じてsplit paneの幅を変える登録済みcustom propertyです。
 - `enableVerticalControlArea()` — 対象のタブとtoolbarの操作部品を確保した領域へ移動します。Capacitor iOSではネイティブのSwiftUI `TabView` とtoolbar、それ以外では同じ部品のWebクローンで描画します。
-- デバイスのレイアウト情報 — 同梱のCapacitorプラグインが `getDeviceLayout()` と `deviceLayoutChange` イベントで、操作領域の配置、ヒンジの状態、WebViewの角丸半径を通知します。
 
-プラグインは **端末の情報** を通知し、DOMには触れません。**アプリ** がその値をレイアウトへどう適用するか決め、**スタイルシートとruntime** が領域の確保、操作部品の描画、split paneの変更を行います。この責務分担により、テストでネイティブの値をmockでき、テーマが担う範囲も小さく保てます。
+端末状態の取得は [`@erkamyaman/capacitor-foldable`](https://github.com/erkamyaman/capacitor-foldable) が担います。**アプリ** がイベントを購読してレイアウトを選び、このパッケージの **スタイルシートとruntime** が領域の確保、操作部品の描画、split paneの変更を行います。テーマ自身はヒンジ状態や操作領域の配置を監視しません。
 
 ## 利用する機能を選ぶ
 
@@ -22,10 +21,10 @@ IonicアプリをiPhone Duoへ対応させます。縦のシステム操作領�
 
 | 目的 | スタイルシート | Runtime |
 | --- | --- | --- |
-| ヒンジの状態だけを使う（レイアウト切り替え） | 不要 | 不要 — プラグインを直接購読します |
-| 開閉状態に応じたsplit paneの幅 | `vertical-bars.css` | 不要 — プラグインを直接購読します |
+| ヒンジの状態だけを使う（レイアウト切り替え） | 不要 | 不要 — `Foldable` を直接購読します |
+| 開閉状態に応じたsplit paneの幅 | `vertical-bars.css` | 不要 — `Foldable` を直接購読します |
 | タブとtoolbarの操作部品を縦の操作領域へ置く | `vertical-bars.css` | `enableVerticalControlArea()` |
-| Native UI Shellと縦の操作領域を併用する | `vertical-bars.css` | `enableNativeUIShell()` — 操作領域と開閉状態への対応を含みます |
+| Native UI Shellと縦の操作領域を併用する | `vertical-bars.css` | `enableNativeUIShell()` — 操作領域への描画を含みます |
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
@@ -37,39 +36,49 @@ IonicアプリをiPhone Duoへ対応させます。縦のシステム操作領�
 
 ## デバイスのレイアウトを取得する
 
-`npx cap sync ios` でプラグインが自動登録されます。レイアウト情報の取得に `configure` は不要です。split paneの制御など、ヒンジの状態だけが必要なアプリは、描画runtimeを起動せずこのAPIだけを使います。
+アプリに端末状態を取得するプラグインをインストールし、ネイティブプロジェクトへ同期します。
 
-```ts
-import { Capacitor } from '@capacitor/core';
-import { HingeStatus, IonicNativeUIShell } from '@rdlabo/ionic-theme-ios27/vertical-bars';
-
-// プラグインにはWeb実装がないため、購読前にplatformを確認します。
-if (Capacitor.getPlatform() === 'ios') {
-  await IonicNativeUIShell.startDeviceLayoutMonitoring();
-  const listener = await IonicNativeUIShell.addListener('deviceLayoutChange', ({ hingeStatus }) => {
-    // 開閉状態を適用します
-  });
-  const { hingeStatus } = await IonicNativeUIShell.getDeviceLayout(); // 初期値
-
-  // 利用元を破棄するとき:
-  // await listener.remove();
-  // await IonicNativeUIShell.stopDeviceLayoutMonitoring();
-}
+```bash
+npm install @erkamyaman/capacitor-foldable
+npx cap sync
 ```
 
-`DeviceLayout` は次の情報を持ちます。
+iPhone DuoのiOS 27.1 APIにはCapacitor 8.5以降とXcode 27.1以降を使います。この依存は端末状態に連動した配置のためのもので、テーマのCSS、ブラウザでのシミュレーション、ネイティブ操作部品の描画だけには不要です。同じタブを二重に移動してしまうため、プラグインの `ionic-tabs.css` はこのパッケージの操作領域への描画と併用しないでください。
 
-| フィールド | 意味 |
-| --- | --- |
-| `placement` | `{ edge: 'leading' \| 'trailing' \| null, inset }` — 読む方向に対する操作領域の論理的な端と、UIKitのsafe area inset（ポイント）。操作領域がない端末では `edge` は `null` です |
-| `hingeStatus` | `HingeStatus.Closed`、`PartiallyOpen`、`FullyOpen`。ヒンジ情報がない端末では `null` です |
-| `webViewMetrics.radius` | WebViewの左上の有効な角丸半径（ポイント） |
+開閉状態に応じたsplit paneには、描画runtimeを起動せず直接購読します。
 
-`edge` は **論理方向** です。`'leading'` は行を読み始める側で、LTRでは物理的な左、RTLでは物理的な右になります。UIKitの `verticalBarEdge` traitと `@erkamyaman/capacitor-foldable` の `getBarPlacement()` と同じ表現のため、そのプラグインの値も変換せず適用できます。
+```ts
+import { Foldable, type FoldState } from '@erkamyaman/capacitor-foldable';
 
-監視は参照数で管理します。利用元ごとに `startDeviceLayoutMonitoring()` と `stopDeviceLayoutMonitoring()` を対応させ、最後の利用元が解放するとイベントが止まります。`getDeviceLayout()` は監視せず一度だけ取得する場合にも使えます。`enableVerticalControlArea()` または `enableNativeUIShell()` がネイティブ描画を行っている間は、runtimeが監視の参照を保持します。その場合はlistenerの追加と初期値の取得だけでよく、追加のstart/stopは不要です。
+const applyFold = (fold: FoldState) => {
+  const pane = document.querySelector('ion-split-pane');
+  pane?.classList.toggle('ios-theme-split-pane-half-open', fold.state === 'half-opened');
+  const expanded = fold.state === 'half-opened' || (fold.state === 'flat' && !!fold.hingeBounds);
+  pane?.setAttribute('when', expanded ? '(min-width: 900px)' : '(min-width: 992px)');
+};
+let receivedEvent = false;
+let disposed = false;
+const listener = await Foldable.addListener('foldStateChange', (fold) => {
+  receivedEvent = true;
+  if (!disposed) applyFold(fold);
+});
+const initialFold = await Foldable.getFoldState();
+if (!disposed && !receivedEvent) applyFold(initialFold);
 
-**ビルド要件:** iOSはiOS 27.1以降のSDKとリンクしたアプリにだけ縦の操作領域を有効にします。Xcode 27.1以降でビルドしてください。古いSDKでビルドしたアプリはiPhone Duoで後方互換モードとなり、システムは操作領域を確保せず、`placement.edge` は `null`、`inset` は `0`、`hingeStatus` は `null` のままです。それ以外の機能は動作します。opt-inクラスでDOMの領域を確保し、アプリが適用した配置に操作領域が従うため、互換ビルドでも利用・テストできます。実際のシステム操作領域、実測inset、ヒンジ情報には新しいtoolchainが必要です。
+// 利用元を破棄するとき:
+// disposed = true;
+// await listener.remove();
+```
+
+`getFoldState()` と `foldStateChange` は `state`（`'flat'`、`'half-opened'`、`'closed'`）、`posture`、任意のヒンジ形状を返します。開閉情報がない場合は `hingeBounds` のないflat状態になるため、通常のsplit paneのbreakpointへ戻します。Web実装もflat状態を返します。half-opened状態ではヒンジ形状がなくても900px、ヒンジ形状のあるflat状態も900pxを使います。closed状態では通常の992pxへ戻します。初期化中に受け取ったイベントは初期値の取得結果より優先します。
+
+`getBarPlacement()` と `barPlacementChange` は `{ verticalBarEdge: 'leading' | 'trailing' | null, inset: number }` を返します。端は **論理方向** で、leadingはLTRでは物理的な左、RTLでは物理的な右です。`setPlacement()` には `{ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset }` を渡します。監視を開始・停止する別の呼び出しは不要です。利用元の破棄時に各listenerを削除してください。
+
+テーマはUIKitの配置traitを読みません。アプリが固定の `edge` を選ぶ場合も、初期値の取得と各イベントで `nativeEdge` を渡します。省略すると最後に渡した値を維持し、プラグインが端を報告しない場合は `null` を渡します。明示的な `nativeEdge: null` または初期の未登録状態ではネイティブの縦配置を行いません。`enableVerticalControlArea()` は要求されたWebの操作領域を維持し、完全なNative UI Shellは通常の水平配置へ一時的に戻ります。要求した配置は保持され、一致するnull以外の端が後で通知されるとネイティブの縦配置を再開します。一度渡した後の省略は `null` を含め前回値を維持します。`{ edge: null, nativeEdge }` なら、操作領域を無効にしたまま通知された端を更新できます。
+
+Foldableはネイティブ操作領域が確保する実測幅を `inset` で返し、変更を `barPlacementChange` で通知します。通知された端に配置する場合、固定幅を仮定せず、この値を `setPlacement()` へ渡してください。操作領域がない場合は `inset` が `0` となり、明示的な幅を解除します。アプリが引き続きWebの操作領域を要求する場合はCSSのsafe area規則を使います。別の端を選ぶアプリは独自の幅を渡すかCSSへフォールバックできます。WebViewの角丸半径は描画側が担い、`configureNativeTransition()` はFoldableとは独立したShellの `getWebViewMetrics()` を使います。
+
+**移行:** テーマの従来の `DeviceLayout`、`HingeStatus`、`getDeviceLayout()`、`deviceLayoutChange` と端末監視の開始・停止APIは削除されました。端末状態の購読は上記のFoldable APIへ置き換え、角丸半径の一度だけの取得には `getWebViewMetrics()` を使います。FoldableはiOS 27.1 SDKを使わないビルドでもsafe areaのinsetからDuoの配置を推定できます。ヒンジ情報には新しいSDKが必要です。アプリは通知された端とは独立して固定の配置を要求することもできます。
 
 ## 縦の操作領域を確保する
 
@@ -79,9 +88,9 @@ if (Capacitor.getPlatform() === 'ios') {
 <ion-app class="ios-theme-vertical-bars">...</ion-app>
 ```
 
-CSSとネイティブ描画は物理座標を使うため、クラスも物理方向です。`-left` は常に物理的な左端を意味します。通常は後述の `setPlacement` で適用します。プラグインの論理方向 `placement.edge` をdocumentの文字方向で解決するため、RTLアプリも独自の変換を必要としません。
+CSSとネイティブ描画は物理座標を使うため、クラスも物理方向です。`-left` は常に物理的な左端を意味します。通常は後述の `setPlacement` で適用します。`Foldable` の論理方向 `verticalBarEdge` をdocumentの文字方向で解決するため、RTLアプリも独自の変換を必要としません。
 
-Chromeでの開発にはネイティブプラグインは不要です。クラスだけで `80px` を確保し、iPhone Duoをシミュレートできます。`setPlacement` がネイティブ配置を受け取ると、実測したUIKitのinsetで置き換えます。実測値が `80px` 未満でも同様です。異なる配置をシミュレートするには `--ios-theme-vertical-bars-safe-area-left` または `--ios-theme-vertical-bars-safe-area-right` を上書きします。
+Chromeでの開発にはネイティブプラグインは不要です。クラスだけで `80px` を確保し、iPhone Duoをシミュレートできます。`setPlacement` に明示的な `{ edge, inset }` を渡すと、そのinsetでフォールバックの幅を置き換えます。`80px` 未満でも同様です。異なる配置をシミュレートするには `--ios-theme-vertical-bars-safe-area-left` または `--ios-theme-vertical-bars-safe-area-right` を上書きします。
 
 routerとコンポーネントの背景はviewport全体を維持します。`ion-content` はスクロールする前景、`ion-toolbar` はcontainerの前景を移動し、`ion-fab` はシステムUIの隣に置く場合だけ調整します。前景コンポーネント内では対応するIonic safe area変数をリセットし、子孫でinsetが二重に加わるのを防ぎます。
 
@@ -95,16 +104,19 @@ routerとコンポーネントの背景はviewport全体を維持します。`io
 
 ```ts
 import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
-import { enableVerticalControlArea, IonicNativeUIShell } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+import { enableVerticalControlArea } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+import { Foldable } from '@erkamyaman/capacitor-foldable';
 
 // Chromeでも起動します。クラスが付くまでWeb描画は待機します。
 const rail = await enableVerticalControlArea();
 let layoutListener: PluginListenerHandle | undefined;
 
 if (Capacitor.getPlatform() === 'ios') {
-  // Runtimeが既にレイアウトを監視しているため、購読だけを行います。
-  layoutListener = await IonicNativeUIShell.addListener('deviceLayoutChange', ({ placement }) => rail.setPlacement(placement));
-  rail.setPlacement((await IonicNativeUIShell.getDeviceLayout()).placement);
+  layoutListener = await Foldable.addListener('barPlacementChange', ({ verticalBarEdge, inset }) =>
+    rail.setPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset }),
+  );
+  const { verticalBarEdge, inset } = await Foldable.getBarPlacement();
+  rail.setPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset });
 }
 
 // アプリを管理する所有者の破棄時に呼びます。
@@ -116,11 +128,11 @@ const stopVerticalArea = async () => {
 
 handleの `setPlacement` とexportされた `setVerticalControlAreaPlacement` は同じ関数です。アプリが選んだ配置をCSSレイアウトと両方の描画へ適用します。マウント済みの `ion-app` が必要なので、アプリのrootが存在してから呼んでください。
 
-- `getDeviceLayout()` / `deviceLayoutChange` の `placement`、または論理方向 `'leading'` / `'trailing'` を渡します。最も近い `dir` 属性で物理方向に解決します。アプリが文字方向を把握している場合は第2引数の `rtl` でも指定できます。
+- `{ edge, nativeEdge }` を渡します。`edge` はアプリが選んだ論理方向、`nativeEdge` は `Foldable.getBarPlacement()` / `barPlacementChange` の `verticalBarEdge` です。最も近い `dir` 属性または明示的な `rtl` 引数で物理方向へ解決します。
 - `null` を渡すと通常のレイアウトへ戻ります。
-- listenerはiOSが選んだ配置を通知し、適用するかはアプリが決めます。通知によらず固定する場合は、アプリ独自の `'leading'` または `'trailing'` を渡せます。
+- listenerはiOSが選んだ配置を通知し、適用するかはアプリが決めます。テーマは選択された端と `nativeEdge` を比較し、不一致の場合は一致するまでWebの操作領域を使います。LTRで右へ固定するには、各Foldable更新で `{ edge: 'trailing', nativeEdge: verticalBarEdge }` を渡します。
 
-`enableVerticalControlArea()` と完全な `enableNativeUIShell()` のいずれか一方を起動してください。同じ設定で繰り返すと共有runtimeを返し、稼働中に異なる設定で起動するとエラーになります。runtimeの破棄はアプリ内の1か所が管理します。既に `enableNativeUIShell()` を使う場合はそのruntimeを維持し、listenerから `setVerticalControlAreaPlacement(placement)` を呼びます。
+`enableVerticalControlArea()` と完全な `enableNativeUIShell()` のいずれか一方を起動してください。同じ設定で繰り返すと共有runtimeを返し、稼働中に異なる設定で起動するとエラーになります。runtimeの破棄はアプリ内の1か所が管理します。既に `enableNativeUIShell()` を使う場合はそのruntimeを維持し、listenerから `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` を呼びます。
 
 対応するiOSでは、対象のタブ、戻る操作、メニューボタン、固定toolbarの操作をネイティブのSwiftUI `TabView` とtoolbarへ渡します。Web、Android、ネイティブ描画が利用できない場合はWebクローンへフォールバックします。戻る操作は固定toolbarの外にも置けますが、メニューボタンとその他のtoolbar操作には固定toolbarが必要です。
 
@@ -182,7 +194,7 @@ ion-split-pane {
 }
 ```
 
-登録済みの `--ios-theme-split-pane-width` は既定で `320px`、`.ios-theme-split-pane-half-open` を付けると `50vw` です。`deviceLayoutChange` が `HingeStatus.PartiallyOpen` を通知したら `halfOpened` を設定し、初期値も `getDeviceLayout` で取得します。Ionicの `when` が常時表示のside paneにするか決めるため、閉じた時はpaneを隠すbreakpointを選んでください。`null` はヒンジがない端末を意味し、通常のbreakpointへ戻します。幅の規則を適用する場所はアプリが選び、他の通常のsplit paneは変わりません。この配置はVertical Barsを有効化せず、overlayメニューも移動しません。
+登録済みの `--ios-theme-split-pane-width` は既定で `320px`、`.ios-theme-split-pane-half-open` を付けると `50vw` です。`foldStateChange` が `state === 'half-opened'` を通知したら `halfOpened` を設定し、初期値は `getFoldState()` で取得します。Ionicの `when` が常時表示のside paneにするか決めます。half-opened状態またはヒンジ形状のあるflat状態では900px、closed状態またはヒンジ形状のないflat状態では通常の992pxを使います。`hingeBounds` がないことだけではflat状態とは判断できません。幅の規則を適用する場所はアプリが選び、他の通常のsplit paneは変わりません。この配置はVertical Barsを有効化せず、overlayメニューも移動しません。
 
 ## Vertical Control Area API
 
@@ -227,7 +239,8 @@ destroy() => Promise<void>
 | Prop | Type | 説明 |
 | --- | --- | --- |
 | **`edge`** | `VerticalBarEdge` | 読む方向に対する論理的な端。 |
-| **`inset`** | `number` | 縦の操作領域側のUIKit safe area inset（ポイント）。 |
+| **`inset`** | `number` | CSSピクセルで指定する操作領域の幅。省略時はスタイルシートのsafe area規則を使います。 |
+| **`nativeEdge`** | `VerticalBarEdge` | アプリの端末プラグインが通知するネイティブの論理方向。nullまたは未登録ならverticalBarsOnlyではWebの操作領域、それ以外では通常のNative UI Shell配置を使います。省略すると前回値を維持します。 |
 
 #### NativeUIShellStatus
 

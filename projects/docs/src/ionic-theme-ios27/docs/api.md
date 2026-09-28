@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-1. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-3. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 
@@ -211,33 +211,16 @@ Logical edge in the reading direction; `null` means no vertical rail.
 | Prop | Type | Description |
 | --- | --- | --- |
 | **`edge`** | `VerticalBarEdge` | Logical rail edge. |
-| **`inset`** | `number` | UIKit safe-area inset in points. |
-
-#### `enum` HingeStatus
-
-| Member | Value |
-| --- | --- |
-| **`Closed`** | `"closed"` |
-| **`PartiallyOpen`** | `"partiallyOpen"` |
-| **`FullyOpen`** | `"fullyOpen"` |
-
-#### `interface` DeviceLayout
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| **`placement`** | `VerticalBarPlacement` | Rail edge and measured safe-area inset. |
-| **`hingeStatus`** | `HingeStatus \| null` | Hinge posture; `null` when unavailable. |
-| **`webViewMetrics`** | `WebViewMetrics` | Effective WebView corner radius. |
+| **`inset`** | `number` | Explicit rail width in CSS pixels; omitted to use CSS safe-area rules. |
+| **`nativeEdge`** | `VerticalBarEdge` | Native logical edge supplied by the application. Null or an unregistered edge uses a Web rail in verticalBarsOnly mode, or the ordinary Native UI Shell layout otherwise. Omission preserves the last value. |
 
 #### `module` IonicNativeUIShell
 
-The bundled Capacitor plugin exposes device-layout reporting without starting a projection runtime. It has no Web implementation; guard calls with `Capacitor.getPlatform() === 'ios'`.
+The bundled Capacitor plugin provides WebView metrics for rendering. It has no Web implementation; guard calls with `Capacitor.getPlatform() === 'ios'`. Use `@erkamyaman/capacitor-foldable` in the application for hinge state and bar placement. See [iPhone Duo support](/docs/iphone-duo).
 
 | Member | Type | Description |
 | --- | --- | --- |
-| **`getDeviceLayout`** | `() => Promise<DeviceLayout>` | Read the initial layout or take a one-shot measurement. |
-| **`startDeviceLayoutMonitoring`** | `() => Promise<void>` | Acquire a monitoring reference. |
-| **`stopDeviceLayoutMonitoring`** | `() => Promise<void>` | Release a reference; events stop after the last release. |
-| **`addListener`** | `(name: 'deviceLayoutChange', listener: (event: DeviceLayout) => void) => Promise<PluginListenerHandle>` | Subscribe to layout changes; remove the returned listener when finished. |
+| **`getWebViewMetrics`** | `() => Promise<WebViewMetrics>` | Read the effective WebView corner radius. |
+| **`addListener`** | `(name: 'webViewMetricsChange', listener: (event: WebViewMetrics) => void) => Promise<PluginListenerHandle>` | Subscribe to WebView metric changes; remove the listener when finished. |
 
-An active native projection runtime already holds a monitoring reference, so its consumers only subscribe and read the initial value. Bridge snapshot and activation methods are internal implementation details.
+Bridge snapshot and activation methods are internal implementation details. The former `DeviceLayout`, `HingeStatus`, `getDeviceLayout()`, and device-layout monitoring APIs have been removed.

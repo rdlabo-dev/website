@@ -81,7 +81,7 @@ Archive and article pages are prerendered from generated catalog data (`app.rout
 
 - Translate prose into natural English suitable for developer documentation.
 - Technical terms (class names, method names, package names) remain untranslated.
-- **Translate explanatory code comments into English. Keep all non-comment code byte-for-byte identical to the Japanese Zenn source**, including literals, identifiers, commands, and whitespace outside comments. Never change compiler directives or other behavior-affecting comments. The validator permits comment translation in JavaScript/TypeScript and HTML/XML; other languages currently retain exact comparison and require extending the validator before translating their comments.
+- **Translate explanatory code comments into English. Keep all non-comment code byte-for-byte identical to the Japanese Zenn source**, including literals, identifiers, commands, and whitespace outside comments. Never change compiler directives or other behavior-affecting comments. The validator permits comment translation in JavaScript/TypeScript, HTML/XML, and simple Swift line comments. Swift blocks containing raw, multiline, or interpolated strings, regex literals, or block comments retain exact comparison, as do other unsupported languages.
 - note remains the Japanese source of truth; this repo owns the reviewed English Markdown and localized image assets. Keep note automatic translation disabled so the canonical English version stays on `rdlabo.dev`.
 
 ### Zenn article workflow (LLM-maintained, feed-discovered)
@@ -170,7 +170,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 ### Translation rules
 
-- **Translate explanatory code comments into the target language; keep all non-comment code byte-for-byte identical between EN and JA.** Preserve literals, identifiers, commands, whitespace outside comments, and behavior-affecting directives. The validator supports comment translation in JavaScript/TypeScript and HTML/XML; extend its language support before translating comments in other languages.
+- **Translate explanatory code comments into the target language; keep all non-comment code byte-for-byte identical between EN and JA.** Preserve literals, identifiers, commands, whitespace outside comments, and behavior-affecting directives. The validator supports comment translation in JavaScript/TypeScript, HTML/XML, and simple Swift line comments; extend its language support before translating comments in other syntax or languages.
 - Translate prose into natural Japanese suitable for developer documentation.
 - Technical terms (class names, method names, package names) remain untranslated.
 - Localize page titles for guides and narrative pages. Identifiers, product names, rule names, and generic titles (`API`, `CLI API`, `@rdlabo/...`) may remain the same in both locales.

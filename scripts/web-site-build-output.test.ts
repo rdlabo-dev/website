@@ -94,7 +94,9 @@ test('prerenders the web-site home, archive, and translated articles', async () 
     const escapedImage = article.image.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     assert.match(html, new RegExp(`"image":"${escapedImage}"`));
     assert.match(html, new RegExp(`property="og:image" content="${escapedImage}"`));
-    assert.match(html, new RegExp(`data-article-image[^>]*src="${escapedImage}"`));
+    const coverSource = html.match(/data-article-image[^>]*src="([^"]+)"/)?.[1];
+    assert.ok(coverSource);
+    assert.equal(new URL(coverSource, 'https://rdlabo.dev').href, article.image);
     const generatedCover = await readFile(
       new URL(`article-images/${article.slug}.svg`, browserRoot),
       'utf8',

@@ -83,7 +83,7 @@ describe('ArticlePage', () => {
     const image = fixture.nativeElement.querySelector(
       'img[data-article-image]',
     ) as HTMLImageElement;
-    expect(image.getAttribute('src')).toBe(article.image);
+    expect(new URL(image.getAttribute('src')!, 'https://rdlabo.dev').href).toBe(article.image);
     expect(image.width).toBe(1200);
     expect(image.height).toBe(630);
   });

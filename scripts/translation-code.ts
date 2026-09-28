@@ -25,6 +25,29 @@ export function normalizeTranslationCode(block: string): string {
       node.getChildren(file).forEach(visit);
     };
     visit(file);
+  } else if (language === 'swift') {
+    // Support ordinary strings and line comments. Keep exact comparison for
+    // raw/multiline/interpolated strings, regex literals, and block comments.
+    for (let pos = 0; pos < code.length; pos += 1) {
+      if (code.startsWith('//', pos)) {
+        const newline = code.indexOf('\n', pos);
+        const end = newline === -1 ? code.length : newline;
+        ranges.push({ pos, end });
+        pos = end - 1;
+      } else if (code[pos] === '"') {
+        if (code.startsWith('"""', pos) || code[pos - 1] === '#') return block;
+        let closed = false;
+        for (pos += 1; pos < code.length; pos += 1) {
+          if (code.startsWith('\\(', pos)) return block;
+          if (code[pos] === '\\') pos += 1;
+          else if (code[pos] === '"') {
+            closed = true;
+            break;
+          } else if (code[pos] === '\n') return block;
+        }
+        if (!closed) return block;
+      } else if (code[pos] === '/') return block;
+    }
   } else if (['xml', 'html'].includes(language)) {
     // Consume complete tags first so comment delimiters in attributes stay intact.
     const tokens =
@@ -40,7 +63,7 @@ export function normalizeTranslationCode(block: string): string {
   let normalized = code;
   for (const { pos, end } of unique.sort((a, b) => b.pos - a.pos)) {
     if (
-      /@ts-|@jsx|@license|@preserve|#__|@__|eslint|prettier|sourceMappingURL|sourceURL|^\/\/\//.test(
+      /@ts-|@jsx|@license|@preserve|#__|@__|eslint|prettier|swiftlint|swiftformat|sourcery|sourceMappingURL|sourceURL|^\/\/\//.test(
         code.slice(pos, end),
       )
     )

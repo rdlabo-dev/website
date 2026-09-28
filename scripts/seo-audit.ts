@@ -556,7 +556,7 @@ function auditBlogPostingNode(
     const visibleImageElement = document.querySelector('img[data-article-image]');
     const visibleWidth = visibleImageElement?.getAttribute('width');
     const visibleHeight = visibleImageElement?.getAttribute('height');
-    if (visibleImage !== primaryImage) {
+    if (!visibleImage || new URL(visibleImage, 'https://rdlabo.dev').href !== primaryImage) {
       errors.push(`${pageUrl}: BlogPosting image must match the visible article image`);
     }
     if (openGraphImage !== primaryImage) {

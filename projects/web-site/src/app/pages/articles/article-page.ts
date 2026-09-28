@@ -15,6 +15,7 @@ export class ArticlePage {
   readonly #route = inject(ActivatedRoute);
   readonly #seo = inject(SeoService);
   protected readonly article = this.#route.snapshot.data['article'] as ArticleDetail;
+  protected readonly coverImage = this.article.image.replace(/^https:\/\/rdlabo\.dev\//, '/');
   protected readonly displayDate = formatArticleDate(this.article.publishedDate);
   protected readonly displayUpdatedDate = this.article.updatedAt
     ? formatArticleDate(this.article.updatedAt)

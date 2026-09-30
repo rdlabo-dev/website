@@ -1,12 +1,12 @@
 ---
-title: 既存テーマでiPhone Duoに対応する（実験的機能）
+title: 既存テーマでiPhone Duoに対応する（プレビュー）
 ---
 
 既存のテーマを維持したまま、Ionicアプリに縦のナビゲーション領域を追加します。タブと対応するtoolbarの操作部品は画面の側面へ移り、コンテンツと水平の操作部品は現在の外観を保ちます。Ionicの `ios` と `md` の両modeに対応します。
 
 **まずChromeで試せます。** iPhone DuoやiOSビルドを準備する前に、Webの操作部品でレイアウトを確認できます。対応するCapacitor iOSでは、同じIonicマークアップからシステム操作領域にSwiftUIのネイティブ部品を表示します。
 
-`1.2.0-0` で利用できる **実験的機能** です。APIと対応する動作は変更される可能性があります。
+`1.2.0` で利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
 
 ## 既存のIonicアプリで試す
 
@@ -15,7 +15,7 @@ title: 既存テーマでiPhone Duoに対応する（実験的機能）
 Ionic `>=8.8.1 <10` とCapacitor Core `>=8 <9` を使う既存アプリを前提とします。既存のCapacitor 8は再インストール不要です。別majorを使う場合は、Core・CLI・platformパッケージをまとめて移行してから進めてください。Capacitorを使わないWeb専用アプリでは `@capacitor/core@^8` もインストールします。JavaScriptのentry pointはChromeでもこの依存を必要とします。
 
 ```bash
-npm install @rdlabo/ionic-theme-ios27@1.2.0-3
+npm install @rdlabo/ionic-theme-ios27@1.2.0
 ```
 
 既存テーマのimportを維持し、グローバルSassファイルに次を追加します。
@@ -92,8 +92,6 @@ const configureNavigation = (existingTransition: AnimationBuilder) => ({
 
 アダプターは、水平の戻るボタンへの効果を含むbuilderのアニメーション対象を維持します。縦レイアウトでその効果を除外するiOS 27の画面遷移が必要なら、`@rdlabo/ionic-theme-ios27` の `iosTransitionAnimation` を `navAnimation` に使ってください。こちらにはアダプターが組み込まれているため、ラップは不要です。
 
-`withNativeUIShellTransition()` は `1.2.0-1` 以降で利用できます。
-
 ### 4. App rootのマウント後に操作部品を起動する
 
 `ion-app` がDOMに存在してから、アプリの起動処理で一度呼びます。
@@ -110,13 +108,25 @@ const rail = await enableVerticalControlArea();
 
 アプリ内の利用元を破棄するときは `await rail.destroy()` を呼び、元の部品を復元してruntimeを解放します。既に `enableNativeUIShell()` を使う場合はそのruntimeを維持し、[共通の配置ガイド](/docs/iphone-duo#操作部品を縦の領域へ描画する)に従ってください。
 
+### 任意: ネイティブボタンの外観を選ぶ
+
+`buttonProjection` と要素単位の描画設定は `1.2.0` から利用できます。利用条件と移行の詳細は[ボタンの外観を選ぶ](/docs/vertical-bars#ボタンの外観を選ぶ)を参照してください。
+
+新しい既定値は `system` です。SwiftUIが縦型ボタンのスタイルとアイコンの色を設定します。既存テーマのfillと色を反映する場合は次のように指定します。
+
+```ts
+const rail = await enableVerticalControlArea({ buttonProjection: 'source', buttonDefaultFill: 'solid' });
+```
+
+通常のIonicボタンには `solid` が適しています。`ion-buttons` 内では引き続きclearが既定値なので、背景を描画するには `fill="solid"` を明示します。例外には[要素単位の描画設定](/docs/vertical-bars#個別のボタンやグループを上書きする)を使います。これらの設定はネイティブの縦型ボタンだけに作用し、Webクローンは既存の外観を維持します。
+
 ### プレビューが表示されない場合
 
 | 表示の状態 | 確認すること |
 | --- | --- |
 | 側面に空きができない | `vertical-bars.css` を読み込み、`ion-app` にクラスを追加します。 |
 | 空きはできるが部品が水平に残る | App rootのマウント後に `enableVerticalControlArea()` を起動します。既存のタブや、固定header/footer toolbarの `slot="icon-only"` を指定した操作部品を使います。 |
-| 一部の操作だけ水平に残る | アイコンの `slot="icon-only"` と、スクロール内容の外にある固定toolbarを確認します。明示的に除外した部品や中央のmodal内の部品は水平に残ります。`fill` と `type="submit"` は移動を妨げません。[操作部品の対応条件](/docs/iphone-duo#toolbarの操作部品)を参照してください。 |
+| 一部の操作だけ水平に残る | アイコンの `slot="icon-only"` と、スクロール内容の外にある固定toolbarを確認します。明示的に除外した部品や中央のmodal内の部品は水平に残ります。`fill` と `type="submit"` は移動を妨げません。[操作部品の対応条件](/docs/vertical-bars#toolbarの操作部品)を参照してください。 |
 
 ## iPhone Duoと接続する
 
@@ -129,41 +139,18 @@ npx cap sync ios
 
 iOS 27.1で実際の操作領域の配置とヒンジ状態を取得するには、Capacitor 8.5以降とXcode 27.1以降を使います。Native UI ShellはSwift Package Managerを使います。既存のCocoaPodsアプリは[Native UI Shellの導入](/docs/native-ui-shell#有効化)を参照してください。このパッケージの `vertical-bars.css` を維持し、同じ操作領域へ描画するプラグインの `ionic-tabs.css` は読み込まないでください。
 
-ブラウザ用の起動コードを、`ion-app` のマウント後に実行する次のコードへ置き換えます。
+ブラウザ用の起動コードを[端末配置の設定](/docs/iphone-duo#操作部品を縦の領域へ描画する)へ置き換えます。その設定は初期値と `barPlacementChange` イベントを `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` へ渡し、購読と後処理はアプリが管理します。
 
-```ts
-import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
-import { enableVerticalControlArea } from '@rdlabo/ionic-theme-ios27/vertical-bars';
-import { Foldable } from '@erkamyaman/capacitor-foldable';
+要求する端とネイティブの端の両方に、Foldableの実測insetを添えて渡します。配置APIはRTLを解決します。端がnullなら通常のレイアウトへ戻ります。
 
-const rail = await enableVerticalControlArea();
-let layoutListener: PluginListenerHandle | undefined;
-
-if (Capacitor.getPlatform() === 'ios') {
-  layoutListener = await Foldable.addListener('barPlacementChange', ({ verticalBarEdge, inset }) =>
-    rail.setPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset }),
-  );
-  const { verticalBarEdge, inset } = await Foldable.getBarPlacement();
-  rail.setPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset });
-}
-
-// アプリ内の利用元を破棄するときに呼びます。
-const stopVerticalArea = async () => {
-  await layoutListener?.remove();
-  await rail.destroy();
-};
-```
-
-`setPlacement()` は論理方向をdocumentの文字方向で解決します。通知された端と一緒にFoldableの実測 `inset` を渡すと、実際の幅を確保し、幅の変更にも追従します。`inset: 0` は明示的な幅を解除し、手動で要求した操作領域にはテーマのCSS safe area規則を使います。端が `null` なら通常のレイアウトへ戻ります。操作領域が通知されない端末では `null` となるため、この例も通常の配置を復元します。iOS 27.1以降では、古いSDKでビルドした場合もFoldableがsafe areaのinsetからDuoの配置を推定できます。プラグインが端を通知しない時に固定配置を要求するには、nullを適用する代わりに `rail.setPlacement('trailing')` を使います。これはレイアウトのシミュレーションであり、実際のシステム操作領域やヒンジの計測値は提供しません。
-
-対応するiOSでは操作領域の部品はシステムのSwiftUIの外観を使い、通常のコンテンツと水平の操作部品は独自のWebスタイルを維持します。WebとAndroidはWebクローンを使います。
+対応するiOSでは操作領域をSwiftUIでネイティブ描画し、通常のコンテンツと水平の操作部品は独自のWebスタイルを維持します。WebとAndroidはWebクローンを使います。
 
 ## 操作部品を描画せずヒンジの状態だけを使う
 
-開閉状態に応じたsplit paneやレイアウト切り替えだけが必要なら、描画runtimeを起動せず、`.ios-theme-vertical-bars` も追加しません。`Foldable.getFoldState()` と `foldStateChange` を直接使い、終了時にlistenerを削除します。監視を開始・停止する別の呼び出しは不要です。
+開閉状態に応じたsplit paneやレイアウト切り替えだけが必要なら、描画runtimeを起動せず、`.ios-theme-vertical-bars` も追加しません。`Foldable.getFoldState()` の結果と `foldStateChange` イベントを `applyFoldStateClasses(root, fold)` に渡し、終了時にlistenerを削除します。監視を開始・停止する別の呼び出しは不要です。
 
 購読例、null値、監視の寿命は[デバイスのレイアウトを取得する](/docs/iphone-duo#デバイスのレイアウトを取得する)、opt-inの幅指定と半開き状態は[Split paneを開閉状態に合わせる](/docs/iphone-duo#split-paneを開閉状態に合わせる)を参照してください。
 
 ## 共通のレイアウト規則とAPI
 
-safe area、overlay、RTL、操作部品の対応条件、Webでのシミュレーション、handleのAPIは[iPhone Duo対応](/docs/iphone-duo)に記載しています。独立した構成にも同じ規則が適用されます。
+safe area、overlay、RTL、操作部品の対応条件、Webでのシミュレーション、handleのAPIは[縦型バー](/docs/vertical-bars)に記載しています。独立した構成にも同じ規則が適用されます。

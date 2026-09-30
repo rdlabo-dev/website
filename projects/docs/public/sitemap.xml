@@ -230,11 +230,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
@@ -246,11 +246,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/special-markup</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint</loc>
@@ -262,35 +262,43 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/native-ui-shell</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/iphone-duo</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/vertical-bars</loc>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/features</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/features</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/animation</loc>
@@ -309,12 +317,28 @@
     <lastmod>2026-09-26</lastmod>
   </url>
   <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/feedback</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/feedback</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/api</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/api</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26</loc>
@@ -324,11 +348,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/readme</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios26/docs/readme</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/using-ion-item-group</loc>
@@ -340,9 +364,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/special-markup</loc>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios26/docs/special-markup</loc>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/eslint</loc>
@@ -377,6 +403,22 @@
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios26/docs/migration</loc>
   </url>
   <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios26/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/feedback</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios26/docs/feedback</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/api</loc>
   </url>
   <url>
@@ -390,11 +432,11 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/readme</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/readme</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/using-ion-item-group</loc>
@@ -423,6 +465,14 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/migration</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/e2e-testing</loc>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/api</loc>

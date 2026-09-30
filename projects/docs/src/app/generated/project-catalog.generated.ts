@@ -484,13 +484,13 @@ export const PROJECTS_EN = [
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0-3",
-    "description": "Stable iOS 27 styling and motion for Ionic, with an optional experimental Native UI Shell.",
+    "version": "1.2.0",
+    "description": "Stable iOS 27 styling and motion for Ionic, with an optional preview Native UI Shell.",
     "headline": "Bring iOS 27 design to Ionic apps",
-    "overview": "Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell remains experimental.",
+    "overview": "Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell is available as a preview.",
     "featuresHeading": "Theme capabilities",
     "features": [
       {
@@ -501,7 +501,7 @@ export const PROJECTS_EN = [
       {
         "icon": "motion",
         "title": "Transitions and Liquid Glass",
-        "description": "Use production-ready Web animations and optionally project fixed controls with the experimental Native UI Shell."
+        "description": "Use production-ready Web animations and optionally project fixed controls with the preview Native UI Shell."
       },
       {
         "icon": "dark",
@@ -509,7 +509,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -541,25 +541,32 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios27/docs/eslint"
       },
       {
-        "title": "Native UI Shell (Experimental)",
-        "navTitle": "Native UI Shell (Experimental)",
+        "title": "Native UI Shell (Preview)",
+        "navTitle": "Native UI Shell (Preview)",
         "slug": "native-ui-shell",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
       },
       {
-        "title": "iPhone Duo support (experimental)",
-        "navTitle": "iPhone Duo support (experimental)",
+        "title": "iPhone Duo support (preview)",
+        "navTitle": "iPhone Duo support (preview)",
         "slug": "iphone-duo",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
       },
       {
-        "title": "iPhone Duo with your existing theme (experimental)",
-        "navTitle": "iPhone Duo with your existing theme (experimental)",
+        "title": "iPhone Duo with your existing theme (preview)",
+        "navTitle": "iPhone Duo with your existing theme (preview)",
         "slug": "iphone-duo-with-original-theme",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
+      },
+      {
+        "title": "Vertical Bars (preview)",
+        "navTitle": "Vertical Bars (preview)",
+        "slug": "vertical-bars",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
       },
       {
         "title": "Features",
@@ -583,6 +590,20 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios27/docs/migration"
       },
       {
+        "title": "E2E screenshot testing",
+        "navTitle": "E2E screenshot testing",
+        "slug": "e2e-testing",
+        "section": "Development",
+        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
+      },
+      {
+        "title": "Feature requests for Ionic Framework",
+        "navTitle": "Feature requests for Ionic Framework",
+        "slug": "feedback",
+        "section": "Development",
+        "path": "/projects/ionic-theme-ios27/docs/feedback"
+      },
+      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -598,10 +619,12 @@ export const PROJECTS_EN = [
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios26-v9.4.1",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "9.4.1",
     "description": "iOS 26 design styling for Ionic applications.",
     "headline": "Bring iOS 26 design to Ionic apps",
     "overview": "Apply iOS 26 CSS, transitions, and Liquid Glass interactions to Ionic components, with dark mode and selective migration support.",
@@ -623,7 +646,7 @@ export const PROJECTS_EN = [
         "description": "Adopt dark-mode styles and migrate component by component when needed."
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -683,6 +706,20 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios26/docs/migration"
       },
       {
+        "title": "E2E screenshot testing",
+        "navTitle": "E2E screenshot testing",
+        "slug": "e2e-testing",
+        "section": "Development",
+        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
+      },
+      {
+        "title": "Feature requests for Ionic Framework",
+        "navTitle": "Feature requests for Ionic Framework",
+        "slug": "feedback",
+        "section": "Development",
+        "path": "/projects/ionic-theme-ios26/docs/feedback"
+      },
+      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -699,9 +736,10 @@ export const PROJECTS_EN = [
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.0",
+    "version": "9.1.2",
     "description": "Material Design 3 styling for Ionic applications.",
     "headline": "Bring Material Design 3 to Ionic apps",
     "overview": "Apply Material Design 3 styling to Ionic while keeping markup compatible with the iOS 26 theme and shared transition animations.",
@@ -723,7 +761,7 @@ export const PROJECTS_EN = [
         "description": "Configure MD3 navigation transitions for non-iOS platforms."
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {
@@ -760,6 +798,13 @@ export const PROJECTS_EN = [
         "slug": "migration",
         "section": "Guides",
         "path": "/projects/ionic-theme-md3/docs/migration"
+      },
+      {
+        "title": "E2E screenshot testing",
+        "navTitle": "E2E screenshot testing",
+        "slug": "e2e-testing",
+        "section": "Development",
+        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
       },
       {
         "title": "API",
@@ -2660,13 +2705,13 @@ export const PROJECTS_JA = [
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0-3",
-    "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。実験的なNative UI Shellも選択できます。",
+    "version": "1.2.0",
+    "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。プレビュー版のNative UI Shellも選択できます。",
     "headline": "IonicアプリにiOS 27デザインを取り入れる",
-    "overview": "IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellは実験的機能です。",
+    "overview": "IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellはプレビュー機能です。",
     "featuresHeading": "テーマの機能",
     "features": [
       {
@@ -2677,7 +2722,7 @@ export const PROJECTS_JA = [
       {
         "icon": "motion",
         "title": "トランジションとLiquid Glass",
-        "description": "実用段階のWebアニメーションと、固定コントロールをネイティブ描画する実験的なNative UI Shellを利用できます。"
+        "description": "実用段階のWebアニメーションと、固定コントロールをネイティブ描画するプレビュー版のNative UI Shellを利用できます。"
       },
       {
         "icon": "dark",
@@ -2685,7 +2730,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
+    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -2717,25 +2762,32 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/eslint"
       },
       {
-        "title": "Native UI Shell（実験的機能）",
-        "navTitle": "Native UI Shell（実験的機能）",
+        "title": "Native UI Shell（プレビュー）",
+        "navTitle": "Native UI Shell（プレビュー）",
         "slug": "native-ui-shell",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
       },
       {
-        "title": "iPhone Duo対応（実験的機能）",
-        "navTitle": "iPhone Duo対応（実験的機能）",
+        "title": "iPhone Duo対応（プレビュー）",
+        "navTitle": "iPhone Duo対応（プレビュー）",
         "slug": "iphone-duo",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
       },
       {
-        "title": "既存テーマでiPhone Duoに対応する（実験的機能）",
-        "navTitle": "既存テーマでiPhone Duoに対応する（実験的機能）",
+        "title": "既存テーマでiPhone Duoに対応する（プレビュー）",
+        "navTitle": "既存テーマでiPhone Duoに対応する（プレビュー）",
         "slug": "iphone-duo-with-original-theme",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
+      },
+      {
+        "title": "縦型バー（プレビュー）",
+        "navTitle": "縦型バー（プレビュー）",
+        "slug": "vertical-bars",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
       },
       {
         "title": "機能",
@@ -2759,6 +2811,20 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/migration"
       },
       {
+        "title": "E2Eスクリーンショットテスト",
+        "navTitle": "E2Eスクリーンショットテスト",
+        "slug": "e2e-testing",
+        "section": "開発",
+        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
+      },
+      {
+        "title": "Ionic Frameworkへの機能要望",
+        "navTitle": "Ionic Frameworkへの機能要望",
+        "slug": "feedback",
+        "section": "開発",
+        "path": "/projects/ionic-theme-ios27/docs/feedback"
+      },
+      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -2774,10 +2840,12 @@ export const PROJECTS_JA = [
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios26-v9.4.1",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "9.4.1",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
     "headline": "IonicアプリにiOS 26デザインを取り入れる",
     "overview": "IonicコンポーネントへiOS 26のCSS、トランジション、Liquid Glassインタラクションを適用し、ダークモードと段階的な移行にも対応します。",
@@ -2799,7 +2867,7 @@ export const PROJECTS_JA = [
         "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -2859,6 +2927,20 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios26/docs/migration"
       },
       {
+        "title": "E2Eスクリーンショットテスト",
+        "navTitle": "E2Eスクリーンショットテスト",
+        "slug": "e2e-testing",
+        "section": "開発",
+        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
+      },
+      {
+        "title": "Ionic Frameworkへの機能要望",
+        "navTitle": "Ionic Frameworkへの機能要望",
+        "slug": "feedback",
+        "section": "開発",
+        "path": "/projects/ionic-theme-ios26/docs/feedback"
+      },
+      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -2875,9 +2957,10 @@ export const PROJECTS_JA = [
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
+    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.0",
+    "version": "9.1.2",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
     "headline": "IonicアプリにMaterial Design 3を取り入れる",
     "overview": "iOS 26テーマと共通のマークアップ互換性を保ちつつ、IonicへMaterial Design 3スタイルとトランジションアニメーションを適用します。",
@@ -2899,7 +2982,7 @@ export const PROJECTS_JA = [
         "description": "非iOSプラットフォーム向けにMD3のナビゲーショントランジションを設定します。"
       }
     ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {
@@ -2936,6 +3019,13 @@ export const PROJECTS_JA = [
         "slug": "migration",
         "section": "ガイド",
         "path": "/projects/ionic-theme-md3/docs/migration"
+      },
+      {
+        "title": "E2Eスクリーンショットテスト",
+        "navTitle": "E2Eスクリーンショットテスト",
+        "slug": "e2e-testing",
+        "section": "開発",
+        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
       },
       {
         "title": "API",

@@ -21,6 +21,34 @@ solidのPrimary submit buttonは、foregroundとborderの表現に `--ion-color-
 
 buttonに `type="submit"` を指定できない場合に同じstyleを適用するには、`.button-submit` を使います。
 
+## 推奨するオーバーレイ操作
+
+iOSのalertとaction sheetでは、ボタンに `role: 'preferred'` を設定すると、背景が `--ion-color-primary`、文字とアイコンが `--ion-color-primary-contrast` になります。押下中の背景は `--ion-color-primary-shade` です。Ionicのカスタムroleを使うテーマの規約であり、操作の自動選択・実行はしません。閉じた際のroleは `preferred` です。
+
+```ts
+const buttons = [
+  { text: 'Cancel', role: 'cancel' },
+  { text: 'Continue', role: 'preferred' },
+];
+```
+
+roleなしと `default` は通常の文字色を使います。`cancel` はIonicのキャンセル処理、`selected` は選択状態を維持し、`destructive` は `--ios-theme-destructive-color` を使います。既存の `confirm` は推奨操作として扱いません。単に確定する操作ではなく、推奨する操作に `preferred` を使います。
+
+テーマはiOS 26.1/26.5で計測した、中央表示でアンカーを持たない `UIAlertController` に従います。アンカー付きメニューには `ion-popover` を使ってください。`ios-theme-disabled` / `ios26-disabled` は元のIonic表示を維持します。長い内容はスクロールできます。任意の計測済みanimation builderは[実験的なアニメーション](/docs/experimental-animation)を参照してください。CSSだけではIonicのenter/leaveアニメーションを置き換えません。
+
+## タブバーの配置
+
+iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、`tab-bar-position-end` のいずれかを追加すると、safe area内でバー全体の配置を指定できます。`slot="top"` と `slot="bottom"` の両方で幅と押下アニメーションを維持します。startとendは文字方向に従い、RTLでは反転します。classなしの配置は変わりません。
+
+```html
+<ion-tab-bar slot="bottom" class="tab-bar-position-center">
+  <ion-tab-button tab="home">Home</ion-tab-button>
+  <ion-tab-button tab="settings">Settings</ion-tab-button>
+</ion-tab-bar>
+```
+
+別の `ion-fab` の位置は変わらないため、そのスペースも確保してください。
+
 ## 2行のinset list item
 
 slotを指定しない `ion-label` と `ion-note` を隣接させると、2行のitemとして表示します。iOS styleのinset list背景を使う場合はitemを `ion-item-group` で囲み、`ion-list-header` はgroupの外に置きます。
@@ -65,6 +93,15 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 ```
 
 ## 幅いっぱいのsegment
+
+`.segment-style-glass` を追加すると、タブバーと同じglass面と選択indicatorの処理を適用します。既存の寸法と文字色を維持し、スクロール可能なsegmentとIonicの公開 `--background` プロパティにも対応します。
+
+```html
+<ion-segment class="segment-style-glass" value="available">
+  <ion-segment-button value="available">Available</ion-segment-button>
+  <ion-segment-button value="away">Away</ion-segment-button>
+</ion-segment>
+```
 
 segment buttonを利用可能な幅に均等配置する場合は `.segment-expand` を追加します。`registerSegmentEffect` を使う場合、このclassはLiquid Glass effectのsizeも変更します。
 

@@ -1,8 +1,8 @@
 ---
-title: Native UI Shell（実験的機能）
+title: Native UI Shell（プレビュー）
 ---
 
-Native UI Shellは実験的機能です。APIと対応するコントロールは変更される可能性があります。
+Native UI Shellは `1.2.0` で利用できる **プレビュー機能** です。安定版になるまでAPIと対応するコントロールは変更される可能性があります。安定版への移行はXcode 27.1の正式リリース後を予定しています。
 
 IonicアプリのWebコンテンツの周囲に、ネイティブのナビゲーションと操作部品を表示します。同梱の任意のCapacitor iOSプラグインが、対応する固定IonicコントロールをUIKitまたはSwiftUIとシステムのLiquid Glassで描画します。ページ内容、スクロール、アプリの状態、ルーティングはIonicのWebViewに残ります。
 
@@ -38,7 +38,7 @@ await configureNativeTransition();
 
 ## 対応マークアップ
 
-次の表は通常のNative UI Shellの対応条件です。Vertical Barsには別の[toolbar操作部品の規則](/docs/iphone-duo#toolbarの操作部品)を適用します。
+次の表は通常のNative UI Shellの対応条件です。Vertical Barsには別の[toolbar操作部品の規則](/docs/vertical-bars#toolbarの操作部品)を適用します。
 
 | Ionicコンポーネント | 対応する外観と配置 | ネイティブ描画 |
 | --- | --- | --- |
@@ -50,12 +50,14 @@ await configureNativeTransition();
 | `ion-segment` | 固定toolbar内、スクロールなし、各項目は文字または1アイコン | `UISegmentedControl` |
 | `ion-fab` / `ion-fab-button` / `ion-fab-list` | `ion-content` のfixed slot内のglass FAB、主ボタン1つと任意の方向別リスト | 各ボタンの永続的なglass `UIButton`、FAB単位の同期 |
 
-通常のNative UI Shellでは、テーマ変数を読み込んだiOS modeのコンポーネントが対象です。明示的に有効化したVertical Barsは、後述のとおりmodeから独立しています。要素または祖先の `ionic-theme-disabled`、`ios-theme-disabled`、旧 `ios26-disabled` は常に対象外にします。タブ・segmentの1項目でテーマを無効化すると、そのグループ全体がWeb描画になります。
+通常のNative UI Shellでは、テーマ変数を読み込んだiOS modeのコンポーネントが対象です。明示的に有効化したVertical Barsは、後述のとおりmodeから独立しています。要素または祖先の `ios-theme-disabled`、旧 `ios26-disabled` は常に対象外にします。タブ・segmentの1項目でテーマを無効化すると、そのグループ全体がWeb描画になります。
 
-Webテーマを維持したままNative UI Shellだけを無効にするには、`ios-theme-shell-disabled` を使います。要素とすべての子孫が対象外になります。実行時にclassを追加・削除すると、自動的にWeb描画を復元したりネイティブ描画の適格性を再評価したりします。
+Webテーマを維持したままNative UI Shellだけを無効にするには、`data-shell="disabled"`（または同等の `ios-theme-shell-disabled` クラス）を使います。要素とすべての子孫が対象外になります。実行時に属性やクラスを追加・削除すると、自動的にWeb描画を復元したりネイティブ描画の適格性を再評価したりします。
+
+正確に `disabled` と指定した場合だけ無効になり、空や未知の値は無視します。再び描画するには属性を削除します。クラスもある場合は両方を削除してください。クリックを無効にしたりWebテーマを変更したりはしません。このdata属性は `1.2.0` から利用できます。
 
 ```html
-<ion-toolbar class="ios-theme-shell-disabled">
+<ion-toolbar data-shell="disabled">
   <ion-button>Web glass button</ion-button>
 </ion-toolbar>
 ```
@@ -86,7 +88,7 @@ privateなclass名や固定のinset補正を使わず、ネイティブタブを
 
 フォームは `ion-button type="submit"` と既存のsubmit handlerを維持します。フォーム外からは引き続き `[form]="formRef"` で渡します。プラグインは `form.submit()` を呼ばず、別の送信経路を追加せず、Angularのフォーム管理を変更しません。segmentも元の `ion-segment-button` をクリックするため値の型を維持し、プログラムによる値変更では合成 `ionChange` を発火しません。
 
-ラベルはネイティブ文字です。ローカルの静的SVGと解決済み `ion-icon` SVG（`name` とその変更も含む）は表示倍率でラスタライズし、色を維持してキャッシュします。文字色に従うタブSVGはtemplate描画で、bridgeからの画像更新を待たずラベルと選択色を揃えます。明示的な多色画像は元の色を維持します。外部参照、`<use>`、アニメーション、埋め込みHTML・画像、SVG文字、stylesheetは対象外です。Web fontや任意のslot配置は完全には再現しません。
+ラベルはネイティブ文字です。ローカルの静的SVGと解決済み `ion-icon` SVG（`name` とその変更も含む）は表示倍率でラスタライズしてキャッシュします。source描画は元の色を維持し、縦型toolbarボタンのsystem描画ではSwiftUIで着色するtemplateアイコンを使います。文字色に従うタブSVGはtemplate描画で、bridgeからの画像更新を待たずラベルと選択色を揃えます。多色のタブ画像は元の色を維持します。外部参照、`<use>`、アニメーション、埋め込みHTML・画像、SVG文字、stylesheetは対象外です。Web fontや任意のslot配置は完全には再現しません。
 
 ネイティブhostは操作部品内だけで入力を受け、空白部分のtouchはWebViewへ通します。タブの操作とアクセシビリティは標準の[UITabBar](https://developer.apple.com/documentation/uikit/uitabbar)を使います。Ionic iOSは空バッジを通常隠しますが、空の可視 `ion-badge` は通知の点、空でなければ文字として表示します。背景・文字色はIonic `color` パレットを含むDOMの計算済みstyleから取得し、非表示・削除でネイティブバッジも消します。選択更新で項目のidentityを維持します。内部配置はUIKitが管理し、任意のCSS配置は再現しません。ネイティブ側は名前、disabled・selected特性、バッジをアクセシビリティへ公開し、描画中の元要素はWebアクセシビリティから隠します。WebとUIKitのVoiceOver巡回順序が同一になる保証はありません。
 
@@ -94,7 +96,7 @@ privateなclass名や固定のinset補正を使わず、ネイティブタブを
 
 既存の `attachTabBarSearchable(tabBar, fabButton, footer)` 登録は、下部タブバーとglass検索部品が対応していれば自動的にネイティブ検索を使います。追加の設定・route・ネイティブ初期化・ページlistenerは不要です。通常タブは `UITabBar`、水平配置の検索グループは永続的な `UITabBarController`、`UITab` / `UISearchTab`、`UISearchController` を使います。元のCapacitor WebViewが結果とナビゲーションを担当します。
 
-vertical barsでは、ネイティブの操作領域にすべてのタブと選択状態を維持します。SwiftUIの `searchable` と `searchToolbarBehavior(.minimize)` が、同じネイティブのナビゲーション内で検索ボタン、入力欄、閉じる操作、トランジションを提供します。現在の端末レイアウトに応じてAppleが配置を決め、システム検索を開くとネイティブの入力欄にフォーカスします。入力、フォーカス、clear、submitのイベントには水平配置の検索と同じbridgeを使います。ネイティブ検索を利用できない場合も、Webの検索表示は縦配置のタブを維持します。
+vertical barsでは、ネイティブの操作領域にすべてのタブと選択状態を維持します。SwiftUIの `searchable` と `searchToolbarBehavior(.minimize)` が、同じネイティブのナビゲーション内で検索ボタン、入力欄、閉じる操作、トランジションを提供します。現在の端末レイアウトに応じてAppleが配置を決め、システム検索を開くとネイティブの入力欄にフォーカスします。入力、フォーカス、clear、submitのイベントには水平配置の検索と同じbridgeを使います。縦型バーを有効にすると、Web描画は登録済みの検索ボタンを表示中の縦型タブの上へ、タブが非表示なら操作領域の下へ置き、操作を元のFABへ渡します。ネイティブ検索が利用可能になると、このWeb描画を置き換えます。Webの検索表示でも縦型タブを維持します。
 
 登録しても配置制限は変わりません。検索バーと閉じるボタンは固定footer toolbarへ置きます。トリガーは `ion-content` 直下の `ion-fab[slot="fixed"]`、または既存の非スクロール `.ion-page` 直下の配置が必要です。スクロール内容内のwrapperはfixed slotではありません。
 
@@ -173,17 +175,17 @@ try {
 
 ネイティブの素材と外観は実行中のiOSに従います。このテーマを入れるだけでiOS 26端末がiOS 27の外観になるわけではありません。
 
-## iPhone Duo対応（実験的機能）
+## iPhone Duo対応（プレビュー）
 
-Native UI Shellを使わない独立した利用も含め、iPhone Duo対応は実験的機能です。Native UI Shellとともに `1.2.0-0` のプレリリースで利用でき、APIと対応する動作は変更される可能性があります。
+Native UI Shellを使わない独立した縦型バーも含め、iPhone Duo対応は `1.2.0` でNative UI Shellとともに利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
 
 独立したVertical Control Areaのentry point（`@rdlabo/ionic-theme-ios27/vertical-bars`）と `dist/css/vertical-bars.css` は、iOS 27テーマを読み込まずに動作します。この用途では `enableVerticalControlArea()` を呼び、縦の領域に置いた部品だけを描画します。既に `enableNativeUIShell()` を使うアプリは、両方を起動せず既存のruntimeを維持してください。ヒンジの状態やshellを使わないアプリのsplit pane配置を含む詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
 
-対応するiOSでは `.ios-theme-vertical-bars` を追加すると、システムが物理的な側面の領域へ移した部品だけが変わります。対象のタブ、戻る操作、メニューボタン、toolbarの操作部品をSwiftUIの `TabView` とtoolbarで表示します。iOS 27.1以降とリンクしたiPhone DuoでOSが領域の端を通知する場合、適用した配置と一致する必要があり、不一致ならWeb描画を維持します。端を通知できない古いtoolchainではDOMの配置を使います。SwiftUIが適応配置とLiquid Glassの外観を管理し、ラベル、アイコン、選択・disabled状態、ルーティング、フォーム送信、click handlerは引き続きIonicが管理します。
+Vertical Barsはシステム操作領域でSwiftUIの `TabView` とtoolbarを使います。ラベル、アイコン、選択・無効状態、操作は引き続きIonicが管理します。配置、ネイティブ描画のフォールバック、対応するoverlayは[縦型バー](/docs/vertical-bars)を参照してください。
 
-SwiftUIの面のclipとhit testはシステム操作領域内に制限します。その外のWebコンテンツは表示と操作を維持します。runtimeは元の `ion-tab-button` へ操作を渡す前にタブ選択を先行更新し、他のネイティブ部品と同じイベント・古いrevisionの保護を使います。最前面の全幅modalは、sheetを含め、そのmodalの対象toolbar操作と操作領域の範囲を使います。中央に表示するmodal、メニュー、popoverは独自のtoolbar配置を維持します。modalの配置は、その種類やヒンジの開閉状態ではなく、表示中のダイアログの幅で決まります。
+Vertical Barsでは、固定toolbarの `ion-button` 内の `ion-icon` またはSVGに `slot="icon-only"` を指定します。すべてのfillとIonicの色が対象で、送信ボタンにも同じ規則を適用します。水平に残すにはボタンか `ion-buttons` グループに `.ios-theme-horizontal-only` を追加します。配置と除外規則は[Toolbarの操作部品](/docs/vertical-bars#toolbarの操作部品)を参照してください。
 
-Vertical Barsでは、固定toolbarの `ion-button` 内の `ion-icon` またはSVGに `slot="icon-only"` を指定します。すべてのfill（`default`、`clear`、`solid`、`outline`）とIonicの色が対象で、送信ボタンにも同じ配置規則を適用します。solidは背景色を、outlineは枠線の色と幅を維持します。`icon-only` がない操作部品は水平に残ります。スクロールする部品と明示的に対象外にした部品はWeb描画を維持します。水平Web toolbarに残すには、`ion-buttons` グループまたは個別の `ion-button` に `.ios-theme-horizontal-only` を追加します。Web、Android、古いiOS、セットアップ中にネイティブ描画が利用できない場合は、Web描画へフォールバックします。
+**ネイティブボタンの外観:** `1.2.0` の縦型ネイティブボタンの既定値は `buttonProjection: 'system'` です。Ionicのfillや色を反映するには `source` を指定し、要素単位の例外には `data-projection="source|system"` または同等の `ios-theme-projection-source` / `ios-theme-projection-system` クラスを使います。対象はネイティブの縦型 `ion-button` と `ion-menu-button` だけです。水平の部品とWebクローンは既存の動作を維持します。移行、優先順位、fill規則は[ボタンの外観を選ぶ](/docs/vertical-bars#ボタンの外観を選ぶ)を参照してください。
 
 既存テーマを維持する独立した導入手順は、[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
 
@@ -217,9 +219,9 @@ destroy() => Promise<void>
 
 ## ソース構成
 
-[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-3/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
+[src/native/components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0/src/native/components) の各TypeScript moduleがIonic tagとDOM readerを定義します。`components/index.ts` が探索selectorとcomponent型をまとめます。共有のDOM計測、項目データ、SVG描画は `src/native/shared`、同期・表示切り替え・lifecycleは `runtime.ts` が担当します。
 
-iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0-3/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
+iOSの[Components](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0/ios/Sources/IonicNativeUIShellPlugin/Components)はUIKit部品の生成・更新・名前を管理します。`ShellButton` が通常・戻る・メニューボタンの実装を共有し、`Shared` がhost view、型付きsnapshot、形状、色、画像cacheを管理します。Capacitorは完全なsnapshotを `Decodable` で一度decodeし、描画側は型付きmodelと `Equatable` で内容を比較します。不正batchは表示変更前に拒否します。`IonicNativeUIShellPlugin.swift` がCapacitor呼び出し、revision、ネイティブviewの寿命を調整します。
 
 ## デモと検証
 

@@ -45,11 +45,13 @@ iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、
 
 別の `ion-fab` の位置は変わらないため、そのスペースも確保してください。
 
-## iPhone Duo対応（実験的機能）
+## iPhone Duo対応（プレビュー）
 
-iPhone Duo対応は実験的機能です。Native UI Shellとともに `1.2.0-0` のプレリリースで利用でき、APIと対応する動作は変更される可能性があります。
+独立した縦型バーを含むiPhone Duo対応は、Native UI Shellとともに `1.2.0` で利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
 
 縦のシステム操作領域、ヒンジの状態、開閉状態に応じたsplit paneの配置は、iOS 27テーマと完全なNative UI Shellから独立しています。描画runtimeを使わないレイアウト監視を含め、詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
+
+[縦型バー](/docs/vertical-bars)には、操作領域のクラス、部品の対応条件、ネイティブボタンの外観を記載しています。
 
 既存テーマを維持する独立した導入手順は、[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
 

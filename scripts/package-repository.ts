@@ -97,6 +97,14 @@ export async function pinPackageSourceLinks(
         'g',
       ),
       `$1${tag}/`,
+    )
+    .replace(
+      /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios26\/(?=(?:blob|tree)\/)/g,
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/',
+    )
+    .replace(
+      /https:\/\/raw\.githubusercontent\.com\/rdlabo-dev\/ionic-theme-ios26\//g,
+      'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/',
     );
 }
 
@@ -304,7 +312,7 @@ export async function fetchEnglishProjectMarkdown(
         if (version) {
           rewrittenContent = rewrittenContent.replace(
             /More info:\s+\.\.?\/docs\/using-ion-item-group\.md/g,
-            `More info: https://github.com/rdlabo-dev/ionic-theme-ios26/blob/${project.releaseTagPrefix ?? 'v'}${version}/docs/using-ion-item-group.md`,
+            `More info: ${project.repositoryUrl}/blob/${project.releaseTagPrefix ?? 'v'}${version}/docs/using-ion-item-group.md`,
           );
         }
       }

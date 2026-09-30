@@ -38,7 +38,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
               }
             </div>
             <div class="project-resources">
-              <a class="external-link" [href]="p.repositoryUrl" target="_blank" rel="noopener noreferrer">
+              <a class="external-link" [href]="p.repositoryBrowseUrl ?? p.repositoryUrl" target="_blank" rel="noopener noreferrer">
                 <ng-container i18n="@@viewSource">View source</ng-container>
               </a>
               @if (p.releaseNotesUrl) {

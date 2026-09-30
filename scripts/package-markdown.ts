@@ -194,6 +194,12 @@ export function rewritePackageDocLinks(
     const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
     const hashId = hash.slice(1).toLowerCase();
 
+    // A guide's fragment belongs to that guide, even when its name also occurs
+    // in the README's extracted API. Only landing-page fragments are relocated.
+    if (!path && pageFile && !['readme.md', 'getting-started.md'].includes(pageFile)) {
+      return match;
+    }
+
     if (
       !path ||
       path === '../README.md' ||

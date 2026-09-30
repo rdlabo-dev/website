@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0-3. CSS and Sass entry points remain documented in the README.
+Reference for the JavaScript API exported by `@rdlabo/ionic-theme-ios27` v1.2.0. CSS and Sass entry points remain documented in the README.
 
 ## Effects
 
@@ -105,7 +105,7 @@ Temporary rendering support for Ionic's `cancelButtonIcon` in iOS mode. Import `
 | **`refresh`** | `() => void` | Re-read `cancelButtonIcon` after changing the JavaScript property. |
 | **`destroy`** | `() => void` | Remove the observer and inserted icon, restoring text content. |
 
-## Native UI Shell (Experimental)
+## Native UI Shell (Preview)
 
 Import these APIs and types from `@rdlabo/ionic-theme-ios27/native`. See the [Native UI Shell guide](/docs/native-ui-shell) for requirements and fallback behavior.
 
@@ -122,6 +122,8 @@ Call once at startup. Repeated calls with the same configuration share the activ
 Reads the native WebView radius and applies it to page transitions without enabling native controls. On other platforms, the radius is `0`.
 
 #### `interface` NativeUIShellOptions
+
+Extends `VerticalControlAreaOptions`; see the vertical button projection options below.
 
 | Prop           | Type                    | Description                                              |
 | -------------- | ----------------------- | -------------------------------------------------------- |
@@ -176,21 +178,37 @@ interface NativeUIShellStatus {
 
 Union of component tags handled by the runtime. See the guide for individual eligibility requirements.
 
-## iPhone Duo / Vertical Control Area (Experimental)
+## iPhone Duo / Vertical Control Area (Preview)
 
 Import these APIs from `@rdlabo/ionic-theme-ios27/vertical-bars` or `@rdlabo/ionic-theme-ios27/native`. The standalone entry point works without the iOS 27 theme or the full Native UI Shell. See [iPhone Duo support](/docs/iphone-duo) for setup, toolchain requirements, and Web fallback.
 
 #### `function` enableVerticalControlArea
 
-`() => Promise<VerticalControlAreaHandle>`
+`(options?: VerticalControlAreaOptions) => Promise<VerticalControlAreaHandle>`
 
 Starts the runtime for controls in the vertical area only. Start either this runtime or `enableNativeUIShell()`. Repeated calls with the same configuration share it; a different active configuration throws.
+
+#### `interface` VerticalControlAreaOptions
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| **`buttonProjection`** | `'source' \| 'system'` | Native vertical button appearance. Defaults to `system` (SwiftUI); `source` projects Ionic fill and computed colors. |
+| **`buttonDefaultFill`** | `'solid' \| null` | Default omitted fill for source buttons outside `ion-buttons`. Defaults to `null` (theme glass); the group default remains clear. |
+
+Does not affect horizontal controls or Web clones. See [Vertical Bars](/docs/vertical-bars#choose-button-appearance) for local `data-projection` overrides and fill precedence. Set `buttonProjection: 'source'` to retain the experimental releases' appearance.
 
 #### `function` setVerticalControlAreaPlacement
 
 `(placement: VerticalBarEdge | VerticalBarPlacement, rtl?: boolean) => void`
 
 Applies the application's chosen placement to CSS and Web/native controls after `ion-app` is mounted. Logical edges resolve through the nearest `dir` attribute or explicit `rtl`. Pass `null` to restore ordinary layout.
+
+
+#### `function` applyFoldStateClasses
+
+`(root: HTMLElement, fold: FoldState) => void`
+
+Import from `@rdlabo/ionic-theme-ios27/vertical-bars`. Pass state from `Foldable.getFoldState()` / `foldStateChange` to apply exactly one of `ios-theme-fold-flat`, `ios-theme-fold-half-opened`, and `ios-theme-fold-closed` to the root. Also applies `ios-theme-fold-expanded` when half-opened or flat with hinge geometry, clearing it otherwise. Preserves unrelated classes. Does not subscribe to device events or change split-pane `when`. `FoldState` is the structural shape with `state: 'flat' | 'half-opened' | 'closed'` and optional `hingeBounds: { x: number; y: number; width: number; height: number }`.
 
 #### `interface` VerticalControlAreaHandle
 

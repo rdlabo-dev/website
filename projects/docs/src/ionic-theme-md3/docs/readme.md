@@ -7,7 +7,7 @@ scrollActiveLine: []
 A CSS/JS theme library that applies Material Design 3 design system to Ionic applications.
 
 <!-- rdlabo-docs-pick -->
-![Material Design 3 themed Ionic screens with updated components and navigation](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png)
+![Material Design 3 themed Ionic screens with updated components and navigation](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png)
 <!-- /rdlabo-docs-pick -->
 
 DEMO is here: https://ionic-theme-md3.rdlabo.dev/
@@ -20,7 +20,7 @@ This project aims to follow the core concepts of Ionic as closely as possible, w
 
 If you don't know about `@rdlabo/ionic-theme-ios26`, you should definitely give it a try!
 
-👉️[rdlabo-dev/ionic-theme-ios26](https://github.com/rdlabo-dev/ionic-theme-ios26)
+👉️[Ionic Theme iOS26](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26)
 
 ### Related Projects
 

@@ -326,6 +326,23 @@ test('rewrites package-relative guide and API links', () => {
   );
 });
 
+test('keeps guide-local fragments while relocating explicit README API links', () => {
+  const anchors = new Map([['getstatus', 'method-getstatus']]);
+  assert.equal(
+    rewritePackageDocLinks(
+      '[Layout](#reserve-the-vertical-rail), [status](#getstatus), [API](#api), [README status](../README.md#getstatus)',
+      anchors,
+      'readme',
+      'vertical-bars.md',
+    ),
+    '[Layout](#reserve-the-vertical-rail), [status](#getstatus), [API](#api), [README status](/docs/api#method-getstatus)',
+  );
+  assert.equal(
+    rewritePackageDocLinks('[status](#getstatus)', anchors),
+    '[status](/docs/api#method-getstatus)',
+  );
+});
+
 test('expands bare and HTML-commented API placeholders', () => {
   const api = new Map([
     ['createPaymentSheet', '#### `method` createPaymentSheet(...)\n'],

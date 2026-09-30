@@ -76,6 +76,17 @@ describe('LandingPageComponent', () => {
     ).not.toBeNull();
   });
 
+  it('opens the iOS 26 branch while counting stars on the shared repository', async () => {
+    const element = await setup('ionic-theme-ios26');
+    const repository = 'https://github.com/rdlabo-dev/ionic-theme-ios27';
+    expect(element.querySelector('.project-resources a')?.getAttribute('href')).toBe(
+      `${repository}/tree/ios26`,
+    );
+    expect(element.querySelector('.project-stars')?.getAttribute('href')).toBe(repository);
+    expect(TestBed.inject(GitHubStarsService).count).toHaveBeenCalledWith(repository);
+    expect(element.querySelector(`a[href="${repository}/releases/tag/ios26-v9.4.1"]`)).not.toBeNull();
+  });
+
   it('links library documentation to related articles', async () => {
     const compiled = await setup('ionic-theme-md3');
     const actionLabels = Array.from(

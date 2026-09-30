@@ -24,7 +24,7 @@ title: ion-item-groupの使用方法
 
 Ionicは通常、`ion-list` 自体に背景を設定するため、`ion-list-header` もitemと同じsurface内に表示されます。iOS 26のlayoutではheaderとitemのsurfaceを分離します。
 
-![ion-item-groupが必要な理由を示すinset listの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/why-ion-list-inset.png)
+![ion-item-groupが必要な理由を示すinset listの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/why-ion-list-inset.png)
 
 そのため、このテーマは次のようにstyleを適用します。
 

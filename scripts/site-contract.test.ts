@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { JSDOM } from 'jsdom';
 import { access, constants, lstat, readFile, readdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
@@ -547,9 +548,9 @@ test('lists every ionic-angular-library package and imports localized READMEs', 
 
 test('lists ionic theme packages and pins localized README imports', async () => {
   const expectedProjects = new Map([
-    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.2.0' }],
-    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.2.0-3' }],
-    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.0' }],
+    ['ionic-theme-ios26', { packageName: '@rdlabo/ionic-theme-ios26', version: '9.4.1' }],
+    ['ionic-theme-ios27', { packageName: '@rdlabo/ionic-theme-ios27', version: '1.2.0' }],
+    ['ionic-theme-md3', { packageName: '@rdlabo/ionic-theme-md3', version: '9.1.2' }],
   ]);
   const packageJson = JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),
@@ -593,9 +594,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
         .filter((page) => page.localEnglishSource)
         .map((page) => page.file)
         .sort(),
-      projectId === 'ionic-theme-ios27'
-        ? ['api.md', 'iphone-duo-with-original-theme.md']
-        : ['api.md'],
+      ['api.md'],
       `${projectId} local English sources must match the documented portal overrides`,
     );
     const [englishApi, japaneseApi] = await Promise.all([
@@ -633,7 +632,7 @@ test('lists ionic theme packages and pins localized README imports', async () =>
           assert.match(
             portalReadme,
             new RegExp(
-              `raw\\.githubusercontent\\.com/rdlabo-dev/${projectId}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
+              `raw\\.githubusercontent\\.com/rdlabo-dev/${project.repositoryUrl.split('/').at(-1)}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
             ),
           );
         }
@@ -1682,15 +1681,15 @@ test('declares authorized Ionic and Capacitor documentation translations', async
 
 test('separates iOS 26 and iOS 27 documentation, source branches, and screenshots', () => {
   for (const project of [ionicThemeIos27En, ionicThemeIos27Ja]) {
-    assert.equal(project.version, '1.2.0-3');
+    assert.equal(project.version, '1.2.0');
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
     assert.equal(
       project.releaseNotesUrl,
-      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3',
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0',
     );
     assert.equal((project.overviewHtml.match(/<img /g) ?? []).length, 3);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
-    assert.match(project.overviewHtml, /ios27-v1\.2\.0-3\/screenshots\/ios27-settings\.png/);
+    assert.match(project.overviewHtml, /ios27-v1\.2\.0\/screenshots\/ios27-settings\.png/);
     assert.ok(!project.pages.some((page) => page.slug === 'ios-adaptive'));
   }
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
@@ -1700,19 +1699,27 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
   assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
 });
 
-test('publishes experimental iPhone Duo guides and API links in both locales', () => {
+test('publishes preview iPhone Duo guides and API links in both locales', () => {
   for (const [project, prefix] of [
     [ionicThemeIos27En, ''],
     [ionicThemeIos27Ja, '/ja'],
   ] as const) {
     const duo = project.pages.find((page) => page.slug === 'iphone-duo');
     assert.ok(duo, 'iPhone Duo must be a navigable guide');
-    assert.match(duo.title, /experimental|実験的機能/i);
+    assert.match(duo.title, /preview|プレビュー/i);
     assert.match(duo.html, /enableVerticalControlArea/);
     assert.match(duo.html, /getFoldState/);
     assert.match(duo.html, /barPlacementChange/);
     assert.match(duo.html, /nativeEdge/);
-    assert.match(duo.html, /ios-theme-split-pane-half-open/);
+    assert.match(duo.html, /split-pane-fold-layout/);
+    assert.match(duo.html, /applyFoldStateClasses/);
+    assert.match(duo.html, /ios-theme-fold-expanded/);
+    const verticalBars = project.pages.find((page) => page.slug === 'vertical-bars');
+    assert.ok(verticalBars, 'Vertical Bars must be a navigable guide');
+    assert.match(verticalBars.html, /buttonProjection/);
+    assert.match(verticalBars.html, /buttonDefaultFill/);
+    assert.match(verticalBars.html, /data-projection/);
+    assert.ok(duo.html.includes(`href="${prefix}/projects/ionic-theme-ios27/docs/vertical-bars"`));
     for (const slug of ['special-markup', 'native-ui-shell', 'api']) {
       const guide = project.pages.find((page) => page.slug === slug);
       assert.ok(guide);
@@ -1723,7 +1730,7 @@ test('publishes experimental iPhone Duo guides and API links in both locales', (
     }
     const standalone = project.pages.find((page) => page.slug === 'iphone-duo-with-original-theme');
     assert.ok(standalone);
-    assert.match(standalone.title, /experimental|実験的機能/i);
+    assert.match(standalone.title, /preview|プレビュー/i);
     assert.match(standalone.html, /enableVerticalControlArea/);
     assert.ok(
       duo.html.includes(
@@ -1731,6 +1738,23 @@ test('publishes experimental iPhone Duo guides and API links in both locales', (
       ),
     );
     const api = project.pages.find((page) => page.slug === 'api')!;
+    assert.match(api.html, /VerticalControlAreaOptions/);
+    assert.match(api.html, /applyFoldStateClasses/);
+    const shell = project.pages.find((page) => page.slug === 'native-ui-shell')!;
+    assert.match(shell.html, /data-shell/);
+    for (const guide of [verticalBars, shell]) {
+      const document = new JSDOM(guide.html).window.document;
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) {
+        const fragment = decodeURIComponent(link.getAttribute('href')!.slice(1));
+        assert.ok(
+          Array.from(document.querySelectorAll('[id]')).some(
+            (element) => decodeURIComponent(element.id) === fragment,
+          ),
+          `${project.id}/${guide.slug}: missing local anchor ${fragment}`,
+        );
+      }
+      assert.doesNotMatch(guide.html, /\/docs\/readme#(?:getstatus|suspend|destroy|setplacement)/);
+    }
     assert.match(api.html, /DeviceLayout/);
     assert.match(api.html, /HingeStatus/);
   }

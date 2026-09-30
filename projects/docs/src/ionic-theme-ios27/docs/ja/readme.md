@@ -4,16 +4,16 @@ code: []
 scrollActiveLine: []
 ---
 
-IonicアプリにiOS 27のLiquid Glassとアニメーションを適用するテーマです。Capacitor iOSアプリでは、対応する操作部品に実験的なNative UI Shellを選択できます。
+IonicアプリにiOS 27のLiquid Glassとアニメーションを適用するテーマです。Capacitor iOSアプリでは、対応する操作部品にプレビュー版のNative UI Shellを選択できます。
 
-**[Ionic 9デモ](https://ionic-theme-ios27.rdlabo.dev/) · [Ionic 8デモ](https://ionic8-theme-ios27.rdlabo.dev/) · [1.2.0-3リリースノート](https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3)**
+**[Ionic 9デモ](https://ionic-theme-ios27.rdlabo.dev/) · [Ionic 8デモ](https://ionic8-theme-ios27.rdlabo.dev/) · [1.2.0リリースノート](https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0)**
 
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png" width="32%" alt="iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png" width="32%" alt="iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -26,11 +26,11 @@ Liquid Glass、ツールバー、タブ、リスト、ボタン、検索、オ�
 
 ### IonicのUIをネイティブ表示する
 
-任意の実験的な[Native UI Shell](/docs/native-ui-shell)は、Capacitor iOS上で対応する固定コントロールを既存のIonicマークアップから読み取り、UIKitで描画します。テキスト、対応するアイコン、選択状態を反映し、ネイティブ側の操作は元のIonicコンポーネントへ戻します。ページ内容とルーティングはWebViewに残り、非対応のレイアウトはWebで表示します。
+`1.2.0` で利用できる任意のプレビュー版[Native UI Shell](/docs/native-ui-shell)は、Capacitor iOS上で対応する固定コントロールを既存のIonicマークアップから読み取り、UIKitで描画します。テキスト、対応するアイコン、選択状態を反映し、ネイティブ側の操作は元のIonicコンポーネントへ戻します。ページ内容とルーティングはWebViewに残り、非対応のレイアウトはWebで表示します。
 
 **iOS 27のタブドラッグ:** 同じLibrary画面をNative UI Shellオフ（Web）とオン（UIKit）で比較しました。下段はタブバー周辺を拡大しています。
 
-[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0-3/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-3/screenshots/native-ui-shell-drag/comparison.png)
+[![Native UI Shellのオン・オフで同じタブをドラッグした比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/native-ui-shell-drag/comparison.png)](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0/screenshots/native-ui-shell-drag/comparison.png)
 
 ### 利用者の端末に合わせる
 
@@ -123,7 +123,7 @@ iOS上で確認してください。デスクトップでプレビューする�
 
 ## オプション構成
 
-### iOS 27テーマなしでiPhone Duoに対応する（実験的機能）
+### iOS 27テーマなしでiPhone Duoに対応する（プレビュー）
 
 既存のIonicテーマを維持し、タブと対応するtoolbarの操作部品を縦の側面領域へ移します。**まずChromeで試せます。** スタイルシート、appのクラス、`enableVerticalControlArea()` で始め、iPhone Duoの端末イベントと接続してシステム操作領域とヒンジの状態を利用できます。
 
@@ -134,9 +134,9 @@ npm install @erkamyaman/capacitor-foldable
 npx cap sync
 ```
 
-`getBarPlacement()` / `barPlacementChange` と `getFoldState()` / `foldStateChange` でテーマの配置を制御します。テーマに端末監視機能は含まれません。
+`applyFoldStateClasses(root, fold)` で開閉状態を適用し、`setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` で操作領域を配置します。端末状態の監視はテーマに同梱していません。
 
-ブラウザでのプレビューとiOSの設定は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)、共通のレイアウト規則とAPIは[iPhone Duo対応](/docs/iphone-duo)を参照してください。`1.2.0-0` で利用できる実験的機能で、APIと対応する動作は変更される可能性があります。
+ブラウザでのプレビューとiOSの設定は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)、操作部品の描画とruntime APIは[縦型バー](/docs/vertical-bars)、端末イベントとsplit paneは[iPhone Duo対応](/docs/iphone-duo)を参照してください。`1.2.0` で利用できるプレビュー機能で、APIと対応する動作は変更される可能性があります。
 
 ### iOS 27テーマだけを使う
 
@@ -221,9 +221,12 @@ Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular
 - [特別なマークアップとクラス](/docs/special-markup) — 任意のマークアップとクラス。
 - [ESLint](/docs/eslint) — リスト構造を検査するルール。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
-- [Native UI Shell（実験的機能）](/docs/native-ui-shell) — 対応するIonicコントロールをUIKitで表示。
-- [iPhone Duo対応（実験的機能）](/docs/iphone-duo) — 縦のシステム操作領域、ヒンジの状態、split paneの配置。テーマやshellなしでも利用できます。
-- [既存テーマでiPhone Duoに対応する（実験的機能）](/docs/iphone-duo-with-original-theme) — 既存のWebテーマを維持する独立した導入手順。
+- [Native UI Shell（プレビュー）](/docs/native-ui-shell) — 対応するIonicコントロールをUIKitで表示。
+- [縦型バー（プレビュー）](/docs/vertical-bars) — 側面の配置、操作部品の対応条件、ネイティブボタンの外観とruntime API。
+- [iPhone Duo対応（プレビュー）](/docs/iphone-duo) — 縦のシステム操作領域、ヒンジの状態、split paneの配置。テーマやshellなしでも利用できます。
+- [既存テーマでiPhone Duoに対応する（プレビュー）](/docs/iphone-duo-with-original-theme) — 既存のWebテーマを維持する独立した導入手順。
 - [アニメーション](/docs/animation) — タブ、セグメント、検索の効果。
 - [iOS 26からの移行](/docs/migration) — 既存アプリの更新手順と差分。
 - [iOS 26の移行履歴](/ionic-theme-ios26/docs/migration) — 前のパッケージの移行案内。
+- [E2Eスクリーンショットテスト](/docs/e2e-testing) — デモの外観を検証する手順。
+- [Ionic Frameworkへの機能要望](/docs/feedback) — テーマ開発で見つかった課題と対応状況。

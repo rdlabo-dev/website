@@ -76,7 +76,11 @@
     </a>
     <a
       class="external-link hidden items-center border-l border-[#eadfd9] px-4 text-sm font-medium text-[#292320] no-underline hover:bg-[#fff7f2] sm:flex sm:px-6"
-      [href]="activeProject()?.repositoryUrl ?? 'https://github.com/rdlabo-dev'"
+      [href]="
+        activeProject()?.repositoryBrowseUrl ??
+        activeProject()?.repositoryUrl ??
+        'https://github.com/rdlabo-dev'
+      "
       target="_blank"
       rel="noopener noreferrer"
       i18n-aria-label="@@viewOnGitHub"

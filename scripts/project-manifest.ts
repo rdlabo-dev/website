@@ -53,6 +53,8 @@ export interface ProjectDefinition {
   localizedShortName?: LocalizedText;
   packageName: string;
   repositoryUrl: string;
+  /** Optional branch or directory shown by public source links; API calls use repositoryUrl. */
+  repositoryBrowseUrl?: string;
   /** Optional interactive demo linked from the project Overview. */
   demoUrl?: string;
   /** Optional link to a specific project release. */
@@ -741,19 +743,19 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0-3',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0',
     releaseTagPrefix: 'ios27-v',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
     description: text(
-      'Stable iOS 27 styling and motion for Ionic, with an optional experimental Native UI Shell.',
-      'Ionic向けの安定版iOS 27スタイルとアニメーション。実験的なNative UI Shellも選択できます。',
+      'Stable iOS 27 styling and motion for Ionic, with an optional preview Native UI Shell.',
+      'Ionic向けの安定版iOS 27スタイルとアニメーション。プレビュー版のNative UI Shellも選択できます。',
     ),
     headline: text('Bring iOS 27 design to Ionic apps', 'IonicアプリにiOS 27デザインを取り入れる'),
     overview: text(
-      'Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell remains experimental.',
-      'IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellは実験的機能です。',
+      'Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell is available as a preview.',
+      'IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellはプレビュー機能です。',
     ),
     featuresHeading: text('Theme capabilities', 'テーマの機能'),
     features: [
@@ -769,8 +771,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         icon: 'motion',
         title: text('Transitions and Liquid Glass', 'トランジションとLiquid Glass'),
         description: text(
-          'Use production-ready Web animations and optionally project fixed controls with the experimental Native UI Shell.',
-          '実用段階のWebアニメーションと、固定コントロールをネイティブ描画する実験的なNative UI Shellを利用できます。',
+          'Use production-ready Web animations and optionally project fixed controls with the preview Native UI Shell.',
+          '実用段階のWebアニメーションと、固定コントロールをネイティブ描画するプレビュー版のNative UI Shellを利用できます。',
         ),
       },
       {
@@ -784,7 +786,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-28', '2026-09-28'),
+        updatedAt: text('2026-09-30', '2026-09-30'),
       }),
       page(
         'Using ion-item-group',
@@ -802,7 +804,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-27', '2026-09-27') },
+        { updatedAt: text('2026-09-30', '2026-09-30') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -824,40 +826,47 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         },
       ),
       page(
-        'Native UI Shell (Experimental)',
-        'Native UI Shell（実験的機能）',
+        'Native UI Shell (Preview)',
+        'Native UI Shell（プレビュー）',
         'native-ui-shell',
         'native-ui-shell.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-28', '2026-09-28') },
+        { updatedAt: text('2026-09-30', '2026-09-30') },
       ),
       page(
-        'iPhone Duo support (experimental)',
-        'iPhone Duo対応（実験的機能）',
+        'iPhone Duo support (preview)',
+        'iPhone Duo対応（プレビュー）',
         'iphone-duo',
         'iphone-duo.md',
         'Guides',
         'ガイド',
         {
-          updatedAt: text('2026-09-28', '2026-09-28'),
+          updatedAt: text('2026-09-30', '2026-09-30'),
         },
       ),
       page(
-        'iPhone Duo with your existing theme (experimental)',
-        '既存テーマでiPhone Duoに対応する（実験的機能）',
+        'iPhone Duo with your existing theme (preview)',
+        '既存テーマでiPhone Duoに対応する（プレビュー）',
         'iphone-duo-with-original-theme',
         'iphone-duo-with-original-theme.md',
         'Guides',
         'ガイド',
         {
-          // The released guide still installs -1, before its Foldable examples were added.
-          localEnglishSource: true,
-          updatedAt: text('2026-09-28', '2026-09-28'),
+          updatedAt: text('2026-09-30', '2026-09-30'),
         },
       ),
+      page(
+        'Vertical Bars (preview)',
+        '縦型バー（プレビュー）',
+        'vertical-bars',
+        'vertical-bars.md',
+        'Guides',
+        'ガイド',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-18', '2026-09-18'),
+        updatedAt: text('2026-09-30', '2026-09-30'),
       }),
       page('Animation', 'アニメーション', 'animation', 'animation.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-26', '2026-09-26'),
@@ -865,9 +874,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-26', '2026-09-26'),
       }),
+      page(
+        'E2E screenshot testing',
+        'E2Eスクリーンショットテスト',
+        'e2e-testing',
+        'e2e-testing.md',
+        'Development',
+        '開発',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
+      page(
+        'Feature requests for Ionic Framework',
+        'Ionic Frameworkへの機能要望',
+        'feedback',
+        'feedback.md',
+        'Development',
+        '開発',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: text('2026-09-28', '2026-09-28'),
+        updatedAt: text('2026-09-30', '2026-09-30'),
       }),
     ],
   },
@@ -879,9 +906,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS26',
     packageName: '@rdlabo/ionic-theme-ios26',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
-    englishDocsRef: 'f187d7f74b30b6de6fa7522bf215549c540c6c9b',
+    repositoryBrowseUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26',
     englishDocsEditBranch: 'ios26',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios26-v9.4.1',
     releaseTagPrefix: 'ios26-v',
     category: 'frontend-tools',
     icon: 'theme',
@@ -924,7 +952,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-30', '2026-09-30'),
       }),
       page(
         'Using ion-item-group',
@@ -942,6 +970,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -973,6 +1002,24 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       ),
       page('iOS 18', 'iOS 18', 'ios-18', 'ios-18.md', 'Guides', 'ガイド'),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page(
+        'E2E screenshot testing',
+        'E2Eスクリーンショットテスト',
+        'e2e-testing',
+        'e2e-testing.md',
+        'Development',
+        '開発',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
+      page(
+        'Feature requests for Ionic Framework',
+        'Ionic Frameworkへの機能要望',
+        'feedback',
+        'feedback.md',
+        'Development',
+        '開発',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
       }),
@@ -987,7 +1034,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
-    englishDocsRef: 'aebdda0880eaf9bed201796a456b0ff0b8677a5e',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -1032,7 +1079,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Documentation', 'ドキュメント', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-30', '2026-09-30'),
       }),
       page(
         'Using ion-item-group',
@@ -1071,6 +1118,15 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         },
       ),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page(
+        'E2E screenshot testing',
+        'E2Eスクリーンショットテスト',
+        'e2e-testing',
+        'e2e-testing.md',
+        'Development',
+        '開発',
+        { updatedAt: text('2026-09-30', '2026-09-30') },
+      ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
       }),

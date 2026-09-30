@@ -7,7 +7,7 @@ CSS変数とSass mixinでテーマをカスタマイズしたり、コンポー�
 ## CSS変数
 
 ライブラリのデフォルトスタイルをデザインに合わせてカスタマイズできるよう、複数のCSS変数を提供しています。詳細は次のファイルを参照してください。
-https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0-3/src/styles/default-variables.scss
+https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0/src/styles/default-variables.scss
 
 メニューの背景RGBは `--ios-theme-menu-background-rgb`（ライト: `225, 230, 240`、ダーク: `26, 31, 34`）、不透明度は `--ios-theme-menu-background-opacity`（既定値: `0.96`）で指定します。どちらも `ion-menu` に設定できる公開CSS変数です。
 
@@ -25,9 +25,11 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## Native UI Shell（実験的機能）
+## Native UI Shell（プレビュー）
 
-Capacitor iOSアプリでは、任意の実験的機能[Native UI Shell](/docs/native-ui-shell)で、対応する固定コントロールをUIKitとシステムのLiquid Glassで描画できます。内容とロジックはWebViewに残り、Ionicがルーティングと画面遷移を管理します。ガイドではBasecampとCapacitorに由来する考え方、導入、対応部品、Web描画へのフォールバックを説明します。
+`1.2.0` でプレビューとして利用できます。
+
+Capacitor iOSアプリでは、任意のプレビュー機能[Native UI Shell](/docs/native-ui-shell)で、対応する固定コントロールをUIKitとシステムのLiquid Glassで描画できます。内容とロジックはWebViewに残り、Ionicがルーティングと画面遷移を管理します。ガイドではBasecampとCapacitorに由来する考え方、導入、対応部品、Web描画へのフォールバックを説明します。
 
 ## コンポーネント単位のimport
 

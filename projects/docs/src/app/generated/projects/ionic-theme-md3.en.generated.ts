@@ -7,9 +7,10 @@ export const PROJECT = {
   "packageName": "@rdlabo/ionic-theme-md3",
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
   "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
+  "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
   "category": "frontend-tools",
   "icon": "theme",
-  "version": "9.1.0",
+  "version": "9.1.2",
   "description": "Material Design 3 styling for Ionic applications.",
   "headline": "Bring Material Design 3 to Ionic apps",
   "overview": "Apply Material Design 3 styling to Ionic while keeping markup compatible with the iOS 26 theme and shared transition animations.",
@@ -31,7 +32,7 @@ export const PROJECT = {
       "description": "Configure MD3 navigation transitions for non-iOS platforms."
     }
   ],
-  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.0/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
@@ -60,7 +61,7 @@ export const PROJECT = {
     {
       "title": "Getting Started",
       "navTitle": "Getting Started",
-      "updatedAt": "2026-09-06",
+      "updatedAt": "2026-09-30",
       "slug": "readme",
       "file": "readme.md",
       "section": "Documentation",
@@ -218,13 +219,43 @@ export const PROJECT = {
       "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/migration.md"
     },
     {
+      "title": "E2E screenshot testing",
+      "navTitle": "E2E screenshot testing",
+      "updatedAt": "2026-09-30",
+      "slug": "e2e-testing",
+      "file": "e2e-testing.md",
+      "section": "Development",
+      "path": "/projects/ionic-theme-md3/docs/e2e-testing",
+      "html": "<p data-line=\"0\" class=\"code-line\">This maintainer guide explains how to run the Playwright visual-regression suite for the Material Design 3 demo. The suite covers every entry declared in <code>demo/e2e/screenshot.spec.ts</code> in both light and dark modes. Overlay variants are generated from the shared arrays in <code>demo/src/app/overlay-types.ts</code>.</p>\n<h2 id=\"run-the-suite\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#run-the-suite\" aria-hidden=\"true\"></a> Run the suite</h2>\n<p data-line=\"4\" class=\"code-line\">Install the demo dependencies first:</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"6\"><span class=\"line\"><span style=\"color:#79B8FF\">cd</span><span style=\"color:#9ECBFF\"> demo</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> install</span></span>\n<span class=\"line\"></span></code></pre></div><p data-line=\"11\" class=\"code-line\">Then choose the command that matches the task:</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"13\"><span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e</span><span style=\"color:#a0aab5\">          # Run the suite</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e:ui</span><span style=\"color:#a0aab5\">       # Open Playwright UI mode</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e:debug</span><span style=\"color:#a0aab5\">    # Run with the Playwright debugger</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e:update</span><span style=\"color:#a0aab5\">   # Regenerate intentional baseline changes</span></span>\n<span class=\"line\"></span></code></pre></div><p data-line=\"20\" class=\"code-line\">To reproduce the Linux environment used by CI, run the Docker variants from <code>demo/</code>:</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"22\"><span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e:docker</span></span>\n<span class=\"line\"><span style=\"color:#B392F0\">npm</span><span style=\"color:#9ECBFF\"> run</span><span style=\"color:#9ECBFF\"> test:e2e:docker:update</span></span>\n<span class=\"line\"></span></code></pre></div><p data-line=\"27\" class=\"code-line\">The Docker commands use the Playwright image pinned in <code>demo/package.json</code>.</p>\n<h2 id=\"review-a-failure\" data-line=\"29\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#review-a-failure\" aria-hidden=\"true\"></a> Review a failure</h2>\n<p data-line=\"31\" class=\"code-line\">A screenshot mismatch can be a regression or an intentional visual change. Before updating a baseline:</p>\n<ol data-line=\"33\" class=\"code-line\">\n<li data-line=\"33\" class=\"code-line\">Inspect the actual, expected, and diff images in <code>demo/test-results/</code>.</li>\n<li data-line=\"34\" class=\"code-line\">Check the affected route in both light and dark modes.</li>\n<li data-line=\"35\" class=\"code-line\">Confirm that the component change is intentional.</li>\n<li data-line=\"36\" class=\"code-line\">Regenerate the baseline with <code>npm run test:e2e:update</code>, or use the Docker variant when matching CI rendering.</li>\n</ol>\n<p data-line=\"38\" class=\"code-line\">The HTML report is written to <code>demo/playwright-report/</code> and can be opened with:</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"40\"><span class=\"line\"><span style=\"color:#B392F0\">npx</span><span style=\"color:#9ECBFF\"> playwright</span><span style=\"color:#9ECBFF\"> show-report</span></span>\n<span class=\"line\"></span></code></pre></div><h2 id=\"add-coverage\" data-line=\"44\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#add-coverage\" aria-hidden=\"true\"></a> Add coverage</h2>\n<p data-line=\"46\" class=\"code-line\">When adding a demo route or overlay variant, update <code>demo/e2e/screenshot.spec.ts</code> and regenerate the relevant baselines. Commit baseline changes only after reviewing the visual diff.</p>\n<p data-line=\"48\" class=\"code-line\">Pull requests run the E2E workflow in <code>.github/workflows/e2e-pull_request.yml</code>; pushes to <code>main</code> run <code>.github/workflows/e2e-main.yml</code>.</p>\n",
+      "headings": [
+        {
+          "id": "run-the-suite",
+          "text": "Run the suite",
+          "level": 2
+        },
+        {
+          "id": "review-a-failure",
+          "text": "Review a failure",
+          "level": 2
+        },
+        {
+          "id": "add-coverage",
+          "text": "Add coverage",
+          "level": 2
+        }
+      ],
+      "codes": [],
+      "scrollMap": [],
+      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/e2e-testing.md"
+    },
+    {
       "title": "API",
       "navTitle": "API",
       "slug": "api",
       "file": "api.md",
       "section": "Reference",
       "path": "/projects/ionic-theme-md3/docs/api",
-      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\">Reference for the JavaScript API exported by <code>@rdlabo/ionic-theme-md3</code> v9.1.0. CSS entry points remain documented in the README.</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Builds the Material Design 3 navigation transition for Ionic.</p></section>\n\n\n</div>",
+      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\">Reference for the JavaScript API exported by <code>@rdlabo/ionic-theme-md3</code> v9.1.2. CSS entry points remain documented in the README.</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Builds the Material Design 3 navigation transition for Ionic.</p></section>\n\n\n</div>",
       "headings": [
         {
           "id": "animation",

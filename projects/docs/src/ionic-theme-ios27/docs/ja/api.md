@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-ios27` v1.2.0-3 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-ios27` v1.2.0 が公開するJavaScript APIのリファレンスです。CSSとSassのentry pointはREADMEで説明します。
 
 ## Effect
 
@@ -105,7 +105,7 @@ iOS modeでIonicの `cancelButtonIcon` を描画する一時的な補助です�
 | **`refresh`** | `() => void` | JavaScriptプロパティで変更した `cancelButtonIcon` を再読込します。 |
 | **`destroy`** | `() => void` | observerと挿入アイコンを削除して文字表示を復元します。 |
 
-## Native UI Shell (Experimental)
+## Native UI Shell (Preview)
 
 次のAPIと型は `@rdlabo/ionic-theme-ios27/native` からimportします。[Native UI Shellガイド](/docs/native-ui-shell)に導入条件とフォールバックを記載しています。
 
@@ -122,6 +122,8 @@ iOS modeでIonicの `cancelButtonIcon` を描画する一時的な補助です�
 ネイティブWebViewの角丸半径を取得し、ネイティブ部品を有効にせず画面遷移へ適用します。他のプラットフォームでは半径は `0` です。
 
 #### `interface` NativeUIShellOptions
+
+`VerticalControlAreaOptions` を継承します。縦型ボタンの描画設定は以下を参照してください。
 
 | Prop           | Type                    | Description                                              |
 | -------------- | ----------------------- | -------------------------------------------------------- |
@@ -176,21 +178,37 @@ interface NativeUIShellStatus {
 
 runtimeが扱うコンポーネントtagのunionです。個別の対応条件はガイドを参照してください。
 
-## iPhone Duo / Vertical Control Area（実験的機能）
+## iPhone Duo / Vertical Control Area（プレビュー）
 
 次のAPIは `@rdlabo/ionic-theme-ios27/vertical-bars` または `@rdlabo/ionic-theme-ios27/native` からimportします。独立したentry pointはiOS 27テーマや完全なNative UI Shellなしで動作します。導入方法、toolchainの要件、Webフォールバックは[iPhone Duo対応](/docs/iphone-duo)を参照してください。
 
 #### `function` enableVerticalControlArea
 
-`() => Promise<VerticalControlAreaHandle>`
+`(options?: VerticalControlAreaOptions) => Promise<VerticalControlAreaHandle>`
 
 縦の領域の操作部品だけにruntimeを起動します。これと `enableNativeUIShell()` の一方だけを起動してください。同じ設定で繰り返すと共有し、稼働中に異なる設定を指定するとエラーになります。
+
+#### `interface` VerticalControlAreaOptions
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| **`buttonProjection`** | `'source' \| 'system'` | 縦型ネイティブボタンの外観。既定値は `system`（SwiftUI）。`source` はIonicのfillと計算済みの色を反映します。 |
+| **`buttonDefaultFill`** | `'solid' \| null` | source描画で `ion-buttons` 外のfill省略時に使う値。既定値は `null`（テーマのglass）。グループ内の既定値はclearのままです。 |
+
+水平の部品とWebクローンには作用しません。要素単位の `data-projection` とfillの優先順位は[縦型バー](/docs/vertical-bars#ボタンの外観を選ぶ)を参照してください。実験的リリースの外観を維持するには `buttonProjection: 'source'` を明示します。
 
 #### `function` setVerticalControlAreaPlacement
 
 `(placement: VerticalBarEdge | VerticalBarPlacement, rtl?: boolean) => void`
 
 `ion-app` のマウント後、アプリが選んだ配置をCSSとWeb・ネイティブの操作部品へ適用します。論理方向は最も近い `dir` 属性か明示的な `rtl` で解決します。`null` を渡すと通常のレイアウトへ戻ります。
+
+
+#### `function` applyFoldStateClasses
+
+`(root: HTMLElement, fold: FoldState) => void`
+
+`@rdlabo/ionic-theme-ios27/vertical-bars` からimportします。`Foldable.getFoldState()` / `foldStateChange` の状態を渡すと、rootに `ios-theme-fold-flat`、`ios-theme-fold-half-opened`、`ios-theme-fold-closed` のいずれかを設定します。半開き、またはヒンジ形状を持つflat状態では `ios-theme-fold-expanded` も設定し、それ以外では解除します。無関係なクラスは維持します。端末の購読やsplit paneの `when` の変更は行いません。`FoldState` は `state: 'flat' | 'half-opened' | 'closed'` と任意の `hingeBounds: { x: number; y: number; width: number; height: number }` を持つ構造です。
 
 #### `interface` VerticalControlAreaHandle
 

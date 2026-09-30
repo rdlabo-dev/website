@@ -203,6 +203,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
       : project.shortName,
     packageName: project.packageName,
     repositoryUrl: project.repositoryUrl,
+    ...(project.repositoryBrowseUrl ? { repositoryBrowseUrl: project.repositoryBrowseUrl } : {}),
     demoUrl: project.demoUrl,
     ...(project.releaseNotesUrl ? { releaseNotesUrl: project.releaseNotesUrl } : {}),
     ...(project.entryGuideSlugs ? { entryGuideSlugs: project.entryGuideSlugs } : {}),
@@ -592,8 +593,10 @@ async function generateProject(
       }
     }
     restoreDocgenInlineCode(htmlDocument, preparedDocgen.inlineCodes);
-    if (annotateDocgen) {
+    if (annotateDocgen || splitDocgenReadme(expanded)) {
       normalizeDocgenAnchors(htmlDocument);
+    }
+    if (annotateDocgen) {
       annotateDocgenApiEntries(htmlDocument);
     }
     formatApiEntries(htmlDocument);

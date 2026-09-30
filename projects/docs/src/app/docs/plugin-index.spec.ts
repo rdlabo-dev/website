@@ -186,7 +186,7 @@ describe('PluginIndexComponent', () => {
     expect(codeScannerApi?.html).toContain('<code>method</code> present(...)');
     expect(codeScannerApi?.html).toMatch(/<code>interface<\/code>[\s\S]*?ScannerOption/);
     const iosTheme = await loadProject('ionic-theme-ios26', 'ja');
-    expect(iosTheme?.version).toBe('9.2.0');
+    expect(iosTheme?.version).toBe('9.4.1');
     expect(iosTheme?.pages.find((page) => page.slug === 'readme')?.html).toContain(
       'iosTransitionAnimation',
     );
@@ -194,7 +194,7 @@ describe('PluginIndexComponent', () => {
       'md-ion-list-inset.css',
     );
     const md3Theme = await loadProject('ionic-theme-md3', 'ja');
-    expect(md3Theme?.version).toBe('9.1.0');
+    expect(md3Theme?.version).toBe('9.1.2');
     expect(md3Theme?.pages.find((page) => page.slug === 'readme')?.html).toContain(
       'mdTransitionAnimation',
     );

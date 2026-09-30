@@ -55,6 +55,17 @@ npm run fmt:check
 npm run build
 ```
 
+Tests protect observable contracts: routing and accessibility, bilingual code parity,
+immutable documentation sources, safe Markdown/HTML generation, source-review revisions,
+static output, SEO metadata, and deployment gates. A regression test should name the
+failure it prevents and fail when that behavior breaks. Use small stable fixtures for
+component/filtering tests; use the manifest, pinned packages, and generated catalog as
+inputs for integration checks. Do not freeze today's catalog size, release versions,
+copywriting, workflow action SHAs, or another repository's implementation files. Angular
+already enforces the configured bundle budgets. Temporary debugging checks belong outside
+the committed suite. Documentation example compilation stays in CI because it detects
+examples that stop working against the pinned release; temporary files must be cleaned up.
+
 Documentation portal (`projects/docs`):
 
 ```bash

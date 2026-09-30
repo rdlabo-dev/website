@@ -485,7 +485,13 @@ test('ESLint companion guides are reachable from each project entry and introduc
   }
 });
 
-test('Local LLM 2.2 documents Chrome text support in both locales', async () => {
+test('Local LLM documents Chrome text support in both locales', async () => {
+  const installedPackage = JSON.parse(
+    await readFile(
+      new URL('../node_modules/@rdlabo/capacitor-local-llm/package.json', import.meta.url),
+      'utf8',
+    ),
+  ) as { version: string };
   for (const locale of ['', 'ja/']) {
     const base = `/${locale}projects/capacitor-local-llm`;
     const landing = new JSDOM(
@@ -493,7 +499,7 @@ test('Local LLM 2.2 documents Chrome text support in both locales', async () => 
     );
     assert.match(
       landing.window.document.querySelector('.project-version')?.textContent ?? '',
-      /2\.2\.0/,
+      new RegExp(installedPackage.version.replaceAll('.', '\\.')),
     );
     assert.match(
       landing.window.document.querySelector('.project-summary')?.textContent ?? '',

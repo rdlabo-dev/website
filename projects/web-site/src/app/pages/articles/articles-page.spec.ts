@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
+import { articleSummaries } from '../../articles/article-data';
 import { ArticlesPage } from './articles-page';
 
 describe('ArticlesPage', () => {
@@ -34,14 +35,6 @@ describe('ArticlesPage', () => {
     fixture.detectChanges();
   });
 
-  it('uses the shared article layout with the sidebar', () => {
-    const root = fixture.nativeElement as HTMLElement;
-
-    expect(root.querySelector('.article-layout')).not.toBeNull();
-    expect(root.querySelector('.article-main')).not.toBeNull();
-    expect(root.querySelector('.article-sidebar')).not.toBeNull();
-  });
-
   it('makes each article card a single link', () => {
     const root = fixture.nativeElement as HTMLElement;
     const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('a.article-preview'));
@@ -49,25 +42,15 @@ describe('ArticlesPage', () => {
     expect(cards.length).toBeGreaterThan(0);
     expect(cards.every((card) => card.getAttribute('href')?.startsWith('/articles/'))).toBe(true);
     expect(cards.every((card) => card.querySelector('a') === null)).toBe(true);
-    expect(
-      cards.every(
-        (card) =>
-          card.querySelector('.article-preview__cta')?.textContent?.trim() === 'Read article →',
-      ),
-    ).toBe(true);
   });
 
-  it('leads with engineering value while identifying both source platforms', () => {
-    const root = fixture.nativeElement as HTMLElement;
-
-    expect(root.querySelector('h1')?.textContent?.trim()).toBe('Engineering Notes');
-    expect(root.querySelector('.page-header__lead')?.textContent).toContain('real-world Ionic');
-    expect(root.querySelector('.page-header__note')?.textContent).toContain('Zenn and note');
+  it('identifies each article’s source platform on its card', () => {
+    const cards = Array.from(
+      (fixture.nativeElement as HTMLElement).querySelectorAll('a.article-preview'),
+    );
     expect(
-      Array.from(root.querySelectorAll('.article-preview__source')).some(
-        (source) => source.textContent?.trim() === 'From note',
-      ),
-    ).toBe(true);
+      cards.map((card) => card.querySelector('.article-preview__source')?.textContent?.trim()),
+    ).toEqual(articleSummaries.slice(0, 12).map((article) => `From ${article.sourceName}`));
   });
 
   it('includes the shared resource links in the sidebar', () => {
@@ -101,11 +84,13 @@ describe('ArticlesPage', () => {
 
     const root = fixture.nativeElement as HTMLElement;
     const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('a.article-preview'));
-    expect(cards.map((card) => card.getAttribute('href'))).toEqual([
-      '/articles/ionic-theme-reusable-css-v9-1',
-      '/articles/ionic-themes-ionic9-major-update',
-      '/articles/ionic-theme-md3',
-    ]);
+    const expected = articleSummaries.filter((article) =>
+      article.relatedLibraries?.some((library) => library.id === 'ionic-theme-md3'),
+    );
+    expect(expected.length).toBeGreaterThan(0);
+    expect(cards.map((card) => card.getAttribute('href'))).toEqual(
+      expected.map((article) => `/articles/${article.slug}`),
+    );
     expect(root.querySelector('.article-sidebar__category-link--active')?.textContent?.trim()).toBe(
       'Ionic Theme MD3',
     );
@@ -125,7 +110,9 @@ describe('ArticlesPage', () => {
 
     const root = fixture.nativeElement as HTMLElement;
     expect(root.querySelector('h1')?.textContent?.trim()).toBe('Engineering Notes');
-    expect(root.querySelectorAll('a.article-preview')).toHaveLength(12);
+    expect(root.querySelectorAll('a.article-preview')).toHaveLength(
+      Math.min(12, articleSummaries.length),
+    );
     expect(root.querySelector('.article-years__active')?.textContent?.trim()).toBe('Latest');
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       'https://rdlabo.dev/articles',

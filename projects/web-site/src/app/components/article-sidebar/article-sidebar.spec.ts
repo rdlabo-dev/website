@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
+import { articleCategories } from '../../articles/article-data';
 import { ArticleSidebar } from './article-sidebar';
 
 describe('ArticleSidebar', () => {
@@ -35,19 +36,15 @@ describe('ArticleSidebar', () => {
       root.querySelectorAll<HTMLAnchorElement>('.article-sidebar__category-link'),
     );
 
-    expect(links.map((link) => link.textContent?.trim())).toEqual([
-      'Brother Print',
-      'Ionic Docs Japanese',
-      'Ionic Theme iOS26',
-      'Ionic Theme MD3',
-    ]);
-    expect(links.map((link) => link.getAttribute('href'))).toEqual([
-      '/articles?library=capacitor-brotherprint',
-      '/articles?library=ionic-docs',
-      '/articles?library=ionic-theme-ios26',
-      '/articles?library=ionic-theme-md3',
-    ]);
-    expect(root.querySelectorAll('.article-sidebar__category-icon')).toHaveLength(4);
+    expect(links.map((link) => link.textContent?.trim())).toEqual(
+      articleCategories.map((category) => category.name),
+    );
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(
+      articleCategories.map((category) => `/articles?library=${category.id}`),
+    );
+    expect(root.querySelectorAll('.article-sidebar__category-icon')).toHaveLength(
+      articleCategories.length,
+    );
     expect(
       Array.from(root.querySelectorAll('.article-sidebar__category-icon')).every(
         (icon) => icon.getAttribute('aria-hidden') === 'true',

@@ -18,7 +18,9 @@ describe('SupportPageComponent', () => {
   it('renders every generated public sponsor without exposing sponsorship amounts', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const sponsorLinks = Array.from(
-      compiled.querySelectorAll<HTMLAnchorElement>('[aria-labelledby="current-sponsors-heading"] li a'),
+      compiled.querySelectorAll<HTMLAnchorElement>(
+        '[aria-labelledby="current-sponsors-heading"] li a',
+      ),
     );
 
     expect(sponsorLinks).toHaveLength(CURRENT_SPONSORS.length);
@@ -30,7 +32,9 @@ describe('SupportPageComponent', () => {
       expect(compiled.textContent).toContain(`@${sponsor.login}`);
     }
     const pastSponsorLinks = Array.from(
-      compiled.querySelectorAll<HTMLAnchorElement>('[aria-labelledby="past-sponsors-heading"] li a'),
+      compiled.querySelectorAll<HTMLAnchorElement>(
+        '[aria-labelledby="past-sponsors-heading"] li a',
+      ),
     );
     expect(pastSponsorLinks).toHaveLength(PAST_SPONSORS.length);
     expect(pastSponsorLinks.map(({ href }) => href)).toEqual(
@@ -43,8 +47,6 @@ describe('SupportPageComponent', () => {
     for (const card of compiled.querySelectorAll('[aria-labelledby$="-sponsors-heading"] li')) {
       expect(card.textContent).not.toMatch(/\$\d/);
     }
-    expect(compiled.textContent).toContain('The first 10 monthly sponsors');
-    expect(compiled.textContent).toContain('100 monthly sponsors');
     expect(compiled.textContent).toContain(
       'Individual sponsors who opt to be public are recognized equally here',
     );

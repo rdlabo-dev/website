@@ -2,6 +2,7 @@ import { Component, LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { App } from './app';
+import { projectsForLocale } from './docs/docs-data';
 
 @Component({ standalone: true, template: '' })
 class StubPage {}
@@ -71,7 +72,7 @@ describe('App', () => {
     fixture.destroy();
   });
 
-  it('renders the new brand and all projects in the sidebar', async () => {
+  it('renders the brand and all hosted projects in the sidebar', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -82,7 +83,10 @@ describe('App', () => {
     const projectButtons = compiled.querySelectorAll<HTMLButtonElement>(
       'nav[aria-label="Primary navigation"] button[id^="project-button-"]',
     );
-    expect(projectButtons).toHaveLength(23);
+    const hostedProjects = projectsForLocale('en').filter((project) => !project.hostedUrl);
+    expect(Array.from(projectButtons, (button) => button.id).sort()).toEqual(
+      hostedProjects.map((project) => `project-button-${project.id}`).sort(),
+    );
     for (const button of Array.from(projectButtons)) {
       expect(button.getAttribute('aria-expanded')).toBe('false');
       expect(button.getAttribute('aria-controls')).toMatch(/^project-panel-/);
@@ -97,9 +101,13 @@ describe('App', () => {
     const projectOverviewLinks = compiled.querySelectorAll<HTMLAnchorElement>(
       'nav[aria-label="Primary navigation"] a[href^="/projects/"]',
     );
-    expect(projectOverviewLinks.length).toBeGreaterThanOrEqual(19);
+    for (const project of hostedProjects) {
+      expect(Array.from(projectOverviewLinks, (link) => link.getAttribute('href'))).toContain(
+        project.path,
+      );
+    }
     const panels = compiled.querySelectorAll<HTMLElement>('[id^="project-panel-"]');
-    expect(panels).toHaveLength(23);
+    expect(panels).toHaveLength(hostedProjects.length);
     for (const panel of Array.from(panels)) {
       expect(panel.hasAttribute('inert')).toBe(true);
       expect(panel.getAttribute('aria-hidden')).toBe('true');
@@ -111,7 +119,7 @@ describe('App', () => {
     expect(compiled.textContent).toContain('Ionic Angular Kit');
     const footer = compiled.querySelector('footer')?.textContent ?? '';
     expect(footer).toContain('Personal open source projects maintained by rdlabo');
-    expect(footer).toContain('© 2026 rdlabo');
+    expect(footer).toMatch(/© \d{4} rdlabo/);
     expect(footer).not.toContain('GENERAL INC. ASSOCIATION');
   });
 

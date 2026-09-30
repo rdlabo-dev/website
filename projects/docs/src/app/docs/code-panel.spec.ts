@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SimpleChange } from '@angular/core';
 
 import { CodePanel } from './code-panel';
 
@@ -57,17 +56,21 @@ describe('CodePanel', () => {
     expect(component.isDimmed('a.ts', 2)).toBe(false);
   });
 
-  it('ngOnChanges selects the first mapped filename', () => {
+  it('selects the first available mapped file when the active lines input changes', () => {
     fixture.componentRef.setInput('activeLines', {
       'missing.ts': [1, 3],
       'b.ts': [1, 2],
       'a.ts': [1, 4],
     });
 
-    component.ngOnChanges({
-      activeLines: new SimpleChange({}, component.activeLines, true),
-    });
-
-    expect(component.activeFile()).toBe('b.ts');
+    fixture.detectChanges();
+    const element = fixture.nativeElement as HTMLElement;
+    expect(element.querySelector('[role="tab"][aria-selected="true"]')?.textContent?.trim()).toBe(
+      'b.ts',
+    );
+    expect(Array.from(element.querySelectorAll('.code-row'), (row) => row.textContent)).toEqual([
+      'alpha',
+      'beta',
+    ]);
   });
 });

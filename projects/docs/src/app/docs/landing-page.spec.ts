@@ -27,9 +27,7 @@ describe('LandingPageComponent', () => {
 
   it('renders a manifest-driven Stripe landing page', async () => {
     const compiled = await setup('stripe');
-    expect(TestBed.inject(Title).getTitle()).toBe(
-      'Capacitor Stripe Plugin Documentation | rdlabo',
-    );
+    expect(TestBed.inject(Title).getTitle()).toBe('Capacitor Stripe Plugin Documentation | rdlabo');
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Accept Stripe payments in Capacitor apps',
     );
@@ -49,17 +47,25 @@ describe('LandingPageComponent', () => {
 
   it('takes Workers visitors to the paired quickstart and exposes guides and API', async () => {
     const compiled = await setup('workers-timezone');
-    expect(compiled.querySelector('.project-actions a')?.getAttribute('href')).toBe('/projects/workers-timezone/docs/quickstart');
+    expect(compiled.querySelector('.project-actions a')?.getAttribute('href')).toBe(
+      '/projects/workers-timezone/docs/quickstart',
+    );
     expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
   });
 
   it('lists every documentation page once in the full index', async () => {
     const element = await setup('ionic-theme-ios27');
     const project = (await loadProject('ionic-theme-ios27'))!;
-    const links = Array.from(element.querySelectorAll('#documentation a')).map((link) => link.getAttribute('href'));
+    const links = Array.from(element.querySelectorAll('#documentation a')).map((link) =>
+      link.getAttribute('href'),
+    );
     expect(element.querySelector('.entry-guide')).toBeNull();
-    const sections = Array.from(element.querySelectorAll('.project-hero, #documentation, .project-media, .project-section'));
-    expect(sections.indexOf(element.querySelector('.project-media')!)).toBeLessThan(sections.indexOf(element.querySelector('#documentation')!));
+    const sections = Array.from(
+      element.querySelectorAll('.project-hero, #documentation, .project-media, .project-section'),
+    );
+    expect(sections.indexOf(element.querySelector('.project-media')!)).toBeLessThan(
+      sections.indexOf(element.querySelector('#documentation')!),
+    );
     expect(links).toHaveLength(project.pages.length);
     expect(new Set(links)).toEqual(new Set(project.pages.map((page) => page.path)));
   });
@@ -84,7 +90,8 @@ describe('LandingPageComponent', () => {
     );
     expect(element.querySelector('.project-stars')?.getAttribute('href')).toBe(repository);
     expect(TestBed.inject(GitHubStarsService).count).toHaveBeenCalledWith(repository);
-    expect(element.querySelector(`a[href="${repository}/releases/tag/ios26-v9.4.1"]`)).not.toBeNull();
+    const project = (await loadProject('ionic-theme-ios26'))!;
+    expect(element.querySelector(`a[href="${project.releaseNotesUrl}"]`)).not.toBeNull();
   });
 
   it('links library documentation to related articles', async () => {
@@ -94,21 +101,15 @@ describe('LandingPageComponent', () => {
     ).map((link) => link.textContent?.trim());
     expect(actionLabels).toEqual(['Get started', 'Demo']);
     expect(
-      compiled.querySelector<HTMLAnchorElement>(
-        'a[href="https://ionic-theme-md3.rdlabo.dev/"]',
-      )?.textContent,
+      compiled.querySelector<HTMLAnchorElement>('a[href="https://ionic-theme-md3.rdlabo.dev/"]')
+        ?.textContent,
     ).toContain('Demo');
     const links = Array.from(
       compiled.querySelectorAll<HTMLAnchorElement>('a[href^="https://rdlabo.dev/articles/"]'),
     );
-    expect(links.map((link) => link.href)).toContain(
-      'https://rdlabo.dev/articles/ionic-theme-md3',
-    );
-    expect(links.map((link) => link.href)).toContain(
-      'https://rdlabo.dev/articles/ionic-theme-reusable-css-v9-1',
-    );
-    expect(links.map((link) => link.href)).toContain(
-      'https://rdlabo.dev/articles/ionic-themes-ionic9-major-update',
+    const project = (await loadProject('ionic-theme-md3'))!;
+    expect(links.map((link) => link.href)).toEqual(
+      project.relatedArticles!.map((article) => article.url),
     );
     expect(compiled.textContent).toContain('Related articles');
     expect(compiled.querySelector('.related-article-lang')).toBeNull();
@@ -123,19 +124,25 @@ describe('LandingPageComponent', () => {
       ),
     ).toBe(true);
     const dates = Array.from(compiled.querySelectorAll<HTMLTimeElement>('time'));
-    expect(dates.map((date) => date.dateTime)).toEqual([
-      '2026-09-04',
-      '2026-08-25',
-      '2026-08-24',
-    ]);
-    expect(dates.map((date) => date.textContent?.trim())).toEqual([
-      'September 4, 2026',
-      'August 25, 2026',
-      'August 24, 2026',
-    ]);
-    expect(compiled.querySelectorAll('.project-feature')).toHaveLength(3);
+    expect(dates.map((date) => date.dateTime)).toEqual(
+      project.relatedArticles!.map((article) => article.publishedDate),
+    );
+    const dateFormat = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Tokyo',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    expect(dates.map((date) => date.textContent?.trim())).toEqual(
+      project.relatedArticles!.map((article) =>
+        dateFormat.format(new Date(`${article.publishedDate}T00:00:00+09:00`)),
+      ),
+    );
+    expect(compiled.querySelectorAll('.project-feature')).toHaveLength(project.features.length);
     expect(compiled.querySelectorAll('.project-feature a')).toHaveLength(0);
-    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(3);
+    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(
+      project.relatedArticles!.length,
+    );
   });
 
   it('labels related English articles on the Japanese landing page', async () => {
@@ -156,7 +163,9 @@ describe('LandingPageComponent', () => {
 
     expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
     expect(compiled.textContent).toContain('Related articles');
-    expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(3);
+    expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(
+      project!.relatedArticles!.length,
+    );
     expect(
       Array.from(compiled.querySelectorAll('.related-article-lang')).every(
         (badge) => badge.textContent?.trim() === 'English',

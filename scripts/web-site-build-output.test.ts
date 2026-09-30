@@ -14,7 +14,6 @@ const docsLinkOpeningNewTab =
 test('prerenders the web-site home, archive, and translated articles', async () => {
   const home = await readFile(new URL('index.html', browserRoot), 'utf8');
   assert.match(home, /Featured OSS/);
-  assert.match(home, /Current milestone: 10 monthly sponsors/);
   assert.match(home, /View sponsorship options/);
   assert.match(home, /metadata_campaign=rdlabo-home/);
   assert.match(home, /https:\/\/docs\.rdlabo\.dev/);

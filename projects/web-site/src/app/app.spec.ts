@@ -21,11 +21,6 @@ describe('App', () => {
     delete (window as GoogleAnalyticsWindow).gtag;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    expect(fixture.componentInstance).toBeTruthy();
-  });
-
   it('should render the site header brand', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
@@ -121,9 +116,6 @@ describe('App', () => {
       'https://github.com/sponsors/rdlabo?metadata_campaign=rdlabo-home',
     );
     expect(supportCta?.target).toBe('_blank');
-    expect(compiled.querySelector('.community-cta__vision')?.textContent).toContain(
-      '10 monthly sponsors',
-    );
     expect(compiled.querySelectorAll('.article-preview')).toHaveLength(3);
     expect(compiled.querySelectorAll('a.article-preview')).toHaveLength(3);
     const articleLinks = [

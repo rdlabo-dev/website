@@ -43,41 +43,16 @@ describe('PluginIndexComponent', () => {
     expect(cards.map((card) => card.getAttribute('href'))).toEqual(
       groupedProjects.map((project) => project.hostedUrl ?? project.path),
     );
-    expect(cards.map((card) => card.querySelector('h3')?.textContent?.trim())).toEqual([
-      'Ionic Docs Japanese',
-      'Capacitor Docs Japanese',
-      'Stripe',
-      'Stripe Identity',
-      'Stripe Terminal',
-      'AdMob',
-      'Facebook Login',
-      'Local LLM',
-      'Code Scanner',
-      'Screenshot Event',
-      'Printer',
-      'Brother Print',
-      'Ionic Angular Kit',
-      'Ionic Angular Photo Editor',
-      'Ionic Angular Scroll Header',
-      'Angular CDK Scroll Strategies',
-      'Ionic Theme iOS27',
-      'Ionic Theme iOS26',
-      'Ionic Theme MD3',
-      'Ionic Angular Collect Icons',
-      'Workers Timezone',
-      'Workers MySQL',
-      'Workers Hono Kit',
-      'ESLint Plugin Rules',
-      'Docgen',
-    ]);
-    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(25);
+    expect(cards.map((card) => card.querySelector('h3')?.textContent?.trim())).toEqual(
+      groupedProjects.map((project) => project.shortName),
+    );
+    expect(compiled.querySelectorAll('app-project-icon')).toHaveLength(groupedProjects.length);
   });
 
   it('keeps Japanese catalog metadata and lazy documentation in parity', async () => {
     const japaneseProjects = projectsForLocale('ja');
     const englishProjects = projectsForLocale('en');
     expect(japaneseProjects).toHaveLength(projectCatalog.length);
-    expect(projectCatalog).toHaveLength(25);
     expect(englishProjects.find((project) => project.id === 'ionic-docs')).toEqual(
       expect.objectContaining({
         category: 'translations',
@@ -125,123 +100,32 @@ describe('PluginIndexComponent', () => {
         'class="api-entry"',
       );
     }
-    for (const projectId of [
-      'capacitor-codescanner',
-      'capacitor-screenshot-event',
-      'capacitor-printer',
-      'capacitor-brotherprint',
-    ]) {
-      expect(japaneseProjects.find((project) => project.id === projectId)?.pages).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({ slug: 'readme' }),
-          expect.objectContaining({ slug: 'api', section: 'リファレンス' }),
-        ]),
+    for (const summary of japaneseProjects.filter((project) => !project.hostedUrl)) {
+      const project = await loadProject(summary.id, 'ja');
+      expect(project).toBeDefined();
+      expect(project?.version).toBe(summary.version);
+      expect(project?.pages.map((page) => page.path)).toEqual(
+        summary.pages.map((page) => page.path),
       );
+      expect(project?.pages.every((page) => page.html.trim().length > 0)).toBe(true);
     }
-    expect(japaneseProjects.find((project) => project.id === 'stripe')?.pages[0].navTitle).toBe(
-      '設定',
-    );
-
-    const admob = await loadProject('admob', 'ja');
-    expect(admob?.pages.find((page) => page.slug === 'consent')?.html).toContain(
-      '広告リクエストの前に同意を集める',
-    );
-    const facebookLogin = await loadProject('facebook-login', 'ja');
-    expect(facebookLogin?.version).toBe('8.1.0');
-    expect(facebookLogin?.pages.find((page) => page.slug === 'authentication')?.html).toContain(
-      'Limited Login',
-    );
-    expect(facebookLogin?.pages.find((page) => page.slug === 'api')?.html).toContain(
-      '<code>method</code> login(...)',
-    );
-    const eslint = await loadProject('eslint-plugin-rules', 'ja');
-    expect(eslint?.version).toBe('22.1.0');
-    expect(eslint?.pages.find((page) => page.slug === 'rules')?.html).toContain(
-      'signal-use-as-signal-template',
-    );
-    const restrictTryBlock = eslint?.pages.find((page) => page.slug === 'rules/restrict-try-block');
-    expect(restrictTryBlock?.path).toBe(
-      '/projects/eslint-plugin-rules/docs/rules/restrict-try-block',
-    );
-    expect(restrictTryBlock?.html).toMatch(/オプション|Options/);
-    expect(restrictTryBlock?.html).toContain('allowPromise');
-    expect(restrictTryBlock?.html).toMatch(/誤り|Incorrect/i);
-    const hono = await loadProject('workers-hono-kit', 'ja');
-    expect(hono?.version).toBe('0.12.2');
-    expect(hono?.pages.find((page) => page.slug === 'data-layer')?.html).toContain(
-      'primaryHyperdrive',
-    );
-    const ionic = await loadProject('ionic-angular-kit', 'ja');
-    expect(ionic?.version).toBe('22.0.3');
-    expect(ionic?.pages.find((page) => page.slug === 'offline-realtime')?.html).toContain(
-      'createOfflineAuthBridge',
-    );
-    const photoEditor = await loadProject('ionic-angular-photo-editor', 'ja');
-    const photoEditorApi = photoEditor?.pages.find((page) => page.slug === 'api');
-    expect(photoEditorApi?.section).toBe('リファレンス');
-    expect(photoEditorApi?.html).toContain('<code>component</code> PhotoEditorPage');
-    expect(photoEditorApi?.html).toContain('<code>class</code> PhotoFileService');
-    const codeScanner = await loadProject('capacitor-codescanner', 'ja');
-    const codeScannerApi = codeScanner?.pages.find((page) => page.slug === 'api');
-    expect(codeScannerApi?.html).toContain('<code>method</code> present(...)');
-    expect(codeScannerApi?.html).toMatch(/<code>interface<\/code>[\s\S]*?ScannerOption/);
-    const iosTheme = await loadProject('ionic-theme-ios26', 'ja');
-    expect(iosTheme?.version).toBe('9.4.1');
-    expect(iosTheme?.pages.find((page) => page.slug === 'readme')?.html).toContain(
-      'iosTransitionAnimation',
-    );
-    expect(iosTheme?.pages.find((page) => page.slug === 'using-ion-item-group')?.html).toContain(
-      'md-ion-list-inset.css',
-    );
-    const md3Theme = await loadProject('ionic-theme-md3', 'ja');
-    expect(md3Theme?.version).toBe('9.1.2');
-    expect(md3Theme?.pages.find((page) => page.slug === 'readme')?.html).toContain(
-      'mdTransitionAnimation',
-    );
   });
 
-  it('defines localized categories before adding non-Capacitor projects', () => {
-    expect(projectCategoriesForLocale('en').map((category) => category.id)).toEqual([
-      'translations',
-      'capacitor-plugins',
-      'frontend-tools',
-      'developer-tools',
-    ]);
-    expect(projectCategoriesForLocale('ja').map((category) => category.label)).toEqual([
-      'ドキュメント翻訳',
-      'Capacitorプラグイン',
-      'フロントエンドツール',
-      '開発ツール',
-    ]);
-    expect(
-      projectGroupsForLocale('en')
-        .find((group) => group.id === 'translations')
-        ?.projects.map((project) => project.id),
-    ).toEqual(['ionic-docs', 'capacitor-docs']);
-    expect(
-      projectGroupsForLocale('en')
-        .find((group) => group.id === 'frontend-tools')
-        ?.projects.map((project) => project.id)
-        .slice()
-        .sort(),
-    ).toEqual(
-      [
-        'ionic-angular-kit',
-        'ionic-angular-photo-editor',
-        'ionic-angular-scroll-header',
-        'ngx-cdk-scroll-strategies',
-        'ionic-theme-ios26',
-        'ionic-theme-ios27',
-        'ionic-theme-md3',
-        'ionic-angular-collect-icons',
-      ].sort(),
-    );
-    expect(
-      projectGroupsForLocale('en')
-        .find((group) => group.id === 'developer-tools')
-        ?.projects.map((project) => project.id)
-        .slice()
-        .sort(),
-    ).toEqual(['capacitor-docgen', 'eslint-plugin-rules', 'workers-hono-kit', 'workers-mysql', 'workers-timezone'].sort());
+  it('groups each catalog project exactly once with localized category labels', () => {
+    const english = projectCategoriesForLocale('en');
+    const japanese = projectCategoriesForLocale('ja');
+    expect(japanese.map((category) => category.id)).toEqual(english.map((category) => category.id));
+    expect(japanese.every((category) => category.label.trim().length > 0)).toBe(true);
+    for (const locale of ['en', 'ja']) {
+      const groups = projectGroupsForLocale(locale);
+      const projects = groups.flatMap((group) => group.projects);
+      expect(projects.map((project) => project.id).sort()).toEqual(
+        projectCatalog.map((project) => project.id).sort(),
+      );
+      expect(new Set(projects.map((project) => project.id)).size).toBe(projects.length);
+      for (const group of groups) {
+        expect(group.projects.every((project) => project.category === group.id)).toBe(true);
+      }
+    }
   });
 });

@@ -292,3 +292,24 @@ pagefind-modal-trigger.docs-search:empty {
     padding: 0.85rem;
   }
 }
+
+/* Make Markdown section permalinks visible and keyboard accessible. */
+[appHeadingLinks] :is(h2, h3, h4, h5, h6)[id] {
+  cursor: pointer;
+  scroll-margin-top: 6rem;
+}
+[appHeadingLinks] .header-anchor-link {
+  position: static;
+  display: inline-block;
+  margin-right: 0.4em;
+  color: #796e68;
+  text-decoration: none;
+  opacity: 1;
+}
+[appHeadingLinks] .header-anchor-link::before {
+  content: none;
+}
+[appHeadingLinks] .header-anchor-link:focus-visible,
+[appHeadingLinks] :is(h2, h3, h4, h5, h6):hover > .header-anchor-link {
+  color: #c44320;
+}

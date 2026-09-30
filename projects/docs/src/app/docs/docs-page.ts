@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HeadingLinksDirective } from '../../../../../shared/heading-links';
 import { CodePanel } from './code-panel';
 import { InteractiveDemoPanel } from './interactive-demo-panel';
 import { OssResourceLinksComponent } from '../../../../../shared/oss-resource-links';
@@ -31,6 +32,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
     RouterLink,
     SafeHtmlPipe,
     ScrollSpyDirective,
+    HeadingLinksDirective,
   ],
   template: `
     @if (project(); as proj) {
@@ -89,7 +91,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                 >{{ proj.category }}</span
               >
               <h1 id="document-title">{{ doc.title }}</h1>
-              <div [innerHTML]="doc.html | safeHtml"></div>
+              <div appHeadingLinks [innerHTML]="doc.html | safeHtml"></div>
               @if (doc.codes.length) {
                 <div class="hidden max-[960px]:block">
                   @for (code of doc.codes; track code.file) {
@@ -273,7 +275,7 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
     this.#route.fragment.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe((fragment) => {
       if (!fragment) return;
       this.#document.defaultView?.requestAnimationFrame(() => {
-        this.#document.getElementById(fragment)?.scrollIntoView();
+        (this.#document.getElementById(fragment) ?? this.#document.getElementById(encodeURIComponent(fragment)))?.scrollIntoView();
       });
     });
   }

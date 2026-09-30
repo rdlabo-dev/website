@@ -50,3 +50,21 @@ Thu, 20 Aug 2026 23:21:47 GMT
   assert.equal(articles[0]?.slug, 'example');
   assert.equal(articles[0]?.publishedDate, '2026-08-21');
 });
+
+test('ignores malformed links and paths without a single article slug', () => {
+  const links = [
+    '',
+    'not a URL',
+    'https://zenn.dev/rdlabo/articles/',
+    'https://zenn.dev/rdlabo/articles/example/extra',
+    'https://zenn.dev/other/articles/example',
+  ];
+  assert.deepEqual(
+    parseZennArticleFeed(
+      `<rss><channel>${links
+        .map((link) => `<item><link>${link}</link></item>`)
+        .join('')}</channel></rss>`,
+    ),
+    [],
+  );
+});

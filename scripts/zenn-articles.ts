@@ -31,7 +31,8 @@ export function parseZennArticleFeed(xml: string): ZennArticleMetadata[] {
 
   const articles = Array.from(document.querySelectorAll('item')).flatMap((item) => {
     const url = item.querySelector('link')?.textContent?.trim() ?? '';
-    const match = new URLPattern({ pathname: `/${ZENN_USERNAME}/articles/:slug` }).exec(url);
+    if (!URL.canParse(url)) return [];
+    const match = new URL(url).pathname.match(new RegExp(`^/${ZENN_USERNAME}/articles/([^/]+)$`));
     if (!match) return [];
 
     const publishedAt = item.querySelector('pubDate')?.textContent?.trim() ?? '';
@@ -42,7 +43,7 @@ export function parseZennArticleFeed(xml: string): ZennArticleMetadata[] {
 
     return [
       {
-        slug: match.pathname.groups['slug'],
+        slug: match[1],
         title: item.querySelector('title')?.textContent?.trim() ?? '',
         url,
         publishedAt: published.toISOString(),

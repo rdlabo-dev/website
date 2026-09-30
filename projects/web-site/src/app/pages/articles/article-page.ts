@@ -1,3 +1,4 @@
+import { HeadingLinksDirective } from '../../../../../../shared/heading-links';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ArticleDetail, formatArticleDate } from '../../articles/article-data';
@@ -8,7 +9,7 @@ import { SeoService } from '../../seo.service';
 
 @Component({
   selector: 'app-article-page',
-  imports: [RouterLink, SafeHtmlPipe, ArticleSidebar],
+  imports: [RouterLink, SafeHtmlPipe, ArticleSidebar, HeadingLinksDirective],
   templateUrl: './article-page.html',
 })
 export class ArticlePage {

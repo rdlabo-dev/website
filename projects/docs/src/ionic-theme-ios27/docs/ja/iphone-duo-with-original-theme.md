@@ -28,7 +28,7 @@ npm install @rdlabo/ionic-theme-ios27@1.2.0
 
 ### 2. アプリを側面のレイアウトへ切り替える
 
-既存のapp rootにクラスを追加し、その中のコンテンツを維持します。
+Chromeで縦レイアウトを確認するため、既存のapp rootにクラスを追加します。その中のコンテンツは維持します。実機ではこのクラスを固定せず、後述の「iPhone Duoと接続する」で端末の配置通知に連動させます。
 
 ```html
 <ion-app class="ios-theme-vertical-bars">
@@ -139,9 +139,18 @@ npx cap sync ios
 
 iOS 27.1で実際の操作領域の配置とヒンジ状態を取得するには、Capacitor 8.5以降とXcode 27.1以降を使います。Native UI ShellはSwift Package Managerを使います。既存のCocoaPodsアプリは[Native UI Shellの導入](/docs/native-ui-shell#有効化)を参照してください。このパッケージの `vertical-bars.css` を維持し、同じ操作領域へ描画するプラグインの `ionic-tabs.css` は読み込まないでください。
 
-ブラウザ用の起動コードを[端末配置の設定](/docs/iphone-duo#操作部品を縦の領域へ描画する)へ置き換えます。その設定は初期値と `barPlacementChange` イベントを `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` へ渡し、購読と後処理はアプリが管理します。
+**実機では、`@erkamyaman/capacitor-foldable` が返す操作領域の配置に応じて、縦レイアウトを有効・無効にします。** アプリが `.ios-theme-vertical-bars` を直接付け外しする必要はありません。Foldableが端末の配置を取得・通知し、その値を受け取ったテーマの `setVerticalControlAreaPlacement()` がクラス、左右の配置、領域の幅を更新します。
 
-要求する端とネイティブの端の両方に、Foldableの実測insetを添えて渡します。配置APIはRTLを解決します。端がnullなら通常のレイアウトへ戻ります。
+Chrome確認用の設定から、次のように切り替えます。[端末配置の設定のコード例](/docs/iphone-duo#操作部品を縦の領域へ描画する)を使ってください。
+
+1. 手順2で `<ion-app>` に固定した `ios-theme-vertical-bars` と、追加していれば `ios-theme-vertical-bars-left` を外します。既存のクラスやコンテンツは維持します。
+2. 手順4のブラウザ用起動コードを、リンク先の端末配置のコード例へ置き換えます。`enableVerticalControlArea()` を二重に起動せず、`ion-app` のマウント後に一度だけ起動します。
+3. `Foldable.addListener('barPlacementChange', ...)` で配置変更を購読し、`Foldable.getBarPlacement()` で初期配置を取得します。両方の結果を `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` へ渡します。イベントの購読だけでは、起動時の配置が反映されません。
+4. アプリ側で監視を終了するときにlistenerを削除し、runtimeを破棄します。リンク先の後処理も組み込んでください。
+
+`verticalBarEdge` が `leading` または `trailing` なら、配置APIが `.ios-theme-vertical-bars` を追加し、RTLを考慮して左右を決定します。`inset` にはFoldableが取得した実測値を渡します。`verticalBarEdge` が `null` になると、配置APIが縦レイアウト用のクラスと幅指定を外し、通常の水平レイアウトへ戻します。半開きかどうかを示す `foldStateChange` ではなく、操作領域の配置を示す `barPlacementChange` に連動させてください。
+
+WebやAndroidではFoldableの `verticalBarEdge` は `null` のため、この実機連動の設定では水平レイアウトになります。Chromeで縦レイアウトを再確認するときは、手順2の固定クラスを使うブラウザ用の設定で試してください。
 
 対応するiOSでは操作領域をSwiftUIでネイティブ描画し、通常のコンテンツと水平の操作部品は独自のWebスタイルを維持します。WebとAndroidはWebクローンを使います。
 

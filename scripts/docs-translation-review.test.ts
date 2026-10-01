@@ -78,6 +78,40 @@ test('README API signatures and HTML code cannot be rewritten', () => {
   );
 });
 
+test('option headings do not turn following prose into a semantic API signature', () => {
+  const source = '### `method`\n\n- Type: `string`\n';
+  const target = translation('### `method`\n\n- Type : `string`\n', docsSourceRevision(source));
+  assert.doesNotThrow(() => assertReviewedDocsTranslation(source, target, 'fr/options'));
+  assert.throws(
+    () =>
+      assertReviewedDocsTranslation(source, target.replace('`string`', '`number`'), 'fr/options'),
+    /identifiers/,
+  );
+});
+
+test('unclosed inline code stays protected without consuming prose or a following list item', () => {
+  for (const separator of ['\n\n', '\n- ']) {
+    const source =
+      '- Event bindings `(click)="count > 0 ? ..."' + separator + 'Use `isSignal()` to check.\n';
+    const target = translation(
+      '- Liaisons d’événements `(click)="count > 0 ? ..."`' +
+        separator +
+        'Utilisez `isSignal()` pour vérifier.\n',
+      docsSourceRevision(source),
+    );
+    assert.doesNotThrow(() => assertReviewedDocsTranslation(source, target, 'fr/template'));
+    for (const changed of [
+      target.replace('(click)', '(input)'),
+      target.replace('`isSignal()`', '`other()`'),
+    ]) {
+      assert.throws(
+        () => assertReviewedDocsTranslation(source, changed, 'fr/template'),
+        /identifiers/,
+      );
+    }
+  }
+});
+
 test('API prose translations preserve code and generated type links', () => {
   const source = 'Pass <a href="#initializeoptions">InitializeOptions</a> to `initialize()`.';
   assert.throws(

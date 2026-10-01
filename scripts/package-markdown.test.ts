@@ -165,6 +165,17 @@ npm install
   });
 });
 
+test('localized imported README headings preserve the same landing boundaries', () => {
+  for (const [overview, index] of [
+    ['Vue d’ensemble', 'Sommaire'],
+    ['Überblick', 'Inhaltsverzeichnis'],
+  ]) {
+    const source = `# Plugin\n\nRepository badges.\n\n## ${overview}\n\nDocumentation.\n\n## Installation\n\nSetup.\n\n## ${index}\n\nRepository index.\n`;
+    const { readme } = extractPackageReadmeParts(source);
+    assert.equal(readme, `## ${overview}\n\nDocumentation.\n\n## Installation\n\nSetup.\n`);
+  }
+});
+
 test('extracts localized rdlabo-docs-pick regions without leaving them in the README', () => {
   assert.deepEqual(
     extractRdlaboDocsPick(`紹介

@@ -14,9 +14,10 @@ async function requirePath(path: string, label: string): Promise<void> {
 export async function prepareDocsStaticAssets(
   repoRoot: string,
   browserRoot: string,
+  locales: readonly { code: string; subPath: string; published: boolean }[] = DOCS_LOCALES,
 ): Promise<void> {
   await requirePath(browserRoot, 'Angular browser output');
-  const published = DOCS_LOCALES.filter((locale) => locale.published);
+  const published = locales.filter((locale) => locale.published);
   for (const locale of published) {
     const source404 = join(repoRoot, 'projects/docs/public', locale.subPath, '404.html');
     const target404 = join(browserRoot, locale.subPath, '404.html');
@@ -24,7 +25,7 @@ export async function prepareDocsStaticAssets(
     await requirePath(target404, `${locale.code} 404 output`);
     await copyFile(source404, target404);
     // Angular copies public assets into each locale output; remove duplicated locale directories.
-    for (const nested of DOCS_LOCALES.filter((locale) => locale.subPath)) {
+    for (const nested of locales.filter((locale) => locale.subPath)) {
       if (locale.subPath || !nested.published)
         await rm(join(browserRoot, locale.subPath, nested.subPath), {
           recursive: true,

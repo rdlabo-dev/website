@@ -19,23 +19,15 @@
     </unit>
     <unit id="docsHomeNav">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:53,54</note>
+        <note category="location">projects/docs/src/app/app.html:54,55</note>
       </notes>
       <segment>
         <source>docs</source>
       </segment>
     </unit>
-    <unit id="switchLanguage">
-      <notes>
-        <note category="location">projects/docs/src/app/app.html:68,70</note>
-      </notes>
-      <segment>
-        <source>Switch language</source>
-      </segment>
-    </unit>
     <unit id="viewOnGitHub">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:82,85</note>
+        <note category="location">projects/docs/src/app/app.html:75,78</note>
       </notes>
       <segment>
         <source>View on GitHub</source>
@@ -43,7 +35,7 @@
     </unit>
     <unit id="closeDocumentationMenu">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:97,99</note>
+        <note category="location">projects/docs/src/app/app.html:90,92</note>
       </notes>
       <segment>
         <source>Close documentation menu</source>
@@ -51,15 +43,39 @@
     </unit>
     <unit id="documentation">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:110,112</note>
+        <note category="location">projects/docs/src/app/app.html:102,104</note>
       </notes>
       <segment>
         <source>Documentation</source>
       </segment>
     </unit>
+    <unit id="chooseLibrary">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:108,109</note>
+      </notes>
+      <segment>
+        <source>Choose a library</source>
+      </segment>
+    </unit>
+    <unit id="browseAllLibraries">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:114,115</note>
+      </notes>
+      <segment>
+        <source>Browse all libraries</source>
+      </segment>
+    </unit>
+    <unit id="librariesRail">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:127,129</note>
+      </notes>
+      <segment>
+        <source>Libraries</source>
+      </segment>
+    </unit>
     <unit id="primaryNavigation">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:112,114</note>
+        <note category="location">projects/docs/src/app/app.html:147,148</note>
       </notes>
       <segment>
         <source>Primary navigation</source>
@@ -67,16 +83,25 @@
     </unit>
     <unit id="allProjectsNav">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:127,131</note>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:67,68</note>
+        <note category="location">projects/docs/src/app/app.html:155,156</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:61,62</note>
       </notes>
       <segment>
         <source>All projects</source>
       </segment>
     </unit>
+    <unit id="homeRail">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:164,166</note>
+      </notes>
+      <segment>
+        <source>Home</source>
+      </segment>
+    </unit>
     <unit id="articlesNav">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:142,145</note>
+        <note category="location">projects/docs/src/app/app.html:169,170</note>
+        <note category="location">projects/docs/src/app/app.html:178,180</note>
       </notes>
       <segment>
         <source>Articles</source>
@@ -84,23 +109,47 @@
     </unit>
     <unit id="supportNav">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:160,163</note>
+        <note category="location">projects/docs/src/app/app.html:186</note>
       </notes>
       <segment>
         <source>Sponsor</source>
       </segment>
     </unit>
-    <unit id="overviewNav">
+    <unit id="supportRail">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:224,226</note>
+        <note category="location">projects/docs/src/app/app.html:194,196</note>
       </notes>
       <segment>
-        <source>Overview</source>
+        <source>Sponsor</source>
+      </segment>
+    </unit>
+    <unit id="dismissLoadError">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:239,240</note>
+      </notes>
+      <segment>
+        <source>Dismiss message</source>
+      </segment>
+    </unit>
+    <unit id="documentationLoadError">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:248,250</note>
+      </notes>
+      <segment>
+        <source> This page couldn’t be loaded. Reload the documentation to try again. </source>
+      </segment>
+    </unit>
+    <unit id="reloadDocumentation">
+      <notes>
+        <note category="location">projects/docs/src/app/app.html:250,254</note>
+      </notes>
+      <segment>
+        <source>Reload documentation</source>
       </segment>
     </unit>
     <unit id="footerOwnership">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:261,264</note>
+        <note category="location">projects/docs/src/app/app.html:271,274</note>
       </notes>
       <segment>
         <source> Personal open source projects maintained by rdlabo. </source>
@@ -108,7 +157,7 @@
     </unit>
     <unit id="supportFooter">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:269,271</note>
+        <note category="location">projects/docs/src/app/app.html:279,281</note>
       </notes>
       <segment>
         <source>Support these projects</source>
@@ -116,24 +165,56 @@
     </unit>
     <unit id="footerCopyright">
       <notes>
-        <note category="location">projects/docs/src/app/app.html:272,275</note>
+        <note category="location">projects/docs/src/app/app.html:282,285</note>
       </notes>
       <segment>
         <source> © 2026 rdlabo. Released under the MIT License. </source>
       </segment>
     </unit>
+    <unit id="developerToolsRail">
+      <notes>
+        <note category="location">projects/docs/src/app/app.ts:438</note>
+      </notes>
+      <segment>
+        <source>Dev</source>
+      </segment>
+    </unit>
     <unit id="breadcrumb">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:61,63</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:55,57</note>
       </notes>
       <segment>
         <source>Breadcrumb</source>
       </segment>
     </unit>
+    <unit id="documentationPages">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:107,108</note>
+      </notes>
+      <segment>
+        <source>Documentation pages</source>
+      </segment>
+    </unit>
+    <unit id="previousPage">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:112,113</note>
+      </notes>
+      <segment>
+        <source>Previous</source>
+      </segment>
+    </unit>
+    <unit id="nextPage">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:121,122</note>
+      </notes>
+      <segment>
+        <source>Next</source>
+      </segment>
+    </unit>
     <unit id="editOnGitHub">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:130,131</note>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:193,194</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:149,150</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:212,213</note>
       </notes>
       <segment>
         <source>Edit this page on GitHub</source>
@@ -141,7 +222,7 @@
     </unit>
     <unit id="pageNavigation">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:146,148</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:165,167</note>
       </notes>
       <segment>
         <source>Page navigation</source>
@@ -149,7 +230,7 @@
     </unit>
     <unit id="contents">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:152,153</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:171,172</note>
       </notes>
       <segment>
         <source>Contents</source>
@@ -157,7 +238,7 @@
     </unit>
     <unit id="onThisPage">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:154,155</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:173,174</note>
       </notes>
       <segment>
         <source>On this page</source>
@@ -165,16 +246,24 @@
     </unit>
     <unit id="supportThisOss">
       <notes>
-        <note category="location">projects/docs/src/app/docs/docs-page.ts:219</note>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:248</note>
       </notes>
       <segment>
         <source>Support this OSS</source>
       </segment>
     </unit>
+    <unit id="docsResources">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/docs-page.ts:250</note>
+      </notes>
+      <segment>
+        <source>Resources</source>
+      </segment>
+    </unit>
     <unit id="interactiveDemo">
       <notes>
-        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:15,17</note>
-        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:19,21</note>
+        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:30,32</note>
+        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:34,36</note>
       </notes>
       <segment>
         <source>Interactive demo</source>
@@ -182,7 +271,7 @@
     </unit>
     <unit id="openDemo">
       <notes>
-        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:27,28</note>
+        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:42,43</note>
       </notes>
       <segment>
         <source>Open demo</source>
@@ -190,7 +279,7 @@
     </unit>
     <unit id="loadingDemo">
       <notes>
-        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:43,44</note>
+        <note category="location">projects/docs/src/app/docs/interactive-demo-panel.ts:56,57</note>
       </notes>
       <segment>
         <source>Loading demo…</source>
@@ -198,7 +287,7 @@
     </unit>
     <unit id="getStarted">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:52,53</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:35,37</note>
       </notes>
       <segment>
         <source>Get started</source>
@@ -206,7 +295,7 @@
     </unit>
     <unit id="viewDemo">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:61,62</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:39,40</note>
       </notes>
       <segment>
         <source>Demo</source>
@@ -214,28 +303,55 @@
     </unit>
     <unit id="viewSource">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:70,71</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:43,44</note>
       </notes>
       <segment>
         <source>View source</source>
       </segment>
     </unit>
     <unit id="releaseNotes">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:47,48</note>
+      </notes>
       <segment>
         <source>Release notes</source>
       </segment>
     </unit>
     <unit id="starOnGitHub">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:87,88</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:52,53</note>
       </notes>
       <segment>
         <source>Star on GitHub</source>
       </segment>
     </unit>
+    <unit id="allDocumentation">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:82,83</note>
+      </notes>
+      <segment>
+        <source>All documentation</source>
+      </segment>
+    </unit>
+    <unit id="projectSupportPrompt">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:98,99</note>
+      </notes>
+      <segment>
+        <source>Help keep this library maintained.</source>
+      </segment>
+    </unit>
+    <unit id="projectSponsorLink">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:99</note>
+      </notes>
+      <segment>
+        <source>Sponsor this project</source>
+      </segment>
+    </unit>
     <unit id="relatedArticles">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:128,129</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:103,104</note>
       </notes>
       <segment>
         <source>Related articles</source>
@@ -243,10 +359,26 @@
     </unit>
     <unit id="relatedArticleLanguage">
       <notes>
-        <note category="location">projects/docs/src/app/docs/landing-page.ts:141,143</note>
+        <note category="location">projects/docs/src/app/docs/landing-page.ts:108,109</note>
       </notes>
       <segment>
         <source>English</source>
+      </segment>
+    </unit>
+    <unit id="librariesNav">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/library-picker.html:6</note>
+      </notes>
+      <segment>
+        <source>Libraries</source>
+      </segment>
+    </unit>
+    <unit id="selectedLibrary">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/library-picker.html:22,23</note>
+      </notes>
+      <segment>
+        <source>Selected library</source>
       </segment>
     </unit>
     <unit id="notFoundHeading">
@@ -284,66 +416,90 @@
     </unit>
     <unit id="openSourceDocumentation">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:17,19</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:14,15</note>
       </notes>
       <segment>
         <source>Open source documentation</source>
       </segment>
     </unit>
+    <unit id="documentationTitle">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:15,16</note>
+      </notes>
+      <segment>
+        <source>Documentation</source>
+      </segment>
+    </unit>
     <unit id="projectsIntro">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:26,27</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:16,17</note>
       </notes>
       <segment>
         <source>Documentation for open source projects created and maintained by rdlabo.</source>
       </segment>
     </unit>
-    <unit id="personalOwnershipNotice">
+    <unit id="projectCategoriesNav">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:34,36</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:17</note>
       </notes>
       <segment>
-        <source> Every OSS project listed here is developed and maintained personally by rdlabo. They are independent of the incorporated association that also uses the rdlabo name. </source>
-      </segment>
-    </unit>
-    <unit id="currentCollection">
-      <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:50,52</note>
-      </notes>
-      <segment>
-        <source>Current collection</source>
+        <source>Project categories</source>
       </segment>
     </unit>
     <unit id="readDocumentation">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:83,84</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:43,45</note>
       </notes>
       <segment>
         <source>Read documentation</source>
       </segment>
     </unit>
-    <unit id="growingCollection">
+    <unit id="personalOwnershipNotice">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:97,99</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:51,52</note>
       </notes>
       <segment>
-        <source>Growing collection</source>
+        <source>Every OSS project listed here is developed and maintained personally by rdlabo. They are independent of the incorporated association that also uses the rdlabo name.</source>
       </segment>
     </unit>
-    <unit id="upcomingProjects">
+    <unit id="docsHomeTitle">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:101,103</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:69</note>
       </notes>
       <segment>
-        <source>More rdlabo projects will be documented here as they are released.</source>
+        <source>Cloudflare Workers, Ionic &amp; Capacitor OSS Docs | rdlabo</source>
       </segment>
     </unit>
     <unit id="siteDescription">
       <notes>
-        <note category="location">projects/docs/src/app/docs/plugin-index.ts:126</note>
+        <note category="location">projects/docs/src/app/docs/plugin-index.ts:70</note>
       </notes>
       <segment>
         <source>Guides and API references for rdlabo open-source libraries: Cloudflare Workers, Hono, MySQL, timezones, Ionic, Angular, and Capacitor.</source>
+      </segment>
+    </unit>
+    <unit id="backToLibraryList">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/project-navigation.html:6,7</note>
+      </notes>
+      <segment>
+        <source>Back to library list</source>
+      </segment>
+    </unit>
+    <unit id="projectNavigation">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/project-navigation.html:26,27</note>
+      </notes>
+      <segment>
+        <source>Project navigation</source>
+      </segment>
+    </unit>
+    <unit id="overviewNav">
+      <notes>
+        <note category="location">projects/docs/src/app/docs/project-navigation.html:37,39</note>
+      </notes>
+      <segment>
+        <source>Overview</source>
       </segment>
     </unit>
     <unit id="supportEyebrow">
@@ -396,7 +552,7 @@
     </unit>
     <unit id="currentSponsorsHeading">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:54,55</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:55,56</note>
       </notes>
       <segment>
         <source>Current sponsors</source>
@@ -404,7 +560,7 @@
     </unit>
     <unit id="pastSponsorsHeading">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:56,58</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:57,59</note>
       </notes>
       <segment>
         <source>Past sponsors</source>
@@ -412,7 +568,7 @@
     </unit>
     <unit id="currentSponsorsDescription">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:62,64</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:63,65</note>
       </notes>
       <segment>
         <source>Thank you to the people and organizations supporting rdlabo&apos;s open source work.</source>
@@ -420,7 +576,7 @@
     </unit>
     <unit id="pastSponsorsDescription">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:67,69</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:68,70</note>
       </notes>
       <segment>
         <source>Thank you also to everyone who has supported this work in the past.</source>
@@ -428,7 +584,7 @@
     </unit>
     <unit id="supportSponsorHeading">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:107,109</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:108,110</note>
       </notes>
       <segment>
         <source>Join from $5 a month</source>
@@ -436,7 +592,7 @@
     </unit>
     <unit id="supportSponsorDescription">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:111,113</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:112,114</note>
       </notes>
       <segment>
         <source>Individual sponsorships do not unlock exclusive features, priority support, or a private roadmap. Your support helps keep the same libraries, documentation, compatibility updates, and releases available to everyone.</source>
@@ -444,7 +600,7 @@
     </unit>
     <unit id="becomeSponsor">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:124,125</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:125,126</note>
       </notes>
       <segment>
         <source>Sponsor from $5/month</source>
@@ -452,7 +608,7 @@
     </unit>
     <unit id="supportIndependenceNotice">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:131,134</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:132,135</note>
       </notes>
       <segment>
         <source>Sponsorship supports independent open-source work maintained personally by rdlabo.</source>
@@ -460,8 +616,8 @@
     </unit>
     <unit id="supportPageTitle">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:147</note>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:152</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:148</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:153</note>
       </notes>
       <segment>
         <source>Support open source - rdlabo.dev</source>
@@ -469,32 +625,19 @@
     </unit>
     <unit id="supportPageDescription">
       <notes>
-        <note category="location">projects/docs/src/app/docs/support-page.ts:153</note>
+        <note category="location">projects/docs/src/app/docs/support-page.ts:154</note>
       </notes>
       <segment>
         <source>Join the community supporting independent open-source projects maintained by rdlabo.</source>
       </segment>
     </unit>
-      <unit id="documentationTitle"><segment><source>Documentation</source></segment></unit>
-    <unit id="projectCategoriesNav"><segment><source>Project categories</source></segment></unit>
-    <unit id="projectDocumentation">
+    <unit id="switchLanguage">
+      <notes>
+        <note category="location">projects/docs/src/app/language-menu.ts:18</note>
+        <note category="location">projects/docs/src/app/language-menu.ts:35</note>
+      </notes>
       <segment>
-        <source>Documentation</source>
-      </segment>
-    </unit>
-    <unit id="projectApiReference">
-      <segment>
-        <source>API reference</source>
-      </segment>
-    </unit>
-    <unit id="projectSupportPrompt">
-      <segment>
-        <source>Help keep this library maintained.</source>
-      </segment>
-    </unit>
-    <unit id="projectSponsorLink">
-      <segment>
-        <source>Sponsor this project</source>
+        <source>Switch language</source>
       </segment>
     </unit>
   </file>

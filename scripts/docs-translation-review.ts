@@ -11,13 +11,21 @@ export function docsSourceRevision(markdown: string): string {
 function protectedCode(markdown: string): string[] {
   let prose = markdown;
   for (const block of extractFencedCodeBlocks(markdown)) prose = prose.replace(block, '');
-  const inline = [...prose.matchAll(/(?<!`)(`+)(?!`)([\s\S]*?)\1(?!`)/g)].map((match) => match[2]);
+  const inlinePattern =
+    /(?<!`)(`+)(?!`)((?:(?!\n[ \t]*(?:\n|[-+*][ \t]|\d+\.[ \t]|#{1,6}[ \t]))[\s\S])*?)\1(?!`)/g;
+  const inline = [...prose.matchAll(inlinePattern)].map((match) => match[2]);
+  // A missing closing delimiter must not consume the next paragraph. Keep the
+  // remaining code on that line protected, allowing the delimiter to be repaired.
+  const outsideInline = prose.replace(inlinePattern, (match) => match.replace(/[^\n]/g, ' '));
+  inline.push(
+    ...[...outsideInline.matchAll(/(?<!`)(`+)(?!`)([^`\n]+)(?=\n|$)/g)].map((match) => match[2]),
+  );
   const htmlCode = [...JSDOM.fragment(prose).querySelectorAll('code')].map(
     (code) => code.textContent ?? '',
   );
   const signatures = [
     ...prose.matchAll(
-      /^#{3,4}\s+(?:`(?:method|interface|type alias|enum|class|component|directive|function|module|command|stylesheet|rule)`\s+(.+)|([\w$.]+\([^\n]*\)))\s*$/gm,
+      /^#{3,4}[ \t]+(?:`(?:method|interface|type alias|enum|class|component|directive|function|module|command|stylesheet|rule)`[ \t]+(.+)|([\w$.]+\([^\n]*\)))[ \t]*$/gm,
     ),
   ].map((match) => match[1] ?? match[2]);
   return [...inline, ...htmlCode, ...signatures].sort();

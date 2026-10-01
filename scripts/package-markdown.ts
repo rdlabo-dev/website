@@ -1,8 +1,8 @@
 import { posix } from 'node:path';
 import { splitDocgenReadme } from './docgen-readme';
 
-const LANDING_START = /^## Overview[ \t]*$/m;
-const LANDING_END = /^## Index[ \t]*$/m;
+const LANDING_START = /^## (?:Overview|Vue d[’']ensemble|Überblick)[ \t]*$/m;
+const LANDING_END = /^## (?:Index|Sommaire|Inhaltsverzeichnis)[ \t]*$/m;
 
 function extractMarkedRegions(
   markdown: string,

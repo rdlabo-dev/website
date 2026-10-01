@@ -81,7 +81,6 @@ export interface DocsPage extends DocsPageSummary {
 export interface ProjectSummary {
   id: string;
   slug: string;
-  name: string;
   shortName: string;
   packageName: string;
   repositoryUrl: string;
@@ -101,6 +100,7 @@ export interface ProjectSummary {
 }
 
 export interface ProjectDocs extends Omit<ProjectSummary, 'pages'> {
+  name: string;
   headline: string;
   overview: string;
   overviewHtml?: string;

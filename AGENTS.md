@@ -7,7 +7,7 @@
 | Documentation portal | `projects/docs`     | `docs.rdlabo.dev` |
 | Top site             | `projects/web-site` | `rdlabo.dev`      |
 
-The documentation portal generates bilingual pages from source packages (pinned in `package-lock.json`) and Markdown under `projects/docs/src/{project}/docs/`. The top site publishes reviewed English translations of selected Zenn and note articles from `projects/web-site/src/articles/`.
+The documentation portal generates English, Japanese, French, and German pages from source packages (pinned in `package-lock.json`) and Markdown under `projects/docs/src/{project}/docs/`. The top site publishes reviewed English translations of selected Zenn and note articles from `projects/web-site/src/articles/`.
 
 ## Quick reference
 
@@ -162,11 +162,13 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 ## Documentation locales
 
-- `shared/docs-locales.ts` is the locale registry. English is the source locale at `/`; translated locales use `/{code}`. French and German are registered but remain unpublished until their translations pass review.
+- `shared/docs-locales.ts` is the locale registry. English is the source locale at `/`; translated locales use `/{code}`. English, Japanese, French, and German are published after independent translation review.
 - Only locales with `published: true` appear in the generator, language menu, sitemap, and HTML-head hreflang. Angular `build.options.localize` must build exactly those locales; `docs:generate:content` validates that contract before writing output.
 - Navigation summaries stay in the initial bundle. Overview prose, feature cards, and full document bodies belong to lazy project modules; do not add a menu-loading delay when adding locales.
 - Translated guides live under `projects/docs/src/{project}/docs/{locale}/`. Manifest metadata is reviewed in `scripts/locales/metadata.{locale}.ts`, keyed by the exact English text; missing translations fail generation.
 - For locales requiring source review, every Markdown file must have a translated `title` and `sourceRevision`. Run `npm run docs:stage-translations` to stage the pinned English sources and hashes under `tmp/docs-translations/`. Translate and review those sources before copying them to the indicated target paths. Never refresh `sourceRevision` without re-reading and updating the translation.
+- Run `npm run docs:validate-translations` to compare every reviewed locale with the pinned English originals and validate metadata and API prose. Optional `-- --locale=fr` or `-- --project=workers-hono-kit` limits a work-in-progress check. This verifies code and source contracts; an independent translator must still review meaning, terminology, and natural language.
+- Translated headings keep their localized IDs. Generated hidden aliases preserve the corresponding English heading fragments, so links in the original sources remain valid. Keep heading levels and order unchanged, and localize `scrollActiveLine[].id` to the translated heading while preserving code line ranges.
 - API prose from `dist/docs.json` is translated in `projects/docs/src/locale/api.{locale}.json`, keyed by the exact formatted English description or table label. Signatures and identifiers continue to come from the installed package. Auto-created README API pages require a reviewed local `api.md` when they are not already included in the localized README. Missing or changed API prose translations fail generation.
 - To publish a locale, finish all Markdown, metadata, API prose, Angular XLF, and static `404.html` translations; then enable it in the registry and Angular configuration together, regenerate, and run the full CI sequence. Review the UI on desktop and mobile before publication.
 
@@ -180,7 +182,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 ### Translation rules
 
-- **Translate explanatory code comments into the target language; keep all non-comment code byte-for-byte identical between EN and JA.** Preserve literals, identifiers, commands, whitespace outside comments, and behavior-affecting directives. The validator supports comment translation in JavaScript/TypeScript, HTML/XML, and simple Swift line comments; extend its language support before translating comments in other syntax or languages.
+- **Translate explanatory code comments into the target language; keep all non-comment code byte-for-byte identical between EN and JA.** Preserve literals, identifiers, commands, whitespace outside comments, and behavior-affecting directives. The validator supports comment translation in JavaScript/TypeScript, HTML/XML, CSS, standalone or trailing comments in simple sh/bash commands, simple Swift line comments, and standalone `//` or XML comments in simple source diffs; extend its language support before translating comments in other syntax or languages. CSS literals, URL contents, tool directives, license comments, and browser hacks retain exact comparison. Shell heredocs, parameter/command expansion, arithmetic and conditional expressions, extended globs, ANSI-C quoting, escaped whitespace, continuations, multiline quotes, and tool directives also retain exact comparison. Source diffs preserve change markers and indentation; complex strings, regexes, block comments, and directives retain exact comparison.
 - Translate prose into natural Japanese suitable for developer documentation.
 - Technical terms (class names, method names, package names) remain untranslated.
 - Localize page titles for guides and narrative pages. Identifiers, product names, rule names, and generic titles (`API`, `CLI API`, `@rdlabo/...`) may remain the same in both locales.
@@ -235,7 +237,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 ### SEO audit
 
 - `npm run seo:audit` checks built sitemap-listed HTML for `docs.rdlabo.dev` and `rdlabo.dev`.
-- For bilingual docs, the audit validates reciprocal HTML-head hreflang across all sitemap-listed pages (exactly the published locale codes and `x-default` — no other hreflang keys; no empty/whitespace `hreflang` attributes; alternate `href` values must be fully-qualified HTTPS URLs; targets must be sitemap locs; identical normalized mapping across all language variants). It does not require sitemap-level hreflang when the docs sitemap omits alternates.
+- For multilingual docs, the audit validates reciprocal HTML-head hreflang across all sitemap-listed pages (exactly the published locale codes and `x-default` — no other hreflang keys; no empty/whitespace `hreflang` attributes; alternate `href` values must be fully-qualified HTTPS URLs; targets must be sitemap locs; identical normalized mapping across all language variants). It does not require sitemap-level hreflang when the docs sitemap omits alternates.
 - Canonical URLs must match the sitemap page URL exactly after trailing-slash normalization; query strings and fragments are rejected rather than stripped silently.
 - JSON-LD validation covers all blocks for syntax and object shape, then validates the managed graph by route. It requires the expected schema types, canonical alignment, one instance of each required type, internal absolute-HTTPS breadcrumb items with contiguous positions, article author/publisher/language/source fields, required valid article-specific images with JSON-LD/OG/visible agreement and consistent optional dimensions, valid non-future publication/modification dates, and agreement with visible/meta article dates. Extend both route expectations and semantic tests when adding a schema or public route.
 - This audit enforces this repository's contracts; use Google's Rich Results Test after production deployment for Google's current eligibility diagnostics.
@@ -246,7 +248,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 - Same project: `/docs/{page-slug}` (e.g. `/docs/payment-sheet`).
 - Cross project: `/{project-id}/docs/{page-slug}` (use `id` from manifest, not public `slug`).
 - Project root: `/{project-id}/`.
-- The generator rewrites these to localized `/projects/{slug}/docs/{page}` or `/ja/projects/{slug}/docs/{page}` paths.
+- The generator rewrites these to `/projects/{slug}/docs/{page}` for English and `/{locale}/projects/{slug}/docs/{page}` for Japanese, French, and German.
 - Package source links: use the exact pinned version tag (`https://github.com/rdlabo-dev/{project}/blob/vX.Y.Z/...`), never `main`.
 
 ## CI (`npm test` / `npm run build`)

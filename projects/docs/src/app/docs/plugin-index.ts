@@ -1,5 +1,6 @@
 import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
-import { projectGroupsForLocale } from './docs-data';
+import { projectGroupsForLocale, type ProjectSummary } from './docs-data';
+import { localizedPublicPath } from '../locale-path';
 import { ProjectIconComponent } from './project-icon';
 import { docsHomeStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
@@ -31,7 +32,7 @@ import { SeoService } from './seo.service';
           <ul class="catalog-grid">
             @for (project of group.projects; track project.id) {
               <li>
-                <a class="catalog-card" [href]="project.hostedUrl ?? project.path"
+                <a class="catalog-card" [href]="projectHref(project)"
                   [attr.target]="project.hostedUrl ? '_blank' : null"
                   [attr.rel]="project.hostedUrl ? 'noopener noreferrer' : null">
                   <span class="catalog-card__icon" aria-hidden="true"><app-project-icon [kind]="project.icon" /></span>
@@ -59,6 +60,10 @@ export class PluginIndexComponent implements OnInit {
   readonly #seo = inject(SeoService);
   readonly #locale = inject(LOCALE_ID);
   protected readonly projectGroups = projectGroupsForLocale(this.#locale);
+
+  protected projectHref(project: ProjectSummary): string {
+    return project.hostedUrl ?? localizedPublicPath(this.#locale, project.path);
+  }
 
   ngOnInit(): void {
     const homeTitle = $localize`:@@docsHomeTitle:Cloudflare Workers, Ionic & Capacitor OSS Docs | rdlabo`;

@@ -3,7 +3,7 @@ import { Component, input } from '@angular/core';
 @Component({
   selector: 'app-oss-resource-links',
   template: `
-    <nav aria-label="Resources">
+    <nav [attr.aria-label]="resourcesLabel()">
       <ul class="oss-resource-links__list">
         <li>
           <a class="oss-resource-links__link" [href]="supportHref()">
@@ -123,4 +123,5 @@ import { Component, input } from '@angular/core';
 export class OssResourceLinksComponent {
   readonly supportHref = input('/support');
   readonly supportLabel = input('Support this OSS');
+  readonly resourcesLabel = input('Resources');
 }

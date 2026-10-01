@@ -41,6 +41,7 @@ import { ProjectNavigation } from './docs/project-navigation';
 import { ProjectIconComponent } from './docs/project-icon';
 import { canonicalHomePath, localizedPublicPath } from './locale-path';
 import { LanguageMenu } from './language-menu';
+import { resolveDocsLocale } from '../../../../shared/docs-locales';
 
 type GoogleAnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
@@ -90,6 +91,7 @@ export class App {
   #pickerTrigger: HTMLElement | null = null;
   #bodyOverflow: string | null = null;
   #navigationInitialized = false;
+  #menuFocusFrame: number | null = null;
   @ViewChild('menuButton') protected readonly menuButton?: ElementRef<HTMLButtonElement>;
   @ViewChild('docsSidebar') protected readonly docsSidebar?: ElementRef<HTMLElement>;
   protected readonly menuOpen = signal(false);
@@ -117,6 +119,7 @@ export class App {
   );
   protected readonly navigationAnimationReady = signal(false);
   protected readonly canonicalHomePath = canonicalHomePath(this.#locale);
+  protected readonly searchLanguage = resolveDocsLocale(this.#locale);
   protected readonly isIndex = computed(() => {
     const path = this.currentUrl().split(/[?#]/)[0];
     return path === '/' || path === '/projects';
@@ -149,6 +152,7 @@ export class App {
       }
     });
     this.#destroyRef.onDestroy(() => {
+      this.#cancelMenuFocus();
       if (this.#bodyOverflow !== null) this.#document.body.style.overflow = this.#bodyOverflow;
     });
     if (isPlatformBrowser(this.#platformId)) {
@@ -304,18 +308,26 @@ export class App {
       this.closeMenu();
       return;
     }
-    this.#menuRevision++;
+    const revision = ++this.#menuRevision;
     this.menuOpen.set(true);
     afterNextRender(
       () => {
-        if (this.showingLibraries()) this.#focusLibraryList();
-        else this.#focusNavigationLink(this.#currentProjectLink());
+        if (revision !== this.#menuRevision || !this.menuOpen()) return;
+        // Wait for the drawer's visibility transition to start before moving focus.
+        this.#menuFocusFrame = this.#document.defaultView!.requestAnimationFrame(() => {
+          this.#menuFocusFrame = null;
+          if (revision !== this.#menuRevision || !this.menuOpen() || this.#destroyRef.destroyed)
+            return;
+          if (this.showingLibraries()) this.#focusLibraryList();
+          else this.#focusNavigationLink(this.#currentProjectLink());
+        });
       },
       { injector: this.#injector },
     );
   }
 
   protected closeMenu(returnFocus = true): void {
+    this.#cancelMenuFocus();
     if (!this.menuOpen()) {
       if (returnFocus && this.#sidebarContainsFocus()) {
         queueMicrotask(() => this.menuButton?.nativeElement.focus());
@@ -326,6 +338,12 @@ export class App {
     this.menuOpen.set(false);
     this.libraryPickerOpen.set(false);
     if (returnFocus) queueMicrotask(() => this.menuButton?.nativeElement.focus());
+  }
+
+  #cancelMenuFocus(): void {
+    if (this.#menuFocusFrame === null) return;
+    this.#document.defaultView?.cancelAnimationFrame(this.#menuFocusFrame);
+    this.#menuFocusFrame = null;
   }
 
   protected onLanguageMenuOpened(): void {
@@ -472,19 +490,26 @@ export class App {
     if (!sidebar || !button) return;
     const elements = [
       button,
-      ...Array.from(sidebar.querySelectorAll<HTMLElement>('a[href], button, input')).filter(
-        (element) => !element.closest('[inert], [hidden]'),
+      ...Array.from(
+        sidebar.querySelectorAll<HTMLElement>('a[href], button, input, [tabindex]'),
+      ).filter(
+        (element) =>
+          element.tabIndex >= 0 &&
+          !element.matches(':disabled') &&
+          !element.closest('[inert], [hidden], [aria-hidden="true"]'),
       ),
     ];
     const index = elements.indexOf(this.#document.activeElement as HTMLElement);
-    if (
-      index === -1 ||
-      (!event.shiftKey && index === elements.length - 1) ||
-      (event.shiftKey && index === 0)
-    ) {
-      event.preventDefault();
-      elements[event.shiftKey ? elements.length - 1 : 0]?.focus();
-    }
+    const next =
+      index === -1
+        ? event.shiftKey
+          ? elements.length - 1
+          : 0
+        : (index + (event.shiftKey ? -1 : 1) + elements.length) % elements.length;
+    event.preventDefault();
+    const element = elements[next];
+    if (element instanceof HTMLAnchorElement) this.#focusNavigationLink(element);
+    else element?.focus({ preventScroll: true });
   }
 
   protected navigateHome(event: MouseEvent): void {

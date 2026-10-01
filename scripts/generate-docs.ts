@@ -45,6 +45,7 @@ import {
 } from '../shared/docs-locales';
 import { validateDocsLocaleConfiguration } from './docs-locale-config';
 import { assertReviewedDocsTranslation, translateApiText } from './docs-translation-review';
+import { preserveSourceHeadingLinks } from './localized-heading-anchors';
 
 const root = resolve(process.cwd());
 const docsRepositoryUrl = 'https://github.com/rdlabo-dev/website';
@@ -148,6 +149,7 @@ function annotateDocgenApiEntries(document: Document): void {
     ['Type Aliases', 'type alias'],
     ['型エイリアス', 'type alias'],
     ['Alias de type', 'type alias'],
+    ['Alias de types', 'type alias'],
     ['Typaliase', 'type alias'],
     ['Enums', 'enum'],
     ['列挙型', 'enum'],
@@ -333,6 +335,7 @@ type ResolvedPageSource = {
   content: string;
   sourcePath: string;
   fromPackage: boolean;
+  importedMarkdown?: boolean;
   repositoryUrl: string;
   repositoryPath?: string;
 };
@@ -347,8 +350,10 @@ async function resolvePageSource(
   if (locale !== 'en' || page.localEnglishSource) {
     const srcPath = srcDocsPath(project, locale, file);
     const content = await readFile(srcPath, 'utf8');
+    let importedMarkdown = false;
     if (requiresDocsTranslationReview(locale)) {
       const english = await resolvePageSource(project, 'en', page, repositoryCache);
+      importedMarkdown = english.fromPackage;
       assertReviewedDocsTranslation(english.content, content, relative(root, srcPath), {
         api: page.slug === 'api',
       });
@@ -357,6 +362,7 @@ async function resolvePageSource(
       content,
       sourcePath: srcPath,
       fromPackage: false,
+      importedMarkdown,
       repositoryUrl: project.repositoryUrl,
     };
   }
@@ -379,6 +385,7 @@ async function generateProject(
   project: ProjectDefinition,
   locale: Locale,
   relatedArticles: readonly RelatedArticle[] = [],
+  repositoryCache = new Map<string, string>(),
 ): Promise<any> {
   const isHostedDocumentation = !!project.hostedUrl;
   const packageRoot = join(root, 'node_modules', project.packageName);
@@ -412,6 +419,7 @@ async function generateProject(
     parsed: ReturnType<typeof fm<any>>;
     sourcePath: string;
     fromPackage: boolean;
+    importedMarkdown?: boolean;
     repositoryPath?: string;
     repositoryUrl: string;
     annotateDocgen: boolean;
@@ -420,7 +428,6 @@ async function generateProject(
   let overviewMarkdown: string | undefined;
   let docgenApiPage: SourcePage | undefined;
   const declaresApiPage = project.pages.some((entry) => entry.slug === 'api');
-  const repositoryCache = new Map<string, string>();
   if (!isHostedDocumentation && !declaresApiPage) {
     const readme = await fetchEnglishProjectReadme(project, repositoryCache);
     const docgenApi = readme && extractPackageReadmeParts(readme.content).api;
@@ -432,21 +439,22 @@ async function generateProject(
     const { file } = declaredPage;
     const resolved = await resolvePageSource(project, locale, declaredPage, repositoryCache);
     const parsed = fm<any>(resolved.content);
-    const isPackageLanding = resolved.fromPackage && PACKAGE_LANDING_FILES.has(file);
+    const importedMarkdown = resolved.fromPackage || resolved.importedMarkdown;
+    const isPackageLanding = importedMarkdown && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;
-    if (!resolved.fromPackage) {
+    if (!importedMarkdown) {
       preparedBody = rewriteRelativeDocLinks(preparedBody, file);
     }
-    if (!resolved.fromPackage && file === 'readme.md') {
+    if (!importedMarkdown && file === 'readme.md') {
       const extracted = extractRdlaboDocsPick(preparedBody);
       preparedBody = extracted.markdown;
       if (extracted.picked.length) overviewMarkdown = extracted.picked.join('\n\n');
     }
     let splitReadme =
-      !resolved.fromPackage && file === 'readme.md' ? splitDocgenReadme(preparedBody) : undefined;
-    if (resolved.fromPackage) {
+      !importedMarkdown && file === 'readme.md' ? splitDocgenReadme(preparedBody) : undefined;
+    if (importedMarkdown) {
       if (isPackageLanding) {
-        const extracted = extractPackageReadmeParts(resolved.content);
+        const extracted = extractPackageReadmeParts(parsed.body || resolved.content);
         if (extracted.overview) {
           overviewMarkdown = normalizePackageMarkdown(
             rewritePackageDocLinks(extracted.overview, apiAnchors, packageLandingSlug),
@@ -479,6 +487,7 @@ async function generateProject(
       parsed,
       sourcePath: resolved.sourcePath,
       fromPackage: resolved.fromPackage,
+      importedMarkdown,
       repositoryPath: resolved.repositoryPath,
       repositoryUrl: resolved.repositoryUrl,
       annotateDocgen: false,
@@ -554,6 +563,7 @@ async function generateProject(
     parsed,
     sourcePath,
     fromPackage,
+    importedMarkdown,
     repositoryPath,
     repositoryUrl,
     annotateDocgen,
@@ -588,6 +598,7 @@ async function generateProject(
     const htmlDocument = new JSDOM(html).window.document;
     if (
       fromPackage ||
+      importedMarkdown ||
       (project.id === 'eslint-plugin-rules' && slug.startsWith('rules/')) ||
       slug === 'readme' ||
       file === 'using-ion-item-group.md'
@@ -711,12 +722,28 @@ async function main(): Promise<void> {
   >;
   const agentMarkdownByPath: Record<string, string> = {};
   for (const project of projectDefinitions) {
+    let englishProject: any;
+    const repositoryCache = new Map<string, string>();
     for (const locale of locales) {
       const generated = await generateProject(
         project,
         locale,
         relatedArticlesByLibrary.get(project.id),
+        repositoryCache,
       );
+      if (locale === 'en') englishProject = generated;
+      else if (requiresDocsTranslationReview(locale)) {
+        for (const page of generated.pages) {
+          const sourcePage = englishProject.pages.find((source: any) => source.slug === page.slug);
+          if (!sourcePage)
+            throw new Error(`${project.id}/${page.slug}: missing English source page`);
+          page.html = preserveSourceHeadingLinks(
+            sourcePage.html,
+            page.html,
+            `${project.id}/${page.slug} (${locale})`,
+          );
+        }
+      }
       const generatedForApp = {
         ...generated,
         pages: generated.pages.map(({ markdown: _markdown, ...page }: any) => page),
@@ -747,6 +774,7 @@ async function main(): Promise<void> {
       projectsByLocale[locale].map(
         ({
           pages,
+          name: _name,
           relatedArticles: _relatedArticles,
           headline: _headline,
           overview: _overview,
@@ -754,6 +782,9 @@ async function main(): Promise<void> {
           featuresHeading: _featuresHeading,
           features: _features,
           seoTitle: _seoTitle,
+          demoUrl: _demoUrl,
+          releaseNotesUrl: _releaseNotesUrl,
+          entryGuideSlugs: _entryGuideSlugs,
           ...project
         }) => ({
           ...project,
@@ -768,6 +799,7 @@ async function main(): Promise<void> {
               seoTitle,
               seoDescription,
               updatedAt,
+              demo,
               ...page
             }: any) => page,
           ),

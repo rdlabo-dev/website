@@ -30,7 +30,6 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-docs",
     "slug": "ionic-docs",
-    "name": "Ionic Framework Japanese Documentation",
     "shortName": "Ionic Docs Japanese",
     "packageName": "Authorized Japanese translation",
     "repositoryUrl": "https://github.com/ionic-jp/ionic-docs",
@@ -45,7 +44,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-docs",
     "slug": "capacitor-docs",
-    "name": "Capacitor Japanese Documentation",
     "shortName": "Capacitor Docs Japanese",
     "packageName": "Authorized Japanese translation",
     "repositoryUrl": "https://github.com/ionic-jp/capacitor-docs",
@@ -60,7 +58,6 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-angular-kit",
     "slug": "ionic-angular-kit",
-    "name": "rdlabo Ionic Angular Kit",
     "shortName": "Ionic Angular Kit",
     "packageName": "@rdlabo/ionic-angular-kit",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
@@ -131,11 +128,9 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-angular-photo-editor",
     "slug": "ionic-angular-photo-editor",
-    "name": "rdlabo Ionic Angular Photo Editor",
     "shortName": "Ionic Angular Photo Editor",
     "packageName": "@rdlabo/ionic-angular-photo-editor",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -159,10 +154,6 @@ export const PROJECTS_EN = [
       {
         "title": "Photo Editor",
         "navTitle": "Photo Editor",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
-          "title": "Interactive Photo Editor demo"
-        },
         "slug": "editor",
         "section": "Guides",
         "path": "/projects/ionic-angular-photo-editor/docs/editor"
@@ -170,10 +161,6 @@ export const PROJECTS_EN = [
       {
         "title": "Photo Viewer",
         "navTitle": "Photo Viewer",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
-          "title": "Interactive Photo Viewer demo"
-        },
         "slug": "viewer",
         "section": "Guides",
         "path": "/projects/ionic-angular-photo-editor/docs/viewer"
@@ -197,11 +184,9 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-angular-scroll-header",
     "slug": "ionic-angular-scroll-header",
-    "name": "rdlabo Ionic Angular Scroll Header",
     "shortName": "Ionic Angular Scroll Header",
     "packageName": "@rdlabo/ionic-angular-scroll-header",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -218,10 +203,6 @@ export const PROJECTS_EN = [
       {
         "title": "IonContent",
         "navTitle": "IonContent",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
-          "title": "Interactive IonContent scroll header demo"
-        },
         "slug": "ion-content",
         "section": "Guides",
         "path": "/projects/ionic-angular-scroll-header/docs/ion-content"
@@ -229,10 +210,6 @@ export const PROJECTS_EN = [
       {
         "title": "Virtual Scroll",
         "navTitle": "Virtual Scroll",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header",
-          "title": "Interactive virtual scroll header demo"
-        },
         "slug": "virtual-scroll",
         "section": "Guides",
         "path": "/projects/ionic-angular-scroll-header/docs/virtual-scroll"
@@ -256,11 +233,9 @@ export const PROJECTS_EN = [
   {
     "id": "ngx-cdk-scroll-strategies",
     "slug": "ngx-cdk-scroll-strategies",
-    "name": "rdlabo Angular CDK Scroll Strategies",
     "shortName": "Angular CDK Scroll Strategies",
     "packageName": "@rdlabo/ngx-cdk-scroll-strategies",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -277,10 +252,6 @@ export const PROJECTS_EN = [
       {
         "title": "Simple Usage",
         "navTitle": "Simple Usage",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
-          "title": "Interactive simple virtual scroll demo"
-        },
         "slug": "simple",
         "section": "Guides",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/simple"
@@ -288,10 +259,6 @@ export const PROJECTS_EN = [
       {
         "title": "Advanced Usage",
         "navTitle": "Advanced Usage",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
-          "title": "Interactive advanced virtual scroll demo"
-        },
         "slug": "advanced",
         "section": "Guides",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/advanced"
@@ -299,10 +266,6 @@ export const PROJECTS_EN = [
       {
         "title": "Reverse Scroll",
         "navTitle": "Reverse Scroll",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
-          "title": "Interactive reverse virtual scroll demo"
-        },
         "slug": "reverse",
         "section": "Guides",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/reverse"
@@ -326,12 +289,9 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-theme-ios27",
     "slug": "ionic-theme-ios27",
-    "name": "rdlabo Ionic Theme iOS27",
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
-    "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "1.2.0",
@@ -434,13 +394,10 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-theme-ios26",
     "slug": "ionic-theme-ios26",
-    "name": "rdlabo Ionic Theme iOS26",
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
-    "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios26-v9.4.1",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "9.4.1",
@@ -522,12 +479,9 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-theme-md3",
     "slug": "ionic-theme-md3",
-    "name": "rdlabo Ionic Theme Material Design 3",
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
-    "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "9.1.2",
@@ -588,7 +542,6 @@ export const PROJECTS_EN = [
   {
     "id": "ionic-angular-collect-icons",
     "slug": "ionic-angular-collect-icons",
-    "name": "rdlabo Ionic Angular Collect Icons",
     "shortName": "Ionic Angular Collect Icons",
     "packageName": "@rdlabo/ionic-angular-collect-icons",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
@@ -652,7 +605,6 @@ export const PROJECTS_EN = [
   {
     "id": "workers-timezone",
     "slug": "workers-timezone",
-    "name": "rdlabo Workers Timezone",
     "shortName": "Workers Timezone",
     "packageName": "@rdlabo/workers-timezone",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -709,7 +661,6 @@ export const PROJECTS_EN = [
   {
     "id": "workers-mysql",
     "slug": "workers-mysql",
-    "name": "rdlabo Workers MySQL",
     "shortName": "Workers MySQL",
     "packageName": "@rdlabo/workers-mysql",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -773,7 +724,6 @@ export const PROJECTS_EN = [
   {
     "id": "workers-hono-kit",
     "slug": "workers-hono-kit",
-    "name": "rdlabo Workers Hono Kit",
     "shortName": "Workers Hono Kit",
     "packageName": "@rdlabo/workers-hono-kit",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -837,7 +787,6 @@ export const PROJECTS_EN = [
   {
     "id": "eslint-plugin-rules",
     "slug": "eslint-plugin-rules",
-    "name": "rdlabo ESLint Plugin Rules",
     "shortName": "ESLint Plugin Rules",
     "packageName": "@rdlabo/eslint-plugin-rules",
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
@@ -1048,7 +997,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-docgen",
     "slug": "capacitor-docgen",
-    "name": "rdlabo Capacitor Docgen",
     "shortName": "Docgen",
     "packageName": "@rdlabo/capacitor-docgen",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-docgen",
@@ -1084,15 +1032,9 @@ export const PROJECTS_EN = [
   {
     "id": "stripe",
     "slug": "capacitor-stripe",
-    "name": "Capacitor Community Stripe",
     "shortName": "Stripe",
     "packageName": "@capacitor-community/stripe",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
-    "entryGuideSlugs": [
-      "vanilla-js",
-      "server-integration",
-      "payment-sheet"
-    ],
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
@@ -1188,7 +1130,6 @@ export const PROJECTS_EN = [
   {
     "id": "stripe-identity",
     "slug": "capacitor-stripe-identity",
-    "name": "Capacitor Community Stripe Identity",
     "shortName": "Stripe Identity",
     "packageName": "@capacitor-community/stripe-identity",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
@@ -1224,7 +1165,6 @@ export const PROJECTS_EN = [
   {
     "id": "stripe-terminal",
     "slug": "capacitor-stripe-terminal",
-    "name": "Capacitor Community Stripe Terminal",
     "shortName": "Stripe Terminal",
     "packageName": "@capacitor-community/stripe-terminal",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
@@ -1274,7 +1214,6 @@ export const PROJECTS_EN = [
   {
     "id": "admob",
     "slug": "capacitor-admob",
-    "name": "Capacitor Community AdMob",
     "shortName": "AdMob",
     "packageName": "@capacitor-community/admob",
     "repositoryUrl": "https://github.com/capacitor-community/admob",
@@ -1366,7 +1305,6 @@ export const PROJECTS_EN = [
   {
     "id": "facebook-login",
     "slug": "capacitor-facebook-login",
-    "name": "Capacitor Community Facebook Login",
     "shortName": "Facebook Login",
     "packageName": "@capacitor-community/facebook-login",
     "repositoryUrl": "https://github.com/capacitor-community/facebook-login",
@@ -1416,7 +1354,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-local-llm",
     "slug": "capacitor-local-llm",
-    "name": "rdlabo Capacitor Local LLM",
     "shortName": "Local LLM",
     "packageName": "@rdlabo/capacitor-local-llm",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
@@ -1508,7 +1445,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-codescanner",
     "slug": "capacitor-codescanner",
-    "name": "rdlabo Capacitor Code Scanner",
     "shortName": "Code Scanner",
     "packageName": "@rdlabo/capacitor-codescanner",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-codescanner",
@@ -1544,7 +1480,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-screenshot-event",
     "slug": "capacitor-screenshot-event",
-    "name": "rdlabo Capacitor Screenshot Event",
     "shortName": "Screenshot Event",
     "packageName": "@rdlabo/capacitor-screenshot-event",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-screenshot-event",
@@ -1580,7 +1515,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-printer",
     "slug": "capacitor-printer",
-    "name": "rdlabo Capacitor Printer",
     "shortName": "Printer",
     "packageName": "@rdlabo/capacitor-printer",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-printer",
@@ -1623,7 +1557,6 @@ export const PROJECTS_EN = [
   {
     "id": "capacitor-brotherprint",
     "slug": "capacitor-brotherprint",
-    "name": "rdlabo Capacitor Brother Print",
     "shortName": "Brother Print",
     "packageName": "@rdlabo/capacitor-brotherprint",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
@@ -1724,7 +1657,6 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-docs",
     "slug": "ionic-docs",
-    "name": "Ionic Framework Japanese Documentation",
     "shortName": "Ionic Docs 日本語版",
     "packageName": "Authorized Japanese translation",
     "repositoryUrl": "https://github.com/ionic-jp/ionic-docs",
@@ -1739,7 +1671,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-docs",
     "slug": "capacitor-docs",
-    "name": "Capacitor Japanese Documentation",
     "shortName": "Capacitor Docs 日本語版",
     "packageName": "Authorized Japanese translation",
     "repositoryUrl": "https://github.com/ionic-jp/capacitor-docs",
@@ -1754,7 +1685,6 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-angular-kit",
     "slug": "ionic-angular-kit",
-    "name": "rdlabo Ionic Angular Kit",
     "shortName": "Ionic Angular Kit",
     "packageName": "@rdlabo/ionic-angular-kit",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
@@ -1825,11 +1755,9 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-angular-photo-editor",
     "slug": "ionic-angular-photo-editor",
-    "name": "rdlabo Ionic Angular Photo Editor",
     "shortName": "Ionic Angular Photo Editor",
     "packageName": "@rdlabo/ionic-angular-photo-editor",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -1853,10 +1781,6 @@ export const PROJECTS_JA = [
       {
         "title": "Photo Editor",
         "navTitle": "Photo Editor",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
-          "title": "Photo Editorの操作デモ"
-        },
         "slug": "editor",
         "section": "ガイド",
         "path": "/projects/ionic-angular-photo-editor/docs/editor"
@@ -1864,10 +1788,6 @@ export const PROJECTS_JA = [
       {
         "title": "Photo Viewer",
         "navTitle": "Photo Viewer",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor",
-          "title": "Photo Viewerの操作デモ"
-        },
         "slug": "viewer",
         "section": "ガイド",
         "path": "/projects/ionic-angular-photo-editor/docs/viewer"
@@ -1891,11 +1811,9 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-angular-scroll-header",
     "slug": "ionic-angular-scroll-header",
-    "name": "rdlabo Ionic Angular Scroll Header",
     "shortName": "Ionic Angular Scroll Header",
     "packageName": "@rdlabo/ionic-angular-scroll-header",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -1912,10 +1830,6 @@ export const PROJECTS_JA = [
       {
         "title": "IonContent",
         "navTitle": "IonContent",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header",
-          "title": "IonContent Scroll Headerの操作デモ"
-        },
         "slug": "ion-content",
         "section": "ガイド",
         "path": "/projects/ionic-angular-scroll-header/docs/ion-content"
@@ -1923,10 +1837,6 @@ export const PROJECTS_JA = [
       {
         "title": "Virtual Scroll",
         "navTitle": "Virtual Scroll",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header",
-          "title": "Virtual Scroll Headerの操作デモ"
-        },
         "slug": "virtual-scroll",
         "section": "ガイド",
         "path": "/projects/ionic-angular-scroll-header/docs/virtual-scroll"
@@ -1950,11 +1860,9 @@ export const PROJECTS_JA = [
   {
     "id": "ngx-cdk-scroll-strategies",
     "slug": "ngx-cdk-scroll-strategies",
-    "name": "rdlabo Angular CDK Scroll Strategies",
     "shortName": "Angular CDK Scroll Strategies",
     "packageName": "@rdlabo/ngx-cdk-scroll-strategies",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
-    "demoUrl": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies",
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
@@ -1971,10 +1879,6 @@ export const PROJECTS_JA = [
       {
         "title": "シンプルな使い方",
         "navTitle": "シンプルな使い方",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple",
-          "title": "Simple Virtual Scrollの操作デモ"
-        },
         "slug": "simple",
         "section": "ガイド",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/simple"
@@ -1982,10 +1886,6 @@ export const PROJECTS_JA = [
       {
         "title": "応用的な使い方",
         "navTitle": "応用的な使い方",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",
-          "title": "Advanced Virtual Scrollの操作デモ"
-        },
         "slug": "advanced",
         "section": "ガイド",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/advanced"
@@ -1993,10 +1893,6 @@ export const PROJECTS_JA = [
       {
         "title": "リバーススクロール",
         "navTitle": "リバーススクロール",
-        "demo": {
-          "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse",
-          "title": "Reverse Virtual Scrollの操作デモ"
-        },
         "slug": "reverse",
         "section": "ガイド",
         "path": "/projects/ngx-cdk-scroll-strategies/docs/reverse"
@@ -2020,12 +1916,9 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-theme-ios27",
     "slug": "ionic-theme-ios27",
-    "name": "rdlabo Ionic Theme iOS27",
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
-    "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v1.2.0",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "1.2.0",
@@ -2128,13 +2021,10 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-theme-ios26",
     "slug": "ionic-theme-ios26",
-    "name": "rdlabo Ionic Theme iOS26",
     "shortName": "Ionic Theme iOS26",
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
-    "demoUrl": "https://ionic-theme-ios26.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios26-v9.4.1",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "9.4.1",
@@ -2216,12 +2106,9 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-theme-md3",
     "slug": "ionic-theme-md3",
-    "name": "rdlabo Ionic Theme Material Design 3",
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
-    "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
-    "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
     "category": "frontend-tools",
     "icon": "theme",
     "version": "9.1.2",
@@ -2282,7 +2169,6 @@ export const PROJECTS_JA = [
   {
     "id": "ionic-angular-collect-icons",
     "slug": "ionic-angular-collect-icons",
-    "name": "rdlabo Ionic Angular Collect Icons",
     "shortName": "Ionic Angular Collect Icons",
     "packageName": "@rdlabo/ionic-angular-collect-icons",
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
@@ -2346,7 +2232,6 @@ export const PROJECTS_JA = [
   {
     "id": "workers-timezone",
     "slug": "workers-timezone",
-    "name": "rdlabo Workers Timezone",
     "shortName": "Workers Timezone",
     "packageName": "@rdlabo/workers-timezone",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -2403,7 +2288,6 @@ export const PROJECTS_JA = [
   {
     "id": "workers-mysql",
     "slug": "workers-mysql",
-    "name": "rdlabo Workers MySQL",
     "shortName": "Workers MySQL",
     "packageName": "@rdlabo/workers-mysql",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -2467,7 +2351,6 @@ export const PROJECTS_JA = [
   {
     "id": "workers-hono-kit",
     "slug": "workers-hono-kit",
-    "name": "rdlabo Workers Hono Kit",
     "shortName": "Workers Hono Kit",
     "packageName": "@rdlabo/workers-hono-kit",
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
@@ -2531,7 +2414,6 @@ export const PROJECTS_JA = [
   {
     "id": "eslint-plugin-rules",
     "slug": "eslint-plugin-rules",
-    "name": "rdlabo ESLint Plugin Rules",
     "shortName": "ESLint Plugin Rules",
     "packageName": "@rdlabo/eslint-plugin-rules",
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
@@ -2742,7 +2624,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-docgen",
     "slug": "capacitor-docgen",
-    "name": "rdlabo Capacitor Docgen",
     "shortName": "Docgen",
     "packageName": "@rdlabo/capacitor-docgen",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-docgen",
@@ -2778,15 +2659,9 @@ export const PROJECTS_JA = [
   {
     "id": "stripe",
     "slug": "capacitor-stripe",
-    "name": "Capacitor Community Stripe",
     "shortName": "Stripe",
     "packageName": "@capacitor-community/stripe",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
-    "entryGuideSlugs": [
-      "vanilla-js",
-      "server-integration",
-      "payment-sheet"
-    ],
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
@@ -2882,7 +2757,6 @@ export const PROJECTS_JA = [
   {
     "id": "stripe-identity",
     "slug": "capacitor-stripe-identity",
-    "name": "Capacitor Community Stripe Identity",
     "shortName": "Stripe Identity",
     "packageName": "@capacitor-community/stripe-identity",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
@@ -2918,7 +2792,6 @@ export const PROJECTS_JA = [
   {
     "id": "stripe-terminal",
     "slug": "capacitor-stripe-terminal",
-    "name": "Capacitor Community Stripe Terminal",
     "shortName": "Stripe Terminal",
     "packageName": "@capacitor-community/stripe-terminal",
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
@@ -2968,7 +2841,6 @@ export const PROJECTS_JA = [
   {
     "id": "admob",
     "slug": "capacitor-admob",
-    "name": "Capacitor Community AdMob",
     "shortName": "AdMob",
     "packageName": "@capacitor-community/admob",
     "repositoryUrl": "https://github.com/capacitor-community/admob",
@@ -3060,7 +2932,6 @@ export const PROJECTS_JA = [
   {
     "id": "facebook-login",
     "slug": "capacitor-facebook-login",
-    "name": "Capacitor Community Facebook Login",
     "shortName": "Facebook Login",
     "packageName": "@capacitor-community/facebook-login",
     "repositoryUrl": "https://github.com/capacitor-community/facebook-login",
@@ -3110,7 +2981,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-local-llm",
     "slug": "capacitor-local-llm",
-    "name": "rdlabo Capacitor Local LLM",
     "shortName": "Local LLM",
     "packageName": "@rdlabo/capacitor-local-llm",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
@@ -3202,7 +3072,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-codescanner",
     "slug": "capacitor-codescanner",
-    "name": "rdlabo Capacitor Code Scanner",
     "shortName": "Code Scanner",
     "packageName": "@rdlabo/capacitor-codescanner",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-codescanner",
@@ -3238,7 +3107,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-screenshot-event",
     "slug": "capacitor-screenshot-event",
-    "name": "rdlabo Capacitor Screenshot Event",
     "shortName": "Screenshot Event",
     "packageName": "@rdlabo/capacitor-screenshot-event",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-screenshot-event",
@@ -3274,7 +3142,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-printer",
     "slug": "capacitor-printer",
-    "name": "rdlabo Capacitor Printer",
     "shortName": "Printer",
     "packageName": "@rdlabo/capacitor-printer",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-printer",
@@ -3317,7 +3184,6 @@ export const PROJECTS_JA = [
   {
     "id": "capacitor-brotherprint",
     "slug": "capacitor-brotherprint",
-    "name": "rdlabo Capacitor Brother Print",
     "shortName": "Brother Print",
     "packageName": "@rdlabo/capacitor-brotherprint",
     "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
@@ -3387,12 +3253,3270 @@ export const PROJECTS_JA = [
   }
 ] as const;
 
+export const PROJECT_CATEGORIES_FR = [
+  {
+    "id": "translations",
+    "label": "Traductions de la documentation",
+    "description": "Traductions japonaises autorisées, référencées par les sites officiels des projets open source.",
+    "order": 5
+  },
+  {
+    "id": "capacitor-plugins",
+    "label": "Plugins Capacitor",
+    "description": "Paiements natifs, vérification d’identité, connexion sociale, paiements en personne, annonces mobiles, lecture de codes, événements de capture d’écran, impression et IA sur l’appareil pour les applications Capacitor.",
+    "order": 10
+  },
+  {
+    "id": "frontend-tools",
+    "label": "Outils UI",
+    "description": "Bibliothèques applicatives Angular et Ionic réutilisables et utilitaires d’interface.",
+    "order": 20
+  },
+  {
+    "id": "developer-tools",
+    "label": "Outils de développement",
+    "description": "Bibliothèques Cloudflare Workers et outils de qualité du code pour TypeScript.",
+    "order": 30
+  }
+] as const;
+
+export const PROJECTS_FR = [
+  {
+    "id": "ionic-docs",
+    "slug": "ionic-docs",
+    "shortName": "Documentation Ionic en japonais",
+    "packageName": "Authorized Japanese translation",
+    "repositoryUrl": "https://github.com/ionic-jp/ionic-docs",
+    "hostedUrl": "https://ionicframework.jp/docs/",
+    "category": "translations",
+    "icon": "docs",
+    "version": "",
+    "description": "Traduction japonaise autorisée de la documentation Ionic Framework, référencée par le site officiel.",
+    "path": "/projects/ionic-docs",
+    "pages": []
+  },
+  {
+    "id": "capacitor-docs",
+    "slug": "capacitor-docs",
+    "shortName": "Documentation Capacitor en japonais",
+    "packageName": "Authorized Japanese translation",
+    "repositoryUrl": "https://github.com/ionic-jp/capacitor-docs",
+    "hostedUrl": "https://capacitorjs.jp/docs",
+    "category": "translations",
+    "icon": "docs",
+    "version": "",
+    "description": "Traduction japonaise autorisée de la documentation Capacitor, référencée par le site officiel.",
+    "path": "/projects/capacitor-docs",
+    "pages": []
+  },
+  {
+    "id": "ionic-angular-kit",
+    "slug": "ionic-angular-kit",
+    "shortName": "Ionic Angular Kit",
+    "packageName": "@rdlabo/ionic-angular-kit",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Infrastructure applicative partagée pour les projets Ionic Angular.",
+    "path": "/projects/ionic-angular-kit",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "getting-started",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/getting-started"
+      },
+      {
+        "title": "Stockage et overlays",
+        "navTitle": "Stockage et overlays",
+        "slug": "storage-overlays",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/storage-overlays"
+      },
+      {
+        "title": "Formulaires",
+        "navTitle": "Formulaires",
+        "slug": "forms",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
+        "title": "Vérifier l’intégration du kit avec ESLint",
+        "navTitle": "Vérifier l’intégration du kit avec ESLint",
+        "slug": "eslint",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
+        "title": "Authentification et HTTP",
+        "navTitle": "Authentification et HTTP",
+        "slug": "auth-http",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/auth-http"
+      },
+      {
+        "title": "Hors ligne et temps réel",
+        "navTitle": "Hors ligne et temps réel",
+        "slug": "offline-realtime",
+        "section": "Guide",
+        "path": "/projects/ionic-angular-kit/docs/offline-realtime"
+      },
+      {
+        "title": "Fonctionnalités facultatives",
+        "navTitle": "Fonctionnalités facultatives",
+        "slug": "optional-features",
+        "section": "Référence",
+        "path": "/projects/ionic-angular-kit/docs/optional-features"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-angular-kit/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-photo-editor",
+    "slug": "ionic-angular-photo-editor",
+    "shortName": "Ionic Angular Photo Editor",
+    "packageName": "@rdlabo/ionic-angular-photo-editor",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Parcours d’édition et d’affichage de photos pour les applications Ionic Angular et Capacitor.",
+    "path": "/projects/ionic-angular-photo-editor",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ionic-angular-photo-editor/docs/readme"
+      },
+      {
+        "title": "PhotoFileService",
+        "navTitle": "PhotoFileService",
+        "slug": "photo-file",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-photo-editor/docs/photo-file"
+      },
+      {
+        "title": "Éditeur de photos",
+        "navTitle": "Éditeur de photos",
+        "slug": "editor",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-photo-editor/docs/editor"
+      },
+      {
+        "title": "Visionneuse de photos",
+        "navTitle": "Visionneuse de photos",
+        "slug": "viewer",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-photo-editor/docs/viewer"
+      },
+      {
+        "title": "Thème",
+        "navTitle": "Thème",
+        "slug": "theme",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-photo-editor/docs/theme"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-angular-photo-editor/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-scroll-header",
+    "slug": "ionic-angular-scroll-header",
+    "shortName": "Ionic Angular Scroll Header",
+    "packageName": "@rdlabo/ionic-angular-scroll-header",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Directives d’en-tête sensibles au défilement pour Ionic et les viewports Angular CDK.",
+    "path": "/projects/ionic-angular-scroll-header",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ionic-angular-scroll-header/docs/readme"
+      },
+      {
+        "title": "IonContent",
+        "navTitle": "IonContent",
+        "slug": "ion-content",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-scroll-header/docs/ion-content"
+      },
+      {
+        "title": "Défilement virtuel",
+        "navTitle": "Défilement virtuel",
+        "slug": "virtual-scroll",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-scroll-header/docs/virtual-scroll"
+      },
+      {
+        "title": "Zone de sécurité",
+        "navTitle": "Zone de sécurité",
+        "slug": "safe-area",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-scroll-header/docs/safe-area"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-angular-scroll-header/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ngx-cdk-scroll-strategies",
+    "slug": "ngx-cdk-scroll-strategies",
+    "shortName": "Angular CDK Scroll Strategies",
+    "packageName": "@rdlabo/ngx-cdk-scroll-strategies",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Utilisez le défilement virtuel Angular CDK avec des hauteurs d’éléments variables ou dynamiques. Fournissez les tailles exactes de chaque élément pour des listes stables, des interfaces de chat et le défilement inversé.",
+    "path": "/projects/ngx-cdk-scroll-strategies",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/readme"
+      },
+      {
+        "title": "Utilisation simple",
+        "navTitle": "Utilisation simple",
+        "slug": "simple",
+        "section": "Guides",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/simple"
+      },
+      {
+        "title": "Utilisation avancée",
+        "navTitle": "Utilisation avancée",
+        "slug": "advanced",
+        "section": "Guides",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/advanced"
+      },
+      {
+        "title": "Défilement inversé",
+        "navTitle": "Défilement inversé",
+        "slug": "reverse",
+        "section": "Guides",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/reverse"
+      },
+      {
+        "title": "FAQ",
+        "navTitle": "FAQ",
+        "slug": "faq",
+        "section": "Guides",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/faq"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-ios27",
+    "slug": "ionic-theme-ios27",
+    "shortName": "Ionic Theme iOS27",
+    "packageName": "@rdlabo/ionic-theme-ios27",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "1.2.0",
+    "description": "Styles et animations iOS 27 stables pour Ionic, avec un Native UI Shell facultatif en préversion.",
+    "path": "/projects/ionic-theme-ios27",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "Utiliser ion-item-group",
+        "navTitle": "Utiliser ion-item-group",
+        "slug": "using-ion-item-group",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
+      },
+      {
+        "title": "Balisage et classes particuliers",
+        "navTitle": "Balisage et classes particuliers",
+        "slug": "special-markup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/special-markup"
+      },
+      {
+        "title": "Assurer la cohérence des listes avec ESLint",
+        "navTitle": "Assurer la cohérence des listes avec ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/eslint"
+      },
+      {
+        "title": "Native UI Shell (préversion)",
+        "navTitle": "Native UI Shell (préversion)",
+        "slug": "native-ui-shell",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
+      },
+      {
+        "title": "Prise en charge d’iPhone Duo (préversion)",
+        "navTitle": "Prise en charge d’iPhone Duo (préversion)",
+        "slug": "iphone-duo",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
+      },
+      {
+        "title": "iPhone Duo avec votre thème existant (préversion)",
+        "navTitle": "iPhone Duo avec votre thème existant (préversion)",
+        "slug": "iphone-duo-with-original-theme",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
+      },
+      {
+        "title": "Barres verticales (préversion)",
+        "navTitle": "Barres verticales (préversion)",
+        "slug": "vertical-bars",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
+      },
+      {
+        "title": "Fonctionnalités",
+        "navTitle": "Fonctionnalités",
+        "slug": "features",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/features"
+      },
+      {
+        "title": "Animation",
+        "navTitle": "Animation",
+        "slug": "animation",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/animation"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      },
+      {
+        "title": "Tests E2E par captures d’écran",
+        "navTitle": "Tests E2E par captures d’écran",
+        "slug": "e2e-testing",
+        "section": "Développement",
+        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-theme-ios27/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-ios26",
+    "slug": "ionic-theme-ios26",
+    "shortName": "Ionic Theme iOS26",
+    "packageName": "@rdlabo/ionic-theme-ios26",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "9.4.1",
+    "description": "Styles de design iOS 26 pour les applications Ionic.",
+    "path": "/projects/ionic-theme-ios26",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ionic-theme-ios26/docs/readme"
+      },
+      {
+        "title": "Utiliser ion-item-group",
+        "navTitle": "Utiliser ion-item-group",
+        "slug": "using-ion-item-group",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
+      },
+      {
+        "title": "Balisage et classes particuliers",
+        "navTitle": "Balisage et classes particuliers",
+        "slug": "special-markup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/special-markup"
+      },
+      {
+        "title": "Assurer la cohérence des listes avec ESLint",
+        "navTitle": "Assurer la cohérence des listes avec ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
+        "title": "Fonctionnalités",
+        "navTitle": "Fonctionnalités",
+        "slug": "features",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/features"
+      },
+      {
+        "title": "Animation expérimentale",
+        "navTitle": "Animation expérimentale",
+        "slug": "experimental-animation",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
+      },
+      {
+        "title": "Prendre en charge iOS 18",
+        "navTitle": "iOS 18",
+        "slug": "ios-18",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/ios-18"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios26/docs/migration"
+      },
+      {
+        "title": "Tests E2E par captures d’écran",
+        "navTitle": "Tests E2E par captures d’écran",
+        "slug": "e2e-testing",
+        "section": "Développement",
+        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-theme-ios26/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-md3",
+    "slug": "ionic-theme-md3",
+    "shortName": "Ionic Theme MD3",
+    "packageName": "@rdlabo/ionic-theme-md3",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "9.1.2",
+    "description": "Styles Material Design 3 pour les applications Ionic.",
+    "path": "/projects/ionic-theme-md3",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Documentation",
+        "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Utiliser ion-item-group",
+        "navTitle": "Utiliser ion-item-group",
+        "slug": "using-ion-item-group",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
+      },
+      {
+        "title": "Balisage particulier",
+        "navTitle": "Balisage particulier",
+        "slug": "special-markup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/special-markup"
+      },
+      {
+        "title": "Assurer la cohérence des listes avec ESLint",
+        "navTitle": "Assurer la cohérence des listes avec ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/eslint"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/migration"
+      },
+      {
+        "title": "Tests E2E par captures d’écran",
+        "navTitle": "Tests E2E par captures d’écran",
+        "slug": "e2e-testing",
+        "section": "Développement",
+        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-theme-md3/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-collect-icons",
+    "slug": "ionic-angular-collect-icons",
+    "shortName": "Ionic Angular Collect Icons",
+    "packageName": "@rdlabo/ionic-angular-collect-icons",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "3.0.0",
+    "description": "Automatisez la collecte et l’exportation des ionIcons dans les projets Ionic Angular.",
+    "path": "/projects/ionic-angular-collect-icons",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/ionic-angular-collect-icons/docs/readme"
+      },
+      {
+        "title": "Initialisation",
+        "navTitle": "Initialisation",
+        "slug": "initialize",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-collect-icons/docs/initialize"
+      },
+      {
+        "title": "Utilisation",
+        "navTitle": "Utilisation",
+        "slug": "usage",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-collect-icons/docs/usage"
+      },
+      {
+        "title": "Options de la CLI",
+        "navTitle": "Options de la CLI",
+        "slug": "options",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-collect-icons/docs/options"
+      },
+      {
+        "title": "FAQ",
+        "navTitle": "FAQ",
+        "slug": "faq",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-collect-icons/docs/faq"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-angular-collect-icons/docs/migration"
+      },
+      {
+        "title": "CLI API",
+        "navTitle": "CLI API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/ionic-angular-collect-icons/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-timezone",
+    "slug": "workers-timezone",
+    "shortName": "Workers Timezone",
+    "packageName": "@rdlabo/workers-timezone",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "Conversion des fuseaux horaires IANA et utilitaires de calendrier pour Cloudflare Workers, associés à des contrôles ESLint de l’utilisation implicite du fuseau horaire dans Date et Intl.",
+    "path": "/projects/workers-timezone",
+    "pages": [
+      {
+        "title": "Essayer ensemble les conversions de fuseau horaire et ESLint",
+        "navTitle": "Essayer les conversions et le lint",
+        "slug": "quickstart",
+        "section": "Démarrage rapide",
+        "path": "/projects/workers-timezone/docs/quickstart"
+      },
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "Détecter les erreurs de fuseau horaire avec ESLint",
+        "navTitle": "Détecter les erreurs de fuseau horaire avec ESLint",
+        "slug": "eslint",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/eslint"
+      },
+      {
+        "title": "Fuseaux horaires et dates calendaires",
+        "navTitle": "Fuseaux horaires et dates calendaires",
+        "slug": "timezones",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/timezones"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/workers-timezone/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/workers-timezone/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-mysql",
+    "slug": "workers-mysql",
+    "shortName": "Workers MySQL",
+    "packageName": "@rdlabo/workers-mysql",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "Accès à MySQL pour Cloudflare Workers avec Hyperdrive, routage primaire/réplique, nouvelles tentatives après interblocage et intégration de Drizzle.",
+    "path": "/projects/workers-mysql",
+    "pages": [
+      {
+        "title": "Exécuter votre première requête MySQL",
+        "navTitle": "Exécuter la première requête",
+        "slug": "quickstart",
+        "section": "Démarrage rapide",
+        "path": "/projects/workers-mysql/docs/quickstart"
+      },
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/workers-mysql/docs/readme"
+      },
+      {
+        "title": "Environnement d’exécution",
+        "navTitle": "Environnement d’exécution",
+        "slug": "runtime",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/runtime"
+      },
+      {
+        "title": "Drizzle et dates",
+        "navTitle": "Drizzle et dates",
+        "slug": "drizzle",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/drizzle"
+      },
+      {
+        "title": "Migrations et tests",
+        "navTitle": "Migrations et tests",
+        "slug": "tooling",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/tooling"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/workers-mysql/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/workers-mysql/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-hono-kit",
+    "slug": "workers-hono-kit",
+    "shortName": "Workers Hono Kit",
+    "packageName": "@rdlabo/workers-hono-kit",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "Créez des API Hono sur Cloudflare Workers avec validation, authentification Firebase, erreurs JSON, files d’attente et outils de test.",
+    "path": "/projects/workers-hono-kit",
+    "pages": [
+      {
+        "title": "Essayer une API Hono en local",
+        "navTitle": "Essayer une API Hono en local",
+        "slug": "quickstart",
+        "section": "Démarrage rapide",
+        "path": "/projects/workers-hono-kit/docs/quickstart"
+      },
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "getting-started",
+        "section": "Guide",
+        "path": "/projects/workers-hono-kit/docs/getting-started"
+      },
+      {
+        "title": "HTTP et authentification",
+        "navTitle": "HTTP et authentification",
+        "slug": "http-auth",
+        "section": "Guide",
+        "path": "/projects/workers-hono-kit/docs/http-auth"
+      },
+      {
+        "title": "Couche de données",
+        "navTitle": "Couche de données",
+        "slug": "data-layer",
+        "section": "Guide",
+        "path": "/projects/workers-hono-kit/docs/data-layer"
+      },
+      {
+        "title": "Temps réel et mode hors ligne",
+        "navTitle": "Temps réel et hors ligne",
+        "slug": "realtime-offline",
+        "section": "Guide",
+        "path": "/projects/workers-hono-kit/docs/realtime-offline"
+      },
+      {
+        "title": "Tests et exploitation",
+        "navTitle": "Tests et exploitation",
+        "slug": "testing-operations",
+        "section": "Référence",
+        "path": "/projects/workers-hono-kit/docs/testing-operations"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/workers-hono-kit/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "eslint-plugin-rules",
+    "slug": "eslint-plugin-rules",
+    "shortName": "ESLint Plugin Rules",
+    "packageName": "@rdlabo/eslint-plugin-rules",
+    "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
+    "category": "developer-tools",
+    "icon": "lint",
+    "version": "22.1.0",
+    "description": "Règles prescriptives pour Angular, Ionic, TypeScript et Cloudflare Workers afin de créer des applications maintenables.",
+    "path": "/projects/eslint-plugin-rules",
+    "pages": [
+      {
+        "title": "Voir une règle de lint détecter et corriger du code",
+        "navTitle": "Essayer la détection et la correction automatique",
+        "slug": "quickstart",
+        "section": "Démarrage rapide",
+        "path": "/projects/eslint-plugin-rules/docs/quickstart"
+      },
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "getting-started",
+        "section": "Guide",
+        "path": "/projects/eslint-plugin-rules/docs/getting-started"
+      },
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Guide",
+        "path": "/projects/eslint-plugin-rules/docs/configuration"
+      },
+      {
+        "title": "Règles",
+        "navTitle": "Règles",
+        "slug": "rules",
+        "section": "Référence",
+        "path": "/projects/eslint-plugin-rules/docs/rules"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guide",
+        "path": "/projects/eslint-plugin-rules/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/eslint-plugin-rules/docs/api"
+      },
+      {
+        "title": "component-property-use-readonly",
+        "navTitle": "component-property-use-readonly",
+        "slug": "rules/component-property-use-readonly",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/component-property-use-readonly"
+      },
+      {
+        "title": "deny-constructor-di",
+        "navTitle": "deny-constructor-di",
+        "slug": "rules/deny-constructor-di",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-constructor-di"
+      },
+      {
+        "title": "deny-element",
+        "navTitle": "deny-element",
+        "slug": "rules/deny-element",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-element"
+      },
+      {
+        "title": "deny-overlay-create",
+        "navTitle": "deny-overlay-create",
+        "slug": "rules/deny-overlay-create",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-overlay-create"
+      },
+      {
+        "title": "deny-soft-private-modifier",
+        "navTitle": "deny-soft-private-modifier",
+        "slug": "rules/deny-soft-private-modifier",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-soft-private-modifier"
+      },
+      {
+        "title": "implements-ionic-lifecycle",
+        "navTitle": "implements-ionic-lifecycle",
+        "slug": "rules/implements-ionic-lifecycle",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/implements-ionic-lifecycle"
+      },
+      {
+        "title": "initialize-timezone-at-module-scope",
+        "navTitle": "initialize-timezone-at-module-scope",
+        "slug": "rules/initialize-timezone-at-module-scope",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope"
+      },
+      {
+        "title": "ionic-attr-type-check",
+        "navTitle": "ionic-attr-type-check",
+        "slug": "rules/ionic-attr-type-check",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "no-component-method-except-lifecycle",
+        "navTitle": "no-component-method-except-lifecycle",
+        "slug": "rules/no-component-method-except-lifecycle",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-component-method-except-lifecycle"
+      },
+      {
+        "title": "no-component-writable-signal",
+        "navTitle": "no-component-writable-signal",
+        "slug": "rules/no-component-writable-signal",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal"
+      },
+      {
+        "title": "no-implicit-timezone",
+        "navTitle": "no-implicit-timezone",
+        "slug": "rules/no-implicit-timezone",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone"
+      },
+      {
+        "title": "no-reactive-forms",
+        "navTitle": "no-reactive-forms",
+        "slug": "rules/no-reactive-forms",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-reactive-forms"
+      },
+      {
+        "title": "no-template-driven-forms",
+        "navTitle": "no-template-driven-forms",
+        "slug": "rules/no-template-driven-forms",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms"
+      },
+      {
+        "title": "prefer-disable-handler",
+        "navTitle": "prefer-disable-handler",
+        "slug": "rules/prefer-disable-handler",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler"
+      },
+      {
+        "title": "prefer-ionic-standalone",
+        "navTitle": "prefer-ionic-standalone",
+        "slug": "rules/prefer-ionic-standalone",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-ionic-standalone"
+      },
+      {
+        "title": "prefer-modal-launcher",
+        "navTitle": "prefer-modal-launcher",
+        "slug": "rules/prefer-modal-launcher",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher"
+      },
+      {
+        "title": "require-ion-error-text",
+        "navTitle": "require-ion-error-text",
+        "slug": "rules/require-ion-error-text",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-error-text"
+      },
+      {
+        "title": "require-ion-item-group",
+        "navTitle": "require-ion-item-group",
+        "slug": "rules/require-ion-item-group",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-item-group"
+      },
+      {
+        "title": "require-viewmodel",
+        "navTitle": "require-viewmodel",
+        "slug": "rules/require-viewmodel",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-viewmodel"
+      },
+      {
+        "title": "restrict-try-block",
+        "navTitle": "restrict-try-block",
+        "slug": "rules/restrict-try-block",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/restrict-try-block"
+      },
+      {
+        "title": "signal-use-as-signal-template",
+        "navTitle": "signal-use-as-signal-template",
+        "slug": "rules/signal-use-as-signal-template",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template"
+      },
+      {
+        "title": "signal-use-as-signal",
+        "navTitle": "signal-use-as-signal",
+        "slug": "rules/signal-use-as-signal",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-docgen",
+    "slug": "capacitor-docgen",
+    "shortName": "Docgen",
+    "packageName": "@rdlabo/capacitor-docgen",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-docgen",
+    "category": "developer-tools",
+    "icon": "docs",
+    "version": "0.4.1",
+    "description": "Générateur de documentation Capacitor compatible avec le projet d’origine, avec héritage d’interfaces.",
+    "path": "/projects/capacitor-docgen",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "getting-started",
+        "section": "Guide",
+        "path": "/projects/capacitor-docgen/docs/getting-started"
+      },
+      {
+        "title": "Différences avec le projet d’origine",
+        "navTitle": "Différences avec le projet d’origine",
+        "slug": "upstream-differences",
+        "section": "Comparaison",
+        "path": "/projects/capacitor-docgen/docs/upstream-differences"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-docgen/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe",
+    "slug": "capacitor-stripe",
+    "shortName": "Stripe",
+    "packageName": "@capacitor-community/stripe",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.2.1",
+    "description": "Intégrez Stripe PaymentSheet, Apple Pay et Google Pay aux applications Capacitor avec @capacitor-community/stripe pour iOS, Android et le Web.",
+    "path": "/projects/capacitor-stripe",
+    "pages": [
+      {
+        "title": "Configuration des plateformes",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe/docs/configuration"
+      },
+      {
+        "title": "Démarrage rapide en JavaScript natif",
+        "navTitle": "JavaScript natif",
+        "slug": "vanilla-js",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe/docs/vanilla-js"
+      },
+      {
+        "title": "Démarrage rapide avec Angular",
+        "navTitle": "Angular",
+        "slug": "angular",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe/docs/angular"
+      },
+      {
+        "title": "Démarrage rapide avec React",
+        "navTitle": "React",
+        "slug": "react",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe/docs/react"
+      },
+      {
+        "title": "Écouteurs d’événements",
+        "navTitle": "Écouteurs d’événements",
+        "slug": "learn/event-listeners",
+        "section": "Apprendre",
+        "path": "/projects/capacitor-stripe/docs/learn/event-listeners"
+      },
+      {
+        "title": "Intégration serveur",
+        "navTitle": "Intégration serveur",
+        "slug": "server-integration",
+        "section": "Apprendre",
+        "path": "/projects/capacitor-stripe/docs/server-integration"
+      },
+      {
+        "title": "Initialiser votre projet",
+        "navTitle": "Initialisation",
+        "slug": "initialize",
+        "section": "Méthodes",
+        "path": "/projects/capacitor-stripe/docs/initialize"
+      },
+      {
+        "title": "PaymentSheet",
+        "navTitle": "PaymentSheet",
+        "slug": "payment-sheet",
+        "section": "Méthodes",
+        "path": "/projects/capacitor-stripe/docs/payment-sheet"
+      },
+      {
+        "title": "PaymentFlow",
+        "navTitle": "PaymentFlow",
+        "slug": "payment-flow",
+        "section": "Méthodes",
+        "path": "/projects/capacitor-stripe/docs/payment-flow"
+      },
+      {
+        "title": "ApplePay",
+        "navTitle": "Apple Pay",
+        "slug": "apple-pay",
+        "section": "Méthodes",
+        "path": "/projects/capacitor-stripe/docs/apple-pay"
+      },
+      {
+        "title": "Google Pay",
+        "navTitle": "Google Pay",
+        "slug": "google-pay",
+        "section": "Méthodes",
+        "path": "/projects/capacitor-stripe/docs/google-pay"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-stripe/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-identity",
+    "slug": "capacitor-stripe-identity",
+    "shortName": "Stripe Identity",
+    "packageName": "@capacitor-community/stripe-identity",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "identity",
+    "version": "8.2.1",
+    "description": "Liaisons du SDK Stripe Identity pour les applications Capacitor.",
+    "path": "/projects/capacitor-stripe-identity",
+    "pages": [
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe-identity/docs/configuration"
+      },
+      {
+        "title": "Feuille de vérification d’identité",
+        "navTitle": "Feuille de vérification d’identité",
+        "slug": "identity-verification-sheet",
+        "section": "Guide",
+        "path": "/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-stripe-identity/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-terminal",
+    "slug": "capacitor-stripe-terminal",
+    "shortName": "Stripe Terminal",
+    "packageName": "@capacitor-community/stripe-terminal",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.2.1",
+    "description": "Liaisons du SDK Stripe Terminal pour les applications Capacitor.",
+    "path": "/projects/capacitor-stripe-terminal",
+    "pages": [
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe-terminal/docs/configuration"
+      },
+      {
+        "title": "Encaisser un paiement",
+        "navTitle": "Encaisser un paiement",
+        "slug": "collect-a-payment",
+        "section": "Guides",
+        "path": "/projects/capacitor-stripe-terminal/docs/collect-a-payment"
+      },
+      {
+        "title": "Cycle de vie du lecteur",
+        "navTitle": "Cycle de vie du lecteur",
+        "slug": "reader-lifecycle",
+        "section": "Guides",
+        "path": "/projects/capacitor-stripe-terminal/docs/reader-lifecycle"
+      },
+      {
+        "title": "Tap to Pay",
+        "navTitle": "Tap to Pay",
+        "slug": "tap-to-pay",
+        "section": "Guides",
+        "path": "/projects/capacitor-stripe-terminal/docs/tap-to-pay"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-stripe-terminal/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "admob",
+    "slug": "capacitor-admob",
+    "shortName": "AdMob",
+    "packageName": "@capacitor-community/admob",
+    "repositoryUrl": "https://github.com/capacitor-community/admob",
+    "category": "capacitor-plugins",
+    "icon": "ads",
+    "version": "8.1.0",
+    "description": "Annonces Google AdMob natives pour les applications Capacitor.",
+    "path": "/projects/capacitor-admob",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-admob/docs/readme"
+      },
+      {
+        "title": "Initialisation",
+        "navTitle": "Initialisation",
+        "slug": "configuration",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-admob/docs/configuration"
+      },
+      {
+        "title": "Consentement",
+        "navTitle": "Consentement",
+        "slug": "consent",
+        "section": "Guides",
+        "path": "/projects/capacitor-admob/docs/consent"
+      },
+      {
+        "title": "Tests",
+        "navTitle": "Tests",
+        "slug": "testing",
+        "section": "Guides",
+        "path": "/projects/capacitor-admob/docs/testing"
+      },
+      {
+        "title": "Bannières publicitaires",
+        "navTitle": "Bannières publicitaires",
+        "slug": "banner",
+        "section": "Formats publicitaires",
+        "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Annonces interstitielles",
+        "navTitle": "Annonces interstitielles",
+        "slug": "interstitial",
+        "section": "Formats publicitaires",
+        "path": "/projects/capacitor-admob/docs/interstitial"
+      },
+      {
+        "title": "Annonces récompensées",
+        "navTitle": "Annonces récompensées",
+        "slug": "rewarded",
+        "section": "Formats publicitaires",
+        "path": "/projects/capacitor-admob/docs/rewarded"
+      },
+      {
+        "title": "Annonces à l’ouverture de l’application",
+        "navTitle": "Annonces à l’ouverture de l’application",
+        "slug": "app-open",
+        "section": "Formats publicitaires",
+        "path": "/projects/capacitor-admob/docs/app-open"
+      },
+      {
+        "title": "Événements publicitaires",
+        "navTitle": "Événements publicitaires",
+        "slug": "events",
+        "section": "Guides",
+        "path": "/projects/capacitor-admob/docs/events"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/capacitor-admob/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-admob/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "facebook-login",
+    "slug": "capacitor-facebook-login",
+    "shortName": "Facebook Login",
+    "packageName": "@capacitor-community/facebook-login",
+    "repositoryUrl": "https://github.com/capacitor-community/facebook-login",
+    "category": "capacitor-plugins",
+    "icon": "identity",
+    "version": "8.1.0",
+    "description": "Facebook Login et App Events natifs pour les applications Capacitor.",
+    "path": "/projects/capacitor-facebook-login",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-facebook-login/docs/readme"
+      },
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Guides",
+        "path": "/projects/capacitor-facebook-login/docs/configuration"
+      },
+      {
+        "title": "Authentification",
+        "navTitle": "Authentification",
+        "slug": "authentication",
+        "section": "Guides",
+        "path": "/projects/capacitor-facebook-login/docs/authentication"
+      },
+      {
+        "title": "Événements de l’application",
+        "navTitle": "Événements de l’application",
+        "slug": "app-events",
+        "section": "Guides",
+        "path": "/projects/capacitor-facebook-login/docs/app-events"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-facebook-login/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-local-llm",
+    "slug": "capacitor-local-llm",
+    "shortName": "Local LLM",
+    "packageName": "@rdlabo/capacitor-local-llm",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.2.0",
+    "description": "Génération de texte sur l’appareil pour Capacitor sur iOS, Android et les versions de Chrome de bureau compatibles, ainsi que fonctions natives de traitement d’images.",
+    "path": "/projects/capacitor-local-llm",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-local-llm/docs/readme"
+      },
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "Web (Chrome)",
+        "navTitle": "Web (Chrome)",
+        "slug": "web",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/web"
+      },
+      {
+        "title": "Disponibilité et comportement des plateformes",
+        "navTitle": "Disponibilité",
+        "slug": "availability",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/availability"
+      },
+      {
+        "title": "Chat",
+        "navTitle": "Chat",
+        "slug": "chat",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/chat"
+      },
+      {
+        "title": "Images",
+        "navTitle": "Images",
+        "slug": "images",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/images"
+      },
+      {
+        "title": "Modèle de repli Android",
+        "navTitle": "Modèle de repli Android",
+        "slug": "android-fallback",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/android-fallback"
+      },
+      {
+        "title": "Événements",
+        "navTitle": "Événements",
+        "slug": "events",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/events"
+      },
+      {
+        "title": "Gestion des erreurs",
+        "navTitle": "Gestion des erreurs",
+        "slug": "errors",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/errors"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/capacitor-local-llm/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-local-llm/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-codescanner",
+    "slug": "capacitor-codescanner",
+    "shortName": "Code Scanner",
+    "packageName": "@rdlabo/capacitor-codescanner",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-codescanner",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "8.0.3",
+    "description": "Lecture de codes-barres et de codes QR pour Capacitor dans une fenêtre modale native.",
+    "path": "/projects/capacitor-codescanner",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-codescanner/docs/readme"
+      },
+      {
+        "title": "CodeScanner",
+        "navTitle": "CodeScanner",
+        "slug": "code-scanner",
+        "section": "Guides",
+        "path": "/projects/capacitor-codescanner/docs/code-scanner"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-codescanner/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-screenshot-event",
+    "slug": "capacitor-screenshot-event",
+    "shortName": "Screenshot Event",
+    "packageName": "@rdlabo/capacitor-screenshot-event",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-screenshot-event",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "8.0.0",
+    "description": "Informez les applications Capacitor lorsque l’utilisateur fait une capture d’écran.",
+    "path": "/projects/capacitor-screenshot-event",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-screenshot-event/docs/readme"
+      },
+      {
+        "title": "ScreenshotEvent",
+        "navTitle": "ScreenshotEvent",
+        "slug": "screenshot-event",
+        "section": "Guides",
+        "path": "/projects/capacitor-screenshot-event/docs/screenshot-event"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-screenshot-event/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-printer",
+    "slug": "capacitor-printer",
+    "shortName": "Printer",
+    "packageName": "@rdlabo/capacitor-printer",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-printer",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.0.1",
+    "description": "Impression native de fichiers et de contenu WebView dans les applications Capacitor.",
+    "path": "/projects/capacitor-printer",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-printer/docs/readme"
+      },
+      {
+        "title": "Imprimer la WebView",
+        "navTitle": "Imprimer la WebView",
+        "slug": "web",
+        "section": "Guides",
+        "path": "/projects/capacitor-printer/docs/web"
+      },
+      {
+        "title": "Imprimer des PDF et des fichiers",
+        "navTitle": "Imprimer des PDF et des fichiers",
+        "slug": "pdf",
+        "section": "Guides",
+        "path": "/projects/capacitor-printer/docs/pdf"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-printer/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-brotherprint",
+    "slug": "capacitor-brotherprint",
+    "shortName": "Brother Print",
+    "packageName": "@rdlabo/capacitor-brotherprint",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.2.1",
+    "description": "Liaisons natives du SDK Brother Print pour Capacitor sur iOS et Android.",
+    "path": "/projects/capacitor-brotherprint",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-brotherprint/docs/readme"
+      },
+      {
+        "title": "Installation",
+        "navTitle": "Installation",
+        "slug": "installation",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-brotherprint/docs/installation"
+      },
+      {
+        "title": "Utilitaires JavaScript pour imprimantes",
+        "navTitle": "Utilitaires d’impression JavaScript",
+        "slug": "connection-management",
+        "section": "Utilitaires JavaScript",
+        "path": "/projects/capacitor-brotherprint/docs/connection-management"
+      },
+      {
+        "title": "Choix de conception des utilitaires",
+        "navTitle": "Choix de conception des utilitaires",
+        "slug": "helper-design",
+        "section": "Utilitaires JavaScript",
+        "path": "/projects/capacitor-brotherprint/docs/helper-design"
+      },
+      {
+        "title": "Recherche",
+        "navTitle": "Recherche",
+        "slug": "search",
+        "section": "API du plugin",
+        "path": "/projects/capacitor-brotherprint/docs/search"
+      },
+      {
+        "title": "Impression",
+        "navTitle": "Impression",
+        "slug": "print",
+        "section": "API du plugin",
+        "path": "/projects/capacitor-brotherprint/docs/print"
+      },
+      {
+        "title": "Événements",
+        "navTitle": "Événements",
+        "slug": "events",
+        "section": "API du plugin",
+        "path": "/projects/capacitor-brotherprint/docs/events"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-brotherprint/docs/api"
+      }
+    ]
+  }
+] as const;
+
+export const PROJECT_CATEGORIES_DE = [
+  {
+    "id": "translations",
+    "label": "Übersetzungen der Dokumentation",
+    "description": "Autorisierte japanische Übersetzungen, die von den offiziellen Websites der Open-Source-Projekte verlinkt werden.",
+    "order": 5
+  },
+  {
+    "id": "capacitor-plugins",
+    "label": "Capacitor-Plugins",
+    "description": "Native Zahlungen, Identitätsverifizierung, soziale Anmeldung, Zahlungen vor Ort, mobile Anzeigen, Scannen, Screenshot-Ereignisse, Drucken und KI auf dem Gerät für Capacitor-Anwendungen.",
+    "order": 10
+  },
+  {
+    "id": "frontend-tools",
+    "label": "UI-Werkzeuge",
+    "description": "Wiederverwendbare Angular- und Ionic-Anwendungsbibliotheken und UI-Hilfen.",
+    "order": 20
+  },
+  {
+    "id": "developer-tools",
+    "label": "Entwicklungswerkzeuge",
+    "description": "Cloudflare-Workers-Bibliotheken und Werkzeuge für Codequalität in TypeScript.",
+    "order": 30
+  }
+] as const;
+
+export const PROJECTS_DE = [
+  {
+    "id": "ionic-docs",
+    "slug": "ionic-docs",
+    "shortName": "Ionic Docs Japanese",
+    "packageName": "Authorized Japanese translation",
+    "repositoryUrl": "https://github.com/ionic-jp/ionic-docs",
+    "hostedUrl": "https://ionicframework.jp/docs/",
+    "category": "translations",
+    "icon": "docs",
+    "version": "",
+    "description": "Autorisierte japanische Übersetzung der Ionic-Framework-Dokumentation, die von der offiziellen Website verlinkt wird.",
+    "path": "/projects/ionic-docs",
+    "pages": []
+  },
+  {
+    "id": "capacitor-docs",
+    "slug": "capacitor-docs",
+    "shortName": "Capacitor Docs Japanese",
+    "packageName": "Authorized Japanese translation",
+    "repositoryUrl": "https://github.com/ionic-jp/capacitor-docs",
+    "hostedUrl": "https://capacitorjs.jp/docs",
+    "category": "translations",
+    "icon": "docs",
+    "version": "",
+    "description": "Autorisierte japanische Übersetzung der Capacitor-Dokumentation, die von der offiziellen Website verlinkt wird.",
+    "path": "/projects/capacitor-docs",
+    "pages": []
+  },
+  {
+    "id": "ionic-angular-kit",
+    "slug": "ionic-angular-kit",
+    "shortName": "Ionic Angular Kit",
+    "packageName": "@rdlabo/ionic-angular-kit",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Gemeinsame Anwendungsinfrastruktur für Ionic-Angular-Projekte.",
+    "path": "/projects/ionic-angular-kit",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "getting-started",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/getting-started"
+      },
+      {
+        "title": "Speicher und Overlays",
+        "navTitle": "Speicher und Overlays",
+        "slug": "storage-overlays",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/storage-overlays"
+      },
+      {
+        "title": "Formulare",
+        "navTitle": "Formulare",
+        "slug": "forms",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/forms"
+      },
+      {
+        "title": "Die Kit-Integration mit ESLint prüfen",
+        "navTitle": "Die Kit-Integration mit ESLint prüfen",
+        "slug": "eslint",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/eslint"
+      },
+      {
+        "title": "Authentifizierung und HTTP",
+        "navTitle": "Authentifizierung und HTTP",
+        "slug": "auth-http",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/auth-http"
+      },
+      {
+        "title": "Offline und Echtzeit",
+        "navTitle": "Offline und Echtzeit",
+        "slug": "offline-realtime",
+        "section": "Anleitung",
+        "path": "/projects/ionic-angular-kit/docs/offline-realtime"
+      },
+      {
+        "title": "Optionale Funktionen",
+        "navTitle": "Optionale Funktionen",
+        "slug": "optional-features",
+        "section": "Referenz",
+        "path": "/projects/ionic-angular-kit/docs/optional-features"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-angular-kit/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-photo-editor",
+    "slug": "ionic-angular-photo-editor",
+    "shortName": "Ionic Angular Photo Editor",
+    "packageName": "@rdlabo/ionic-angular-photo-editor",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Abläufe zur Fotobearbeitung und -anzeige für Ionic-Angular- und Capacitor-Anwendungen.",
+    "path": "/projects/ionic-angular-photo-editor",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ionic-angular-photo-editor/docs/readme"
+      },
+      {
+        "title": "PhotoFileService",
+        "navTitle": "PhotoFileService",
+        "slug": "photo-file",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-photo-editor/docs/photo-file"
+      },
+      {
+        "title": "Fotoeditor",
+        "navTitle": "Fotoeditor",
+        "slug": "editor",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-photo-editor/docs/editor"
+      },
+      {
+        "title": "Fotobetrachter",
+        "navTitle": "Fotobetrachter",
+        "slug": "viewer",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-photo-editor/docs/viewer"
+      },
+      {
+        "title": "Theme",
+        "navTitle": "Theme",
+        "slug": "theme",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-photo-editor/docs/theme"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-angular-photo-editor/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-scroll-header",
+    "slug": "ionic-angular-scroll-header",
+    "shortName": "Ionic Angular Scroll Header",
+    "packageName": "@rdlabo/ionic-angular-scroll-header",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Scrollabhängige Header-Direktiven für Ionic- und Angular-CDK-Viewports.",
+    "path": "/projects/ionic-angular-scroll-header",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ionic-angular-scroll-header/docs/readme"
+      },
+      {
+        "title": "IonContent",
+        "navTitle": "IonContent",
+        "slug": "ion-content",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-scroll-header/docs/ion-content"
+      },
+      {
+        "title": "Virtuelles Scrollen",
+        "navTitle": "Virtuelles Scrollen",
+        "slug": "virtual-scroll",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-scroll-header/docs/virtual-scroll"
+      },
+      {
+        "title": "Safe Area",
+        "navTitle": "Safe Area",
+        "slug": "safe-area",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-scroll-header/docs/safe-area"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-angular-scroll-header/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ngx-cdk-scroll-strategies",
+    "slug": "ngx-cdk-scroll-strategies",
+    "shortName": "Angular CDK Scroll Strategies",
+    "packageName": "@rdlabo/ngx-cdk-scroll-strategies",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "22.0.3",
+    "description": "Virtuelles Scrollen mit Angular CDK und variablen oder dynamischen Elementhöhen verwenden. Exakte Größen pro Element für stabile Listen, Chat-Oberflächen und umgekehrtes Scrollen angeben.",
+    "path": "/projects/ngx-cdk-scroll-strategies",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/readme"
+      },
+      {
+        "title": "Einfache Verwendung",
+        "navTitle": "Einfache Verwendung",
+        "slug": "simple",
+        "section": "Anleitungen",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/simple"
+      },
+      {
+        "title": "Erweiterte Verwendung",
+        "navTitle": "Erweiterte Verwendung",
+        "slug": "advanced",
+        "section": "Anleitungen",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/advanced"
+      },
+      {
+        "title": "Umgekehrtes Scrollen",
+        "navTitle": "Umgekehrtes Scrollen",
+        "slug": "reverse",
+        "section": "Anleitungen",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/reverse"
+      },
+      {
+        "title": "FAQ",
+        "navTitle": "FAQ",
+        "slug": "faq",
+        "section": "Anleitungen",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/faq"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ngx-cdk-scroll-strategies/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-ios27",
+    "slug": "ionic-theme-ios27",
+    "shortName": "Ionic Theme iOS27",
+    "packageName": "@rdlabo/ionic-theme-ios27",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "1.2.0",
+    "description": "Stabile iOS-27-Gestaltung und Bewegungseffekte für Ionic, mit optionaler Native UI Shell als Vorschau.",
+    "path": "/projects/ionic-theme-ios27",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "ion-item-group verwenden",
+        "navTitle": "ion-item-group verwenden",
+        "slug": "using-ion-item-group",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
+      },
+      {
+        "title": "Besonderes Markup und Klassen",
+        "navTitle": "Besonderes Markup und Klassen",
+        "slug": "special-markup",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/special-markup"
+      },
+      {
+        "title": "Einheitliche Listen mit ESLint sicherstellen",
+        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
+        "slug": "eslint",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/eslint"
+      },
+      {
+        "title": "Native UI Shell (Vorschau)",
+        "navTitle": "Native UI Shell (Vorschau)",
+        "slug": "native-ui-shell",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
+      },
+      {
+        "title": "iPhone-Duo-Unterstützung (Vorschau)",
+        "navTitle": "iPhone-Duo-Unterstützung (Vorschau)",
+        "slug": "iphone-duo",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
+      },
+      {
+        "title": "iPhone Duo mit Ihrem vorhandenen Theme (Vorschau)",
+        "navTitle": "iPhone Duo mit Ihrem vorhandenen Theme (Vorschau)",
+        "slug": "iphone-duo-with-original-theme",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
+      },
+      {
+        "title": "Vertikale Leisten (Vorschau)",
+        "navTitle": "Vertikale Leisten (Vorschau)",
+        "slug": "vertical-bars",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
+      },
+      {
+        "title": "Funktionen",
+        "navTitle": "Funktionen",
+        "slug": "features",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/features"
+      },
+      {
+        "title": "Animation",
+        "navTitle": "Animation",
+        "slug": "animation",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/animation"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      },
+      {
+        "title": "E2E-Tests mit Screenshots",
+        "navTitle": "E2E-Tests mit Screenshots",
+        "slug": "e2e-testing",
+        "section": "Entwicklung",
+        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-theme-ios27/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-ios26",
+    "slug": "ionic-theme-ios26",
+    "shortName": "Ionic Theme iOS26",
+    "packageName": "@rdlabo/ionic-theme-ios26",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "9.4.1",
+    "description": "iOS-26-Design für Ionic-Anwendungen.",
+    "path": "/projects/ionic-theme-ios26",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ionic-theme-ios26/docs/readme"
+      },
+      {
+        "title": "ion-item-group verwenden",
+        "navTitle": "ion-item-group verwenden",
+        "slug": "using-ion-item-group",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
+      },
+      {
+        "title": "Besonderes Markup und Klassen",
+        "navTitle": "Besonderes Markup und Klassen",
+        "slug": "special-markup",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/special-markup"
+      },
+      {
+        "title": "Einheitliche Listen mit ESLint sicherstellen",
+        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
+        "slug": "eslint",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/eslint"
+      },
+      {
+        "title": "Funktionen",
+        "navTitle": "Funktionen",
+        "slug": "features",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/features"
+      },
+      {
+        "title": "Experimentelle Animation",
+        "navTitle": "Experimentelle Animation",
+        "slug": "experimental-animation",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
+      },
+      {
+        "title": "iOS 18 unterstützen",
+        "navTitle": "iOS 18",
+        "slug": "ios-18",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/ios-18"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios26/docs/migration"
+      },
+      {
+        "title": "E2E-Tests mit Screenshots",
+        "navTitle": "E2E-Tests mit Screenshots",
+        "slug": "e2e-testing",
+        "section": "Entwicklung",
+        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-theme-ios26/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-theme-md3",
+    "slug": "ionic-theme-md3",
+    "shortName": "Ionic Theme MD3",
+    "packageName": "@rdlabo/ionic-theme-md3",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
+    "category": "frontend-tools",
+    "icon": "theme",
+    "version": "9.1.2",
+    "description": "Material-Design-3-Gestaltung für Ionic-Anwendungen.",
+    "path": "/projects/ionic-theme-md3",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Dokumentation",
+        "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "ion-item-group verwenden",
+        "navTitle": "ion-item-group verwenden",
+        "slug": "using-ion-item-group",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
+      },
+      {
+        "title": "Besonderes Markup",
+        "navTitle": "Besonderes Markup",
+        "slug": "special-markup",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/special-markup"
+      },
+      {
+        "title": "Einheitliche Listen mit ESLint sicherstellen",
+        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
+        "slug": "eslint",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/eslint"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/migration"
+      },
+      {
+        "title": "E2E-Tests mit Screenshots",
+        "navTitle": "E2E-Tests mit Screenshots",
+        "slug": "e2e-testing",
+        "section": "Entwicklung",
+        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-theme-md3/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "ionic-angular-collect-icons",
+    "slug": "ionic-angular-collect-icons",
+    "shortName": "Ionic Angular Collect Icons",
+    "packageName": "@rdlabo/ionic-angular-collect-icons",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
+    "category": "frontend-tools",
+    "icon": "app",
+    "version": "3.0.0",
+    "description": "Das Sammeln und Exportieren von ionIcons in Ionic-Angular-Projekten automatisieren.",
+    "path": "/projects/ionic-angular-collect-icons",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/ionic-angular-collect-icons/docs/readme"
+      },
+      {
+        "title": "Initialisierung",
+        "navTitle": "Initialisierung",
+        "slug": "initialize",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-collect-icons/docs/initialize"
+      },
+      {
+        "title": "Verwendung",
+        "navTitle": "Verwendung",
+        "slug": "usage",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-collect-icons/docs/usage"
+      },
+      {
+        "title": "CLI-Optionen",
+        "navTitle": "CLI-Optionen",
+        "slug": "options",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-collect-icons/docs/options"
+      },
+      {
+        "title": "FAQ",
+        "navTitle": "FAQ",
+        "slug": "faq",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-collect-icons/docs/faq"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-angular-collect-icons/docs/migration"
+      },
+      {
+        "title": "CLI-API",
+        "navTitle": "CLI-API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/ionic-angular-collect-icons/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-timezone",
+    "slug": "workers-timezone",
+    "shortName": "Workers Timezone",
+    "packageName": "@rdlabo/workers-timezone",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "IANA-Zeitzonenumrechnung und Kalenderhilfen für Cloudflare Workers, ergänzt durch ESLint-Prüfungen für implizite Zeitzonenverwendung in Date und Intl.",
+    "path": "/projects/workers-timezone",
+    "pages": [
+      {
+        "title": "Zeitzonen-Konvertierungen und ESLint gemeinsam ausprobieren",
+        "navTitle": "Umrechnungen und Linting ausprobieren",
+        "slug": "quickstart",
+        "section": "Schnellstart",
+        "path": "/projects/workers-timezone/docs/quickstart"
+      },
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/workers-timezone/docs/readme"
+      },
+      {
+        "title": "Zeitzonenfehler mit ESLint erkennen",
+        "navTitle": "Zeitzonenfehler mit ESLint erkennen",
+        "slug": "eslint",
+        "section": "Anleitungen",
+        "path": "/projects/workers-timezone/docs/eslint"
+      },
+      {
+        "title": "Zeitzonen und Kalendertage",
+        "navTitle": "Zeitzonen und Kalendertage",
+        "slug": "timezones",
+        "section": "Anleitungen",
+        "path": "/projects/workers-timezone/docs/timezones"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/workers-timezone/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/workers-timezone/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-mysql",
+    "slug": "workers-mysql",
+    "shortName": "Workers MySQL",
+    "packageName": "@rdlabo/workers-mysql",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "MySQL-Zugriff für Cloudflare Workers mit Hyperdrive, Primary-/Replica-Routing, Wiederholungsversuchen bei Deadlocks und Drizzle-Integration.",
+    "path": "/projects/workers-mysql",
+    "pages": [
+      {
+        "title": "Ihre erste MySQL-Abfrage ausführen",
+        "navTitle": "Die erste Abfrage ausführen",
+        "slug": "quickstart",
+        "section": "Schnellstart",
+        "path": "/projects/workers-mysql/docs/quickstart"
+      },
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/workers-mysql/docs/readme"
+      },
+      {
+        "title": "Laufzeit",
+        "navTitle": "Laufzeit",
+        "slug": "runtime",
+        "section": "Anleitungen",
+        "path": "/projects/workers-mysql/docs/runtime"
+      },
+      {
+        "title": "Drizzle und Datumswerte",
+        "navTitle": "Drizzle und Datumswerte",
+        "slug": "drizzle",
+        "section": "Anleitungen",
+        "path": "/projects/workers-mysql/docs/drizzle"
+      },
+      {
+        "title": "Migrationen und Tests",
+        "navTitle": "Migrationen und Tests",
+        "slug": "tooling",
+        "section": "Anleitungen",
+        "path": "/projects/workers-mysql/docs/tooling"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/workers-mysql/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/workers-mysql/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "workers-hono-kit",
+    "slug": "workers-hono-kit",
+    "shortName": "Workers Hono Kit",
+    "packageName": "@rdlabo/workers-hono-kit",
+    "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
+    "category": "developer-tools",
+    "icon": "server",
+    "version": "0.12.2",
+    "description": "Hono-APIs auf Cloudflare Workers mit Validierung, Firebase-Authentifizierung, JSON-Fehlern, Queues und Testhilfen erstellen.",
+    "path": "/projects/workers-hono-kit",
+    "pages": [
+      {
+        "title": "Eine Hono-API lokal ausprobieren",
+        "navTitle": "Eine Hono-API lokal ausprobieren",
+        "slug": "quickstart",
+        "section": "Schnellstart",
+        "path": "/projects/workers-hono-kit/docs/quickstart"
+      },
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "getting-started",
+        "section": "Anleitung",
+        "path": "/projects/workers-hono-kit/docs/getting-started"
+      },
+      {
+        "title": "HTTP und Authentifizierung",
+        "navTitle": "HTTP und Authentifizierung",
+        "slug": "http-auth",
+        "section": "Anleitung",
+        "path": "/projects/workers-hono-kit/docs/http-auth"
+      },
+      {
+        "title": "Datenschicht",
+        "navTitle": "Datenschicht",
+        "slug": "data-layer",
+        "section": "Anleitung",
+        "path": "/projects/workers-hono-kit/docs/data-layer"
+      },
+      {
+        "title": "Echtzeit und Offline",
+        "navTitle": "Echtzeit und Offline",
+        "slug": "realtime-offline",
+        "section": "Anleitung",
+        "path": "/projects/workers-hono-kit/docs/realtime-offline"
+      },
+      {
+        "title": "Tests und Betrieb",
+        "navTitle": "Tests und Betrieb",
+        "slug": "testing-operations",
+        "section": "Referenz",
+        "path": "/projects/workers-hono-kit/docs/testing-operations"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/workers-hono-kit/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "eslint-plugin-rules",
+    "slug": "eslint-plugin-rules",
+    "shortName": "ESLint Plugin Rules",
+    "packageName": "@rdlabo/eslint-plugin-rules",
+    "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
+    "category": "developer-tools",
+    "icon": "lint",
+    "version": "22.1.0",
+    "description": "Regeln mit klaren Konventionen für Angular, Ionic, TypeScript und Cloudflare Workers für wartbare Anwendungen.",
+    "path": "/projects/eslint-plugin-rules",
+    "pages": [
+      {
+        "title": "Eine Lint-Regel beim Erkennen und Korrigieren von Code beobachten",
+        "navTitle": "Erkennung und automatische Korrektur ausprobieren",
+        "slug": "quickstart",
+        "section": "Schnellstart",
+        "path": "/projects/eslint-plugin-rules/docs/quickstart"
+      },
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "getting-started",
+        "section": "Anleitung",
+        "path": "/projects/eslint-plugin-rules/docs/getting-started"
+      },
+      {
+        "title": "Konfiguration",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Anleitung",
+        "path": "/projects/eslint-plugin-rules/docs/configuration"
+      },
+      {
+        "title": "Regeln",
+        "navTitle": "Regeln",
+        "slug": "rules",
+        "section": "Referenz",
+        "path": "/projects/eslint-plugin-rules/docs/rules"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitung",
+        "path": "/projects/eslint-plugin-rules/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/eslint-plugin-rules/docs/api"
+      },
+      {
+        "title": "component-property-use-readonly",
+        "navTitle": "component-property-use-readonly",
+        "slug": "rules/component-property-use-readonly",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/component-property-use-readonly"
+      },
+      {
+        "title": "deny-constructor-di",
+        "navTitle": "deny-constructor-di",
+        "slug": "rules/deny-constructor-di",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-constructor-di"
+      },
+      {
+        "title": "deny-element",
+        "navTitle": "deny-element",
+        "slug": "rules/deny-element",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-element"
+      },
+      {
+        "title": "deny-overlay-create",
+        "navTitle": "deny-overlay-create",
+        "slug": "rules/deny-overlay-create",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-overlay-create"
+      },
+      {
+        "title": "deny-soft-private-modifier",
+        "navTitle": "deny-soft-private-modifier",
+        "slug": "rules/deny-soft-private-modifier",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/deny-soft-private-modifier"
+      },
+      {
+        "title": "implements-ionic-lifecycle",
+        "navTitle": "implements-ionic-lifecycle",
+        "slug": "rules/implements-ionic-lifecycle",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/implements-ionic-lifecycle"
+      },
+      {
+        "title": "initialize-timezone-at-module-scope",
+        "navTitle": "initialize-timezone-at-module-scope",
+        "slug": "rules/initialize-timezone-at-module-scope",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope"
+      },
+      {
+        "title": "ionic-attr-type-check",
+        "navTitle": "ionic-attr-type-check",
+        "slug": "rules/ionic-attr-type-check",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "no-component-method-except-lifecycle",
+        "navTitle": "no-component-method-except-lifecycle",
+        "slug": "rules/no-component-method-except-lifecycle",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-component-method-except-lifecycle"
+      },
+      {
+        "title": "no-component-writable-signal",
+        "navTitle": "no-component-writable-signal",
+        "slug": "rules/no-component-writable-signal",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal"
+      },
+      {
+        "title": "no-implicit-timezone",
+        "navTitle": "no-implicit-timezone",
+        "slug": "rules/no-implicit-timezone",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone"
+      },
+      {
+        "title": "no-reactive-forms",
+        "navTitle": "no-reactive-forms",
+        "slug": "rules/no-reactive-forms",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-reactive-forms"
+      },
+      {
+        "title": "no-template-driven-forms",
+        "navTitle": "no-template-driven-forms",
+        "slug": "rules/no-template-driven-forms",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms"
+      },
+      {
+        "title": "prefer-disable-handler",
+        "navTitle": "prefer-disable-handler",
+        "slug": "rules/prefer-disable-handler",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler"
+      },
+      {
+        "title": "prefer-ionic-standalone",
+        "navTitle": "prefer-ionic-standalone",
+        "slug": "rules/prefer-ionic-standalone",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-ionic-standalone"
+      },
+      {
+        "title": "prefer-modal-launcher",
+        "navTitle": "prefer-modal-launcher",
+        "slug": "rules/prefer-modal-launcher",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher"
+      },
+      {
+        "title": "require-ion-error-text",
+        "navTitle": "require-ion-error-text",
+        "slug": "rules/require-ion-error-text",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-error-text"
+      },
+      {
+        "title": "require-ion-item-group",
+        "navTitle": "require-ion-item-group",
+        "slug": "rules/require-ion-item-group",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-ion-item-group"
+      },
+      {
+        "title": "require-viewmodel",
+        "navTitle": "require-viewmodel",
+        "slug": "rules/require-viewmodel",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/require-viewmodel"
+      },
+      {
+        "title": "restrict-try-block",
+        "navTitle": "restrict-try-block",
+        "slug": "rules/restrict-try-block",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/restrict-try-block"
+      },
+      {
+        "title": "signal-use-as-signal-template",
+        "navTitle": "signal-use-as-signal-template",
+        "slug": "rules/signal-use-as-signal-template",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template"
+      },
+      {
+        "title": "signal-use-as-signal",
+        "navTitle": "signal-use-as-signal",
+        "slug": "rules/signal-use-as-signal",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-docgen",
+    "slug": "capacitor-docgen",
+    "shortName": "Docgen",
+    "packageName": "@rdlabo/capacitor-docgen",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-docgen",
+    "category": "developer-tools",
+    "icon": "docs",
+    "version": "0.4.1",
+    "description": "Upstream-kompatibler Capacitor-Dokumentationsgenerator mit Schnittstellenvererbung.",
+    "path": "/projects/capacitor-docgen",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "getting-started",
+        "section": "Anleitung",
+        "path": "/projects/capacitor-docgen/docs/getting-started"
+      },
+      {
+        "title": "Unterschiede zum ursprünglichen Projekt",
+        "navTitle": "Unterschiede zum Upstream",
+        "slug": "upstream-differences",
+        "section": "Vergleich",
+        "path": "/projects/capacitor-docgen/docs/upstream-differences"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-docgen/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe",
+    "slug": "capacitor-stripe",
+    "shortName": "Stripe",
+    "packageName": "@capacitor-community/stripe",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.2.1",
+    "description": "Stripe PaymentSheet, Apple Pay und Google Pay mit @capacitor-community/stripe in Capacitor-Apps für iOS, Android und Web integrieren.",
+    "path": "/projects/capacitor-stripe",
+    "pages": [
+      {
+        "title": "Plattformkonfiguration",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe/docs/configuration"
+      },
+      {
+        "title": "Vanilla-JS-Schnellstart",
+        "navTitle": "Vanilla JS",
+        "slug": "vanilla-js",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe/docs/vanilla-js"
+      },
+      {
+        "title": "Angular-Schnellstart",
+        "navTitle": "Angular",
+        "slug": "angular",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe/docs/angular"
+      },
+      {
+        "title": "React-Schnellstart",
+        "navTitle": "React",
+        "slug": "react",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe/docs/react"
+      },
+      {
+        "title": "Ereignis-Listener",
+        "navTitle": "Ereignis-Listener",
+        "slug": "learn/event-listeners",
+        "section": "Lernen",
+        "path": "/projects/capacitor-stripe/docs/learn/event-listeners"
+      },
+      {
+        "title": "Serverintegration",
+        "navTitle": "Serverintegration",
+        "slug": "server-integration",
+        "section": "Lernen",
+        "path": "/projects/capacitor-stripe/docs/server-integration"
+      },
+      {
+        "title": "In Ihrem Projekt initialisieren",
+        "navTitle": "Initialisierung",
+        "slug": "initialize",
+        "section": "Methoden",
+        "path": "/projects/capacitor-stripe/docs/initialize"
+      },
+      {
+        "title": "PaymentSheet",
+        "navTitle": "PaymentSheet",
+        "slug": "payment-sheet",
+        "section": "Methoden",
+        "path": "/projects/capacitor-stripe/docs/payment-sheet"
+      },
+      {
+        "title": "PaymentFlow",
+        "navTitle": "PaymentFlow",
+        "slug": "payment-flow",
+        "section": "Methoden",
+        "path": "/projects/capacitor-stripe/docs/payment-flow"
+      },
+      {
+        "title": "ApplePay",
+        "navTitle": "Apple Pay",
+        "slug": "apple-pay",
+        "section": "Methoden",
+        "path": "/projects/capacitor-stripe/docs/apple-pay"
+      },
+      {
+        "title": "Google Pay",
+        "navTitle": "Google Pay",
+        "slug": "google-pay",
+        "section": "Methoden",
+        "path": "/projects/capacitor-stripe/docs/google-pay"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-stripe/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-identity",
+    "slug": "capacitor-stripe-identity",
+    "shortName": "Stripe Identity",
+    "packageName": "@capacitor-community/stripe-identity",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "identity",
+    "version": "8.2.1",
+    "description": "Anbindung des Stripe Identity SDK für Capacitor-Anwendungen.",
+    "path": "/projects/capacitor-stripe-identity",
+    "pages": [
+      {
+        "title": "Konfiguration",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe-identity/docs/configuration"
+      },
+      {
+        "title": "Identity Verification Sheet",
+        "navTitle": "Identity Verification Sheet",
+        "slug": "identity-verification-sheet",
+        "section": "Anleitung",
+        "path": "/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-stripe-identity/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-terminal",
+    "slug": "capacitor-stripe-terminal",
+    "shortName": "Stripe Terminal",
+    "packageName": "@capacitor-community/stripe-terminal",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.2.1",
+    "description": "Anbindung des Stripe Terminal SDK für Capacitor-Anwendungen.",
+    "path": "/projects/capacitor-stripe-terminal",
+    "pages": [
+      {
+        "title": "Konfiguration",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe-terminal/docs/configuration"
+      },
+      {
+        "title": "Eine Zahlung abwickeln",
+        "navTitle": "Zahlung einziehen",
+        "slug": "collect-a-payment",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-stripe-terminal/docs/collect-a-payment"
+      },
+      {
+        "title": "Lebenszyklus des Lesegeräts",
+        "navTitle": "Lesegeräte-Lebenszyklus",
+        "slug": "reader-lifecycle",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-stripe-terminal/docs/reader-lifecycle"
+      },
+      {
+        "title": "Tap to Pay",
+        "navTitle": "Tap to Pay",
+        "slug": "tap-to-pay",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-stripe-terminal/docs/tap-to-pay"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-stripe-terminal/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "admob",
+    "slug": "capacitor-admob",
+    "shortName": "AdMob",
+    "packageName": "@capacitor-community/admob",
+    "repositoryUrl": "https://github.com/capacitor-community/admob",
+    "category": "capacitor-plugins",
+    "icon": "ads",
+    "version": "8.1.0",
+    "description": "Native Google-AdMob-Anzeigen für Capacitor-Anwendungen.",
+    "path": "/projects/capacitor-admob",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-admob/docs/readme"
+      },
+      {
+        "title": "Initialisierung",
+        "navTitle": "Initialisierung",
+        "slug": "configuration",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-admob/docs/configuration"
+      },
+      {
+        "title": "Einwilligung",
+        "navTitle": "Einwilligung",
+        "slug": "consent",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-admob/docs/consent"
+      },
+      {
+        "title": "Tests",
+        "navTitle": "Tests",
+        "slug": "testing",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-admob/docs/testing"
+      },
+      {
+        "title": "Banneranzeigen",
+        "navTitle": "Banneranzeigen",
+        "slug": "banner",
+        "section": "Anzeigenformate",
+        "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Interstitial-Anzeigen",
+        "navTitle": "Interstitial-Anzeigen",
+        "slug": "interstitial",
+        "section": "Anzeigenformate",
+        "path": "/projects/capacitor-admob/docs/interstitial"
+      },
+      {
+        "title": "Rewarded-Anzeigen",
+        "navTitle": "Rewarded-Anzeigen",
+        "slug": "rewarded",
+        "section": "Anzeigenformate",
+        "path": "/projects/capacitor-admob/docs/rewarded"
+      },
+      {
+        "title": "App-Open-Anzeigen",
+        "navTitle": "App-Open-Anzeigen",
+        "slug": "app-open",
+        "section": "Anzeigenformate",
+        "path": "/projects/capacitor-admob/docs/app-open"
+      },
+      {
+        "title": "Anzeigenereignisse",
+        "navTitle": "Anzeigenereignisse",
+        "slug": "events",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-admob/docs/events"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-admob/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-admob/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "facebook-login",
+    "slug": "capacitor-facebook-login",
+    "shortName": "Facebook Login",
+    "packageName": "@capacitor-community/facebook-login",
+    "repositoryUrl": "https://github.com/capacitor-community/facebook-login",
+    "category": "capacitor-plugins",
+    "icon": "identity",
+    "version": "8.1.0",
+    "description": "Natives Facebook Login und App Events für Capacitor-Anwendungen.",
+    "path": "/projects/capacitor-facebook-login",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-facebook-login/docs/readme"
+      },
+      {
+        "title": "Konfiguration",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-facebook-login/docs/configuration"
+      },
+      {
+        "title": "Authentifizierung",
+        "navTitle": "Authentifizierung",
+        "slug": "authentication",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-facebook-login/docs/authentication"
+      },
+      {
+        "title": "App-Ereignisse",
+        "navTitle": "App-Ereignisse",
+        "slug": "app-events",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-facebook-login/docs/app-events"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-facebook-login/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-local-llm",
+    "slug": "capacitor-local-llm",
+    "shortName": "Local LLM",
+    "packageName": "@rdlabo/capacitor-local-llm",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-local-llm",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.2.0",
+    "description": "Textgenerierung auf dem Gerät für Capacitor unter iOS, Android und unterstützten Chrome-Desktopversionen sowie native Bildfunktionen.",
+    "path": "/projects/capacitor-local-llm",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-local-llm/docs/readme"
+      },
+      {
+        "title": "Einrichtung",
+        "navTitle": "Einrichtung",
+        "slug": "setup",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/setup"
+      },
+      {
+        "title": "Web (Chrome)",
+        "navTitle": "Web (Chrome)",
+        "slug": "web",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/web"
+      },
+      {
+        "title": "Verfügbarkeit und Plattformverhalten",
+        "navTitle": "Verfügbarkeit",
+        "slug": "availability",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/availability"
+      },
+      {
+        "title": "Chat",
+        "navTitle": "Chat",
+        "slug": "chat",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/chat"
+      },
+      {
+        "title": "Bilder",
+        "navTitle": "Bilder",
+        "slug": "images",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/images"
+      },
+      {
+        "title": "Android-Fallback-Modell",
+        "navTitle": "Android-Fallback-Modell",
+        "slug": "android-fallback",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/android-fallback"
+      },
+      {
+        "title": "Ereignisse",
+        "navTitle": "Ereignisse",
+        "slug": "events",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/events"
+      },
+      {
+        "title": "Fehlerbehandlung",
+        "navTitle": "Fehlerbehandlung",
+        "slug": "errors",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/errors"
+      },
+      {
+        "title": "Migration",
+        "navTitle": "Migration",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-local-llm/docs/migration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-local-llm/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-codescanner",
+    "slug": "capacitor-codescanner",
+    "shortName": "Code Scanner",
+    "packageName": "@rdlabo/capacitor-codescanner",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-codescanner",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "8.0.3",
+    "description": "Barcodes und QR-Codes in Capacitor über einen nativen modalen Dialog scannen.",
+    "path": "/projects/capacitor-codescanner",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-codescanner/docs/readme"
+      },
+      {
+        "title": "CodeScanner",
+        "navTitle": "CodeScanner",
+        "slug": "code-scanner",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-codescanner/docs/code-scanner"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-codescanner/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-screenshot-event",
+    "slug": "capacitor-screenshot-event",
+    "shortName": "Screenshot Event",
+    "packageName": "@rdlabo/capacitor-screenshot-event",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-screenshot-event",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "8.0.0",
+    "description": "Capacitor-Apps benachrichtigen, wenn Nutzer einen Screenshot erstellen.",
+    "path": "/projects/capacitor-screenshot-event",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-screenshot-event/docs/readme"
+      },
+      {
+        "title": "ScreenshotEvent",
+        "navTitle": "ScreenshotEvent",
+        "slug": "screenshot-event",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-screenshot-event/docs/screenshot-event"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-screenshot-event/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-printer",
+    "slug": "capacitor-printer",
+    "shortName": "Printer",
+    "packageName": "@rdlabo/capacitor-printer",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-printer",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.0.1",
+    "description": "Natives Drucken von Dateien und WebView-Inhalten in Capacitor-Apps.",
+    "path": "/projects/capacitor-printer",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-printer/docs/readme"
+      },
+      {
+        "title": "WebView drucken",
+        "navTitle": "Die WebView drucken",
+        "slug": "web",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-printer/docs/web"
+      },
+      {
+        "title": "PDFs und Dateien drucken",
+        "navTitle": "PDFs und Dateien drucken",
+        "slug": "pdf",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-printer/docs/pdf"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-printer/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-brotherprint",
+    "slug": "capacitor-brotherprint",
+    "shortName": "Brother Print",
+    "packageName": "@rdlabo/capacitor-brotherprint",
+    "repositoryUrl": "https://github.com/rdlabo-dev/capacitor-brotherprint",
+    "category": "capacitor-plugins",
+    "icon": "terminal",
+    "version": "8.2.1",
+    "description": "Native Anbindung des Brother Print SDK für Capacitor auf iOS und Android.",
+    "path": "/projects/capacitor-brotherprint",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-brotherprint/docs/readme"
+      },
+      {
+        "title": "Installation",
+        "navTitle": "Installation",
+        "slug": "installation",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-brotherprint/docs/installation"
+      },
+      {
+        "title": "JavaScript-Druckhilfen",
+        "navTitle": "JavaScript-Druckhilfen",
+        "slug": "connection-management",
+        "section": "JavaScript-Hilfsfunktionen",
+        "path": "/projects/capacitor-brotherprint/docs/connection-management"
+      },
+      {
+        "title": "Entwurfsentscheidungen der Hilfsfunktionen",
+        "navTitle": "Entwurfsentscheidungen der Hilfsfunktionen",
+        "slug": "helper-design",
+        "section": "JavaScript-Hilfsfunktionen",
+        "path": "/projects/capacitor-brotherprint/docs/helper-design"
+      },
+      {
+        "title": "Suche",
+        "navTitle": "Suche",
+        "slug": "search",
+        "section": "Plugin-API",
+        "path": "/projects/capacitor-brotherprint/docs/search"
+      },
+      {
+        "title": "Drucken",
+        "navTitle": "Drucken",
+        "slug": "print",
+        "section": "Plugin-API",
+        "path": "/projects/capacitor-brotherprint/docs/print"
+      },
+      {
+        "title": "Ereignisse",
+        "navTitle": "Ereignisse",
+        "slug": "events",
+        "section": "Plugin-API",
+        "path": "/projects/capacitor-brotherprint/docs/events"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-brotherprint/docs/api"
+      }
+    ]
+  }
+] as const;
+
 export const PROJECT_CATEGORIES_BY_LOCALE = {
   en: PROJECT_CATEGORIES_EN,
   ja: PROJECT_CATEGORIES_JA,
+  fr: PROJECT_CATEGORIES_FR,
+  de: PROJECT_CATEGORIES_DE,
 } as const;
 
 export const PROJECTS_BY_LOCALE = {
   en: PROJECTS_EN,
   ja: PROJECTS_JA,
+  fr: PROJECTS_FR,
+  de: PROJECTS_DE,
 } as const;

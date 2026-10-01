@@ -142,6 +142,8 @@
       <trans-unit id="documentationPages"><source>Documentation pages</source><target>ドキュメントの前後のページ</target></trans-unit>
       <trans-unit id="previousPage"><source>Previous</source><target>前へ</target></trans-unit>
       <trans-unit id="nextPage"><source>Next</source><target>次へ</target></trans-unit>
+      <trans-unit id="docsResources"><source>Resources</source><target>関連リンク</target></trans-unit>
+      <trans-unit id="supportRail"><source>Sponsor</source><target>スポンサーになる</target></trans-unit>
     </body>
   </file>
 </xliff>

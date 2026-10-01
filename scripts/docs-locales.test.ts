@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
 import markdownToHtml from 'zenn-markdown-html';
-import { DOCS_LOCALES, PUBLISHED_DOCS_LOCALES, resolveDocsLocale } from '../shared/docs-locales';
+import { DOCS_LOCALES, resolveDocsLocale } from '../shared/docs-locales';
 import { localizedPublicPath } from '../projects/docs/src/app/locale-path';
 import { assertDocsLocaleConfiguration } from './docs-locale-config';
 import { localize } from './project-manifest';
@@ -44,7 +44,14 @@ test('static output excludes unpublished locale assets while preserving publishe
         await writeFile(join(target, nested, '404.html'), 'unreviewed asset');
       }
     }
-    await prepareDocsStaticAssets(root, output);
+    await prepareDocsStaticAssets(
+      root,
+      output,
+      DOCS_LOCALES.map((locale) => ({
+        ...locale,
+        published: locale.code === 'en' || locale.code === 'ja',
+      })),
+    );
     for (const prefix of ['', 'ja']) {
       assert.equal(
         await readFile(join(output, prefix, '404.html'), 'utf8'),
@@ -64,16 +71,17 @@ test('static output excludes unpublished locale assets while preserving publishe
   }
 });
 
-test('registered translations remain unpublished until they are complete', () => {
-  assert.deepEqual(
-    PUBLISHED_DOCS_LOCALES.map(({ code }) => code),
-    ['en', 'ja'],
-  );
+test('registered translations require reviewed metadata', () => {
   assert.deepEqual(
     DOCS_LOCALES.filter(({ requiresSourceReview }) => requiresSourceReview).map(({ code }) => code),
     ['fr', 'de'],
   );
-  assert.throws(() => localize({ en: 'Guide', ja: 'ガイド' }, 'fr'), /Missing fr translation/);
+  for (const locale of ['fr', 'de'] as const) {
+    assert.throws(
+      () => localize({ en: 'Unreviewed fixture metadata', ja: '未レビュー' }, locale),
+      new RegExp(`Missing ${locale} translation`),
+    );
+  }
 });
 
 test('locale paths support all registered languages without duplicate prefixes', () => {
@@ -91,6 +99,10 @@ test('locale paths support all registered languages without duplicate prefixes',
 });
 
 test('publication requires matching Angular builds and locale paths', () => {
+  const initialLocales = DOCS_LOCALES.map((locale) => ({
+    ...locale,
+    published: locale.code === 'en' || locale.code === 'ja',
+  }));
   const config = {
     projects: {
       docs: {
@@ -102,31 +114,34 @@ test('publication requires matching Angular builds and locale paths', () => {
       },
     },
   };
-  assert.doesNotThrow(() => assertDocsLocaleConfiguration(config));
-  const publishedFrench = DOCS_LOCALES.map((locale) => ({
+  assert.doesNotThrow(() => assertDocsLocaleConfiguration(config, initialLocales));
+  const publishedFrench = initialLocales.map((locale) => ({
     ...locale,
     published: locale.published || locale.code === 'fr',
   }));
   assert.throws(() => assertDocsLocaleConfiguration(config, publishedFrench), /must match Angular/);
   config.projects.docs.i18n.locales.ja.subPath = 'japanese';
-  assert.throws(() => assertDocsLocaleConfiguration(config), /subPath/);
+  assert.throws(() => assertDocsLocaleConfiguration(config, initialLocales), /subPath/);
   config.projects.docs.i18n.locales.ja.subPath = 'ja';
   assert.throws(
     () =>
-      assertDocsLocaleConfiguration({
-        projects: {
-          docs: {
-            ...config.projects.docs,
-            architect: {
-              build: {
-                options: { localize: true },
-                defaultConfiguration: 'production',
-                configurations: { production: { localize: ['en'] } },
+      assertDocsLocaleConfiguration(
+        {
+          projects: {
+            docs: {
+              ...config.projects.docs,
+              architect: {
+                build: {
+                  options: { localize: true },
+                  defaultConfiguration: 'production',
+                  configurations: { production: { localize: ['en'] } },
+                },
               },
             },
           },
         },
-      }),
+        initialLocales,
+      ),
     /must match Angular/,
   );
 });

@@ -307,7 +307,17 @@ pagefind-modal-trigger.docs-search:empty {
 
 /* Make Markdown section permalinks visible and keyboard accessible. */
 [appHeadingLinks] :is(h2, h3, h4, h5, h6)[id] {
+  position: relative;
   cursor: pointer;
+  scroll-margin-top: 6rem;
+}
+[appHeadingLinks] [data-docs-heading-alias] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 0;
   scroll-margin-top: 6rem;
 }
 [appHeadingLinks] .header-anchor-link {

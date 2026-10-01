@@ -6,22 +6,23 @@ import { collectJsonLdTypes } from '../../../../../shared/json-ld';
 import { SITE_CONFIG } from '../site-config';
 import { docsBreadcrumbStructuredData, docsHomeStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
+import { PUBLISHED_DOCS_LOCALES } from '../../../../../shared/docs-locales';
 
 describe('SeoService', () => {
   it('removes stale alternates for unpublished locales', () => {
     const document = TestBed.inject(DOCUMENT);
     const stale = document.createElement('link');
     stale.rel = 'alternate';
-    stale.hreflang = 'fr';
-    stale.href = `${SITE_CONFIG.origin}/fr`;
+    stale.hreflang = 'es';
+    stale.href = `${SITE_CONFIG.origin}/es`;
     document.head.appendChild(stale);
     TestBed.inject(SeoService).setPage({ title: 'Home', description: 'Home', path: '/' });
-    expect(document.head.querySelector('link[hreflang="fr"]')).toBeNull();
+    expect(document.head.querySelector('link[hreflang="es"]')).toBeNull();
     expect(
       [...document.head.querySelectorAll<HTMLLinkElement>('link[rel="alternate"][hreflang]')]
         .map((link) => link.hreflang)
         .sort(),
-    ).toEqual(['en', 'ja', 'x-default']);
+    ).toEqual([...PUBLISHED_DOCS_LOCALES.map(({ code }) => code), 'x-default'].sort());
   });
   it('writes canonical, hreflang, Open Graph, and robots metadata', () => {
     const service = TestBed.inject(SeoService);

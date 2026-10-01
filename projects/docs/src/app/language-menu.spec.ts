@@ -1,30 +1,37 @@
 import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { LanguageMenu } from './language-menu';
+import { DOCS_LOCALES, PUBLISHED_DOCS_LOCALES } from '../../../../shared/docs-locales';
+import { localizedPublicPath } from './locale-path';
 
 describe('LanguageMenu', () => {
-  it('keeps the current document and query across published languages', async () => {
-    await TestBed.configureTestingModule({
-      imports: [LanguageMenu],
-      providers: [{ provide: LOCALE_ID, useValue: 'ja' }],
-    }).compileComponents();
-    const fixture = TestBed.createComponent(LanguageMenu);
-    fixture.componentRef.setInput(
-      'path',
-      '/projects/example/docs/guide?version=1#translated-heading',
-    );
-    fixture.detectChanges();
-    const element = fixture.nativeElement as HTMLElement;
-    expect(element.querySelector('summary')?.getAttribute('aria-label')).toBe('Switch language');
-    expect(element.querySelector('a[hreflang="en"]')?.getAttribute('href')).toBe(
-      '/projects/example/docs/guide?version=1',
-    );
-    expect(element.querySelector('a[hreflang="ja"]')).toBeNull();
-    expect(element.querySelector('[aria-current="true"]')?.textContent).toContain('日本語');
-    expect(element.querySelector('[aria-current="true"]')?.hasAttribute('tabindex')).toBe(false);
-    expect(element.querySelector('a[hreflang="fr"]')).toBeNull();
-    expect(element.querySelector('a[hreflang="de"]')).toBeNull();
-  });
+  it.each(PUBLISHED_DOCS_LOCALES)(
+    'keeps the document and query when switching from $code',
+    async (current) => {
+      await TestBed.configureTestingModule({
+        imports: [LanguageMenu],
+        providers: [{ provide: LOCALE_ID, useValue: current.code }],
+      }).compileComponents();
+      const fixture = TestBed.createComponent(LanguageMenu);
+      fixture.componentRef.setInput(
+        'path',
+        '/projects/example/docs/guide?version=1#translated-heading',
+      );
+      fixture.detectChanges();
+      const element = fixture.nativeElement as HTMLElement;
+      expect(element.querySelector('summary')?.getAttribute('aria-label')).toBe('Switch language');
+      for (const locale of DOCS_LOCALES) {
+        const link = element.querySelector(`a[hreflang="${locale.code}"]`);
+        if (!locale.published || locale.code === current.code) expect(link).toBeNull();
+        else
+          expect(link?.getAttribute('href')).toBe(
+            localizedPublicPath(locale.code, '/projects/example/docs/guide?version=1'),
+          );
+      }
+      expect(element.querySelector('[aria-current="true"]')?.textContent).toContain(current.name);
+      expect(element.querySelector('[aria-current="true"]')?.hasAttribute('tabindex')).toBe(false);
+    },
+  );
 
   it('closes with Escape and returns keyboard focus to its trigger', () => {
     const fixture = TestBed.createComponent(LanguageMenu);

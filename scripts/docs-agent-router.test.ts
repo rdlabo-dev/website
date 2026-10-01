@@ -9,6 +9,7 @@ import {
   type AgentRouterBindings,
 } from '../workers/docs-agent-router';
 import { AGENT_MARKDOWN } from '../workers/generated/agent-markdown.generated';
+import { PUBLISHED_DOCS_LOCALES } from '../shared/docs-locales';
 
 const target = 'https://docs.rdlabo.dev/projects/capacitor-brotherprint';
 const guide = 'https://docs.rdlabo.dev/projects/capacitor-stripe/docs/payment-sheet';
@@ -44,11 +45,18 @@ test('covers every generated project documentation route', () => {
     `expected the complete docs catalog, received ${paths.length} paths`,
   );
   for (const path of paths.filter((candidate) => candidate.startsWith('/projects/'))) {
-    assert.equal(
-      Object.hasOwn(AGENT_MARKDOWN, `/ja${path}`),
-      true,
-      `missing Japanese path for ${path}`,
-    );
+    for (const { code, subPath } of PUBLISHED_DOCS_LOCALES) {
+      const localizedPath = `${subPath ? `/${subPath}` : ''}${path}`;
+      assert.equal(
+        Object.hasOwn(AGENT_MARKDOWN, localizedPath),
+        true,
+        `missing ${code} path for ${path}`,
+      );
+      assert.equal(
+        isExperimentRequest(new Request(`https://docs.rdlabo.dev${localizedPath}`)),
+        true,
+      );
+    }
   }
   assert.equal(isExperimentRequest(new Request(target)), true);
   assert.equal(isExperimentRequest(new Request(`${target}/`)), true);

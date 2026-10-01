@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { JSDOM } from 'jsdom';
+import { PUBLISHED_DOCS_LOCALES } from '../shared/docs-locales';
 import { isValidContentUpdatedAt } from './seo-dates';
 import {
   auditDuplicateMetadata,
@@ -43,6 +44,15 @@ const DOCS_HOME_JSON_LD_EN =
 
 const DOCS_HOME_JSON_LD_JA =
   '<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"WebPage","url":"https://docs.rdlabo.dev/ja","isPartOf":{"@id":"https://docs.rdlabo.dev/#website"},"inLanguage":"ja"}]}</script>';
+
+function docsHomeAlternates(origin: string): string {
+  return (
+    PUBLISHED_DOCS_LOCALES.map(
+      ({ code, subPath }) =>
+        `<link rel="alternate" hreflang="${code}" href="${origin}/${subPath}" />`,
+    ).join('\n') + `\n<link rel="alternate" hreflang="x-default" href="${origin}/" />`
+  );
+}
 
 test('parseSitemap reads loc and lastmod only', () => {
   const entries = parseSitemap(`<?xml version="1.0" encoding="UTF-8"?>
@@ -128,7 +138,7 @@ test('auditHtmlPage rejects relative and non-HTTPS hreflang alternate hrefs', ()
   );
 });
 
-test('auditHtmlPage rejects unexpected hreflang keys such as fr', () => {
+test('auditHtmlPage rejects unpublished hreflang keys such as es', () => {
   const origin = 'https://docs.rdlabo.dev';
   const html = `<!doctype html><html lang="en"><head>
 <title>Docs home</title>
@@ -137,25 +147,25 @@ test('auditHtmlPage rejects unexpected hreflang keys such as fr', () => {
 <link rel="alternate" hreflang="en" href="${origin}/" />
 <link rel="alternate" hreflang="ja" href="${origin}/ja" />
 <link rel="alternate" hreflang="x-default" href="${origin}/" />
-<link rel="alternate" hreflang="fr" href="${origin}/fr" />
+<link rel="alternate" hreflang="es" href="${origin}/es" />
 </head><body></body></html>`;
   assert.match(
     auditHtmlPage(html, `${origin}/`, { bilingual: true }).join('\n'),
-    /unexpected hreflang="fr" alternate link/,
+    /unexpected hreflang="es" alternate link/,
   );
 });
 
-test('auditHtmlHreflangReciprocity rejects reciprocal pairs with matching extra fr hreflang', () => {
+test('auditHtmlHreflangReciprocity rejects matching unpublished es hreflang', () => {
   const origin = 'https://docs.rdlabo.dev';
   const english = normalizePublicUrl(origin, `${origin}/support`);
   const japanese = normalizePublicUrl(origin, `${origin}/ja/support`);
-  const french = normalizePublicUrl(origin, `${origin}/fr/support`);
-  const sitemapLocs = new Set([english, japanese, french]);
+  const spanish = normalizePublicUrl(origin, `${origin}/es/support`);
+  const sitemapLocs = new Set([english, japanese, spanish]);
   const shared = new Map<string, string>([
     ['en', english],
     ['ja', japanese],
     ['x-default', english],
-    ['fr', french],
+    ['es', spanish],
   ]);
 
   const errors = auditHtmlHreflangReciprocity(
@@ -165,13 +175,15 @@ test('auditHtmlHreflangReciprocity rejects reciprocal pairs with matching extra 
     ]),
     sitemapLocs,
   );
-  assert.match(errors.join('\n'), /unexpected hreflang="fr" alternate link/);
+  assert.match(errors.join('\n'), /unexpected hreflang="es" alternate link/);
 });
 
-test('auditHreflangKeys allows only en, ja, and x-default', () => {
+test('auditHreflangKeys requires all published languages and x-default', () => {
   const origin = 'https://docs.rdlabo.dev';
   assert.deepEqual(auditHreflangKeys(`${origin}/`, new Map([['en', `${origin}/`]])), [
-    `${origin}/: missing hreflang="ja" alternate link`,
+    ...PUBLISHED_DOCS_LOCALES.filter(({ code }) => code !== 'en').map(
+      ({ code }) => `${origin}/: missing hreflang="${code}" alternate link`,
+    ),
     `${origin}/: missing hreflang="x-default" alternate link`,
   ]);
 });
@@ -244,6 +256,7 @@ test('auditHtmlHreflangReciprocity requires reciprocal en/ja mappings across sit
         [japanese, shared],
       ]),
       sitemapLocs,
+      ['en', 'ja', 'x-default'],
     ),
     [],
   );
@@ -295,9 +308,7 @@ test('auditHtmlPage validates title, description, canonical, and hreflang metada
 <title>Open Source Project Documentation | rdlabo</title>
 <meta name="description" content="Docs portal home." />
 <link rel="canonical" href="https://docs.rdlabo.dev/" />
-<link rel="alternate" hreflang="en" href="https://docs.rdlabo.dev/" />
-<link rel="alternate" hreflang="ja" href="https://docs.rdlabo.dev/ja" />
-<link rel="alternate" hreflang="x-default" href="https://docs.rdlabo.dev/" />
+${docsHomeAlternates('https://docs.rdlabo.dev')}
 </head><body></body></html>`;
   assert.deepEqual(auditHtmlPage(html, 'https://docs.rdlabo.dev/', { bilingual: true }), []);
 });
@@ -680,50 +691,42 @@ test('auditJsonLdSemantics validates breadcrumbs, BlogPosting canonical alignmen
   );
 });
 
-test('runSeoAudit passes for a minimal bilingual docs site with simple sitemap', async () => {
+test('runSeoAudit passes for every published docs language with a simple sitemap', async () => {
   const root = await mkdtemp(join(tmpdir(), 'seo-audit-docs-'));
   const browserRoot = join(root, 'dist/docs/browser');
-  await mkdir(join(browserRoot, 'ja'), { recursive: true });
   const origin = 'https://docs.rdlabo.dev';
+  await mkdir(browserRoot, { recursive: true });
   await writeFile(
-    join(root, 'dist/docs/browser/sitemap.xml'),
+    join(browserRoot, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${origin}/</loc></url>
-  <url><loc>${origin}/ja</loc></url>
+${PUBLISHED_DOCS_LOCALES.map(({ subPath }) => `<url><loc>${origin}/${subPath}</loc></url>`).join('\n')}
 </urlset>`,
     'utf8',
   );
-  const head = (lang: string, canonical: string, en: string, ja: string, jsonLd = '', body = '') =>
-    `<!doctype html><html lang="${lang}"><head>
+  for (const { code, subPath } of PUBLISHED_DOCS_LOCALES) {
+    const localeRoot = join(browserRoot, subPath);
+    await mkdir(localeRoot, { recursive: true });
+    const canonical = `${origin}/${subPath}`;
+    const jsonLd =
+      code === 'en'
+        ? DOCS_HOME_JSON_LD_EN
+        : `<script id="rdlabo-json-ld" type="application/ld+json" data-rdlabo-json-ld>{"@context":"https://schema.org","@graph":[{"@type":"WebPage","url":"${canonical}","isPartOf":{"@id":"${origin}/#website"},"inLanguage":"${code}"}]}</script>`;
+    const links = PUBLISHED_DOCS_LOCALES.filter((locale) => locale.code !== code)
+      .map((locale) => `<a href="/${locale.subPath}">${locale.name}</a>`)
+      .join('');
+    await writeFile(
+      join(localeRoot, 'index.html'),
+      `<!doctype html><html lang="${code}"><head>
 <title>Docs home</title>
 <meta name="description" content="Docs portal home." />
 <link rel="canonical" href="${canonical}" />
-<link rel="alternate" hreflang="en" href="${en}" />
-<link rel="alternate" hreflang="ja" href="${ja}" />
-<link rel="alternate" hreflang="x-default" href="${en}" />
+${docsHomeAlternates(origin)}
 ${jsonLd}
-</head><body>${body}</body></html>`;
-  await Promise.all([
-    writeFile(
-      join(browserRoot, 'index.html'),
-      head(
-        'en',
-        `${origin}/`,
-        `${origin}/`,
-        `${origin}/ja`,
-        DOCS_HOME_JSON_LD_EN,
-        `<a href="/ja">Japanese</a>`,
-      ),
+</head><body>${links}</body></html>`,
       'utf8',
-    ),
-    writeFile(
-      join(browserRoot, 'ja', 'index.html'),
-      head('ja', `${origin}/ja`, `${origin}/`, `${origin}/ja`, DOCS_HOME_JSON_LD_JA),
-      'utf8',
-    ),
-  ]);
-
+    );
+  }
   const errors = await runSeoAudit({
     root,
     targets: [

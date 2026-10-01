@@ -2,9 +2,11 @@ import assert from 'node:assert/strict';
 import { access, readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import test from 'node:test';
+import { gunzipSync } from 'node:zlib';
 import { JSDOM } from 'jsdom';
 import { DOCS_LOCALES, PUBLISHED_DOCS_LOCALES } from '../shared/docs-locales';
 import { projectDefinitions } from './project-manifest';
+import { PROJECTS_EN } from '../projects/docs/src/app/generated/project-catalog.generated';
 import {
   CURRENT_SPONSORS,
   PAST_SPONSORS,
@@ -360,14 +362,14 @@ test('prerendered locales include reusable hydration data', async () => {
   const route = '/projects/capacitor-stripe/docs/configuration';
   const nestedRoute = '/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal';
   const pages = await Promise.all(
-    [
-      ['index.html', '/'],
-      ['ja/index.html', '/'],
-      [`${route.slice(1)}/index.html`, route],
-      [`ja${route}/index.html`, route],
-      [`${nestedRoute.slice(1)}/index.html`, nestedRoute],
-      [`ja${nestedRoute}/index.html`, nestedRoute],
-    ].map(async ([path, initialUrl]) => ({
+    PUBLISHED_DOCS_LOCALES.flatMap(({ subPath }) => {
+      const prefix = subPath ? `${subPath}/` : '';
+      return [
+        [`${prefix}index.html`, '/'],
+        [`${prefix}${route.slice(1)}/index.html`, route],
+        [`${prefix}${nestedRoute.slice(1)}/index.html`, nestedRoute],
+      ];
+    }).map(async ([path, initialUrl]) => ({
       html: await readFile(new URL(`../dist/docs/browser/${path}`, import.meta.url), 'utf8'),
       initialUrl,
     })),
@@ -391,23 +393,68 @@ test('prerendered locales include reusable hydration data', async () => {
   }
 });
 
-test('builds bounded English and Japanese search indexes with the component UI', async () => {
+test('builds bounded search indexes for every published language with the component UI', async () => {
   const searchDirectory = new URL('../dist/docs/browser/pagefind/', import.meta.url);
   const files = await readdir(searchDirectory, { recursive: true });
   assert.ok(files.includes('pagefind-component-ui.js'));
   assert.ok(files.includes('pagefind-component-ui.css'));
-  assert.ok(files.some((file) => /^pagefind\.en_.+\.pf_meta$/.test(file)));
-  assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
-  assert.equal(
-    files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    203,
-    'English search index must contain only canonical pages',
+  const canonicalPages = PROJECTS_EN.filter((project) => !project.hostedUrl).reduce(
+    (count, project) => count + 1 + project.pages.length,
+    2, // Home and support pages.
   );
-  assert.equal(
-    files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    203,
-    'Japanese search index must contain only canonical pages',
-  );
+  for (const { code } of PUBLISHED_DOCS_LOCALES) {
+    assert.ok(
+      files.some((file) => new RegExp(`^pagefind\\.${code}_.+\\.pf_meta$`).test(file)),
+      code,
+    );
+    assert.equal(
+      files.filter((file) => new RegExp(`^fragment/${code}_.+\\.pf_fragment$`).test(file)).length,
+      canonicalPages,
+      `${code} search index must contain only canonical pages`,
+    );
+  }
+  const indexedStripePages = new Map<
+    string,
+    { content: string; filters: Record<string, string[]> }
+  >();
+  for (const file of files.filter(
+    (file) => file.startsWith('fragment/') && file.endsWith('.pf_fragment'),
+  )) {
+    const json = gunzipSync(await readFile(join(searchDirectory.pathname, file)))
+      .toString('utf8')
+      .replace(/^pagefind_dcd/, '');
+    const fragment = JSON.parse(json) as {
+      url: string;
+      content: string;
+      filters: Record<string, string[]>;
+    };
+    if (/\/projects\/capacitor-stripe(?:\/docs\/configuration)?\/$/.test(fragment.url))
+      indexedStripePages.set(fragment.url, fragment);
+  }
+  for (const { subPath, code } of PUBLISHED_DOCS_LOCALES) {
+    for (const page of ['', '/docs/configuration']) {
+      const prefix = subPath ? `${subPath}/` : '';
+      const html = await readFile(
+        `dist/docs/browser/${prefix}projects/capacitor-stripe${page}/index.html`,
+        'utf8',
+      );
+      const dom = new JSDOM(html);
+      const config = dom.window.document.querySelector('pagefind-config');
+      const trigger = dom.window.document.querySelector('pagefind-modal-trigger');
+      assert.equal(config?.getAttribute('lang'), code);
+      assert.ok(trigger && config && !!(config.compareDocumentPosition(trigger) & 4));
+      const indexed = indexedStripePages.get(`/${prefix}projects/capacitor-stripe${page}/`);
+      assert.ok(indexed, `${prefix}${page}: indexed canonical page`);
+      assert.deepEqual(indexed.filters['project'], ['stripe']);
+      assert.deepEqual(indexed.filters['category'], ['capacitor-plugins']);
+      assert.doesNotMatch(
+        indexed.content,
+        /capacitor-plugins/,
+        `${prefix}${page}: filter metadata must not pollute searchable content or excerpts`,
+      );
+      dom.window.close();
+    }
+  }
   const sizes = await Promise.all(
     files.map(async (file) => {
       const entry = await stat(join(searchDirectory.pathname, file));
@@ -420,13 +467,13 @@ test('builds bounded English and Japanese search indexes with the component UI',
   );
 });
 
-test('Workers landing pages and guides expose distinct Cloudflare Workers metadata in both locales', async () => {
-  for (const locale of ['en', 'ja']) {
+test('Workers landing pages and guides expose distinct Cloudflare Workers metadata in all locales', async () => {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
     const titles = new Set<string>();
     const descriptions = new Set<string>();
     for (const project of projectDefinitions.filter((entry) => entry.id.startsWith('workers-'))) {
       for (const page of [undefined, ...project.pages]) {
-        const path = `${locale === 'ja' ? '/ja' : ''}/projects/${project.slug}${page ? `/docs/${page.slug}` : ''}`;
+        const path = `${subPath ? `/${subPath}` : ''}/projects/${project.slug}${page ? `/docs/${page.slug}` : ''}`;
         const html = await readFile(
           new URL(`../dist/docs/browser${path}/index.html`, import.meta.url),
           'utf8',
@@ -435,8 +482,8 @@ test('Workers landing pages and guides expose distinct Cloudflare Workers metada
         const title = document.title;
         const description =
           document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
-        assert.match(title, /Cloudflare Workers/, path);
-        assert.match(description, /Cloudflare Workers/, path);
+        assert.match(title, /Cloudflare[ -]Workers/, path);
+        assert.match(description, /Cloudflare[ -]Workers/, path);
         assert.ok(!titles.has(title), `duplicate title: ${path}`);
         assert.ok(!descriptions.has(description), `duplicate description: ${path}`);
         titles.add(title);
@@ -454,7 +501,8 @@ test('Workers landing pages and guides expose distinct Cloudflare Workers metada
 });
 
 test('project entry pages link to localized onboarding, references, and support', async () => {
-  for (const locale of ['', 'ja/']) {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const locale = subPath ? `${subPath}/` : '';
     for (const project of projectDefinitions.filter((project) => !project.hostedUrl)) {
       const html = await readFile(
         new URL(
@@ -488,7 +536,8 @@ test('project entry pages link to localized onboarding, references, and support'
 });
 
 test('ESLint companion guides are reachable from each project entry and introduction', async () => {
-  for (const locale of ['', 'ja/']) {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const locale = subPath ? `${subPath}/` : '';
     for (const [slug, intro] of [
       ['workers-timezone', 'readme'],
       ['ionic-theme-ios26', 'readme'],
@@ -530,7 +579,8 @@ test('Local LLM documents Chrome text support in both locales', async () => {
       'utf8',
     ),
   ) as { version: string };
-  for (const locale of ['', 'ja/']) {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const locale = subPath ? `${subPath}/` : '';
     const base = `/${locale}projects/capacitor-local-llm`;
     const landing = new JSDOM(
       await readFile(new URL(`../dist/docs/browser${base}/index.html`, import.meta.url), 'utf8'),

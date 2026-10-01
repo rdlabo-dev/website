@@ -16,8 +16,8 @@ import { resolveDocsLocale } from '../../../../../shared/docs-locales';
   template: `
     @if (project(); as p) {
       <article class="project-landing">
-        <span aria-hidden="true" class="sr-only" [attr.data-pagefind-filter]="'project:' + p.id">{{ p.shortName }}</span>
-        <span aria-hidden="true" class="sr-only" [attr.data-pagefind-filter]="'category:' + p.category">{{ p.category }}</span>
+        <span aria-hidden="true" class="sr-only" data-pagefind-ignore [attr.data-pagefind-filter]="'project:' + p.id">{{ p.shortName }}</span>
+        <span aria-hidden="true" class="sr-only" data-pagefind-ignore [attr.data-pagefind-filter]="'category:' + p.category">{{ p.category }}</span>
         <div class="project-identity">
           <div class="project-mark"><app-project-icon [kind]="p.icon" /></div>
           <div class="project-name">

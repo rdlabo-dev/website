@@ -1,0 +1,657 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="fr">
+    <body>
+      <trans-unit id="skipToContent" datatype="html">
+        <source>Skip to content</source>
+        <target>Aller au contenu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="toggleDocumentationMenu" datatype="html">
+        <source>Toggle documentation menu</source>
+        <target>Afficher ou masquer le menu de documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="docsHomeNav" datatype="html">
+        <source>docs</source>
+        <target>docs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="viewOnGitHub" datatype="html">
+        <source>View on GitHub</source>
+        <target>Voir sur GitHub</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">75,78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="closeDocumentationMenu" datatype="html">
+        <source>Close documentation menu</source>
+        <target>Fermer le menu de documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">90,92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentation" datatype="html">
+        <source>Documentation</source>
+        <target>Documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">102,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="chooseLibrary" datatype="html">
+        <source>Choose a library</source>
+        <target>Choisir une bibliothèque</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="browseAllLibraries" datatype="html">
+        <source>Browse all libraries</source>
+        <target>Parcourir toutes les bibliothèques</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="librariesRail" datatype="html">
+        <source>Libraries</source>
+        <target>Tout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">127,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="primaryNavigation" datatype="html">
+        <source>Primary navigation</source>
+        <target>Navigation principale</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">147,148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="allProjectsNav" datatype="html">
+        <source>All projects</source>
+        <target>Tous les projets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">155,156</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="homeRail" datatype="html">
+        <source>Home</source>
+        <target>Accueil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">164,166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="articlesNav" datatype="html">
+        <source>Articles</source>
+        <target>Articles</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">169,170</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">178,180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportNav" datatype="html">
+        <source>Sponsor</source>
+        <target>Soutenir</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">194,196</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dismissLoadError" datatype="html">
+        <source>Dismiss message</source>
+        <target>Fermer le message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">239,240</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentationLoadError" datatype="html">
+        <source> This page couldn’t be loaded. Reload the documentation to try again. </source>
+        <target> Impossible de charger cette page. Rechargez la documentation pour réessayer. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">248,250</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reloadDocumentation" datatype="html">
+        <source>Reload documentation</source>
+        <target>Recharger la documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">250,254</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footerOwnership" datatype="html">
+        <source> Personal open source projects maintained by rdlabo. </source>
+        <target> Projets open source personnels maintenus par rdlabo. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">271,274</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportFooter" datatype="html">
+        <source>Support these projects</source>
+        <target>Soutenir ces projets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">279,281</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footerCopyright" datatype="html">
+        <source> © 2026 rdlabo. Released under the MIT License. </source>
+        <target> © 2026 rdlabo. Distribué sous licence MIT. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.html</context>
+          <context context-type="linenumber">282,285</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="developerToolsRail" datatype="html">
+        <source>Dev</source>
+        <target>Dév</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/app.ts</context>
+          <context context-type="linenumber">438</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="breadcrumb" datatype="html">
+        <source>Breadcrumb</source>
+        <target>Fil d’Ariane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">55,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentationPages" datatype="html">
+        <source>Documentation pages</source>
+        <target>Pages de documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="previousPage" datatype="html">
+        <source>Previous</source>
+        <target>Précédent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nextPage" datatype="html">
+        <source>Next</source>
+        <target>Suivant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">121,122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="editOnGitHub" datatype="html">
+        <source>Edit this page on GitHub</source>
+        <target>Modifier cette page sur GitHub</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">149,150</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">212,213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pageNavigation" datatype="html">
+        <source>Page navigation</source>
+        <target>Navigation entre les pages</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">165,167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contents" datatype="html">
+        <source>Contents</source>
+        <target>Sommaire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">171,172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="onThisPage" datatype="html">
+        <source>On this page</source>
+        <target>Sur cette page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">173,174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportThisOss" datatype="html">
+        <source>Support this OSS</source>
+        <target>Soutenir ce projet open source</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/docs-page.ts</context>
+          <context context-type="linenumber">248</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="interactiveDemo" datatype="html">
+        <source>Interactive demo</source>
+        <target>Démonstration interactive</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/interactive-demo-panel.ts</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/interactive-demo-panel.ts</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="openDemo" datatype="html">
+        <source>Open demo</source>
+        <target>Ouvrir la démonstration</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/interactive-demo-panel.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loadingDemo" datatype="html">
+        <source>Loading demo…</source>
+        <target>Chargement de la démonstration…</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/interactive-demo-panel.ts</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="getStarted" datatype="html">
+        <source>Get started</source>
+        <target>Premiers pas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">35,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="viewDemo" datatype="html">
+        <source>Demo</source>
+        <target>Démo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="viewSource" datatype="html">
+        <source>View source</source>
+        <target>Voir le code source</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="releaseNotes" datatype="html">
+        <source>Release notes</source>
+        <target>Notes de version</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="starOnGitHub" datatype="html">
+        <source>Star on GitHub</source>
+        <target>Ajouter une étoile sur GitHub</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="allDocumentation" datatype="html">
+        <source>All documentation</source>
+        <target>Toute la documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projectSupportPrompt" datatype="html">
+        <source>Help keep this library maintained.</source>
+        <target>Contribuez à la maintenance de cette bibliothèque.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projectSponsorLink" datatype="html">
+        <source>Sponsor this project</source>
+        <target>Soutenir ce projet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="relatedArticles" datatype="html">
+        <source>Related articles</source>
+        <target>Articles connexes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">103,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="relatedArticleLanguage" datatype="html">
+        <source>English</source>
+        <target>Anglais</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/landing-page.ts</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="librariesNav" datatype="html">
+        <source>Libraries</source>
+        <target>Bibliothèques</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/library-picker.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectedLibrary" datatype="html">
+        <source>Selected library</source>
+        <target>Bibliothèque sélectionnée</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/library-picker.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFoundHeading" datatype="html">
+        <source>Page not found</source>
+        <target>Page introuvable</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/not-found.ts</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFoundDescription" datatype="html">
+        <source>The page may have moved while the documentation was being reorganized.</source>
+        <target>La page a peut-être été déplacée lors de la réorganisation de la documentation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/not-found.ts</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/not-found.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="backToProjects" datatype="html">
+        <source>Browse projects</source>
+        <target>Parcourir les projets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/not-found.ts</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFoundTitle" datatype="html">
+        <source>Page not found - rdlabo.dev</source>
+        <target>Page introuvable - rdlabo.dev</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/not-found.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="openSourceDocumentation" datatype="html">
+        <source>Open source documentation</source>
+        <target>Documentation open source</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentationTitle" datatype="html">
+        <source>Documentation</source>
+        <target>Documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projectsIntro" datatype="html">
+        <source>Documentation for open source projects created and maintained by rdlabo.</source>
+        <target>Documentation des projets open source créés et maintenus par rdlabo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projectCategoriesNav" datatype="html">
+        <source>Project categories</source>
+        <target>Catégories de projets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="readDocumentation" datatype="html">
+        <source>Read documentation</source>
+        <target>Lire la documentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">42,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="personalOwnershipNotice" datatype="html">
+        <source>Every OSS project listed here is developed and maintained personally by rdlabo. They are independent of the incorporated association that also uses the rdlabo name.</source>
+        <target>Tous les projets open source présentés ici sont développés et maintenus personnellement par rdlabo. Ils sont indépendants de l’association constituée qui utilise également le nom rdlabo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="docsHomeTitle" datatype="html">
+        <source>Cloudflare Workers, Ionic &amp; Capacitor OSS Docs | rdlabo</source>
+        <target>Documentation open source Cloudflare Workers, Ionic et Capacitor | rdlabo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="siteDescription" datatype="html">
+        <source>Guides and API references for rdlabo open-source libraries: Cloudflare Workers, Hono, MySQL, timezones, Ionic, Angular, and Capacitor.</source>
+        <target>Guides et références d’API des bibliothèques open source de rdlabo : Cloudflare Workers, Hono, MySQL, fuseaux horaires, Ionic, Angular et Capacitor.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/plugin-index.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="backToLibraryList" datatype="html">
+        <source>Back to library list</source>
+        <target>Retour à la liste des bibliothèques</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/project-navigation.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projectNavigation" datatype="html">
+        <source>Project navigation</source>
+        <target>Navigation du projet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/project-navigation.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="overviewNav" datatype="html">
+        <source>Overview</source>
+        <target>Présentation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/project-navigation.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportEyebrow" datatype="html">
+        <source>Community-supported open source</source>
+        <target>L’open source soutenu par la communauté</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportHeading" datatype="html">
+        <source>Help build a community around independent OSS</source>
+        <target>Aidez à bâtir une communauté autour de projets open source indépendants</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">17,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportIntro" datatype="html">
+        <source>Monthly sponsorships start at $5 and support ongoing public OSS work. The long-term vision is a community of 100 monthly sponsors supporting the collection broadly rather than depending on any single organization.</source>
+        <target>Les soutiens mensuels commencent à 5 $ et financent le travail open source public au fil du temps. L’objectif à long terme est de réunir 100 contributeurs mensuels pour soutenir l’ensemble des projets sans dépendre d’une seule organisation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportMilestoneEyebrow" datatype="html">
+        <source>Current milestone</source>
+        <target>Objectif actuel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportMilestoneHeading" datatype="html">
+        <source>The first 10 monthly sponsors</source>
+        <target>Les 10 premiers soutiens mensuels</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportMilestoneDescription" datatype="html">
+        <source>Small, recurring contributions create a broad base for independent open-source work. Every sponsorship supports the same public projects. Choose an amount that feels comfortable. Individual sponsors who opt to be public are recognized equally here, regardless of amount.</source>
+        <target>De petites contributions régulières constituent une base solide pour un travail open source indépendant. Tous les soutiens financent les mêmes projets publics. Choisissez un montant qui vous convient. Les personnes qui souhaitent rendre leur soutien public sont toutes remerciées ici de la même façon, quel que soit le montant.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">39,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="currentSponsorsHeading" datatype="html">
+        <source>Current sponsors</source>
+        <target>Soutiens actuels</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pastSponsorsHeading" datatype="html">
+        <source>Past sponsors</source>
+        <target>Anciens soutiens</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">57,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="currentSponsorsDescription" datatype="html">
+        <source>Thank you to the people and organizations supporting rdlabo's open source work.</source>
+        <target>Merci aux personnes et aux organisations qui soutiennent le travail open source de rdlabo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">63,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pastSponsorsDescription" datatype="html">
+        <source>Thank you also to everyone who has supported this work in the past.</source>
+        <target>Merci également à toutes celles et tous ceux qui ont soutenu ce travail par le passé.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportSponsorHeading" datatype="html">
+        <source>Join from $5 a month</source>
+        <target>Participer dès 5 $ par mois</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">108,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportSponsorDescription" datatype="html">
+        <source>Individual sponsorships do not unlock exclusive features, priority support, or a private roadmap. Your support helps keep the same libraries, documentation, compatibility updates, and releases available to everyone.</source>
+        <target>Les soutiens individuels ne donnent accès ni à des fonctionnalités exclusives, ni à une assistance prioritaire, ni à une feuille de route privée. Votre contribution aide à rendre les mêmes bibliothèques, documentations, mises à jour de compatibilité et versions accessibles à tous.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">112,114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="becomeSponsor" datatype="html">
+        <source>Sponsor from $5/month</source>
+        <target>Soutenir dès 5 $/mois</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">125,126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportIndependenceNotice" datatype="html">
+        <source>Sponsorship supports independent open-source work maintained personally by rdlabo.</source>
+        <target>Les contributions financent le travail open source indépendant maintenu personnellement par rdlabo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">132,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportPageTitle" datatype="html">
+        <source>Support open source - rdlabo.dev</source>
+        <target>Soutenir l’open source - rdlabo.dev</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="supportPageDescription" datatype="html">
+        <source>Join the community supporting independent open-source projects maintained by rdlabo.</source>
+        <target>Rejoignez la communauté qui soutient les projets open source indépendants maintenus par rdlabo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/docs/support-page.ts</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="switchLanguage" datatype="html">
+        <source>Switch language</source>
+        <target>Changer de langue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/language-menu.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/docs/src/app/language-menu.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="docsResources"><source>Resources</source><target>Ressources</target></trans-unit>
+      <trans-unit id="supportRail"><source>Sponsor</source><target>Soutenir</target></trans-unit>
+    </body>
+  </file>
+</xliff>

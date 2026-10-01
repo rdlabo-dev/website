@@ -60,6 +60,7 @@
     }
   </div>
   <div class="ml-auto flex items-stretch">
+    <pagefind-config [attr.lang]="searchLanguage" />
     <pagefind-modal-trigger class="docs-search" />
     <app-language-menu [path]="currentUrl()" (opened)="onLanguageMenuOpened()" />
     <a
@@ -191,7 +192,7 @@
                 stroke="currentColor"
                 stroke-linejoin="round"
               /></svg
-            ><span i18n="@@supportNav">Sponsor</span>
+            ><span i18n="@@supportRail">Sponsor</span>
           </a>
         </nav>
       </div>

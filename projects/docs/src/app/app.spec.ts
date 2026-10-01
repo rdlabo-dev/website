@@ -47,6 +47,10 @@ function mockMatchMedia(initialMatches: boolean) {
 describe('App', () => {
   beforeEach(async () => {
     mockMatchMedia(false);
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
+      queueMicrotask(() => callback(0));
+      return 1;
+    });
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [
@@ -68,6 +72,7 @@ describe('App', () => {
   });
 
   afterEach(() => {
+    vi.restoreAllMocks();
     delete (window as GoogleAnalyticsWindow).gtag;
     document.querySelector('dialog[data-search-test]')?.remove();
   });
@@ -757,6 +762,82 @@ describe('App', () => {
     expect(button.getAttribute('aria-expanded')).toBe('false');
     expect(menu.hasAttribute('inert')).toBe(true);
     expect(document.activeElement).toBe(button);
+  });
+
+  it('moves through every visible drawer control in both directions without reaching header links', async () => {
+    mockMatchMedia(true);
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const button = compiled.querySelector<HTMLButtonElement>(
+      'button[aria-controls="docs-sidebar"]',
+    )!;
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const sidebar = compiled.querySelector<HTMLElement>('#docs-sidebar')!;
+    const controls = [
+      button,
+      ...Array.from(
+        sidebar.querySelectorAll<HTMLElement>('a[href], button, input, [tabindex]'),
+      ).filter(
+        (element) =>
+          element.tabIndex >= 0 &&
+          !element.matches(':disabled') &&
+          !element.closest('[inert], [hidden], [aria-hidden="true"]'),
+      ),
+    ];
+    button.focus();
+    for (const shiftKey of [false, true]) {
+      for (let step = 1; step <= controls.length; step++) {
+        const event = new KeyboardEvent('keydown', {
+          key: 'Tab',
+          shiftKey,
+          bubbles: true,
+          cancelable: true,
+        });
+        document.activeElement!.dispatchEvent(event);
+        expect(event.defaultPrevented).toBe(true);
+        const index = (shiftKey ? controls.length - step : step) % controls.length;
+        expect(document.activeElement).toBe(controls[index]);
+      }
+    }
+    expect(compiled.querySelector('.docs-navigation-pane')?.scrollLeft).toBe(0);
+  });
+
+  it('waits for the opening frame and cancels stale focus when the drawer closes', async () => {
+    const frames: FrameRequestCallback[] = [];
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
+      frames.push(callback);
+      return frames.length;
+    });
+    const cancel = vi.spyOn(window, 'cancelAnimationFrame');
+    mockMatchMedia(true);
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const button = compiled.querySelector<HTMLButtonElement>(
+      'button[aria-controls="docs-sidebar"]',
+    )!;
+    button.focus();
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(document.activeElement).toBe(button);
+    expect(frames.length).toBeGreaterThan(0);
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const cancelledFrame = cancel.mock.calls.at(-1)?.[0];
+    expect(cancelledFrame).toBeDefined();
+    frames[cancelledFrame! - 1]!(0);
+    expect(document.activeElement).toBe(button);
+    const previousFrameCount = frames.length;
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    for (const frame of frames.slice(previousFrameCount)) frame(0);
+    expect(document.activeElement).toBe(compiled.querySelector('.library-picker-list a'));
   });
 
   it('reveals the current document when opening or reselecting its library after the viewport shrinks', async () => {

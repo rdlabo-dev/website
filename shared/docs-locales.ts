@@ -2,8 +2,8 @@
 export const DOCS_LOCALES = [
   { code: 'en', name: 'English', subPath: '', published: true, requiresSourceReview: false },
   { code: 'ja', name: '日本語', subPath: 'ja', published: true, requiresSourceReview: false },
-  { code: 'fr', name: 'Français', subPath: 'fr', published: false, requiresSourceReview: true },
-  { code: 'de', name: 'Deutsch', subPath: 'de', published: false, requiresSourceReview: true },
+  { code: 'fr', name: 'Français', subPath: 'fr', published: true, requiresSourceReview: true },
+  { code: 'de', name: 'Deutsch', subPath: 'de', published: true, requiresSourceReview: true },
 ] as const;
 
 export type DocsLocale = (typeof DOCS_LOCALES)[number]['code'];

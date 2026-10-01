@@ -70,7 +70,12 @@ Documentation portal (`projects/docs`):
 
 ```bash
 npm start              # ng serve docs (runs docs:generate first)
+npm run start:ja        # Japanese
+npm run start:fr        # French
+npm run start:de        # German
 npm run docs:generate
+npm run docs:stage-translations
+npm run docs:validate-translations
 npm run build:docs
 npm run deploy:docs
 ```
@@ -106,9 +111,12 @@ Documentation portal (`docs.rdlabo.dev`):
 /
 /projects/:project
 /projects/:project/docs/:page
-/ja/projects/:project
-/ja/projects/:project/docs/:page
+/:locale
+/:locale/projects/:project
+/:locale/projects/:project/docs/:page
 ```
+
+English uses the domain root; translated routes use `ja`, `fr`, or `de`.
 
 Top site (`rdlabo.dev`):
 
@@ -137,6 +145,19 @@ such as `` #### `component` PhotoEditorPage `` or `` #### `function` generate ``
 normalizes those entries and Capacitor docgen output into the same API-card presentation.
 
 Generated project modules live under `projects/docs/src/app/generated/projects` and must not be edited by hand.
+
+French and German Markdown lives under each project's `docs/fr/` and `docs/de/` directories.
+Stage the pinned English originals with `docs:stage-translations`, translate the prose and
+supported explanatory code comments, and preserve all executable code, identifiers, and URLs.
+Each translation declares the reviewed English `sourceRevision`; update it only after checking
+the changed source and revising the translation. `docs:validate-translations` verifies these
+contracts and the metadata/API dictionaries. An independent translator then reviews meaning
+and terminology, with corrections reviewed again before a locale is published.
+
+The locale registry in `shared/docs-locales.ts` controls the language menu, generated pages,
+sitemap, and hreflang. UI translations live in `projects/docs/src/locale/messages.{locale}.xlf`;
+API descriptions and manifest text have separate locale dictionaries. Translated headings
+retain source-language fragment aliases so existing documentation links continue to work.
 
 API input is restricted to packages declared in `scripts/project-manifest.ts` and installed at exact
 versions in `package-lock.json`. Generated HTML is reviewed as part of the repository diff; adding a

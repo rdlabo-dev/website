@@ -23,6 +23,14 @@
           "ja": {
             "translation": "projects/docs/src/locale/messages.ja.xlf",
             "subPath": "ja"
+          },
+          "fr": {
+            "translation": "projects/docs/src/locale/messages.fr.xlf",
+            "subPath": "fr"
+          },
+          "de": {
+            "translation": "projects/docs/src/locale/messages.de.xlf",
+            "subPath": "de"
           }
         }
       },
@@ -85,6 +93,12 @@
             },
             "ja": {
               "localize": ["ja"]
+            },
+            "fr": {
+              "localize": ["fr"]
+            },
+            "de": {
+              "localize": ["de"]
             }
           },
           "defaultConfiguration": "production"
@@ -100,6 +114,12 @@
             },
             "ja": {
               "buildTarget": "docs:build:development,ja"
+            },
+            "fr": {
+              "buildTarget": "docs:build:development,fr"
+            },
+            "de": {
+              "buildTarget": "docs:build:development,de"
             }
           },
           "defaultConfiguration": "development"

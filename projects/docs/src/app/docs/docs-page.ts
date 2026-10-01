@@ -21,7 +21,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { ScrollSpyDirective } from './scroll-spy.directive';
 import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
-import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
+import { canonicalHomePath, localizedFragmentPath, localizedPublicPath } from '../locale-path';
 
 @Component({
   selector: 'app-docs-page',
@@ -72,12 +72,14 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               <span
                 aria-hidden="true"
                 class="sr-only"
+                data-pagefind-ignore
                 [attr.data-pagefind-filter]="'project:' + proj.id"
                 >{{ proj.shortName }}</span
               >
               <span
                 aria-hidden="true"
                 class="sr-only"
+                data-pagefind-ignore
                 [attr.data-pagefind-filter]="'category:' + proj.category"
                 >{{ proj.category }}</span
               >
@@ -128,7 +130,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               }
               @if (!doc.codes.length) {
                 <div class="mt-8 border-t border-slate-200 pt-4 min-[1501px]:hidden">
-                  <app-oss-resource-links [supportLabel]="supportLabel" />
+                  <app-oss-resource-links [supportHref]="supportHref" [supportLabel]="supportLabel" [resourcesLabel]="resourcesLabel" />
                   <div class="mt-4 border-t border-slate-200 pt-4">
                     <a
                       class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
@@ -191,7 +193,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                   [class.border-slate-200]="tocHeadings().length"
                   [class.pt-4]="tocHeadings().length"
                 >
-                  <app-oss-resource-links [supportLabel]="supportLabel" />
+                  <app-oss-resource-links [supportHref]="supportHref" [supportLabel]="supportLabel" [resourcesLabel]="resourcesLabel" />
                   <div class="mt-4 border-t border-slate-200 pt-4">
                     <a
                       class="external-link inline-flex items-center gap-2 text-[0.82rem] leading-5 font-normal text-[#333] no-underline hover:text-[#c44320]"
@@ -246,6 +248,8 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
   protected readonly activeLines = signal<Record<string, readonly number[]>>({});
   protected readonly docsHomePath = canonicalHomePath(this.#locale);
   protected readonly supportLabel = $localize`:@@supportThisOss:Support this OSS`;
+  protected readonly supportHref = localizedPublicPath(this.#locale, '/support');
+  protected readonly resourcesLabel = $localize`:@@docsResources:Resources`;
 
   ngOnInit(): void {
     const slug = this.#route.snapshot.data['pageSlug'] as string;

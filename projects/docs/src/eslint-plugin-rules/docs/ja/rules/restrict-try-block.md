@@ -6,7 +6,7 @@ title: restrict-try-block
 
 > tryブロック内のPromise、RxJS、Angular Signal context、`Promise.resolve()` による逃げ道、物理コード行数を制限する。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 `try/catch` は、実際にthrowする可能性がある小さな同期処理を保護するために使用してください。非同期処理、長いblock、reactive callbackを `try` 内に置くとerror boundaryが不明瞭になり、errorを握りつぶしたり誤った経路へ送ったりする可能性があります。このルールは、それらを制限します。
 
@@ -185,5 +185,5 @@ of(1)
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/restrict-try-block.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/restrict-try-block.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/restrict-try-block.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/restrict-try-block.ts)

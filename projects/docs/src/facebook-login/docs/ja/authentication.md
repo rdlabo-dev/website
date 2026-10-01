@@ -34,7 +34,7 @@ const result = await FacebookLogin.login({
 if (result.accessToken) {
   console.log('Facebook login succeeded.');
 } else {
-  // Cancelled or no token returned by the native platform.
+  // キャンセルされたか、ネイティブプラットフォームからトークンが返りませんでした。
   console.log('Facebook login canceled or returned no token.');
 }
 ```

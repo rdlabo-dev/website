@@ -6,7 +6,7 @@ title: signal-use-as-signal-template
 
 > テンプレートでAngular Signalにアクセスするとき `()` を要求する
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 Angular Signalは関数です。テンプレートで現在値を読み取るには、Signalを `()` 付きで呼び出す必要があります。RxJSの `BehaviorSubject` や `model()` inputから移行するとき、括弧の付け忘れはよくあるミスです。このルールはAngularテンプレート内のSignal識別子を検出し、`{{ count }}` や `[hidden]="count"` のような裸の読み取りを報告します。
 
@@ -96,5 +96,5 @@ Signalを使用するすべてのAngularプロジェクトで有効にしてく�
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/signal-use-as-signal-template.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/signal-use-as-signal-template.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/signal-use-as-signal-template.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/signal-use-as-signal-template.ts)

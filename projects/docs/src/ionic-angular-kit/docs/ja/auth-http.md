@@ -14,7 +14,7 @@ title: 認証・HTTP
 | `local`  | 可                    | 不可                     |
 | `remote` | 可                    | 可                       |
 
-Authoritativeな `required` はsign-outであり、Offline Accessへ変換してはいけません。以前検証したLocal Sessionを有効化できるのはtransport結果が `unavailable` の場合だけです。
+認証元から確定的な `required` の結果が返された場合はサインアウト状態であり、オフラインアクセスを許可してはいけません。以前に検証したローカルセッションを有効化できるのは、通信結果が `unavailable` の場合だけです。
 
 ```ts
 import { inject } from '@angular/core';

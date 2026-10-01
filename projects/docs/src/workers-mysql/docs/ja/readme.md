@@ -29,7 +29,7 @@ Drizzleをpeer依存にすることで、アプリとスキーマが同じ型を
 
 ```sh
 npm install -D @types/node@20
-# pnpm users:
+# pnpmを使用する場合:
 pnpm add -D @types/node@20
 ```
 

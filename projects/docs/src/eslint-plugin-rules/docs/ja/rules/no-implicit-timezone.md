@@ -12,7 +12,8 @@ Cloudflare Workersのhost local timezoneはUTCです。サーバーのlocal time
 | --- | --- |
 | `new Date(year, month, ...)` | `Date.UTC(...)` またはtimezoneを明示したローカル時刻変換 |
 | 関数としての `Date()` | 時刻を生成してから明示的にformatする |
-| Dateのlocal getter・setter・文字列表示 | timezone変換または明示的なUTC・時刻API |
+| `getDate()`、`setHours()` などのローカルgetter・setter | timezone変換、またはUTCを意図する場合は対応する `getUTC*` / `setUTC*` API |
+| `toString()`、`toDateString()`、`toTimeString()` | 明示的な書式での表示 |
 | 明示的な `timeZone` がない `Intl.DateTimeFormat`・`Date#toLocale*` | `{ timeZone: '...' }` を追加する |
 | `Z`・`±HH:mm` がないISO-like datetime literal | offsetを追加するかtimezone-localの時刻としてparseする |
 
@@ -43,5 +44,5 @@ const label = instant.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-implicit-timezone.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-implicit-timezone.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-implicit-timezone.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-implicit-timezone.ts)

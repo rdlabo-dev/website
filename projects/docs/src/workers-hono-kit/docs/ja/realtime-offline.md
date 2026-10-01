@@ -34,4 +34,4 @@ Journal helperはcursor coverage、retention、mutation transaction、rebaseline
 
 ## 次のステップ
 
-[テスト・運用](/docs/testing-operations)、またはconverter・wireの詳細は[Offline API](/docs/api-offline)を参照してください。
+[テスト・運用](/docs/testing-operations)、またはconverter・wireの詳細は[オフラインAPI](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.12.2/packages/hono-kit/docs/api-offline.md)を参照してください。

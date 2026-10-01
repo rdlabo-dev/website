@@ -17,12 +17,12 @@ export const PROJECT = {
     {
       "icon": "terminal",
       "title": "本家互換CLI",
-      "description": "@capacitor/docgenと同じdocgenバイナリ、flag、placeholder、出力command、export functionを維持します。"
+      "description": "@capacitor/docgenと同じdocgen実行ファイル、フラグ、プレースホルダー、出力コマンド、公開関数を維持します。"
     },
     {
       "icon": "flow",
       "title": "interface継承",
-      "description": "TypeScriptのextends句を解決し、primary APIを含む継承method・propertyを生成ドキュメントへ追加します。"
+      "description": "TypeScriptのextends句を解決し、主要APIを含めて、継承したメソッドとプロパティを生成ドキュメントへ追加します。"
     }
   ],
   "path": "/projects/capacitor-docgen",

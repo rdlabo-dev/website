@@ -6,7 +6,7 @@ title: prefer-modal-launcher
 
 > `presentModal` 呼び出しを `launch*` launcher関数内に置くことを要求する。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 modalとsheetは、対象pageからexportされた専用launcher関数を介して表示してください。これにより、呼び出し側をmodal構築の詳細から分離し、application全体でmodal APIを統一できます。このルールは、`presentModal`（または設定した他のpresent method）がlauncher patternに一致する名前の関数内でのみ呼び出されることを保証します。
 
@@ -61,20 +61,20 @@ export class ExamplePage {
   readonly helper = inject(HelperService);
 
   async open() {
-    await this.helper.presentModal(OtherPage, {}); // not in a launcher
+    await this.helper.presentModal(OtherPage, {}); // ランチャー関数の外にある
   }
 }
 ```
 
 ```ts
 export class ExamplePage {
-  readonly launchOtherPage = this.helper.presentModal(OtherPage, {}); // not a function
+  readonly launchOtherPage = this.helper.presentModal(OtherPage, {}); // 関数ではない
 }
 ```
 
 ```ts
 export async function openModal(overlay: Helper) {
-  await overlay.presentModal(ExamplePage, {}); // name does not match ^launch
+  await overlay.presentModal(ExamplePage, {}); // 名前が^launchに一致しない
 }
 ```
 
@@ -132,5 +132,5 @@ modal、sheet、その他のoverlayにlauncher patternを採用するIonic/Angul
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-modal-launcher.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-modal-launcher.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-modal-launcher.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-modal-launcher.ts)

@@ -33,7 +33,7 @@ title: no-reactive-forms
 ### 誤り
 
 ```ts
-// TypeScript: importing Reactive Forms APIs
+// TypeScript: Reactive Forms APIのインポート
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import * as forms from '@angular/forms';
@@ -41,7 +41,7 @@ const control = new forms.FormControl('');
 ```
 
 ```html
-<!-- Template: Reactive Forms bindings -->
+<!-- テンプレート: Reactive Formsのバインディング -->
 <form [formGroup]="userForm">
   <input formControlName="name" />
 </form>
@@ -60,7 +60,7 @@ const userForm = form(userModel, (path) => {
 ```
 
 ```html
-<!-- Template: Signal Forms field binding -->
+<!-- テンプレート: Signal Formsのフィールドバインディング -->
 <input [formField]="userForm.name" />
 ```
 
@@ -79,5 +79,5 @@ Signal Formsを採用済み、またはReactive Formsから移行中のAngular�
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-reactive-forms.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-reactive-forms.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-reactive-forms.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-reactive-forms.ts)

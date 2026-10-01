@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 バナー広告はアプリ画面の一部を占める長方形の広告です。ユーザーがアプリを操作しているあいだも画面に残せます。通常は上下に固定します。形式の説明は Google のバナー広告ガイド（[Android](https://developers.google.com/admob/android/banner?hl=ja) / [iOS](https://developers.google.com/admob/ios/banner?hl=ja)）を見てください。
 
-[初期化](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。このプラグインでは WebView の上にあるネイティブ画面に描画します。最初のロードとサイズ変更を取りこぼさないよう、`showBanner` より前にリスナーを登録します。
+[initialize](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。このプラグインでは WebView の上にあるネイティブ画面に描画します。最初のロードとサイズ変更を取りこぼさないよう、`showBanner` より前にリスナーを登録します。
 
 ```ts
 import {
@@ -25,13 +25,13 @@ const handles = await Promise.all([
   }),
   AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
     console.log('Banner size', size.width, size.height);
-    // Inset your layout by size.height; see the next section.
+    // size.height分の余白をレイアウトに設けます。次の節を参照してください。
   }),
   AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
     console.error(error);
   }),
   AdMob.addListener(BannerAdPluginEvents.AdPaid, (data: AdMobRevenueData) => {
-    // Forward impression-level revenue to your analytics provider.
+    // インプレッション単位の広告収益を分析サービスへ送信します。
     console.log(data);
   }),
 ]);

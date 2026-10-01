@@ -6,7 +6,7 @@ title: ionic-attr-type-check
 
 > 対応するstring以外のIonic属性にproperty bindingを要求し、string literal属性を検証する。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 > - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、このルールが報告する問題の一部を自動修正できます。
 
 Ionic componentの属性はboolean、number、object、stringのいずれかです。boolean propertyに `button="true"` のようなstringを渡すのはよくある誤りで、予期しない動作を招く場合があります。このルールは `@ionic/core` の型定義を読み取り、不一致を報告します。
@@ -61,7 +61,7 @@ string literal属性に無効なstring値が指定されている場合、許容
 ```
 
 ```html
-<!-- string-typed attributes are still allowed -->
+<!-- 文字列型の属性は引き続き許可される -->
 <ion-item lines="full"></ion-item>
 <ion-button color="primary">Click me</ion-button>
 ```
@@ -80,5 +80,5 @@ string literal属性に無効なstring値が指定されている場合、許容
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/ionic-attr-type-check.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/ionic-attr-type-check.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/ionic-attr-type-check.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/ionic-attr-type-check.ts)

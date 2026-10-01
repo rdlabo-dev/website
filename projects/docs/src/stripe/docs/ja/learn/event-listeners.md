@@ -30,7 +30,7 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 
 元の JavaScript Promise と Capacitor の `PluginCall` は復元できません。再生成後に Stripe がネイティブ結果を返した場合、プラグインはリスナーが利用可能になるまで対応する結果イベントを保持します。対象は PaymentSheet、PaymentFlow、Google Pay の `Completed`、`Canceled`、`Failed` と、PaymentFlow の `Created` です。
 
-元の呼び出しが残っている場合は従来どおり、Promise が解決され、イベントも保持されずに配信されます。このフォールバックはネイティブ結果をメモリ上で受け渡すものであり、永続ストレージではありません。OS によるプロセス終了後の復旧は保証しません。
+元の呼び出しが残っている場合は従来どおり、Promise は通常どおり完了し、イベントも保持されずに配信されます。このフォールバックはネイティブ結果をメモリ上で受け渡すものであり、永続ストレージではありません。OS によるプロセス終了後の復旧は保証しません。
 
 アプリケーションレベルの結果リスナーは JavaScript ランタイムの存続中ずっと登録しておいてください。Android の再生成後も支払い結果が必要なら、ボタンハンドラーで追加し、ページ破棄時に削除する設計にはしないでください。
 
@@ -48,7 +48,7 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 4. `presentPaymentSheet()` を呼ぶ。
 5. `Completed`、`Canceled`、`Failed` のいずれかを受け取る。
 
-`Canceled` は利用者がシートを閉じたことを表し、例外ではありません。`Failed` と `FailedToLoad` にはエラー文字列が含まれます。クライアントイベントだけで注文を確定せず、[Webhook](/docs/server-integration) で PaymentIntent または SetupIntent を確認してください。
+`Canceled` は利用者がシートを閉じたことを表し、例外ではありません。`Failed` と `FailedToLoad` にはエラー文字列が含まれます。クライアントイベントだけで商品の発送やサービスの提供を判断せず、[Webhook](/docs/server-integration) で PaymentIntent または SetupIntent を確認してください。
 
 ## PaymentFlow のイベント
 

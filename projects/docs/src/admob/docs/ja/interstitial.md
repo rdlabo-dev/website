@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 インタースティシャルはホストアプリの画面を覆うフルスクリーン広告です。画面遷移やゲームのレベル間など、自然な区切りで表示します。ユーザーは広告先へ進むか、閉じてアプリに戻れます。形式の説明は Google のインタースティシャル広告ガイド（[Android](https://developers.google.com/admob/android/interstitial?hl=ja) / [iOS](https://developers.google.com/admob/ios/interstitial?hl=ja)）を見てください。
 
-アプリ内報酬を渡さない場合に使います。[初期化](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。事前に準備し、先にリスナーを登録し、準備ができてから表示します。
+アプリ内報酬を渡さない場合に使います。[initialize](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。事前に準備し、先にリスナーを登録し、準備ができてから表示します。
 
 ```ts
 import { AdLoadInfo, AdMob, AdMobRevenueData, AdOptions, InterstitialAdPluginEvents } from '@capacitor-community/admob';

@@ -6,11 +6,11 @@ title: no-component-method-except-lifecycle
 
 > `@Component` 上のlifecycle以外のmethodを禁止する。許可するlifecycle methodは `implements` から導出する（プロパティは許可）。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 `@Component` クラスは薄く保ちます。振る舞いは `ViewModel`（またはmodalの `launch*` ヘルパー）に置きます。
 
-許可される**method**は、`implements` に列挙したlifecycle interfaceと一致するものだけです。対応するinterfaceなしのlifecycle methodもエラーです。
+許可される**メソッド**は、`implements` に列挙したライフサイクルインターフェースと一致するもの、および `additionalAllowedMethods` に指定したものです。対応するインターフェースがないライフサイクルメソッドは、追加許可の対象でない限りエラーになります。
 
 **プロパティは対象外**です。`readonly open = () => ...` のようなarrow-functionフィールドも含みます。getter / setter と `constructor` は許可されます。
 
@@ -40,7 +40,7 @@ export class ExamplePage {
 ```ts
 @Component({ selector: 'app-example', template: '' })
 export class ExamplePage {
-  ionViewWillEnter() {} // missing implements ViewWillEnter
+  ionViewWillEnter() {} // implements ViewWillEnterがない
 }
 ```
 
@@ -105,6 +105,13 @@ export class ExamplePage implements ViewWillEnter {
 
 ## オプション
 
+### `additionalAllowedMethods`
+
+- 型: `string[]`
+- 既定値: `[]`
+
+ライフサイクルメソッド以外に許可するメソッド名を指定します。例えば、`trackById` のようなメソッドを追加できます。
+
 ```json
 {
   "rules": {
@@ -133,5 +140,5 @@ export class ExamplePage implements ViewWillEnter {
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-component-method-except-lifecycle.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-component-method-except-lifecycle.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-component-method-except-lifecycle.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-component-method-except-lifecycle.ts)

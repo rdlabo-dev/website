@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 アプリ起動時広告はロード画面を収益化するための形式で、アプリがフォアグラウンドに戻ったときに表示します。ユーザーはいつでも閉じられます。形式の説明は Google のアプリ起動時広告ガイド（[Android](https://developers.google.com/admob/android/app-open?hl=ja) / [iOS](https://developers.google.com/admob/ios/app-open?hl=ja)）を見てください。
 
-[初期化](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。事前にロードし、利用可能なことを確認してから表示します。広告のロード待ちで起動を無期限にブロックしないでください。
+[initialize](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。事前にロードし、利用可能なことを確認してから表示します。広告のロード待ちで起動を無期限にブロックしないでください。
 
 ```ts
 import {

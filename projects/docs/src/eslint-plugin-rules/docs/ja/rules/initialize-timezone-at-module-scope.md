@@ -28,5 +28,5 @@ export const timezone = initializeTimezone({ timeZone: 'Asia/Tokyo' });
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/initialize-timezone-at-module-scope.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/initialize-timezone-at-module-scope.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/initialize-timezone-at-module-scope.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/initialize-timezone-at-module-scope.ts)

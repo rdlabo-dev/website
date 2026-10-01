@@ -38,13 +38,13 @@ iOS 26とiOS 27の両テーマを導入すると、ブラウザの機能に応�
 
 ## 導入
 
-既存のIonic 8または9アプリで、両テーマをインストールします（~@ionic/core~ 8.8.1以降が必要です）。
+既存のIonic 8または9アプリで、両テーマをインストールします（`@ionic/core` 8.8.1以降が必要です）。
 
 ```bash
 npm install @rdlabo/ionic-theme-ios26 @rdlabo/ionic-theme-ios27
 ```
 
-グローバルSass（例: ~src/styles.scss~）で、ブラウザの機能に応じてスタイルを読み込みます。
+グローバルSass（例: `src/styles.scss`）で、ブラウザの機能に応じてスタイルを読み込みます。
 
 ```scss
 @use 'sass:meta';
@@ -64,7 +64,7 @@ npm install @rdlabo/ionic-theme-ios26 @rdlabo/ionic-theme-ios27
 }
 ```
 
-~meta.load-css()~ で ~Can't find stylesheet to import.~ と表示された場合は、Sassから ~node_modules~ を参照できるようにします。Angularでは ~angular.json~ のアプリのビルド ~options~ に次を追加してください。
+`meta.load-css()` で `Can't find stylesheet to import.` と表示された場合は、Sassから `node_modules` を参照できるようにします。Angularでは `angular.json` のアプリのビルド `options` に次を追加してください。
 
 ```json
 "stylePreprocessorOptions": {
@@ -72,9 +72,9 @@ npm install @rdlabo/ionic-theme-ios26 @rdlabo/ionic-theme-ios27
 }
 ```
 
-または、~meta.load-css()~ を書いたSassファイルからインストール済みパッケージへの相対パスを使います。例えば ~src/styles.scss~ なら ~../node_modules/@rdlabo/ionic-theme-ios27/src/styles/default-variables~ です。ファイルの位置に合わせて ~../~ の数を調整し、各テーマの読み込み先にも同じ変更を適用してください。
+または、`meta.load-css()` を書いたSassファイルからインストール済みパッケージへの相対パスを使います。例えば `src/styles.scss` なら `../node_modules/@rdlabo/ionic-theme-ios27/src/styles/default-variables` です。ファイルの位置に合わせて `../` の数を調整し、各テーマの読み込み先にも同じ変更を適用してください。
 
-これはOS判定ではなくブラウザの機能判定です。どちらにも対応しないブラウザはIonic標準のiOS外観を維持します。例ではclassベースのダークモードを使うため、[Ionic側の対応するダークパレット](https://ionicframework.com/docs/theming/dark-mode)も読み込んでください。system／alwaysの場合は両方の ~-dark-class~ を対応するvariantに置き換えます。~md-remove-ios-class-effect~ は、同じマークアップをMaterial Designモードでも使う場合のiOS固有クラスの影響を防ぎます。
+これはOS判定ではなくブラウザの機能判定です。どちらにも対応しないブラウザはIonic標準のiOS外観を維持します。例ではclassベースのダークモードを使うため、[Ionic側の対応するダークパレット](https://ionicframework.com/docs/theming/dark-mode)も読み込んでください。system／alwaysの場合は両方の `-dark-class` を対応するvariantに置き換えます。`md-remove-ios-class-effect` は、同じマークアップをMaterial Designモードでも使う場合のiOS固有クラスの影響を防ぎます。
 
 ### アニメーションを設定する
 
@@ -98,9 +98,9 @@ function loadIOSAnimations() {
 provideIonicAngular(isPlatform('ios') ? loadIOSAnimations() : {});
 ```
 
-Ionic 9のAngularでは ~isPlatform~ と ~provideIonicAngular~ を ~@ionic/angular~ からimportします。ReactとVueでは同じオプションを初期化時に ~setupIonicReact~ または ~IonicVue~ へ渡します。SSRではブラウザ初期化時に判定してください。
+Ionic 9のAngularでは `isPlatform` と `provideIonicAngular` を `@ionic/angular` からimportします。ReactとVueでは同じオプションを初期化時に `setupIonicReact` または `IonicVue` へ渡します。SSRではブラウザ初期化時に判定してください。
 
-画面遷移の角丸半径の既定値は ~0~ です。ネイティブアプリではWebViewを計測した後に変更できます。
+画面遷移の角丸半径の既定値は `0` です。ネイティブアプリではWebViewを計測した後に変更できます。
 
 ```ts
 import { setConfig } from '@rdlabo/ionic-theme-ios27';
@@ -110,7 +110,7 @@ setConfig({ radius });
 
 ### テーマを確認する
 
-iOS上で確認してください。デスクトップでプレビューする場合は、既存のIonic初期化設定で ~mode: 'ios'~ を指定します。inset listは[~ion-item-group~ を使う構造](/docs/using-ion-item-group)が必要です。
+iOS上で確認してください。デスクトップでプレビューする場合は、既存のIonic初期化設定で `mode: 'ios'` を指定します。inset listは[`ion-item-group` を使う構造](/docs/using-ion-item-group)が必要です。
 
 ```html
 <ion-list mode="ios" inset="true">
@@ -140,7 +140,7 @@ npx cap sync
 
 ### iOS 27テーマだけを使う
 
-~@rdlabo/ionic-theme-ios27~ だけをインストールし、グローバルスタイルシートで無条件に読み込みます。
+`@rdlabo/ionic-theme-ios27` だけをインストールし、グローバルスタイルシートで無条件に読み込みます。
 
 ```css
 @import '@rdlabo/ionic-theme-ios27/dist/css/default-variables.css';
@@ -149,12 +149,12 @@ npx cap sync
 @import '@rdlabo/ionic-theme-ios27/dist/css/ionic-theme-ios27-dark-class.css';
 ```
 
-最後のimportはclassベースのダークモード用です。別の方式では ~-dark-system~ または ~-dark-always~ と、対応するIonicパレットを選びます。アニメーションは上の例からブラウザ機能判定を外し、~isPlatform('ios')~ で設定します。
+最後のimportはclassベースのダークモード用です。別の方式では `-dark-system` または `-dark-always` と、対応するIonicパレットを選びます。アニメーションは上の例からブラウザ機能判定を外し、`isPlatform('ios')` で設定します。
 
 ### その他のオプション
 
 - **ネイティブの操作部品:** [Native UI Shellの導入ガイド](/docs/native-ui-shell)を参照してください。CSSのimportだけでは有効になりません。
-- **Androidのinset list:** 必要に応じて、各 ~@supports~ 内で対応するパッケージの ~md-ion-list-inset~ を読み込みます。~@rdlabo/ionic-theme-md3~ には既に含まれています。
+- **Androidのinset list:** 必要に応じて、各 `@supports` 内で対応するパッケージの `md-ion-list-inset` を読み込みます。`@rdlabo/ionic-theme-md3` には既に含まれています。
 
 ### MD3テーマと併用する
 
@@ -213,7 +213,7 @@ function loadAnimations() {
 provideIonicAngular(loadAnimations());
 ```
 
-Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular`からimportします。ReactとVueでは、同じ戻り値を`setupIonicReact`または`IonicVue`へ渡せます。Sassが`meta.load-css()`内のパッケージを解決できない場合は、Get startedに記載した`stylePreprocessorOptions.includePaths`または相対パスの設定を使ってください。
+Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular`からimportします。ReactとVueでは、同じ戻り値を`setupIonicReact`または`IonicVue`へ渡せます。Sassが`meta.load-css()`内のパッケージを解決できない場合は、「導入」に記載した`stylePreprocessorOptions.includePaths`または相対パスの設定を使ってください。
 
 ## ドキュメント
 

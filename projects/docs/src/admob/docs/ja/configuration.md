@@ -1,5 +1,5 @@
 ---
-title: '初期化'
+title: 'initialize'
 code: []
 scrollActiveLine: []
 ---

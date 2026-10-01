@@ -107,4 +107,4 @@ export default {
 
 primaryのSELECTは `query()`、replicaの読み取りは `read()` を使います。型付きテーブルクエリが必要になったらORMスキーマを追加します。[ランタイム](/docs/runtime)で呼び出し寿命・snapshot read・再試行、[Drizzleと日付](/docs/drizzle)でカラム・保存時刻を確認できます。
 
-Honoのリクエストコンテナーには[kitの `/mysql` アダプター](/workers-hono-kit/docs/data-layer)を追加します。再試行済みのDBメソッドをさらにretry loopで包まないでください。transaction callbackは再実行されるため、メール・決済など外部への副作用を外へ置きます。
+Honoのリクエストコンテナーには[kitの `/mysql` アダプター](/workers-hono-kit/docs/data-layer)を追加します。再試行機能を内蔵するDBメソッドを、別の再試行ループで包まないでください。トランザクションのコールバックは再実行される場合があるため、メール送信や決済などの外部への副作用はその外に置いてください。

@@ -1,23 +1,31 @@
 ---
 title: prefer-ionic-standalone
+headingAliases:
+  rule-details: ルール詳細
+  examples: 例
+  incorrect: 誤り
+  correct: 正しい
+  options: オプション
+  when-to-enable: 有効にする場面
+  implementation: 実装
 ---
 
 # @rdlabo/rules/prefer-ionic-standalone
 
-> Ionic 9のstandalone APIを優先し、IonicModuleおよび廃止済み・NgModuleベースのentry pointを禁止します。
+> Ionic 9のスタンドアロンAPIを優先し、IonicModuleおよび廃止済み・NgModuleベースのエントリポイントを禁止します。
 >
-> - ⭐️ このruleは `plugin:@rdlabo/rules/recommended` presetに含まれます。
-> - ✒️ [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` optionで、報告された問題の一部を自動修正できます。
+> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](../configuration.md) に含まれます。
+> - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、報告された問題の一部を自動修正できます。
 
-Ionic 9はstandalone Angular componentを `@ionic/angular` からexportします。このruleは、廃止された `@ionic/angular/standalone` entry point、NgModuleベースの `@ionic/angular/lazy` entry point、`IonicModule` 自体を禁止し、アプリケーションをstandalone API surfaceに保ちます。
+Ionic 9はスタンドアロンのAngularコンポーネントを `@ionic/angular` からエクスポートします。このルールは、廃止された `@ionic/angular/standalone` エントリポイント、NgModuleベースの `@ionic/angular/lazy` エントリポイント、`IonicModule` 自体を禁止し、アプリケーションでスタンドアロンAPIを使うようにします。
 
-## Rule Details
+## ルール詳細
 
-import、named re-export、export-all declaration、namespace import経由の `IonicModule` accessを検査します。namespace accessはscopeから解決するため、同名のlocal variableでshadowされている場合は報告しません。
+インポート、名前付き再エクスポート、すべての名前を再エクスポートする宣言、名前空間インポート経由の `IonicModule` へのアクセスを検査します。名前空間へのアクセスはスコープから解決するため、同名のローカル変数に隠されている場合は報告しません。
 
-## Examples
+## 例
 
-### Incorrect
+### 誤り
 
 ```ts
 import { IonButton } from '@ionic/angular/standalone';
@@ -25,23 +33,23 @@ import { IonInput } from '@ionic/angular/lazy';
 import { IonicModule } from '@ionic/angular';
 ```
 
-### Correct
+### 正しい
 
 ```ts
 import { IonButton, IonInput, ModalController, provideIonicAngular } from '@ionic/angular';
 ```
 
-`/standalone` と `/lazy` からのnamed import・named re-exportは、元のquote styleを維持して `@ionic/angular` へ自動修正されます。side-effect import、namespace import、`export *` declarationはentry pointの変更がruntime behaviorを変える可能性があるため、修正せず報告します。`IonicModule.forRoot()` とNgModule metadataの置き換えにはアプリケーション単位の変更が必要なため、`IonicModule` も修正せず報告します。
+`/standalone` と `/lazy` からの名前付きインポート・名前付き再エクスポートは、元の引用符の形式を維持して `@ionic/angular` へ自動修正されます。副作用のみを目的とするインポート、名前空間インポート、`export *` 宣言は、エントリポイントの変更が実行時の動作を変える可能性があるため、修正せず報告します。`IonicModule.forRoot()` とNgModuleのメタデータの置き換えにはアプリケーション全体の変更が必要なため、`IonicModule` も修正せず報告します。
 
-## Options
+## オプション
 
-このruleにoptionはありません。severityはESLint設定で `warn` または `error` に指定します。
+このルールにオプションはありません。重大度はESLint設定で `warn` または `error` に指定します。
 
-## When to enable
+## 有効にする場面
 
-standalone bootstrapを採用したIonic 9 Angularアプリケーションで有効にしてください。`@ionic/angular/lazy` と `IonicModule` は常に禁止されるため、NgModuleアプリケーションは有効化前にstandalone migrationを完了してください。
+スタンドアロン形式での起動を採用したIonic 9 Angularアプリケーションで有効にしてください。`@ionic/angular/lazy` と `IonicModule` は常に禁止されるため、NgModuleアプリケーションは有効化前にスタンドアロンへの移行を完了してください。
 
-## Implementation
+## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-ionic-standalone.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-ionic-standalone.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-ionic-standalone.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-ionic-standalone.ts)

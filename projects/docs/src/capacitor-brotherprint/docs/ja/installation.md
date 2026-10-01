@@ -88,16 +88,16 @@ let package = Package(
 + <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 +    xmlns:tools="http://schemas.android.com/tools">
 ...
-+     <!-- For Bluetooth -->
++     <!-- Bluetooth用 -->
 +     <uses-permission android:name="android.permission.BLUETOOTH" />
 +     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 +     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-+     <!-- For Bluetooth Low Energy, Android 11 and earlier-->
++     <!-- Bluetooth Low Energy用（Android 11以前）-->
 +     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 +     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-+     <!-- For Bluetooth Low Energy, Android 12 and later -->
++     <!-- Bluetooth Low Energy用（Android 12以降） -->
 +     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
 +         android:usesPermissionFlags="neverForLocation"
 +         tools:targetApi="s" />

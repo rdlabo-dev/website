@@ -144,7 +144,7 @@ try {
 バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
 
 ```ts
-// Replace `/your-intent-endpoint` with your backend from Server Integration.
+// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
 const response = await fetch('/your-intent-endpoint', {
   method: 'POST',
 });
@@ -158,7 +158,7 @@ const { paymentIntent } = (await response.json()) as {
 await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
 
-  // Web only. Google Pay on Android App doesn't need
+  // Webのみで必要です。AndroidアプリのGoogle Payでは不要です。
   paymentSummaryItems: [{
     label: 'Product Name',
     amount: 1099.00
@@ -183,7 +183,7 @@ SetupIntent のクライアントシークレットは `seti_` で始まりま�
 ```ts
 const result = await Stripe.presentGooglePay();
 if (result.paymentResult === GooglePayEventsEnum.Completed) {
-  // Update UI only. Confirm the Intent with a webhook before fulfilling.
+  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
 }
 ```
 

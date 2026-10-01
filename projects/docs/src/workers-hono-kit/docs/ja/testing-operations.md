@@ -34,4 +34,4 @@ AWS、Firebase、AI Gateway、Stripe、DB clientはアプリ側で設定しま�
 
 ## 次のステップ
 
-export表は[Testing APIs](/docs/api-testing)、コマンド詳細は[CLI](/docs/cli)、パッケージ全体は[API](/docs/api)を参照してください。
+エクスポートの一覧は[テストAPI](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.12.2/packages/hono-kit/docs/api-testing.md)、コマンドの詳細は[CLI](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.12.2/packages/hono-kit/docs/cli.md)、パッケージ全体は[API](/docs/api)を参照してください。

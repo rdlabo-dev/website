@@ -4,7 +4,7 @@ code: []
 scrollActiveLine: []
 ---
 
-Google は各形式のページでライフサイクルコールバックを説明しています。例は [バナーの広告イベント](https://developers.google.com/admob/android/banner?hl=ja#ad_events) です。このプラグインでは下表の名前を使い、ネイティブの `AdListener` メソッド名は使いません。有料ペイロードは [インプレッション単位の売上](https://developers.google.com/admob/android/impression-level-ad-revenue?hl=ja)（[iOS](https://developers.google.com/admob/ios/impression-level-ad-revenue?hl=ja)）を見てください。
+Google は各形式のページでライフサイクルコールバックを説明しています。例は [バナーの広告イベント](https://developers.google.com/admob/android/banner?hl=ja#ad_events) です。このプラグインでは下表の名前を使い、ネイティブの `AdListener` メソッド名は使いません。広告収益データのペイロードは [インプレッション単位の売上](https://developers.google.com/admob/android/impression-level-ad-revenue?hl=ja)（[iOS](https://developers.google.com/admob/ios/impression-level-ad-revenue?hl=ja)）を見てください。
 
 最初のライフサイクルとインプレッションを取りこぼさないよう、広告のロードや表示より前にリスナーを登録します。
 

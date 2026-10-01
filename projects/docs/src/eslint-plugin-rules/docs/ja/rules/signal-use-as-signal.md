@@ -6,7 +6,7 @@ title: signal-use-as-signal
 
 > SignalがSignalとして正しく使われているか検査する。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 > - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、このルールが報告する問題の一部を自動修正できます。
 
 Angular Signalはgetter関数です。読み取りには `()` が必要で、書き込みには `.set()` または `.update()` を使う必要があります。このルールは、Signal変数を通常の値のように扱うコードを検出し、一般的な誤りの多くを自動修正できます。
@@ -148,5 +148,5 @@ Signalを使用するすべてのAngularプロジェクトで有効にしてく�
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/signal-use-as-signal.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/signal-use-as-signal.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/signal-use-as-signal.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/signal-use-as-signal.ts)

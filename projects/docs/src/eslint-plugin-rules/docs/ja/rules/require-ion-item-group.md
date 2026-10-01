@@ -1,17 +1,26 @@
 ---
 title: require-ion-item-group
+headingAliases:
+  rule-details: ルール詳細
+  examples: 例
+  incorrect: 誤り
+  correct: 正しい
+  options: オプション
+  automatic-fixes: 自動修正
+  when-to-enable: 有効にする場面
+  implementation: 実装
 ---
 
 # @rdlabo/rules/require-ion-item-group
 
-> `ion-list` 内の `ion-item` を、対応するIonic item groupで囲むことを要求します。
+> `ion-list` 内の `ion-item` を、対応するIonicの項目グループで囲むことを要求します。
 >
-> - ⭐️ このruleは `plugin:@rdlabo/rules/recommended` presetに含まれます。
-> - ✒️ [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` optionで、報告された問題の一部を自動修正できます。
+> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](../configuration.md) に含まれます。
+> - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、報告された問題の一部を自動修正できます。
 
-IonicのiOS 26とMaterial Design 3のlist styleでは、itemをその挙動に対応するgroup componentで構成する必要があります。このruleは、groupで囲まれていない `ion-item` が `ion-list` 直下にrenderされることを防ぎます。
+IonicのiOS 26とMaterial Design 3のリストスタイルでは、項目をその挙動に対応するグループコンポーネントで構成する必要があります。このルールは、グループで囲まれていない `ion-item` が `ion-list` 直下に描画されることを防ぎます。
 
-## Rule Details
+## ルール詳細
 
 `ion-list` 内の `ion-item` は、次のいずれかの構造を正確に使う必要があります。
 
@@ -20,13 +29,13 @@ IonicのiOS 26とMaterial Design 3のlist styleでは、itemをその挙動に�
 - `ion-list > ion-accordion-group > ion-accordion > ion-item`
 - `ion-list > ion-radio-group > ion-item`
 
-`@if`、`@for`、`@empty`、`@switch`、`@defer` などのAngular control-flow blockはelementをrenderしないため、この構造検査ではtransparentとして扱います。`ng-container` と `ng-template` もtransparentです。renderされるHTMLまたはAngular elementはtransparentではありません。list、group、itemの間に `div` を挿入すると報告されます。
+`@if`、`@for`、`@empty`、`@switch`、`@defer` などのAngular制御フローブロックは要素を描画しないため、この構造検査では無視して内側の要素を調べます。`ng-container` と `ng-template` も同様に扱います。描画されるHTML要素やAngular要素は省略して扱いません。リスト、グループ、項目の間に `div` を挿入すると報告されます。
 
-このruleは `ion-list` に含まれる `ion-item` だけを検査します。list外の `ion-item` は報告せず、`.spec.html` fileは無視します。
+このルールは `ion-list` に含まれる `ion-item` だけを検査します。リスト外の `ion-item` は報告せず、`.spec.html` ファイルは無視します。
 
-## Examples
+## 例
 
-### Incorrect
+### 誤り
 
 ```html
 <ion-list>
@@ -43,7 +52,7 @@ IonicのiOS 26とMaterial Design 3のlist styleでは、itemをその挙動に�
 </ion-list>
 ```
 
-### Correct
+### 正しい
 
 <!-- prettier-ignore -->
 ```html
@@ -65,23 +74,23 @@ IonicのiOS 26とMaterial Design 3のlist styleでは、itemをその挙動に�
 </ion-list>
 ```
 
-## Options
+## オプション
 
-このruleにoptionはありません。
+このルールにオプションはありません。
 
-## Automatic fixes
+## 自動修正
 
-listにgroup化されていない `ion-item` だけが含まれる場合、transparentなAngular control-flow blockや `ng-container` を経由していても、listの内容全体を1つの `ion-item-group` で囲めます。
+リストにグループ化されていない `ion-item` だけが含まれる場合、Angular制御フローブロックや `ng-container` を経由していても、リストの内容全体を1つの `ion-item-group` で囲めます。
 
-同じtemplateですでに `ion-item-group` が使われており、standalone `IonItemGroup` componentを利用できると判断できる場合は、自動修正を利用できます。それ以外では、必要に応じてcomponent importsへ `IonItemGroup` を追加するよう促すeditor suggestionを提供します。
+同じテンプレートですでに `ion-item-group` が使われており、スタンドアロンの `IonItemGroup` コンポーネントを利用できると判断できる場合は、自動修正を利用できます。それ以外では、必要に応じてコンポーネントのimportsへ `IonItemGroup` を追加するよう促すエディターの修正候補を提供します。
 
-group化済み・未group化の内容が混在する場合、ほかのrendered content、再利用可能な `ng-template` 定義、nested list、間に入るrendered element、不正なaccordion構造がある場合は、修正もsuggestionも提供しません。これらのケースでは意図したgroup境界を安全に判断できません。
+グループ化済み・未グループ化の内容が混在する場合、ほかの描画内容、再利用可能な `ng-template` 定義、ネストしたリスト、間に挿入された描画要素、不正なアコーディオン構造がある場合は、修正も修正候補も提供しません。これらのケースでは意図したグループの境界を安全に判断できません。
 
-## When to enable
+## 有効にする場面
 
-iOS 26とMaterial Design 3のlist designを対象とするIonic Angularアプリケーションで有効にしてください。recommended presetに含まれ、template内の `ion-list` に `ion-item` がなければ影響しません。
+iOS 26とMaterial Design 3のリストデザインを対象とするIonic Angularアプリケーションで有効にしてください。推奨プリセットに含まれ、テンプレート内の `ion-list` に `ion-item` がなければ影響しません。
 
-## Implementation
+## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-item-group.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-item-group.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-item-group.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-item-group.ts)

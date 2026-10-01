@@ -35,7 +35,7 @@ const searchWifiPrinters = async () => {
 
   await BrotherPrint.search({
     port: BRLMPrinterPort.wifi,
-    searchDuration: 15, // seconds
+    searchDuration: 15, // 秒
   });
 };
 

@@ -77,10 +77,12 @@ TypeScriptではSignal、Component境界、ライフサイクル、Overlay、Ion
 
 ## Cloudflare Workers
 
-汎用TypeScriptエントリポイントは、独立した2つのpresetを提供します。
+フレームワークに依存しない `/typescript` エントリポイントは、必要に応じて有効にできる独立した2つのプリセットを提供します。どちらも Angular 向けの `recommended` には含まれず、一方が他方を含むこともありません。
 
-- `workers/recommended` は `try/catch` の境界を小さく明示的に保ちます。
-- `workers-timezone/recommended` はhost timezoneへの暗黙依存を防ぎ、`@rdlabo/workers-timezone` の初期化を明確なモジュール直下の1箇所に限定します。
+| プリセット | ルールとオプション |
+| --- | --- |
+| `workers/recommended` | `restrict-try-block` を `{ allowPromise: false, allowPromiseResolve: true, allowRxjs: false, allowInSignal: false, maxLines: 3 }` で有効にします。 |
+| `workers-timezone/recommended` | `no-implicit-timezone` と `initialize-timezone-at-module-scope` を、どちらも `error` で有効にします。 |
 
 各presetは個別にも、組み合わせても利用できます。
 

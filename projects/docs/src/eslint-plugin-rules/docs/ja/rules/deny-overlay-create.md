@@ -6,7 +6,7 @@ title: deny-overlay-create
 
 > ModalController / PopoverControllerの `.create()` を禁止し、launcher経由でoverlayを開く。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 このルールは、controllerの `.create()` 呼び出しによるIonic overlayの直接生成を防ぎます。rdlabo architectureでは、overlayはlauncher functionと共有の `presentModal` / `presentPopover` helperを通じて開きます。これによりoverlay logicを一元化し、呼び出し側をcontroller APIから分離できます。
 
@@ -113,5 +113,5 @@ launcher patternと共有overlay helperを使うIonicプロジェクトで、こ
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-overlay-create.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-overlay-create.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-overlay-create.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-overlay-create.ts)

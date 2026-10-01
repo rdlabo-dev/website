@@ -11,25 +11,25 @@ export const PROJECT = {
   "icon": "app",
   "version": "22.0.3",
   "seoTitle": "Angular CDK Virtual Scrollの可変アイテム高さ対応 | rdlabo",
-  "description": "Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。",
-  "headline": "Angular CDK Virtual Scrollを可変Item Heightに対応",
-  "overview": "固定のitemSizeやautosizeによる推定の代わりに、既知または計測したItemごとの高さを指定します。正確なScroll Geometry、Programmatic Scroll、Chat形式のReverse Layoutを実現します。",
+  "description": "Angular CDK Virtual Scrollで、項目ごとに異なる高さや動的に変化する高さに対応します。各項目の正確なサイズにより、リスト、チャットUI、逆方向のスクロールを安定させます。",
+  "headline": "Angular CDK Virtual Scrollで項目ごとに異なる高さに対応する",
+  "overview": "固定のitemSizeやautosizeによる推定の代わりに、既知または計測した項目ごとの高さを指定します。正確なスクロール位置の計算、コードからのスクロール操作、チャット形式の逆順レイアウトに対応します。",
   "featuresHeading": "可変高さのVirtual Scroll",
   "features": [
     {
       "icon": "resize",
-      "title": "可変Item Height",
-      "description": "各List Itemに、既知または計測した個別のPixel Heightを指定します。"
+      "title": "項目ごとに異なる高さ",
+      "description": "リストの各項目に、既知または計測した高さをピクセル単位で指定します。"
     },
     {
       "icon": "ruler",
-      "title": "正確なScroll Geometry",
-      "description": "RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。"
+      "title": "正確なスクロール位置の計算",
+      "description": "表示範囲やインデックスからのオフセットを計算するときに、項目の平均サイズによる推定を避けます。"
     },
     {
       "icon": "reverse",
       "title": "Reverse Virtual Scroll",
-      "description": "Chat形式のReverse Layoutと論理Index Scrollに対応します。"
+      "description": "チャット形式の逆順レイアウトと、論理インデックスを指定したスクロールに対応します。"
     }
   ],
   "path": "/projects/ngx-cdk-scroll-strategies",
@@ -87,7 +87,7 @@ export const PROJECT = {
     {
       "title": "応用的な使い方",
       "navTitle": "応用的な使い方",
-      "seoTitle": "Angular CDK Virtual Scrollで動的なItem Heightを計測 | rdlabo",
+      "seoTitle": "Angular CDK Virtual Scrollで動的に変わる項目の高さを計測 | rdlabo",
       "updatedAt": "2026-09-06",
       "demo": {
         "url": "https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced",

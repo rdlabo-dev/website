@@ -72,4 +72,4 @@ scrollActiveLine: []
 !::PaymentStatus::
 !::TapToPayDarkMode::
 
-`DeviceGroup` は `DeviceType` をリーダー画像グループへ対応付けます。画像選択用の参照専用列挙型であり、`discoverReaders` や `connectReader` には渡しません。
+`DeviceGroup` は `DeviceType` をリーダー画像グループ（`stripe_m2`、`chipper`、`wisepad`、`wisepose`、`s700`、`apple`、`tapToPayDevice`、`unknown`）へ対応付けます。画像選択用の参照専用列挙型であり、`discoverReaders` や `connectReader` には渡しません。

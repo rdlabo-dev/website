@@ -171,7 +171,7 @@ search barとstartまたはend buttonを組み合わせる `ion-toolbar` には�
 
 ## Themeを無効にする
 
-個別のIonic componentで標準のiOS styleを維持する場合は `.ios26-disabled` を追加します。
+個別の Ionic コンポーネントで標準の iOS スタイルを維持する場合は `.ios-theme-disabled` を追加します。
 
 ```html preview
 <ion-button>iOS 26 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>

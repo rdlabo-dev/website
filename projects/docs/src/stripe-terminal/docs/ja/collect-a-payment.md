@@ -1,5 +1,6 @@
 ---
 title: '支払いを受け付ける'
+headingAliases: { '%E5%88%9D%E6%9C%9F%E5%8C%96': initialize }
 code: ['collect-a-payment/collect-payment.ts.md', 'collect-a-payment/connection-token.ts.md']
 scrollActiveLine:
   [
@@ -8,7 +9,7 @@ scrollActiveLine:
       id: 'アプリケーションレベルのリスナーを登録する',
       activeLine: { ['collect-payment.ts']: [6, 19] },
     },
-    { id: '初期化', activeLine: { ['connection-token.ts']: [0, 34] } },
+    { id: 'initialize', activeLine: { ['connection-token.ts']: [0, 34] } },
     { id: '接続トークンを安全に渡す', activeLine: { ['connection-token.ts']: [0, 34] } },
     {
       id: 'バックエンドでpaymentintentを作成する',
@@ -34,7 +35,7 @@ scrollActiveLine:
 - サーバーで作成した `card_present` 付きのテスト PaymentIntent
 - 探索する接続方式に対応する Stripe Terminal の `locationId`
 
-最初の到達状態は、リーダー接続 → 支払い方法の収集 → PaymentIntent 確定と `ConfirmedPaymentIntent` の確認です。履行は Stripe Webhook を待ってから行います。シミュレーションリーダーは [設定](/docs/configuration) のとおり、**対応する**接続方式と `isTest: true` を組み合わせてください。`TerminalConnectTypes.Simulated` を全プラットフォーム共通とは見なさないでください。
+最初の到達状態は、リーダー接続 → 支払い方法の収集 → PaymentIntent 確定と `ConfirmedPaymentIntent` の確認です。商品の発送やサービスの提供は Stripe Webhook を待ってから行います。シミュレーションリーダーは [設定](/docs/configuration) のとおり、**対応する**接続方式と `isTest: true` を組み合わせてください。`TerminalConnectTypes.Simulated` を全プラットフォーム共通とは見なさないでください。
 
 ## アプリケーションレベルのリスナーを登録する
 
@@ -44,7 +45,7 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 
 型付き `addListener` は大半のメンバーを扱います。ネイティブ探索の `DiscoveringReaders` と `CancelDiscoveredReaders` には専用オーバーロードがありません。
 
-## 初期化
+## initialize
 
 `RequestedConnectionToken` と `setConnectionToken` を使ったアプリ側の認証付きリクエストを推奨します。通常の認証情報を付与し、失敗を検証できます。SDK は必要になるたび新しい一回限りの接続トークンを要求するため、リスナーを `initialize` より前に登録します。開発中は `isTest` を設定します。
 
@@ -96,12 +97,14 @@ await stripe.paymentIntents.create({
 
 `TerminalConnectTypes` と、接続方式が必要とする Stripe Terminal の `locationId` を指定して、近くのリーダーまたはシミュレーションリーダーを探索します。
 
+`locationId` は Internet リーダーの探索で使用され、Tap to Pay、Bluetooth、Android USB リーダーの接続では必須です。Internet の探索では場所で絞り込めます。Tap to Pay と Bluetooth では接続設定にこの場所が渡されます。
+
 - Web は `Internet` だけに対応します。
-- iOS Bluetooth はスキャン更新ごとに `DiscoveredReaders` を複数回通知します。`bluetoothScanWaitTime` で Promise が現在の一覧を返すまでの待ち時間を指定できます。
+- iOS Bluetooth はスキャン更新ごとに `DiscoveredReaders` を複数回通知します。`bluetoothScanWaitTime` をミリ秒で指定すると、`discoverReaders` はその時間待ってから、その時点の一覧を返します。`0` または省略時は最初のスキャン結果を返します。[StripeのiOS Bluetooth接続ガイド](https://docs.stripe.com/terminal/payments/connect-reader?terminal-sdk-platform=ios&reader-type=bluetooth)も参照してください。
 - Android は実行時の `ACCESS_FINE_LOCATION` 権限が必要です。
 - 利用者が探索画面を離れたら `cancelDiscoverReaders` を呼び、長い探索を止められるUIを用意します。
 
-Promise に加えて `DiscoveredReaders` も監視してください。
+Promise を await するだけでなく、`DiscoveredReaders` も監視してください。iOS Bluetooth ではリスナーが最新の一覧を通知し、Promise は最後のイベントより先に解決する場合があります。
 
 !::discoverReaders::
 !::DiscoverReadersOptions::
@@ -109,7 +112,7 @@ Promise に加えて `DiscoveredReaders` も監視してください。
 
 ## リーダーへ接続する
 
-支払い情報の収集前に、現在の探索結果から得た `reader` を接続します。`autoReconnectOnUnexpectedDisconnect` の既定値は `false` です。iOS Tap to Pay の `merchantDisplayName` と `onBehalfOf` は接続設定へ適用され、Android では PaymentIntent 側に設定します。
+支払い情報の収集前に、現在の探索結果から得た `reader` を接続します。プラグインは `serialNumber` を主要な識別子として使用します。`autoReconnectOnUnexpectedDisconnect` の既定値は `false` で、Tap to Pay と Bluetooth に適用されます。現在の Android USB 実装はネイティブの接続設定で自動再接続を有効にしています。Internet 接続にはこのフラグを指定しません。iOS Tap to Pay の `merchantDisplayName` と `onBehalfOf` は接続設定へ適用され、Android では PaymentIntent 側に設定します。
 
 !::connectReader::
 
@@ -125,13 +128,13 @@ Promise に加えて `DiscoveredReaders` も監視してください。
 
 !::confirmPaymentIntent::
 
-`ConfirmedPaymentIntent` はクライアント UI 用の信号です。注文はバックエンドが `payment_intent.succeeded` などの Stripe Webhook を検証した後だけ確定してください。
+`ConfirmedPaymentIntent` はクライアント UI 用の信号です。商品の発送やサービスの提供は、バックエンドが `payment_intent.succeeded` などの Stripe Webhook を検証した後だけ行ってください。
 
 ## キャンセルとエラーを処理する
 
-- `cancelCollectPaymentMethod` は進行中の収集をキャンセルし、成功時に `Canceled` を通知します。
-- 収集または確定の失敗時には `Failed` が通知され、Promise も拒否されます。
-- 予期しない切断には `ConnectionStatusChange` ではなく `UnexpectedReaderDisconnect` を使用します。
+- `cancelCollectPaymentMethod` は進行中の収集をキャンセルし、成功時に Promise が解決し、`Canceled` を通知します。
+- `collectPaymentMethod` または `confirmPaymentIntent` が失敗すると `Failed` が通知され、同じ呼び出しの Promise も拒否されます。ペイロードには `message`、`code`、`declineCode` が含まれる場合があります。
+- 予期しない切断の検出に `ConnectionStatusChange` を使わず、`UnexpectedReaderDisconnect` を使用してください。Bluetooth と USB では `DisconnectedReader` も確認します。[リーダーのライフサイクル](/docs/reader-lifecycle)を参照してください。
 
 !::cancelCollectPaymentMethod::
 

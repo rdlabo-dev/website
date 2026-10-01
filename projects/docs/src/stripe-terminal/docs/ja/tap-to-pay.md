@@ -25,6 +25,8 @@ Tap to Pay は、対応するスマートフォンやタブレットだけで非
 
 Stripe Dashboard で Terminal を設定し、[Location](https://docs.stripe.com/terminal/fleet/locations) を作成します。その `locationId` を `discoverReaders` に渡してください。
 
+Android の `initialize` は[設定](/docs/configuration)に記載された位置情報権限を要求します。Bluetooth 権限を要求するのは `Bluetooth` または `Simulated` リーダーを探索するときだけです。Tap to Pay の探索自体では Bluetooth 権限を要求しません。
+
 ## セットアップ手順
 
 1. アプリケーションレベルのリスナーを登録する。
@@ -39,7 +41,7 @@ Stripe Dashboard で Terminal を設定し、[Location](https://docs.stripe.com/
 
 ## アカウント連携を確認する
 
-`isTapToPayAccountLinked` は iOS 16.4以降専用です。事前に `initialize()` が完了している必要がありますが、リーダー接続やNFCの起動は不要です。結果は呼び出すたび Apple から取得されるため、`isLinked` をキャッシュしないでください。Stripe Connect では `onBehalfOf` に連結アカウントIDを渡します。
+`isTapToPayAccountLinked` は iOS 16.4以降専用です。事前に `initialize()` が完了している必要がありますが、リーダー接続やNFCの起動は不要です。結果は呼び出すたび Apple から取得されるため、`isLinked` をキャッシュしないでください。Stripe Connect では `onBehalfOf` に連結アカウントIDを渡します。省略すると、その API キーを所有するアカウントを確認します。
 
 Android と Web では拒否されるため、プラットフォーム判定または `.catch()` で保護します。
 
@@ -50,7 +52,7 @@ Android と Web では拒否されるため、プラットフォーム判定ま�
 
 `setTapToPayUxConfiguration` は Android 専用です。`initialize()` 後、`connectReader()` 前に呼びます。iOS は未実装、Web はログを出して終了します。
 
-Android では `colors` と `darkMode` を反映します。TypeScript の `tapZone` は宣言されていますが、v8.2.1 の Android Terminal SDK には渡されません。
+Android では `colors`（`primary`、`success`、`error`。値は `'default'` または `'#FF5733'` のような16進カラー文字列）と `darkMode`（`SYSTEM`、`DARK`、`LIGHT`）を反映します。TypeScript の `tapZone` は宣言されていますが、v8.2.1 の Android Terminal SDK には渡されません。
 
 !::setTapToPayUxConfiguration::
 !::TapToPayUxConfiguration::

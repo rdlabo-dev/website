@@ -100,5 +100,5 @@ Ionicの `errorText` APIで検証結果を表示するアプリに適用しま�
 ## 関連情報
 
 - [Signal Forms連携](https://github.com/rdlabo-dev/ionic-angular-library/blob/main/projects/kit/docs/forms.md)
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-error-text.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-error-text.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-error-text.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-error-text.ts)

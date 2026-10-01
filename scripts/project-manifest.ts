@@ -21,7 +21,7 @@ export interface ProjectPageDefinition {
   /** Optional intent-focused summary for SEO description metadata. */
   seoDescription?: LocalizedText;
   /** Optional explicit content update date (`YYYY-MM-DD`) for sitemap `<lastmod>`. */
-  updatedAt?: LocalizedText;
+  updatedAt?: Partial<Record<Locale, string>>;
   /**
    * When true, English generation reads this page from the portal local filesystem
    * (same path layout as Japanese) instead of fetching GitHub English sources.
@@ -130,7 +130,7 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
 interface PageOptions {
   seoTitle?: LocalizedText;
   seoDescription?: LocalizedText;
-  updatedAt?: LocalizedText;
+  updatedAt?: Partial<Record<Locale, string>>;
   localEnglishSource?: boolean;
   demo?: ProjectPageDefinition['demo'];
 }
@@ -204,8 +204,8 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
       'initialize-timezone-at-module-scope',
       'no-implicit-timezone',
     ].includes(ruleName)
-      ? { updatedAt: text('2026-09-06', '2026-09-06') }
-      : {}),
+      ? { updatedAt: text('2026-09-06', '2026-10-01') }
+      : { updatedAt: { ja: '2026-10-01' } }),
   }),
 );
 
@@ -403,7 +403,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         seoDescription: text(
           'Adapt Angular 22 Signal Forms to Ionic controls with automatic errorText, localized validation messages, and state classes.',
-          'Angular 22 Signal FormsをIonic controlへ統合し、errorTextの自動設定、validation messageの多言語化、state classを利用する方法を解説します。',
+          'Angular 22 Signal FormsをIonicの入力コンポーネントと連携し、errorTextの自動設定、検証メッセージの多言語化、入力状態を示すクラスを利用する方法を解説します。',
         ),
       }),
       page(
@@ -432,7 +432,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'auth-http.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: text('2026-09-06', '2026-10-01') },
       ),
       page(
         'Offline and Realtime',
@@ -590,7 +590,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('IonContent', 'IonContent', 'ion-content', 'ion-content.md', 'Guides', 'ガイド', {
         demo: interactiveDemo(
@@ -649,32 +649,32 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ),
     description: text(
       'Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.',
-      'Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。',
+      'Angular CDK Virtual Scrollで、項目ごとに異なる高さや動的に変化する高さに対応します。各項目の正確なサイズにより、リスト、チャットUI、逆方向のスクロールを安定させます。',
     ),
     headline: text(
       'Angular CDK virtual scroll with variable item heights',
-      'Angular CDK Virtual Scrollを可変Item Heightに対応',
+      'Angular CDK Virtual Scrollで項目ごとに異なる高さに対応する',
     ),
     overview: text(
       'Supply known or measured per-item heights instead of a fixed itemSize or autosize estimation. Get exact scroll geometry, programmatic scrolling, and reverse chat layouts.',
-      '固定のitemSizeやautosizeによる推定の代わりに、既知または計測したItemごとの高さを指定します。正確なScroll Geometry、Programmatic Scroll、Chat形式のReverse Layoutを実現します。',
+      '固定のitemSizeやautosizeによる推定の代わりに、既知または計測した項目ごとの高さを指定します。正確なスクロール位置の計算、コードからのスクロール操作、チャット形式の逆順レイアウトに対応します。',
     ),
     featuresHeading: text('Variable-height virtual scrolling', '可変高さのVirtual Scroll'),
     features: [
       {
         icon: 'resize',
-        title: text('Variable item heights', '可変Item Height'),
+        title: text('Variable item heights', '項目ごとに異なる高さ'),
         description: text(
           'Give every list item its own known or measured pixel height.',
-          '各List Itemに、既知または計測した個別のPixel Heightを指定します。',
+          'リストの各項目に、既知または計測した高さをピクセル単位で指定します。',
         ),
       },
       {
         icon: 'ruler',
-        title: text('Exact scroll geometry', '正確なScroll Geometry'),
+        title: text('Exact scroll geometry', '正確なスクロール位置の計算'),
         description: text(
           'Avoid average-size estimation when calculating ranges and index offsets.',
-          'RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。',
+          '表示範囲やインデックスからのオフセットを計算するときに、項目の平均サイズによる推定を避けます。',
         ),
       },
       {
@@ -682,7 +682,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Reverse virtual scroll', 'Reverse Virtual Scroll'),
         description: text(
           'Support chat-style reverse layouts and logical index scrolling.',
-          'Chat形式のReverse Layoutと論理Index Scrollに対応します。',
+          'チャット形式の逆順レイアウトと、論理インデックスを指定したスクロールに対応します。',
         ),
       },
     ],
@@ -709,7 +709,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       page('Advanced Usage', '応用的な使い方', 'advanced', 'advanced.md', 'Guides', 'ガイド', {
         seoTitle: text(
           'Angular CDK Virtual Scroll: Dynamic Item Height | rdlabo',
-          'Angular CDK Virtual Scrollで動的なItem Heightを計測 | rdlabo',
+          'Angular CDK Virtual Scrollで動的に変わる項目の高さを計測 | rdlabo',
         ),
         updatedAt: text('2026-09-06', '2026-09-06'),
         demo: interactiveDemo(
@@ -792,7 +792,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-30', '2026-09-30'),
+        updatedAt: text('2026-09-30', '2026-10-01'),
       }),
       page(
         'Using ion-item-group',
@@ -810,7 +810,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
+        { updatedAt: text('2026-09-30', '2026-10-01') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -967,7 +967,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
+        { updatedAt: text('2026-09-30', '2026-10-01') },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -998,7 +998,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'ガイド',
       ),
       page('iOS 18', 'iOS 18', 'ios-18', 'ios-18.md', 'Guides', 'ガイド'),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
       page(
         'E2E screenshot testing',
         'E2Eスクリーンショットテスト',
@@ -1105,7 +1107,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           updatedAt: text('2026-09-06', '2026-09-06'),
         },
       ),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
       page(
         'E2E screenshot testing',
         'E2Eスクリーンショットテスト',
@@ -1168,7 +1172,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Initialize CLI', '初期化CLI'),
         description: text(
           'Wire addIcons automatically with --initialize and remove per-component calls.',
-          '--initializeでaddIconsを自動配線し、コンポーネント単位の呼び出しを削除します。',
+          '--initializeでaddIconsの登録処理を自動設定し、コンポーネントごとの呼び出しを削除します。',
         ),
       },
     ],
@@ -1184,7 +1188,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       }),
       page('CLI Options', 'CLI オプション', 'options', 'options.md', 'Guides', 'ガイド'),
       page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
       page('CLI API', 'CLI API', 'api', 'api.md', 'Reference', 'リファレンス'),
@@ -1293,6 +1297,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
         {
+          updatedAt: { ja: '2026-10-01' },
           seoTitle: text(
             'Cloudflare Workers: timezones, dates and DST | rdlabo',
             'Cloudflare Workersのタイムゾーン・日付計算・夏時間 | rdlabo',
@@ -1304,6 +1309,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         },
       ),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
         seoTitle: text(
           'Cloudflare Workers timezone migration guide | rdlabo',
           'Cloudflare Workersの日時処理をworkers-timezoneへ移行 | rdlabo',
@@ -1344,7 +1350,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     adapter: 'markdown',
     description: text(
       'MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.',
-      'Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。',
+      'Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replicaの使い分け、デッドロック発生時の処理の再試行、Drizzle連携を提供します。',
     ),
     headline: text(
       'MySQL and Hyperdrive for Cloudflare Workers',
@@ -1352,7 +1358,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ),
     overview: text(
       'MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.',
-      'Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック再試行、Drizzle連携を提供します。',
+      'Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック発生時の処理の再試行、Drizzle連携を提供します。',
     ),
     featuresHeading: text('Database building blocks', 'データベースの基本機能'),
     features: [
@@ -1398,7 +1404,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Run a local MySQL query with workers-mysql, then use a Hyperdrive binding in Cloudflare Workers. Includes setup, code, and expected output.',
             'workers-mysqlでローカルMySQLのクエリを実行し、Cloudflare WorkersのHyperdrive接続へ進みます。設定・コード・実行結果を掲載。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
@@ -1410,7 +1416,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Install workers-mysql for Cloudflare Workers. Configure nodejs_compat and choose Hyperdrive runtime, Drizzle, or migration and testing entry points.',
           'Cloudflare Workersにworkers-mysqlを導入。nodejs_compat設定と、Hyperdrive・Drizzle・移行・テスト用エントリポイントを紹介します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Runtime', 'ランタイム', 'runtime', 'runtime.md', 'Guides', 'ガイド', {
         seoTitle: text(
@@ -1419,7 +1425,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         seoDescription: text(
           'Manage Cloudflare Workers MySQL connections with Hyperdrive, primary/replica routing, transactions, and deadlock retries using workers-mysql.',
-          'workers-mysqlでCloudflare WorkersのMySQL接続を管理。Hyperdrive、primary/replica、transaction、デッドロック再試行を解説します。',
+          'workers-mysqlでCloudflare WorkersのMySQL接続を管理。Hyperdrive、primary/replicaの使い分け、トランザクション、デッドロック発生時の処理の再試行を解説します。',
         ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
@@ -1566,7 +1572,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Install workers-hono-kit for Hono APIs on Cloudflare Workers. Choose entry points for HTTP, authentication, queues, and testing.',
             'Cloudflare WorkersのHono APIにworkers-hono-kitを導入。HTTP、認証、Queue、テストに必要なエントリポイントを紹介します。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page(
@@ -1615,7 +1621,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Use Durable Object WebSocket patterns and offline replica contracts with workers-hono-kit for Cloudflare Workers applications.',
             'Cloudflare Workers向けworkers-hono-kitのDurable Object WebSocketパターンと、オフラインレプリカ・同期の契約を解説します。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page(
@@ -1634,7 +1640,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Test and operate Hono APIs on Cloudflare Workers with service fakes, database fixtures, Queue error logging, and operational CLIs.',
             'Cloudflare WorkersのHono APIをテスト・運用。service fake、DB fixture、Queueのエラーログ、運用CLIの使い方を紹介します。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
@@ -1691,7 +1697,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Component boundaries', 'Component境界'),
         description: text(
           'Enforce ViewModel ownership, readonly properties, and lifecycle contracts.',
-          'ViewModel所有、readonlyプロパティ、ライフサイクル契約を検査します。',
+          'コンポーネントによるViewModelの保持、readonlyプロパティ、ライフサイクルの実装規約を検査します。',
         ),
       },
       {
@@ -1741,7 +1747,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Configure @rdlabo/eslint-plugin-rules with flat config presets for Angular, Ionic, or framework-independent TypeScript projects.',
           '@rdlabo/eslint-plugin-rulesのFlat Configを使い、Angular・Ionic・汎用TypeScript向けのESLintプリセットを設定します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Rules', 'ルール一覧', 'rules', 'rules.md', 'Reference', 'リファレンス', {
         seoTitle: text(
@@ -1755,7 +1761,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
@@ -1796,7 +1802,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Upstream-compatible CLI', '本家互換CLI'),
         description: text(
           'Keep the same docgen binary, flags, placeholders, output commands, and exported functions as @capacitor/docgen.',
-          '@capacitor/docgenと同じdocgenバイナリ、flag、placeholder、出力command、export functionを維持します。',
+          '@capacitor/docgenと同じdocgen実行ファイル、フラグ、プレースホルダー、出力コマンド、公開関数を維持します。',
         ),
       },
       {
@@ -1804,7 +1810,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Interface inheritance', 'interface継承'),
         description: text(
           'Resolve TypeScript extends clauses and append inherited methods and properties, including on the primary API.',
-          'TypeScriptのextends句を解決し、primary APIを含む継承method・propertyを生成ドキュメントへ追加します。',
+          'TypeScriptのextends句を解決し、主要APIを含めて、継承したメソッドとプロパティを生成ドキュメントへ追加します。',
         ),
       },
     ],
@@ -1916,7 +1922,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Configure @capacitor-community/stripe with a publishable key and platform settings before presenting PaymentSheet, Apple Pay, or Google Pay.',
             '@capacitor-community/stripeに公開可能キーと各Platformの設定を追加し、PaymentSheet、Apple Pay、Google Payを利用する準備をします。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page(
@@ -1941,6 +1947,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'learn/event-listeners.md',
         'Learn',
         '学ぶ',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
       page(
         'Server Integration',
@@ -1949,9 +1956,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'server-integration.md',
         'Learn',
         '学ぶ',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
-      page('Initialize', '初期化', 'initialize', 'initialize.md', 'Methods', 'メソッド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+      page('Initialize', 'initialize', 'initialize', 'initialize.md', 'Methods', 'メソッド', {
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page(
         'PaymentSheet',
@@ -1965,11 +1973,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Capacitor Stripe PaymentSheet API | rdlabo',
             'Capacitor Stripe PaymentSheet API リファレンス | rdlabo',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: text('2026-09-06', '2026-10-01'),
         },
       ),
       page('PaymentFlow', 'PaymentFlow', 'payment-flow', 'payment-flow.md', 'Methods', 'メソッド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Apple Pay', 'Apple Pay', 'apple-pay', 'apple-pay.md', 'Methods', 'メソッド', {
         seoTitle: text(
@@ -1980,7 +1988,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Apple Pay payments in a Capacitor app with @capacitor-community/stripe on supported Apple devices.',
           '@capacitor-community/stripeを使い、対応するApple端末のCapacitorアプリでApple Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Google Pay', 'Google Pay', 'google-pay', 'google-pay.md', 'Methods', 'メソッド', {
         seoTitle: text(
@@ -1991,7 +1999,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Google Pay payments in a Capacitor app with @capacitor-community/stripe on supported Android devices.',
           '@capacitor-community/stripeを使い、対応するAndroid端末のCapacitorアプリでGoogle Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -2062,7 +2070,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'identity-verification-sheet.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: text('2026-09-06', '2026-10-01') },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -2141,7 +2149,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'collect-a-payment.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: text('2026-09-06', '2026-10-01') },
       ),
       page(
         'Reader Lifecycle',
@@ -2150,9 +2158,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'reader-lifecycle.md',
         'Guides',
         'ガイド',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
-      page('Tap to Pay', 'Tap to Pay', 'tap-to-pay', 'tap-to-pay.md', 'Guides', 'ガイド'),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('Tap to Pay', 'Tap to Pay', 'tap-to-pay', 'tap-to-pay.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
     ],
   },
   {
@@ -2228,21 +2241,26 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.',
           '@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page(
         'Initialize',
-        '初期化',
+        'initialize',
         'configuration',
         'configuration.md',
         'Quickstart',
         'クイックスタート',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
-      page('Consent', '同意管理', 'consent', 'consent.md', 'Guides', 'ガイド'),
+      page('Consent', '同意管理', 'consent', 'consent.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
       page('Testing', 'テスト', 'testing', 'testing.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('Banner Ads', 'バナー広告', 'banner', 'banner.md', 'Ad formats', '広告フォーマット'),
+      page('Banner Ads', 'バナー広告', 'banner', 'banner.md', 'Ad formats', '広告フォーマット', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
       page(
         'Interstitial Ads',
         'インタースティシャル広告',
@@ -2259,7 +2277,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Prepare, show, and handle interstitial ad events in Capacitor apps with @capacitor-community/admob on iOS and Android.',
             '@capacitor-community/admobを使い、iOS・AndroidのCapacitorアプリでインタースティシャル広告の準備・表示・Event処理を実装します。',
           ),
-          updatedAt: text('2026-08-31', '2026-08-31'),
+          updatedAt: text('2026-08-31', '2026-10-01'),
         },
       ),
       page(
@@ -2269,6 +2287,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'rewarded.md',
         'Ad formats',
         '広告フォーマット',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
       page(
         'App Open Ads',
@@ -2277,9 +2296,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'app-open.md',
         'Ad formats',
         '広告フォーマット',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
-      page('Ad Events', '広告イベント', 'events', 'events.md', 'Guides', 'ガイド'),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
+      page('Ad Events', '広告イベント', 'events', 'events.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
     ],
   },
   {
@@ -2347,7 +2371,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       }),
       page('Configuration', '設定', 'configuration', 'configuration.md', 'Guides', 'ガイド'),
       page('Authentication', '認証', 'authentication', 'authentication.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('App Events', 'App Events', 'app-events', 'app-events.md', 'Guides', 'ガイド'),
     ],
@@ -2427,13 +2451,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Set up Chrome Prompt API text generation with Capacitor Local LLM: model availability, downloads, streaming, cancellation, and Web limitations.',
           'Capacitor Local LLMでChrome Prompt APIを利用。モデルの利用可否・ダウンロード、ストリーミング、キャンセル、Webの制約を解説します。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Availability', '利用可否', 'availability', 'availability.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Chat', 'チャット', 'chat', 'chat.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Images', '画像', 'images', 'images.md', 'Guides', 'ガイド'),
       page(
@@ -2443,6 +2467,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'android-fallback.md',
         'Guides',
         'ガイド',
+        { updatedAt: { ja: '2026-10-01' } },
       ),
       page('Events', 'イベント', 'events', 'events.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-09-06'),
@@ -2558,7 +2583,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       groupPage('ScreenshotEvent', 'screenshot-event', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
     ],
   },
@@ -2610,7 +2635,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Safe file lifecycle', '安全なファイルライフサイクル'),
         description: text(
           'Await printFile until the OS no longer needs the source, then delete it safely.',
-          'OSがソースを必要としなくなるまでprintFileを待ち、その後安全に削除できます。',
+          'printFileの完了を待つと、OSが元ファイルを使用し終えたあとに、そのファイルを安全に削除できます。',
         ),
       },
     ],
@@ -2622,7 +2647,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Print PDF and files', 'PDF・ファイルを印刷', 'pdf', 'pdf.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
     ],
   },
@@ -2665,7 +2690,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         title: text('Image printing', '画像印刷'),
         description: text(
           'Send base64 images with model, label, and channel settings to printImage.',
-          'モデル・ラベル・チャネル設定付きのbase64画像をprintImageへ送ります。',
+          'base64形式の画像を、モデル・ラベル・チャネルの設定とともにprintImageへ渡します。',
         ),
       },
       {
@@ -2679,7 +2704,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-10', '2026-09-10'),
+        updatedAt: text('2026-09-10', '2026-10-01'),
       }),
       page(
         'Installation',
@@ -2689,7 +2714,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Quickstart',
         'クイックスタート',
         {
-          updatedAt: text('2026-09-10', '2026-09-10'),
+          updatedAt: text('2026-09-10', '2026-10-01'),
         },
       ),
       page(
@@ -2699,7 +2724,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'connection-management.md',
         'JavaScript helpers',
         'JavaScriptヘルパー',
-        { updatedAt: text('2026-09-10', '2026-09-10') },
+        { updatedAt: text('2026-09-10', '2026-10-01') },
       ),
       page(
         'Helper design decisions',
@@ -2711,12 +2736,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         { updatedAt: text('2026-09-10', '2026-09-10') },
       ),
       page('Search', 'Search', 'search', 'search.md', 'Plugin API', 'プラグインAPI', {
-        updatedAt: text('2026-09-10', '2026-09-10'),
+        updatedAt: text('2026-09-10', '2026-10-01'),
       }),
       page('Print', 'Print', 'print', 'print.md', 'Plugin API', 'プラグインAPI', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
-      page('Events', 'Events', 'events', 'events.md', 'Plugin API', 'プラグインAPI'),
+      page('Events', 'Events', 'events', 'events.md', 'Plugin API', 'プラグインAPI', {
+        updatedAt: { ja: '2026-10-01' },
+      }),
     ],
   },
 ];

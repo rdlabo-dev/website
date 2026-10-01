@@ -8,7 +8,7 @@ scrollActiveLine: []
 
 はい。この Issue を確認してください: https://github.com/ionic-team/ionic-framework/issues/28445#issuecomment-1789028722
 
-> You're more than welcome to register them in main.ts or app.component.ts. You can then use them anywhere in your application. However, the initial bundle size may increase because the icons need to be loaded up front.
+> アイコンは `main.ts` または `app.component.ts` で登録できます。登録すると、アプリケーション内のどこからでも使えます。ただし、アイコンを最初に読み込む必要があるため、初期バンドルのサイズが大きくなる場合があります。
 
 - ユニットテストはサポートしていますか？
 

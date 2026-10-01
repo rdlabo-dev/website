@@ -15,13 +15,13 @@ LiteRT-LM 0.16.1には安定したmodality検査がないため、画像優先�
 ## フォールバックを設定して生成する
 
 ```typescript
-// Rename the downloaded model as desired and either package it in android/app/src/main/assets
-// or provide a readable absolute app-managed file path.
+// ダウンロード済みモデルを任意の名前に変更し、android/app/src/main/assetsへ配置するか、
+// アプリが読み取れる、アプリ管理の絶対ファイルパスを指定します。
 await LocalLLM.configureFallbackModel({
   path: '/android_asset/gemma-4-E2B-it.litertlm',
   maxTokens: 4096,
   maxImages: 1,
-  // supportsImages defaults to true
+  // supportsImagesの既定値はtrueです。
 });
 
 const { id: chatId } = await LocalLLM.createChat({

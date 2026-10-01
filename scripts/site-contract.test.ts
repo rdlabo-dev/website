@@ -70,6 +70,40 @@ function fencedCodeBlocks(markdown: string): { language: string; body: string }[
   return blocks;
 }
 
+test('Japanese API page titles preserve the published method identifier', async () => {
+  let checked = 0;
+  for (const project of projectDefinitions) {
+    if (project.hostedUrl) continue;
+    const docsPath = join('node_modules', project.packageName, 'dist/docs.json');
+    let source: string;
+    try {
+      source = await readFile(docsPath, 'utf8');
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') continue;
+      throw error;
+    }
+    const docs = JSON.parse(source) as { api?: { methods?: { name: string }[] } };
+    for (const page of project.pages) {
+      const method = docs.api?.methods?.find(
+        (entry) => entry.name.toLowerCase() === page.title.en.toLowerCase(),
+      );
+      if (!method) continue;
+      const japanese = await readFile(
+        join('projects/docs/src', project.sourceDirectory, 'docs/ja', page.file),
+        'utf8',
+      );
+      const identifier = new RegExp(
+        `(?<![\\w$])${method.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w$])`,
+        'i',
+      );
+      assert.match(page.title.ja, identifier, `${project.id}/${page.file}: navigation title`);
+      assert.match(yamlTitle(japanese), identifier, `${project.id}/${page.file}: page title`);
+      checked++;
+    }
+  }
+  assert.ok(checked > 0, 'must check published API method pages');
+});
+
 async function englishGuideSource(
   project: {
     repositoryUrl: string;

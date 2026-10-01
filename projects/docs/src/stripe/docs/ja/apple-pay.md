@@ -51,7 +51,7 @@ try {
 バックエンドから PaymentIntent のクライアントシークレットを取得します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。その後 `paymentIntentClientSecret`、`paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` を渡します。
 
 ```ts
-// Replace `/your-intent-endpoint` with your backend from Server Integration.
+// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
 const response = await fetch('/your-intent-endpoint', {
   method: 'POST',
 });
@@ -84,7 +84,7 @@ await Stripe.createApplePay({
 ```ts
 const result = await Stripe.presentApplePay();
 if (result.paymentResult === ApplePayEventsEnum.Completed) {
-  // Update UI only. Confirm the Intent with a webhook before fulfilling.
+  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
 }
 ```
 

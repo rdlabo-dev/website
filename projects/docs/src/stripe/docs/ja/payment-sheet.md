@@ -18,7 +18,7 @@ PaymentSheet は支払い情報の入力と Intent の確定を一度の表示�
 | Android | ネイティブ Stripe PaymentSheet |
 | Web | `stripe-pwa-elements` のカードモーダル |
 
-Web はネイティブ PaymentSheet を表示しません。Web の `createPaymentSheet` は `paymentIntentClientSecret` と任意の `withZipCode` を使用し、現在 SetupIntent には対応していません。`defaultBillingDetails`、`shippingDetails`、`enableApplePay`、`enableGooglePay`、`style`、`returnURL` などのネイティブ専用オプションは無視されます。
+Web はネイティブ PaymentSheet を表示しません。Web の `createPaymentSheet` は `paymentIntentClientSecret` と任意の `withZipCode` を使用し、現在 SetupIntent には対応していません。`defaultBillingDetails`、`shippingDetails`、`billingDetailsCollectionConfiguration`、`enableApplePay`、`enableGooglePay`、`style`、`returnURL` などのネイティブ専用オプションは無視されます。
 
 ## 1. createPaymentSheet
 
@@ -29,7 +29,7 @@ iOS と Android では `paymentIntentClientSecret` と `setupIntentClientSecret`
 ```ts
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-// Replace `/your-intent-endpoint` with your backend from Server Integration.
+// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
 const response = await fetch('/your-intent-endpoint', {
   method: 'POST',
 });
@@ -53,7 +53,7 @@ await Stripe.createPaymentSheet({
 !::createPaymentSheet::
 !::CreatePaymentSheetOption::
 
-ネイティブでは `style`、`enableApplePay` と `applePayMerchantId`、`enableGooglePay`、iOS 3D Secure 用の `returnURL`、請求先収集設定などを任意で指定できます。`withZipCode` は Web 専用です。SetupIntent で `enableGooglePay` を有効にする場合は `currencyCode` が必要です。
+ネイティブでは `style`（`alwaysLight` または `alwaysDark`、iOS専用）、`enableApplePay` と `applePayMerchantId`、`enableGooglePay`、iOS 3D Secure 用の `returnURL`、請求先収集設定などを任意で指定できます。`withZipCode` は Web 専用です。SetupIntent で `enableGooglePay` を有効にする場合は `currencyCode` が必要です。
 
 ## 2. presentPaymentSheet
 
@@ -62,11 +62,11 @@ await Stripe.createPaymentSheet({
 ```ts
 const result = await Stripe.presentPaymentSheet();
 if (result.paymentResult === PaymentSheetEventsEnum.Completed) {
-  // Update UI only. Confirm the Intent with a webhook before fulfilling.
+  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
 }
 ```
 
-`Canceled` は利用者がシートを閉じた状態、`Failed` はエラーです。どちらの結果だけでも注文を確定できません。
+`Canceled` は利用者がシートを閉じた状態、`Failed` はエラーです。どちらの結果だけでも商品の発送やサービスの提供を判断してはいけません。
 
 !::presentPaymentSheet::
 !::PaymentSheetResultInterface::

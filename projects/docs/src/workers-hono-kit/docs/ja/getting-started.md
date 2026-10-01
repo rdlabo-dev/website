@@ -65,7 +65,7 @@ export default app;
 
 ## 互換importの非推奨化
 
-`/db`、`/business-time`、DB関連の `/testing` exportには独立パッケージを案内する `@deprecated` が付きます。互換aliasは実行時の同一性とシグネチャを維持し、削除予定はありません。
+`/db`、`/business-time`、DB関連の `/testing` export（`createTestDb`、pool/noopのデータベースfake、共有の `Database` 型）には、`@rdlabo/workers-mysql` / `@rdlabo/workers-timezone` を案内するシンボル単位の `@deprecated` が付きます。新規コードではこれらの独立パッケージを優先してください。互換aliasは実行時の同一性とシグネチャを維持し、削除予定はありません。
 
 kitが所有する `reopenGuardedPaymentFailedSet`、`/mysql` の `createContainerRuntime`、Firebase・認証・KV・Stripeのテストhelperは、この移行では非推奨になりません。
 

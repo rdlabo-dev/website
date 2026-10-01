@@ -11,9 +11,9 @@ PDF などのファイルのシステム印刷 UI を出します。Android と 
 ```ts
 import { Printer } from '@rdlabo/capacitor-printer';
 
-// filePath must point to a file that exists on the device.
+// filePathは端末上に存在するファイルを指す必要があります。
 await Printer.printFile({ path: filePath });
-// After await settles, the OS no longer needs the source; delete it then if you no longer need it.
+// awaitが完了するとOSは元ファイルを使用しません。アプリでも不要なら、この時点で削除します。
 ```
 
 !::printFile::

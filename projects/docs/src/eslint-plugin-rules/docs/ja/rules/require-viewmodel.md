@@ -6,7 +6,7 @@ title: require-viewmodel
 
 > Componentの `new ViewModel(this)`、`ViewModelStore<ComponentType, Keys>` 継承を強制し、View APIをViewModelから排除する。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 ViewModel architecture patternを強制します。Angular Componentは `new ViewModel(this)` で初期化したViewModelを所有しなければなりません。少なくとも1つの一致するpropertyを要求しますが、追加のViewModel instanceは拒否しません。ViewModelは `ViewModelStore<ComponentType>` を継承し、`host` を再宣言したり、`viewChild`、`effect`、`computed`、`afterNextRender` などのView固有APIを含めたりしないでください。
 
@@ -41,14 +41,14 @@ ViewModel classでは次のAPIを呼び出せません。
 ```ts
 @Component({ selector: 'app-example', template: '' })
 export class ExamplePage {
-  readonly title = 'x'; // no ViewModel
+  readonly title = 'x'; // ViewModelがない
 }
 ```
 
 ```ts
 @Component({ selector: 'app-example', template: '' })
 export class ExamplePage {
-  readonly vm = new ViewModel(); // missing `this`
+  readonly vm = new ViewModel(); // `this`がない
 }
 ```
 
@@ -58,7 +58,7 @@ export class ExamplePage {
   readonly vm = new ViewModel(this);
 }
 
-class ViewModel extends StoreModel {} // wrong base class
+class ViewModel extends StoreModel {} // 基底クラスが誤っている
 ```
 
 ```ts
@@ -68,7 +68,7 @@ export class ExamplePage {
 }
 
 class ViewModel extends ViewModelStore<ExamplePage> {
-  readonly el = viewChild('host'); // View API in ViewModel
+  readonly el = viewChild('host'); // ViewModel内でView APIを使用
 }
 ```
 
@@ -172,5 +172,5 @@ ViewModel内で許可しないAPIです。直接呼び出しと `.required(...)`
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-viewmodel.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-viewmodel.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-viewmodel.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-viewmodel.ts)

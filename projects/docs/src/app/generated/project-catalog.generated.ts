@@ -1866,7 +1866,7 @@ export const PROJECTS_JA = [
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
-    "description": "Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。",
+    "description": "Angular CDK Virtual Scrollで、項目ごとに異なる高さや動的に変化する高さに対応します。各項目の正確なサイズにより、リスト、チャットUI、逆方向のスクロールを安定させます。",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
       {
@@ -2294,7 +2294,7 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。",
+    "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replicaの使い分け、デッドロック発生時の処理の再試行、Drizzle連携を提供します。",
     "path": "/projects/workers-mysql",
     "pages": [
       {
@@ -2711,8 +2711,8 @@ export const PROJECTS_JA = [
         "path": "/projects/capacitor-stripe/docs/server-integration"
       },
       {
-        "title": "プロジェクトで初期化する",
-        "navTitle": "初期化",
+        "title": "initialize",
+        "navTitle": "initialize",
         "slug": "initialize",
         "section": "メソッド",
         "path": "/projects/capacitor-stripe/docs/initialize"
@@ -2858,8 +2858,8 @@ export const PROJECTS_JA = [
         "path": "/projects/capacitor-admob/docs/readme"
       },
       {
-        "title": "初期化",
-        "navTitle": "初期化",
+        "title": "initialize",
+        "navTitle": "initialize",
         "slug": "configuration",
         "section": "クイックスタート",
         "path": "/projects/capacitor-admob/docs/configuration"

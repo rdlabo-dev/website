@@ -53,7 +53,7 @@ PaymentSheet でカードをスキャンできるよう、`NSCameraUsageDescript
 
 iOS ではプラグインが自動的に読み込まれます。Apple Pay には Apple Merchant ID と証明書も必要です。[Apple Pay](/docs/apple-pay)を参照してください。
 
-3D Secure のリダイレクトには、PaymentSheet または PaymentFlow の作成時に `returnURL` を設定し、アプリの URL ハンドラーから `handleURLCallback` を呼び出します。[初期化](/docs/initialize)も参照してください。
+3D Secure のリダイレクトには、PaymentSheet または PaymentFlow の作成時に `returnURL` を設定し、アプリの URL ハンドラーから `handleURLCallback` を呼び出します。[initialize](/docs/initialize)も参照してください。
 
 ## Web の設定
 

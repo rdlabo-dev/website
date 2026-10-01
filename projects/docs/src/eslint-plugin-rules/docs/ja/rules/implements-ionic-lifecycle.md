@@ -6,7 +6,7 @@ title: implements-ionic-lifecycle
 
 > このプラグインはIonic Lifecycleのimplementsを推奨します。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 > - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、このルールが報告する問題の一部を自動修正できます。
 
 Ionicは `ionViewWillEnter` や `ionViewDidLeave` などのframework-level lifecycle methodを提供します。Componentでこれらのmethodを宣言する場合、TypeScriptがcontractを型検査できるよう、対応するinterface（`ViewWillEnter`、`ViewDidEnter`、`ViewWillLeave`、`ViewDidLeave`）もimplementsする必要があります。このルールはその組み合わせを強制し、`implements` clauseを自動修正できます。
@@ -88,5 +88,5 @@ export class ScannerPage implements ViewDidEnter, ViewDidLeave {
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/implements-ionic-lifecycle.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/implements-ionic-lifecycle.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/implements-ionic-lifecycle.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/implements-ionic-lifecycle.ts)

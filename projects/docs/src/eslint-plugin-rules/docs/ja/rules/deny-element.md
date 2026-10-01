@@ -6,7 +6,7 @@ title: deny-element
 
 > このプラグインは特定のHTMLタグの使用を禁止します。
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 このルールは、Angular templateで特定のelementが使われることを防ぎます。一般的には、templateで宣言する代わりにlauncher methodや専用serviceを通じて表示すべき `<ion-modal>`、`<ion-popover>`、`<ion-toast>`、`<ion-alert>`、`<ion-loading>`、`<ion-picker>`、`<ion-action-sheet>` などのinline overlay componentを禁止するために使います。
 
@@ -83,5 +83,5 @@ overlayにlauncher patternを使うプロジェクトで、このルールを有
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-element.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-element.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-element.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-element.ts)

@@ -18,13 +18,13 @@ if (status !== 'available') {
 
 const { id: chatId } = await LocalLLM.createChat({
   instructions: 'You are a helpful assistant.',
-  history: { maxMessages: 20, maxCharacters: 12000 }, // all platforms; iOS trims the Foundation Models transcript
+  history: { maxMessages: 20, maxCharacters: 12000 }, // 全プラットフォーム共通。iOSではFoundation Modelsの会話履歴を削減します。
 });
 
 const { text } = await LocalLLM.generateText({
   chatId,
   prompt: 'What is the capital of France?',
-  // Native only: options: { temperature: 0.2, maxOutputTokens: 256 },
+  // ネイティブのみ: options: { temperature: 0.2, maxOutputTokens: 256 },
 });
 
 const followUp = await LocalLLM.generateText({
@@ -50,7 +50,7 @@ let streamedText = '';
 const chunkListener = await LocalLLM.addListener('textChunk', (event) => {
   if (event.chatId !== chatId) return;
   streamedText += event.text;
-  console.log(streamedText); // replace with an update to your app's UI
+  console.log(streamedText); // アプリのUI更新処理に置き換えます。
 });
 
 try {
@@ -81,7 +81,7 @@ const streamPromise = LocalLLM.streamText({ chatId, prompt: 'Write a long essay.
 try {
   await streamPromise;
 } catch (err) {
-  // LOCAL_LLM_GENERATION_CANCELLED on all platforms when cancellation is observed
+  // キャンセルが検知されると、全プラットフォームでLOCAL_LLM_GENERATION_CANCELLEDになります。
 } finally {
   await stateListener.remove();
 }
@@ -98,8 +98,8 @@ const { id: chatId } = await LocalLLM.createChat({
   instructions: 'You are a customer support agent for Acme Corp.',
 });
 
-// iOS: prewarm this chat. Android: global model warmup (chatId ignored).
-// Web: create and release a temporary session using this chat (promptPrefix ignored).
+// iOS:このチャットをウォームアップします。Android:モデル全体をウォームアップします（chatIdは無視）。
+// Web:このチャットを使って一時セッションを作成・解放します（promptPrefixは無視）。
 await LocalLLM.warmup({ chatId, promptPrefix: 'You are a customer support agent for Acme Corp.' });
 ```
 

@@ -30,7 +30,7 @@ Google の [Android 向け Next-Gen SDK](https://developers.google.com/admob/and
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
--     // Override point for customization after application launch.
+-     // アプリ起動後のカスタマイズ用に処理を上書きする箇所。
 -     GADMobileAds.sharedInstance().start(completionHandler: nil)
 ```
 
@@ -54,7 +54,7 @@ const { AdMob } = Plugins;
 })
 export class AppComponent {
   constructor() {
-    // Initialize AdMob for your Application
+    // アプリ向けにAdMobを初期化します。
     +AdMob.initialize('[APP_ID]');
     -AdMob.initialize();
   }
@@ -85,23 +85,23 @@ export class AppComponent {
         }
 
         constructor(){
-            // Show Banner Ad
+            // バナー広告を表示します。
             AdMob.showBanner(this.options)
             .then(
                 (value) => {
                     console.log(value);  // true
                 },
                 (error) => {
-                    console.error(error); // show error
+                    console.error(error); // エラーを表示します。
                 }
             );
 
-            // Subscibe Banner Event Listener
+            // バナーのイベントリスナーを登録します。
             AdMob.addListener('onAdLoaded', (info: boolean) => {
                  console.log("Banner Ad Loaded");
             });
 
-+           // Get Banner Size
++           // バナーのサイズを取得します。
 +           AdMob.addListener('onAdSize', (info: boolean) => {
 +                console.log(info);
 +           });

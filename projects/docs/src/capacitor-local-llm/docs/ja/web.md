@@ -13,7 +13,7 @@ Prompt APIを公開しているデスクトップChromeを、セキュアコン�
 ```typescript
 import { LocalLLM } from '@rdlabo/capacitor-local-llm';
 
-// Register this handler on a button so Chrome can start a model download if needed.
+// 必要に応じてChromeがモデルをダウンロードできるよう、このハンドラーをボタンに登録します。
 async function onChatClick() {
   const { id } = await LocalLLM.createChat({ instructions: 'Answer briefly.' });
   try {

@@ -28,7 +28,7 @@ import { Component, signal } from '@angular/core';
 
 @Component({ template: '' })
 class Page {
-  readonly isLoading = signal(false); // reported: move to ViewModel
+  readonly isLoading = signal(false); // 報告対象: ViewModelへ移動する
 }
 ```
 
@@ -39,7 +39,7 @@ import { form } from '@angular/forms/signals';
 @Component({ template: '' })
 class Page {
   readonly model = signal({ name: '' });
-  readonly loading = signal(false); // reported
+  readonly loading = signal(false); // 報告対象
   readonly pageForm = form(this.model);
 }
 ```
@@ -54,7 +54,7 @@ import { PageViewModel } from './page.viewmodel';
 @Component({ template: '' })
 class Page {
   private readonly vm = new PageViewModel(this);
-  readonly isLoading = this.vm.isLoading; // read-only view of ViewModel state
+  readonly isLoading = this.vm.isLoading; // ViewModelの状態を読み取り専用で参照する
   readonly model = this.vm.model;
   readonly pageForm = form(this.model);
   readonly title = computed(() => this.model().name);
@@ -68,7 +68,7 @@ import { form as signalForm } from '@angular/forms/signals';
 @Component({ template: '' })
 class Page {
   readonly data = writable({ name: '' });
-  readonly pageForm = signalForm(this.data); // data is the Signal Forms model
+  readonly pageForm = signalForm(this.data); // dataはSignal Formsのモデル
 }
 ```
 
@@ -87,5 +87,5 @@ class Page {
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-component-writable-signal.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-component-writable-signal.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-component-writable-signal.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-component-writable-signal.ts)

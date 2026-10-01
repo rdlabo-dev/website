@@ -57,8 +57,8 @@ const printers = await session.prepare(
   { port: BRLMPrinterPort.wifi, searchDuration: 10 },
   BRLMPrinterModelName.QL_820NWB,
 );
-// Select a printer, then call session.printImage with the existing native options.
-// In the screen's exit handler:
+// プリンターを選択し、既存のネイティブオプションを指定してsession.printImageを呼びます。
+// 画面を離れる処理で呼び出します。
 await session.dispose();
 ```
 

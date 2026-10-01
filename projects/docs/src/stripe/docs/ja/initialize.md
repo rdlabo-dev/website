@@ -1,5 +1,5 @@
 ---
-title: "プロジェクトで初期化する"
+title: "initialize"
 code: []
 scrollActiveLine: []
 ---
@@ -36,7 +36,7 @@ Android の Google Pay は、アプリケーションメタデータの `com.get
 
 ## リダイレクトベースの支払い方法（iOS）
 
-認証のためにアプリから離脱する支払い方法（PayPal や一部の銀行決済方法など）では、returnURL が必要です。iOS では、`returnURL` が設定されていない場合、PaymentSheet または PaymentFlow でリダイレクトベースの決済方法として適切なものを Stripe は提供しません。[iOS return URL guide](https://docs.stripe.com/payments/mobile/accept-payment?platform=ios#ios-set-up-return-url) を参照してください。
+PayPal や一部の銀行決済など、認証のためにアプリを離れる支払い方法には戻り先 URL が必要です。iOS では `returnURL` を設定しないと、本来は利用条件を満たしているリダイレクト型の支払い方法も、PaymentSheet や PaymentFlow に表示されません。[iOSの戻り先URL設定ガイド](https://docs.stripe.com/payments/mobile/accept-payment?platform=ios#ios-set-up-return-url) を参照してください。
 
 アプリの `ios/App/App/Info.plist` にカスタム URL スキームを登録します。`your-app` をアプリ固有のスキームに置き換えてください:
 

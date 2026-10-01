@@ -35,7 +35,7 @@ Stripe Identity は、Capacitor のアプリケーションコードを保った
 
 リスナーは `main.ts`、アプリケーション初期化処理、シングルトンサービスなど、アプリケーションレベルの所有者が存続する間は保持してください。`present()` の直後に削除してはいけません。Android の `present()` はシート表示時に解決し、結果は後から `VerificationResult` で届きます。
 
-`Completed`、`Canceled`、`Failed` は `IdentityVerificationResult.result` の値です。個別の `addListener` イベントではないため、`VerificationResult` を登録して `result` を確認します。
+`Completed`、`Canceled`、`Failed` は `IdentityVerificationResult.result` の値です。個別の `addListener` イベントではないため、`IdentityVerificationSheetEventsEnum.VerificationResult` を登録して `result` を確認します。
 
 !::IdentityVerificationSheetEventsEnum::
 
@@ -81,7 +81,7 @@ return {
 
 - iOS と Android では `verificationId` と `ephemeralKeySecret` が必須です。
 - Web は `clientSecret` だけを使用し、ネイティブはこれを無視します。
-- オプション型はパッケージの index から再エクスポートされないため、直接 import しないでください。
+- `CreateIdentityVerificationSheetOption` と `InitializeIdentityVerificationSheetOption` を `@capacitor-community/stripe-identity` から import しないでください。これらのオプション型はパッケージの index から再エクスポートされていません。
 
 !::create::
 !::CreateIdentityVerificationSheetOption::
@@ -93,7 +93,9 @@ return {
 
 `create` がシートを構築できない場合に発生し、Promise も同じ文言で拒否されます。ネイティブでは必須パラメータ不足時、iOS ではプライマリアプリアイコンのキー不足時にも発生します。
 
-iOS は `{ message }`、Android は現在 `error` に文字列を設定します。リスナーと拒否された Promise の両方を処理してください。Web の `create` は常に `Loaded` を発生させ、`present` が未初期化または `clientSecret` 不足を例外として返します。
+リスナーの型は `StripeIdentityError` です。iOS は `{ message }` を渡し、Android は現在 `error` に文字列を設定します。リスナーと、拒否された `create` の Promise の両方を処理してください。
+
+Web の `create` は `clientSecret` を検証せず、常に `Loaded` を通知します。Web の `present` は `FailedToLoad` を通知する代わりに、`Stripe is not initialized.` または `clientSecret is not set.` の例外を投げます。
 
 !::StripeIdentityError::
 
@@ -102,8 +104,8 @@ iOS は `{ message }`、Android は現在 `error` に文字列を設定します
 | `result` | 意味 |
 | --- | --- |
 | `Completed` | 書類送信完了。審査中なのでWebhookを待つ |
-| `Canceled` | 利用者がシートを閉じた。再試行を許可する |
-| `Failed` | フロー失敗。`error.message` を表示する |
+| `Canceled` | 利用者がシートを閉じた。再試行できるようにする。Web では Stripe.js の `session_cancelled` に対応する |
+| `Failed` | フロー失敗。`error.message` を表示する。ネイティブはローカライズ済みのエラー文言を送り、Web は Stripe.js のエラーをそのまま渡す |
 
 `Failed` には `error` が含まれます。これらの結果値を `addListener` のイベント名として登録しないでください。
 
@@ -112,4 +114,10 @@ iOS は `{ message }`、Android は現在 `error` に文字列を設定します
 
 ## エラーとキャンセル
 
-キャンセルはクラッシュではなく利用者の操作として扱い、再度 `create` / `present` できるようにします。Android は表示時、iOS はシートを閉じた後、Web は `verifyIdentity` 完了後に `present()` が解決します。解決だけで成功と判断せず、必ず `verification.result` で分岐してください。
+キャンセルはクラッシュではなく利用者の操作として扱い、リスナーを登録したまま、再度 `create` / `present` を実行できるようにします。`present()` の動作はプラットフォームごとに異なります。
+
+- Android はシートを表示した時点で解決します。後から届く `VerificationResult` が `Completed`、`Canceled`、`Failed` を報告し、受け取られるまではメモリ上に保持されます。表示処理で例外が発生すると Promise は拒否されます。
+- iOS はシートが閉じるまで待ち、`VerificationResult` を通知してから `present()` を解決します。
+- Web は `verifyIdentity` を待ちます。キャンセルと失敗のどちらでも `VerificationResult` を通知して Promise を解決します。`initialize` 未実行または `clientSecret` 不足の場合は拒否されます。
+
+`present()` が解決しただけで成功と判断せず、必ず `verification.result` で分岐してください。

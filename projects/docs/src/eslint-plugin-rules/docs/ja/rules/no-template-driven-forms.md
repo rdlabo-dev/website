@@ -30,23 +30,23 @@ title: no-template-driven-forms
 ### 誤り
 
 ```html
-<!-- ngModel on an ordinary input -->
+<!-- 通常のinput要素にngModelを指定 -->
 <input [(ngModel)]="name" />
 
-<!-- ngForm reference -->
+<!-- ngFormへの参照 -->
 <form #form="ngForm"></form>
 
-<!-- ngModelGroup directive -->
+<!-- ngModelGroupディレクティブ -->
 <div ngModelGroup="address"></div>
 ```
 
 ### 正しい
 
 ```html
-<!-- Signal Forms field binding -->
+<!-- Signal Formsのフィールドバインディング -->
 <input [formField]="userForm.name" />
 
-<!-- ngModel allowed on ion-searchbar for a View binding -->
+<!-- Viewのバインディングとしてion-searchbarのngModelを許可 -->
 <ion-searchbar [(ngModel)]="query"></ion-searchbar>
 ```
 
@@ -82,5 +82,5 @@ Angular Signal Formsへ移行しながら、特定のIonic Viewコンポーネ�
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-template-driven-forms.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-template-driven-forms.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-template-driven-forms.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-template-driven-forms.ts)

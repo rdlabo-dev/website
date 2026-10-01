@@ -21,7 +21,7 @@ const start = async () => {
   });
 
   await ScreenshotEvent.startWatchEvent();
-  // Take a physical screenshot on the device and confirm the listener runs.
+  // 端末でスクリーンショットを撮影し、リスナーが呼ばれることを確認します。
 };
 
 const stop = async () => {
@@ -31,6 +31,6 @@ const stop = async () => {
 };
 ```
 
-画面がアクティブになったら `start`、破棄時に `stop` を呼び出します。リスナーを登録してすぐ `remove` するだけの例にはしないでください。
+画面がアクティブになったら `start` を呼び、画面を離れるときや破棄するときは `stop` の完了を await してください。リスナーを登録してすぐ `remove` するだけの例にはしないでください。
 
 監視とリスナーの型は[API](/docs/api)を参照してください。

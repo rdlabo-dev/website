@@ -18,16 +18,16 @@ PaymentFlow は支払い方法の収集と確定を分離します。`presentPay
 | Android | ネイティブ PaymentSheet.FlowController |
 | Web | `stripe-pwa-elements` のカードモーダル |
 
-Web は `paymentIntentClientSecret` または `setupIntentClientSecret` と、任意の `withZipCode` に対応します。請求先情報、ウォレット、`style`、`returnURL` などのネイティブ専用オプションは Web では無視されます。
+Web は `paymentIntentClientSecret` または `setupIntentClientSecret` と、任意の `withZipCode` に対応します。`defaultBillingDetails`、`shippingDetails`、`billingDetailsCollectionConfiguration`、`enableApplePay`、`enableGooglePay`、`style`、`returnURL` などのネイティブ専用オプションは Web では無視されます。
 
 ## 1. createPaymentFlow
 
-バックエンドからクライアントへ安全に渡せるシークレットを取得し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
+バックエンドからクライアントへ安全に渡せるシークレットを取得し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。`customerId` と `customerEphemeralKeySecret` は任意ですが、`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
 
 ```ts
 import { PaymentFlowEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-// Replace `/your-intent-endpoint` with your backend from Server Integration.
+// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
 const response = await fetch('/your-intent-endpoint', {
   method: 'POST',
 });
@@ -69,14 +69,14 @@ console.log(presentResult); // { cardNumber: "●●●● ●●●● ●●�
 ```ts
 const confirmResult = await Stripe.confirmPaymentFlow();
 if (confirmResult.paymentResult === PaymentFlowEventsEnum.Completed) {
-  // Update UI only. Confirm the Intent with a webhook before fulfilling.
+  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
 }
 ```
 
 !::confirmPaymentFlow::
 !::PaymentFlowResultInterface::
 
-`Canceled` はキャンセル、`Failed` はエラーです。クライアント結果だけでは注文を確定できません。
+`Canceled` はキャンセル、`Failed` はエラーです。クライアントの結果だけで商品の発送やサービスの提供を判断してはいけません。
 
 ## 4. addListener
 

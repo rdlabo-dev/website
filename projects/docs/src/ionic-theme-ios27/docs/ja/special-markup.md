@@ -113,6 +113,8 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 
 segment buttonを利用可能な幅に均等配置する場合は `.segment-expand` を追加します。`registerSegmentEffect` を使う場合、このclassはLiquid Glass effectのsizeも変更します。
 
+セグメントの最小の高さは、コンテンツ内では 32px、`ion-toolbar` 内では 48px です。`.segment-expand` を付けると、ツールバー内でもコンパクトな 32px のレイアウトを維持します。コンパクトなセグメントは Ionic 標準のフラットな背景と選択インジケーターの色を維持します。ガラス調のコンテナーを表示し、押している間に外側のコンテナーを拡大・縮小するのは、通常のツールバー内セグメントだけです。コンテンツ内のセグメントと `.segment-expand` を付けたセグメントは、外側の領域を維持します。任意で追加できる移動するガラスレンズは、コンテナーの背景とは独立しています。
+
 ```html preview
 <ion-segment class="segment-expand" value="new">
   <ion-segment-button value="new"><ion-label>New</ion-label></ion-segment-button>

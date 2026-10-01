@@ -15,7 +15,11 @@ import {
 import { localizedPublicPath } from '../projects/docs/src/app/locale-path';
 import { SITE_CONFIG } from '../projects/docs/src/app/site-config';
 import { enforceGeneratedHtmlPolicy } from './html-policy';
-import { normalizeImportedReadmeHeadings, resolveGeneratedHeadingId } from './markdown-headings';
+import {
+  addHeadingAliases,
+  normalizeImportedReadmeHeadings,
+  resolveGeneratedHeadingId,
+} from './markdown-headings';
 import { docgenApiAnchors, normalizeDocgenAnchors, splitDocgenReadme } from './docgen-readme';
 import { prepareDocgenMarkdown, restoreDocgenInlineCode } from './docgen-inline-code';
 import {
@@ -605,6 +609,7 @@ async function generateProject(
     ) {
       normalizeImportedReadmeHeadings(htmlDocument);
     }
+    addHeadingAliases(htmlDocument, parsed.attributes.headingAliases, context);
     const headingIds = Array.from(htmlDocument.querySelectorAll<HTMLElement>('h1, h2, h3, h4')).map(
       (heading) => heading.id,
     );

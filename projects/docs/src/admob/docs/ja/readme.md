@@ -112,7 +112,7 @@ async function startAdMob() {
   }
 
   if (!consentInfo.canRequestAds) {
-    // Consent not ready — no banner is shown.
+    // 同意の準備が完了していないため、バナーを表示しません。
     return;
   }
 
@@ -126,7 +126,7 @@ async function startAdMob() {
 }
 ```
 
-期待結果: `canRequestAds` が true のとき、画面下部に Google のテストバナーが表示されます。`canRequestAds` が false のときは何も表示せずに return します。バナーは WebView の上のネイティブ画面に載るため HTML を覆うことがあります。レイアウトを空ける方法は [バナー広告](/docs/banner) を見てください。詳細は [初期化](/docs/configuration)、[同意管理](/docs/consent)、[テスト](/docs/testing) です。
+期待結果: `canRequestAds` が true のとき、画面下部に Google のテストバナーが表示されます。`canRequestAds` が false のときは何も表示せずに return します。バナーは WebView の上のネイティブ画面に載るため HTML を覆うことがあります。レイアウトを空ける方法は [バナー広告](/docs/banner) を見てください。詳細は [initialize](/docs/configuration)、[同意管理](/docs/consent)、[テスト](/docs/testing) です。
 
 ## 目的から選ぶ
 
@@ -140,9 +140,9 @@ async function startAdMob() {
 
 ## ドキュメント
 
-上の [インストール](#インストール) から始め、[初期化](/docs/configuration) と [同意管理](/docs/consent) を見たあと、最初のテストバナーを実行してください。デモユニットとデバイスは [テスト](/docs/testing) です。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルは GitHub リポジトリにあります。メソッドのシグネチャは API 節にあります。
+上の [インストール](#インストール) から始め、[initialize](/docs/configuration) と [同意管理](/docs/consent) を見たあと、最初のテストバナーを実行してください。デモユニットとデバイスは [テスト](/docs/testing) です。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルは GitHub リポジトリにあります。メソッドのシグネチャは API 節にあります。
 
-- [初期化](/docs/configuration) — `AdMob.initialize` と SDK オプション。
+- [initialize](/docs/configuration) — `AdMob.initialize` と SDK オプション。
 - [同意管理](/docs/consent) — プライバシー同意と iOS のトラッキング許可。
 - [テスト](/docs/testing) — デモ広告ユニット、テストデバイス、同意のテスト。
 - [バナー広告](/docs/banner) — バナーのオプション、ライフサイクル、イベント。

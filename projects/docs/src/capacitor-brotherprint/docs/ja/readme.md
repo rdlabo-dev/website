@@ -39,12 +39,12 @@ Amazon アソシエイト: **https://amzn.to/3AiiOFT**
 
 **補足**
 
-|     | description                |
+|     | 説明                |
 | --- | -------------------------- |
-| ◯   | Supported and tested       |
-| △   | Implemented but not tested |
-| -   | Plugin is not supported    |
-| ✗   | Device is not supported    |
+| ◯   | 対応・検証済み       |
+| △   | 実装済み・未検証 |
+| -   | プラグイン非対応    |
+| ✗   | 端末非対応    |
 | BT  | Bluetooth                  |
 | BLE | Bluetooth Low Energy       |
 

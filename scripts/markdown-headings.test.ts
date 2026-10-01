@@ -1,7 +1,27 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { JSDOM } from 'jsdom';
-import { normalizeImportedReadmeHeadings } from './markdown-headings';
+import { addHeadingAliases, normalizeImportedReadmeHeadings } from './markdown-headings';
+
+test('keeps an old published fragment attached to a renamed heading', () => {
+  const document = new JSDOM('<h2 id="initialize">initialize</h2>').window.document;
+  const oldId = encodeURIComponent('初期化');
+  addHeadingAliases(document, { [oldId]: 'initialize' }, 'terminal');
+  assert.equal(document.getElementById(oldId)?.parentElement?.id, 'initialize');
+  assert.equal(document.querySelector('h2')?.textContent, 'initialize');
+  assert.equal(document.getElementById(oldId)?.getAttribute('aria-hidden'), 'true');
+  assert.equal(document.getElementById(oldId)?.hasAttribute('data-docs-heading-alias'), true);
+  assert.throws(
+    () => addHeadingAliases(document, { missing: 'absent' }, 'terminal'),
+    /missing alias target/,
+  );
+  assert.throws(
+    () => addHeadingAliases(document, { initialize: 'initialize' }, 'terminal'),
+    /duplicate alias/,
+  );
+  assert.throws(() => addHeadingAliases(document, [], 'terminal'), /must map old IDs/);
+  assert.throws(() => addHeadingAliases(document, { old: 1 }, 'terminal'), /non-empty string IDs/);
+});
 
 test('removes the README title and preserves nested heading levels after another h1', () => {
   const document = new JSDOM(`

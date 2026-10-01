@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 リワード広告は、動画・プレイアブル・アンケートへの操作と引き換えにアプリ内アイテムを渡す形式です。形式の説明は Google のリワード広告ガイド（[Android](https://developers.google.com/admob/android/rewarded?hl=ja) / [iOS](https://developers.google.com/admob/ios/rewarded?hl=ja)）を見てください。
 
-リワード広告は報酬フローとして扱い、報酬なしのインタースティシャルの代わりにはしません。[初期化](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。報酬は戻り値または `Rewarded` イベントからのみ付与し、`Dismissed` では付与しません。
+リワード広告は報酬フローとして扱い、報酬なしのインタースティシャルの代わりにはしません。[initialize](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。報酬は戻り値または `Rewarded` イベントからのみ付与し、`Dismissed` では付与しません。
 
 ## リワード動画
 
@@ -45,7 +45,7 @@ const options: RewardAdOptions = {
 };
 await AdMob.prepareRewardVideoAd(options);
 const rewardItem = await AdMob.showRewardVideoAd();
-// Grant the reward once, using this result or the Rewarded event — not both.
+// この結果またはRewardedイベントのどちらか一方を使い、報酬を一度だけ付与します。
 console.log(rewardItem);
 ```
 

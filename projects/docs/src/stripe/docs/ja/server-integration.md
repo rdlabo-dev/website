@@ -59,7 +59,7 @@ Apple Pay は PaymentIntent のクライアントシークレットを使用し�
 
 ## Webhook を正とする
 
-端末上の `Completed` は UI の結果であり、Stripe が資金を回収した証明ではありません。注文の確定は `payment_intent.succeeded` や `setup_intent.succeeded` など、検証済みの [Stripe Webhook](https://docs.stripe.com/webhooks) に基づいて行ってください。
+端末上の `Completed` は UI の結果であり、Stripe で売上が確定した証拠ではありません。商品の発送やサービスの提供は `payment_intent.succeeded` や `setup_intent.succeeded` など、検証済みの [Stripe Webhook](https://docs.stripe.com/webhooks) に基づいて行ってください。
 
 `Canceled` は利用者がシートを閉じた状態です。`Failed` と `FailedToLoad` はエラーとして扱います。以前の Intent を確認できなくなった場合は、新しい Intent を作成してから再試行してください。
 

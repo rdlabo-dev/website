@@ -47,6 +47,8 @@ const removePrintListeners = async () => {
 | `onPrintFailedCommunication` | プリンターに到達できなかった     |
 | `onPrintError`               | 印刷が失敗した                   |
 
+`printImage` が不正な画像、非対応のモデルやポート、印刷設定の作成失敗を理由に拒否される場合は、`code: 0` と説明用の `message` を含む `onPrintError` も通知されます。このコードは SDK エラーではなく、プラグインによる検証エラーを表します。プリンターとのチャンネルを開けない場合は、代わりに `onPrintFailedCommunication` が通知されます。
+
 完全なページはデモを見てください:
 
 https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/demo/src/app/home/home.page.ts

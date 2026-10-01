@@ -6,11 +6,11 @@ scrollActiveLine: []
 
 Google の User Messaging Platform（UMP）SDK は、広告リクエストの前に同意を集めるプライバシー／メッセージングツールです。流れは Google の UMP ガイド（[Android](https://developers.google.com/admob/android/privacy?hl=ja) / [iOS](https://developers.google.com/admob/ios/privacy?hl=ja)）を見てください。
 
-このプラグインは UMP と iOS の App Tracking Transparency を共通 API で提供します。UMP を使う前に、AdMob で [GDPR（一般データ保護規則）メッセージ](https://support.google.com/admob/answer/10113207?hl=ja) を作成します。[広告主識別子（IDFA）メッセージ](https://support.google.com/admob/answer/10115027?hl=ja) も設定できます。IDFA メッセージを公開している場合、UMP が explainer と App Tracking Transparency のダイアログを出します。そのときは `requestTrackingAuthorization()` を呼ばないでください。
+このプラグインは UMP と iOS の App Tracking Transparency を共通 API で提供します。UMP を使う前に、AdMob で [GDPR（一般データ保護規則）メッセージ](https://support.google.com/admob/answer/10113207?hl=ja) を作成します。[広告主識別子（IDFA）メッセージ](https://support.google.com/admob/answer/10115027?hl=ja) も設定できます。IDFA メッセージを公開している場合、UMP が IDFA の説明メッセージと App Tracking Transparency の許可ダイアログを表示します。そのときは `requestTrackingAuthorization()` を呼ばないでください。
 
 ## 推奨する順序
 
-1. `AdMob.initialize()` を呼びます。[初期化](/docs/configuration) を参照してください。
+1. `AdMob.initialize()` を呼びます。[initialize](/docs/configuration) を参照してください。
 2. `AdMob.requestConsentInfo()` を呼びます。
 3. 必要な場合は `AdMob.showConsentForm()` を呼びます。
 4. `consentInfo.canRequestAds` が `true` のときだけ広告をロードします。
@@ -26,7 +26,7 @@ if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentSta
 }
 
 if (consentInfo.canRequestAds) {
-  // Ads may now be requested.
+  // 広告をリクエストできます。
 }
 ```
 
@@ -50,8 +50,8 @@ UMP の IDFA メッセージを**使わない**場合だけ、状態が `notDete
 const tracking = await AdMob.trackingAuthorizationStatus();
 if (tracking.status === 'notDetermined') {
   /**
-   * If you want to explain tracking before the iOS dialog,
-   * present your own UI here, then continue.
+   * iOSの許可ダイアログの前にトラッキングについて説明する場合は、
+   * ここで独自のUIを表示してから処理を続けます。
    */
   await AdMob.requestTrackingAuthorization();
 }

@@ -45,6 +45,7 @@ const ALLOWED_ATTRIBUTES = new Set([
   'class',
   'colspan',
   'data-line',
+  'data-docs-heading-alias',
   'fetchpriority',
   'height',
   'href',

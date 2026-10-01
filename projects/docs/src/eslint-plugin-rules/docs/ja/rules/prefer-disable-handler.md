@@ -6,7 +6,7 @@ title: prefer-disable-handler
 
 > 非同期処理中の二重タップを防ぐため、設定した要素とイベントのバインディングにwrapper method（デフォルト: disableHandler($event, work)）を要求する
 >
-> - ⭐️ このルールは `plugin:@rdlabo/rules/recommended` プリセットに含まれます。
+> - ⭐️ このルールは Flat Config の [`rdlabo.configs.recommended`](/docs/configuration) に含まれます。
 
 非同期処理を開始するbuttonをユーザーがtapしたら、処理がsettleするまでcontrolを無効にする必要があります。そうしなければ、2回目のtapで同じactionが再実行される可能性があります。このルールは、設定した `(event)` bindingにwrapper呼び出し構文を強制します。UIの無効化とwork値の適切な処理はwrapper実装の責務です。
 
@@ -136,5 +136,5 @@ API呼び出し、navigation、modal表示などの非同期処理をユーザ�
 
 ## 実装
 
-- [Rule source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-disable-handler.ts)
-- [Test source](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-disable-handler.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/prefer-disable-handler.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/prefer-disable-handler.ts)

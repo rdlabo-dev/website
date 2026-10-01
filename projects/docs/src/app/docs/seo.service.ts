@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { serializeJsonLd, type JsonLdDocument } from '../../../../../shared/json-ld';
 import { localizedPublicPath } from '../locale-path';
 import { SITE_CONFIG } from '../site-config';
+import { PUBLISHED_DOCS_LOCALES } from '../../../../../shared/docs-locales';
 
 const JSON_LD_SCRIPT_ID = 'rdlabo-json-ld';
 const JSON_LD_MARKER = 'data-rdlabo-json-ld';
@@ -25,7 +26,6 @@ export class SeoService {
 
   setPage(page: PageMetadata): void {
     const englishUrl = `${SITE_CONFIG.origin}${localizedPublicPath('en', page.path)}`;
-    const japaneseUrl = `${SITE_CONFIG.origin}${localizedPublicPath('ja', page.path)}`;
     const canonicalUrl = `${SITE_CONFIG.origin}${localizedPublicPath(this.#locale, page.path)}`;
     const socialImageUrl = `${SITE_CONFIG.origin}${SITE_CONFIG.socialImagePath}`;
 
@@ -46,8 +46,22 @@ export class SeoService {
       content: page.noIndex ? 'noindex, nofollow' : 'index, follow',
     });
     this.#setLink('canonical', canonicalUrl);
-    this.#setLink('alternate', englishUrl, 'en');
-    this.#setLink('alternate', japaneseUrl, 'ja');
+    const languages = new Set<string>([
+      ...PUBLISHED_DOCS_LOCALES.map(({ code }) => code),
+      'x-default',
+    ]);
+    for (const link of this.#document.head.querySelectorAll<HTMLLinkElement>(
+      'link[rel="alternate"][hreflang]',
+    )) {
+      if (!languages.has(link.hreflang)) link.remove();
+    }
+    for (const locale of PUBLISHED_DOCS_LOCALES) {
+      this.#setLink(
+        'alternate',
+        `${SITE_CONFIG.origin}${localizedPublicPath(locale.code, page.path)}`,
+        locale.code,
+      );
+    }
     this.#setLink('alternate', englishUrl, 'x-default');
     this.#setStructuredData(page.noIndex ? undefined : page.structuredData);
   }

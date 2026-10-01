@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
-import { access, constants, readdir, readFile, stat } from 'node:fs/promises';
+import { access, readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import test from 'node:test';
 import { JSDOM } from 'jsdom';
+import { DOCS_LOCALES, PUBLISHED_DOCS_LOCALES } from '../shared/docs-locales';
 import { projectDefinitions } from './project-manifest';
 import {
   CURRENT_SPONSORS,
@@ -11,7 +12,8 @@ import {
 
 test('removed Ionic Framework feedback pages stay out of published docs', async () => {
   const sitemap = await readFile('dist/docs/browser/sitemap.xml', 'utf8');
-  for (const locale of ['', 'ja/']) {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const locale = subPath ? `${subPath}/` : '';
     for (const project of ['ionic-theme-ios26', 'ionic-theme-ios27']) {
       const route = `${locale}projects/${project}`;
       assert.ok(!sitemap.includes(`/${route}/docs/feedback`));
@@ -29,7 +31,8 @@ test('removed Ionic Framework feedback pages stay out of published docs', async 
 });
 
 test('transition guides link to existing localized onboarding headings', async () => {
-  for (const locale of ['', 'ja/']) {
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const locale = subPath ? `${subPath}/` : '';
     const route = `${locale}projects/ionic-theme-ios27/docs/`;
     const target = new JSDOM(
       await readFile(`dist/docs/browser/${route}iphone-duo-with-original-theme/index.html`, 'utf8'),
@@ -47,7 +50,7 @@ test('transition guides link to existing localized onboarding headings', async (
       for (const url of links) {
         assert.equal(url.pathname, `/${route}iphone-duo-with-original-theme`);
         const fragment = url.hash.slice(1);
-        // Japanese headings use URI-encoded IDs; English punctuation may be encoded in links.
+        // Accented and Japanese headings use URI-encoded IDs; punctuation may also be encoded.
         assert.ok(
           target.getElementById(fragment) ?? target.getElementById(decodeURIComponent(fragment)),
           url.href,
@@ -58,15 +61,16 @@ test('transition guides link to existing localized onboarding headings', async (
 });
 
 test('places locale-specific static 404 pages in the browser output', async () => {
-  const [english, japanese] = await Promise.all([
-    readFile(new URL('../dist/docs/browser/404.html', import.meta.url), 'utf8'),
-    readFile(new URL('../dist/docs/browser/ja/404.html', import.meta.url), 'utf8'),
-  ]);
-  assert.match(english, /<html lang="en">/);
-  assert.match(japanese, /<html lang="ja">/);
-  await assert.rejects(() =>
-    access(new URL('../dist/docs/browser/ja/ja/404.html', import.meta.url), constants.F_OK),
-  );
+  for (const locale of PUBLISHED_DOCS_LOCALES) {
+    const root = join('dist/docs/browser', locale.subPath);
+    const html = await readFile(join(root, '404.html'), 'utf8');
+    assert.match(html, new RegExp(`<html lang="${locale.code}">`));
+    for (const nested of DOCS_LOCALES.filter(({ subPath }) => subPath)) {
+      if (locale.subPath || !nested.published) {
+        await assert.rejects(access(join(root, nested.subPath)), { code: 'ENOENT' });
+      }
+    }
+  }
 });
 
 test('legacy prerender output redirects to an absolute canonical route', async () => {

@@ -1,5 +1,6 @@
 import { localizedPublicPath } from '../locale-path';
 import { SITE_CONFIG } from '../site-config';
+import { resolveDocsLocale } from '../../../../../shared/docs-locales';
 import {
   breadcrumbList,
   jsonLdGraph,
@@ -13,8 +14,8 @@ function docsAbsoluteUrl(locale: string, path: string): string {
 
 export function docsHomeStructuredData(locale: string, description: string): JsonLdDocument {
   const url = docsAbsoluteUrl(locale, '/');
-  const inLanguage = locale.toLowerCase().startsWith('ja') ? 'ja' : 'en';
-  if (inLanguage === 'ja') {
+  const inLanguage = resolveDocsLocale(locale);
+  if (inLanguage !== 'en') {
     return jsonLdGraph([
       {
         '@type': 'WebPage',

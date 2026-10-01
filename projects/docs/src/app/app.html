@@ -61,19 +61,7 @@
   </div>
   <div class="ml-auto flex items-stretch">
     <pagefind-modal-trigger class="docs-search" />
-    <a
-      class="flex items-center border-l border-[#eadfd9] px-4 text-sm text-[#292320] no-underline hover:bg-[#fff7f2] sm:px-5"
-      [href]="alternateLocaleUrl()"
-      [attr.hreflang]="isJapanese ? 'en' : 'ja'"
-      i18n-aria-label="@@switchLanguage"
-      aria-label="Switch language"
-    >
-      @if (isJapanese) {
-        <span lang="en">English</span>
-      } @else {
-        <span lang="ja">日本語</span>
-      }
-    </a>
+    <app-language-menu [path]="currentUrl()" (opened)="onLanguageMenuOpened()" />
     <a
       class="external-link hidden items-center border-l border-[#eadfd9] px-4 text-sm font-medium text-[#292320] no-underline hover:bg-[#fff7f2] sm:flex sm:px-6"
       [href]="

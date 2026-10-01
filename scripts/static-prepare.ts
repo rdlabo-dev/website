@@ -1,12 +1,7 @@
 import { access, constants, copyFile, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
-const source404 = join(repoRoot, 'projects/docs/public', 'ja', '404.html');
-const browserRoot = join(repoRoot, 'dist', 'docs', 'browser');
-const target404 = join(browserRoot, 'ja', '404.html');
-const nestedJaDirectory = join(browserRoot, 'ja', 'ja');
+import { DOCS_LOCALES } from '../shared/docs-locales';
 
 async function requirePath(path: string, label: string): Promise<void> {
   try {
@@ -16,16 +11,35 @@ async function requirePath(path: string, label: string): Promise<void> {
   }
 }
 
-async function main(): Promise<void> {
-  await requirePath(source404, 'Japanese 404 source');
+export async function prepareDocsStaticAssets(
+  repoRoot: string,
+  browserRoot: string,
+): Promise<void> {
   await requirePath(browserRoot, 'Angular browser output');
-  await requirePath(target404, 'Japanese 404 output');
-
-  await copyFile(source404, target404);
-  await rm(nestedJaDirectory, { recursive: true, force: true });
+  const published = DOCS_LOCALES.filter((locale) => locale.published);
+  for (const locale of published) {
+    const source404 = join(repoRoot, 'projects/docs/public', locale.subPath, '404.html');
+    const target404 = join(browserRoot, locale.subPath, '404.html');
+    await requirePath(source404, `${locale.code} 404 source`);
+    await requirePath(target404, `${locale.code} 404 output`);
+    await copyFile(source404, target404);
+    // Angular copies public assets into each locale output; remove duplicated locale directories.
+    for (const nested of DOCS_LOCALES.filter((locale) => locale.subPath)) {
+      if (locale.subPath || !nested.published)
+        await rm(join(browserRoot, locale.subPath, nested.subPath), {
+          recursive: true,
+          force: true,
+        });
+    }
+  }
 }
 
-main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
+  prepareDocsStaticAssets(repoRoot, join(repoRoot, 'dist', 'docs', 'browser')).catch(
+    (error: unknown) => {
+      console.error(error instanceof Error ? error.message : error);
+      process.exitCode = 1;
+    },
+  );
+}

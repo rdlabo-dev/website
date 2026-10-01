@@ -1,19 +1,18 @@
-export function isJapaneseLocale(locale: string): boolean {
-  return locale.toLowerCase().startsWith('ja');
-}
+import { docsLocalePrefix, unlocalizedDocsPath } from '../../../../shared/docs-locales';
 
-/** Canonical public home path: EN `/`, JA `/ja` (never `/ja/`). */
+/** Canonical public home path: source locale `/`, other locales `/{locale}`. */
 export function canonicalHomePath(locale = 'en'): string {
-  return isJapaneseLocale(locale) ? '/ja' : '/';
+  return docsLocalePrefix(locale) || '/';
 }
 
 /** Locale-prefixed public path for SEO, sitemap, and cross-locale links. */
 export function localizedPublicPath(locale: string, path: string): string {
-  const normalized = path || '/';
-  if (normalized === '/') {
-    return canonicalHomePath(locale);
-  }
-  return isJapaneseLocale(locale) ? `/ja${normalized}` : normalized;
+  const normalized = unlocalizedDocsPath(path || '/');
+  const [pathname] = normalized.split(/[?#]/);
+  const suffix = normalized.slice(pathname.length);
+  return pathname === '/'
+    ? `${canonicalHomePath(locale)}${suffix}`
+    : `${docsLocalePrefix(locale)}${normalized}`;
 }
 
 export function localizedFragmentPath(locale: string, path: string, fragment: string): string {

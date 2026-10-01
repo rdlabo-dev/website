@@ -8,6 +8,21 @@ import { docsBreadcrumbStructuredData, docsHomeStructuredData } from './seo-json
 import { SeoService } from './seo.service';
 
 describe('SeoService', () => {
+  it('removes stale alternates for unpublished locales', () => {
+    const document = TestBed.inject(DOCUMENT);
+    const stale = document.createElement('link');
+    stale.rel = 'alternate';
+    stale.hreflang = 'fr';
+    stale.href = `${SITE_CONFIG.origin}/fr`;
+    document.head.appendChild(stale);
+    TestBed.inject(SeoService).setPage({ title: 'Home', description: 'Home', path: '/' });
+    expect(document.head.querySelector('link[hreflang="fr"]')).toBeNull();
+    expect(
+      [...document.head.querySelectorAll<HTMLLinkElement>('link[rel="alternate"][hreflang]')]
+        .map((link) => link.hreflang)
+        .sort(),
+    ).toEqual(['en', 'ja', 'x-default']);
+  });
   it('writes canonical, hreflang, Open Graph, and robots metadata', () => {
     const service = TestBed.inject(SeoService);
     const document = TestBed.inject(DOCUMENT);

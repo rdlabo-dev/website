@@ -40,6 +40,7 @@ import { LibraryPicker } from './docs/library-picker';
 import { ProjectNavigation } from './docs/project-navigation';
 import { ProjectIconComponent } from './docs/project-icon';
 import { canonicalHomePath, localizedPublicPath } from './locale-path';
+import { LanguageMenu } from './language-menu';
 
 type GoogleAnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
@@ -63,7 +64,14 @@ export const INITIAL_DOCS_URL = makeStateKey<string>('rdlabo-docs-initial-url');
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, LibraryPicker, ProjectNavigation, ProjectIconComponent],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    LibraryPicker,
+    ProjectNavigation,
+    ProjectIconComponent,
+    LanguageMenu,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -108,7 +116,6 @@ export class App {
     () => this.pendingNavigation()?.url ?? this.currentUrl(),
   );
   protected readonly navigationAnimationReady = signal(false);
-  protected readonly isJapanese = this.#locale.toLowerCase().startsWith('ja');
   protected readonly canonicalHomePath = canonicalHomePath(this.#locale);
   protected readonly isIndex = computed(() => {
     const path = this.currentUrl().split(/[?#]/)[0];
@@ -321,6 +328,10 @@ export class App {
     if (returnFocus) queueMicrotask(() => this.menuButton?.nativeElement.focus());
   }
 
+  protected onLanguageMenuOpened(): void {
+    if (this.mobileLayout()) this.closeMenu(false);
+  }
+
   protected selectProject(project: ProjectSummary): void {
     this.#menuRevision++;
     if (this.navigationProject()?.id === project.id) {
@@ -435,9 +446,13 @@ export class App {
     );
   }
 
-  @HostListener('document:keydown.escape')
-  protected closeMenuOnEscape(): void {
-    if (this.#document.querySelector('dialog[open]')) return;
+  @HostListener('document:keydown.escape', ['$event'])
+  protected closeMenuOnEscape(event: Event): void {
+    if (
+      event.defaultPrevented ||
+      this.#document.querySelector('dialog[open], app-language-menu details[open]')
+    )
+      return;
     if (this.navigationProject() && this.libraryPickerOpen()) this.closeLibraryPicker();
     else if (this.mobileLayout()) this.closeMenu();
   }
@@ -472,11 +487,6 @@ export class App {
     }
   }
 
-  protected alternateLocaleUrl(): string {
-    const url = this.navigationUrl().split(/[?#]/)[0] || '/';
-    return this.isJapanese ? url : localizedPublicPath('ja', url);
-  }
-
   protected navigateHome(event: MouseEvent): void {
     if (
       event.defaultPrevented ||
@@ -488,8 +498,8 @@ export class App {
     ) {
       return;
     }
-    // JA: follow canonical href `/ja`. SPA navigateByUrl('/') becomes `/ja/` under localized base.
-    if (this.isJapanese) {
+    // Follow the canonical locale home href; SPA navigation would add a trailing slash.
+    if (this.canonicalHomePath !== '/') {
       return;
     }
     event.preventDefault();

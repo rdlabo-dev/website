@@ -1,8 +1,14 @@
-export type Locale = 'en' | 'ja';
+import type { DocsLocale } from '../shared/docs-locales';
+import { METADATA_FR } from './locales/metadata.fr';
+import { METADATA_DE } from './locales/metadata.de';
+
+export type Locale = DocsLocale;
 
 export interface LocalizedText {
   en: string;
   ja: string;
+  fr?: string;
+  de?: string;
 }
 
 export interface ProjectPageDefinition {
@@ -2715,4 +2721,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
   },
 ];
 
-export const localize = (value: LocalizedText, locale: Locale): string => value[locale];
+export function localize(value: LocalizedText, locale: Locale): string {
+  const metadata: Partial<Record<Locale, Readonly<Record<string, string>>>> = {
+    fr: METADATA_FR,
+    de: METADATA_DE,
+  };
+  const translated = value[locale] ?? metadata[locale]?.[value.en];
+  if (!translated?.trim()) {
+    throw new Error(`Missing ${locale} translation for: ${value.en}`);
+  }
+  return translated;
+}

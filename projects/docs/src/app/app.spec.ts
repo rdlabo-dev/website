@@ -226,6 +226,35 @@ describe('App', () => {
     );
   });
 
+  it('closes only the language menu on Escape while keeping the desktop library picker open', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/projects/capacitor-stripe/docs/configuration');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const details = compiled.querySelector<HTMLDetailsElement>('app-language-menu details')!;
+    const summary = details.querySelector('summary')!;
+    for (const target of [summary, document.body]) {
+      details.open = true;
+      details.dispatchEvent(new Event('toggle'));
+      summary.focus();
+      target.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }),
+      );
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(details.open).toBe(false);
+      expect(
+        compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail'),
+      ).toBe(false);
+      expect(document.activeElement).toBe(summary);
+      expect(router.url).toBe('/projects/capacitor-stripe/docs/configuration');
+    }
+  });
+
   it('collapses the library catalog after navigating to a different library', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
@@ -804,6 +833,34 @@ describe('App', () => {
     expect(button.getAttribute('aria-expanded')).toBe('false');
     expect(menu.hasAttribute('inert')).toBe(true);
     expect(document.activeElement).toBe(button);
+  });
+
+  it('closes the mobile drawer when choosing a language without moving focus', async () => {
+    mockMatchMedia(true);
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const button = compiled.querySelector<HTMLButtonElement>(
+      'button[aria-controls="docs-sidebar"]',
+    )!;
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const details = compiled.querySelector<HTMLDetailsElement>('app-language-menu details')!;
+    const summary = details.querySelector('summary')!;
+    summary.focus();
+    details.open = true;
+    details.dispatchEvent(new Event('toggle'));
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(summary);
+    const tab = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+    summary.dispatchEvent(tab);
+    expect(tab.defaultPrevented).toBe(false);
+    summary.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    expect(details.open).toBe(false);
+    expect(document.activeElement).toBe(summary);
   });
 
   it('lets the search dialog own Tab and Escape while the mobile menu is open', async () => {

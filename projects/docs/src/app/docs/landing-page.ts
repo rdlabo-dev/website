@@ -7,6 +7,7 @@ import { GitHubStarsService } from './github-stars.service';
 import { docsBreadcrumbStructuredData } from './seo-json-ld';
 import { SeoService } from './seo.service';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import { resolveDocsLocale } from '../../../../../shared/docs-locales';
 
 @Component({
   selector: 'app-landing-page',
@@ -104,7 +105,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
               @for (article of p.relatedArticles; track article.slug) {
                 <li>
                   <a class="related-article-link" [href]="article.url">
-                    @if (isJapanese) { <span class="related-article-lang" i18n="@@relatedArticleLanguage">English</span> }
+                    @if (isTranslatedLocale) { <span class="related-article-lang" i18n="@@relatedArticleLanguage">English</span> }
                     <time [attr.datetime]="article.publishedDate">{{ formatArticleDate(article.publishedDate) }}</time>
                     <h3 lang="en">{{ article.title }}</h3>
                     <p lang="en">{{ article.description }}</p>
@@ -130,7 +131,7 @@ export class LandingPageComponent implements OnInit {
       month: 'long',
       day: 'numeric',
     }).format(new Date(`${date}T00:00:00+09:00`));
-  protected readonly isJapanese = this.#locale.toLowerCase().startsWith('ja');
+  protected readonly isTranslatedLocale = resolveDocsLocale(this.#locale) !== 'en';
   readonly #platformId = inject(PLATFORM_ID);
   readonly #numberFormat = new Intl.NumberFormat(inject(LOCALE_ID), {
     notation: 'compact',

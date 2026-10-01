@@ -1,3 +1,8 @@
+export function resolveGeneratedHeadingId(ids: readonly string[], id: string): string {
+  if (ids.includes(id)) return id;
+  return ids.find((generatedId) => decodeURIComponent(generatedId) === id) ?? id;
+}
+
 function replaceHeading(document: Document, heading: Element, level: number): Element {
   const replacement = document.createElement(`h${level}`);
   for (const attribute of Array.from(heading.attributes)) {

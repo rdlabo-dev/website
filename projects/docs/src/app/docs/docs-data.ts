@@ -1,16 +1,13 @@
 import {
-  PROJECT_CATEGORIES_EN,
-  PROJECT_CATEGORIES_JA,
+  PROJECT_CATEGORIES_BY_LOCALE,
+  PROJECTS_BY_LOCALE,
   PROJECTS_EN,
-  PROJECTS_JA,
 } from '../generated/project-catalog.generated';
 import { PROJECT_LOADERS } from '../generated/project-loaders.generated';
+import { resolveDocsLocale } from '../../../../../shared/docs-locales';
 
 export type ProjectCategory =
-  | 'translations'
-  | 'capacitor-plugins'
-  | 'frontend-tools'
-  | 'developer-tools';
+  'translations' | 'capacitor-plugins' | 'frontend-tools' | 'developer-tools';
 export type ProjectIcon =
   'payments' | 'identity' | 'terminal' | 'ads' | 'lint' | 'server' | 'app' | 'theme' | 'docs';
 
@@ -98,38 +95,41 @@ export interface ProjectSummary {
   version: string;
   seoTitle?: string;
   description: string;
-  headline: string;
-  overview: string;
-  overviewHtml?: string;
-  featuresHeading: string;
-  features: readonly ProjectFeature[];
   relatedArticles?: readonly RelatedArticle[];
   path: string;
   pages: readonly DocsPageSummary[];
 }
 
 export interface ProjectDocs extends Omit<ProjectSummary, 'pages'> {
+  headline: string;
+  overview: string;
+  overviewHtml?: string;
+  featuresHeading: string;
+  features: readonly ProjectFeature[];
   pages: readonly DocsPage[];
 }
 
 type ProjectLoader = () => Promise<ProjectDocs>;
-const loaders = PROJECT_LOADERS as unknown as Record<
-  string,
-  { en: ProjectLoader; ja: ProjectLoader }
->;
+const loaders = PROJECT_LOADERS as unknown as Record<string, Record<string, ProjectLoader>>;
 const cache = new Map<string, Promise<ProjectDocs>>();
 
 export const projectCatalog = PROJECTS_EN as unknown as readonly ProjectSummary[];
-const japaneseProjectCatalog = PROJECTS_JA as unknown as readonly ProjectSummary[];
+const catalogs = PROJECTS_BY_LOCALE as unknown as Record<string, readonly ProjectSummary[]>;
+const categories = PROJECT_CATEGORIES_BY_LOCALE as unknown as Record<
+  string,
+  readonly ProjectCategorySummary[]
+>;
 
 export function projectsForLocale(locale: string): readonly ProjectSummary[] {
-  return locale.toLowerCase().startsWith('ja') ? japaneseProjectCatalog : projectCatalog;
+  const catalog = catalogs[resolveDocsLocale(locale)];
+  if (!catalog) throw new Error(`Documentation locale is not published: ${locale}`);
+  return catalog;
 }
 
 export function projectCategoriesForLocale(locale: string): readonly ProjectCategorySummary[] {
-  return (locale.toLowerCase().startsWith('ja')
-    ? PROJECT_CATEGORIES_JA
-    : PROJECT_CATEGORIES_EN) as unknown as readonly ProjectCategorySummary[];
+  const catalog = categories[resolveDocsLocale(locale)];
+  if (!catalog) throw new Error(`Documentation locale is not published: ${locale}`);
+  return catalog;
 }
 
 export function projectGroupsForLocale(locale: string): readonly ProjectCategoryGroup[] {
@@ -151,7 +151,7 @@ export function findProjectSummary(id: string, locale = 'en'): ProjectSummary | 
 export async function loadProject(id: string, locale = 'en'): Promise<ProjectDocs | undefined> {
   const summary = findProjectSummary(id, locale);
   if (!summary) return undefined;
-  const language = locale.toLowerCase().startsWith('ja') ? 'ja' : 'en';
+  const language = resolveDocsLocale(locale);
   const key = `${summary.id}:${language}`;
   const loader = loaders[summary.id]?.[language];
   if (!loader) return undefined;

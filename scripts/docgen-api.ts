@@ -28,25 +28,28 @@ function methodSelectors(method: any): string[] {
   return parts.map((_, index) => `${method.name}.${parts.slice(0, index + 1).join('.')}`);
 }
 
-export function apiMarkdown(source: any): Map<string, string> {
+export function apiMarkdown(
+  source: any,
+  translate: (text: string) => string = (text) => text,
+): Map<string, string> {
   const entries = new Map<string, string>();
   for (const method of source.api?.methods ?? []) {
     const signature =
       method.name === 'addListener' && method.parameters?.length
         ? `addListener(${String(method.parameters[0].type).replace(/"/g, "'")}, ...)`
         : `${method.name}(${method.parameters?.length ? '...' : ''})`;
-    const markdown = `#### \`method\` ${signature}\n${formatDescription(source, method.docs) || ''}\n\n\`${method.name}${method.signature}\`\n`;
+    const markdown = `#### \`method\` ${signature}\n${translate(formatDescription(source, method.docs) || '')}\n\n\`${method.name}${method.signature}\`\n`;
     appendEntry(entries, method.name, markdown);
     for (const selector of methodSelectors(method)) appendEntry(entries, selector, markdown);
   }
   for (const item of source.interfaces ?? []) {
     const table = new MarkdownTable();
-    table.addHeader(['Prop', 'Type', 'Description', 'Default', 'Since']);
+    table.addHeader(['Prop', 'Type', 'Description', 'Default', 'Since'].map(translate));
     for (const property of item.properties ?? []) {
       table.addRow([
         `**\`${property.name}\`**`,
         formatType(source, property.type).formatted,
-        formatDescription(source, property.docs),
+        translate(formatDescription(source, property.docs)),
         tagText(property.tags, 'default'),
         tagText(property.tags, 'since'),
       ]);
@@ -54,7 +57,7 @@ export function apiMarkdown(source: any): Map<string, string> {
     table.removeEmptyColumns();
     entries.set(
       item.name,
-      `#### \`interface\` ${item.name}\n${formatDescription(source, item.docs) || ''}\n${stripHtml(table.toMarkdown().join('\n'))}\n`,
+      `#### \`interface\` ${item.name}\n${translate(formatDescription(source, item.docs) || '')}\n${stripHtml(table.toMarkdown().join('\n'))}\n`,
     );
   }
   for (const item of source.typeAliases ?? []) {
@@ -65,12 +68,12 @@ export function apiMarkdown(source: any): Map<string, string> {
   }
   for (const item of source.enums ?? []) {
     const table = new MarkdownTable();
-    table.addHeader(['Member', 'Value', 'Description', 'Since']);
+    table.addHeader(['Member', 'Value', 'Description', 'Since'].map(translate));
     for (const member of item.members ?? []) {
       table.addRow([
         `**\`${member.name}\`**`,
         formatType(source, member.value).formatted,
-        formatDescription(source, member.docs),
+        translate(formatDescription(source, member.docs)),
         tagText(member.tags, 'since'),
       ]);
     }

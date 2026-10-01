@@ -15,7 +15,7 @@ import {
 import { localizedPublicPath } from '../projects/docs/src/app/locale-path';
 import { SITE_CONFIG } from '../projects/docs/src/app/site-config';
 import { enforceGeneratedHtmlPolicy } from './html-policy';
-import { normalizeImportedReadmeHeadings } from './markdown-headings';
+import { normalizeImportedReadmeHeadings, resolveGeneratedHeadingId } from './markdown-headings';
 import { docgenApiAnchors, normalizeDocgenAnchors, splitDocgenReadme } from './docgen-readme';
 import { prepareDocgenMarkdown, restoreDocgenInlineCode } from './docgen-inline-code';
 import {
@@ -38,6 +38,13 @@ import { assertValidContentUpdatedAt, formatSitemapLastmod } from './seo-dates';
 import { groupRelatedArticlesByLibrary, type RelatedArticle } from './article-relations';
 import { ARTICLE_SUMMARIES } from '../projects/web-site/src/app/generated/article-catalog.generated';
 import { apiMarkdown } from './docgen-api';
+import {
+  docsLocalePrefix,
+  PUBLISHED_DOCS_LOCALES,
+  requiresDocsTranslationReview,
+} from '../shared/docs-locales';
+import { validateDocsLocaleConfiguration } from './docs-locale-config';
+import { assertReviewedDocsTranslation, translateApiText } from './docs-translation-review';
 
 const root = resolve(process.cwd());
 const docsRepositoryUrl = 'https://github.com/rdlabo-dev/website';
@@ -46,7 +53,7 @@ function rewriteAgentMarkdownLinks(
   project: ProjectDefinition,
   locale: Locale,
 ): string {
-  const localePrefix = locale === 'ja' ? '/ja' : '';
+  const localePrefix = docsLocalePrefix(locale);
   let rewritten = markdown.replaceAll(
     '](https://docs.rdlabo.dev/projects/',
     `](${localePrefix}/projects/`,
@@ -137,10 +144,15 @@ function annotateDocgenApiEntries(document: Document): void {
   const categoryKinds = new Map([
     ['Interfaces', 'interface'],
     ['インターフェース', 'interface'],
+    ['Schnittstellen', 'interface'],
     ['Type Aliases', 'type alias'],
     ['型エイリアス', 'type alias'],
+    ['Alias de type', 'type alias'],
+    ['Typaliase', 'type alias'],
     ['Enums', 'enum'],
     ['列挙型', 'enum'],
+    ['Énumérations', 'enum'],
+    ['Aufzählungen', 'enum'],
   ]);
   let categoryKind: string | undefined;
 
@@ -225,7 +237,7 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
 }
 
 function rewriteInternalLinks(html: string, project: ProjectDefinition, locale: Locale): string {
-  const localePrefix = locale === 'ja' ? '/ja' : '';
+  const localePrefix = docsLocalePrefix(locale);
   let rewritten = html.replace(
     /<a\b[^>]*\bhref="https:\/\/docs\.rdlabo\.dev(\/projects\/[^" ]*)"[^>]*>/g,
     (tag, path: string) =>
@@ -303,7 +315,7 @@ function srcDocsPath(project: ProjectDefinition, locale: Locale, file: string): 
     'projects/docs/src',
     project.sourceDirectory,
     'docs',
-    ...(locale === 'ja' ? ['ja'] : []),
+    ...(locale === 'en' ? [] : [locale]),
     file,
   );
 }
@@ -332,10 +344,17 @@ async function resolvePageSource(
   repositoryCache: Map<string, string>,
 ): Promise<ResolvedPageSource> {
   const { file } = page;
-  if (locale === 'ja' || (locale === 'en' && page.localEnglishSource)) {
+  if (locale !== 'en' || page.localEnglishSource) {
     const srcPath = srcDocsPath(project, locale, file);
+    const content = await readFile(srcPath, 'utf8');
+    if (requiresDocsTranslationReview(locale)) {
+      const english = await resolvePageSource(project, 'en', page, repositoryCache);
+      assertReviewedDocsTranslation(english.content, content, relative(root, srcPath), {
+        api: page.slug === 'api',
+      });
+    }
     return {
-      content: await readFile(srcPath, 'utf8'),
+      content,
       sourcePath: srcPath,
       fromPackage: false,
       repositoryUrl: project.repositoryUrl,
@@ -367,9 +386,18 @@ async function generateProject(
     ? { version: '' }
     : JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
   const docsJsonPath = join(packageRoot, 'dist/docs.json');
+  const apiTranslations: Record<string, string> =
+    requiresDocsTranslationReview(locale) && (await fileExists(docsJsonPath))
+      ? JSON.parse(
+          await readFile(join(root, `projects/docs/src/locale/api.${locale}.json`), 'utf8'),
+        )
+      : {};
+  const translateApi = requiresDocsTranslationReview(locale)
+    ? (text: string) => translateApiText(text, apiTranslations, `${project.id} (${locale})`)
+    : (text: string) => text;
   const api =
     !isHostedDocumentation && (await fileExists(docsJsonPath))
-      ? apiMarkdown(JSON.parse(await readFile(docsJsonPath, 'utf8')))
+      ? apiMarkdown(JSON.parse(await readFile(docsJsonPath, 'utf8')), translateApi)
       : new Map<string, string>();
   if (project.adapter !== 'markdown' && api.size === 0) {
     throw new Error(`${project.packageName} is missing dist/docs.json`);
@@ -458,8 +486,8 @@ async function generateProject(
     if (splitReadme) {
       docgenApiPage = {
         page: {
-          title: { en: 'API', ja: 'API' },
-          section: { en: 'Reference', ja: 'リファレンス' },
+          title: { en: 'API', ja: 'API', fr: 'API', de: 'API' },
+          section: { en: 'Reference', ja: 'リファレンス', fr: 'Référence', de: 'Referenz' },
           slug: 'api',
           file,
         },
@@ -479,22 +507,35 @@ async function generateProject(
     if (readme) {
       const extracted = extractPackageReadmeParts(readme.content);
       if (extracted.api) {
+        const reviewedLocale = requiresDocsTranslationReview(locale);
+        const apiPath = srcDocsPath(project, locale, 'api.md');
+        const apiSource = reviewedLocale ? await readFile(apiPath, 'utf8') : extracted.api;
+        if (reviewedLocale)
+          assertReviewedDocsTranslation(extracted.api, apiSource, relative(root, apiPath), {
+            api: true,
+          });
         docgenApiPage = {
           page: {
-            title: { en: 'API', ja: 'API' },
-            section: { en: 'Reference', ja: 'リファレンス' },
+            title: { en: 'API', ja: 'API', fr: 'API', de: 'API' },
+            section: { en: 'Reference', ja: 'リファレンス', fr: 'Référence', de: 'Referenz' },
             slug: 'api',
             file: 'readme.md',
           },
-          body: rewritePackageDocLinks(extracted.api, apiAnchors, packageLandingSlug),
+          body: rewritePackageDocLinks(
+            reviewedLocale ? fm(apiSource).body : extracted.api,
+            apiAnchors,
+            packageLandingSlug,
+          ),
           useFrontMatterTitle: false,
           parsed: fm(''),
-          sourcePath: repositorySourceLabel(
-            readme.repositoryUrl,
-            readme.repositoryRef,
-            readme.repositoryPath,
-          ),
-          fromPackage: true,
+          sourcePath: reviewedLocale
+            ? apiPath
+            : repositorySourceLabel(
+                readme.repositoryUrl,
+                readme.repositoryRef,
+                readme.repositoryPath,
+              ),
+          fromPackage: !reviewedLocale,
           repositoryPath: readme.repositoryPath,
           repositoryUrl: readme.repositoryUrl,
           annotateDocgen: true,
@@ -557,11 +598,7 @@ async function generateProject(
       (heading) => heading.id,
     );
     const scrollMap = (parsed.attributes.scrollActiveLine ?? []).map((entry: any) => {
-      if (locale !== 'ja' || !entry.id) return entry;
-      const localizedId = headingIds.find(
-        (headingId) => decodeURIComponent(headingId) === entry.id,
-      );
-      return localizedId ? { ...entry, id: localizedId } : entry;
+      return entry.id ? { ...entry, id: resolveGeneratedHeadingId(headingIds, entry.id) } : entry;
     });
     const codeByFile = new Map(codes.map((code) => [code.file, code]));
     let previousHeadingIndex = -1;
@@ -614,10 +651,10 @@ async function generateProject(
       navTitle: localize(page.title, locale),
       ...(page.seoTitle ? { seoTitle: localize(page.seoTitle, locale) } : {}),
       ...(page.seoDescription ? { seoDescription: localize(page.seoDescription, locale) } : {}),
-      ...(page.updatedAt
+      ...(page.updatedAt?.[locale]
         ? {
             updatedAt: assertValidContentUpdatedAt(
-              localize(page.updatedAt, locale),
+              page.updatedAt[locale]!,
               `${project.id}/${slug} (${locale})`,
             ),
           }
@@ -662,14 +699,19 @@ async function generateProject(
 }
 
 async function main(): Promise<void> {
+  await validateDocsLocaleConfiguration(root);
   const generatedDirectory = join(root, 'projects/docs/src/app/generated');
   const projectsDirectory = join(generatedDirectory, 'projects');
   await mkdir(projectsDirectory, { recursive: true });
   const relatedArticlesByLibrary = groupRelatedArticlesByLibrary(ARTICLE_SUMMARIES);
-  const projectsByLocale: Record<Locale, any[]> = { en: [], ja: [] };
+  const locales = PUBLISHED_DOCS_LOCALES.map(({ code }) => code);
+  const projectsByLocale = Object.fromEntries(locales.map((locale) => [locale, []])) as Record<
+    Locale,
+    any[]
+  >;
   const agentMarkdownByPath: Record<string, string> = {};
   for (const project of projectDefinitions) {
-    for (const locale of ['en', 'ja'] as const) {
+    for (const locale of locales) {
       const generated = await generateProject(
         project,
         locale,
@@ -680,7 +722,7 @@ async function main(): Promise<void> {
         pages: generated.pages.map(({ markdown: _markdown, ...page }: any) => page),
       };
       if (!project.hostedUrl) {
-        const localePrefix = locale === 'ja' ? '/ja' : '';
+        const localePrefix = docsLocalePrefix(locale);
         for (const page of generated.pages) {
           const markdown = `# ${page.title}\n\n${page.markdown.trim()}\n`;
           agentMarkdownByPath[`${localePrefix}${page.path}`] = markdown;
@@ -700,29 +742,41 @@ async function main(): Promise<void> {
   }
 
   const catalogs = Object.fromEntries(
-    (['en', 'ja'] as const).map((locale) => [
+    locales.map((locale) => [
       locale,
-      projectsByLocale[locale].map(({ pages, relatedArticles: _relatedArticles, ...project }) => ({
-        ...project,
-        pages: pages.map(
-          ({
-            html,
-            headings,
-            codes,
-            scrollMap,
-            editUrl,
-            file,
-            seoTitle,
-            seoDescription,
-            updatedAt,
-            ...page
-          }: any) => page,
-        ),
-      })),
+      projectsByLocale[locale].map(
+        ({
+          pages,
+          relatedArticles: _relatedArticles,
+          headline: _headline,
+          overview: _overview,
+          overviewHtml: _overviewHtml,
+          featuresHeading: _featuresHeading,
+          features: _features,
+          seoTitle: _seoTitle,
+          ...project
+        }) => ({
+          ...project,
+          pages: pages.map(
+            ({
+              html,
+              headings,
+              codes,
+              scrollMap,
+              editUrl,
+              file,
+              seoTitle,
+              seoDescription,
+              updatedAt,
+              ...page
+            }: any) => page,
+          ),
+        }),
+      ),
     ]),
   ) as Record<Locale, any[]>;
   const categories = Object.fromEntries(
-    (['en', 'ja'] as const).map((locale) => [
+    locales.map((locale) => [
       locale,
       projectCategoryDefinitions.map((category) => ({
         id: category.id,
@@ -734,13 +788,13 @@ async function main(): Promise<void> {
   ) as Record<Locale, any[]>;
   await writeFile(
     join(generatedDirectory, 'project-catalog.generated.ts'),
-    `// Generated by scripts/generate-docs.ts. Do not edit.\nexport const PROJECT_CATEGORIES_EN = ${JSON.stringify(categories.en, null, 2)} as const;\n\nexport const PROJECT_CATEGORIES_JA = ${JSON.stringify(categories.ja, null, 2)} as const;\n\nexport const PROJECTS_EN = ${JSON.stringify(catalogs.en, null, 2)} as const;\n\nexport const PROJECTS_JA = ${JSON.stringify(catalogs.ja, null, 2)} as const;\n`,
+    `// Generated by scripts/generate-docs.ts. Do not edit.\n${locales.map((locale) => `export const PROJECT_CATEGORIES_${locale.toUpperCase()} = ${JSON.stringify(categories[locale], null, 2)} as const;\n\nexport const PROJECTS_${locale.toUpperCase()} = ${JSON.stringify(catalogs[locale], null, 2)} as const;\n`).join('\n')}\nexport const PROJECT_CATEGORIES_BY_LOCALE = {\n${locales.map((locale) => `  ${locale}: PROJECT_CATEGORIES_${locale.toUpperCase()},`).join('\n')}\n} as const;\n\nexport const PROJECTS_BY_LOCALE = {\n${locales.map((locale) => `  ${locale}: PROJECTS_${locale.toUpperCase()},`).join('\n')}\n} as const;\n`,
   );
   const loaderEntries = projectDefinitions
     .filter((project) => !project.hostedUrl)
     .map(
       (project) =>
-        `  ${JSON.stringify(project.id)}: {\n    en: () => import('./projects/${project.id}.en.generated').then((module) => module.PROJECT),\n    ja: () => import('./projects/${project.id}.ja.generated').then((module) => module.PROJECT),\n  },`,
+        `  ${JSON.stringify(project.id)}: {\n${locales.map((locale) => `    ${locale}: () => import('./projects/${project.id}.${locale}.generated').then((module) => module.PROJECT),`).join('\n')}\n  },`,
     )
     .join('\n');
   await writeFile(
@@ -772,30 +826,31 @@ async function main(): Promise<void> {
     for (const declaredPage of project.pages) {
       if (!declaredPage.updatedAt) continue;
       const publicPath = `/projects/${project.slug}/docs/${declaredPage.slug}`;
-      updatedAtByPublicPath.set(publicPath, {
-        en: declaredPage.updatedAt.en
-          ? assertValidContentUpdatedAt(
-              declaredPage.updatedAt.en,
-              `${project.id}/${declaredPage.slug} (en)`,
-            )
-          : undefined,
-        ja: declaredPage.updatedAt.ja
-          ? assertValidContentUpdatedAt(
-              declaredPage.updatedAt.ja,
-              `${project.id}/${declaredPage.slug} (ja)`,
-            )
-          : undefined,
-      });
+      updatedAtByPublicPath.set(
+        publicPath,
+        Object.fromEntries(
+          locales.map((locale) => [
+            locale,
+            declaredPage.updatedAt?.[locale]
+              ? assertValidContentUpdatedAt(
+                  declaredPage.updatedAt[locale]!,
+                  `${project.id}/${declaredPage.slug} (${locale})`,
+                )
+              : undefined,
+          ]),
+        ),
+      );
     }
   }
   const sitemapEntries = canonicalPaths
     .map((path) => {
-      const englishUrl = `${SITE_CONFIG.origin}${localizedPublicPath('en', path)}`;
-      const japaneseUrl = `${SITE_CONFIG.origin}${localizedPublicPath('ja', path)}`;
       const updatedAt = updatedAtByPublicPath.get(path);
-      const englishLastmod = formatSitemapLastmod(updatedAt?.en);
-      const japaneseLastmod = formatSitemapLastmod(updatedAt?.ja);
-      return `  <url>\n    <loc>${englishUrl}</loc>${englishLastmod}\n  </url>\n  <url>\n    <loc>${japaneseUrl}</loc>${japaneseLastmod}\n  </url>`;
+      return locales
+        .map(
+          (locale) =>
+            `  <url>\n    <loc>${SITE_CONFIG.origin}${localizedPublicPath(locale, path)}</loc>${formatSitemapLastmod(updatedAt?.[locale])}\n  </url>`,
+        )
+        .join('\n');
     })
     .join('\n');
   await writeFile(
@@ -808,7 +863,7 @@ async function main(): Promise<void> {
   );
   const pageCount = projectsByLocale.en.reduce((count, project) => count + project.pages.length, 0);
   console.log(
-    `Generated ${pageCount * 2} localized documentation pages in ${projectDefinitions.filter((project) => !project.hostedUrl).length * 2} lazy project modules.`,
+    `Generated ${pageCount * locales.length} localized documentation pages in ${projectDefinitions.filter((project) => !project.hostedUrl).length * locales.length} lazy project modules.`,
   );
 }
 

@@ -160,7 +160,17 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 #### `method` present(scannerOption: ScannerOption)
 ```
 
-## Bilingual rules
+## Documentation locales
+
+- `shared/docs-locales.ts` is the locale registry. English is the source locale at `/`; translated locales use `/{code}`. French and German are registered but remain unpublished until their translations pass review.
+- Only locales with `published: true` appear in the generator, language menu, sitemap, and HTML-head hreflang. Angular `build.options.localize` must build exactly those locales; `docs:generate:content` validates that contract before writing output.
+- Navigation summaries stay in the initial bundle. Overview prose, feature cards, and full document bodies belong to lazy project modules; do not add a menu-loading delay when adding locales.
+- Translated guides live under `projects/docs/src/{project}/docs/{locale}/`. Manifest metadata is reviewed in `scripts/locales/metadata.{locale}.ts`, keyed by the exact English text; missing translations fail generation.
+- For locales requiring source review, every Markdown file must have a translated `title` and `sourceRevision`. Run `npm run docs:stage-translations` to stage the pinned English sources and hashes under `tmp/docs-translations/`. Translate and review those sources before copying them to the indicated target paths. Never refresh `sourceRevision` without re-reading and updating the translation.
+- API prose from `dist/docs.json` is translated in `projects/docs/src/locale/api.{locale}.json`, keyed by the exact formatted English description or table label. Signatures and identifiers continue to come from the installed package. Auto-created README API pages require a reviewed local `api.md` when they are not already included in the localized README. Missing or changed API prose translations fail generation.
+- To publish a locale, finish all Markdown, metadata, API prose, Angular XLF, and static `404.html` translations; then enable it in the registry and Angular configuration together, regenerate, and run the full CI sequence. Review the UI on desktop and mobile before publication.
+
+## Existing English/Japanese rules
 
 ### File structure
 
@@ -205,7 +215,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 
 ### Hreflang and sitemap shape
 
-- Bilingual docs pages emit `link[rel="alternate"][hreflang]` tags (`en`, `ja`, `x-default`) in HTML `<head>`. That is the canonical hreflang discovery surface. Each alternate `href` must be a non-empty, fully-qualified HTTPS URL (not relative paths, protocol-relative URLs, or `http:`).
+- Docs pages emit `link[rel="alternate"][hreflang]` tags for every published locale plus `x-default` in HTML `<head>`. That is the canonical hreflang discovery surface. Each alternate `href` must be a non-empty, fully-qualified HTTPS URL (not relative paths, protocol-relative URLs, or `http:`).
 - The docs sitemap is deliberately simple: standard `urlset` entries with `<loc>` and optional explicit `<lastmod>` only (same shape as the top site). It omits `xmlns:xhtml` and `xhtml:link` alternates to reduce sitemap payload while diagnosing Search Console fetch issues. XHTML sitemap hreflang remains a supported standard elsewhere; this is redundancy removal, not a claim that sitemap hreflang is invalid.
 - Legacy Stripe paths forwarded from `stripe.capacitorjs.jp` are mapped to `/projects/capacitor-stripe/...` by `projects/docs/public/_redirects`. Keep exact routes before splats and use permanent 301 responses; do not rely on Angular client redirects for migrated public URLs.
 - `netlify.toml` and `projects/legacy-stripe-redirect/_redirects` are the legacy-host deployment contract for `stripe.capacitorjs.jp`. Netlify publishes only that dedicated directory with Angular Runtime disabled. Its `301!` rules must send the root to the Stripe project landing, `/docs/*` directly to canonical Stripe pages, and unmatched historical paths to the project landing. Keep this separate from Cloudflare's `_redirects`: Netlify needs forced rules so generated files can never shadow migrated URLs.
@@ -215,7 +225,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 - Shared JSON-LD builders and safe serialization live in `shared/json-ld.ts`. The two app-specific graph builders live in `projects/web-site/src/app/seo-json-ld.ts` and `projects/docs/src/app/docs/seo-json-ld.ts`.
 - Each prerendered page may have exactly one managed `script#rdlabo-json-ld[data-rdlabo-json-ld][type="application/ld+json"]`. `SeoService.setPage` replaces it on navigation and removes it when no structured data is supplied or the page is `noIndex`.
 - `rdlabo.dev` emits `WebSite` + `Organization` on the home page, `BreadcrumbList` on article indexes, and `BlogPosting` + `BreadcrumbList` on translated article pages.
-- `docs.rdlabo.dev` emits `WebSite` only on the subdomain root. The Japanese `/ja` home emits a localized `WebPage` that references the root `WebSite`, because Google does not support a separate site name at a subdirectory level. Support, project landing, and documentation pages emit localized `BreadcrumbList` data.
+- `docs.rdlabo.dev` emits `WebSite` only on the subdomain root. Localized home pages emit a `WebPage` in their own language that references the root `WebSite`, because Google does not support a separate site name at a subdirectory level. Support, project landing, and documentation pages emit localized `BreadcrumbList` data.
 - Article `datePublished` comes from the source publication metadata. Emit `dateModified` only from an explicit validated article `updatedAt`; never infer it from generation or deployment time.
 - When `updatedAt` is present, the article page must display the same date in `time[data-article-modified]`; never expose a search-only modification date.
 - Every translated article gets a deterministic 1200×630 SVG cover derived from its title, emoji, and slug. `BlogPosting.image`, the visible article image, and `og:image` must agree. An explicit article-front-matter `image` may override the generated URL only when it is an absolute HTTPS URL representing that article. Override dimensions are unknown, so the page must omit both `og:image:width` / `og:image:height` and visible `width` / `height`; generated covers declare all four values as 1200×630. Do not reuse the generic site OG card or a logo as every article's representative image.
@@ -225,7 +235,7 @@ Use a kind tag so `formatApiEntries` wraps each entry in an `api-entry` card. Su
 ### SEO audit
 
 - `npm run seo:audit` checks built sitemap-listed HTML for `docs.rdlabo.dev` and `rdlabo.dev`.
-- For bilingual docs, the audit validates reciprocal HTML-head hreflang across all sitemap-listed pages (exactly `en`, `ja`, and `x-default` — no other hreflang keys; no empty/whitespace `hreflang` attributes; alternate `href` values must be fully-qualified HTTPS URLs; targets must be sitemap locs; identical normalized mapping on EN/JA pairs). It does not require sitemap-level hreflang when the docs sitemap omits alternates.
+- For bilingual docs, the audit validates reciprocal HTML-head hreflang across all sitemap-listed pages (exactly the published locale codes and `x-default` — no other hreflang keys; no empty/whitespace `hreflang` attributes; alternate `href` values must be fully-qualified HTTPS URLs; targets must be sitemap locs; identical normalized mapping across all language variants). It does not require sitemap-level hreflang when the docs sitemap omits alternates.
 - Canonical URLs must match the sitemap page URL exactly after trailing-slash normalization; query strings and fragments are rejected rather than stripped silently.
 - JSON-LD validation covers all blocks for syntax and object shape, then validates the managed graph by route. It requires the expected schema types, canonical alignment, one instance of each required type, internal absolute-HTTPS breadcrumb items with contiguous positions, article author/publisher/language/source fields, required valid article-specific images with JSON-LD/OG/visible agreement and consistent optional dimensions, valid non-future publication/modification dates, and agreement with visible/meta article dates. Extend both route expectations and semantic tests when adding a schema or public route.
 - This audit enforces this repository's contracts; use Google's Rich Results Test after production deployment for Google's current eligibility diagnostics.

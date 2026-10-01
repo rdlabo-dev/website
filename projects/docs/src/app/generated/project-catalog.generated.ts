@@ -26,33 +26,6 @@ export const PROJECT_CATEGORIES_EN = [
   }
 ] as const;
 
-export const PROJECT_CATEGORIES_JA = [
-  {
-    "id": "translations",
-    "label": "ドキュメント翻訳",
-    "description": "公式プロジェクトのWebサイトから案内されている公認日本語翻訳です。",
-    "order": 5
-  },
-  {
-    "id": "capacitor-plugins",
-    "label": "Capacitorプラグイン",
-    "description": "Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷、オンデバイスAIを提供します。",
-    "order": 10
-  },
-  {
-    "id": "frontend-tools",
-    "label": "UIツール",
-    "description": "Angular・Ionicアプリ向けの再利用可能なアプリケーションライブラリとUIユーティリティです。",
-    "order": 20
-  },
-  {
-    "id": "developer-tools",
-    "label": "開発ツール",
-    "description": "Cloudflare Workers向けライブラリとTypeScriptのコード品質ツールです。",
-    "order": 30
-  }
-] as const;
-
 export const PROJECTS_EN = [
   {
     "id": "ionic-docs",
@@ -66,26 +39,6 @@ export const PROJECTS_EN = [
     "icon": "docs",
     "version": "",
     "description": "Authorized Japanese translation of the Ionic Framework documentation, linked from the official site.",
-    "headline": "Authorized Japanese documentation for Ionic Framework",
-    "overview": "This portal hosts the authorized Japanese overview linked from ionicframework.com, covering the Web UI toolkit, cross-platform goals, and framework integrations.",
-    "featuresHeading": "Highlights",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "Web UI toolkit",
-        "description": "Build performant mobile UX with HTML, CSS, and JavaScript components."
-      },
-      {
-        "icon": "devices",
-        "title": "Cross-platform",
-        "description": "Ship one codebase to iOS, Android, and the mobile web."
-      },
-      {
-        "icon": "layers",
-        "title": "Framework integrations",
-        "description": "Use Ionic with Angular, React, Vue, or as standalone Web Components."
-      }
-    ],
     "path": "/projects/ionic-docs",
     "pages": []
   },
@@ -101,26 +54,6 @@ export const PROJECTS_EN = [
     "icon": "docs",
     "version": "",
     "description": "Authorized Japanese translation of the Capacitor documentation, linked from the official site.",
-    "headline": "Authorized Japanese documentation for Capacitor",
-    "overview": "This portal hosts the authorized Japanese overview linked from the official documentation, covering the native runtime, native SDK access, and web-first workflow.",
-    "featuresHeading": "Highlights",
-    "features": [
-      {
-        "icon": "phone",
-        "title": "Native runtime",
-        "description": "Run modern web apps natively on iOS, Android, and beyond."
-      },
-      {
-        "icon": "flow",
-        "title": "Native SDK access",
-        "description": "Reach device features through a consistent Plugin API when you need it."
-      },
-      {
-        "icon": "web",
-        "title": "Web-first workflow",
-        "description": "Keep a web-first development flow without giving up native capabilities."
-      }
-    ],
     "path": "/projects/capacitor-docs",
     "pages": []
   },
@@ -135,31 +68,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Shared application infrastructure for Ionic Angular projects.",
-    "headline": "Build consistent, resilient Ionic Angular applications",
-    "overview": "Save typed preferences, open modals with typed results, and connect Ionic controls to Angular Signal Forms. Add authentication and native features as your app grows.",
-    "featuresHeading": "Application infrastructure",
-    "features": [
-      {
-        "icon": "layers",
-        "title": "Storage and overlays",
-        "description": "Prevent lost writes and present typed Ionic modals, popovers, toasts, and alerts."
-      },
-      {
-        "icon": "shield",
-        "title": "Authentication and HTTP",
-        "description": "Share route guards, access capability state, auth headers, safe retries, and error hooks."
-      },
-      {
-        "icon": "sheet",
-        "title": "Signal Forms",
-        "description": "Connect Ionic controls to Angular Signal Forms with validation messages and field state."
-      },
-      {
-        "icon": "phone",
-        "title": "Optional native features",
-        "description": "Add theme, review, printing, Firebase authentication, and Live Update support by subpath."
-      }
-    ],
     "path": "/projects/ionic-angular-kit",
     "pages": [
       {
@@ -232,26 +140,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Photo editing and viewing flows for Ionic Angular and Capacitor applications.",
-    "headline": "Edit and review photos in Ionic modals",
-    "overview": "Load photos from camera or album, crop and edit images, and present a configurable photo viewer from one Ionic Angular package.",
-    "featuresHeading": "Photo workflow",
-    "features": [
-      {
-        "icon": "image",
-        "title": "Camera and album",
-        "description": "Load and resize photos through Capacitor Camera and browser file input flows."
-      },
-      {
-        "icon": "edit",
-        "title": "Editor modal",
-        "description": "Crop and edit images with configurable square requirements and labels."
-      },
-      {
-        "icon": "eye",
-        "title": "Viewer modal",
-        "description": "Browse multiple images with optional deletion, circular display, and safe-area support."
-      }
-    ],
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
       {
@@ -318,26 +206,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Scroll-aware header directives for Ionic and Angular CDK viewports.",
-    "headline": "Build headers that respond to content scrolling",
-    "overview": "Hide and reveal Ionic headers for IonContent and CDK virtual scrolling while preserving safe-area and native-header layouts.",
-    "featuresHeading": "Header behavior",
-    "features": [
-      {
-        "icon": "scroll",
-        "title": "IonContent scrolling",
-        "description": "Attach scroll-aware behavior directly to Ionic content."
-      },
-      {
-        "icon": "layers",
-        "title": "CDK virtual scrolling",
-        "description": "Coordinate headers with Angular CDK virtual viewports."
-      },
-      {
-        "icon": "layout",
-        "title": "Safe-area layouts",
-        "description": "Support hidden safe-area headers and always-visible native headers."
-      }
-    ],
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
       {
@@ -396,28 +264,7 @@ export const PROJECTS_EN = [
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
-    "seoTitle": "Angular CDK Virtual Scroll: Variable Item Heights | rdlabo",
     "description": "Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.",
-    "headline": "Angular CDK virtual scroll with variable item heights",
-    "overview": "Supply known or measured per-item heights instead of a fixed itemSize or autosize estimation. Get exact scroll geometry, programmatic scrolling, and reverse chat layouts.",
-    "featuresHeading": "Variable-height virtual scrolling",
-    "features": [
-      {
-        "icon": "resize",
-        "title": "Variable item heights",
-        "description": "Give every list item its own known or measured pixel height."
-      },
-      {
-        "icon": "ruler",
-        "title": "Exact scroll geometry",
-        "description": "Avoid average-size estimation when calculating ranges and index offsets."
-      },
-      {
-        "icon": "reverse",
-        "title": "Reverse virtual scroll",
-        "description": "Support chat-style reverse layouts and logical index scrolling."
-      }
-    ],
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
       {
@@ -489,27 +336,6 @@ export const PROJECTS_EN = [
     "icon": "theme",
     "version": "1.2.0",
     "description": "Stable iOS 27 styling and motion for Ionic, with an optional preview Native UI Shell.",
-    "headline": "Bring iOS 27 design to Ionic apps",
-    "overview": "Bring iOS 27 Liquid Glass and motion to Ionic components. Install alongside the iOS 26 theme to select styles by browser capability; Native UI Shell is available as a preview.",
-    "featuresHeading": "Theme capabilities",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "iOS 27 CSS and design",
-        "description": "Restyle Ionic components to follow the latest iOS 27 design language."
-      },
-      {
-        "icon": "motion",
-        "title": "Transitions and Liquid Glass",
-        "description": "Use production-ready Web animations and optionally project fixed controls with the preview Native UI Shell."
-      },
-      {
-        "icon": "dark",
-        "title": "Dark mode and selective migration",
-        "description": "Adopt dark-mode styles and migrate component by component when needed."
-      }
-    ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in light mode with a Liquid Glass search bar\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27 theme: Settings in dark mode\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27 theme: Library with Liquid Glass buttons and tab bar\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -619,27 +445,6 @@ export const PROJECTS_EN = [
     "icon": "theme",
     "version": "9.4.1",
     "description": "iOS 26 design styling for Ionic applications.",
-    "headline": "Bring iOS 26 design to Ionic apps",
-    "overview": "Apply iOS 26 CSS, transitions, and Liquid Glass interactions to Ionic components, with dark mode and selective migration support.",
-    "featuresHeading": "Theme capabilities",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "iOS 26 CSS and design",
-        "description": "Restyle Ionic components to follow the latest iOS 26 design language."
-      },
-      {
-        "icon": "motion",
-        "title": "Transitions and Liquid Glass",
-        "description": "Use iOS-oriented navigation animations and Liquid Glass interaction effects."
-      },
-      {
-        "icon": "dark",
-        "title": "Dark mode and selective migration",
-        "description": "Adopt dark-mode styles and migrate component by component when needed."
-      }
-    ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/ios26.png\" alt=\"iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -727,27 +532,6 @@ export const PROJECTS_EN = [
     "icon": "theme",
     "version": "9.1.2",
     "description": "Material Design 3 styling for Ionic applications.",
-    "headline": "Bring Material Design 3 to Ionic apps",
-    "overview": "Apply Material Design 3 styling to Ionic while keeping markup compatible with the iOS 26 theme and shared transition animations.",
-    "featuresHeading": "Theme capabilities",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "Material Design 3 styling",
-        "description": "Update Ionic components to follow Material Design 3 guidelines."
-      },
-      {
-        "icon": "layers",
-        "title": "iOS 26-compatible markup",
-        "description": "Share one HTML structure with `@rdlabo/ionic-theme-ios26` across platforms."
-      },
-      {
-        "icon": "motion",
-        "title": "Transition animation",
-        "description": "Configure MD3 navigation transitions for non-iOS platforms."
-      }
-    ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {
@@ -812,26 +596,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "3.0.0",
     "description": "Automate ionIcons collection and export for Ionic Angular projects.",
-    "headline": "Collect used ionIcons before production builds",
-    "overview": "Group unique ionIcons in a project and generate an export file—register all icons during development, then collect icons used in templates before production builds.",
-    "featuresHeading": "Icon workflow",
-    "features": [
-      {
-        "icon": "layers",
-        "title": "Template collection",
-        "description": "Scan templates and generate a unique ionIcons export before production builds."
-      },
-      {
-        "icon": "flash",
-        "title": "Development convenience",
-        "description": "Register all icons with addIcons during development for stress-free iteration."
-      },
-      {
-        "icon": "terminal",
-        "title": "Initialize CLI",
-        "description": "Wire addIcons automatically with --initialize and remove per-component calls."
-      }
-    ],
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [
       {
@@ -895,23 +659,7 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Cloudflare Workers timezone utilities + ESLint | rdlabo",
     "description": "IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.",
-    "headline": "Timezone conversion for Cloudflare Workers",
-    "overview": "Convert dates with explicit IANA timezones. Pair with @rdlabo/eslint-plugin-rules to catch implicit timezone dependencies in Date and Intl.",
-    "featuresHeading": "Calendar building blocks",
-    "features": [
-      {
-        "icon": "globe",
-        "title": "IANA timezones",
-        "description": "Convert between UTC instants and timezone-local wall clocks."
-      },
-      {
-        "icon": "calendar",
-        "title": "Calendar boundaries",
-        "description": "Handle daylight-saving overlaps, skipped clocks, and calendar-day arithmetic."
-      }
-    ],
     "path": "/projects/workers-timezone",
     "pages": [
       {
@@ -968,28 +716,7 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Cloudflare Workers MySQL + Hyperdrive library | rdlabo",
     "description": "MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.",
-    "headline": "MySQL and Hyperdrive for Cloudflare Workers",
-    "overview": "MySQL access through Hyperdrive, with primary/replica routing, deadlock retries, and Drizzle integration.",
-    "featuresHeading": "Database building blocks",
-    "features": [
-      {
-        "icon": "database",
-        "title": "Hyperdrive runtime",
-        "description": "Use invocation-scoped connections and explicit primary/replica read paths."
-      },
-      {
-        "icon": "layers",
-        "title": "Optional Drizzle integration",
-        "description": "Keep schemas in the application and share one Drizzle type identity."
-      },
-      {
-        "icon": "terminal",
-        "title": "Tooling boundaries",
-        "description": "Keep migration and destructive test helpers separate from Worker bundles."
-      }
-    ],
     "path": "/projects/workers-mysql",
     "pages": [
       {
@@ -1053,33 +780,7 @@ export const PROJECTS_EN = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Hono for Cloudflare Workers: API toolkit | rdlabo",
     "description": "Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, JSON errors, queues, and testing helpers.",
-    "headline": "Hono API helpers for Cloudflare Workers",
-    "overview": "Compose Hono APIs with shared validation, authentication, JSON errors, queues, and test helpers.",
-    "featuresHeading": "Infrastructure areas",
-    "features": [
-      {
-        "icon": "shield",
-        "title": "HTTP and auth",
-        "description": "Standardize validation, Firebase authentication, errors, maintenance, and response finalization."
-      },
-      {
-        "icon": "database",
-        "title": "Workers data layer",
-        "description": "Connect standalone MySQL and timezone packages through the Hono container adapter."
-      },
-      {
-        "icon": "sync",
-        "title": "Realtime and offline",
-        "description": "Share Durable Object WebSocket patterns and table-agnostic offline replica contracts."
-      },
-      {
-        "icon": "check",
-        "title": "Testing and operations",
-        "description": "Reuse database fixtures, service fakes, performance logging, queues, and operational CLIs."
-      }
-    ],
     "path": "/projects/workers-hono-kit",
     "pages": [
       {
@@ -1144,31 +845,6 @@ export const PROJECTS_EN = [
     "icon": "lint",
     "version": "22.1.0",
     "description": "Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.",
-    "headline": "See code conventions work before code review",
-    "overview": "ESLint presets for Angular/Ionic conventions, Workers error boundaries, and timezone-safe code.",
-    "featuresHeading": "What the plugin covers",
-    "features": [
-      {
-        "icon": "events",
-        "title": "Angular Signals",
-        "description": "Catch Signals used as plain values in TypeScript and templates."
-      },
-      {
-        "icon": "layers",
-        "title": "Component boundaries",
-        "description": "Enforce ViewModel ownership, readonly properties, and lifecycle contracts."
-      },
-      {
-        "icon": "phone",
-        "title": "Ionic interaction",
-        "description": "Standardize overlays, standalone imports, attribute bindings, and double-tap prevention."
-      },
-      {
-        "icon": "web",
-        "title": "Framework-independent TypeScript",
-        "description": "Use the /typescript entry point for Workers error-boundary and timezone presets without loading Angular or Ionic."
-      }
-    ],
     "path": "/projects/eslint-plugin-rules",
     "pages": [
       {
@@ -1380,21 +1056,6 @@ export const PROJECTS_EN = [
     "icon": "docs",
     "version": "0.4.1",
     "description": "Upstream-compatible Capacitor documentation generator with interface inheritance.",
-    "headline": "Generate Capacitor plugin docs with inherited interfaces",
-    "overview": "Generate Markdown and JSON from TypeScript interfaces and JSDoc, including inherited members, using the familiar docgen command.",
-    "featuresHeading": "Why use the fork",
-    "features": [
-      {
-        "icon": "terminal",
-        "title": "Upstream-compatible CLI",
-        "description": "Keep the same docgen binary, flags, placeholders, output commands, and exported functions as @capacitor/docgen."
-      },
-      {
-        "icon": "flow",
-        "title": "Interface inheritance",
-        "description": "Resolve TypeScript extends clauses and append inherited methods and properties, including on the primary API."
-      }
-    ],
     "path": "/projects/capacitor-docgen",
     "pages": [
       {
@@ -1435,38 +1096,7 @@ export const PROJECTS_EN = [
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
-    "seoTitle": "Capacitor Stripe Plugin Documentation | rdlabo",
     "description": "Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.",
-    "headline": "Accept Stripe payments in Capacitor apps",
-    "overview": "Present native PaymentSheet and PaymentFlow, accept Apple Pay and Google Pay, and integrate payments on the web from the same Capacitor codebase.",
-    "featuresHeading": "What you can build",
-    "features": [
-      {
-        "icon": "sheet",
-        "title": "PaymentSheet",
-        "description": "Collect payment in a single native flow with PaymentIntent or SetupIntent."
-      },
-      {
-        "icon": "flow",
-        "title": "PaymentFlow",
-        "description": "Collect payment details first, then confirm after an intermediate step in your app."
-      },
-      {
-        "icon": "wallet",
-        "title": "Apple Pay",
-        "description": "Present Apple Pay for instant checkout where it is available."
-      },
-      {
-        "icon": "contactless",
-        "title": "Google Pay",
-        "description": "Present Google Pay for instant checkout where it is available."
-      },
-      {
-        "icon": "web",
-        "title": "Web integration",
-        "description": "Use the same plugin APIs with web frameworks and browsers alongside native apps."
-      }
-    ],
     "path": "/projects/capacitor-stripe",
     "pages": [
       {
@@ -1566,26 +1196,6 @@ export const PROJECTS_EN = [
     "icon": "identity",
     "version": "8.2.1",
     "description": "Stripe Identity SDK bindings for Capacitor applications.",
-    "headline": "Present Stripe Identity verification in Capacitor apps",
-    "overview": "Present Stripe's identity verification sheet on native platforms and the web. Your app listens for result events; Stripe performs the verification.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "identity",
-        "title": "Identity Verification Sheet",
-        "description": "Create and present the verification sheet after your backend supplies the required session credentials."
-      },
-      {
-        "icon": "devices",
-        "title": "Native and web",
-        "description": "Use one API across platforms, including supported browser integrations."
-      },
-      {
-        "icon": "events",
-        "title": "Result events",
-        "description": "Register listeners before presenting the sheet so verification outcomes are not missed."
-      }
-    ],
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
       {
@@ -1622,31 +1232,6 @@ export const PROJECTS_EN = [
     "icon": "terminal",
     "version": "8.2.1",
     "description": "Stripe Terminal SDK bindings for Capacitor applications.",
-    "headline": "Collect in-person payments with Stripe Terminal",
-    "overview": "Discover and connect readers, collect and confirm PaymentIntents, and respond to reader events, including Tap to Pay where supported.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "card",
-        "title": "In-person payments",
-        "description": "Collect a payment method on a connected reader and confirm the PaymentIntent."
-      },
-      {
-        "icon": "search",
-        "title": "Reader discovery",
-        "description": "Discover nearby or simulated readers, then connect before collecting payment details."
-      },
-      {
-        "icon": "events",
-        "title": "Reader events",
-        "description": "Handle display, status, input, and software update events during checkout."
-      },
-      {
-        "icon": "phone",
-        "title": "Tap to Pay",
-        "description": "Connect with Tap to Pay on devices and configurations that support it."
-      }
-    ],
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
       {
@@ -1696,33 +1281,7 @@ export const PROJECTS_EN = [
     "category": "capacitor-plugins",
     "icon": "ads",
     "version": "8.1.0",
-    "seoTitle": "Capacitor AdMob Plugin Documentation | rdlabo",
     "description": "Native Google AdMob ads for Capacitor applications.",
-    "headline": "Monetize Capacitor apps with Google AdMob",
-    "overview": "Initialize Google Mobile Ads, manage privacy consent, and present native ad formats on iOS and Android.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "banner",
-        "title": "Banner ads",
-        "description": "Place adaptive or fixed-size banners at the top or bottom of the native view."
-      },
-      {
-        "icon": "expand",
-        "title": "Full-screen ads",
-        "description": "Prepare and show interstitial, rewarded, and rewarded interstitial ads."
-      },
-      {
-        "icon": "launch",
-        "title": "App open ads",
-        "description": "Load and present ads when users bring your app to the foreground."
-      },
-      {
-        "icon": "shield",
-        "title": "Consent controls",
-        "description": "Use Google UMP and iOS tracking authorization APIs before requesting ads."
-      }
-    ],
     "path": "/projects/capacitor-admob",
     "pages": [
       {
@@ -1815,31 +1374,6 @@ export const PROJECTS_EN = [
     "icon": "identity",
     "version": "8.1.0",
     "description": "Native Facebook Login and App Events for Capacitor applications.",
-    "headline": "Add Facebook authentication to Capacitor apps",
-    "overview": "Sign users in with the native Meta SDKs or Facebook JavaScript SDK, request profile data, and log App Events across Android, iOS, and Web.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "shield",
-        "title": "Facebook authentication",
-        "description": "Log in, log out, inspect the current token, and renew data access."
-      },
-      {
-        "icon": "profile",
-        "title": "Profile requests",
-        "description": "Request permitted profile fields from the Facebook Graph API."
-      },
-      {
-        "icon": "events",
-        "title": "App Events",
-        "description": "Log custom events and configure automatic event and advertiser settings."
-      },
-      {
-        "icon": "devices",
-        "title": "Native and web",
-        "description": "Use one Capacitor API across Android, iOS, and Web."
-      }
-    ],
     "path": "/projects/capacitor-facebook-login",
     "pages": [
       {
@@ -1889,33 +1423,7 @@ export const PROJECTS_EN = [
     "category": "capacitor-plugins",
     "icon": "app",
     "version": "2.2.0",
-    "seoTitle": "Capacitor Local LLM for iOS, Android and Chrome | rdlabo",
     "description": "On-device text generation for Capacitor iOS, Android, and supported desktop Chrome, plus native image features.",
-    "headline": "Run AI on the device",
-    "overview": "Use one chat API for native apps and supported desktop Chrome, with streaming, cancellation, and availability checks. Image features use native backends. Independently maintained fork of Ionic Local LLM.",
-    "featuresHeading": "On-device AI features",
-    "features": [
-      {
-        "icon": "web",
-        "title": "Text generation in Chrome",
-        "description": "Use Chrome’s built-in Prompt API without a server or API key. Check model availability before starting."
-      },
-      {
-        "icon": "chat",
-        "title": "Chat lifecycle",
-        "description": "Create chats, stream responses, observe generation state, and cancel work."
-      },
-      {
-        "icon": "check",
-        "title": "Availability first",
-        "description": "Check text and image capabilities separately before generation."
-      },
-      {
-        "icon": "download",
-        "title": "Explicit Android fallback",
-        "description": "Configure an app-managed LiteRT-LM model when needed; validate on physical devices."
-      }
-    ],
     "path": "/projects/capacitor-local-llm",
     "pages": [
       {
@@ -2008,26 +1516,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "8.0.3",
     "description": "Barcode and QR scanning for Capacitor through a native modal.",
-    "headline": "Scan QR codes and barcodes in a native modal",
-    "overview": "Read a code into your app, or keep the camera open for consecutive scans. Configure the detection area, light, and feedback.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "scan",
-        "title": "Modal scanning",
-        "description": "Open a native modal and scan inside it so web assets do not need to change."
-      },
-      {
-        "icon": "layers",
-        "title": "Continuous multi-scan",
-        "description": "Keep scanning successive codes with isMulti mode."
-      },
-      {
-        "icon": "flash",
-        "title": "Light and feedback",
-        "description": "Use automatic light control, vibration, and visible detection highlighting."
-      }
-    ],
     "path": "/projects/capacitor-codescanner",
     "pages": [
       {
@@ -2064,21 +1552,6 @@ export const PROJECTS_EN = [
     "icon": "app",
     "version": "8.0.0",
     "description": "Notify Capacitor apps when the user takes a screenshot.",
-    "headline": "React when users take screenshots",
-    "overview": "Start watching for screenshot events and handle userDidTakeScreenshot callbacks from Capacitor.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "capture",
-        "title": "React after a capture",
-        "description": "Show a message or update app UI when a screenshot event arrives."
-      },
-      {
-        "icon": "eye",
-        "title": "Watch while a screen is open",
-        "description": "Start watching on entry and release the watcher and listener when leaving."
-      }
-    ],
     "path": "/projects/capacitor-screenshot-event",
     "pages": [
       {
@@ -2115,26 +1588,6 @@ export const PROJECTS_EN = [
     "icon": "terminal",
     "version": "8.0.1",
     "description": "Native printing for files and WebView content in Capacitor apps.",
-    "headline": "Present the system print UI from Capacitor",
-    "overview": "Print a file or the current WebView through the platform printing interface on Android and iOS.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "file",
-        "title": "Print files",
-        "description": "Present the printing UI for a file path or local URL on Android and iOS."
-      },
-      {
-        "icon": "web",
-        "title": "Print WebView",
-        "description": "Present the printing UI for the current WebView content."
-      },
-      {
-        "icon": "shield",
-        "title": "Safe file lifecycle",
-        "description": "Await printFile until the OS no longer needs the source, then delete it safely."
-      }
-    ],
     "path": "/projects/capacitor-printer",
     "pages": [
       {
@@ -2178,26 +1631,6 @@ export const PROJECTS_EN = [
     "icon": "terminal",
     "version": "8.2.1",
     "description": "Native Brother Print SDK bindings for Capacitor on iOS and Android.",
-    "headline": "Print to Brother label printers from Capacitor",
-    "overview": "Search Brother printers over USB, Wi-Fi, Bluetooth, or BLE and print images to supported QL and TD models.",
-    "featuresHeading": "What you can do",
-    "features": [
-      {
-        "icon": "search",
-        "title": "Printer discovery",
-        "description": "Search nearby Brother printers by port and receive availability events."
-      },
-      {
-        "icon": "image",
-        "title": "Image printing",
-        "description": "Send base64 images with model, label, and channel settings to printImage."
-      },
-      {
-        "icon": "events",
-        "title": "Print lifecycle events",
-        "description": "Listen for print success, communication failure, and print error outcomes."
-      }
-    ],
     "path": "/projects/capacitor-brotherprint",
     "pages": [
       {
@@ -2260,6 +1693,33 @@ export const PROJECTS_EN = [
   }
 ] as const;
 
+export const PROJECT_CATEGORIES_JA = [
+  {
+    "id": "translations",
+    "label": "ドキュメント翻訳",
+    "description": "公式プロジェクトのWebサイトから案内されている公認日本語翻訳です。",
+    "order": 5
+  },
+  {
+    "id": "capacitor-plugins",
+    "label": "Capacitorプラグイン",
+    "description": "Capacitorアプリ向けのネイティブ決済、本人確認、ソーシャルログイン、対面決済、モバイル広告、スキャン、スクリーンショット検知、印刷、オンデバイスAIを提供します。",
+    "order": 10
+  },
+  {
+    "id": "frontend-tools",
+    "label": "UIツール",
+    "description": "Angular・Ionicアプリ向けの再利用可能なアプリケーションライブラリとUIユーティリティです。",
+    "order": 20
+  },
+  {
+    "id": "developer-tools",
+    "label": "開発ツール",
+    "description": "Cloudflare Workers向けライブラリとTypeScriptのコード品質ツールです。",
+    "order": 30
+  }
+] as const;
+
 export const PROJECTS_JA = [
   {
     "id": "ionic-docs",
@@ -2273,26 +1733,6 @@ export const PROJECTS_JA = [
     "icon": "docs",
     "version": "",
     "description": "Ionic公式サイトから案内されている、Ionic Frameworkドキュメントの公認日本語翻訳。",
-    "headline": "Ionic Frameworkの公認日本語ドキュメント",
-    "overview": "ionicframework.comから案内されている公認日本語翻訳の概要として、Web UI toolkit、クロスプラットフォーム、フレームワーク連携を紹介します。",
-    "featuresHeading": "主なポイント",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "Web UI toolkit",
-        "description": "HTML・CSS・JavaScriptのコンポーネントで、高性能なモバイルUXを構築します。"
-      },
-      {
-        "icon": "devices",
-        "title": "Cross-platform",
-        "description": "ひとつのコードベースからiOS、Android、モバイルWebへ配信します。"
-      },
-      {
-        "icon": "layers",
-        "title": "Framework integrations",
-        "description": "Angular、React、Vue、またはスタンドアロンのWeb Componentsとして利用できます。"
-      }
-    ],
     "path": "/projects/ionic-docs",
     "pages": []
   },
@@ -2308,26 +1748,6 @@ export const PROJECTS_JA = [
     "icon": "docs",
     "version": "",
     "description": "公式サイトから案内されている、Capacitorドキュメントの公認日本語翻訳。",
-    "headline": "Capacitorの公認日本語ドキュメント",
-    "overview": "公式ドキュメントから案内されている公認日本語翻訳の概要として、ネイティブランタイム、ネイティブSDKアクセス、Webファーストのワークフローを紹介します。",
-    "featuresHeading": "主なポイント",
-    "features": [
-      {
-        "icon": "phone",
-        "title": "Native runtime",
-        "description": "モダンなWebアプリをiOS、Androidをはじめとするプラットフォームでネイティブ実行します。"
-      },
-      {
-        "icon": "flow",
-        "title": "Native SDK access",
-        "description": "必要なときに一貫したPlugin API経由でデバイス機能へアクセスします。"
-      },
-      {
-        "icon": "web",
-        "title": "Web-first workflow",
-        "description": "ネイティブ機能を犠牲にせず、Webファーストの開発フローを維持します。"
-      }
-    ],
     "path": "/projects/capacitor-docs",
     "pages": []
   },
@@ -2342,31 +1762,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Ionic Angularプロジェクト向けの共有アプリケーション基盤。",
-    "headline": "一貫性と耐障害性を備えたIonic Angularアプリを構築する",
-    "overview": "型安全な設定の保存、戻り値に型が付くモーダル、IonicとAngular Signal Formsの連携から始められます。認証やNative機能は必要に応じて追加できます。",
-    "featuresHeading": "提供するアプリケーション基盤",
-    "features": [
-      {
-        "icon": "layers",
-        "title": "Storage・Overlay",
-        "description": "書き込み損失を防ぎ、型安全なIonic Modal、Popover、Toast、Alertを表示します。"
-      },
-      {
-        "icon": "shield",
-        "title": "認証・HTTP",
-        "description": "Route Guard、アクセス権限状態、認証Header、安全なretry、error hookを共有します。"
-      },
-      {
-        "icon": "sheet",
-        "title": "Signal Forms",
-        "description": "Ionicの入力欄をAngular Signal Formsに接続し、検証メッセージとフィールドの状態を連携します。"
-      },
-      {
-        "icon": "phone",
-        "title": "任意のNative機能",
-        "description": "Theme、Review、印刷、Firebase認証、Live Updateをsubpath単位で追加します。"
-      }
-    ],
     "path": "/projects/ionic-angular-kit",
     "pages": [
       {
@@ -2439,26 +1834,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Ionic Angular・Capacitorアプリ向けの写真編集・閲覧フロー。",
-    "headline": "Ionic Modalで写真を編集・確認する",
-    "overview": "カメラやアルバムから写真を読み込み、切り抜き・編集し、設定可能な写真Viewerを1つのIonic Angularパッケージから利用できます。",
-    "featuresHeading": "写真ワークフロー",
-    "features": [
-      {
-        "icon": "image",
-        "title": "カメラ・アルバム",
-        "description": "Capacitor Cameraとブラウザのファイル入力から写真を読み込み、リサイズします。"
-      },
-      {
-        "icon": "edit",
-        "title": "Editor Modal",
-        "description": "正方形切り抜き要件やラベルを設定して画像を編集します。"
-      },
-      {
-        "icon": "eye",
-        "title": "Viewer Modal",
-        "description": "削除、円形表示、Safe Area対応を設定して複数画像を閲覧します。"
-      }
-    ],
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
       {
@@ -2525,26 +1900,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "22.0.3",
     "description": "Ionic・Angular CDK viewport向けのScroll連動Header Directive。",
-    "headline": "Scrollに追従するHeaderを実装する",
-    "overview": "Safe AreaとNative Headerレイアウトを維持しながら、IonContentとCDK Virtual Scrollに応じてIonic Headerを表示・非表示にします。",
-    "featuresHeading": "Header動作",
-    "features": [
-      {
-        "icon": "scroll",
-        "title": "IonContent Scroll",
-        "description": "Ionic ContentへScroll連動動作を直接追加します。"
-      },
-      {
-        "icon": "layers",
-        "title": "CDK Virtual Scroll",
-        "description": "Angular CDKのVirtual ViewportとHeaderを連携します。"
-      },
-      {
-        "icon": "layout",
-        "title": "Safe Area Layout",
-        "description": "Safe Area用の非表示Headerと常時表示Native Headerを扱います。"
-      }
-    ],
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
       {
@@ -2603,28 +1958,7 @@ export const PROJECTS_JA = [
     "category": "frontend-tools",
     "icon": "app",
     "version": "22.0.3",
-    "seoTitle": "Angular CDK Virtual Scrollの可変アイテム高さ対応 | rdlabo",
     "description": "Angular CDK Virtual Scrollで可変・動的なItem Heightに対応。Itemごとの正確なSizeにより、List、Chat UI、Reverse Scrollを安定させます。",
-    "headline": "Angular CDK Virtual Scrollを可変Item Heightに対応",
-    "overview": "固定のitemSizeやautosizeによる推定の代わりに、既知または計測したItemごとの高さを指定します。正確なScroll Geometry、Programmatic Scroll、Chat形式のReverse Layoutを実現します。",
-    "featuresHeading": "可変高さのVirtual Scroll",
-    "features": [
-      {
-        "icon": "resize",
-        "title": "可変Item Height",
-        "description": "各List Itemに、既知または計測した個別のPixel Heightを指定します。"
-      },
-      {
-        "icon": "ruler",
-        "title": "正確なScroll Geometry",
-        "description": "RangeとIndex Offsetの計算で、平均Item Sizeによる推定を避けます。"
-      },
-      {
-        "icon": "reverse",
-        "title": "Reverse Virtual Scroll",
-        "description": "Chat形式のReverse Layoutと論理Index Scrollに対応します。"
-      }
-    ],
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
       {
@@ -2696,27 +2030,6 @@ export const PROJECTS_JA = [
     "icon": "theme",
     "version": "1.2.0",
     "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。プレビュー版のNative UI Shellも選択できます。",
-    "headline": "IonicアプリにiOS 27デザインを取り入れる",
-    "overview": "IonicコンポーネントにiOS 27のLiquid Glassとアニメーションを適用します。iOS 26テーマと併用するとブラウザ機能に応じてスタイルを切り替えられます。Native UI Shellはプレビュー機能です。",
-    "featuresHeading": "テーマの機能",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "iOS 27のCSSとデザイン",
-        "description": "Ionicコンポーネントを最新のiOS 27デザイン言語に合わせて再スタイルします。"
-      },
-      {
-        "icon": "motion",
-        "title": "トランジションとLiquid Glass",
-        "description": "実用段階のWebアニメーションと、固定コントロールをネイティブ描画するプレビュー版のNative UI Shellを利用できます。"
-      },
-      {
-        "icon": "dark",
-        "title": "ダークモードと段階的移行",
-        "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
-      }
-    ],
-    "overviewHtml": "<p>\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glass検索バーを備えたライトモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png\" width=\"32%\" alt=\"iOS 27テーマ: ダークモードの設定画面\">\n  <img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png\" width=\"32%\" alt=\"iOS 27テーマ: Liquid Glassボタンとタブバーを備えたライブラリ画面\">\n</p>",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
@@ -2826,27 +2139,6 @@ export const PROJECTS_JA = [
     "icon": "theme",
     "version": "9.4.1",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
-    "headline": "IonicアプリにiOS 26デザインを取り入れる",
-    "overview": "IonicコンポーネントへiOS 26のCSS、トランジション、Liquid Glassインタラクションを適用し、ダークモードと段階的な移行にも対応します。",
-    "featuresHeading": "テーマの機能",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "iOS 26のCSSとデザイン",
-        "description": "Ionicコンポーネントを最新のiOS 26デザイン言語に合わせて再スタイルします。"
-      },
-      {
-        "icon": "motion",
-        "title": "トランジションとLiquid Glass",
-        "description": "iOS向けのナビゲーションアニメーションとLiquid Glassのインタラクション効果を利用します。"
-      },
-      {
-        "icon": "dark",
-        "title": "ダークモードと段階的移行",
-        "description": "必要に応じてダークモードスタイルを導入し、コンポーネント単位で移行できます。"
-      }
-    ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/ios26.png\" alt=\"iOS 26テーマを適用したIonic画面。Liquid Glassのタブバー、リスト、コントロール\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
       {
@@ -2934,27 +2226,6 @@ export const PROJECTS_JA = [
     "icon": "theme",
     "version": "9.1.2",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
-    "headline": "IonicアプリにMaterial Design 3を取り入れる",
-    "overview": "iOS 26テーマと共通のマークアップ互換性を保ちつつ、IonicへMaterial Design 3スタイルとトランジションアニメーションを適用します。",
-    "featuresHeading": "テーマの機能",
-    "features": [
-      {
-        "icon": "layout",
-        "title": "Material Design 3スタイル",
-        "description": "IonicコンポーネントをMaterial Design 3ガイドラインに合わせて更新します。"
-      },
-      {
-        "icon": "layers",
-        "title": "iOS 26互換マークアップ",
-        "description": "プラットフォームをまたぎ `@rdlabo/ionic-theme-ios26` と同じHTML構造を共有します。"
-      },
-      {
-        "icon": "motion",
-        "title": "トランジションアニメーション",
-        "description": "非iOSプラットフォーム向けにMD3のナビゲーショントランジションを設定します。"
-      }
-    ],
-    "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
     "path": "/projects/ionic-theme-md3",
     "pages": [
       {
@@ -3019,26 +2290,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "3.0.0",
     "description": "Ionic Angularプロジェクト向けのionIcons収集・エクスポート自動化。",
-    "headline": "本番ビルド前に使用中のionIconsを収集する",
-    "overview": "プロジェクト内のionIconsを一意にまとめエクスポート用ファイルを生成します。開発時は全アイコンを登録し、本番ビルド前にテンプレートで使われているアイコンを収集します。",
-    "featuresHeading": "アイコンワークフロー",
-    "features": [
-      {
-        "icon": "layers",
-        "title": "テンプレート収集",
-        "description": "テンプレートを走査し、本番ビルド前に一意なionIconsエクスポートを生成します。"
-      },
-      {
-        "icon": "flash",
-        "title": "開発時の利便性",
-        "description": "開発時はaddIconsに全アイコンを登録し、ストレスなく反復できます。"
-      },
-      {
-        "icon": "terminal",
-        "title": "初期化CLI",
-        "description": "--initializeでaddIconsを自動配線し、コンポーネント単位の呼び出しを削除します。"
-      }
-    ],
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [
       {
@@ -3102,23 +2353,7 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo",
     "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
-    "headline": "Cloudflare Workersの日時変換",
-    "overview": "IANAタイムゾーンを指定して日時を変換。@rdlabo/eslint-plugin-rulesと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
-    "featuresHeading": "カレンダー処理の基本機能",
-    "features": [
-      {
-        "icon": "globe",
-        "title": "IANAタイムゾーン",
-        "description": "UTCの時刻とタイムゾーンごとのローカル時刻を相互変換します。"
-      },
-      {
-        "icon": "calendar",
-        "title": "日付の境界",
-        "description": "夏時間の重複・欠落とカレンダー日付の加算を扱います。"
-      }
-    ],
     "path": "/projects/workers-timezone",
     "pages": [
       {
@@ -3175,28 +2410,7 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo",
     "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replica、デッドロック再試行、Drizzle連携を提供します。",
-    "headline": "Cloudflare WorkersのMySQL・Hyperdrive連携",
-    "overview": "Hyperdrive経由のMySQL接続、primary/replicaの使い分け、デッドロック再試行、Drizzle連携を提供します。",
-    "featuresHeading": "データベースの基本機能",
-    "features": [
-      {
-        "icon": "database",
-        "title": "Hyperdriveランタイム",
-        "description": "呼び出し単位の接続と明示的なprimary/replicaの読み取り経路を利用します。"
-      },
-      {
-        "icon": "layers",
-        "title": "任意のDrizzle連携",
-        "description": "スキーマをアプリで管理し、Drizzleの型を同じ依存から共有します。"
-      },
-      {
-        "icon": "terminal",
-        "title": "ツールの境界",
-        "description": "移行処理や破壊的テストヘルパーをWorkerのバンドルから分離します。"
-      }
-    ],
     "path": "/projects/workers-mysql",
     "pages": [
       {
@@ -3260,33 +2474,7 @@ export const PROJECTS_JA = [
     "category": "developer-tools",
     "icon": "server",
     "version": "0.12.2",
-    "seoTitle": "Cloudflare WorkersのHono API開発ツールキット | rdlabo",
     "description": "Cloudflare WorkersのHono API向けに、バリデーション、Firebase認証、JSONエラー、Queue、テストヘルパーを提供します。",
-    "headline": "Cloudflare WorkersのHono API開発を支える",
-    "overview": "バリデーション、認証、JSONエラー、Queue、テストヘルパーを組み合わせてHono APIを構築できます。",
-    "featuresHeading": "提供するインフラ領域",
-    "features": [
-      {
-        "icon": "shield",
-        "title": "HTTP・認証",
-        "description": "検証、Firebase認証、エラー、メンテナンス、レスポンス確定を標準化します。"
-      },
-      {
-        "icon": "database",
-        "title": "Workersデータ層",
-        "description": "独立したMySQL・タイムゾーンパッケージをHonoコンテナーアダプターと組み合わせます。"
-      },
-      {
-        "icon": "sync",
-        "title": "Realtime・Offline",
-        "description": "Durable Object WebSocketパターンとテーブル非依存のOffline Replica契約を共有します。"
-      },
-      {
-        "icon": "check",
-        "title": "テスト・運用",
-        "description": "DB fixture、service fake、性能ログ、Queue、運用CLIを再利用します。"
-      }
-    ],
     "path": "/projects/workers-hono-kit",
     "pages": [
       {
@@ -3351,31 +2539,6 @@ export const PROJECTS_JA = [
     "icon": "lint",
     "version": "22.1.0",
     "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。",
-    "headline": "コード規約をレビュー前に実行できる検査にする",
-    "overview": "Angular・Ionicの設計規約、Workersのエラー境界、日時処理を検査するESLint presetを提供します。",
-    "featuresHeading": "プラグインが検査する領域",
-    "features": [
-      {
-        "icon": "events",
-        "title": "Angular Signals",
-        "description": "TypeScriptとテンプレートでSignalを通常値として誤用するケースを検出します。"
-      },
-      {
-        "icon": "layers",
-        "title": "Component境界",
-        "description": "ViewModel所有、readonlyプロパティ、ライフサイクル契約を検査します。"
-      },
-      {
-        "icon": "phone",
-        "title": "Ionic操作",
-        "description": "Overlay、standalone import、属性バインディング、二重操作防止を標準化します。"
-      },
-      {
-        "icon": "web",
-        "title": "汎用TypeScript",
-        "description": "AngularやIonicを読み込まず、/typescriptからWorkersのエラー境界・タイムゾーンpresetを利用できます。"
-      }
-    ],
     "path": "/projects/eslint-plugin-rules",
     "pages": [
       {
@@ -3587,21 +2750,6 @@ export const PROJECTS_JA = [
     "icon": "docs",
     "version": "0.4.1",
     "description": "interface継承に対応した、本家互換のCapacitorドキュメント生成CLI。",
-    "headline": "継承したinterfaceを含めてCapacitorプラグインドキュメントを生成する",
-    "overview": "使い慣れたdocgenコマンドで、TypeScriptのinterfaceとJSDocからMarkdown・JSONを生成。継承したメンバーも出力に含めます。",
-    "featuresHeading": "forkを使う理由",
-    "features": [
-      {
-        "icon": "terminal",
-        "title": "本家互換CLI",
-        "description": "@capacitor/docgenと同じdocgenバイナリ、flag、placeholder、出力command、export functionを維持します。"
-      },
-      {
-        "icon": "flow",
-        "title": "interface継承",
-        "description": "TypeScriptのextends句を解決し、primary APIを含む継承method・propertyを生成ドキュメントへ追加します。"
-      }
-    ],
     "path": "/projects/capacitor-docgen",
     "pages": [
       {
@@ -3642,38 +2790,7 @@ export const PROJECTS_JA = [
     "category": "capacitor-plugins",
     "icon": "payments",
     "version": "8.2.1",
-    "seoTitle": "Capacitor Stripe プラグイン ドキュメント | rdlabo",
     "description": "Capacitorアプリに@capacitor-community/stripeを導入し、iOS・Android・WebでPaymentSheet、Apple Pay、Google Payを実装するためのドキュメント。",
-    "headline": "CapacitorアプリでStripe決済を受け付ける",
-    "overview": "同じCapacitorコードベースからネイティブのPaymentSheetとPaymentFlow、Apple Pay、Google Pay、Web決済を利用できます。",
-    "featuresHeading": "実装できること",
-    "features": [
-      {
-        "icon": "sheet",
-        "title": "PaymentSheet",
-        "description": "PaymentIntentまたはSetupIntentを使い、ひとつのネイティブフローで支払いを受け付けます。"
-      },
-      {
-        "icon": "flow",
-        "title": "PaymentFlow",
-        "description": "先に支払い情報を収集し、アプリ内の確認ステップを挟んでから確定します。"
-      },
-      {
-        "icon": "wallet",
-        "title": "Apple Pay",
-        "description": "対応環境でApple Payによるすばやい決済を表示します。"
-      },
-      {
-        "icon": "contactless",
-        "title": "Google Pay",
-        "description": "対応環境でGoogle Payによるすばやい決済を表示します。"
-      },
-      {
-        "icon": "web",
-        "title": "Web連携",
-        "description": "ネイティブアプリと同じプラグインAPIをWebフレームワークやブラウザでも利用します。"
-      }
-    ],
     "path": "/projects/capacitor-stripe",
     "pages": [
       {
@@ -3773,26 +2890,6 @@ export const PROJECTS_JA = [
     "icon": "identity",
     "version": "8.2.1",
     "description": "Capacitor アプリで Stripe Identity の本人確認を表示するプラグイン。",
-    "headline": "CapacitorアプリでStripe Identityの本人確認を表示する",
-    "overview": "ネイティブとWebでStripeの本人確認シートを表示します。アプリは結果イベントを受け取り、本人確認はStripeが実行します。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "identity",
-        "title": "本人確認シート",
-        "description": "バックエンドから必要なセッション認証情報を受け取り、Capacitorから本人確認シートを作成・表示します。"
-      },
-      {
-        "icon": "devices",
-        "title": "ネイティブとWeb",
-        "description": "プラットフォーム共通のAPIを使用し、対応ブラウザにも統合します。"
-      },
-      {
-        "icon": "events",
-        "title": "結果イベント",
-        "description": "結果を取りこぼさないよう、シート表示前に本人確認結果のリスナーを登録します。"
-      }
-    ],
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
       {
@@ -3829,31 +2926,6 @@ export const PROJECTS_JA = [
     "icon": "terminal",
     "version": "8.2.1",
     "description": "Capacitor アプリで Stripe Terminal の対面決済を利用するプラグイン。",
-    "headline": "Stripe Terminalで対面決済を受け付ける",
-    "overview": "リーダーの探索と接続、PaymentIntentの収集と確定、画面・状態・入力・ソフトウェア更新イベントを処理します。対応環境ではTap to Payも利用できます。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "card",
-        "title": "対面決済",
-        "description": "接続したリーダーで支払い方法を収集し、PaymentIntentを確定します。"
-      },
-      {
-        "icon": "search",
-        "title": "リーダーの探索",
-        "description": "近くのリーダーまたはシミュレーションリーダーを探索し、支払い情報を収集する前に接続します。"
-      },
-      {
-        "icon": "events",
-        "title": "リーダーイベント",
-        "description": "会計中の画面、状態、入力、ソフトウェア更新イベントを処理します。"
-      },
-      {
-        "icon": "phone",
-        "title": "Tap to Pay",
-        "description": "対応する端末と設定でTap to Payへ接続します。"
-      }
-    ],
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
       {
@@ -3903,33 +2975,7 @@ export const PROJECTS_JA = [
     "category": "capacitor-plugins",
     "icon": "ads",
     "version": "8.1.0",
-    "seoTitle": "Capacitor AdMob プラグイン ドキュメント | rdlabo",
     "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
-    "headline": "Google AdMobでCapacitorアプリを収益化する",
-    "overview": "Google Mobile Adsの初期化、プライバシー同意の管理、iOS・Androidでのネイティブ広告表示を行います。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "banner",
-        "title": "バナー広告",
-        "description": "ネイティブビューの上部または下部に、アダプティブまたは固定サイズのバナーを表示します。"
-      },
-      {
-        "icon": "expand",
-        "title": "フルスクリーン広告",
-        "description": "インタースティシャル、リワード、リワード付きインタースティシャル広告を準備して表示します。"
-      },
-      {
-        "icon": "launch",
-        "title": "アプリ起動時広告",
-        "description": "ユーザーがアプリをフォアグラウンドに戻したときに広告をロードして表示します。"
-      },
-      {
-        "icon": "shield",
-        "title": "同意管理",
-        "description": "広告のリクエスト前にGoogle UMPとiOSのトラッキング許可APIを使います。"
-      }
-    ],
     "path": "/projects/capacitor-admob",
     "pages": [
       {
@@ -4022,31 +3068,6 @@ export const PROJECTS_JA = [
     "icon": "identity",
     "version": "8.1.0",
     "description": "CapacitorアプリでFacebook LoginとApp Eventsを利用するためのプラグイン。",
-    "headline": "CapacitorアプリにFacebook認証を追加する",
-    "overview": "Android・iOSのネイティブMeta SDKまたはFacebook JavaScript SDKでユーザーを認証し、プロフィール取得とApp Eventsの記録を行います。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "shield",
-        "title": "Facebook認証",
-        "description": "ログイン、ログアウト、現在のトークン取得、データアクセスの再認証を行います。"
-      },
-      {
-        "icon": "profile",
-        "title": "プロフィール取得",
-        "description": "Facebook Graph APIから許可されたプロフィール項目を取得します。"
-      },
-      {
-        "icon": "events",
-        "title": "App Events",
-        "description": "カスタムイベントを記録し、自動イベントと広告主向け設定を構成します。"
-      },
-      {
-        "icon": "devices",
-        "title": "ネイティブとWeb",
-        "description": "Android・iOS・Webで共通のCapacitor APIを利用します。"
-      }
-    ],
     "path": "/projects/capacitor-facebook-login",
     "pages": [
       {
@@ -4096,33 +3117,7 @@ export const PROJECTS_JA = [
     "category": "capacitor-plugins",
     "icon": "app",
     "version": "2.2.0",
-    "seoTitle": "Capacitor Local LLM：iOS・Android・ChromeでAIを実行 | rdlabo",
     "description": "CapacitorのiOS・Android・対応デスクトップChromeでオンデバイステキスト生成。ネイティブの画像機能も提供します。",
-    "headline": "デバイス上でAIを実行する",
-    "overview": "ネイティブアプリと対応デスクトップChromeで共通のチャットAPIを使い、ストリーミング、キャンセル、利用可否を扱えます。画像機能はネイティブのバックエンドを利用します。Ionic Local LLMの独立管理フォークです。",
-    "featuresHeading": "オンデバイスAI機能",
-    "features": [
-      {
-        "icon": "web",
-        "title": "Chromeでテキスト生成",
-        "description": "Chrome内蔵のPrompt APIで、サーバーやAPIキーなしに生成します。開始前にモデルの利用可否を確認します。"
-      },
-      {
-        "icon": "chat",
-        "title": "チャットのライフサイクル",
-        "description": "チャット作成、応答のストリーミング、生成状態の監視、キャンセルに対応します。"
-      },
-      {
-        "icon": "check",
-        "title": "利用可否を先に確認",
-        "description": "生成前にテキストと画像それぞれの利用可否を確認します。"
-      },
-      {
-        "icon": "download",
-        "title": "明示的なAndroidフォールバック",
-        "description": "必要に応じてアプリ管理のLiteRT-LMモデルを設定します。実機検証が必要です。"
-      }
-    ],
     "path": "/projects/capacitor-local-llm",
     "pages": [
       {
@@ -4215,26 +3210,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "8.0.3",
     "description": "ネイティブモーダルでバーコード・QRコードをスキャンするCapacitorプラグイン。",
-    "headline": "QR・バーコードをネイティブモーダルで読み取る",
-    "overview": "読み取ったコードをアプリで受け取り、連続スキャンにも対応。検出エリア、ライト、読み取り時のフィードバックを設定できます。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "scan",
-        "title": "モーダルスキャン",
-        "description": "ネイティブモーダルを開きその中でスキャンするため、Webアセットの変更は不要です。"
-      },
-      {
-        "icon": "layers",
-        "title": "連続マルチスキャン",
-        "description": "isMultiモードでコードを連続スキャンできます。"
-      },
-      {
-        "icon": "flash",
-        "title": "ライトとフィードバック",
-        "description": "自動ライト制御、バイブレーション、検出エリアの視覚表示を使います。"
-      }
-    ],
     "path": "/projects/capacitor-codescanner",
     "pages": [
       {
@@ -4271,21 +3246,6 @@ export const PROJECTS_JA = [
     "icon": "app",
     "version": "8.0.0",
     "description": "ユーザーがスクリーンショットを撮ったことをCapacitorアプリへ通知するプラグイン。",
-    "headline": "ユーザーのスクリーンショットに反応する",
-    "overview": "スクリーンショット監視を開始し、CapacitorからuserDidTakeScreenshotコールバックを処理します。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "capture",
-        "title": "撮影後の案内",
-        "description": "スクリーンショットの通知を受けて、メッセージやアプリ内の表示を更新します。"
-      },
-      {
-        "icon": "eye",
-        "title": "画面に合わせて監視",
-        "description": "画面を開いたら監視を開始し、離れるときに監視とリスナーを解放します。"
-      }
-    ],
     "path": "/projects/capacitor-screenshot-event",
     "pages": [
       {
@@ -4322,26 +3282,6 @@ export const PROJECTS_JA = [
     "icon": "terminal",
     "version": "8.0.1",
     "description": "CapacitorアプリでファイルとWebView内容をネイティブ印刷するプラグイン。",
-    "headline": "Capacitorからシステム印刷UIを表示する",
-    "overview": "AndroidとiOSの印刷UIを通じて、ファイルまたは現在のWebViewを印刷します。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "file",
-        "title": "ファイル印刷",
-        "description": "AndroidとiOSでファイルパスまたはローカルURLの印刷UIを表示します。"
-      },
-      {
-        "icon": "web",
-        "title": "WebView印刷",
-        "description": "現在のWebView内容の印刷UIを表示します。"
-      },
-      {
-        "icon": "shield",
-        "title": "安全なファイルライフサイクル",
-        "description": "OSがソースを必要としなくなるまでprintFileを待ち、その後安全に削除できます。"
-      }
-    ],
     "path": "/projects/capacitor-printer",
     "pages": [
       {
@@ -4385,26 +3325,6 @@ export const PROJECTS_JA = [
     "icon": "terminal",
     "version": "8.2.1",
     "description": "iOS・Android向けのネイティブBrother Print SDKをCapacitorから利用するプラグイン。",
-    "headline": "CapacitorからBrotherラベルプリンターへ印刷する",
-    "overview": "USB・Wi-Fi・Bluetooth・BLEでBrotherプリンターを検索し、対応するQL・TDモデルへ画像を印刷します。",
-    "featuresHeading": "できること",
-    "features": [
-      {
-        "icon": "search",
-        "title": "プリンター探索",
-        "description": "ポート指定でBrotherプリンターを探索し、利用可能イベントを受け取ります。"
-      },
-      {
-        "icon": "image",
-        "title": "画像印刷",
-        "description": "モデル・ラベル・チャネル設定付きのbase64画像をprintImageへ送ります。"
-      },
-      {
-        "icon": "events",
-        "title": "印刷ライフサイクルイベント",
-        "description": "印刷成功、通信失敗、印刷エラーの結果をリスナーで受け取ります。"
-      }
-    ],
     "path": "/projects/capacitor-brotherprint",
     "pages": [
       {
@@ -4466,3 +3386,13 @@ export const PROJECTS_JA = [
     ]
   }
 ] as const;
+
+export const PROJECT_CATEGORIES_BY_LOCALE = {
+  en: PROJECT_CATEGORIES_EN,
+  ja: PROJECT_CATEGORIES_JA,
+} as const;
+
+export const PROJECTS_BY_LOCALE = {
+  en: PROJECTS_EN,
+  ja: PROJECTS_JA,
+} as const;

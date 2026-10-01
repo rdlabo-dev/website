@@ -72,3 +72,32 @@ export function normalizeTranslationCode(block: string): string {
   }
   return opening[0] + normalized + block.slice(closing.index);
 }
+
+export function extractFencedCodeBlocks(markdown: string): string[] {
+  const lines = markdown.split(/(?<=\n)/);
+  const blocks: string[] = [];
+  let current: string[] | undefined;
+  let marker = '';
+  let markerLength = 0;
+
+  for (const line of lines) {
+    if (!current) {
+      const opening = line.match(/^\s*(`{3,}|~{3,})/);
+      if (!opening) continue;
+      marker = opening[1][0];
+      markerLength = opening[1].length;
+      current = [line];
+      continue;
+    }
+
+    current.push(line);
+    const closing = line.match(/^\s*(`+|~+)\s*(?:\r?\n)?$/);
+    if (closing && closing[1][0] === marker && closing[1].length >= markerLength) {
+      blocks.push(current.join(''));
+      current = undefined;
+    }
+  }
+
+  if (current) blocks.push(current.join(''));
+  return blocks;
+}

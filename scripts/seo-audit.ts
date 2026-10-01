@@ -11,6 +11,11 @@ import {
   type JsonLdNode,
 } from '../shared/json-ld';
 import { isValidContentUpdatedAt } from './seo-dates';
+import {
+  docsLocaleFromPath,
+  PUBLISHED_DOCS_LOCALES,
+  unlocalizedDocsPath,
+} from '../shared/docs-locales';
 
 export interface SeoAuditTarget {
   name: string;
@@ -56,8 +61,7 @@ export function parseSitemap(xml: string): SitemapUrlEntry[] {
   });
 }
 
-const REQUIRED_HREFLANG = ['en', 'ja', 'x-default'] as const;
-const ALLOWED_HREFLANG = new Set<string>(REQUIRED_HREFLANG);
+const REQUIRED_HREFLANG = [...PUBLISHED_DOCS_LOCALES.map(({ code }) => code), 'x-default'];
 
 export function normalizePublicUrl(origin: string, url: string): string {
   const parsed = new URL(url, origin);
@@ -80,14 +84,19 @@ function normalizePublicUrlPathname(parsed: URL): string {
   return parsed.toString();
 }
 
-export function auditHreflangKeys(pageUrl: string, byLang: ReadonlyMap<string, string>): string[] {
+export function auditHreflangKeys(
+  pageUrl: string,
+  byLang: ReadonlyMap<string, string>,
+  required: readonly string[] = REQUIRED_HREFLANG,
+): string[] {
   const errors: string[] = [];
+  const allowed = new Set(required);
   for (const lang of byLang.keys()) {
-    if (!ALLOWED_HREFLANG.has(lang)) {
+    if (!allowed.has(lang)) {
       errors.push(`${pageUrl}: unexpected hreflang="${lang}" alternate link`);
     }
   }
-  for (const lang of REQUIRED_HREFLANG) {
+  for (const lang of required) {
     if (!byLang.has(lang)) {
       errors.push(`${pageUrl}: missing hreflang="${lang}" alternate link`);
     }
@@ -195,7 +204,6 @@ function auditBilingualHreflangMetadata(
   const errors: string[] = [];
   errors.push(...auditHreflangKeys(pageUrl, byLang));
   const english = byLang.get('en');
-  const japanese = byLang.get('ja');
   const defaultHref = byLang.get('x-default');
   if (
     english &&
@@ -205,20 +213,15 @@ function auditBilingualHreflangMetadata(
     errors.push(`${pageUrl}: x-default alternate must match the English URL`);
   }
   const pagePath = new URL(pageUrl).pathname;
-  const isJapanesePage = pagePath === '/ja' || pagePath.startsWith('/ja/');
+  const locale = docsLocaleFromPath(pagePath);
+  const current = byLang.get(locale);
   if (
-    isJapanesePage &&
-    japanese &&
-    normalizeCanonicalUrl(origin, japanese) !== normalizeCanonicalUrl(origin, pageUrl)
+    current &&
+    normalizeCanonicalUrl(origin, current) !== normalizeCanonicalUrl(origin, pageUrl)
   ) {
-    errors.push(`${pageUrl}: Japanese canonical/hreflang mismatch`);
-  }
-  if (
-    !isJapanesePage &&
-    english &&
-    normalizeCanonicalUrl(origin, english) !== normalizeCanonicalUrl(origin, pageUrl)
-  ) {
-    errors.push(`${pageUrl}: English canonical/hreflang mismatch`);
+    errors.push(
+      `${pageUrl}: ${locale === 'ja' ? 'Japanese' : locale === 'en' ? 'English' : locale} canonical/hreflang mismatch`,
+    );
   }
   return errors;
 }
@@ -315,19 +318,6 @@ export function sitemapUrlToHtmlPath(origin: string, url: string, browserRoot: s
     pathname = pathname.slice(0, -1);
   }
 
-  if (origin === 'https://docs.rdlabo.dev') {
-    if (pathname === '' || pathname === '/') {
-      return join(browserRoot, 'index.html');
-    }
-    if (pathname === '/ja') {
-      return join(browserRoot, 'ja', 'index.html');
-    }
-    if (pathname.startsWith('/ja/')) {
-      return join(browserRoot, pathname.slice(1), 'index.html');
-    }
-    return join(browserRoot, pathname.slice(1), 'index.html');
-  }
-
   if (pathname === '' || pathname === '/') {
     return join(browserRoot, 'index.html');
   }
@@ -338,9 +328,6 @@ export function htmlPathToPublicUrl(origin: string, htmlPath: string, browserRoo
   const relativePath = relative(browserRoot, htmlPath).replace(/\\/g, '/');
   if (relativePath === 'index.html') return `${origin}/`;
   const withoutIndex = relativePath.replace(/\/index\.html$/, '');
-  if (origin === 'https://docs.rdlabo.dev' && withoutIndex === 'ja') {
-    return `${origin}/ja`;
-  }
   return `${origin}/${withoutIndex}`;
 }
 
@@ -359,15 +346,13 @@ export function expectedJsonLdTypes(pageUrl: string, siteName: string): readonly
 
   if (siteName === 'docs') {
     if (path === '/') return ['WebSite'];
-    if (path === '/ja') return ['WebPage'];
-    if (path === '/support' || path === '/ja/support') return ['BreadcrumbList'];
-    if (/^\/projects\/[^/]+$/.test(path) || /^\/ja\/projects\/[^/]+$/.test(path)) {
+    const localPath = unlocalizedDocsPath(path);
+    if (localPath === '/') return ['WebPage'];
+    if (localPath === '/support') return ['BreadcrumbList'];
+    if (/^\/projects\/[^/]+$/.test(localPath)) {
       return ['BreadcrumbList'];
     }
-    if (
-      /^\/projects\/[^/]+\/docs\/.+$/.test(path) ||
-      /^\/ja\/projects\/[^/]+\/docs\/.+$/.test(path)
-    ) {
+    if (/^\/projects\/[^/]+\/docs\/.+$/.test(localPath)) {
       return ['BreadcrumbList'];
     }
     return [];
@@ -678,7 +663,7 @@ function auditWebSiteNode(pageUrl: string, origin: string, node: JsonLdNode): st
     }
   }
 
-  const expectedLanguage = new URL(pageUrl).pathname.startsWith('/ja') ? 'ja' : 'en';
+  const expectedLanguage = docsLocaleFromPath(new URL(pageUrl).pathname);
   if (node.inLanguage !== expectedLanguage) {
     errors.push(`${pageUrl}: WebSite inLanguage must be ${expectedLanguage}`);
   }
@@ -692,8 +677,9 @@ function auditWebPageNode(pageUrl: string, origin: string, node: JsonLdNode): st
   if (typeof node.url !== 'string' || normalizeCanonicalUrl(origin, node.url) !== canonical) {
     errors.push(`${pageUrl}: WebPage url must match canonical URL`);
   }
-  if (node.inLanguage !== 'ja') {
-    errors.push(`${pageUrl}: localized docs WebPage inLanguage must be ja`);
+  const expectedLanguage = docsLocaleFromPath(new URL(pageUrl).pathname);
+  if (node.inLanguage !== expectedLanguage) {
+    errors.push(`${pageUrl}: localized docs WebPage inLanguage must be ${expectedLanguage}`);
   }
   const isPartOf = node.isPartOf;
   if (
@@ -973,11 +959,12 @@ function serializeHreflangMap(map: ReadonlyMap<string, string>): string {
 export function auditHtmlHreflangReciprocity(
   hreflangByPage: ReadonlyMap<string, ReadonlyMap<string, string>>,
   sitemapLocs: ReadonlySet<string>,
+  required: readonly string[] = REQUIRED_HREFLANG,
 ): string[] {
   const errors: string[] = [];
 
   for (const [pageUrl, byLang] of hreflangByPage) {
-    errors.push(...auditHreflangKeys(pageUrl, byLang));
+    errors.push(...auditHreflangKeys(pageUrl, byLang, required));
     for (const [lang, href] of byLang) {
       if (!sitemapLocs.has(href)) {
         errors.push(
@@ -986,29 +973,20 @@ export function auditHtmlHreflangReciprocity(
       }
     }
     const english = byLang.get('en');
-    const japanese = byLang.get('ja');
     const defaultHref = byLang.get('x-default');
     if (english && defaultHref && english !== defaultHref) {
       errors.push(`${pageUrl}: x-default alternate must match the English URL`);
     }
-    if (!english || !japanese) continue;
-
-    const englishMap = hreflangByPage.get(english);
-    const japaneseMap = hreflangByPage.get(japanese);
-    if (!englishMap) {
-      errors.push(`${pageUrl}: hreflang="en" target ${english} is not a sitemap-listed page`);
-    }
-    if (!japaneseMap) {
-      errors.push(`${pageUrl}: hreflang="ja" target ${japanese} is not a sitemap-listed page`);
-    }
-    if (!englishMap || !japaneseMap) continue;
-
     const serialized = serializeHreflangMap(byLang);
-    if (serializeHreflangMap(englishMap) !== serialized) {
-      errors.push(`${pageUrl}: hreflang mapping is not reciprocal with ${english}`);
-    }
-    if (serializeHreflangMap(japaneseMap) !== serialized) {
-      errors.push(`${pageUrl}: hreflang mapping is not reciprocal with ${japanese}`);
+    for (const lang of required.filter((lang) => lang !== 'x-default')) {
+      const href = byLang.get(lang);
+      if (!href) continue;
+      const alternateMap = hreflangByPage.get(href);
+      if (!alternateMap) {
+        errors.push(`${pageUrl}: hreflang="${lang}" target ${href} is not a sitemap-listed page`);
+      } else if (serializeHreflangMap(alternateMap) !== serialized) {
+        errors.push(`${pageUrl}: hreflang mapping is not reciprocal with ${href}`);
+      }
     }
   }
 

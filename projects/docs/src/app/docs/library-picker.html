@@ -11,7 +11,7 @@
     @for (project of group.projects; track project.id) {
       <a
         [id]="'project-link-' + project.id"
-        [routerLink]="project.id === activeProjectId() ? activePath() : project.path"
+        [href]="hrefFor(project)"
         [class.is-active]="project.id === activeProjectId()"
         (click)="choose($event, project)"
       >

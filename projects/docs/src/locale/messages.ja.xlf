@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" target-language="ja" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="loadingDocumentation"><source>Loading documentation…</source><target>ドキュメントを読み込んでいます…</target></trans-unit>
+      <trans-unit id="documentationLoadError"><source>This page couldn’t be loaded. Reload the documentation to try again.</source><target>ページを読み込めませんでした。ドキュメントを再読み込みしてください。</target></trans-unit>
+      <trans-unit id="reloadDocumentation"><source>Reload documentation</source><target>ドキュメントを再読み込み</target></trans-unit>
+      <trans-unit id="dismissLoadError"><source>Dismiss message</source><target>メッセージを閉じる</target></trans-unit>
       <trans-unit id="librariesNav"><source>Libraries</source><target>ライブラリ</target></trans-unit>
       <trans-unit id="backToLibraryList"><source>Back to library list</source><target>ライブラリ一覧へ戻る</target></trans-unit>
       <trans-unit id="selectedLibrary"><source>Selected library</source><target>選択中のライブラリ</target></trans-unit>

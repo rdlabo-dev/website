@@ -20,8 +20,11 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   NavigationCancel,
+  NavigationCancellationCode,
   NavigationEnd,
   NavigationError,
+  NavigationSkipped,
+  NavigationStart,
   Router,
   RouterLink,
   RouterOutlet,
@@ -42,6 +45,20 @@ type GoogleAnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
 };
 
+interface LibrarySelection {
+  projectId: string;
+  category: string;
+  pickerOpen: boolean;
+  revision: number;
+}
+
+interface PendingNavigation {
+  id: number;
+  url: string;
+  selection: LibrarySelection | null;
+  revision: number;
+}
+
 export const INITIAL_DOCS_URL = makeStateKey<string>('rdlabo-docs-initial-url');
 
 @Component({
@@ -59,7 +76,9 @@ export class App {
   readonly #document = inject(DOCUMENT);
   readonly #injector = inject(Injector);
   readonly #transferState = inject(TransferState);
-  #pendingProjectId: string | null = null;
+  #librarySelection: LibrarySelection | null = null;
+  #navigationId = 0;
+  #menuRevision = 0;
   #pickerTrigger: HTMLElement | null = null;
   #bodyOverflow: string | null = null;
   #navigationInitialized = false;
@@ -80,6 +99,14 @@ export class App {
     }))
     .filter((group) => group.projects.length > 0);
   protected readonly libraryPickerOpen = signal(false);
+  protected readonly pendingNavigation = signal<PendingNavigation | null>(null);
+  protected readonly navigationError = signal<string | null>(null);
+  protected readonly reloadDocumentationUrl = computed(() =>
+    localizedPublicPath(this.#locale, this.navigationError() ?? this.currentUrl()),
+  );
+  protected readonly navigationUrl = computed(
+    () => this.pendingNavigation()?.url ?? this.currentUrl(),
+  );
   protected readonly navigationAnimationReady = signal(false);
   protected readonly isJapanese = this.#locale.toLowerCase().startsWith('ja');
   protected readonly canonicalHomePath = canonicalHomePath(this.#locale);
@@ -88,17 +115,14 @@ export class App {
     return path === '/' || path === '/projects';
   });
   protected readonly isSupport = computed(() => this.currentUrl().split(/[?#]/)[0] === '/support');
-  protected readonly activeProject = computed(() => {
-    const segments = this.currentUrl().split(/[?#]/)[0].split('/').filter(Boolean);
-    const slug = segments[0] === 'projects' ? segments[1] : undefined;
-    return this.projects.find((project) => project.slug === slug);
-  });
+  protected readonly activeProject = computed(() => this.#projectForUrl(this.currentUrl()));
+  protected readonly navigationProject = computed(() => this.#projectForUrl(this.navigationUrl()));
   protected readonly libraryCategory = signal(this.activeProject()?.category ?? '');
   protected readonly showingLibraries = computed(
-    () => !this.activeProject() || this.libraryPickerOpen(),
+    () => !this.navigationProject() || this.libraryPickerOpen(),
   );
   protected readonly selectedCategory = computed(() =>
-    this.showingLibraries() ? this.libraryCategory() : (this.activeProject()?.category ?? ''),
+    this.showingLibraries() ? this.libraryCategory() : (this.navigationProject()?.category ?? ''),
   );
 
   constructor() {
@@ -139,30 +163,104 @@ export class App {
       this.#destroyRef.onDestroy(() => media.removeEventListener('change', updateLayout));
     }
     this.#router.events.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe((event) => {
-      if (event instanceof NavigationCancel || event instanceof NavigationError) {
-        this.#pendingProjectId = null;
+      if (event instanceof NavigationStart) {
+        this.#navigationId = event.id;
+        const selection = this.#librarySelection;
+        this.#librarySelection = null;
+        const project = this.#projectForUrl(event.url);
+        const selectedFromPicker = selection?.projectId === project?.id ? selection : null;
+        // Keep prerendered content intact during its initial hydration navigation.
+        if (!this.#navigationInitialized && !selectedFromPicker) return;
+        if (!selectedFromPicker && this.mobileLayout()) {
+          this.closeMenu(this.#sidebarContainsFocus());
+        }
+        this.pendingNavigation.set({
+          id: event.id,
+          url: event.url,
+          selection: selectedFromPicker,
+          revision: this.#menuRevision,
+        });
+        this.navigationError.set(null);
+        this.libraryPickerOpen.set(false);
+        if (selectedFromPicker) this.#focusProjectNavigation(this.#menuRevision);
+        else this.libraryCategory.set(project?.category ?? '');
         return;
       }
-      if (!(event instanceof NavigationEnd)) return;
-      const selectedFromPicker = this.#pendingProjectId;
-      this.#pendingProjectId = null;
+      if (event instanceof NavigationSkipped) {
+        if (event.id < this.#navigationId) return;
+        this.#navigationId = event.id;
+        this.pendingNavigation.set(null);
+        this.navigationError.set(null);
+        const selection = this.#librarySelection;
+        this.#librarySelection = null;
+        if (selection?.revision === this.#menuRevision) {
+          this.libraryPickerOpen.set(false);
+          this.#focusProjectNavigation(this.#menuRevision);
+        }
+        return;
+      }
+      if (event instanceof NavigationCancel || event instanceof NavigationError) {
+        if (event.id !== this.#navigationId) return;
+        if (
+          event instanceof NavigationCancel &&
+          (event.code === NavigationCancellationCode.SupersededByNewNavigation ||
+            event.code === NavigationCancellationCode.Redirect)
+        )
+          return;
+        const pending = this.pendingNavigation();
+        this.pendingNavigation.set(null);
+        this.navigationError.set(event instanceof NavigationError ? event.url : null);
+        if (pending?.selection && pending.revision === this.#menuRevision) {
+          this.libraryPickerOpen.set(pending.selection.pickerOpen);
+          this.libraryCategory.set(pending.selection.category);
+          const projectId = pending.selection.projectId;
+          afterNextRender(
+            () => {
+              if (
+                pending.revision !== this.#menuRevision ||
+                this.navigationHidden() ||
+                !this.showingLibraries()
+              )
+                return;
+              this.#focusNavigationLink(
+                this.docsSidebar?.nativeElement.querySelector(`#project-link-${projectId}`),
+              );
+            },
+            { injector: this.#injector },
+          );
+        }
+        if (event instanceof NavigationError && this.mobileLayout()) this.closeMenu();
+        return;
+      }
+      if (!(event instanceof NavigationEnd) || event.id !== this.#navigationId) return;
+      const pending = this.pendingNavigation();
       this.currentUrl.set(event.urlAfterRedirects);
-      const activeProject = this.activeProject();
-      if (!selectedFromPicker) this.libraryCategory.set(activeProject?.category ?? '');
-      this.libraryPickerOpen.set(false);
+      this.pendingNavigation.set(null);
+      this.navigationError.set(null);
       if (!this.#navigationInitialized) {
         this.#navigationInitialized = true;
         afterNextRender(() => this.navigationAnimationReady.set(true), {
           injector: this.#injector,
         });
       }
-      if (selectedFromPicker && activeProject?.id === selectedFromPicker) {
-        this.#focusProjectNavigation();
-      } else if (this.mobileLayout()) {
-        this.closeMenu(this.#sidebarContainsFocus());
+      if (!pending || pending.revision === this.#menuRevision) {
+        this.libraryPickerOpen.set(false);
+        if (!pending?.selection) this.libraryCategory.set(this.activeProject()?.category ?? '');
+        if (
+          this.mobileLayout() &&
+          (!pending?.selection || this.activeProject()?.id !== pending.selection.projectId)
+        ) {
+          this.closeMenu(this.#sidebarContainsFocus());
+        }
       }
       this.#sendPageView(event.urlAfterRedirects);
     });
+  }
+
+  #projectForUrl(url: string): ProjectSummary | undefined {
+    const segments = url.split(/[?#]/)[0].split('/').filter(Boolean);
+    const slug = segments[0] === 'projects' ? segments[1] : undefined;
+    return this.projects.find((project) => project.slug === slug);
   }
 
   #sendPageView(path: string): void {
@@ -199,6 +297,7 @@ export class App {
       this.closeMenu();
       return;
     }
+    this.#menuRevision++;
     this.menuOpen.set(true);
     afterNextRender(
       () => {
@@ -216,21 +315,39 @@ export class App {
       }
       return;
     }
+    this.#menuRevision++;
     this.menuOpen.set(false);
     this.libraryPickerOpen.set(false);
     if (returnFocus) queueMicrotask(() => this.menuButton?.nativeElement.focus());
   }
 
   protected selectProject(project: ProjectSummary): void {
-    if (this.activeProject()?.id === project.id) {
+    this.#menuRevision++;
+    if (this.navigationProject()?.id === project.id) {
       this.libraryPickerOpen.set(false);
       this.#focusProjectNavigation();
       return;
     }
-    this.#pendingProjectId = project.id;
+    this.#librarySelection = {
+      projectId: project.id,
+      category: this.libraryCategory(),
+      pickerOpen: this.libraryPickerOpen(),
+      revision: this.#menuRevision,
+    };
+    // Selection must be recorded before the router emits NavigationStart.
+    // NavigationError restores the committed view and offers a full-page reload.
+    void this.#router.navigateByUrl(project.path).catch(() => false);
+  }
+
+  protected dismissNavigationError(): void {
+    this.navigationError.set(null);
+    if (this.mobileLayout()) this.menuButton?.nativeElement.focus({ preventScroll: true });
+    else if (this.showingLibraries()) this.#focusLibraryList();
+    else this.#focusNavigationLink(this.#currentProjectLink());
   }
 
   protected openLibraryPicker(category = '', event?: MouseEvent): void {
+    this.#menuRevision++;
     this.#pickerTrigger = event?.currentTarget instanceof HTMLElement ? event.currentTarget : null;
     this.libraryCategory.set(category);
     this.libraryPickerOpen.set(true);
@@ -238,6 +355,7 @@ export class App {
   }
 
   protected closeLibraryPicker(): void {
+    this.#menuRevision++;
     this.libraryPickerOpen.set(false);
     afterNextRender(
       () => {
@@ -248,10 +366,15 @@ export class App {
     );
   }
 
-  #focusProjectNavigation(): void {
-    afterNextRender(() => this.#focusNavigationLink(this.#currentProjectLink()), {
-      injector: this.#injector,
-    });
+  #focusProjectNavigation(revision = this.#menuRevision): void {
+    afterNextRender(
+      () => {
+        if (revision !== this.#menuRevision || this.navigationHidden() || this.showingLibraries())
+          return;
+        this.#focusNavigationLink(this.#currentProjectLink());
+      },
+      { injector: this.#injector },
+    );
   }
 
   #currentProjectLink(): HTMLAnchorElement | null | undefined {
@@ -265,7 +388,7 @@ export class App {
 
   #focusLibraryList(): void {
     const sidebar = this.docsSidebar?.nativeElement;
-    const currentProject = this.activeProject();
+    const currentProject = this.navigationProject();
     const selected = currentProject
       ? sidebar?.querySelector<HTMLAnchorElement>(`#project-link-${currentProject.id}`)
       : null;
@@ -315,7 +438,7 @@ export class App {
   @HostListener('document:keydown.escape')
   protected closeMenuOnEscape(): void {
     if (this.#document.querySelector('dialog[open]')) return;
-    if (this.activeProject() && this.libraryPickerOpen()) this.closeLibraryPicker();
+    if (this.navigationProject() && this.libraryPickerOpen()) this.closeLibraryPicker();
     else if (this.mobileLayout()) this.closeMenu();
   }
 
@@ -350,7 +473,7 @@ export class App {
   }
 
   protected alternateLocaleUrl(): string {
-    const url = this.currentUrl().split(/[?#]/)[0] || '/';
+    const url = this.navigationUrl().split(/[?#]/)[0] || '/';
     return this.isJapanese ? url : localizedPublicPath('ja', url);
   }
 

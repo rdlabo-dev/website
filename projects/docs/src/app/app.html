@@ -52,7 +52,7 @@
       i18n="@@docsHomeNav"
       >docs</a
     >
-    @if (activeProject(); as project) {
+    @if (navigationProject(); as project) {
       <span
         class="docs-active-project hidden min-w-0 truncate border-l border-[#e5d9d3] pl-4 text-sm text-[#796e68] md:block"
         >{{ project.shortName }}</span
@@ -77,8 +77,8 @@
     <a
       class="external-link hidden items-center border-l border-[#eadfd9] px-4 text-sm font-medium text-[#292320] no-underline hover:bg-[#fff7f2] sm:flex sm:px-6"
       [href]="
-        activeProject()?.repositoryBrowseUrl ??
-        activeProject()?.repositoryUrl ??
+        navigationProject()?.repositoryBrowseUrl ??
+        navigationProject()?.repositoryUrl ??
         'https://github.com/rdlabo-dev'
       "
       target="_blank"
@@ -221,8 +221,8 @@
             <app-library-picker
               [groups]="projectGroups"
               [category]="libraryCategory()"
-              [activeProjectId]="activeProject()?.id"
-              [activePath]="currentUrl()"
+              [activeProjectId]="navigationProject()?.id"
+              [activePath]="navigationUrl()"
               (selected)="selectProject($event)"
             />
           </div>
@@ -231,7 +231,7 @@
             [attr.inert]="showingLibraries() ? '' : null"
             [attr.aria-hidden]="showingLibraries() ? 'true' : null"
           >
-            @if (activeProject(); as project) {
+            @if (navigationProject(); as project) {
               <app-project-navigation
                 [project]="project"
                 [categoryLabel]="categoryTitle(project.category)"
@@ -243,7 +243,48 @@
       </div>
     </div>
   </aside>
-  <main id="main-content" class="min-w-0" tabindex="-1" data-pagefind-body><router-outlet /></main>
+  @if (pendingNavigation()) {
+    <div class="docs-loading" role="status">
+      @if (navigationProject(); as project) {
+        <strong>{{ project.shortName }}</strong>
+      }
+      <span i18n="@@loadingDocumentation">Loading documentation…</span>
+    </div>
+  }
+  @if (navigationError()) {
+    <div class="docs-load-error" role="alert">
+      <button
+        type="button"
+        class="docs-load-error-dismiss"
+        aria-label="Dismiss message"
+        i18n-aria-label="@@dismissLoadError"
+        (click)="dismissNavigationError()"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="m4 4 8 8M12 4l-8 8" stroke="currentColor" stroke-linecap="round" />
+        </svg>
+      </button>
+      <p i18n="@@documentationLoadError">
+        This page couldn’t be loaded. Reload the documentation to try again.
+      </p>
+      <a [href]="reloadDocumentationUrl()" i18n="@@reloadDocumentation">Reload documentation</a>
+    </div>
+  }
+  <main
+    id="main-content"
+    class="min-w-0"
+    tabindex="-1"
+    data-pagefind-body
+    [attr.aria-busy]="pendingNavigation() ? 'true' : null"
+  >
+    <div
+      [class.docs-route-pending]="!!pendingNavigation()"
+      [attr.inert]="pendingNavigation() ? '' : null"
+      [attr.aria-hidden]="pendingNavigation() ? 'true' : null"
+    >
+      <router-outlet />
+    </div>
+  </main>
 </div>
 
 <pagefind-modal />

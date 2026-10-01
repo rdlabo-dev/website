@@ -7,6 +7,16 @@ import { projectsForLocale } from './docs/docs-data';
 @Component({ standalone: true, template: '' })
 class StubPage {}
 
+function deferred() {
+  let resolve!: (value: boolean) => void;
+  let reject!: (error: Error) => void;
+  const promise = new Promise<boolean>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { promise, resolve, reject };
+}
+
 type GoogleAnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
 };
@@ -249,6 +259,202 @@ describe('App', () => {
     );
   });
 
+  it('opens a library menu while its body resolver is still loading', async () => {
+    const hold = deferred();
+    const resolver = vi.fn(() => hold.promise);
+    const router = TestBed.inject(Router);
+    router.resetConfig(
+      router.config.map((route) =>
+        route.path === 'projects/capacitor-stripe'
+          ? { ...route, resolve: { body: resolver } }
+          : route,
+      ),
+    );
+    const fixture = TestBed.createComponent(App);
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    compiled.querySelector<HTMLAnchorElement>('#project-link-stripe')!.click();
+    await vi.waitFor(() => expect(resolver).toHaveBeenCalledOnce());
+    fixture.detectChanges();
+    expect(router.url).toBe('/');
+    expect(compiled.querySelector('app-project-navigation')?.textContent).toContain('PaymentSheet');
+    expect(compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail')).toBe(
+      true,
+    );
+    expect(compiled.querySelector('#main-content')?.getAttribute('aria-busy')).toBe('true');
+    expect(compiled.querySelector('.docs-route-pending')?.hasAttribute('inert')).toBe(true);
+    expect(compiled.querySelector('.docs-loading')?.textContent).toContain('Stripe');
+    expect(document.activeElement).toBe(compiled.querySelector('.project-navigation-pages a'));
+
+    compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
+    fixture.detectChanges();
+    expect(compiled.querySelector('#project-link-stripe')?.getAttribute('href')).toBe(
+      '/projects/capacitor-stripe',
+    );
+    const selected = compiled.querySelector('#project-link-stripe')!;
+    expect(selected.querySelectorAll('.library-selected')).toHaveLength(1);
+    expect(selected.querySelector('.library-next')).toBeNull();
+    hold.resolve(true);
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(router.url).toBe('/projects/capacitor-stripe');
+    expect(compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail')).toBe(
+      false,
+    );
+    expect(document.activeElement).toBe(selected);
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
+    expect(compiled.querySelector('#main-content')?.hasAttribute('aria-busy')).toBe(false);
+  });
+
+  it('keeps the newest library menu when a slower library navigation is superseded', async () => {
+    const stripe = deferred();
+    const admob = deferred();
+    const stripeResolver = vi.fn(() => stripe.promise);
+    const admobResolver = vi.fn(() => admob.promise);
+    const router = TestBed.inject(Router);
+    router.resetConfig(
+      router.config.map((route) => {
+        const resolver =
+          route.path === 'projects/capacitor-stripe'
+            ? stripeResolver
+            : route.path === 'projects/capacitor-admob'
+              ? admobResolver
+              : undefined;
+        return resolver ? { ...route, resolve: { body: resolver } } : route;
+      }),
+    );
+    const fixture = TestBed.createComponent(App);
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    compiled.querySelector<HTMLAnchorElement>('#project-link-stripe')!.click();
+    await vi.waitFor(() => expect(stripeResolver).toHaveBeenCalledOnce());
+    fixture.detectChanges();
+    compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
+    fixture.detectChanges();
+    compiled.querySelector<HTMLAnchorElement>('#project-link-admob')!.click();
+    await vi.waitFor(() => expect(admobResolver).toHaveBeenCalledOnce());
+    fixture.detectChanges();
+    stripe.resolve(true);
+    await stripe.promise;
+    fixture.detectChanges();
+    expect(compiled.querySelector('app-project-navigation')?.textContent).toContain('Banner Ads');
+    expect(compiled.querySelector('app-project-navigation')?.textContent).not.toContain(
+      'PaymentSheet',
+    );
+    expect(compiled.querySelector('.docs-loading')?.textContent).toContain('AdMob');
+    admob.resolve(true);
+    await fixture.whenStable();
+    expect(router.url).toBe('/projects/capacitor-admob');
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
+  });
+
+  it('lets a mobile user choose a document before the library body has loaded', async () => {
+    mockMatchMedia(true);
+    const hold = deferred();
+    const resolver = vi.fn(() => hold.promise);
+    const router = TestBed.inject(Router);
+    router.resetConfig(
+      router.config.map((route) =>
+        route.path?.startsWith('projects/capacitor-stripe')
+          ? { ...route, resolve: { body: resolver } }
+          : route,
+      ),
+    );
+    const fixture = TestBed.createComponent(App);
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const toggle = compiled.querySelector<HTMLButtonElement>(
+      'button[aria-controls="docs-sidebar"]',
+    )!;
+    toggle.click();
+    fixture.detectChanges();
+    compiled.querySelector<HTMLAnchorElement>('#project-link-stripe')!.click();
+    await vi.waitFor(() => expect(resolver).toHaveBeenCalledOnce());
+    fixture.detectChanges();
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    compiled
+      .querySelector<HTMLAnchorElement>(
+        '.project-navigation-pages a[href="/projects/capacitor-stripe/docs/configuration"]',
+      )!
+      .click();
+    await vi.waitFor(() => expect(resolver).toHaveBeenCalledTimes(2));
+    fixture.detectChanges();
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(compiled.querySelector('.docs-loading')).not.toBeNull();
+    hold.resolve(true);
+    await fixture.whenStable();
+    expect(router.url).toBe('/projects/capacitor-stripe/docs/configuration');
+    expect(document.activeElement).toBe(toggle);
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
+  });
+
+  it.each([false, true])(
+    'restores the committed view after a failed load (mobile=%s)',
+    async (mobile) => {
+      mockMatchMedia(mobile);
+      const hold = deferred();
+      const resolver = vi.fn(() => hold.promise);
+      const router = TestBed.inject(Router);
+      router.resetConfig(
+        router.config.map((route) =>
+          route.path === 'projects/capacitor-admob'
+            ? { ...route, resolve: { body: resolver } }
+            : route,
+        ),
+      );
+      const fixture = TestBed.createComponent(App);
+      await router.navigateByUrl('/projects/capacitor-stripe/docs/configuration');
+      fixture.detectChanges();
+      const compiled = fixture.nativeElement as HTMLElement;
+      const toggle = compiled.querySelector<HTMLButtonElement>(
+        'button[aria-controls="docs-sidebar"]',
+      )!;
+      if (mobile) {
+        toggle.click();
+        fixture.detectChanges();
+      }
+      compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
+      fixture.detectChanges();
+      compiled.querySelector<HTMLAnchorElement>('#project-link-admob')!.click();
+      await vi.waitFor(() => expect(resolver).toHaveBeenCalledOnce());
+      fixture.detectChanges();
+      expect(compiled.querySelector('app-project-navigation')?.textContent).toContain('Banner Ads');
+      hold.reject(new Error('chunk unavailable'));
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(router.url).toBe('/projects/capacitor-stripe/docs/configuration');
+      expect(compiled.querySelector('app-project-navigation')?.textContent).toContain(
+        'PaymentSheet',
+      );
+      expect(
+        compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail'),
+      ).toBe(mobile);
+      expect(compiled.querySelector('.docs-loading')).toBeNull();
+      expect(compiled.querySelector('.docs-route-pending')).toBeNull();
+      expect(compiled.querySelector('[role="alert"]')?.textContent).toContain(
+        'Reload the documentation',
+      );
+      expect(compiled.querySelector('[role="alert"] a')?.getAttribute('href')).toBe(
+        '/projects/capacitor-admob',
+      );
+      expect(document.activeElement).toBe(
+        mobile ? toggle : compiled.querySelector('#project-link-admob'),
+      );
+      expect(compiled.querySelector('[role="alert"]')?.closest('main')).toBeNull();
+      compiled.querySelector<HTMLButtonElement>('.docs-load-error-dismiss')!.click();
+      fixture.detectChanges();
+      expect(compiled.querySelector('[role="alert"]')).toBeNull();
+      expect(document.activeElement).toBe(
+        mobile ? toggle : compiled.querySelector('#project-link-stripe'),
+      );
+    },
+  );
+
   it('uses the primary category rail to show libraries without a filter field', async () => {
     const fixture = TestBed.createComponent(App);
     await TestBed.inject(Router).navigateByUrl('/');
@@ -304,10 +510,20 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
     fixture.detectChanges();
-    compiled
-      .querySelector<HTMLAnchorElement>('#project-link-admob')!
-      .dispatchEvent(new MouseEvent('click', { bubbles: true, ctrlKey: true }));
+    const link = compiled.querySelector<HTMLAnchorElement>('#project-link-admob')!;
+    let nativeClick = false;
+    link.addEventListener(
+      'click',
+      (event) => {
+        nativeClick = !event.defaultPrevented;
+        // jsdom cannot open another document; inspect the native event before cancelling it.
+        event.preventDefault();
+      },
+      { once: true },
+    );
+    link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
     await fixture.whenStable();
+    expect(nativeClick).toBe(true);
     expect(router.url).toBe('/projects/capacitor-stripe/docs/configuration');
     expect(compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail')).toBe(
       false,

@@ -4,7 +4,7 @@ title: 移行
 
 ## 22.0から22.1へ
 
-22.1では推奨presetに `require-ion-error-text` が追加されました。既定では `[formField]` を指定した、`errorText` 対応の6種類のIonicコントロールを検査します。空でない静的な `errorText` または `[errorText]` が必要です。
+22.1では推奨presetに `require-ion-error-text` が追加されました。既定では `[formField]` でAngular Signal Formsと連携する、`errorText` 対応の6種類のIonicコントロールを検査します。空でない静的な `errorText` または `[errorText]` が必要です。
 
 `@rdlabo/ionic-angular-kit/forms` の `KitIonicFormField` を利用する場合、対象のstandalone componentすべてにAngularの `FormField` とkitアダプターをimportしたうえで、次を有効にできます。アプリの `provideKitIonicSignalForms()` 登録も必要です。
 

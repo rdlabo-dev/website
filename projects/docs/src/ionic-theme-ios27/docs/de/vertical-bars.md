@@ -1,16 +1,17 @@
 ---
-title: "Vertikale Leisten (Vorschau)"
+title: "Vertical Bars (Vorschau)"
+headingAliases: { 'vertikale-leisten-aktivieren': 'vertical-bars-aktivieren' }
 sourceRevision: "0daed02571bc73ffce840b233aa934d67360c82d05c9fbe30550b1461854d732"
 ---
-# Vertikale Leisten (Vorschau)
+# Vertical Bars (Vorschau)
 
-Vertikale Leisten verschieben geeignete Ionic-Navigation und Aktionen in eine Seitenleiste. Die ursprünglichen Komponenten bleiben die Quelle für Beschriftungen, Symbole und Verhalten. Dies funktioniert mit diesem Theme oder einem vorhandenen Ionic-Theme, unabhängig von der Scharnierstellung und der vollständigen Native UI Shell.
+Die Funktion Vertical Bars verschiebt geeignete Ionic-Navigation und Aktionen in eine Seitenleiste. Die ursprünglichen Komponenten bleiben die Quelle für Beschriftungen, Symbole und Verhalten. Dies funktioniert mit diesem Theme oder einem vorhandenen Ionic-Theme, unabhängig von der Scharnierstellung und der vollständigen Native UI Shell.
 
 Verwenden Sie diese Seite für Layout, Eignung der Bedienelemente, Aussehen nativer Schaltflächen und Laufzeit-API. Geräteereignisse und geteilte Ansichten beschreibt [iPhone-Duo-Unterstützung](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo). Für eine schrittweise Browser-Vorschau und native Einrichtung beginnen Sie mit [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
 
 In `1.2.0` als **Vorschaufunktion** verfügbar. APIs und unterstütztes Verhalten können sich ändern.
 
-## Vertikale Leisten aktivieren
+## Vertical Bars aktivieren
 
 Laden Sie das ausdrücklich aktivierbare Stylesheet:
 
@@ -26,7 +27,7 @@ import { enableVerticalControlArea } from '@rdlabo/ionic-theme-ios27/vertical-ba
 const rail = await enableVerticalControlArea();
 ```
 
-Fügen Sie für die Browsersimulation die folgende Layoutklasse hinzu oder [wenden Sie die Geräteplatzierung an](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo#project-controls-into-the-rail) für ein iPhone Duo. Die Anwendung verwaltet Platzierung und Bereinigung. Rufen Sie beim Beenden der zuständigen Instanz `await rail.destroy()` auf. Wenn Sie bereits `enableNativeUIShell()` verwenden, behalten Sie diese Laufzeit bei; vertikale Leisten sind darin enthalten. Starten Sie nicht beide.
+Fügen Sie für die Browsersimulation die folgende Layoutklasse hinzu oder [wenden Sie die Geräteplatzierung an](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo#project-controls-into-the-rail) für ein iPhone Duo. Die Anwendung verwaltet Platzierung und Bereinigung. Rufen Sie beim Beenden der zuständigen Instanz `await rail.destroy()` auf. Wenn Sie bereits `enableNativeUIShell()` verwenden, behalten Sie diese Laufzeit bei; Vertical Bars ist darin enthalten. Starten Sie nicht beide.
 
 Der Einstiegspunkt `/vertical-bars` benötigt `@capacitor/core`, auch in Browser-Builds. Reine CSS-Nutzung benötigt keine Laufzeit. Folgen Sie für die native Einrichtung und Navigationsübergänge der [Anleitung für bestehende Themes](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
 
@@ -48,7 +49,7 @@ Dadurch bleiben Router und Komponentenhintergründe über den gesamten Viewport 
 
 `ion-modal` wendet dieselbe Vordergrundkorrektur an, wenn sein sichtbarer Dialog die gesamte Viewport-Breite einnimmt. Bei aktivierter Laufzeit des vertikalen Steuerbereichs projiziert außerdem das oberste Modal über die volle Breite geeignete Werkzeugleisten-Schaltflächen in seine eigene Leiste. Zentrierte Dialoge behalten ihre Werkzeugleisten-Schaltflächen und erhalten keinen Seitenleisten-Innenabstand. Dies umfasst Sheet-Modals über die volle Breite: Ihre Leiste folgt den sichtbaren Sheet-Grenzen bei Breakpoint-Änderungen. Die Eignung richtet sich nach der sichtbaren Dialogbreite, nicht nach der Scharnierstellung oder dem Modal-Typ. `ion-menu` und `ion-popover` werden als separate Flächen behandelt. Ihre internen Vordergrundkomponenten erhalten keine Umrechnung der Hauptseite und behalten die normale Safe-Area-Behandlung von Ionic. Ein neben der Systemoberfläche angezeigtes Menü behält den vollflächigen Animations-Host von Ionic und verschiebt nur seinen sichtbaren Container um den entsprechenden Innenabstand. Ein Menü von der Gegenseite bleibt unverändert. Links und rechts bleiben in RTL physische Koordinaten; die Ionic-Werte `side="start"` und `side="end"` bleiben logisch.
 
-Der Modus ist unabhängig vom Komponentenmodus. Eine Anwendung kann unter iOS den Ionic-Modus `mode: 'md'` beibehalten und trotzdem vertikale Leisten aktivieren. Keine Komponente benötigt `mode="ios"`.
+Der Modus ist unabhängig vom Komponentenmodus. Eine Anwendung kann unter iOS den Ionic-Modus `mode: 'md'` beibehalten und trotzdem Vertical Bars aktivieren. Keine Komponente benötigt `mode="ios"`.
 
 ## Native Darstellung
 

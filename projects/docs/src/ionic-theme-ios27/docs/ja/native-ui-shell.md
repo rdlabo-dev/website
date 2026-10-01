@@ -96,7 +96,7 @@ privateなclass名や固定のinset補正を使わず、ネイティブタブを
 
 既存の `attachTabBarSearchable(tabBar, fabButton, footer)` 登録は、下部タブバーとglass検索部品が対応していれば自動的にネイティブ検索を使います。追加の設定・route・ネイティブ初期化・ページlistenerは不要です。通常タブは `UITabBar`、水平配置の検索グループは永続的な `UITabBarController`、`UITab` / `UISearchTab`、`UISearchController` を使います。元のCapacitor WebViewが結果とナビゲーションを担当します。
 
-vertical barsでは、ネイティブの操作領域にすべてのタブと選択状態を維持します。SwiftUIの `searchable` と `searchToolbarBehavior(.minimize)` が、同じネイティブのナビゲーション内で検索ボタン、入力欄、閉じる操作、トランジションを提供します。現在の端末レイアウトに応じてAppleが配置を決め、システム検索を開くとネイティブの入力欄にフォーカスします。入力、フォーカス、clear、submitのイベントには水平配置の検索と同じbridgeを使います。縦型バーを有効にすると、Web描画は登録済みの検索ボタンを表示中の縦型タブの上へ、タブが非表示なら操作領域の下へ置き、操作を元のFABへ渡します。ネイティブ検索が利用可能になると、このWeb描画を置き換えます。Webの検索表示でも縦型タブを維持します。
+Vertical Barsでは、ネイティブの操作領域にすべてのタブと選択状態を維持します。SwiftUIの `searchable` と `searchToolbarBehavior(.minimize)` が、同じネイティブのナビゲーション内で検索ボタン、入力欄、閉じる操作、トランジションを提供します。現在の端末レイアウトに応じてAppleが配置を決め、システム検索を開くとネイティブの入力欄にフォーカスします。入力、フォーカス、clear、submitのイベントには水平配置の検索と同じbridgeを使います。Vertical Barsを有効にすると、Web描画は登録済みの検索ボタンを表示中の縦型タブの上へ、タブが非表示なら操作領域の下へ置き、操作を元のFABへ渡します。ネイティブ検索が利用可能になると、このWeb描画を置き換えます。Webの検索表示でも縦型タブを維持します。
 
 登録しても配置制限は変わりません。検索バーと閉じるボタンは固定footer toolbarへ置きます。トリガーは `ion-content` 直下の `ion-fab[slot="fixed"]`、または既存の非スクロール `.ion-page` 直下の配置が必要です。スクロール内容内のwrapperはfixed slotではありません。
 
@@ -177,11 +177,11 @@ try {
 
 ## iPhone Duo対応（プレビュー）
 
-Native UI Shellを使わない独立した縦型バーも含め、iPhone Duo対応は `1.2.0` でNative UI Shellとともに利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
+Native UI Shellを使わない独立したVertical Barsも含め、iPhone Duo対応は `1.2.0` でNative UI Shellとともに利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
 
 独立したVertical Control Areaのentry point（`@rdlabo/ionic-theme-ios27/vertical-bars`）と `dist/css/vertical-bars.css` は、iOS 27テーマを読み込まずに動作します。この用途では `enableVerticalControlArea()` を呼び、縦の領域に置いた部品だけを描画します。既に `enableNativeUIShell()` を使うアプリは、両方を起動せず既存のruntimeを維持してください。ヒンジの状態やshellを使わないアプリのsplit pane配置を含む詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
 
-Vertical Barsはシステム操作領域でSwiftUIの `TabView` とtoolbarを使います。ラベル、アイコン、選択・無効状態、操作は引き続きIonicが管理します。配置、ネイティブ描画のフォールバック、対応するoverlayは[縦型バー](/docs/vertical-bars)を参照してください。
+Vertical Barsはシステム操作領域でSwiftUIの `TabView` とtoolbarを使います。ラベル、アイコン、選択・無効状態、操作は引き続きIonicが管理します。配置、ネイティブ描画のフォールバック、対応するoverlayは[Vertical Bars](/docs/vertical-bars)を参照してください。
 
 Vertical Barsでは、固定toolbarの `ion-button` 内の `ion-icon` またはSVGに `slot="icon-only"` を指定します。すべてのfillとIonicの色が対象で、送信ボタンにも同じ規則を適用します。水平に残すにはボタンか `ion-buttons` グループに `.ios-theme-horizontal-only` を追加します。配置と除外規則は[Toolbarの操作部品](/docs/vertical-bars#toolbarの操作部品)を参照してください。
 

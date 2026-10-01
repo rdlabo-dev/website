@@ -49,11 +49,11 @@ Diese Klassen verschieben kein separates `ion-fab`. Planen Sie bei der Wahl der 
 
 ## iPhone Duo unterstützen (Vorschau)
 
-Die iPhone-Duo-Unterstützung einschließlich eigenständiger vertikaler Leisten ist in `1.2.0` neben der Native UI Shell als **Vorschau** verfügbar. Ihre APIs und das unterstützte Verhalten können sich ändern.
+Die iPhone-Duo-Unterstützung einschließlich der eigenständigen Funktion Vertical Bars ist in `1.2.0` neben der Native UI Shell als **Vorschau** verfügbar. Ihre APIs und das unterstützte Verhalten können sich ändern.
 
 Die iPhone-Duo-Unterstützung — vertikale Systemleiste, Scharnierstellung und die davon gesteuerte geteilte Ansicht — ist unabhängig vom iOS-27-Theme und der vollständigen Native UI Shell. Die gesamte Einrichtung einschließlich der Überwachung des Gerätelayouts ohne Projektionslaufzeit finden Sie unter [iPhone-Duo-Unterstützung](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo).
 
-Informationen zu Layoutklassen der Leiste, unterstützten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertikale Leisten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars).
+Informationen zu Layoutklassen der Leiste, unterstützten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars).
 
 Die eigenständige Einrichtung unter Beibehaltung Ihres vorhandenen Themes beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
 

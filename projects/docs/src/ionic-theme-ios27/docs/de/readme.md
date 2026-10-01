@@ -138,7 +138,7 @@ npx cap sync
 
 Wenden Sie den Faltzustand mit `applyFoldStateClasses(root, fold)` und die Leistenposition mit `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` an. Die Geräteüberwachung ist nicht im Theme enthalten.
 
-Die Browser-Vorschau und iOS-Konfiguration beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme). Informationen zur Übertragung von Bedienelementen und zur Laufzeit-API finden Sie unter [Vertikale Leisten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Geräteereignisse und geteilte Ansichten behandelt [iPhone-Duo-Unterstützung](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo). Ab `1.2.0` als Vorschaufunktion verfügbar; APIs und unterstütztes Verhalten können sich ändern.
+Die Browser-Vorschau und iOS-Konfiguration beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme). Informationen zur Übertragung von Bedienelementen und zur Laufzeit-API finden Sie unter [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Geräteereignisse und geteilte Ansichten behandelt [iPhone-Duo-Unterstützung](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo). Ab `1.2.0` als Vorschaufunktion verfügbar; APIs und unterstütztes Verhalten können sich ändern.
 
 ### Nur das iOS-27-Theme verwenden
 
@@ -226,7 +226,7 @@ Importieren Sie für Ionic 9 Angular `isPlatform` und `provideIonicAngular` aus 
 - [ESLint](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint) — die Listenstruktur mit ESLint-Regeln prüfen.
 - [Funktionen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/features) — CSS-Variablen, Liquid Glass, selektive Imports und dunkler Modus.
 - [Native UI Shell (Vorschau)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell) — unterstützte Ionic-Bedienelemente, Texte und Symbole in UIKit darstellen.
-- [Vertikale Leisten (Vorschau)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) — Seitenleistenlayout, unterstützte Bedienelemente, Aussehen nativer Schaltflächen und Laufzeit-API.
+- [Vertical Bars (Vorschau)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) — Seitenleistenlayout, unterstützte Bedienelemente, Aussehen nativer Schaltflächen und Laufzeit-API.
 - [iPhone-Duo-Unterstützung (Vorschau)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo) — vertikale Systemleiste, Scharnierstellung und geteilte Ansichten; auch ohne Theme oder Shell nutzbar.
 - [iPhone Duo mit Ihrem bestehenden Theme (Vorschau)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) — eigenständige Einrichtung unter Beibehaltung des vorhandenen Web-Themes.
 - [Animation](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/animation) — Effekte für Tabs, Segmente und Suche.

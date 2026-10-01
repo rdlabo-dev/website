@@ -656,7 +656,7 @@ export const METADATA_DE: Readonly<Record<string, string>> = {
   'Vanilla JS': 'Vanilla JS',
   'Variable item heights': 'Variable Elementhöhen',
   'Variable-height virtual scrolling': 'Virtuelles Scrollen mit variabler Höhe',
-  'Vertical Bars (preview)': 'Vertikale Leisten (Vorschau)',
+  'Vertical Bars (preview)': 'Vertical Bars (Vorschau)',
   'Viewer modal': 'Betrachter-Dialog',
   'Virtual Scroll': 'Virtuelles Scrollen',
   'Watch while a screen is open': 'Überwachen, solange ein Bildschirm geöffnet ist',

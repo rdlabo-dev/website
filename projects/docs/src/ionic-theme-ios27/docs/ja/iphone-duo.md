@@ -4,7 +4,7 @@ title: iPhone Duo対応（プレビュー）
 
 IonicアプリをiPhone Duoへ対応させます。縦のシステム操作領域へナビゲーションと操作部品を置き、端末の開閉に合わせてsplit paneを調整できます。ラベル、アイコン、ルーティング、click handlerは既存のIonicマークアップが管理します。
 
-**初めて使う場合は** [既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)から、Chromeで側面のレイアウトを試してください。このページは端末イベント、配置、split paneを説明します。操作部品の描画とruntime APIは[縦型バー](/docs/vertical-bars)を参照してください。
+**初めて使う場合は** [既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)から、Chromeで側面のレイアウトを試してください。このページは端末イベント、配置、split paneを説明します。操作部品の描画とruntime APIは[Vertical Bars](/docs/vertical-bars)を参照してください。
 
 [Native UI Shell](/docs/native-ui-shell)とともに `1.2.0` で利用できる **プレビュー機能** です。安定版になるまでAPIと対応する動作は変更される可能性があります。安定版への移行はXcode 27.1の正式リリース後を予定しています。実際のシステム操作領域とヒンジ情報には、iOS 27.1以降とXcode 27.1以降でビルドしたアプリが必要です。
 
@@ -107,11 +107,11 @@ await rail.destroy();
 
 ### Toolbarの操作部品
 
-対応するマークアップ、配置、ボタンの外観、個別の上書きは[縦型バー: Toolbarの操作部品](/docs/vertical-bars#toolbarの操作部品)を参照してください。
+対応するマークアップ、配置、ボタンの外観、個別の上書きは[Vertical Bars: Toolbarの操作部品](/docs/vertical-bars#toolbarの操作部品)を参照してください。
 
 ### タブバー
 
-ナビゲーション、ラベル、Webへのフォールバックは[縦型バー: タブバー](/docs/vertical-bars#タブバー)を参照してください。
+ナビゲーション、ラベル、Webへのフォールバックは[Vertical Bars: タブバー](/docs/vertical-bars#タブバー)を参照してください。
 
 ## Split paneを開閉状態に合わせる
 
@@ -145,4 +145,4 @@ ion-split-pane.split-pane-fold-layout {
 
 ## Vertical Control Area API
 
-runtimeのhandleのリファレンスは[縦型バー](/docs/vertical-bars#vertical-control-area-api)を参照してください。
+runtimeのhandleのリファレンスは[Vertical Bars](/docs/vertical-bars#vertical-control-area-api)を参照してください。

@@ -1975,8 +1975,8 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
       },
       {
-        "title": "縦型バー（プレビュー）",
-        "navTitle": "縦型バー（プレビュー）",
+        "title": "Vertical Bars（プレビュー）",
+        "navTitle": "Vertical Bars（プレビュー）",
         "slug": "vertical-bars",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
@@ -2774,8 +2774,8 @@ export const PROJECTS_JA = [
         "path": "/projects/capacitor-stripe-identity/docs/configuration"
       },
       {
-        "title": "本人確認シート",
-        "navTitle": "本人確認シート",
+        "title": "Identity Verification Sheet",
+        "navTitle": "Identity Verification Sheet",
         "slug": "identity-verification-sheet",
         "section": "ガイド",
         "path": "/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
@@ -3602,8 +3602,8 @@ export const PROJECTS_FR = [
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
       },
       {
-        "title": "Barres verticales (préversion)",
-        "navTitle": "Barres verticales (préversion)",
+        "title": "Vertical Bars (préversion)",
+        "navTitle": "Vertical Bars (préversion)",
         "slug": "vertical-bars",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
@@ -4401,8 +4401,8 @@ export const PROJECTS_FR = [
         "path": "/projects/capacitor-stripe-identity/docs/configuration"
       },
       {
-        "title": "Feuille de vérification d’identité",
-        "navTitle": "Feuille de vérification d’identité",
+        "title": "Identity Verification Sheet",
+        "navTitle": "Identity Verification Sheet",
         "slug": "identity-verification-sheet",
         "section": "Guide",
         "path": "/projects/capacitor-stripe-identity/docs/identity-verification-sheet"
@@ -5229,8 +5229,8 @@ export const PROJECTS_DE = [
         "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
       },
       {
-        "title": "Vertikale Leisten (Vorschau)",
-        "navTitle": "Vertikale Leisten (Vorschau)",
+        "title": "Vertical Bars (Vorschau)",
+        "navTitle": "Vertical Bars (Vorschau)",
         "slug": "vertical-bars",
         "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/vertical-bars"

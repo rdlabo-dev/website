@@ -35,7 +35,7 @@ ext {
 
 Gemini NanoはGoogle Play Services経由で配布され、使用前にデバイスへダウンロードする必要があります。アプリには同梱されません。
 
-Gemini Nanoが使えない場合は[Androidフォールバックモデル](/docs/android-fallback)を明示設定できます。
+Gemini Nanoが使えない場合は、LiteRT-LMによるフォールバックを明示的に設定できます。[Androidフォールバックモデル](/docs/android-fallback)を参照してください。
 
 ### 利用可否とダウンロード
 

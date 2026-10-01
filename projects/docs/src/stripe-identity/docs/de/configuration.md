@@ -42,7 +42,7 @@ Verwenden Sie in `android/app/src/main/res/values/styles.xml` ein Material-Compo
 
 Jedes übergeordnete Material-Components-Theme ist zulässig. Siehe [Material-Components-Theming](https://m2.material.io/develop/android/theming/dark/) und die [Stripe-Anleitung für Android-Material-Themes](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme).
 
-Die Android-Implementierung verwendet das Anwendungs-Mipmap `ic_launcher` als Symbol des Identity Verification Sheets. Über ein normales Launcher-Symbol hinaus ist keine zusätzliche Symbolkonfiguration erforderlich.
+Die Android-Implementierung verwendet das Anwendungs-Mipmap `ic_launcher` als Symbol für das Identity Verification Sheet. Über ein normales Launcher-Symbol hinaus ist keine zusätzliche Symbolkonfiguration erforderlich.
 
 ## Nächster Schritt
 

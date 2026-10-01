@@ -1,8 +1,8 @@
 ---
-title: "Barres verticales (préversion)"
+title: "Vertical Bars (préversion)"
 sourceRevision: "0daed02571bc73ffce840b233aa934d67360c82d05c9fbe30550b1461854d732"
 ---
-# Barres verticales (préversion)
+# Vertical Bars (préversion)
 
 Vertical Bars déplace la navigation et les actions Ionic admissibles dans un rail latéral en gardant les composants d’origine comme source des libellés, icônes et comportements. Il fonctionne avec ce thème ou un thème Ionic existant, indépendamment de la posture de charnière et du Native UI Shell complet.
 

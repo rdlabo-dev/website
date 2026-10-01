@@ -136,7 +136,7 @@ npx cap sync
 
 `applyFoldStateClasses(root, fold)` で開閉状態を適用し、`setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })` で操作領域を配置します。端末状態の監視はテーマに同梱していません。
 
-ブラウザでのプレビューとiOSの設定は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)、操作部品の描画とruntime APIは[縦型バー](/docs/vertical-bars)、端末イベントとsplit paneは[iPhone Duo対応](/docs/iphone-duo)を参照してください。`1.2.0` で利用できるプレビュー機能で、APIと対応する動作は変更される可能性があります。
+ブラウザでのプレビューとiOSの設定は[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)、操作部品の描画とruntime APIは[Vertical Bars](/docs/vertical-bars)、端末イベントとsplit paneは[iPhone Duo対応](/docs/iphone-duo)を参照してください。`1.2.0` で利用できるプレビュー機能で、APIと対応する動作は変更される可能性があります。
 
 ### iOS 27テーマだけを使う
 
@@ -222,7 +222,7 @@ Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular
 - [ESLint](/docs/eslint) — リスト構造を検査するルール。
 - [機能](/docs/features) — CSS変数、Liquid Glass、選択的import、ダークモード。
 - [Native UI Shell（プレビュー）](/docs/native-ui-shell) — 対応するIonicコントロールをUIKitで表示。
-- [縦型バー（プレビュー）](/docs/vertical-bars) — 側面の配置、操作部品の対応条件、ネイティブボタンの外観とruntime API。
+- [Vertical Bars（プレビュー）](/docs/vertical-bars) — 側面の配置、操作部品の対応条件、ネイティブボタンの外観とruntime API。
 - [iPhone Duo対応（プレビュー）](/docs/iphone-duo) — 縦のシステム操作領域、ヒンジの状態、split paneの配置。テーマやshellなしでも利用できます。
 - [既存テーマでiPhone Duoに対応する（プレビュー）](/docs/iphone-duo-with-original-theme) — 既存のWebテーマを維持する独立した導入手順。
 - [アニメーション](/docs/animation) — タブ、セグメント、検索の効果。

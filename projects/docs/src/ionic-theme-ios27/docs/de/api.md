@@ -195,7 +195,7 @@ Startet die Laufzeit ausschließlich für Bedienelemente im vertikalen Bereich. 
 | **`buttonProjection`** | `'source' \| 'system'` | Aussehen nativer vertikaler Schaltflächen. Standard ist `system` (SwiftUI); `source` projiziert Ionic-Füllungen und berechnete Farben. |
 | **`buttonDefaultFill`** | `'solid' \| null` | Standard für nicht gesetzte Füllungen quellengetreuer Schaltflächen außerhalb von `ion-buttons`. Standard ist `null` (Theme-Glas); die Gruppe verwendet weiterhin einen transparenten Hintergrund. |
 
-Beeinflusst weder horizontale Bedienelemente noch Web-Klone. Lokale `data-projection`-Überschreibungen und die Füllungspriorität beschreibt [Vertikale Leisten](/docs/vertical-bars#choose-button-appearance). Setzen Sie `buttonProjection: 'source'`, um das Erscheinungsbild experimenteller Versionen beizubehalten.
+Beeinflusst weder horizontale Bedienelemente noch Web-Klone. Lokale `data-projection`-Überschreibungen und die Füllungspriorität beschreibt [Vertical Bars](/docs/vertical-bars#choose-button-appearance). Setzen Sie `buttonProjection: 'source'`, um das Erscheinungsbild experimenteller Versionen beizubehalten.
 
 #### `function` setVerticalControlAreaPlacement
 

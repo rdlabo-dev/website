@@ -162,4 +162,4 @@ WebやAndroidではFoldableの `verticalBarEdge` は `null` のため、この�
 
 ## 共通のレイアウト規則とAPI
 
-safe area、overlay、RTL、操作部品の対応条件、Webでのシミュレーション、handleのAPIは[縦型バー](/docs/vertical-bars)に記載しています。独立した構成にも同じ規則が適用されます。
+safe area、overlay、RTL、操作部品の対応条件、Webでのシミュレーション、handleのAPIは[Vertical Bars](/docs/vertical-bars)に記載しています。独立した構成にも同じ規則が適用されます。

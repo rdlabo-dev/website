@@ -155,4 +155,4 @@ Consultez [Lire la disposition de l’appareil](https://docs.rdlabo.dev/projects
 
 ## Règles de disposition partagées et API
 
-La gestion des zones sûres, les superpositions, le RTL, l’admissibilité des contrôles, la simulation Web et l’API du handle sont documentés dans [Barres verticales](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Ces règles s’appliquent aussi à cette configuration autonome.
+La gestion des zones sûres, les superpositions, le RTL, l’admissibilité des contrôles, la simulation Web et l’API du handle sont documentés dans [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Ces règles s’appliquent aussi à cette configuration autonome.

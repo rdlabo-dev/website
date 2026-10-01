@@ -49,11 +49,11 @@ Ces classes ne repositionnent pas un `ion-fab` distinct ; réservez-lui de la pl
 
 ## Prendre en charge iPhone Duo (préversion)
 
-La prise en charge d’iPhone Duo, y compris les barres verticales autonomes, est disponible en **préversion** dans `1.2.0`, avec Native UI Shell. Ses API et comportements pris en charge peuvent évoluer.
+La prise en charge d’iPhone Duo, y compris Vertical Bars en mode autonome, est disponible en **préversion** dans `1.2.0`, avec Native UI Shell. Ses API et comportements pris en charge peuvent évoluer.
 
 La prise en charge d’iPhone Duo — rail système vertical, position de la charnière et panneaux divisés selon cette position — est indépendante du thème iOS 27 et du Native UI Shell complet. Consultez [Prise en charge d’iPhone Duo](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo) pour la configuration complète, y compris le suivi de la disposition de l’appareil sans moteur de projection.
 
-Consultez [Barres verticales](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
+Consultez [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
 
 Pour une configuration autonome conservant votre thème existant, consultez [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
 

@@ -155,4 +155,4 @@ Das Abonnementbeispiel, null-Werte und die Lebensdauer der Überwachung beschrei
 
 ## Gemeinsame Layoutregeln und API
 
-Safe-Area-Behandlung, Overlays, RTL, Eignung der Bedienelemente, Web-Simulation und die Handle-API sind unter [Vertikale Leisten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) dokumentiert. Diese Regeln gelten auch für die eigenständige Einrichtung.
+Safe-Area-Behandlung, Overlays, RTL, Eignung der Bedienelemente, Web-Simulation und die Handle-API sind unter [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) dokumentiert. Diese Regeln gelten auch für die eigenständige Einrichtung.

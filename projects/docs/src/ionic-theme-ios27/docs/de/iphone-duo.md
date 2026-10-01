@@ -6,7 +6,7 @@ sourceRevision: "af84778f250e7c9b7444b30416936c3b14e436e18ac674b210a123ba7582c3d
 
 Passen Sie Ihre Ionic-Anwendung an iPhone Duo an: Platzieren Sie Navigation und Aktionen in dessen vertikaler Systemleiste und passen Sie die geteilte Ansicht beim Öffnen und Schließen des Geräts an. Bestehendes Ionic-Markup bleibt die Quelle für Beschriftungen, Symbole, Routing und Klickhandler.
 
-**Neu hier?** Beginnen Sie mit [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme), um das seitliche Layout in Chrome auszuprobieren. Diese Seite erklärt Geräteereignisse, Platzierung und geteilte Ansichten. [Vertikale Leisten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) dokumentiert die Projektion von Bedienelementen und die Laufzeit-API.
+**Neu hier?** Beginnen Sie mit [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme), um das seitliche Layout in Chrome auszuprobieren. Diese Seite erklärt Geräteereignisse, Platzierung und geteilte Ansichten. [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) dokumentiert die Projektion von Bedienelementen und die Laufzeit-API.
 
 In `1.2.0` neben der [Native UI Shell](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell) als **Vorschaufunktion** verfügbar. APIs und unterstütztes Verhalten können sich bis zur stabilen Version ändern. Der stabile Status ist nach der offiziellen Veröffentlichung von Xcode 27.1 geplant. Die tatsächliche Systemleiste und die Erfassung der Scharnierstellung erfordern iOS ab 27.1 sowie eine mit Xcode ab 27.1 gebaute Anwendung.
 
@@ -109,11 +109,11 @@ Auf unterstützten iOS-Versionen übergibt die Laufzeit geeignete Tabs, Zurück-
 
 ### Werkzeugleistenaktionen
 
-Geeignetes Markup, Platzierung, Schaltflächendarstellung und lokale Überschreibungen finden Sie unter [Vertikale Leisten: Werkzeugleistenaktionen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#toolbar-actions).
+Geeignetes Markup, Platzierung, Schaltflächendarstellung und lokale Überschreibungen finden Sie unter [Vertical Bars: Werkzeugleistenaktionen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#toolbar-actions).
 
 ### Tab-Leiste
 
-Navigation, Beschriftungen und das Verhalten der Web-Rückfalloption beschreibt [Vertikale Leisten: Tab-Leiste](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#tab-bar).
+Navigation, Beschriftungen und das Verhalten der Web-Rückfalloption beschreibt [Vertical Bars: Tab-Leiste](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#tab-bar).
 
 ## Die geteilte Ansicht anpassen
 
@@ -143,8 +143,8 @@ ion-split-pane.split-pane-fold-layout {
 
 Die registrierte Property `--ios-theme-split-pane-width` hat den Standardwert `320px`. `applyFoldStateClasses` setzt `ios-theme-fold-half-opened` auf `ion-app`. Das Stylesheet setzt daraufhin ausschließlich nachgeordnete Split Panes mit `split-pane-fold-layout` auf `50vw`. Fügen Sie diese aktivierende Klasse einmal hinzu; eine zustandsabhängige Klassenbindung ist nicht erforderlich. Andere Split Panes behalten ihre vorhandene Breite.
 
-Die Ionic-Property `when` steuert weiterhin, ob das Menü dauerhaft sichtbar ist. Das Beispiel wählt einen festen Breakpoint von 900px. Benötigt Ihre Anwendung unterschiedliche Breakpoints für gefaltete und gewöhnliche Displays, verwenden Sie die von der Hilfsfunktion gesetzte Klasse `ios-theme-fold-expanded`, um diese Entscheidung im Layoutcode der Anwendung zu treffen. Die Hilfsfunktion aktualisiert nur Zustandsklassen, nicht `when`. Dieses Layout aktiviert keine vertikalen Leisten und verschiebt kein Overlay-Menü.
+Die Ionic-Property `when` steuert weiterhin, ob das Menü dauerhaft sichtbar ist. Das Beispiel wählt einen festen Breakpoint von 900px. Benötigt Ihre Anwendung unterschiedliche Breakpoints für gefaltete und gewöhnliche Displays, verwenden Sie die von der Hilfsfunktion gesetzte Klasse `ios-theme-fold-expanded`, um diese Entscheidung im Layoutcode der Anwendung zu treffen. Die Hilfsfunktion aktualisiert nur Zustandsklassen, nicht `when`. Dieses Layout aktiviert Vertical Bars nicht und verschiebt kein Overlay-Menü.
 
 ## API des vertikalen Steuerbereichs
 
-Die Referenz des Laufzeit-Handles wird unter [Vertikale Leisten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#vertical-control-area-api) gepflegt.
+Die Referenz des Laufzeit-Handles wird unter [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#vertical-control-area-api) gepflegt.

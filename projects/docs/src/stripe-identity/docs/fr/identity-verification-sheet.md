@@ -1,5 +1,5 @@
 ---
-title: "Feuille de vérification d’identité"
+title: "Identity Verification Sheet"
 code: ["identity-verification-sheet/example.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"example.ts":[1,1]}},{"id":"écouter-le-résultat","activeLine":{"example.ts":[5,18]}},{"id":"obtenir-les-identifiants-de-session","activeLine":{"example.ts":[31,34]}},{"id":"initialiser-la-plateforme-web","activeLine":{"example.ts":[27,31]}},{"id":"créer-et-présenter-la-feuille","activeLine":{"example.ts":[34,42]}},{"id":"gérer-failedtoload","activeLine":{"example.ts":[18,27]}},{"id":"gérer-verificationresult","activeLine":{"example.ts":[5,18]}},{"id":"erreurs-et-annulation","activeLine":{"example.ts":[5,18]}}]
 sourceRevision: "f1ef38cf6f85e81d0ab969d17174fe4680e030d4c66aa998cb09fc22cfaec596"

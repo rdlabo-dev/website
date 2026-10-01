@@ -138,7 +138,7 @@ npx cap sync
 
 Appliquez son état de pliage avec `applyFoldStateClasses(root, fold)` et la position de sa barre avec `setVerticalControlAreaPlacement({ edge: verticalBarEdge, nativeEdge: verticalBarEdge, inset })`. Le suivi de l’appareil n’est pas inclus dans le thème.
 
-Suivez [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) pour la prévisualisation dans le navigateur et la configuration iOS. Pour la projection des contrôles et l’API d’exécution, consultez [Barres verticales](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Pour les événements de l’appareil et les panneaux divisés, consultez [Prise en charge d’iPhone Duo](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo). Disponible en préversion dans `1.2.0` ; les API et comportements pris en charge peuvent évoluer.
+Suivez [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) pour la prévisualisation dans le navigateur et la configuration iOS. Pour la projection des contrôles et l’API d’exécution, consultez [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars). Pour les événements de l’appareil et les panneaux divisés, consultez [Prise en charge d’iPhone Duo](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo). Disponible en préversion dans `1.2.0` ; les API et comportements pris en charge peuvent évoluer.
 
 ### Utiliser uniquement le thème iOS 27
 
@@ -226,7 +226,7 @@ Avec Ionic 9 Angular, importez `isPlatform` et `provideIonicAngular` depuis `@io
 - [ESLint](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint) — vérifier la structure des listes avec les règles ESLint.
 - [Fonctionnalités](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/features) — variables CSS, Liquid Glass, imports sélectifs et mode sombre.
 - [Native UI Shell (préversion)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell) — projeter les contrôles, textes et icônes Ionic compatibles dans UIKit.
-- [Barres verticales (préversion)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) — disposition du rail latéral, admissibilité des contrôles, apparence des boutons natifs et API d’exécution.
+- [Vertical Bars (préversion)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) — disposition du rail latéral, admissibilité des contrôles, apparence des boutons natifs et API d’exécution.
 - [Prise en charge d’iPhone Duo (préversion)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo) — rail système vertical, position de la charnière et disposition en panneaux divisés ; utilisable sans le thème ni le shell.
 - [iPhone Duo avec votre thème existant (préversion)](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) — configuration autonome conservant votre thème Web existant.
 - [Animations](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/animation) — effets des onglets, segments et recherches.

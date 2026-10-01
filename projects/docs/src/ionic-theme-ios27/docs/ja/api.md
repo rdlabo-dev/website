@@ -195,7 +195,7 @@ runtimeが扱うコンポーネントtagのunionです。個別の対応条件�
 | **`buttonProjection`** | `'source' \| 'system'` | 縦型ネイティブボタンの外観。既定値は `system`（SwiftUI）。`source` はIonicのfillと計算済みの色を反映します。 |
 | **`buttonDefaultFill`** | `'solid' \| null` | source描画で `ion-buttons` 外のfill省略時に使う値。既定値は `null`（テーマのglass）。グループ内の既定値はclearのままです。 |
 
-水平の部品とWebクローンには作用しません。要素単位の `data-projection` とfillの優先順位は[縦型バー](/docs/vertical-bars#ボタンの外観を選ぶ)を参照してください。実験的リリースの外観を維持するには `buttonProjection: 'source'` を明示します。
+水平の部品とWebクローンには作用しません。要素単位の `data-projection` とfillの優先順位は[Vertical Bars](/docs/vertical-bars#ボタンの外観を選ぶ)を参照してください。実験的リリースの外観を維持するには `buttonProjection: 'source'` を明示します。
 
 #### `function` setVerticalControlAreaPlacement
 

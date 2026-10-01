@@ -195,7 +195,7 @@ Démarre le moteur uniquement pour les contrôles de la zone verticale. Démarre
 | **`buttonProjection`** | `'source' \| 'system'` | Apparence des boutons verticaux natifs. Vaut `system` (SwiftUI) par défaut ; `source` projette le remplissage Ionic et les couleurs calculées. |
 | **`buttonDefaultFill`** | `'solid' \| null` | Remplissage par défaut lorsqu’il est omis pour les boutons source hors d’`ion-buttons`. Vaut `null` par défaut, pour le verre du thème ; le groupe conserve le remplissage clear par défaut. |
 
-N’affecte pas les contrôles horizontaux ni les clones Web. Consultez [Barres verticales](/docs/vertical-bars#choose-button-appearance) pour les remplacements locaux `data-projection` et la priorité des remplissages. Définissez `buttonProjection: 'source'` pour conserver l’apparence des releases expérimentales.
+N’affecte pas les contrôles horizontaux ni les clones Web. Consultez [Vertical Bars](/docs/vertical-bars#choose-button-appearance) pour les remplacements locaux `data-projection` et la priorité des remplissages. Définissez `buttonProjection: 'source'` pour conserver l’apparence des releases expérimentales.
 
 #### `function` setVerticalControlAreaPlacement
 

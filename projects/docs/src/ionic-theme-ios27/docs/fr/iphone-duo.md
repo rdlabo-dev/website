@@ -6,7 +6,7 @@ sourceRevision: "af84778f250e7c9b7444b30416936c3b14e436e18ac674b210a123ba7582c3d
 
 Adaptez votre application Ionic à l’iPhone Duo : placez la navigation et les actions dans son rail système vertical et ajustez le panneau divisé selon l’ouverture et la fermeture de l’appareil. Le balisage Ionic existant reste la source des libellés, icônes, routes et gestionnaires de clic.
 
-**Vous débutez ?** Commencez par [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) pour prévisualiser la disposition latérale dans Chrome. Cette page explique les événements de l’appareil, le placement et les panneaux divisés. [Barres verticales](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) documente la projection des contrôles et l’API d’exécution.
+**Vous débutez ?** Commencez par [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme) pour prévisualiser la disposition latérale dans Chrome. Cette page explique les événements de l’appareil, le placement et les panneaux divisés. [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) documente la projection des contrôles et l’API d’exécution.
 
 Disponible dans `1.2.0` en **préversion**, avec [Native UI Shell](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell). Les API et comportements pris en charge peuvent changer avant le statut stable. Celui-ci est prévu après la sortie officielle de Xcode 27.1. Le véritable rail système et les informations de charnière nécessitent iOS 27.1 ou ultérieur et une application compilée avec Xcode 27.1 ou plus récent.
 
@@ -109,11 +109,11 @@ Sur les versions iOS prises en charge, l’environnement transfère les onglets 
 
 ### Actions de barre d’outils
 
-Consultez [Barres verticales : actions de barre d’outils](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#toolbar-actions) pour le balisage admissible, le placement, l’apparence des boutons et les exceptions locales.
+Consultez [Vertical Bars : actions de barre d’outils](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#toolbar-actions) pour le balisage admissible, le placement, l’apparence des boutons et les exceptions locales.
 
 ### Barre d’onglets
 
-Consultez [Barres verticales : barre d’onglets](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#tab-bar) pour la navigation, les libellés et le comportement du repli Web.
+Consultez [Vertical Bars : barre d’onglets](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#tab-bar) pour la navigation, les libellés et le comportement du repli Web.
 
 ## Adapter le panneau divisé
 
@@ -147,4 +147,4 @@ Le `when` d’Ionic contrôle toujours si le menu est persistant. L’exemple ch
 
 ## API Vertical Control Area
 
-La référence du handle de l’environnement est maintenue dans [Barres verticales](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#vertical-control-area-api).
+La référence du handle de l’environnement est maintenue dans [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars#vertical-control-area-api).

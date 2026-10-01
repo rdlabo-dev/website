@@ -46,4 +46,4 @@ L’implémentation Android utilise le mipmap `ic_launcher` de l’application c
 
 ## Étape suivante
 
-Poursuivez avec [Feuille de vérification d’identité](/docs/identity-verification-sheet) pour récupérer une session, présenter la feuille et vérifier le premier résultat d’envoi.
+Poursuivez avec [Identity Verification Sheet](/docs/identity-verification-sheet) pour récupérer une session, présenter la feuille et vérifier le premier résultat d’envoi.

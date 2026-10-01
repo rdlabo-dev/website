@@ -1,5 +1,5 @@
 ---
-title: '本人確認シート'
+title: 'Identity Verification Sheet'
 code: ['identity-verification-sheet/example.ts.md']
 scrollActiveLine:
   [

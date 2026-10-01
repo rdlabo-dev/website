@@ -792,7 +792,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-30', '2026-10-01'),
+        updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' },
       }),
       page(
         'Using ion-item-group',
@@ -810,7 +810,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-30', '2026-10-01') },
+        { updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' } },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -838,7 +838,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'native-ui-shell.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
+        { updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' } },
       ),
       page(
         'iPhone Duo support (preview)',
@@ -848,7 +848,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
         {
-          updatedAt: text('2026-09-30', '2026-09-30'),
+          updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' },
         },
       ),
       page(
@@ -859,17 +859,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Guides',
         'ガイド',
         {
-          updatedAt: text('2026-09-30', '2026-09-30'),
+          updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' },
         },
       ),
       page(
         'Vertical Bars (preview)',
-        '縦型バー（プレビュー）',
+        'Vertical Bars（プレビュー）',
         'vertical-bars',
         'vertical-bars.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
+        { updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' } },
       ),
       page('Features', '機能', 'features', 'features.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-30', '2026-09-30'),
@@ -891,7 +891,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: text('2026-09-30', '2026-09-30'),
+        updatedAt: { ...text('2026-09-30', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' },
       }),
     ],
   },
@@ -2030,7 +2030,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     features: [
       {
         icon: 'identity',
-        title: text('Identity Verification Sheet', '本人確認シート'),
+        title: text('Identity Verification Sheet', 'Identity Verification Sheet'),
         description: text(
           'Create and present the verification sheet after your backend supplies the required session credentials.',
           'バックエンドから必要なセッション認証情報を受け取り、Capacitorから本人確認シートを作成・表示します。',
@@ -2061,16 +2061,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: { ...text('2026-09-06', '2026-10-01'), de: '2026-10-01', fr: '2026-10-01' } },
       ),
       page(
         'Identity Verification Sheet',
-        '本人確認シート',
+        'Identity Verification Sheet',
         'identity-verification-sheet',
         'identity-verification-sheet.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-10-01') },
+        { updatedAt: { ...text('2026-09-06', '2026-10-01'), fr: '2026-10-01' } },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
     ],
@@ -2440,7 +2440,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Setup', 'セットアップ', 'setup', 'setup.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-09-06', '2026-10-01'),
       }),
       page('Web (Chrome)', 'Web（Chrome）', 'web', 'web.md', 'Guides', 'ガイド', {
         seoTitle: text(

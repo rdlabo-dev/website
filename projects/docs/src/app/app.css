@@ -100,36 +100,21 @@
 #main-content {
   container: docs-content / inline-size;
 }
-.docs-route-pending {
-  visibility: hidden;
-}
-.docs-loading,
 .docs-load-error {
   position: fixed;
   top: 108px;
   right: 24px;
   left: 328px;
   z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: block;
   max-width: 400px;
   margin-inline: auto;
-  padding: 24px;
+  padding: 24px 48px 24px 24px;
   border: 1px solid #eadfd9;
   border-radius: 12px;
-  background: #fffcfa;
-  color: #796e68;
-  font-size: 14px;
-}
-.docs-loading strong {
-  color: #292320;
-}
-.docs-load-error {
-  display: block;
-  padding-right: 48px;
   background: #fff0ea;
   color: #c44320;
+  font-size: 14px;
 }
 .docs-load-error p {
   margin: 0 0 8px;
@@ -179,7 +164,6 @@
 }
 
 @media (max-width: 1023px) {
-  .docs-loading,
   .docs-load-error {
     left: 24px;
   }

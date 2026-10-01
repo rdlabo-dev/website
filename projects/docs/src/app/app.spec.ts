@@ -4,7 +4,7 @@ import { provideRouter, Router } from '@angular/router';
 import { App, INITIAL_DOCS_URL } from './app';
 import { projectsForLocale } from './docs/docs-data';
 
-@Component({ standalone: true, template: '' })
+@Component({ standalone: true, template: '<p data-route-content>Current documentation</p>' })
 class StubPage {}
 
 function deferred() {
@@ -275,6 +275,7 @@ describe('App', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
+    const currentContent = compiled.querySelector('[data-route-content]')!;
     compiled.querySelector<HTMLAnchorElement>('#project-link-stripe')!.click();
     await vi.waitFor(() => expect(resolver).toHaveBeenCalledOnce());
     fixture.detectChanges();
@@ -284,8 +285,9 @@ describe('App', () => {
       true,
     );
     expect(compiled.querySelector('#main-content')?.getAttribute('aria-busy')).toBe('true');
-    expect(compiled.querySelector('.docs-route-pending')?.hasAttribute('inert')).toBe(true);
-    expect(compiled.querySelector('.docs-loading')?.textContent).toContain('Stripe');
+    expect(compiled.querySelector('#main-content')?.contains(currentContent)).toBe(true);
+    expect(currentContent.closest('[inert], [aria-hidden="true"]')).toBeNull();
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
     expect(document.activeElement).toBe(compiled.querySelector('.project-navigation-pages a'));
 
     compiled.querySelector<HTMLButtonElement>('.project-navigation-back')!.click();
@@ -345,7 +347,8 @@ describe('App', () => {
     expect(compiled.querySelector('app-project-navigation')?.textContent).not.toContain(
       'PaymentSheet',
     );
-    expect(compiled.querySelector('.docs-loading')?.textContent).toContain('AdMob');
+    expect(compiled.querySelector('#main-content')?.getAttribute('aria-busy')).toBe('true');
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
     admob.resolve(true);
     await fixture.whenStable();
     expect(router.url).toBe('/projects/capacitor-admob');
@@ -385,7 +388,8 @@ describe('App', () => {
     await vi.waitFor(() => expect(resolver).toHaveBeenCalledTimes(2));
     fixture.detectChanges();
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect(compiled.querySelector('.docs-loading')).not.toBeNull();
+    expect(compiled.querySelector('#main-content')?.getAttribute('aria-busy')).toBe('true');
+    expect(compiled.querySelector('.docs-loading')).toBeNull();
     hold.resolve(true);
     await fixture.whenStable();
     expect(router.url).toBe('/projects/capacitor-stripe/docs/configuration');
@@ -435,7 +439,6 @@ describe('App', () => {
         compiled.querySelector('.docs-navigation-track')?.classList.contains('is-detail'),
       ).toBe(mobile);
       expect(compiled.querySelector('.docs-loading')).toBeNull();
-      expect(compiled.querySelector('.docs-route-pending')).toBeNull();
       expect(compiled.querySelector('[role="alert"]')?.textContent).toContain(
         'Reload the documentation',
       );

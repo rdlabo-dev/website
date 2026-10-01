@@ -243,14 +243,6 @@
       </div>
     </div>
   </aside>
-  @if (pendingNavigation()) {
-    <div class="docs-loading" role="status">
-      @if (navigationProject(); as project) {
-        <strong>{{ project.shortName }}</strong>
-      }
-      <span i18n="@@loadingDocumentation">Loading documentation…</span>
-    </div>
-  }
   @if (navigationError()) {
     <div class="docs-load-error" role="alert">
       <button
@@ -277,13 +269,7 @@
     data-pagefind-body
     [attr.aria-busy]="pendingNavigation() ? 'true' : null"
   >
-    <div
-      [class.docs-route-pending]="!!pendingNavigation()"
-      [attr.inert]="pendingNavigation() ? '' : null"
-      [attr.aria-hidden]="pendingNavigation() ? 'true' : null"
-    >
-      <router-outlet />
-    </div>
+    <router-outlet />
   </main>
 </div>
 

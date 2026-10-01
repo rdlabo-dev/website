@@ -5,9 +5,24 @@ import { InteractiveDemo } from './docs-data';
 @Component({
   selector: 'app-interactive-demo-panel',
   host: {
-    class:
-      'sticky top-2 block h-[calc(100dvh-16px)] max-h-[calc(100dvh-16px)] max-[960px]:static max-[960px]:mt-8 max-[960px]:h-auto max-[960px]:max-h-none max-[960px]:px-4',
+    class: 'sticky top-20 block h-[calc(100dvh-96px)] max-h-[calc(100dvh-96px)]',
   },
+  styles: `
+    @container docs-content (max-width: 960px) {
+      :host {
+        position: static;
+        height: auto;
+        max-height: none;
+        margin-top: 32px;
+        padding-inline: 16px;
+      }
+      .demo-viewport {
+        height: min(720px, 75dvh);
+        min-height: 560px;
+        flex: none;
+      }
+    }
+  `,
   template: `
     <aside
       class="flex h-full min-h-0 flex-col rounded-[1.5rem] border border-[#eadfd9] bg-[#fffaf7] p-4 sm:p-6"
@@ -27,9 +42,7 @@ import { InteractiveDemo } from './docs-data';
           <ng-container i18n="@@openDemo">Open demo</ng-container>
         </a>
       </div>
-      <div
-        class="relative mx-auto mt-4 min-h-0 w-full max-w-[430px] flex-1 max-[960px]:h-[min(720px,75dvh)] max-[960px]:min-h-[560px] max-[960px]:flex-none"
-      >
+      <div class="demo-viewport relative mx-auto mt-4 min-h-0 w-full max-w-[430px] flex-1">
         @if (loading()) {
           <div
             class="absolute inset-0 z-10 flex items-center justify-center bg-[#fffaf7] text-sm text-[#796e68]"

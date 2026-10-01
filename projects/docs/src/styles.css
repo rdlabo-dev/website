@@ -1,8 +1,20 @@
 @import 'tailwindcss';
+
 @import 'zenn-content-css/lib/index.css';
 @import '../../shared/styles/external-link.css';
 @import '../../shared/styles/brand.css';
 @import '../../shared/styles/zenn-content-overrides.css';
+
+@container docs-content (min-width: 961px) {
+  .docs-page-layout.with-code .docs-page-article .code-block-container {
+    display: none;
+  }
+}
+
+.docs-page-article :not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
 :root {
   font-family: var(--rd-sans);

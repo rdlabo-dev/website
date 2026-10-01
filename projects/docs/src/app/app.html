@@ -5,7 +5,7 @@
   >Skip to content</a
 >
 <header
-  class="relative z-40 flex min-h-17 items-stretch justify-between border-b border-[#eadfd9] bg-white/95 backdrop-blur"
+  class="docs-header sticky top-0 z-40 flex min-h-17 items-stretch justify-between border-b border-[#eadfd9] bg-white/95 backdrop-blur"
 >
   <div class="flex min-w-0 items-center">
     <button
@@ -91,12 +91,12 @@
 </header>
 
 <div
-  class="docs-shell relative grid min-h-[calc(100dvh-68px)] grid-cols-1 lg:grid-cols-[288px_minmax(0,1fr)]"
+  class="docs-shell relative grid min-h-[calc(100dvh-68px)] grid-cols-1 lg:grid-cols-[304px_minmax(0,1fr)]"
   [class.layout-ready]="layoutReady()"
 >
   @if (menuOpen() && mobileLayout()) {
     <button
-      class="absolute inset-0 z-20 border-0 bg-[#2b231f]/25 backdrop-blur-sm lg:hidden"
+      class="docs-menu-backdrop"
       type="button"
       i18n-aria-label="@@closeDocumentationMenu"
       aria-label="Close documentation menu"
@@ -106,154 +106,144 @@
   <aside
     #docsSidebar
     id="docs-sidebar"
-    class="absolute inset-y-0 left-0 z-30 w-[310px] overflow-y-auto border-r border-[#eadfd9] bg-[#fffcfa] pt-7 pb-15 shadow-[8px_0_20px_rgba(42,27,20,.08)] transition-transform lg:sticky lg:top-0 lg:max-h-dvh lg:w-auto lg:translate-x-0 lg:self-start lg:shadow-none"
-    [class.-translate-x-full]="layoutReady() && !menuOpen()"
-    [class.translate-x-0]="layoutReady() && menuOpen()"
+    class="docs-sidebar lg:translate-x-0"
+    [class.is-open]="menuOpen()"
     [attr.aria-hidden]="layoutReady() && navigationHidden() ? 'true' : null"
     [attr.inert]="layoutReady() && navigationHidden() ? '' : null"
     i18n-aria-label="@@documentation"
     aria-label="Documentation"
   >
-    <nav class="px-3" i18n-aria-label="@@primaryNavigation" aria-label="Primary navigation">
-      <a
-        class="flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm font-medium tracking-tight text-[#292320] no-underline hover:text-[#c44320]"
-        [href]="canonicalHomePath"
-        (click)="navigateHome($event)"
-        [class.bg-[#fff0ea]]="isIndex()"
-        [class.!text-[#c44320]]="isIndex()"
-        [attr.aria-current]="isIndex() ? 'page' : null"
-      >
-        <svg class="size-3.5 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <rect x="1" y="1" width="4" height="4" rx="0.75" stroke="currentColor" />
-          <rect x="7" y="1" width="4" height="4" rx="0.75" stroke="currentColor" />
-          <rect x="1" y="7" width="4" height="4" rx="0.75" stroke="currentColor" />
-          <rect x="7" y="7" width="4" height="4" rx="0.75" stroke="currentColor" />
-        </svg>
-        <span i18n="@@allProjectsNav">All projects</span>
-      </a>
-
-      <a
-        class="mt-1 flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm font-medium tracking-tight text-[#292320] no-underline hover:text-[#c44320]"
-        href="https://rdlabo.dev/articles"
-      >
-        <svg class="size-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path
-            d="M3 2.5h10v11H3v-11ZM5.5 5h5M5.5 7.5h5M5.5 10h3.5"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span i18n="@@articlesNav">Articles</span>
-      </a>
-
-      <a
-        class="mt-1 flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm font-medium tracking-tight text-[#292320] no-underline hover:text-[#c44320]"
-        routerLink="/support"
-        [class.bg-[#fff0ea]]="isSupport()"
-        [class.!text-[#c44320]]="isSupport()"
-        [attr.aria-current]="isSupport() ? 'page' : null"
-      >
-        <svg class="size-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path
-            d="M8 13.5S2.5 10.2 2.5 5.8A2.8 2.8 0 0 1 8 4.9a2.8 2.8 0 0 1 5.5.9C13.5 10.2 8 13.5 8 13.5Z"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span i18n="@@supportNav">Sponsor</span>
-      </a>
-
-      @for (group of projectGroups; track group.id) {
-        <p
-          class="mt-8 mb-2 px-3 text-[0.65rem] font-semibold tracking-[0.15em] text-[#6f6661] uppercase"
+    <div class="docs-navigation-columns">
+      <div class="docs-rail">
+        <nav
+          class="docs-rail-categories"
+          aria-label="Choose a library"
+          i18n-aria-label="@@chooseLibrary"
         >
-          {{ group.label }}
-        </p>
-        @for (project of group.projects; track project.id) {
-          <div
-            class="flex items-center rounded-xl text-sm font-medium tracking-tight text-[#4e4642]"
-            [class.bg-[#fff0ea]]="activeProject()?.id === project.id"
-            [class.!text-[#c44320]]="activeProject()?.id === project.id"
+          <button
+            type="button"
+            class="docs-rail-button"
+            aria-label="Browse all libraries"
+            i18n-aria-label="@@browseAllLibraries"
+            aria-controls="docs-navigation-pane"
+            [attr.aria-pressed]="selectedCategory() === ''"
+            [class.is-active]="!selectedCategory()"
+            (click)="openLibraryPicker('', $event)"
           >
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" />
+              <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" />
+              <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" />
+              <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" />
+            </svg>
+            <span i18n="@@librariesRail">Libraries</span>
+          </button>
+          @for (group of projectGroups; track group.id) {
             <button
-              class="flex min-w-0 flex-1 cursor-pointer items-center rounded-xl border-0 bg-transparent text-left text-inherit hover:text-[#c44320]"
               type="button"
-              [id]="'project-button-' + project.id"
-              [attr.aria-label]="projectNavigationLabel(project)"
-              [attr.aria-expanded]="isProjectExpanded(project)"
-              [attr.aria-controls]="projectPanelId(project)"
-              (click)="selectProject(project)"
+              class="docs-rail-button"
+              [class.is-active]="selectedCategory() === group.id"
+              [attr.aria-label]="group.label"
+              [attr.title]="group.label"
+              aria-controls="docs-navigation-pane"
+              [attr.aria-pressed]="selectedCategory() === group.id"
+              (click)="openLibraryPicker(group.id, $event)"
             >
-              <span class="grid size-11 shrink-0 place-items-center" aria-hidden="true">
-                <svg
-                  class="size-3 transition-transform duration-200"
-                  [class.-rotate-90]="!isProjectExpanded(project)"
-                  viewBox="0 0 10 6"
-                  fill="none"
-                >
-                  <path
-                    d="M1 1 5 5 9 1"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
-              <span class="min-w-0 flex-1 py-2.5 pr-3">{{ project.shortName }}</span>
+              <app-project-icon [kind]="categoryIcon(group.id)" />
+              <span>{{ categoryLabel(group.id) }}</span>
             </button>
-          </div>
-
-          <div
-            class="grid transition-[grid-template-rows] duration-200"
-            [class.grid-rows-[1fr]]="isProjectExpanded(project)"
-            [class.grid-rows-[0fr]]="!isProjectExpanded(project)"
+          }
+        </nav>
+        <nav
+          class="docs-rail-global"
+          aria-label="Primary navigation"
+          i18n-aria-label="@@primaryNavigation"
+        >
+          <a
+            class="docs-rail-button"
+            [href]="canonicalHomePath"
+            (click)="navigateHome($event)"
+            [attr.aria-current]="isIndex() ? 'page' : null"
+            aria-label="All projects"
+            i18n-aria-label="@@allProjectsNav"
           >
-            <div
-              class="min-h-0 overflow-hidden"
-              [id]="projectPanelId(project)"
-              [attr.aria-label]="project.shortName"
-              [attr.aria-hidden]="!isProjectExpanded(project)"
-              [attr.inert]="isProjectExpanded(project) ? null : ''"
-            >
-              <div class="mt-1 ml-3 border-l border-[#e4d8d1] pl-3">
-                <a
-                  class="block rounded-lg px-3 py-2 text-[0.84rem] leading-5 font-medium text-[#6f6661] no-underline hover:text-[#c44320]"
-                  [routerLink]="project.path"
-                  routerLinkActive="bg-[#fff5f0] !text-[#c44320]"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  ariaCurrentWhenActive="page"
-                  i18n="@@overviewNav"
-                  >Overview</a
-                >
-                @for (section of sectionsFor(project); track section.name) {
-                  <p
-                    class="mt-5 mb-1 px-3 text-[0.62rem] font-semibold tracking-[0.13em] text-[#6f6661] uppercase"
-                  >
-                    {{ section.name }}
-                  </p>
-                  @for (page of section.pages; track page.path) {
-                    <a
-                      class="block rounded-lg px-3 py-2 text-[0.84rem] leading-5 text-[#6f6661] no-underline hover:text-[#c44320]"
-                      [routerLink]="page.path"
-                      routerLinkActive="bg-[#fff5f0] !text-[#c44320]"
-                      ariaCurrentWhenActive="page"
-                      >{{ page.navTitle }}</a
-                    >
-                  }
-                }
-              </div>
-            </div>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="m2 7 6-5 6 5v7H9.5V9h-3v5H2V7Z"
+                stroke="currentColor"
+                stroke-linejoin="round"
+              /></svg
+            ><span i18n="@@homeRail">Home</span>
+          </a>
+          <a
+            class="docs-rail-button"
+            href="https://rdlabo.dev/articles"
+            aria-label="Articles"
+            i18n-aria-label="@@articlesNav"
+          >
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 2.5h10v11H3v-11ZM5.5 5h5M5.5 7.5h5M5.5 10h3.5"
+                stroke="currentColor"
+                stroke-linecap="round"
+              /></svg
+            ><span i18n="@@articlesNav">Articles</span>
+          </a>
+          <a
+            class="docs-rail-button"
+            routerLink="/support"
+            [class.is-active]="isSupport()"
+            [attr.aria-current]="isSupport() ? 'page' : null"
+            aria-label="Sponsor"
+            i18n-aria-label="@@supportNav"
+          >
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 13.5S2.5 10.2 2.5 5.8A2.8 2.8 0 0 1 8 4.9a2.8 2.8 0 0 1 5.5.9C13.5 10.2 8 13.5 8 13.5Z"
+                stroke="currentColor"
+                stroke-linejoin="round"
+              /></svg
+            ><span i18n="@@supportNav">Sponsor</span>
+          </a>
+        </nav>
+      </div>
+      <div id="docs-navigation-pane" class="docs-navigation-pane">
+        <div
+          class="docs-navigation-track"
+          [class.is-detail]="!showingLibraries()"
+          [class.animate-ready]="navigationAnimationReady()"
+        >
+          <div
+            class="docs-navigation-slide"
+            [attr.inert]="!showingLibraries() ? '' : null"
+            [attr.aria-hidden]="!showingLibraries() ? 'true' : null"
+          >
+            <app-library-picker
+              [groups]="projectGroups"
+              [category]="libraryCategory()"
+              [activeProjectId]="activeProject()?.id"
+              [activePath]="currentUrl()"
+              (selected)="selectProject($event)"
+            />
           </div>
-        }
-      }
-    </nav>
+          <div
+            class="docs-navigation-slide"
+            [attr.inert]="showingLibraries() ? '' : null"
+            [attr.aria-hidden]="showingLibraries() ? 'true' : null"
+          >
+            @if (activeProject(); as project) {
+              <app-project-navigation
+                [project]="project"
+                [categoryLabel]="categoryTitle(project.category)"
+                (backToLibraries)="openLibraryPicker(project.category)"
+              />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   </aside>
-  <main id="main-content" class="min-w-0" tabindex="-1" data-pagefind-body>
-    <router-outlet />
-  </main>
+  <main id="main-content" class="min-w-0" tabindex="-1" data-pagefind-body><router-outlet /></main>
 </div>
 
 <pagefind-modal />

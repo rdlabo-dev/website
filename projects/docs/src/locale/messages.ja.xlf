@@ -2,6 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" target-language="ja" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="librariesNav"><source>Libraries</source><target>ライブラリ</target></trans-unit>
+      <trans-unit id="backToLibraryList"><source>Back to library list</source><target>ライブラリ一覧へ戻る</target></trans-unit>
+      <trans-unit id="selectedLibrary"><source>Selected library</source><target>選択中のライブラリ</target></trans-unit>
+      <trans-unit id="projectNavigation"><source>Project navigation</source><target>ライブラリ内のページ</target></trans-unit>
+      <trans-unit id="chooseLibrary"><source>Choose a library</source><target>ライブラリを選ぶ</target></trans-unit>
+      <trans-unit id="browseAllLibraries"><source>Browse all libraries</source><target>すべてのライブラリを探す</target></trans-unit>
+      <trans-unit id="librariesRail"><source>Libraries</source><target>一覧</target></trans-unit>
+      <trans-unit id="homeRail"><source>Home</source><target>ホーム</target></trans-unit>
+      <trans-unit id="developerToolsRail"><source>Dev</source><target>開発</target></trans-unit>
       <trans-unit id="skipToContent"><source>Skip to content</source><target>本文へ移動</target></trans-unit>
       <trans-unit id="toggleDocumentationMenu"><source>Toggle documentation menu</source><target>ドキュメントメニューを開閉</target></trans-unit>
       <trans-unit id="switchLanguage"><source>Switch language</source><target>言語を切り替える</target></trans-unit>

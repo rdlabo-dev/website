@@ -14,7 +14,7 @@ export const PROJECT_CATEGORIES_EN = [
   },
   {
     "id": "frontend-tools",
-    "label": "Frontend tools",
+    "label": "UI tools",
     "description": "Reusable Angular and Ionic application libraries and UI utilities.",
     "order": 20
   },
@@ -41,7 +41,7 @@ export const PROJECT_CATEGORIES_JA = [
   },
   {
     "id": "frontend-tools",
-    "label": "フロントエンドツール",
+    "label": "UIツール",
     "description": "Angular・Ionicアプリ向けの再利用可能なアプリケーションライブラリとUIユーティリティです。",
     "order": 20
   },
@@ -597,13 +597,6 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
       },
       {
-        "title": "Feature requests for Ionic Framework",
-        "navTitle": "Feature requests for Ionic Framework",
-        "slug": "feedback",
-        "section": "Development",
-        "path": "/projects/ionic-theme-ios27/docs/feedback"
-      },
-      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -711,13 +704,6 @@ export const PROJECTS_EN = [
         "slug": "e2e-testing",
         "section": "Development",
         "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "Feature requests for Ionic Framework",
-        "navTitle": "Feature requests for Ionic Framework",
-        "slug": "feedback",
-        "section": "Development",
-        "path": "/projects/ionic-theme-ios26/docs/feedback"
       },
       {
         "title": "API",
@@ -2818,13 +2804,6 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
       },
       {
-        "title": "Ionic Frameworkへの機能要望",
-        "navTitle": "Ionic Frameworkへの機能要望",
-        "slug": "feedback",
-        "section": "開発",
-        "path": "/projects/ionic-theme-ios27/docs/feedback"
-      },
-      {
         "title": "API",
         "navTitle": "API",
         "slug": "api",
@@ -2932,13 +2911,6 @@ export const PROJECTS_JA = [
         "slug": "e2e-testing",
         "section": "開発",
         "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "Ionic Frameworkへの機能要望",
-        "navTitle": "Ionic Frameworkへの機能要望",
-        "slug": "feedback",
-        "section": "開発",
-        "path": "/projects/ionic-theme-ios26/docs/feedback"
       },
       {
         "title": "API",

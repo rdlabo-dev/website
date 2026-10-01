@@ -34,27 +34,18 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
     ScrollSpyDirective,
     HeadingLinksDirective,
   ],
+  styleUrl: './docs-page.css',
   template: `
     @if (project(); as proj) {
       @if (page(); as doc) {
         <div class="mx-auto max-w-[1500px] pb-16">
           <div
-            [class]="
-              'grid items-start justify-center pt-[42px] max-[960px]:block max-[960px]:pt-7 ' +
-              (doc.codes.length
-                ? 'grid-cols-[minmax(420px,680px)_minmax(420px,1fr)] max-[1500px]:grid-cols-[minmax(420px,800px)_minmax(420px,1fr)] max-[1100px]:grid-cols-[minmax(380px,1fr)_minmax(380px,1fr)]'
-                : doc.demo
-                  ? 'grid-cols-[minmax(0,1fr)_480px] gap-8 max-[1100px]:grid-cols-[minmax(380px,1fr)_430px] max-[1100px]:gap-5'
-                : 'grid-cols-[minmax(0,3fr)_minmax(0,1fr)] max-[1500px]:grid-cols-[minmax(0,1fr)]')
-            "
+            class="docs-page-layout"
+            [class.with-code]="doc.codes.length > 0"
+            [class.with-demo]="!!doc.demo"
           >
             <article
-              [class]="
-                'znc min-w-0 px-6 pt-1.5 max-[576px]:px-4 [&_a]:[overflow-wrap:anywhere] ' +
-                (doc.codes.length
-                  ? 'pb-[calc(100dvh-120px)] max-[960px]:pb-[72px] [&_.code-block-container]:hidden max-[960px]:[&_.code-block-container]:block'
-                  : 'mx-auto w-full max-w-[800px] justify-self-center pb-[72px]')
-              "
+              class="docs-page-article znc min-w-0 px-6 pt-1.5 max-[576px]:px-4 [&_a]:[overflow-wrap:anywhere]"
               [appScrollSpy]="headingKeys()"
               (activeHeadingChange)="activate($event)"
             >
@@ -93,7 +84,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
               <h1 id="document-title">{{ doc.title }}</h1>
               <div appHeadingLinks [innerHTML]="doc.html | safeHtml"></div>
               @if (doc.codes.length) {
-                <div class="hidden max-[960px]:block">
+                <div class="docs-inline-code">
                   @for (code of doc.codes; track code.file) {
                     <div class="code-block-container">
                       <div class="code-block-filename-container">
@@ -111,17 +102,26 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
                 </div>
               }
               @if (previousPage() || nextPage()) {
-                <nav class="doc-pagination" aria-label="Documentation pages" i18n-aria-label="@@documentationPages">
+                <nav
+                  class="doc-pagination"
+                  aria-label="Documentation pages"
+                  i18n-aria-label="@@documentationPages"
+                >
                   @if (previousPage(); as previous) {
                     <a class="pagination-link" [routerLink]="previous.path" rel="prev">
                       <span class="pagination-direction" i18n="@@previousPage">Previous</span>
-                      <span class="pagination-title"><span aria-hidden="true">←</span>{{ previous.navTitle || previous.title }}</span>
+                      <span class="pagination-title"
+                        ><span aria-hidden="true">←</span
+                        >{{ previous.navTitle || previous.title }}</span
+                      >
                     </a>
                   }
                   @if (nextPage(); as next) {
                     <a class="pagination-link pagination-next" [routerLink]="next.path" rel="next">
                       <span class="pagination-direction" i18n="@@nextPage">Next</span>
-                      <span class="pagination-title">{{ next.navTitle || next.title }}<span aria-hidden="true">→</span></span>
+                      <span class="pagination-title"
+                        >{{ next.navTitle || next.title }}<span aria-hidden="true">→</span></span
+                      >
                     </a>
                   }
                 </nav>
@@ -160,7 +160,7 @@ import { canonicalHomePath, localizedFragmentPath } from '../locale-path';
             }
             @if (!doc.codes.length && !doc.demo) {
               <aside
-                class="sticky top-8 w-full max-h-[calc(100dvh-64px)] min-w-0 overflow-y-auto px-5 pt-2 pb-8 max-[1500px]:hidden"
+                class="docs-page-toc sticky top-24 max-h-[calc(100dvh-112px)] w-full min-w-0 overflow-y-auto px-5 pt-2 pb-8"
                 i18n-aria-label="@@pageNavigation"
                 aria-label="Page navigation"
               >
@@ -258,8 +258,7 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
     this.tocHeadings.set(page.headings.filter((heading) => heading.level <= 3));
     this.activeLines.set({ ...(page.scrollMap[0]?.activeLine ?? {}) });
     this.#seo.setPage({
-      title:
-        page.seoTitle ?? `${page.title} - ${project.shortName} - rdlabo.dev`,
+      title: page.seoTitle ?? `${page.title} - ${project.shortName} - rdlabo.dev`,
       description: page.seoDescription ?? `${page.title}. ${project.description}`,
       path: page.path,
       structuredData: docsBreadcrumbStructuredData(this.#locale, [
@@ -275,7 +274,10 @@ export class DocsPageComponent implements OnInit, AfterViewInit {
     this.#route.fragment.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe((fragment) => {
       if (!fragment) return;
       this.#document.defaultView?.requestAnimationFrame(() => {
-        (this.#document.getElementById(fragment) ?? this.#document.getElementById(encodeURIComponent(fragment)))?.scrollIntoView();
+        (
+          this.#document.getElementById(fragment) ??
+          this.#document.getElementById(encodeURIComponent(fragment))
+        )?.scrollIntoView();
       });
     });
   }

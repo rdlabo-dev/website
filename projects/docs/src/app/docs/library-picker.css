@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+.library-picker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 8px;
+}
+.library-picker-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.library-picker-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 10px 24px;
+}
+.library-group-label {
+  margin: 20px 8px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #796e68;
+}
+.library-group-label:first-child {
+  margin-top: 4px;
+}
+.library-picker-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #4e4642;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.library-picker-list a:hover {
+  background: #fff5f0;
+  color: #c44320;
+}
+.library-picker-list a.is-active {
+  background: #fff0ea;
+  color: #c44320;
+}
+.library-picker-list a > span:first-child {
+  flex: 1;
+}
+.library-selected,
+.library-next {
+  flex-shrink: 0;
+}
+:is(a, button):focus-visible {
+  outline: 2px solid #ea572a;
+  outline-offset: -2px;
+}

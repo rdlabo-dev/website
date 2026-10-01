@@ -1,0 +1,91 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+.project-navigation-heading {
+  padding: 8px 18px 18px;
+  border-bottom: 1px solid #eadfd9;
+}
+.project-navigation-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 0 0 8px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #796e68;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.project-navigation-back:hover {
+  color: #c44320;
+}
+.project-navigation-back svg {
+  flex-shrink: 0;
+}
+.project-navigation-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+}
+.project-navigation-title p {
+  margin: 0;
+  color: #292320;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.project-navigation-title span {
+  color: #796e68;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.project-navigation-pages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 14px 10px 28px;
+}
+.project-navigation-pages a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #6f6661;
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.project-navigation-pages a:hover {
+  color: #c44320;
+  background: #fff5f0;
+}
+.project-navigation-pages a.is-active {
+  color: #c44320;
+  background: #fff0ea;
+}
+.project-navigation-section {
+  margin: 24px 12px 5px;
+  color: #796e68;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+:is(a, button):focus-visible {
+  outline: 2px solid #ea572a;
+  outline-offset: -2px;
+}
+@media (pointer: coarse) {
+  .project-navigation-pages a {
+    min-height: 44px;
+  }
+}

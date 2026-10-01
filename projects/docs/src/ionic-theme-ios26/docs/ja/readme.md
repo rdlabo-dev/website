@@ -168,4 +168,3 @@ createApp(App)
 - [iOS 18](/docs/ios-18) — iOS 26 だけでテーマを読む。
 - [移行](/docs/migration) — major version更新時に必要な変更。
 - [E2Eスクリーンショットテスト](/docs/e2e-testing) — デモの外観を検証する手順。
-- [Ionic Frameworkへの機能要望](/docs/feedback) — テーマ開発で見つかった課題と対応状況。

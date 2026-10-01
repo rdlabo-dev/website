@@ -229,4 +229,3 @@ Ionic 9のAngularでは、`isPlatform`と`provideIonicAngular`を`@ionic/angular
 - [iOS 26からの移行](/docs/migration) — 既存アプリの更新手順と差分。
 - [iOS 26の移行履歴](/ionic-theme-ios26/docs/migration) — 前のパッケージの移行案内。
 - [E2Eスクリーンショットテスト](/docs/e2e-testing) — デモの外観を検証する手順。
-- [Ionic Frameworkへの機能要望](/docs/feedback) — テーマ開発で見つかった課題と対応状況。

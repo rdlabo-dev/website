@@ -1,0 +1,53 @@
+<div class="project-navigation-heading">
+  <button
+    type="button"
+    class="project-navigation-back"
+    (click)="backToLibraries.emit()"
+    aria-label="Back to library list"
+    i18n-aria-label="@@backToLibraryList"
+  >
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="m10 3-5 5 5 5"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <span>{{ categoryLabel() }}</span>
+  </button>
+  <div class="project-navigation-title">
+    <p>{{ project().shortName }}</p>
+    <span>v{{ project().version }}</span>
+  </div>
+</div>
+<nav
+  class="project-navigation-pages"
+  aria-label="Project navigation"
+  i18n-aria-label="@@projectNavigation"
+>
+  <a
+    #overviewLink
+    [routerLink]="project().path"
+    routerLinkActive="is-active"
+    [routerLinkActiveOptions]="activeLinkOptions"
+    ariaCurrentWhenActive="page"
+    (isActiveChange)="revealCurrentPage($event, overviewLink)"
+    i18n="@@overviewNav"
+    >Overview</a
+  >
+  @for (section of sections(); track section.name) {
+    <p class="project-navigation-section">{{ section.name }}</p>
+    @for (page of section.pages; track page.path) {
+      <a
+        #pageLink
+        [routerLink]="page.path"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="activeLinkOptions"
+        ariaCurrentWhenActive="page"
+        (isActiveChange)="revealCurrentPage($event, pageLink)"
+        >{{ page.navTitle }}</a
+      >
+    }
+  }
+</nav>

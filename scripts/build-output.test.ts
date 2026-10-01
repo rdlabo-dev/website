@@ -9,6 +9,25 @@ import {
   PAST_SPONSORS,
 } from '../projects/docs/src/app/generated/sponsors.generated';
 
+test('removed Ionic Framework feedback pages stay out of published docs', async () => {
+  const sitemap = await readFile('dist/docs/browser/sitemap.xml', 'utf8');
+  for (const locale of ['', 'ja/']) {
+    for (const project of ['ionic-theme-ios26', 'ionic-theme-ios27']) {
+      const route = `${locale}projects/${project}`;
+      assert.ok(!sitemap.includes(`/${route}/docs/feedback`));
+      await assert.rejects(() => access(`dist/docs/browser/${route}/docs/feedback/index.html`));
+      for (const page of ['', '/docs/readme']) {
+        const html = await readFile(`dist/docs/browser/${route}${page}/index.html`, 'utf8');
+        assert.doesNotMatch(html, /\/docs\/feedback/);
+        assert.doesNotMatch(
+          html,
+          /Ionic Frameworkへの機能要望|Feature requests for Ionic Framework/,
+        );
+      }
+    }
+  }
+});
+
 test('transition guides link to existing localized onboarding headings', async () => {
   for (const locale of ['', 'ja/']) {
     const route = `${locale}projects/ionic-theme-ios27/docs/`;
@@ -261,7 +280,7 @@ test('prerendered docs shell stays layout-neutral before bootstrap', async () =>
   const shell = html.match(/<div\b[^>]*\bclass="[^"]*\bdocs-shell\b[^"]*"[^>]*>/)?.[0];
   assert.ok(shell, 'docs-shell must be present in prerendered index.html');
   assert.doesNotMatch(shell, /\blayout-ready\b/);
-  assert.match(shell, /lg:grid-cols-\[288px_minmax\(0,1fr\)\]/);
+  assert.match(shell, /lg:grid-cols-\[304px_minmax\(0,1fr\)\]/);
 
   const toggle = html.match(/<button\b[^>]*\baria-controls="docs-sidebar"[^>]*>/)?.[0];
   assert.ok(toggle, 'sidebar toggle must be present in prerendered index.html');
@@ -334,13 +353,23 @@ test('visible docs breadcrumbs use canonical locale home paths', async () => {
 });
 
 test('prerendered locales include reusable hydration data', async () => {
+  const route = '/projects/capacitor-stripe/docs/configuration';
+  const nestedRoute = '/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal';
   const pages = await Promise.all(
-    ['index.html', 'ja/index.html'].map((path) =>
-      readFile(new URL(`../dist/docs/browser/${path}`, import.meta.url), 'utf8'),
-    ),
+    [
+      ['index.html', '/'],
+      ['ja/index.html', '/'],
+      [`${route.slice(1)}/index.html`, route],
+      [`ja${route}/index.html`, route],
+      [`${nestedRoute.slice(1)}/index.html`, nestedRoute],
+      [`ja${nestedRoute}/index.html`, nestedRoute],
+    ].map(async ([path, initialUrl]) => ({
+      html: await readFile(new URL(`../dist/docs/browser/${path}`, import.meta.url), 'utf8'),
+      initialUrl,
+    })),
   );
 
-  for (const html of pages) {
+  for (const { html, initialUrl } of pages) {
     assert.doesNotMatch(html, /\bngskiphydration\b/);
     assert.match(html, /\bngh="/);
 
@@ -348,8 +377,13 @@ test('prerendered locales include reusable hydration data', async () => {
       /<script id="ng-state" type="application\/json">([^<]+)<\/script>/,
     )?.[1];
     assert.ok(serializedState, 'prerendered page must include Angular hydration state');
-    const hydrationData = (JSON.parse(serializedState) as { __nghData__?: unknown[] }).__nghData__;
+    const state = JSON.parse(serializedState) as {
+      __nghData__?: unknown[];
+      'rdlabo-docs-initial-url'?: string;
+    };
+    const hydrationData = state.__nghData__;
     assert.ok(hydrationData?.length, 'Angular hydration state must include reusable views');
+    assert.equal(state['rdlabo-docs-initial-url'], initialUrl);
   }
 });
 
@@ -362,12 +396,12 @@ test('builds bounded English and Japanese search indexes with the component UI',
   assert.ok(files.some((file) => /^pagefind\.ja_.+\.pf_meta$/.test(file)));
   assert.equal(
     files.filter((file) => /^fragment\/en_.+\.pf_fragment$/.test(file)).length,
-    205,
+    203,
     'English search index must contain only canonical pages',
   );
   assert.equal(
     files.filter((file) => /^fragment\/ja_.+\.pf_fragment$/.test(file)).length,
-    205,
+    203,
     'Japanese search index must contain only canonical pages',
   );
   const sizes = await Promise.all(

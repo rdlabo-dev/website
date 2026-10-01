@@ -398,66 +398,6 @@ export const PROJECT = {
       "editUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/edit/ios26/docs/e2e-testing.md"
     },
     {
-      "title": "Feature requests for Ionic Framework",
-      "navTitle": "Feature requests for Ionic Framework",
-      "updatedAt": "2026-09-30",
-      "slug": "feedback",
-      "file": "feedback.md",
-      "section": "Development",
-      "path": "/projects/ionic-theme-ios26/docs/feedback",
-      "html": "<h2 id=\"feat()%3A-change---knob-handle-size-to---knob-handle-width-%2F---knob-handle-height\" data-line=\"0\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#feat()%3A-change---knob-handle-size-to---knob-handle-width-%2F---knob-handle-height\" aria-hidden=\"true\"></a> feat(): change <code>--knob-handle-size</code> to <code>--knob-handle-width</code> / <code>--knob-handle-height</code></h2>\n<p data-line=\"2\" class=\"code-line\">Currently, only square sizes are taken into consideration.<br>\nOverwriting the <code>knob</code> itself is possible, but <code>--knob-handle-size</code> cannot be ignored as it plays a crucial role in determining the <code>top</code> and <code>margin-inline-start</code> of <code>div.range-knob-handle</code>.</p>\n<h2 id=\"feat()%3A-ion-config-new-property-for-collapse\" data-line=\"5\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#feat()%3A-ion-config-new-property-for-collapse\" aria-hidden=\"true\"></a> feat(): ion-config new property for <code>collapse</code></h2>\n<p data-line=\"7\" class=\"code-line\">Currently, <code>collapse</code> behavior is automatically enabled in iOS mode, but this should be configurable through <code>ion-config</code> for better control.</p>\n<p data-line=\"9\" class=\"code-line\">ex:</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"11\"><span class=\"line\"><span style=\"color:#F97583\">export</span><span style=\"color:#F97583\"> interface</span><span style=\"color:#B392F0\"> IonicConfig</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583\">    ...</span><span style=\"color:#E1E4E8\">,</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">    collapseLargeTitle</span><span style=\"color:#F97583\">:</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        ios</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        md</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        ionic</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">    },</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">    collapseBackButtonAnimation</span><span style=\"color:#F97583\">:</span><span style=\"color:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        ios</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        md</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#FFAB70\">        ionic</span><span style=\"color:#F97583\">:</span><span style=\"color:#79B8FF\"> boolean</span><span style=\"color:#E1E4E8\">;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">    },</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8\">}</span></span>\n<span class=\"line\"></span></code></pre></div><h2 id=\"feat()%3A-add-native-shadow-part-for-design\" data-line=\"27\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#feat()%3A-add-native-shadow-part-for-design\" aria-hidden=\"true\"></a> feat(): add native shadow-part for design</h2>\n<h3 id=\"native-inner(or-item-inner)-part-to-ion-item\" data-line=\"29\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#native-inner(or-item-inner)-part-to-ion-item\" aria-hidden=\"true\"></a> native-inner(or item-inner) part to ion-item</h3>\n<p data-line=\"31\" class=\"code-line\">The styling for <code>ion-item[lines=inset]</code> is applied to <code>.item-inner</code>, which cannot be styled directly. This limitation means that for iOS 26 styling, I can only modify the border-bottom style through <code>::part(native)</code> with padding-right, preventing me from utilizing the full right side of <code>ion-item</code>. Adding <code>::part(native-inner)</code> would increase styling flexibility.</p>\n<div class=\"code-block-container\"><pre class=\"shiki github-dark\" style=\"background-color:#151e2c;color:#e1e4e8\"><code class=\"code-line\" data-line=\"33\"><span class=\"line\"><span class=\"diff-prefix\"> </span><span> &lt;ion-item&gt;</span></span>\n<span class=\"line\"><span class=\"diff-prefix\"> </span><span>   &lt;button type=\"button\" class=\"item-native\" part=\"native\"&gt;</span></span>\n<span class=\"line diff remove\"><span class=\"diff-prefix\">-</span><span>     &lt;div class=\"item-inner\"&gt;</span></span>\n<span class=\"line diff add\"><span class=\"diff-prefix\">+</span><span>     &lt;div class=\"item-inner\" part=\"native-inner\"&gt;</span></span>\n<span class=\"line\"><span class=\"diff-prefix\"> </span><span>     ...</span></span>\n<span class=\"line\"><span class=\"diff-prefix\"> </span><span>     &lt;/div&gt;</span></span>\n<span class=\"line\"><span class=\"diff-prefix\"> </span><span>   &lt;/button&gt;</span></span>\n<span class=\"line\"><span class=\"diff-prefix\"> </span><span> &lt;/ion-item&gt;</span></span>\n<span class=\"line\"><span></span></span></code></pre></div><h3 id=\"native-part-to-ion-toast\" data-line=\"44\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#native-part-to-ion-toast\" aria-hidden=\"true\"></a> native part to ion-toast</h3>\n<p data-line=\"46\" class=\"code-line\">Resolved: <a href=\"https://github.com/ionic-team/ionic-framework/pull/30992#event-23306774962\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">https://github.com/ionic-team/ionic-framework/pull/30992#event-23306774962</a></p>\n<h2 id=\"docs()%3A-naming-conventions-for-ionic-theme-classes\" data-line=\"48\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#docs()%3A-naming-conventions-for-ionic-theme-classes\" aria-hidden=\"true\"></a> docs(): Naming conventions for Ionic theme classes</h2>\n<p data-line=\"50\" class=\"code-line\">Resolved.</p>\n<h3 id=\"should-disable-ion-back-button-animation\" data-line=\"52\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#should-disable-ion-back-button-animation\" aria-hidden=\"true\"></a> should disable ion-back-button Animation</h3>\n<p data-line=\"54\" class=\"code-line\">Resolved: by created <a href=\"https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26-v9.4.1/src/transition\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26-v9.4.1/src/transition</a></p>\n<h2 id=\"feat()%3A-ion-content%5Bfullscreen%3Dtrue%5D-will-have-.content-fullscreen-class\" data-line=\"56\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#feat()%3A-ion-content%5Bfullscreen%3Dtrue%5D-will-have-.content-fullscreen-class\" aria-hidden=\"true\"></a> feat(): ion-content[fullscreen=true] will have .content-fullscreen class</h2>\n<p data-line=\"58\" class=\"code-line\">Resolved: <a href=\"https://github.com/ionic-team/ionic-framework/pull/30926\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">https://github.com/ionic-team/ionic-framework/pull/30926</a></p>\n<h2 id=\"feat()%3A-add-.range-knob-min-and-.range-knob-max-directly-to-ion-range\" data-line=\"60\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#feat()%3A-add-.range-knob-min-and-.range-knob-max-directly-to-ion-range\" aria-hidden=\"true\"></a> feat(): add .range-knob-min and .range-knob-max directly to ion-range</h2>\n<p data-line=\"62\" class=\"code-line\">Resolved: <a href=\"https://github.com/ionic-team/ionic-framework/pull/30932\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">https://github.com/ionic-team/ionic-framework/pull/30932</a></p>\n",
-      "headings": [
-        {
-          "id": "feat()%3A-change---knob-handle-size-to---knob-handle-width-%2F---knob-handle-height",
-          "text": "feat(): change --knob-handle-size to --knob-handle-width / --knob-handle-height",
-          "level": 2
-        },
-        {
-          "id": "feat()%3A-ion-config-new-property-for-collapse",
-          "text": "feat(): ion-config new property for collapse",
-          "level": 2
-        },
-        {
-          "id": "feat()%3A-add-native-shadow-part-for-design",
-          "text": "feat(): add native shadow-part for design",
-          "level": 2
-        },
-        {
-          "id": "native-inner(or-item-inner)-part-to-ion-item",
-          "text": "native-inner(or item-inner) part to ion-item",
-          "level": 3
-        },
-        {
-          "id": "native-part-to-ion-toast",
-          "text": "native part to ion-toast",
-          "level": 3
-        },
-        {
-          "id": "docs()%3A-naming-conventions-for-ionic-theme-classes",
-          "text": "docs(): Naming conventions for Ionic theme classes",
-          "level": 2
-        },
-        {
-          "id": "should-disable-ion-back-button-animation",
-          "text": "should disable ion-back-button Animation",
-          "level": 3
-        },
-        {
-          "id": "feat()%3A-ion-content%5Bfullscreen%3Dtrue%5D-will-have-.content-fullscreen-class",
-          "text": "feat(): ion-content[fullscreen=true] will have .content-fullscreen class",
-          "level": 2
-        },
-        {
-          "id": "feat()%3A-add-.range-knob-min-and-.range-knob-max-directly-to-ion-range",
-          "text": "feat(): add .range-knob-min and .range-knob-max directly to ion-range",
-          "level": 2
-        }
-      ],
-      "codes": [],
-      "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/edit/ios26/docs/feedback.md"
-    },
-    {
       "title": "API",
       "navTitle": "API",
       "slug": "api",

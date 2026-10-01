@@ -104,7 +104,7 @@ export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = 
   },
   {
     id: 'frontend-tools',
-    label: text('Frontend tools', 'フロントエンドツール'),
+    label: text('UI tools', 'UIツール'),
     description: text(
       'Reusable Angular and Ionic application libraries and UI utilities.',
       'Angular・Ionicアプリ向けの再利用可能なアプリケーションライブラリとUIユーティリティです。',
@@ -883,15 +883,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         '開発',
         { updatedAt: text('2026-09-30', '2026-09-30') },
       ),
-      page(
-        'Feature requests for Ionic Framework',
-        'Ionic Frameworkへの機能要望',
-        'feedback',
-        'feedback.md',
-        'Development',
-        '開発',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
-      ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
         updatedAt: text('2026-09-30', '2026-09-30'),
@@ -1007,15 +998,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'E2Eスクリーンショットテスト',
         'e2e-testing',
         'e2e-testing.md',
-        'Development',
-        '開発',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
-      ),
-      page(
-        'Feature requests for Ionic Framework',
-        'Ionic Frameworkへの機能要望',
-        'feedback',
-        'feedback.md',
         'Development',
         '開発',
         { updatedAt: text('2026-09-30', '2026-09-30') },

@@ -1,5 +1,8 @@
+import { ViewportScroller } from '@angular/common';
 import {
   ApplicationConfig,
+  inject,
+  provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
@@ -12,6 +15,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
+    provideAppInitializer(() => inject(ViewportScroller).setOffset([0, 68])),
     provideRouter(
       routes,
       withInMemoryScrolling({

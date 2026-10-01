@@ -1,0 +1,46 @@
+@if (category()) {
+  <div class="library-picker-heading">
+    <h2>{{ title() }}</h2>
+  </div>
+}
+<nav class="library-picker-list" aria-label="Libraries" i18n-aria-label="@@librariesNav">
+  @for (group of visibleGroups(); track group.id) {
+    @if (!category()) {
+      <p class="library-group-label">{{ group.label }}</p>
+    }
+    @for (project of group.projects; track project.id) {
+      <a
+        [id]="'project-link-' + project.id"
+        [routerLink]="project.id === activeProjectId() ? activePath() : project.path"
+        [class.is-active]="project.id === activeProjectId()"
+        (click)="choose($event, project)"
+      >
+        <span>{{ project.shortName }}</span>
+        @if (project.id === activeProjectId()) {
+          <span
+            class="library-selected"
+            aria-label="Selected library"
+            i18n-aria-label="@@selectedLibrary"
+            >✓</span
+          >
+        } @else {
+          <svg
+            class="library-next"
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="m6 3 5 5-5 5"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        }
+      </a>
+    }
+  }
+</nav>

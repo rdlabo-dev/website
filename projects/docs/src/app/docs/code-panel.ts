@@ -17,8 +17,15 @@ import { SafeHtmlPipe } from './safe-html.pipe';
   selector: 'app-code-panel',
   imports: [SafeHtmlPipe],
   host: {
-    class: 'sticky top-2 block h-[calc(100dvh-16px)] max-h-[calc(100dvh-16px)] max-[960px]:hidden',
+    class: 'sticky top-20 block h-[calc(100dvh-96px)] max-h-[calc(100dvh-96px)]',
   },
+  styles: `
+    @container docs-content (max-width: 960px) {
+      :host {
+        display: none;
+      }
+    }
+  `,
   template: `
     <aside
       class="block h-full max-h-full overflow-hidden rounded-lg bg-[#151e2c] text-[#e1e4e8] shadow-[0_4px_14px_rgba(0,14,30,0.15)]"
@@ -96,9 +103,7 @@ export class CodePanel implements OnChanges {
     return this.#hasActiveExclusiveRange(range) && !(line > range[0] && line < range[1]);
   }
 
-  #hasActiveExclusiveRange(
-    range: readonly number[] | undefined,
-  ): range is readonly number[] {
+  #hasActiveExclusiveRange(range: readonly number[] | undefined): range is readonly number[] {
     return !!range?.length && range[1] > range[0];
   }
 

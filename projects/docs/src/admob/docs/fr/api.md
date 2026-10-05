@@ -1,6 +1,6 @@
 ---
 title: "API"
-sourceRevision: "066c9ddd904a832bb89e922c2acffaffdd3407d1caefb4ad5a813ed78f3937f4"
+sourceRevision: "7e90a95b7a919d884d2ef93af779840d36b410b18fe36a4fdbbca74a47f5eb54"
 ---
 * [`initialize(...)`](#initialize)
 * [`trackingAuthorizationStatus()`](#trackingauthorizationstatus)
@@ -41,6 +41,7 @@ sourceRevision: "066c9ddd904a832bb89e922c2acffaffdd3407d1caefb4ad5a813ed78f3937f
 * [`addListener(InterstitialAdPluginEvents.AdImpression, ...)`](#addlistenerinterstitialadplugineventsadimpression-)
 * [`prepareRewardVideoAd(...)`](#preparerewardvideoad)
 * [`showRewardVideoAd(...)`](#showrewardvideoad)
+* [`addListener(RewardAdPluginEvents.adClicked, ...)`](#addlistenerrewardadplugineventsadclicked-)
 * [`addListener(RewardAdPluginEvents.FailedToLoad, ...)`](#addlistenerrewardadplugineventsfailedtoload-)
 * [`addListener(RewardAdPluginEvents.Loaded, ...)`](#addlistenerrewardadplugineventsloaded-)
 * [`addListener(RewardAdPluginEvents.Rewarded, ...)`](#addlistenerrewardadplugineventsrewarded-)
@@ -563,6 +564,9 @@ prepareInterstitial(options: AdOptions) => Promise<AdLoadInfo>
 
 Charge une annonce interstitielle et renvoie l’identifiant du bloc d’annonces chargé.
 
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
+
 | Paramètre         | Type                                            | Description                        |
 | ------------- | ----------------------------------------------- | ---------------------------------- |
 | **`options`** | <code><a href="#adoptions">AdOptions</a></code> | <a href="#adoptions">AdOptions</a> |
@@ -707,6 +711,9 @@ prepareRewardVideoAd(options: RewardAdOptions) => Promise<AdLoadInfo>
 
 Charge une annonce récompensée et renvoie l’identifiant du bloc d’annonces chargé.
 
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
+
 | Paramètre         | Type                                                        | Description                                    |
 | ------------- | ----------------------------------------------------------- | ---------------------------------------------- |
 | **`options`** | <code><a href="#rewardadoptions">RewardAdOptions</a></code> | <a href="#rewardadoptions">RewardAdOptions</a> |
@@ -733,6 +740,25 @@ Affiche une annonce récompensée chargée et se résout lorsque l’utilisateur
 **Renvoie :** <code>Promise&lt;<a href="#admobrewarditem">AdMobRewardItem</a>&gt;</code>
 
 **Depuis :** 1.1.2
+
+--------------------
+
+
+### addListener(RewardAdPluginEvents.adClicked, ...)
+
+```typescript
+addListener(eventName: RewardAdPluginEvents.adClicked, listenerFunc: () => void) => Promise<PluginListenerHandle>
+```
+
+Écoute les clics enregistrés par le SDK des annonces récompensées, y compris après l’obtention d’une récompense.
+Un clic ne signifie pas que l’utilisateur a obtenu une récompense.
+
+| Paramètre              | Type                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code><a href="#rewardadpluginevents">RewardAdPluginEvents.adClicked</a></code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>                                                      |
+
+**Renvoie :** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
@@ -870,6 +896,9 @@ prepareRewardInterstitialAd(options: RewardInterstitialAdOptions) => Promise<AdL
 ```
 
 Charge une annonce interstitielle récompensée et renvoie l’identifiant du bloc d’annonces chargé.
+
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
 
 | Paramètre         | Type                                                                                | Description                                                            |
 | ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -1363,6 +1392,7 @@ Récompense obtenue par l’utilisateur après avoir regardé une annonce inters
 
 | Membres            | Valeur                                        | Description                                                                                                                                                        |
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`adClicked`**    | <code>'onRewardedVideoAdClicked'</code>      | Émis lorsque le SDK enregistre un clic sur une annonce récompensée.                                                                                                               |
 | **`Loaded`**       | <code>'onRewardedVideoAdLoaded'</code>       | Émis lorsqu’une annonce récompensée est chargée et prête à être affichée.                                                                                                          |
 | **`FailedToLoad`** | <code>'onRewardedVideoAdFailedToLoad'</code> | Émis lorsque le chargement d’une annonce récompensée échoue.                                                                                                                            |
 | **`Showed`**       | <code>'onRewardedVideoAdShowed'</code>       | Émis lorsqu’une annonce récompensée est affichée.                                                                                                                                 |

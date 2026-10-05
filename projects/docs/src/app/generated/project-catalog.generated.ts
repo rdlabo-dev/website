@@ -294,7 +294,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Stable iOS 27 styling and motion for Ionic, with an optional preview Native UI Shell.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -400,7 +400,7 @@ export const PROJECTS_EN = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.1",
+    "version": "9.4.2",
     "description": "iOS 26 design styling for Ionic applications.",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
@@ -484,7 +484,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.2",
+    "version": "9.1.3",
     "description": "Material Design 3 styling for Ionic applications.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -1037,7 +1037,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -1135,7 +1135,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Stripe Identity SDK bindings for Capacitor applications.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -1170,7 +1170,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Stripe Terminal SDK bindings for Capacitor applications.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -1219,7 +1219,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.1.0",
+    "version": "8.2.0",
     "description": "Native Google AdMob ads for Capacitor applications.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -1921,7 +1921,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。プレビュー版のNative UI Shellも選択できます。",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -2027,7 +2027,7 @@ export const PROJECTS_JA = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.1",
+    "version": "9.4.2",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
@@ -2111,7 +2111,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.2",
+    "version": "9.1.3",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -2664,7 +2664,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Capacitorアプリに@capacitor-community/stripeを導入し、iOS・Android・WebでPaymentSheet、Apple Pay、Google Payを実装するためのドキュメント。",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -2762,7 +2762,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Capacitor アプリで Stripe Identity の本人確認を表示するプラグイン。",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -2797,7 +2797,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Capacitor アプリで Stripe Terminal の対面決済を利用するプラグイン。",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -2846,7 +2846,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.1.0",
+    "version": "8.2.0",
     "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -3548,7 +3548,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Styles et animations iOS 27 stables pour Ionic, avec un Native UI Shell facultatif en préversion.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -3654,7 +3654,7 @@ export const PROJECTS_FR = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.1",
+    "version": "9.4.2",
     "description": "Styles de design iOS 26 pour les applications Ionic.",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
@@ -3738,7 +3738,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.2",
+    "version": "9.1.3",
     "description": "Styles Material Design 3 pour les applications Ionic.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -4291,7 +4291,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Intégrez Stripe PaymentSheet, Apple Pay et Google Pay aux applications Capacitor avec @capacitor-community/stripe pour iOS, Android et le Web.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -4389,7 +4389,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Liaisons du SDK Stripe Identity pour les applications Capacitor.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -4424,7 +4424,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Liaisons du SDK Stripe Terminal pour les applications Capacitor.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -4473,7 +4473,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.1.0",
+    "version": "8.2.0",
     "description": "Annonces Google AdMob natives pour les applications Capacitor.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -5175,7 +5175,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Stabile iOS-27-Gestaltung und Bewegungseffekte für Ionic, mit optionaler Native UI Shell als Vorschau.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -5281,7 +5281,7 @@ export const PROJECTS_DE = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.1",
+    "version": "9.4.2",
     "description": "iOS-26-Design für Ionic-Anwendungen.",
     "path": "/projects/ionic-theme-ios26",
     "pages": [
@@ -5365,7 +5365,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.2",
+    "version": "9.1.3",
     "description": "Material-Design-3-Gestaltung für Ionic-Anwendungen.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -5918,7 +5918,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Stripe PaymentSheet, Apple Pay und Google Pay mit @capacitor-community/stripe in Capacitor-Apps für iOS, Android und Web integrieren.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -6016,7 +6016,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Anbindung des Stripe Identity SDK für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -6051,7 +6051,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "description": "Anbindung des Stripe Terminal SDK für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -6100,7 +6100,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.1.0",
+    "version": "8.2.0",
     "description": "Native Google-AdMob-Anzeigen für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-admob",
     "pages": [

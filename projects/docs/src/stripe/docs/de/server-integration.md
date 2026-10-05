@@ -2,7 +2,7 @@
 title: "Serverintegration"
 code: []
 scrollActiveLine: []
-sourceRevision: "9932153511793954d3be0e000f71f10a62aaf70d0285041ed7be7b936c3960e4"
+sourceRevision: "bba92695282e511bc9aac70dfba99187028a92ad912d8c823638b8cc21603952"
 ---
 `@capacitor-community/stripe` akzeptiert ausschließlich für den Client sichere Werte. Ihr Backend erstellt PaymentIntents, SetupIntents, Customers und temporäre Schlüssel mit dem geheimen Stripe-Schlüssel. Das Plugin ruft die geheime API niemals auf.
 
@@ -59,8 +59,8 @@ Apple Pay verwendet ein PaymentIntent-Client-Secret. Google Pay verwendet im Web
 
 ## Webhooks als maßgebliche Quelle
 
-`Completed` auf dem Gerät ist ein UI-Signal. Es beweist nicht, dass Stripe Geld eingezogen hat. Erfüllen Sie Bestellungen auf Grundlage verifizierter [Stripe-Webhooks](https://docs.stripe.com/webhooks) wie `payment_intent.succeeded` oder `setup_intent.succeeded`.
+`Completed` auf dem Gerät ist ein UI-Signal. Es beweist nicht, dass Stripe Geld eingezogen hat. Erfüllen Sie Bestellungen erst, nachdem Sie den Zahlungserfolg auf Ihrem Server überprüft haben, beispielsweise über einen verifizierten [Stripe-Webhook](https://docs.stripe.com/webhooks) `payment_intent.succeeded`. `setup_intent.succeeded` bedeutet, dass eine Zahlungsmethode für die spätere Verwendung gespeichert wurde; es bedeutet nicht, dass eine Zahlung erfolgt ist.
 
 Behandeln Sie `Canceled` als Schließen des Sheets durch den Kunden. Behandeln Sie `Failed` und `FailedToLoad` als Fehler. Erstellen Sie vor einem erneuten Versuch einen neuen Intent, wenn der vorherige nicht mehr bestätigt werden kann.
 
-Der offizielle Demo-Server, der die obigen Strukturen zurückgibt, befindet sich unter [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/main/demo/server).
+Der offizielle Demo-Server, der die obigen Strukturen zurückgibt, befindet sich unter [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/server).

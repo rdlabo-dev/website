@@ -4,25 +4,25 @@ code: []
 scrollActiveLine: []
 ---
 
-`@capacitor-community/stripe` v8.2.1 の公開 API メタデータから生成したリファレンスです。プラットフォームの制限、継承されるオプションフィールド、結果リスナーのライフサイクル、サーバーの責務は各メソッドページで説明しています。
+`@capacitor-community/stripe` v8.3.0 の公開 API メタデータから生成したリファレンスです。プラットフォームの制限、継承されるオプションフィールド、結果リスナーのライフサイクル、サーバーの責務は各メソッドページで説明しています。
 
 ## メソッド
 
-!::initialize::
-!::handleURLCallback::
-!::isApplePayAvailable::
-!::createApplePay::
-!::presentApplePay::
-!::updateApplePaySheet::
-!::isGooglePayAvailable::
-!::createGooglePay::
-!::presentGooglePay::
-!::createPaymentFlow::
-!::presentPaymentFlow::
-!::confirmPaymentFlow::
-!::createPaymentSheet::
-!::presentPaymentSheet::
-!::addListener::
+<!-- !::initialize:: -->
+<!-- !::handleURLCallback:: -->
+<!-- !::isApplePayAvailable:: -->
+<!-- !::createApplePay:: -->
+<!-- !::presentApplePay:: -->
+<!-- !::updateApplePaySheet:: -->
+<!-- !::isGooglePayAvailable:: -->
+<!-- !::createGooglePay:: -->
+<!-- !::presentGooglePay:: -->
+<!-- !::createPaymentFlow:: -->
+<!-- !::presentPaymentFlow:: -->
+<!-- !::confirmPaymentFlow:: -->
+<!-- !::createPaymentSheet:: -->
+<!-- !::presentPaymentSheet:: -->
+<!-- !::addListener:: -->
 
 ## インターフェース
 
@@ -44,6 +44,7 @@ scrollActiveLine: []
 | `countryCode` | `string` | ウォレットの国。既定値 `US` |
 | `merchantDisplayName` | `string` | PaymentSheet の加盟店名 |
 | `returnURL` | `string` | iOS のリダイレクト認証 |
+| `allowsDelayedPaymentMethods` | `boolean` | iOS と Android の遅延型の支払い方法。既定値 `false` |
 | `paymentMethodLayout` | `'horizontal' \| 'vertical' \| 'automatic'` | Android |
 | `style` | `'alwaysLight' \| 'alwaysDark'` | iOS |
 | `withZipCode` | `boolean` | Web |
@@ -51,34 +52,34 @@ scrollActiveLine: []
 
 すべて任意フィールドです。組み合わせと Web の制限は [PaymentSheet](/docs/payment-sheet) と [PaymentFlow](/docs/payment-flow)を参照してください。
 
-!::StripeInitializationOptions::
-!::StripeURLHandlingOptions::
-!::CreatePaymentSheetOption::
-!::CreatePaymentFlowOption::
-!::CreateApplePayOption::
-!::CreateGooglePayOption::
-!::PaymentSummaryItem::
-!::DefaultBillingDetails::
-!::Address::
-!::AddressDetails::
-!::BillingDetailsCollectionConfiguration::
-!::DidSelectShippingContact::
-!::DidCreatePaymentMethod::
-!::ShippingContact::
-!::PluginListenerHandle::
+<!-- !::StripeInitializationOptions:: -->
+<!-- !::StripeURLHandlingOptions:: -->
+<!-- !::CreatePaymentSheetOption:: -->
+<!-- !::CreatePaymentFlowOption:: -->
+<!-- !::CreateApplePayOption:: -->
+<!-- !::CreateGooglePayOption:: -->
+<!-- !::PaymentSummaryItem:: -->
+<!-- !::DefaultBillingDetails:: -->
+<!-- !::Address:: -->
+<!-- !::AddressDetails:: -->
+<!-- !::BillingDetailsCollectionConfiguration:: -->
+<!-- !::DidSelectShippingContact:: -->
+<!-- !::DidCreatePaymentMethod:: -->
+<!-- !::ShippingContact:: -->
+<!-- !::PluginListenerHandle:: -->
 
 ## 型エイリアス
 
-!::PaymentSheetResultInterface::
-!::PaymentFlowResultInterface::
-!::ApplePayResultInterface::
-!::GooglePayResultInterface::
-!::CollectionMode::
-!::AddressCollectionMode::
+<!-- !::PaymentSheetResultInterface:: -->
+<!-- !::PaymentFlowResultInterface:: -->
+<!-- !::ApplePayResultInterface:: -->
+<!-- !::GooglePayResultInterface:: -->
+<!-- !::CollectionMode:: -->
+<!-- !::AddressCollectionMode:: -->
 
 ## 列挙型
 
-!::PaymentSheetEventsEnum::
-!::PaymentFlowEventsEnum::
-!::ApplePayEventsEnum::
-!::GooglePayEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
+<!-- !::PaymentFlowEventsEnum:: -->
+<!-- !::ApplePayEventsEnum:: -->
+<!-- !::GooglePayEventsEnum:: -->

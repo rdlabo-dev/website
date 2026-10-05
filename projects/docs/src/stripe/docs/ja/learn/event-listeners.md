@@ -22,7 +22,7 @@ await Promise.all([
 ]);
 ```
 
-!::PluginListenerHandle::
+<!-- !::PluginListenerHandle:: -->
 
 ## Android Activity の再生成
 
@@ -36,9 +36,9 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 
 ## PaymentSheet のイベント
 
-!::addListener.PaymentSheetEventsEnum::
+<!-- !::addListener.PaymentSheetEventsEnum:: -->
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
 標準的な流れは次のとおりです。
 
@@ -48,13 +48,13 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 4. `presentPaymentSheet()` を呼ぶ。
 5. `Completed`、`Canceled`、`Failed` のいずれかを受け取る。
 
-`Canceled` は利用者がシートを閉じたことを表し、例外ではありません。`Failed` と `FailedToLoad` にはエラー文字列が含まれます。クライアントイベントだけで商品の発送やサービスの提供を判断せず、[Webhook](/docs/server-integration) で PaymentIntent または SetupIntent を確認してください。
+`Canceled` は利用者がシートを閉じた状態です。例外ではなくキャンセルとして扱います。`Failed` と `FailedToLoad` にはエラー文字列が含まれます。クライアントイベントだけで商品の発送やサービスの提供を判断せず、[Webhook](/docs/server-integration) を使ってサーバーで Intent の状態を確認してください。
 
 ## PaymentFlow のイベント
 
-!::addListener.PaymentFlowEventsEnum::
+<!-- !::addListener.PaymentFlowEventsEnum:: -->
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
 1. 起動時に結果リスナーを登録する。
 2. `createPaymentFlow()` を呼ぶ。
@@ -66,18 +66,18 @@ Android では Stripe の UI が開いている間に Activity と JavaScript �
 
 ## Apple Pay のイベント
 
-!::addListener.ApplePayEventsEnum::
+<!-- !::addListener.ApplePayEventsEnum:: -->
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
-`DidSelectShippingContact` には `contact` と `updateId` が含まれます。iOS では、その `updateId` と更新後の `paymentSummaryItems` を指定して `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは25秒後に元の項目へ戻ります。`updateApplePaySheet` は Android と Web では未実装です。
+`DidSelectShippingContact` には `contact` と `updateId` が含まれます。iOS では、その `updateId` と更新した `paymentSummaryItems` を指定して `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは現在の配送方法を維持したまま、25 秒後に最後に受理した明細へ戻ります。`updateApplePaySheet` は Android と Web では未実装です。
 
 `DidCreatePaymentMethod` には配送先 `contact` が含まれます。Apple は支払いが成功するまで住所全体を返しません。
 
 ## Google Pay のイベント
 
-!::addListener.GooglePayEventsEnum::
+<!-- !::addListener.GooglePayEventsEnum:: -->
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->
 
 Google Pay は Android と Web で利用できます。iOS では実装されていません。

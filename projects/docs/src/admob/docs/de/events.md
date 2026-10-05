@@ -1,6 +1,6 @@
 ---
 title: "Anzeigenereignisse"
-sourceRevision: "cedfb7741215f77c0e64973a79c00fceb2843105c495504800b90bec12e8d0b2"
+sourceRevision: "c82642b160a974c1f99282a8699e9469e84db5f18a0d7e7b21513ab9f6383556"
 ---
 # Anzeigenereignisse
 
@@ -33,19 +33,22 @@ await handle.remove();
 | `Showed` / `Opened`       | Die Anzeige für den Nutzer sichtbar wird.                     |
 | `FailedToShow`            | Eine geladene Anzeige nicht angezeigt werden konnte.                         |
 | `Dismissed` / `Closed`    | Der Nutzer die Vollbildanzeige oder das Overlay geschlossen hat.         |
+| `adClicked` | Das SDK hat einen Klick auf eine belohnte Anzeige erfasst (seit 8.2.0). |
 | `Rewarded`                | Der Nutzer die angekündigte Belohnung verdient hat.                 |
 | `SizeChanged`             | Die Banner-Abmessungen sich geändert haben.                             |
 | `AdImpression` / `AdPaid` | Eine Impression aufgezeichnet wurde. Siehe die folgenden Umsatzereignisse.  |
 
 ## Fehler
 
-Listener für `FailedToLoad` und `FailedToShow` erhalten Nutzdaten vom Typ `AdMobError`.
+Listener für `FailedToLoad` und `FailedToShow` erhalten eine `AdMobError`-Nutzlast. Die Codes sind native, plattformspezifische Zahlen. Seit 8.2.0 führen SDK-Ladefehler in den Vorbereitungsmethoden für Interstitial-, belohnte und belohnte Interstitial-Anzeigen außerdem zu einer Ablehnung mit demselben Code als Zeichenkette. Unter iOS melden Ladefehlerereignisse nun den tatsächlichen Code statt `0`.
 
 <!-- !::AdMobError:: -->
 
 ## Umsatz je Impression
 
 Vollbildformate liefern `AdMobRevenueData` über ihr Ereignis `AdImpression`. Banner liefern dieselben Nutzdaten über `AdPaid`. Banner-`AdImpression` enthält keine Nutzdaten; es meldet nur eine aufgezeichnete Impression.
+
+`valueMicros` ist eine Ganzzahl in Millionsteln der durch `currencyCode` angegebenen Währung. Teilen Sie sie durch `1_000_000`, um Währungseinheiten zu erhalten. Die iOS-Umrechnung wurde in 8.2.0 korrigiert. Siehe [Migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration), falls Ihre Analysen die bisherigen Werte korrigieren.
 
 <!-- !::AdMobRevenueData:: -->
 

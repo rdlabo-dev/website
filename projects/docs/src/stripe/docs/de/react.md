@@ -2,7 +2,7 @@
 title: "React-Schnellstart"
 code: []
 scrollActiveLine: []
-sourceRevision: "686dbe24dfa42de83cfd6a29f7ff305580284f2cee7a2ddfd6046653722e792a"
+sourceRevision: "b1249b8c28f1c10d721701653853a374c62de1eee0e54a6b5c3cf73a50123b74"
 ---
 Umschließen Sie die Anwendung mit `CapacitorStripeProvider`. Der Provider ruft `Stripe.initialize` auf, prüft die Verfügbarkeit von Apple Pay und Google Pay und registriert im Web `stripe-pwa-elements`.
 
@@ -57,6 +57,4 @@ export const PaymentSheet: React.FC = () => {
 
 Registrieren Sie Ergebnis-Listener einmal beim Anwendungsstart, nicht innerhalb eines Zahlungs-Schaltflächenhandlers. Siehe [Ereignis-Listener](/docs/learn/event-listeners).
 
-Als Nächstes erstellen Sie auf Ihrem Server einen Test-Intent ([Serverintegration](/docs/server-integration)) und zeigen anschließend [PaymentSheet](/docs/payment-sheet) an.
-
-Die offizielle React-Demo befindet sich unter [capacitor-community/stripe/demo/react](https://github.com/capacitor-community/stripe/tree/main/demo/react).
+Die offizielle React-Demo befindet sich unter [capacitor-community/stripe/demo/react](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/react).

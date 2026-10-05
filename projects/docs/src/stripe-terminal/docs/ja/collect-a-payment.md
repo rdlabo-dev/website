@@ -26,24 +26,13 @@ scrollActiveLine:
 
 リスナーの早期登録、プラグイン初期化、リーダー接続、PaymentIntent の確定という順で Stripe Terminal の対面決済を処理します。
 
-## 初回テストに必要なもの
-
-最初の収集の前に次を用意します。
-
-- [設定](/docs/configuration) のプラットフォーム設定（必要な場合は Android 権限を含む）
-- アプリから呼べる認証付き接続トークンエンドポイント
-- サーバーで作成した `card_present` 付きのテスト PaymentIntent
-- 探索する接続方式に対応する Stripe Terminal の `locationId`
-
-最初の到達状態は、リーダー接続 → 支払い方法の収集 → PaymentIntent 確定と `ConfirmedPaymentIntent` の確認です。商品の発送やサービスの提供は Stripe Webhook を待ってから行います。シミュレーションリーダーは [設定](/docs/configuration) のとおり、**対応する**接続方式と `isTest: true` を組み合わせてください。`TerminalConnectTypes.Simulated` を全プラットフォーム共通とは見なさないでください。
-
 ## アプリケーションレベルのリスナーを登録する
 
-Terminal のイベントリスナーは JavaScript アプリケーションの起動ごとに一度だけ、初期化や操作開始より前に登録し、所有者が存続する間は保持します。
+Terminal のイベントリスナーは JavaScript アプリケーションの起動ごとに一度だけ、初期化や操作開始より前に登録し、所有者が存続する間は保持します。`main.ts`、アプリケーション初期化処理、起動時に初期化するシングルトンサービスなどで、できるだけ早く登録してください。
 
 !::TerminalEventsEnum::
 
-型付き `addListener` は大半のメンバーを扱います。ネイティブ探索の `DiscoveringReaders` と `CancelDiscoveredReaders` には専用オーバーロードがありません。
+型付き `addListener` は大半のメンバーを扱います。ネイティブ探索の `DiscoveringReaders` と `CancelDiscoveredReaders` には専用オーバーロードがありません。[API](/docs/api) を参照してください。
 
 ## initialize
 
@@ -51,17 +40,9 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 
 !::initialize::
 
-Web の `initialize` は新しいプラグインインスタンスを必要とし、成功後の再呼び出しは例外になります。
-
-## 接続トークンを安全に渡す
-
-`tokenProviderEndpoint` を省略し、`initialize` より前に `RequestedConnectionToken` を登録します。通常の認証方式で取得し、成功レスポンスと `secret` を検証して `setConnectionToken({ token })` へ渡します。取得要求中だけ呼び出し、レスポンスやトークンをログへ出さないでください。
-
-!::setConnectionToken::
-
 ### `tokenProviderEndpoint` 互換モード
 
-単純な構成では利用できますが、v8.2.1 のネイティブクライアントは認証ヘッダーも本文も付けられない空の HTTP **POST** を送信します。別の方法で認証・保護できる場合だけ使用し、無制限に公開されたトークン作成エンドポイントを用意しないでください。
+単純な構成では利用できますが、v8.3.0 のネイティブクライアントは認証ヘッダーも本文も付けられない空の HTTP **POST** を送信します。別の方法で認証・保護できる場合だけ使用し、無制限に公開されたトークン作成エンドポイントを用意しないでください。
 
 レスポンスは `secret` 文字列を持つ JSON でなければなりません。
 
@@ -69,15 +50,26 @@ Web の `initialize` は新しいプラグインインスタンスを必要と�
 { "secret": "pst_..." }
 ```
 
-接続トークンはサーバーで Stripe の**シークレット** API キーを使って作成します。シークレットキー、トークン作成可能な制限付きキー、生の接続トークンをアプリ、ログ、公開設定へ含めてはいけません。
+この値は Stripe Terminal の[接続トークン](https://docs.stripe.com/terminal/fleet/connect-reader?terminal-sdk-platform=js#connection-token)です。接続トークンはサーバーで `stripe.terminal.connectionTokens.create()` と Stripe の**シークレット** API キーを使って作成します。シークレットキー、トークン作成可能な制限付きキー、生の接続トークンをアプリ、ログ、公開設定へ含めてはいけません。
+
+公式デモは `POST /connection/token` で `{ secret }` を返します。認証と認可はアプリケーションに合わせて調整してください。
 
 :::message
-v8.2.1 では Android が `tokenProviderEndpoint` の `secret` を、Web が `setConnectionToken` のオプションをログへ出力します。修正版へ更新できるまで Android の endpoint モードと本番 Web のコンソール保持を避けてください。
+v8.3.0 では Android が `tokenProviderEndpoint` の `secret` を、Web が `setConnectionToken` のオプションをログへ出力します。修正版へ更新できるまで Android の endpoint モードと本番 Web のコンソール保持を避けてください。
 :::
+
+
+Web の `initialize` は新しいプラグインインスタンスを必要とし、成功後の再呼び出しは `Stripe Terminal has already been initialized` という例外になります。
+
+## 接続トークンを安全に渡す
+
+`tokenProviderEndpoint` を省略し、`initialize` より前に `RequestedConnectionToken` を登録します。通常の認証方式で取得し、成功レスポンスと `secret` を検証して `setConnectionToken({ token })` へ渡します。SDK がトークンを要求するとイベントが通知され、プラグインは `setConnectionToken({ token })` を待ちます。取得要求中だけ呼び出してください。Android と iOS は余分な呼び出しを `Stripe Terminal do not pending fetchConnectionToken` で拒否します。レスポンスやトークンをログへ出さないでください。
+
+!::setConnectionToken::
 
 ## バックエンドでPaymentIntentを作成する
 
-サーバーで PaymentIntent を作成し、**クライアントシークレット**だけをアプリへ返します。
+サーバーで PaymentIntent を作成します。公式デモは `POST /connection/intent` を使い、`{ paymentIntent }` を**クライアントシークレット**として返します。
 
 - `payment_method_types` に `card_present` を含める
 - Stripe のシークレットキーをサーバーに保持する
@@ -101,8 +93,9 @@ await stripe.paymentIntents.create({
 
 - Web は `Internet` だけに対応します。
 - iOS Bluetooth はスキャン更新ごとに `DiscoveredReaders` を複数回通知します。`bluetoothScanWaitTime` をミリ秒で指定すると、`discoverReaders` はその時間待ってから、その時点の一覧を返します。`0` または省略時は最初のスキャン結果を返します。[StripeのiOS Bluetooth接続ガイド](https://docs.stripe.com/terminal/payments/connect-reader?terminal-sdk-platform=ios&reader-type=bluetooth)も参照してください。
-- Android は実行時の `ACCESS_FINE_LOCATION` 権限が必要です。
-- 利用者が探索画面を離れたら `cancelDiscoverReaders` を呼び、長い探索を止められるUIを用意します。
+- iOS は探索開始時に `DiscoveringReaders` も通知します。USB、HandOff、`type` としての `Simulated` は未実装です。
+- Android は実行時の `ACCESS_FINE_LOCATION` 権限が必要です。未許可の場合、`discoverReaders` は拒否されます。`Simulated` は Bluetooth 探索として扱われ、`HandOff` は Apps on Devices です。
+- 利用者が探索画面を離れたら `cancelDiscoverReaders` を呼び、長い探索を止められるUIを用意します。Web のキャンセルは何も行いません。
 
 Promise を await するだけでなく、`DiscoveredReaders` も監視してください。iOS Bluetooth ではリスナーが最新の一覧を通知し、Promise は最後のイベントより先に解決する場合があります。
 
@@ -118,13 +111,13 @@ Promise を await するだけでなく、`DiscoveredReaders` も監視してく
 
 ## 支払い方法を収集する
 
-バックエンドから受け取った PaymentIntent の**クライアントシークレット**を `collectPaymentMethod` へ渡します。
+バックエンドから受け取った PaymentIntent の**クライアントシークレット**を `collectPaymentMethod` へ渡します。プラグインはその PaymentIntent を取得し、接続済みリーダーで支払い方法を収集します。
 
 !::collectPaymentMethod::
 
 ## PaymentIntentを確定する
 
-収集済み PaymentIntent を処理・確定します。収集成功前に呼ぶと拒否されます。
+収集済み PaymentIntent を処理・確定します。収集成功前に `confirmPaymentIntent` を呼ぶと、`PaymentIntent not found for confirmPaymentIntent` で拒否されます。
 
 !::confirmPaymentIntent::
 
@@ -143,7 +136,3 @@ Promise を await するだけでなく、`DiscoveredReaders` も監視してく
 支払いフロー完了後、またはリーダーが不要になったときに切断します。
 
 !::disconnectReader::
-
-## 最初の成功のあと
-
-切断・再接続・更新は [リーダーのライフサイクル](/docs/reader-lifecycle) を参照してください。端末だけで受け付ける場合は [Tap to Pay](/docs/tap-to-pay) です。正式なシグネチャは [API](/docs/api) にあります。

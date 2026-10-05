@@ -1,6 +1,6 @@
 ---
 title: "Einwilligung"
-sourceRevision: "ff300883c11e011224620517ed260084ff215a404afa193135e5cb7cf94e5314"
+sourceRevision: "91819009cf29ac96d7cc27cc186fc9046aa7fa91ea2a9a8a4a4c58e574f572b2"
 ---
 # Einwilligung
 
@@ -10,15 +10,14 @@ Dieses Plugin stellt UMP und iOS App Tracking Transparency über eine gemeinsame
 
 ## Empfohlene Reihenfolge
 
-1. Rufen Sie `AdMob.initialize()` auf. Siehe [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration).
-2. Rufen Sie `AdMob.requestConsentInfo()` auf.
-3. Rufen Sie bei Bedarf `AdMob.showConsentForm()` auf.
-4. Laden Sie Anzeigen nur, wenn `consentInfo.canRequestAds` `true` ist.
+1. Rufen Sie bei jedem App-Start `AdMob.requestConsentInfo()` auf.
+2. Rufen Sie bei Bedarf `AdMob.showConsentForm()` auf.
+3. Wenn `consentInfo.canRequestAds` gleich `true` ist, rufen Sie einmal `AdMob.initialize()` auf und laden Sie anschließend Anzeigen. Siehe [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration).
+
+Seit 8.2.0 können Einwilligungsformulare unter iOS wie unter Android vor der SDK-Initialisierung angezeigt werden.
 
 ```ts
 import { AdMob, AdmobConsentStatus } from '@capacitor-community/admob';
-
-await AdMob.initialize();
 
 let consentInfo = await AdMob.requestConsentInfo();
 if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
@@ -26,6 +25,7 @@ if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentSta
 }
 
 if (consentInfo.canRequestAds) {
+  await AdMob.initialize();
   // Anzeigen können jetzt angefordert werden.
 }
 ```

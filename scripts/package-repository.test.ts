@@ -113,7 +113,7 @@ test('resolves README screenshot paths against the pinned package release', asyn
     '[![Comparison](./screenshots/native-ui-shell-drag/comparison.png)](./screenshots/native-ui-shell-drag/comparison.png)',
   ].join('\n');
   const base =
-    'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/';
+    'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/';
 
   assert.equal(
     await pinPackageSourceLinks(project, markdown),
@@ -170,13 +170,13 @@ test('supports prefixed release tags for renamed theme packages', async () => {
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
   };
-  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v1.2.0');
+  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v1.2.1');
   assert.equal(
     await pinPackageSourceLinks(
       project,
       '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/main/src/index.ts)',
     ),
-    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.0/src/index.ts)',
+    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.1/src/index.ts)',
   );
 });
 
@@ -191,13 +191,13 @@ test('canonicalizes renamed iOS 26 source and image links without losing its rel
       project,
       '[source](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/main/src/index.ts) ![image](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png)',
     ),
-    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.1/src/index.ts) ![image](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.1/screenshots/ios26.png)',
+    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts) ![image](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)',
   );
   assert.equal(
     await pinPackageSourceLinks(
       { ...project, packageName: '@rdlabo/ionic-theme-ios27', releaseTagPrefix: 'ios27-v' },
-      '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v9.4.1/src/index.ts)',
+      '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v9.4.2/src/index.ts)',
     ),
-    '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.1/src/index.ts)',
+    '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts)',
   );
 });

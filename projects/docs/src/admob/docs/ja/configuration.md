@@ -4,15 +4,24 @@ code: []
 scrollActiveLine: []
 ---
 
-広告をリクエストする前に、プラグインの `initialize` を一度呼び出します。ネイティブ SDK を自分で起動する必要はありません。
+同意を取得して `canRequestAds` を確認したあと、広告をリクエストする前にプラグインの `initialize` を一度呼び出します。ネイティブ SDK を自分で起動する必要はありません。
 
 ネイティブのアプリ ID は AndroidManifest / Info.plist に置きます。[インストール](/docs/readme#インストール) を見てください。
 
 ```ts
 import { AdMob } from '@capacitor-community/admob';
 
-await AdMob.initialize();
+try {
+  await AdMob.initialize();
+} catch (error) {
+  console.error('AdMob initialization failed', error);
+  // 広告リクエストは見送ります。アプリのネイティブビューが利用可能になってから再試行してください。
+}
 ```
+
+Android では、フルスクリーン広告しか使わないアプリでも、初期化時にネイティブバナーの親ビューを待ちます。Activity／コンテンツビューが利用できない場合、または親ビューが5秒以内に現れない場合は拒否されます。広告の初期化失敗でアプリ全体の起動が止まらないよう、この拒否を処理してください。ネイティブビューが利用可能になれば再試行できます。
+
+`initialize()` が正常に完了しても、広告のロードが完了したとは限りません。各形式のロードメソッドとイベントで準備状態を確認してください。
 
 !::initialize::
 
@@ -22,4 +31,4 @@ await AdMob.initialize();
 
 `isTesting`、`npa`（非パーソナライズ広告）、`immersiveMode`（フルスクリーン広告中に Android のシステムバーを隠す）などの広告単位のオプションは `initialize` ではなく各リクエストに付けます。各形式のガイドを見てください。
 
-初期化のあと、広告をロードする前にプライバシー同意を取ります。[同意管理](/docs/consent) を見てください。
+初期化と広告のロードより前に、プライバシーに関する同意を取得します。[同意管理](/docs/consent) を参照してください。

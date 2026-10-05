@@ -2,9 +2,9 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "fafce7f4b49acd51ca860d7030347e6d2f84a74204462a46df27e73f2f92457d"
+sourceRevision: "8ba1cd15c0a520cd2889df144b154a54860f48e7639f0271ddd538c693a9ec24"
 ---
-Referenz für `@capacitor-community/stripe-terminal` v8.2.1. Die Plattformunterstützung für Verbindungstypen und Tap-to-Pay-APIs wird unter [Konfiguration](/docs/configuration) beschrieben.
+Referenz für `@capacitor-community/stripe-terminal` v8.3.0. Die Plattformunterstützung für Verbindungstypen und APIs für Tap to Pay wird unter [Konfiguration](/docs/configuration) beschrieben.
 
 ## Methoden
 

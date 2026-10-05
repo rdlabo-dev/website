@@ -2,7 +2,7 @@
 title: "Intégration serveur"
 code: []
 scrollActiveLine: []
-sourceRevision: "9932153511793954d3be0e000f71f10a62aaf70d0285041ed7be7b936c3960e4"
+sourceRevision: "bba92695282e511bc9aac70dfba99187028a92ad912d8c823638b8cc21603952"
 ---
 `@capacitor-community/stripe` accepte uniquement des valeurs pouvant être utilisées côté client. Votre backend crée les PaymentIntents, SetupIntents, Customers et clés éphémères avec la clé secrète Stripe. Le plugin n’appelle jamais l’API secrète.
 
@@ -59,8 +59,8 @@ Apple Pay utilise un secret client de PaymentIntent. Sur le Web, Google Pay util
 
 ## Les webhooks font autorité
 
-`Completed` sur l’appareil est un signal d’interface. Il ne prouve pas que Stripe a capturé les fonds. Exécutez les commandes à partir de [webhooks Stripe](https://docs.stripe.com/webhooks) vérifiés, comme `payment_intent.succeeded` ou `setup_intent.succeeded`.
+`Completed` sur l’appareil est un signal destiné à l’interface. Il ne prouve pas que Stripe a encaissé des fonds. N’exécutez les commandes qu’après avoir vérifié la réussite du paiement sur votre serveur, par exemple à l’aide d’un [webhook Stripe](https://docs.stripe.com/webhooks) `payment_intent.succeeded` vérifié. `setup_intent.succeeded` signifie qu’un moyen de paiement a été enregistré pour une utilisation future ; il ne signifie pas qu’un paiement a eu lieu.
 
 Traitez `Canceled` comme la fermeture de la feuille par le client. Traitez `Failed` et `FailedToLoad` comme des erreurs. Lorsque l’Intent précédent ne peut plus être confirmé, ne réessayez qu’après avoir créé un nouvel Intent.
 
-Le serveur de démonstration officiel qui renvoie les structures ci-dessus se trouve dans [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/main/demo/server).
+Le serveur de démonstration officiel qui renvoie les structures ci-dessus se trouve dans [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/server).

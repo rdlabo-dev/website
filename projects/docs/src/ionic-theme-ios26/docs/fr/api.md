@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "439f1b1f204c6f8e955732db332883e038ce9feaa98e88e93a7348441a2f8b6a"
+sourceRevision: "652de45684635ff0a9f30ed5aa6326a7c29122a7dd0c370754a1825bcca165e7"
 ---
-Référence de l’API JavaScript exportée par `@rdlabo/ionic-theme-ios26` v9.4.1. Les points d’entrée CSS et Sass restent décrits dans le README.
+Référence de l’API JavaScript exportée par `@rdlabo/ionic-theme-ios26` v9.4.2. Les points d’entrée CSS et Sass restent décrits dans le README.
 
 ## Effets
 

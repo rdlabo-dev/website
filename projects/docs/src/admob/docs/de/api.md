@@ -1,6 +1,6 @@
 ---
 title: "API"
-sourceRevision: "066c9ddd904a832bb89e922c2acffaffdd3407d1caefb4ad5a813ed78f3937f4"
+sourceRevision: "7e90a95b7a919d884d2ef93af779840d36b410b18fe36a4fdbbca74a47f5eb54"
 ---
 * [`initialize(...)`](#initialize)
 * [`trackingAuthorizationStatus()`](#trackingauthorizationstatus)
@@ -41,6 +41,7 @@ sourceRevision: "066c9ddd904a832bb89e922c2acffaffdd3407d1caefb4ad5a813ed78f3937f
 * [`addListener(InterstitialAdPluginEvents.AdImpression, ...)`](#addlistenerinterstitialadplugineventsadimpression-)
 * [`prepareRewardVideoAd(...)`](#preparerewardvideoad)
 * [`showRewardVideoAd(...)`](#showrewardvideoad)
+* [`addListener(RewardAdPluginEvents.adClicked, ...)`](#addlistenerrewardadplugineventsadclicked-)
 * [`addListener(RewardAdPluginEvents.FailedToLoad, ...)`](#addlistenerrewardadplugineventsfailedtoload-)
 * [`addListener(RewardAdPluginEvents.Loaded, ...)`](#addlistenerrewardadplugineventsloaded-)
 * [`addListener(RewardAdPluginEvents.Rewarded, ...)`](#addlistenerrewardadplugineventsrewarded-)
@@ -563,6 +564,9 @@ prepareInterstitial(options: AdOptions) => Promise<AdLoadInfo>
 
 Lädt eine Interstitial-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
 
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
+
 | Parameter         | Typ                                            | Beschreibung                        |
 | ------------- | ----------------------------------------------- | ---------------------------------- |
 | **`options`** | <code><a href="#adoptions">AdOptions</a></code> | <a href="#adoptions">AdOptions</a> |
@@ -707,6 +711,9 @@ prepareRewardVideoAd(options: RewardAdOptions) => Promise<AdLoadInfo>
 
 Lädt eine Rewarded-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
 
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
+
 | Parameter         | Typ                                                        | Beschreibung                                    |
 | ------------- | ----------------------------------------------------------- | ---------------------------------------------- |
 | **`options`** | <code><a href="#rewardadoptions">RewardAdOptions</a></code> | <a href="#rewardadoptions">RewardAdOptions</a> |
@@ -733,6 +740,25 @@ Zeigt eine geladene Rewarded-Anzeige an und wird aufgelöst, wenn der Nutzer die
 **Rückgabe:** <code>Promise&lt;<a href="#admobrewarditem">AdMobRewardItem</a>&gt;</code>
 
 **Seit:** 1.1.2
+
+--------------------
+
+
+### addListener(RewardAdPluginEvents.adClicked, ...)
+
+```typescript
+addListener(eventName: RewardAdPluginEvents.adClicked, listenerFunc: () => void) => Promise<PluginListenerHandle>
+```
+
+Lauscht auf vom SDK für belohnte Anzeigen erfasste Klicks, auch nach dem Erhalt einer Belohnung.
+Ein Klick bedeutet nicht, dass der Nutzer eine Belohnung verdient hat.
+
+| Parameter              | Typ                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code><a href="#rewardadpluginevents">RewardAdPluginEvents.adClicked</a></code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>                                                      |
+
+**Rückgabe:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
@@ -870,6 +896,9 @@ prepareRewardInterstitialAd(options: RewardInterstitialAdOptions) => Promise<AdL
 ```
 
 Lädt eine Rewarded-Interstitial-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
+
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
 
 | Parameter         | Typ                                                                                | Beschreibung                                                            |
 | ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -1363,6 +1392,7 @@ Wählt aus T eine Menge von Properties, deren Schlüssel in der Union K enthalte
 
 | Member            | Wert                                        | Beschreibung                                                                                                                                                        |
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`adClicked`**    | <code>'onRewardedVideoAdClicked'</code>      | Wird ausgelöst, wenn das SDK einen Klick auf eine belohnte Anzeige erfasst.                                                                                                               |
 | **`Loaded`**       | <code>'onRewardedVideoAdLoaded'</code>       | Wird ausgelöst, wenn eine Rewarded-Anzeige geladen und zur Anzeige bereit ist.                                                                                                          |
 | **`FailedToLoad`** | <code>'onRewardedVideoAdFailedToLoad'</code> | Wird ausgelöst, wenn eine Rewarded-Anzeige nicht geladen werden kann.                                                                                                                            |
 | **`Showed`**       | <code>'onRewardedVideoAdShowed'</code>       | Wird ausgelöst, wenn eine Rewarded-Anzeige angezeigt wird.                                                                                                                                 |

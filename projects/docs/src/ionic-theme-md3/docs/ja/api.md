@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-theme-md3` v9.1.2 が公開するJavaScript APIのリファレンスです。CSS entry pointはREADMEで説明します。
+`@rdlabo/ionic-theme-md3` v9.1.3 が公開するJavaScript APIのリファレンスです。CSS entry pointはREADMEで説明します。
 
 ## Animation
 

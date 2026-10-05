@@ -5,7 +5,7 @@ code: [
   "/docs/stripe/google-pay/android-manifest.xml.md",
   "/docs/stripe/google-pay/google-pay.ts.md"
 ]
-scrollActiveLine: []
+scrollActiveLine: [{"id":"","activeLine":{}},{"id":"strings.xml","activeLine":{"strings.xml":[7,14]}},{"id":"androidmanifest.xml","activeLine":{"AndroidManifest.xml":[36,60]}},{"id":"1.-isgooglepayavailable","activeLine":{"google-pay.ts":[4,10]}},{"id":"2.-creategooglepay","activeLine":{"google-pay.ts":[15,33]}},{"id":"3.-presentgooglepay","activeLine":{"google-pay.ts":[33,39]}},{"id":"4.-addlistener","activeLine":{"google-pay.ts":[11,14]}}]
 ---
 
 Google Pay は一度の表示で PaymentIntent を確定します。Android は SetupIntent にも対応しますが、Web は対応していません。
@@ -137,23 +137,20 @@ try {
 }
 ```
 
-!::isGooglePayAvailable::
+<!-- !::isGooglePayAvailable:: -->
 
 ## 2. createGooglePay
 
-バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
+バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。[サーバー連携](/docs/server-integration)を参照してください。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
 
 ```ts
-// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
-const response = await fetch('/your-intent-endpoint', {
-  method: 'POST',
-});
-if (!response.ok) {
-  throw new Error(`Intent request failed: ${response.status}`);
-}
-const { paymentIntent } = (await response.json()) as {
-  paymentIntent: string;
-};
+import { firstValueFrom } from 'rxjs';
+
+const { paymentIntent } = await firstValueFrom(
+  this.http.post<{
+    paymentIntent: string;
+  }>(environment.api + 'intent', {}),
+);
 
 await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
@@ -169,8 +166,8 @@ await Stripe.createGooglePay({
 });
 ```
 
-!::createGooglePay::
-!::CreateGooglePayOption::
+<!-- !::createGooglePay:: -->
+<!-- !::CreateGooglePayOption:: -->
 
 :::message
 `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` は Web で必須です。Android はメタデータの国と加盟店名を使用します。
@@ -183,14 +180,14 @@ SetupIntent のクライアントシークレットは `seti_` で始まりま�
 ```ts
 const result = await Stripe.presentGooglePay();
 if (result.paymentResult === GooglePayEventsEnum.Completed) {
-  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
+  // UI だけを更新します。商品発送やサービス提供の前に、サーバーで Webhook を使って支払い成功を確認してください。
 }
 ```
 
-!::presentGooglePay::
-!::GooglePayResultInterface::
+<!-- !::presentGooglePay:: -->
+<!-- !::GooglePayResultInterface:: -->
 
-`Canceled` はキャンセル、`Failed` はエラーです。Android Activity 再生成後は結果リスナーを優先してください。
+`Canceled` はキャンセル、`Failed` はエラーです。Android Activity 再生成後は結果リスナーを優先してください。[イベントリスナー](/docs/learn/event-listeners)を参照してください。
 
 ## 4. addListener
 
@@ -200,7 +197,7 @@ Stripe.addListener(GooglePayEventsEnum.Completed, () => {
 });
 ```
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->
 
 ## 参考資料
 

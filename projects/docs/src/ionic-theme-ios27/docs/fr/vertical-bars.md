@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars (préversion)"
-sourceRevision: "0daed02571bc73ffce840b233aa934d67360c82d05c9fbe30550b1461854d732"
+sourceRevision: "8c5a60399c6c97dee637a7a81a038d84e15845669ba59194ee2020a30f0e1c71"
 ---
 # Vertical Bars (préversion)
 
@@ -85,6 +85,8 @@ Tous les remplissages (`default`, `clear`, `solid` et `outline`) et couleurs Ion
 
 La règle s’applique aux boutons individuels et à ceux contenus dans `ion-buttons`, sur les pages ordinaires et dans la modale pleine largeur la plus haute. Les modales centrées, menus et popovers gardent leur propre disposition de barre d’outils. Ajoutez `.ios-theme-horizontal-only` à un groupe ou un bouton individuel pour le garder horizontal. Le placement est choisi lorsqu’une page routée entre ; changer le contenu ou le slot d’icône d’un bouton existant ne le déplace pas entre barre d’outils et rail avant que la page sorte puis entre de nouveau.
 
+Une barre d’outils dont tout le contenu a été déplacé dans le rail se replie pendant la projection. Les barres contenant un titre, du texte direct, d’autres contenus ou un contrôle réservé à l’affichage horizontal restent visibles. L’arrêt de la projection restaure la barre d’outils d’origine.
+
 ### Choisir l’apparence des boutons
 
 `buttonProjection` et les réglages locaux de projection ci-dessous sont disponibles dans `1.2.0`.
@@ -100,7 +102,7 @@ Pour les actions natives verticales `ion-button` et `ion-menu-button`, choisisse
 const rail = await enableVerticalControlArea({ buttonProjection: 'source' });
 ```
 
-`enableVerticalControlArea()` et `enableNativeUIShell()` acceptent tous deux cette option. Utilisez un seul moteur et détruisez-le avant de redémarrer avec d’autres options. Les deux modes conservent les actions, l’état désactivé et les groupes. Ces réglages d’apparence n’affectent ni les contrôles horizontaux, ni les éléments sources, ni les clones Web de repli : comparez donc l’apparence native sur les versions d’iOS prises en charge.
+`enableVerticalControlArea()` et `enableNativeUIShell()` acceptent tous deux cette option. Utilisez un seul moteur et détruisez-le avant de redémarrer avec d’autres options. Les deux modes conservent les actions, l’état désactivé et les groupes. Les icônes désactivées utilisent l’apparence native de l’état désactivé. Ces réglages d’apparence n’affectent ni les contrôles horizontaux, ni les éléments sources, ni les clones Web de repli : comparez donc l’apparence native sur les versions d’iOS prises en charge.
 
 **Migration depuis les releases expérimentales :** le réglage par défaut passe du style source à `system`. Définissez `buttonProjection: 'source'` pour conserver le comportement de projection précédent.
 

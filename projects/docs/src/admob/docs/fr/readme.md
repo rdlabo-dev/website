@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "7541f9b1da764596f8c0a84f59b28ea228a5adf43f0d9da208f8579298c09265"
+sourceRevision: "7614c0933935b836308b2d44fe98ca199e8736296d9f4ccf0d4eeb2dd21515b6"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,7 +41,7 @@ Créé avec [contributors-img](https://contrib.rocks).
 
 ## Démonstration
 
-[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.1.0/demo)
+[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.2.0/demo)
 
 ### Captures d’écran
 
@@ -60,7 +60,7 @@ Plugin de la communauté Capacitor pour AdMob natif. Il encapsule le SDK Google 
 
 Ce plugin inclut déjà le SDK Google Mobile Ads. Installez le package, puis ajoutez votre identifiant d’**application** AdMob dans AndroidManifest / Info.plist. Les guides de démarrage Google pour [Android](https://developers.google.com/admob/android/quick-start) et [iOS](https://developers.google.com/admob/ios/quick-start) expliquent les identifiants d’application et les identifiants SKAdNetwork (identifiants de conversion publicitaire d’Apple) ; n’ajoutez pas une seconde dépendance Mobile Ads.
 
-Ce plugin vise `@capacitor-community/admob` **v8** et Capacitor 8. Il prend en charge iOS 15 ou une version ultérieure et Android API 24 ou une version ultérieure.
+Ce plugin vise `@capacitor-community/admob` **v8.2.0** et Capacitor 8.5 ou ultérieur dans la version majeure v8. Il prend en charge iOS 15 ou ultérieur et Android API 24 ou ultérieur.
 
 ```bash
 npm install @capacitor-community/admob
@@ -138,7 +138,7 @@ Exécutez `pod repo update` dans `ios/`, puis de nouveau `npx cap sync ios`.
 
 ## Première bannière de test
 
-Après l’installation et la configuration des plateformes, initialisez le SDK, demandez le consentement et affichez une bannière de démonstration Google. Utilisez les identifiants de bannière propres aux plateformes présentés dans [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) — ne créez pas votre propre bloc d’annonces pour cette première vérification.
+Après l’installation et la configuration des plateformes, demandez le consentement, initialisez le SDK lorsque les annonces peuvent être demandées, puis affichez une bannière de démonstration Google. Utilisez les identifiants de bannière propres à chaque plateforme indiqués dans [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) ; ne créez pas votre propre bloc d’annonces pour cette première vérification.
 
 Appelez `startAdMob` depuis une action utilisateur ou après que l’interface est prête (par exemple un bouton ou un hook après navigation), pas uniquement lors de l’évaluation du module.
 
@@ -152,8 +152,6 @@ const bannerAdId =
     : 'ca-app-pub-3940256099942544/6300978111';
 
 async function startAdMob() {
-  await AdMob.initialize();
-
   let consentInfo = await AdMob.requestConsentInfo();
   if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
     consentInfo = await AdMob.showConsentForm();
@@ -163,6 +161,8 @@ async function startAdMob() {
     // Consentement non prêt — aucune bannière n’est affichée.
     return;
   }
+
+  await AdMob.initialize();
 
   const options: BannerAdOptions = {
     adId: bannerAdId,
@@ -188,7 +188,7 @@ Résultat attendu : lorsque `canRequestAds` vaut true, une bannière de test Goo
 
 ## Documentation
 
-Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configuration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) et [Consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Exécutez la première bannière de test, puis utilisez [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) pour les blocs de démonstration et les appareils. Choisissez un format d’annonce dans le tableau ci-dessus. Ces guides figurent aussi sur le [site de documentation](https://docs.rdlabo.dev/projects/capacitor-admob) (en anglais et en japonais). Si vous consultez ce README sur npm, utilisez ce site pour les guides — les fichiers `docs/` se trouvent dans le dépôt GitHub. Les signatures des méthodes figurent dans la section API ci-dessous.
+Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configuration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) et [Consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Exécutez la première bannière de test, puis utilisez [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) pour les blocs de démonstration et les appareils. Choisissez un format d’annonce dans le tableau ci-dessus. Ces guides figurent aussi sur le [site de documentation](https://docs.rdlabo.dev/projects/capacitor-admob) (en anglais et en japonais). Si vous consultez ce README sur npm, utilisez ce site pour les guides — les fichiers `docs/` sont également inclus dans le package. Les signatures des méthodes figurent dans la section API ci-dessous.
 
 - [Configuration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) — `AdMob.initialize` et options du SDK.
 - [Consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) — consentement relatif à la confidentialité et autorisation de suivi iOS.
@@ -199,7 +199,7 @@ Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configu
   - [Annonces récompensées](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded) — vidéo récompensée, interstitielle récompensée et vérification côté serveur.
 - [Annonces à l’ouverture](https://docs.rdlabo.dev/projects/capacitor-admob/docs/app-open) — chargement et présentation lors du passage au premier plan.
 - [Événements publicitaires](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events) — événements de cycle de vie communs, erreurs et données de revenus.
-- [Guide de migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) — historique des changements lors d’une mise à niveau depuis une ancienne version du plugin.
+- [Guide de migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) — étapes de mise à niveau et changements de comportement dans la version v8.2.0 et les versions antérieures.
 
 <!-- rdlabo-docs-omit -->
 ## Sommaire
@@ -245,6 +245,7 @@ Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configu
 * [`addListener(InterstitialAdPluginEvents.AdImpression, ...)`](/docs/readme#addlistenerinterstitialadplugineventsadimpression-)
 * [`prepareRewardVideoAd(...)`](/docs/readme#preparerewardvideoad)
 * [`showRewardVideoAd(...)`](/docs/readme#showrewardvideoad)
+* [`addListener(RewardAdPluginEvents.adClicked, ...)`](/docs/readme#addlistenerrewardadplugineventsadclicked-)
 * [`addListener(RewardAdPluginEvents.FailedToLoad, ...)`](/docs/readme#addlistenerrewardadplugineventsfailedtoload-)
 * [`addListener(RewardAdPluginEvents.Loaded, ...)`](/docs/readme#addlistenerrewardadplugineventsloaded-)
 * [`addListener(RewardAdPluginEvents.Rewarded, ...)`](/docs/readme#addlistenerrewardadplugineventsrewarded-)
@@ -772,6 +773,9 @@ prepareInterstitial(options: AdOptions) => Promise<AdLoadInfo>
 
 Charge une annonce interstitielle et renvoie l’identifiant du bloc d’annonces chargé.
 
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
+
 | Paramètre         | Type                                            | Description                        |
 | ------------- | ----------------------------------------------- | ---------------------------------- |
 | **`options`** | <code><a href="#adoptions">AdOptions</a></code> | <a href="#adoptions">AdOptions</a> |
@@ -916,6 +920,9 @@ prepareRewardVideoAd(options: RewardAdOptions) => Promise<AdLoadInfo>
 
 Charge une annonce récompensée et renvoie l’identifiant du bloc d’annonces chargé.
 
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
+
 | Paramètre         | Type                                                        | Description                                    |
 | ------------- | ----------------------------------------------------------- | ---------------------------------------------- |
 | **`options`** | <code><a href="#rewardadoptions">RewardAdOptions</a></code> | <a href="#rewardadoptions">RewardAdOptions</a> |
@@ -942,6 +949,25 @@ Affiche une annonce récompensée chargée et se résout lorsque l’utilisateur
 **Renvoie :** <code>Promise&lt;<a href="#admobrewarditem">AdMobRewardItem</a>&gt;</code>
 
 **Depuis :** 1.1.2
+
+--------------------
+
+
+### addListener(RewardAdPluginEvents.adClicked, ...)
+
+```typescript
+addListener(eventName: RewardAdPluginEvents.adClicked, listenerFunc: () => void) => Promise<PluginListenerHandle>
+```
+
+Écoute les clics enregistrés par le SDK des annonces récompensées, y compris après l’obtention d’une récompense.
+Un clic ne signifie pas que l’utilisateur a obtenu une récompense.
+
+| Paramètre              | Type                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code><a href="#rewardadpluginevents">RewardAdPluginEvents.adClicked</a></code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>                                                      |
+
+**Renvoie :** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
@@ -1079,6 +1105,9 @@ prepareRewardInterstitialAd(options: RewardInterstitialAdOptions) => Promise<AdL
 ```
 
 Charge une annonce interstitielle récompensée et renvoie l’identifiant du bloc d’annonces chargé.
+
+Les échecs de chargement du SDK entraînent un rejet avec le message d’erreur natif et un `code` sous forme de chaîne.
+Les codes sont propres à chaque plateforme ; les événements FailedToLoad exposent le même code sous forme de nombre.
 
 | Paramètre         | Type                                                                                | Description                                                            |
 | ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -1572,6 +1601,7 @@ Récompense obtenue par l’utilisateur après avoir regardé une annonce inters
 
 | Membres            | Valeur                                        | Description                                                                                                                                                        |
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`adClicked`**    | <code>'onRewardedVideoAdClicked'</code>      | Émis lorsque le SDK enregistre un clic sur une annonce récompensée.                                                                                                               |
 | **`Loaded`**       | <code>'onRewardedVideoAdLoaded'</code>       | Émis lorsqu’une annonce récompensée est chargée et prête à être affichée.                                                                                                          |
 | **`FailedToLoad`** | <code>'onRewardedVideoAdFailedToLoad'</code> | Émis lorsque le chargement d’une annonce récompensée échoue.                                                                                                                            |
 | **`Showed`**       | <code>'onRewardedVideoAdShowed'</code>       | Émis lorsqu’une annonce récompensée est affichée.                                                                                                                                 |

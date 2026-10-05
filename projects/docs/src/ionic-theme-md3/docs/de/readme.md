@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "965a9413de92664d952937ab22329f1dc33e2e19691cfe4e6f8a08a2d15bd8e4"
+sourceRevision: "967fe0a84fc0efa0aa536056f83be42f3f140e1fdd0e5deb300b40e69f5fe500"
 ---
 # Ionic Theme Material Design 3
 
@@ -8,7 +8,7 @@ Eine CSS-/JS-Theme-Bibliothek, die das Designsystem Material Design 3 auf Ionic-
 
 <!-- rdlabo-docs-pick -->
 
-![Ionic-Oberflächen im Material-Design-3-Theme mit aktualisierten Komponenten und Navigation](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png)
+![Ionic-Oberflächen im Material-Design-3-Theme mit aktualisierten Komponenten und Navigation](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png)
 
 <!-- /rdlabo-docs-pick -->
 

@@ -1,6 +1,6 @@
 ---
 title: "Événements publicitaires"
-sourceRevision: "cedfb7741215f77c0e64973a79c00fceb2843105c495504800b90bec12e8d0b2"
+sourceRevision: "c82642b160a974c1f99282a8699e9469e84db5f18a0d7e7b21513ab9f6383556"
 ---
 # Événements publicitaires
 
@@ -33,19 +33,22 @@ await handle.remove();
 | `Showed` / `Opened`       | L’annonce est devenue visible pour l’utilisateur.                     |
 | `FailedToShow`            | Une annonce chargée n’a pas pu s’afficher.                         |
 | `Dismissed` / `Closed`    | L’utilisateur a fermé l’annonce plein écran ou la superposition.         |
+| `adClicked` | Le SDK a enregistré un clic sur une annonce récompensée (depuis 8.2.0). |
 | `Rewarded`                | L’utilisateur a obtenu la récompense annoncée.                 |
 | `SizeChanged`             | Les dimensions de la bannière ont changé.                             |
 | `AdImpression` / `AdPaid` | Une impression a été enregistrée. Consultez les événements de revenus ci-dessous.  |
 
 ## Erreurs
 
-Les écouteurs `FailedToLoad` et `FailedToShow` reçoivent une charge utile `AdMobError`.
+Les écouteurs `FailedToLoad` et `FailedToShow` reçoivent une charge utile `AdMobError`. Les codes sont des nombres natifs propres à chaque plateforme. Depuis 8.2.0, les échecs de chargement du SDK dans les méthodes de préparation des annonces interstitielles, récompensées et interstitielles récompensées entraînent aussi un rejet avec le même code sous forme de chaîne ; sur iOS, les événements d’échec de chargement signalent désormais le code réel au lieu de `0`.
 
 <!-- !::AdMobError:: -->
 
 ## Revenus par impression
 
 Les formats plein écran émettent `AdMobRevenueData` via leur événement `AdImpression`. Les bannières émettent la même charge utile via `AdPaid`. L’événement `AdImpression` des bannières ne contient pas de charge utile ; il signale seulement l’enregistrement d’une impression.
+
+`valueMicros` est un entier exprimé en millionièmes de la devise identifiée par `currencyCode` : divisez-le par `1_000_000` pour obtenir des unités monétaires. La conversion iOS a été corrigée dans la version 8.2.0 ; consultez [Migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) si vos analyses compensent les anciennes valeurs.
 
 <!-- !::AdMobRevenueData:: -->
 

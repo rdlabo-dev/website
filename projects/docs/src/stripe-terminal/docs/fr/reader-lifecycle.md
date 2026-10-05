@@ -2,7 +2,7 @@
 title: "Cycle de vie du lecteur"
 code: ["reader-lifecycle/reader-lifecycle.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"reader-lifecycle.ts":[1,1]}},{"id":"écouter-les-mises-à-jour-du-logiciel","activeLine":{"reader-lifecycle.ts":[2,35]}},{"id":"écouter-l’état-et-les-demandes-de-saisie","activeLine":{"reader-lifecycle.ts":[35,63]}},{"id":"définir-l’affichage-du-lecteur","activeLine":{"reader-lifecycle.ts":[63,78]}},{"id":"annuler-la-recherche","activeLine":{"reader-lifecycle.ts":[78,80]}},{"id":"déconnexion-et-reconnexion","activeLine":{"reader-lifecycle.ts":[80,112]}},{"id":"gestion-des-erreurs","activeLine":{"reader-lifecycle.ts":[112,119]}}]
-sourceRevision: "0a25cc95b2345dff873657b31f51ea4f9afa4b4f8fb979406f402cd645103c42"
+sourceRevision: "67def22ef4b54e45a30ebe4508ca2565211ebff654bf739a74a93dade4599b3b"
 ---
 Gérez les mises à jour du logiciel, l’état du lecteur et les messages d’affichage afin que les opérations Terminal n’interrompent pas l’encaissement.
 

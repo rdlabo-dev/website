@@ -59,6 +59,19 @@ console.log(rewardItem);
 
 `showRewardVideoAd()` に `adId` を渡さないと、最後に準備した広告を表示します。
 
+### クリックイベント（8.2.0 以降）
+
+リワード広告を表示する前に `adClicked` を登録します。広告の表示が続いている間は、報酬獲得後も含めて SDK が記録したクリックが通知されます。このイベントは報酬の獲得を意味せず、リワード付きインタースティシャル広告には適用されません。
+
+```ts
+const clickListener = await AdMob.addListener(RewardAdPluginEvents.adClicked, () => {
+  console.log('Rewarded ad clicked');
+});
+
+// 所有する画面を破棄するとき:
+await clickListener.remove();
+```
+
 ### 複数の広告を準備する
 
 ```ts

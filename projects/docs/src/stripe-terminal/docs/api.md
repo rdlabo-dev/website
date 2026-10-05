@@ -4,7 +4,7 @@ code: []
 scrollActiveLine: []
 ---
 
-Reference for `@capacitor-community/stripe-terminal` v8.2.1. Platform support for connection types and Tap to Pay APIs is documented in [Configuration](/docs/configuration).
+Reference for `@capacitor-community/stripe-terminal` v8.3.0. Platform support for connection types and Tap to Pay APIs is documented in [Configuration](/docs/configuration).
 
 ## Methods
 

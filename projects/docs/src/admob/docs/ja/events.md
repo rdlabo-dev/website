@@ -33,19 +33,22 @@ await handle.remove();
 | `Showed` / `Opened`       | 広告がユーザーに見えた。                                 |
 | `FailedToShow`            | ロード済みの広告を表示できなかった。                     |
 | `Dismissed` / `Closed`    | ユーザーがフルスクリーン広告またはオーバーレイを閉じた。 |
+| `adClicked` | SDK がリワード広告のクリックを記録した（8.2.0 以降）。 |
 | `Rewarded`                | ユーザーが案内どおりの報酬を得た。                       |
 | `SizeChanged`             | バナーの寸法が変わった。                                 |
 | `AdImpression` / `AdPaid` | インプレッションが記録された。売上イベントは下記。       |
 
 ## エラー
 
-`FailedToLoad` と `FailedToShow` のリスナーは `AdMobError` ペイロードを受け取ります。
+`FailedToLoad` と `FailedToShow` のリスナーは `AdMobError` ペイロードを受け取ります。コードはプラットフォーム固有のネイティブの数値です。8.2.0 以降は、インタースティシャル、リワード、リワード付きインタースティシャルの準備メソッドでも、SDK のロード失敗時に同じコードを文字列として付けて拒否します。iOS のロード失敗イベントは、固定値の `0` ではなく実際のコードを返すようになりました。
 
 !::AdMobError::
 
 ## インプレッション単位の売上
 
 フルスクリーン形式は `AdImpression` で `AdMobRevenueData` を出します。バナーは同じペイロードを `AdPaid` で出します。バナーの `AdImpression` にペイロードはなく、インプレッションが記録されたことだけを知らせます。
+
+`valueMicros` は `currencyCode` が示す通貨の100万分の1単位の整数です。通貨単位に換算するには `1_000_000` で割ります。iOS の変換は 8.2.0 で修正されました。分析処理で以前の値を補正している場合は、[移行](/docs/migration) を参照してください。
 
 !::AdMobRevenueData::
 

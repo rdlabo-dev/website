@@ -10,15 +10,14 @@ Google の User Messaging Platform（UMP）SDK は、広告リクエストの前
 
 ## 推奨する順序
 
-1. `AdMob.initialize()` を呼びます。[initialize](/docs/configuration) を参照してください。
-2. `AdMob.requestConsentInfo()` を呼びます。
-3. 必要な場合は `AdMob.showConsentForm()` を呼びます。
-4. `consentInfo.canRequestAds` が `true` のときだけ広告をロードします。
+1. アプリを起動するたびに `AdMob.requestConsentInfo()` を呼びます。
+2. 必要な場合は `AdMob.showConsentForm()` を呼びます。
+3. `consentInfo.canRequestAds` が `true` のとき、`AdMob.initialize()` を一度呼んでから広告をロードします。[initialize](/docs/configuration) を参照してください。
+
+8.2.0 以降は、Android と同様に iOS でも SDK の初期化前に同意フォームを表示できます。
 
 ```ts
 import { AdMob, AdmobConsentStatus } from '@capacitor-community/admob';
-
-await AdMob.initialize();
 
 let consentInfo = await AdMob.requestConsentInfo();
 if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
@@ -26,6 +25,7 @@ if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentSta
 }
 
 if (consentInfo.canRequestAds) {
+  await AdMob.initialize();
   // 広告をリクエストできます。
 }
 ```

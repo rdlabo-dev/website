@@ -2,7 +2,7 @@
 title: "In Ihrem Projekt initialisieren"
 code: []
 scrollActiveLine: []
-sourceRevision: "214749a32f755633922df645babb5a3f5c930de5563379fc9e9c19c19cf6213e"
+sourceRevision: "3a05c3a93e2d5aac330defd4c5123fcba5e95b01d54d307bb7c28dfb072ff8ce"
 ---
 Importieren Sie `Stripe` und rufen Sie `initialize` mit einem [veröffentlichbaren Schlüssel](https://dashboard.stripe.com/apikeys) auf. Führen Sie dies einmal pro JavaScript-Laufzeit aus, bevor Sie eine Zahlungs-UI erstellen oder anzeigen.
 
@@ -33,7 +33,7 @@ await Stripe.initialize({
 });
 ```
 
-Unter Android kann Google Pay außerdem `com.getcapacitor.community.stripe.stripe_account` aus Anwendungsmetadaten lesen. Siehe [Google Pay](./google-pay.md).
+Unter Android kann Google Pay außerdem `com.getcapacitor.community.stripe.stripe_account` aus Anwendungsmetadaten lesen. Siehe [Google Pay](/docs/google-pay).
 
 ## Weiterleitungsbasierte Zahlungsmethoden unter iOS
 
@@ -89,10 +89,30 @@ Verwenden Sie dieselbe Einrichtung mit `createPaymentFlow`. Das eigene Schema in
 
 Die Methode ist unter Android und im Web nicht implementiert. Übergeben Sie ausschließlich passende Stripe-Rückkehr-URLs. Verarbeitet Stripe die URL nicht, wird das Promise zurückgewiesen und Sie sollten Ihre normale Deep-Link-Verarbeitung fortsetzen.
 
-## Framework-Einbindung
+## Beispiel
 
-Rufen Sie `initialize` aus dem Bootstrap Ihres gewählten Frameworks auf. Bevorzugen Sie den maßgeblichen Startablauf der jeweiligen Anleitung:
+### Angular
 
-- [Vanilla JS](/docs/vanilla-js) — `initialize` nach `defineCustomElements()` aufrufen
-- [Angular](/docs/angular) — `provideAppInitializer` beim Anwendungsstart
-- [React](/docs/react) — `CapacitorStripeProvider` initialisiert das Plugin für Sie
+Initialisieren Sie aus der Root-Komponente. Siehe [Angular](/docs/angular).
+
+```ts:src/app/app.component.ts
+import { Component } from '@angular/core';
+import { Stripe } from '@capacitor-community/stripe';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+})
+export class AppComponent {
+  constructor() {
+    void Stripe.initialize({
+      publishableKey: 'Your Publishable Key',
+    });
+  }
+}
+```
+
+### React
+
+`CapacitorStripeProvider` initialisiert das Plugin für Sie. Siehe [React](/docs/react).

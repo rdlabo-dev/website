@@ -1,7 +1,7 @@
 ---
 title: "PaymentFlow"
 code: ["/docs/stripe/payment-flow/payment-flow.ts.md"]
-scrollActiveLine: []
+scrollActiveLine: [{"id":"","activeLine":{}},{"id":"1.-createpaymentflow","activeLine":{"payment-flow.ts":[9,23]}},{"id":"2.-presentpaymentflow","activeLine":{"payment-flow.ts":[23,27]}},{"id":"3.-confirmpaymentflow","activeLine":{"payment-flow.ts":[27,33]}},{"id":"4.-addlistener","activeLine":{"payment-flow.ts":[4,8]}}]
 ---
 
 PaymentFlow は支払い方法の収集と確定を分離します。`presentPaymentFlow` で支払い方法を収集してカードを保留状態にし、通常は確認画面を挟んでから `confirmPaymentFlow` で Intent を確定します。
@@ -22,23 +22,19 @@ Web は `paymentIntentClientSecret` または `setupIntentClientSecret` と、�
 
 ## 1. createPaymentFlow
 
-バックエンドからクライアントへ安全に渡せるシークレットを取得し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。`customerId` と `customerEphemeralKeySecret` は任意ですが、`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
+バックエンドからクライアントへ安全に渡せるシークレットを取得して `createPaymentFlow` を呼び出し、`paymentIntentClientSecret` と `setupIntentClientSecret` の**どちらか一方**を渡します。`customerId` と `customerEphemeralKeySecret` は任意ですが、`customerId` を設定する場合は `customerEphemeralKeySecret` も必要です。
 
 ```ts
+import { firstValueFrom } from 'rxjs';
 import { PaymentFlowEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
-const response = await fetch('/your-intent-endpoint', {
-  method: 'POST',
-});
-if (!response.ok) {
-  throw new Error(`Intent request failed: ${response.status}`);
-}
-const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
-  paymentIntent: string;
-  ephemeralKey: string;
-  customer: string;
-};
+const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
+  this.http.post<{
+    paymentIntent: string;
+    ephemeralKey: string;
+    customer: string;
+  }>(environment.api + 'intent', {}),
+);
 
 await Stripe.createPaymentFlow({
   paymentIntentClientSecret: paymentIntent,
@@ -48,8 +44,12 @@ await Stripe.createPaymentFlow({
 });
 ```
 
-!::createPaymentFlow::
-!::CreatePaymentFlowOption::
+<!-- !::createPaymentFlow:: -->
+<!-- !::CreatePaymentFlowOption:: -->
+
+iOS で PayPal、3D Secure などのリダイレクト型の支払い方法を使うには、`returnURL` と `handleURLCallback` を設定してください。戻り先 URL がない場合、Stripe は本来利用条件を満たすリダイレクト型の支払い方法も表示しません。[iOS のリダイレクト型の支払い方法](/docs/initialize#redirect-based-payment-methods-on-ios)を参照してください。
+
+v8.3.0 以降では、作成時のオプションに `allowsDelayedPaymentMethods: true` を設定すると、iOS と Android で ACH や SEPA Debit などの利用条件を満たす遅延型の支払い方法を有効にできます。既定値は `false` で、Web には影響しません。Stripe 側で支払い方法を有効にし、Intent も適切に設定してください。`Completed` が返っても支払いが処理中の場合があります。商品の発送やサービスの提供は、支払い成功の Webhook を受信してから行ってください。[Stripe の遅延型支払い方法のガイド](https://docs.stripe.com/payments/mobile/accept-payment?platform=ios&type=payment#handle-post-payment-events)を参照してください。
 
 ## 2. presentPaymentFlow
 
@@ -60,7 +60,7 @@ const presentResult = await Stripe.presentPaymentFlow();
 console.log(presentResult); // { cardNumber: "●●●● ●●●● ●●●● ****" }
 ```
 
-!::presentPaymentFlow::
+<!-- !::presentPaymentFlow:: -->
 
 利用者がキャンセルすると Promise が拒否されるか `Canceled` が発生します。`Created` または成功結果を受け取るまで `confirmPaymentFlow` を呼ばないでください。
 
@@ -69,12 +69,12 @@ console.log(presentResult); // { cardNumber: "●●●● ●●●● ●●�
 ```ts
 const confirmResult = await Stripe.confirmPaymentFlow();
 if (confirmResult.paymentResult === PaymentFlowEventsEnum.Completed) {
-  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
+  // UI だけを更新します。商品発送やサービス提供の前に、サーバーで Webhook を使って支払い成功を確認してください。
 }
 ```
 
-!::confirmPaymentFlow::
-!::PaymentFlowResultInterface::
+<!-- !::confirmPaymentFlow:: -->
+<!-- !::PaymentFlowResultInterface:: -->
 
 `Canceled` はキャンセル、`Failed` はエラーです。クライアントの結果だけで商品の発送やサービスの提供を判断してはいけません。
 
@@ -99,7 +99,7 @@ await Promise.all([
 ]);
 ```
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
 ## 参考資料
 

@@ -19,17 +19,6 @@ npx cap sync
 | iOS | 15.0 |
 | Android `minSdkVersion` | 24 |
 
-## 最初の支払い経路
-
-最初の PaymentSheet 成功までは次の順で進めます。
-
-1. このページのプラットフォーム設定を完了する。
-2. フレームワークガイドを**1つ**選び、そこで Stripe を初期化する（[Vanilla JS](/docs/vanilla-js)、[Angular](/docs/angular)、[React](/docs/react)）。
-3. サーバーでテスト用 PaymentIntentを作成し、クライアントシークレットを返す。[サーバー連携](/docs/server-integration)を参照。
-4. [PaymentSheet](/docs/payment-sheet) を表示し、リスナー結果（`Completed` / `Canceled` / `Failed`）を確認する。最終的な支払い状態は Stripe Webhook で確認する。
-
-PaymentFlow、Apple Pay、Google Pay は PaymentSheet が動いたあとの選択肢です。
-
 ## Android の設定
 
 プラグイン自体に追加の Gradle 設定や `MainActivity` への登録は必要ありません。
@@ -53,16 +42,12 @@ PaymentSheet でカードをスキャンできるよう、`NSCameraUsageDescript
 
 iOS ではプラグインが自動的に読み込まれます。Apple Pay には Apple Merchant ID と証明書も必要です。[Apple Pay](/docs/apple-pay)を参照してください。
 
-3D Secure のリダイレクトには、PaymentSheet または PaymentFlow の作成時に `returnURL` を設定し、アプリの URL ハンドラーから `handleURLCallback` を呼び出します。[initialize](/docs/initialize)も参照してください。
+PayPal、3D Secure などのリダイレクト型の支払い方法には、カスタム URL スキームを登録し、PaymentSheet または PaymentFlow の作成時に `returnURL` を設定し、アプリの URL ハンドラーから `handleURLCallback` を呼び出します。戻り先 URL がないと、iOS では本来利用条件を満たすリダイレクト型の支払い方法も表示されません。[初期化](/docs/initialize#redirect-based-payment-methods-on-ios)を参照してください。
 
 ## Web の設定
 
 `stripe-pwa-elements` をインストールし、起動時に一度だけ `defineCustomElements()` を呼び出します。開発環境と本番環境の両方を HTTPS で配信してください。
 
-フレームワークのクイックスタートは**並列の選択肢**です。すべてを読む必要はありません。
-
 - [Vanilla JS クイックスタート](/docs/vanilla-js)
 - [Angular クイックスタート](/docs/angular)
 - [React クイックスタート](/docs/react)
-
-初期化のあと、[サーバー連携](/docs/server-integration)へ進み、続けて [PaymentSheet](/docs/payment-sheet) を表示します。

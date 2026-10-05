@@ -2,7 +2,7 @@
 title: "Configuration"
 code: []
 scrollActiveLine: []
-sourceRevision: "4e4f3fb18a84133e8c1585ec8c36516d6bce1c6e9eb1861923a10f82246054b5"
+sourceRevision: "c0b0b9e6e9ce81a4be85e1ab435da311c46b60173fbf267dd3812f5105591533"
 ---
 Installez Stripe Terminal et synchronisez les projets Capacitor natifs.
 
@@ -11,10 +11,10 @@ npm install @capacitor-community/stripe-terminal
 npx cap sync
 ```
 
-Le plugin est `@capacitor-community/stripe-terminal` **v8.2.1**. Démos officielles :
+Le plugin est `@capacitor-community/stripe-terminal` **v8.3.0**. Démos officielles :
 
-- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/main/demo/angular)
-- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/main/demo/app-on-devices)
+- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular)
+- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/app-on-devices)
 
 | Prérequis             | Minimum |
 | ----------------------- | ------- |
@@ -22,9 +22,9 @@ Le plugin est `@capacitor-community/stripe-terminal` **v8.2.1**. Démos officiel
 | iOS                     | 15.0    |
 | Android `minSdkVersion` | 26      |
 
-## Choisir une plateforme et un type de connexion
+## Plateformes et types de connexion
 
-`discoverReaders` reçoit une valeur `TerminalConnectTypes`. Choisissez un type de connexion pris en charge par votre plateforme, puis appliquez uniquement les réglages requis pour cette plateforme ci-dessous.
+`discoverReaders` reçoit une valeur `TerminalConnectTypes`. La prise en charge diffère selon la plateforme.
 
 | `TerminalConnectTypes` | Web                               | iOS                              | Android                        |
 | ---------------------- | --------------------------------- | -------------------------------- | ------------------------------ |
@@ -38,6 +38,31 @@ Le plugin est `@capacitor-community/stripe-terminal` **v8.2.1**. Démos officiel
 Sur chaque plateforme, transmettez `isTest: true` à `initialize` pour utiliser des lecteurs simulés avec un type de connexion **pris en charge**. Ne vous appuyez pas sur `TerminalConnectTypes.Simulated` sur iOS ou le Web ; utilisez plutôt `Internet`, `Bluetooth` ou `TapToPay` avec `isTest: true`.
 
 Sur le Web, `discoverReaders` rejette tout type autre que `Internet` avec une erreur indiquant son indisponibilité.
+
+### API propres à une plateforme
+
+| API                          | Web                  | iOS                                 | Android                                               |
+| ---------------------------- | -------------------- | ----------------------------------- | ----------------------------------------------------- |
+| `setTapToPayUxConfiguration` | Sans effet (journalisation uniquement)    | Non implémenté                       | Oui — après `initialize`, avant `connectReader` |
+| `isTapToPayAccountLinked`    | Indisponible (lève une erreur) | Oui — iOS 16.4+, après `initialize` | Non implémenté                                         |
+
+Consultez [Tap to Pay](/docs/tap-to-pay) pour l’ordre de configuration et les limitations.
+
+### Méthodes de cycle de vie sans effet ou non prises en charge sur le Web
+
+Ces méthodes existent dans l’interface du plugin, mais ne pilotent pas le SDK JavaScript Stripe Terminal sur le Web :
+
+- `cancelDiscoverReaders` — sans effet
+- `setSimulatorConfiguration` — sans effet
+- `installAvailableUpdate` — sans effet
+- `cancelInstallUpdate` — sans effet
+- `rebootReader` — sans effet
+- `cancelReaderReconnection` — sans effet
+- `setTapToPayUxConfiguration` — sans effet
+
+`isTapToPayAccountLinked` lève `unavailable` sur le Web.
+
+Les lecteurs Internet sur le Web prennent toujours en charge `initialize`, `discoverReaders`, `connectReader`, `getConnectedReader`, `disconnectReader`, `collectPaymentMethod`, `cancelCollectPaymentMethod`, `confirmPaymentIntent`, `setReaderDisplay`, `clearReaderDisplay`, `setConnectionToken` ainsi que les écouteurs d’état de connexion et de paiement.
 
 ## Configuration Web
 
@@ -68,37 +93,7 @@ Mettez également `minSdkVersion` à `26` dans votre fichier `android/variables.
   ext {
 -    minSdkVersion = 24
 +    minSdkVersion = 26
+  }
 ```
 
 Si vous développez des applications pour des appareils Android Stripe (par exemple Stripe Reader S700) avec `TerminalConnectTypes.HandOff`, suivez le [guide de configuration côté client de Stripe](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app).
-
-## Étape suivante
-
-Après les réglages de plateforme requis ci-dessus, poursuivez avec [Encaisser un paiement](/docs/collect-a-payment).
-
-## Référence des plateformes
-
-### API propres à une plateforme
-
-| API                          | Web                  | iOS                                 | Android                                               |
-| ---------------------------- | -------------------- | ----------------------------------- | ----------------------------------------------------- |
-| `setTapToPayUxConfiguration` | Sans effet (journalisation uniquement)    | Non implémenté                       | Oui — après `initialize`, avant `connectReader` |
-| `isTapToPayAccountLinked`    | Indisponible (lève une erreur) | Oui — iOS 16.4+, après `initialize` | Non implémenté                                         |
-
-Consultez [Tap to Pay](/docs/tap-to-pay) pour l’ordre de configuration et les limitations.
-
-### Méthodes de cycle de vie sans effet ou non prises en charge sur le Web
-
-Ces méthodes existent dans l’interface du plugin, mais ne pilotent pas le SDK JavaScript Stripe Terminal sur le Web :
-
-- `cancelDiscoverReaders` — sans effet
-- `setSimulatorConfiguration` — sans effet
-- `installAvailableUpdate` — sans effet
-- `cancelInstallUpdate` — sans effet
-- `rebootReader` — sans effet
-- `cancelReaderReconnection` — sans effet
-- `setTapToPayUxConfiguration` — sans effet
-
-`isTapToPayAccountLinked` lève `unavailable` sur le Web.
-
-Les lecteurs Internet sur le Web prennent toujours en charge `initialize`, `discoverReaders`, `connectReader`, `getConnectedReader`, `disconnectReader`, `collectPaymentMethod`, `cancelCollectPaymentMethod`, `confirmPaymentIntent`, `setReaderDisplay`, `clearReaderDisplay`, `setConnectionToken` ainsi que les écouteurs d’état de connexion et de paiement.

@@ -1,6 +1,6 @@
 ---
 title: "Consentement"
-sourceRevision: "ff300883c11e011224620517ed260084ff215a404afa193135e5cb7cf94e5314"
+sourceRevision: "91819009cf29ac96d7cc27cc186fc9046aa7fa91ea2a9a8a4a4c58e574f572b2"
 ---
 # Consentement
 
@@ -10,15 +10,14 @@ Ce plugin expose UMP et App Tracking Transparency d’iOS via une même API. Ava
 
 ## Ordre recommandé
 
-1. Appelez `AdMob.initialize()`. Consultez [Configuration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration).
-2. Appelez `AdMob.requestConsentInfo()`.
-3. Si nécessaire, appelez `AdMob.showConsentForm()`.
-4. Ne chargez des annonces que lorsque `consentInfo.canRequestAds` vaut `true`.
+1. Appelez `AdMob.requestConsentInfo()` à chaque lancement de l’application.
+2. Si nécessaire, appelez `AdMob.showConsentForm()`.
+3. Lorsque `consentInfo.canRequestAds` vaut `true`, appelez `AdMob.initialize()` une seule fois, puis chargez les annonces. Consultez [Configuration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration).
+
+Depuis la version 8.2.0, les formulaires de consentement peuvent être présentés avant l’initialisation du SDK sur iOS, comme sur Android.
 
 ```ts
 import { AdMob, AdmobConsentStatus } from '@capacitor-community/admob';
-
-await AdMob.initialize();
 
 let consentInfo = await AdMob.requestConsentInfo();
 if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
@@ -26,6 +25,7 @@ if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentSta
 }
 
 if (consentInfo.canRequestAds) {
+  await AdMob.initialize();
   // Les annonces peuvent maintenant être demandées.
 }
 ```

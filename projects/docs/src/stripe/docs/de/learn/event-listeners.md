@@ -2,7 +2,7 @@
 title: "Ereignis-Listener"
 code: []
 scrollActiveLine: []
-sourceRevision: "d090def7f677a3530555dd6b1f91d7f656a6beaadae60b432e0a4897d0bc4203"
+sourceRevision: "0654fb38a5aa55cb46f4574a2420fdad5a451ddd4a7fa1e7b6cc3cd7e5b337a3"
 ---
 Verwenden Sie Ergebnisereignisse als standardmäßigen Ergebnisweg. Registrieren Sie Ergebnis-Listener auf Anwendungsebene einmal pro Start der JavaScript-Anwendung, so früh wie möglich beim Bootstrap, beispielsweise aus `main.ts`, einem Anwendungsinitialisierer oder einem beim Start initialisierten Singleton-Dienst, und vor dem Anzeigen der Stripe-UI.
 
@@ -22,7 +22,7 @@ await Promise.all([
 ]);
 ```
 
-!::PluginListenerHandle::
+<!-- !::PluginListenerHandle:: -->
 
 ## Neuerstellung der Android-Activity
 
@@ -32,13 +32,13 @@ Das ursprüngliche JavaScript-Promise und der Capacitor-`PluginCall` lassen sich
 
 Besteht der ursprüngliche Aufruf weiterhin, bleibt das Verhalten unverändert: Das Promise wird normal abgeschlossen und das Ereignis ohne Zurückhalten ausgeliefert. Diese Rückfalloption ist eine speicherinterne Übergabe eines nativen Ergebnisses. Sie ist keine dauerhafte Speicherung und garantiert keine Wiederherstellung nach dem Beenden des Prozesses durch das Betriebssystem.
 
-Belassen Sie Ergebnis-Listener auf Anwendungsebene während der gesamten Lebensdauer der JavaScript-Laufzeit registriert. Fügen Sie sie nicht in einem Schaltflächenhandler hinzu und entfernen Sie sie beim Unmounten einer Seite, wenn Sie das Zahlungsergebnis nach einer Android-Neuerstellung weiterhin benötigen.
+Belassen Sie Ergebnis-Listener auf Anwendungsebene während der gesamten Lebensdauer der JavaScript-Laufzeit registriert. Fügen Sie sie nicht in einem Schaltflächenhandler hinzu und entfernen Sie sie nicht beim Unmounten einer Seite, wenn Sie das Zahlungsergebnis nach einer Android-Neuerstellung weiterhin benötigen.
 
 ## PaymentSheet-Ereignisse
 
-!::addListener.PaymentSheetEventsEnum::
+<!-- !::addListener.PaymentSheetEventsEnum:: -->
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
 Typischer PaymentSheet-Ablauf:
 
@@ -48,13 +48,13 @@ Typischer PaymentSheet-Ablauf:
 4. Rufen Sie `presentPaymentSheet()` auf.
 5. Empfangen Sie eines der Ereignisse `Completed`, `Canceled` oder `Failed`.
 
-`Canceled` bedeutet, dass der Kunde das Sheet geschlossen hat. Behandeln Sie dies als Abbruch, nicht als ausgelösten Fehler. `Failed` und `FailedToLoad` enthalten eine Fehlerzeichenfolge. Erfüllen Sie eine Bestellung nicht allein auf Grundlage des Client-Ereignisses. Bestätigen Sie den PaymentIntent oder SetupIntent mit einem [Webhook](/docs/server-integration).
+`Canceled` bedeutet, dass der Kunde das Sheet geschlossen hat. Behandeln Sie dies als Abbruch, nicht als ausgelösten Fehler. `Failed` und `FailedToLoad` enthalten eine Fehlerzeichenfolge. Erfüllen Sie eine Bestellung nicht allein auf Grundlage des Client-Ereignisses; überprüfen Sie den Intent-Status auf Ihrem Server mithilfe eines [Webhooks](/docs/server-integration).
 
 ## PaymentFlow-Ereignisse
 
-!::addListener.PaymentFlowEventsEnum::
+<!-- !::addListener.PaymentFlowEventsEnum:: -->
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
 Typischer PaymentFlow-Ablauf:
 
@@ -68,18 +68,18 @@ Typischer PaymentFlow-Ablauf:
 
 ## Apple-Pay-Ereignisse
 
-!::addListener.ApplePayEventsEnum::
+<!-- !::addListener.ApplePayEventsEnum:: -->
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
-`DidSelectShippingContact` enthält `contact` und `updateId`. Rufen Sie unter iOS `updateApplePaySheet` mit dieser `updateId` und aktualisierten `paymentSummaryItems` auf. Antwortet JavaScript nicht, greift das native Sheet nach 25 Sekunden auf die ursprünglichen Positionen zurück. `updateApplePaySheet` ist unter Android und im Web nicht implementiert.
+`DidSelectShippingContact` enthält `contact` und `updateId`. Rufen Sie unter iOS `updateApplePaySheet` mit dieser `updateId` und aktualisierten `paymentSummaryItems` auf. Antwortet JavaScript nicht, greift das native Sheet nach 25 Sekunden auf die zuletzt akzeptierten Positionen zurück und behält die aktuellen Versandmethoden bei. `updateApplePaySheet` ist unter Android und im Web nicht implementiert.
 
 `DidCreatePaymentMethod` enthält den Versand-`contact`. Apple gibt die vollständige Adresse erst nach einer erfolgreichen Zahlung zurück.
 
 ## Google-Pay-Ereignisse
 
-!::addListener.GooglePayEventsEnum::
+<!-- !::addListener.GooglePayEventsEnum:: -->
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->
 
 Google Pay ist unter Android und im Web verfügbar. Unter iOS ist es nicht implementiert.

@@ -4,7 +4,7 @@ code: []
 scrollActiveLine: []
 ---
 
-`@capacitor-community/stripe-terminal` v8.2.1 のリファレンスです。接続方式と Tap to Pay API の対応状況は[設定](/docs/configuration)を参照してください。
+`@capacitor-community/stripe-terminal` v8.3.0 のリファレンスです。接続方式と Tap to Pay API の対応状況は[設定](/docs/configuration)を参照してください。
 
 ## メソッド
 

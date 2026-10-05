@@ -2,7 +2,7 @@
 title: "Configuration"
 code: []
 scrollActiveLine: []
-sourceRevision: "da3b378f36008b20266cd46c6177ad583622507b42151484b8ef1e9e78b59579"
+sourceRevision: "fd2e7bfe95b5aef53bcd0951eeb1de5f4c605a25020e1c3b9b9204c37e77b947"
 ---
 Installez Stripe Identity et synchronisez les projets Capacitor natifs.
 
@@ -11,7 +11,7 @@ npm install @capacitor-community/stripe-identity
 npx cap sync
 ```
 
-`@capacitor-community/stripe-identity` v8.2.1 présente Stripe Identity Verification Sheet sur iOS, Android et le Web.
+`@capacitor-community/stripe-identity` v8.3.0 présente Stripe Identity Verification Sheet sur iOS, Android et le Web.
 
 | Prérequis | Minimum |
 | --- | --- |
@@ -43,7 +43,3 @@ Utilisez un thème Material Components dans `android/app/src/main/res/values/sty
 Tout thème parent Material Components peut être utilisé. Consultez la [gestion des thèmes Material Components](https://m2.material.io/develop/android/theming/dark/) et le [guide Stripe du thème Material sur Android](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme).
 
 L’implémentation Android utilise le mipmap `ic_launcher` de l’application comme icône d’Identity Verification Sheet. Une icône de lancement standard suffit ; aucune configuration d’icône supplémentaire n’est requise.
-
-## Étape suivante
-
-Poursuivez avec [Identity Verification Sheet](/docs/identity-verification-sheet) pour récupérer une session, présenter la feuille et vérifier le premier résultat d’envoi.

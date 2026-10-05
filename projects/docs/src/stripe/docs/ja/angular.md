@@ -35,8 +35,9 @@ npm install stripe-pwa-elements
 import { bootstrapApplication } from '@angular/platform-browser';
 import { defineCustomElements } from 'stripe-pwa-elements/loader';
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent)
+bootstrapApplication(AppComponent, appConfig)
   .then(() => defineCustomElements(window))
   .catch((err) => console.log(err));
 ```
@@ -54,5 +55,3 @@ const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
   }>(environment.api + 'intent', {}),
 );
 ```
-
-次はサーバーでシークレットを作成し（[サーバー連携](/docs/server-integration)）、[PaymentSheet](/docs/payment-sheet) を表示します。

@@ -7,10 +7,10 @@ export const PROJECT = {
   "packageName": "@rdlabo/ionic-theme-md3",
   "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
   "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
-  "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.2",
+  "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.3",
   "category": "frontend-tools",
   "icon": "theme",
-  "version": "9.1.2",
+  "version": "9.1.3",
   "description": "Styles Material Design 3 pour les applications Ionic.",
   "headline": "Apporter Material Design 3 aux applications Ionic",
   "overview": "Appliquez les styles Material Design 3 à Ionic tout en conservant un balisage compatible avec le thème iOS 26 et les animations de transition partagées.",
@@ -32,7 +32,7 @@ export const PROJECT = {
       "description": "Configurez les transitions de navigation MD3 pour les plateformes autres qu’iOS."
     }
   ],
-  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png\" alt=\"Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png\" alt=\"Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
@@ -251,7 +251,7 @@ export const PROJECT = {
       "file": "api.md",
       "section": "Référence",
       "path": "/projects/ionic-theme-md3/docs/api",
-      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\">Référence de l’API JavaScript exportée par <code>@rdlabo/ionic-theme-md3</code> v9.1.2. Les points d’entrée CSS restent décrits dans le README.</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Construit la transition de navigation Material Design 3 pour Ionic.</p></section>\n\n\n</div>",
+      "html": "<div class=\"api-reference\"><p data-line=\"0\" class=\"code-line\">Référence de l’API JavaScript exportée par <code>@rdlabo/ionic-theme-md3</code> v9.1.3. Les points d’entrée CSS restent décrits dans le README.</p>\n<h2 id=\"animation\" data-line=\"2\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#animation\" aria-hidden=\"true\"></a> Animation</h2>\n<section class=\"api-entry\"><h4 id=\"function-mdtransitionanimation\" data-line=\"4\" class=\"code-line\"><a class=\"header-anchor-link\" href=\"#function-mdtransitionanimation\" aria-hidden=\"true\"></a> <code>function</code> mdTransitionAnimation</h4><p data-line=\"6\" class=\"code-line api-signature\"><code>(_: HTMLElement, opts: TransitionOptions) =&gt; Animation</code></p><p data-line=\"8\" class=\"code-line\">Construit la transition de navigation Material Design 3 pour Ionic.</p></section>\n\n\n</div>",
       "headings": [
         {
           "id": "animation",

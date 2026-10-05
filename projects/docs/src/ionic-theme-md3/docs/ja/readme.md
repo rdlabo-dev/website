@@ -7,7 +7,7 @@ scrollActiveLine: []
 IonicアプリケーションにMaterial Design 3デザインシステムを適用するCSS/JSテーマライブラリです。
 
 <!-- rdlabo-docs-pick -->
-![Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.2/screenshots/md3.png)
+![Material Design 3テーマを適用したIonic画面。更新されたコンポーネントとナビゲーション](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png)
 <!-- /rdlabo-docs-pick -->
 
 DEMOはこちら: https://ionic-theme-md3.rdlabo.dev/

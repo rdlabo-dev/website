@@ -18,17 +18,6 @@ Stripe Identity は、Capacitor のアプリケーションコードを保った
 
 ネイティブでは `verificationId` と `ephemeralKeySecret` で Stripe Identity Verification Sheet を表示します。Web では `initialize` 後、`clientSecret` を指定して `verifyIdentity` を呼びます。
 
-## 最初の本人確認経路
-
-最初の送信完了までは次の順で進めます。
-
-1. バックエンドで VerificationSession を作成し、下のクライアント向けフィールドを返す。
-2. アプリケーション起動時に一度だけ、`present()` より前に `VerificationResult` リスナーを登録する。
-3. Web では公開可能キーで `initialize` を呼ぶ。
-4. `create` のあと `present()` を呼ぶ。
-
-端末での最初の成功は、シートが開き、テストフローで書類アップロード完了後に `Completed` を受け取ることです。`Completed` は送信完了であり審査完了ではありません。正式結果はサーバーの Identity Webhook で確認してください。コードパネルも同じ経路です。
-
 ## 結果を受け取る
 
 結果リスナーはアプリケーション起動時に一度だけ、`present()` より前に登録します。Android ではネイティブシート表示中に Activity と JavaScript ランタイムが再生成されることがあるため、早期登録によって結果の取りこぼしを防ぎます。
@@ -44,6 +33,8 @@ Stripe Identity は、Capacitor のアプリケーションコードを保った
 ## セッション認証情報を取得する
 
 バックエンドで Stripe のシークレットキーを使って VerificationSession と、そのセッション用の一時キーを作成し、クライアントへ安全に渡せるフィールドだけを返します。
+
+公式デモサーバー（`POST /identify`）は `document` の VerificationSession を作成し、`{ verification_session: session.id }` と Stripe API バージョン `2022-11-15` で一時キーを作成して、次のフィールドを返します。
 
 | レスポンス | 取得元 | `create` オプション |
 | --- | --- | --- |
@@ -67,7 +58,9 @@ return {
 };
 ```
 
-シークレットキーはサーバーに保持します。Capacitor アプリへ渡すのは公開可能キーと上記3フィールドだけです。端末の `Completed` は書類アップロード完了を意味し、審査完了ではありません。最終結果は `identity.verification_session.verified` などの [Identity Webhook](https://docs.stripe.com/identity/handle-verification-outcomes) で確認してください。
+Stripe のシークレットキーはサーバーに保持します。Capacitor アプリへ渡すのは、Web の `initialize` 用の公開可能キーと `verificationId`、`ephemeralKeySecret`、`clientSecret` だけです。`STRIPE_SECRET_KEY` をクライアント、ネイティブバイナリ、フロントエンドのバンドルに含めないでください。
+
+端末の `Completed` は書類アップロード完了を意味し、その後 VerificationSession は処理中になります。最終結果はサーバーで `identity.verification_session.verified`、`identity.verification_session.requires_input`、`identity.verification_session.processing`、`identity.verification_session.canceled`、`identity.verification_session.redacted` などの Identity Webhook を使って確認してください。[検証結果の処理](https://docs.stripe.com/identity/handle-verification-outcomes)を参照してください。
 
 ## Webプラットフォームを初期化する
 
@@ -79,8 +72,8 @@ return {
 
 バックエンドのフィールドを `create` へ渡し、`present()` を呼びます。
 
-- iOS と Android では `verificationId` と `ephemeralKeySecret` が必須です。
-- Web は `clientSecret` だけを使用し、ネイティブはこれを無視します。
+- iOS と Android では `verificationId` と `ephemeralKeySecret` が必須です。どちらかが欠けると `create` が拒否され、`FailedToLoad` が通知されます。
+- Web は `clientSecret` だけを使用し、ネイティブはこれを無視します。ネイティブビルドでは省略でき、同じコードを Web で使う場合は含めてください。
 - `CreateIdentityVerificationSheetOption` と `InitializeIdentityVerificationSheetOption` を `@capacitor-community/stripe-identity` から import しないでください。これらのオプション型はパッケージの index から再エクスポートされていません。
 
 !::create::
@@ -91,7 +84,7 @@ return {
 
 ## FailedToLoadを処理する
 
-`create` がシートを構築できない場合に発生し、Promise も同じ文言で拒否されます。ネイティブでは必須パラメータ不足時、iOS ではプライマリアプリアイコンのキー不足時にも発生します。
+`create` がシートを構築できない場合に発生し、Promise も同じ文言で拒否されます。ネイティブでは `verificationId` または `ephemeralKeySecret` が不足すると発生します。Android のメッセージは `Invalid Params. This method require verificationId or ephemeralKeySecret.` で、iOS は同じ文の `this` が小文字です。iOS では `Info.plist` にプライマリアプリアイコンのキーがない場合にも発生します。
 
 リスナーの型は `StripeIdentityError` です。iOS は `{ message }` を渡し、Android は現在 `error` に文字列を設定します。リスナーと、拒否された `create` の Promise の両方を処理してください。
 
@@ -100,6 +93,8 @@ Web の `create` は `clientSecret` を検証せず、常に `Loaded` を通知�
 !::StripeIdentityError::
 
 ## VerificationResultを処理する
+
+`IdentityVerificationResult.result` は `IdentityVerificationSheetResultInterface` 型で、`Completed`、`Canceled`、`Failed` のいずれかです。
 
 | `result` | 意味 |
 | --- | --- |

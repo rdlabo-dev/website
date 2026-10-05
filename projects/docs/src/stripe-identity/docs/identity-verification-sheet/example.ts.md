@@ -20,7 +20,7 @@ const verificationResultListener = await StripeIdentity.addListener(
 const failedToLoadListener = await StripeIdentity.addListener(
   IdentityVerificationSheetEventsEnum.FailedToLoad,
   (error) => {
-    // iOS follows StripeIdentityError; Android v8.2.1 currently emits `error`.
+    // iOS follows StripeIdentityError; Android v8.3.0 currently emits `error`.
     const message = error.message ?? (error as unknown as { error?: string }).error;
     console.error(message);
   },

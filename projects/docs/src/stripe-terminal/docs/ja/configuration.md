@@ -11,10 +11,10 @@ npm install @capacitor-community/stripe-terminal
 npx cap sync
 ```
 
-対象プラグインは `@capacitor-community/stripe-terminal` **v8.2.1** です。公式デモ:
+対象プラグインは `@capacitor-community/stripe-terminal` **v8.3.0** です。公式デモ:
 
-- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/main/demo/angular)
-- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/main/demo/app-on-devices)
+- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular)
+- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/app-on-devices)
 
 | 要件                    | 最小バージョン |
 | ----------------------- | -------------- |
@@ -22,9 +22,9 @@ npx cap sync
 | iOS                     | 15.0           |
 | Android `minSdkVersion` | 26             |
 
-## プラットフォームと接続方式を選ぶ
+## プラットフォームと接続方式
 
-`discoverReaders` は `TerminalConnectTypes` の値を受け取ります。プラットフォームが対応する接続方式を選び、その必須設定だけを下で行います。
+`discoverReaders` は `TerminalConnectTypes` の値を受け取ります。対応状況はプラットフォームによって異なります。
 
 | `TerminalConnectTypes` | Web                    | iOS                      | Android                 |
 | ---------------------- | ---------------------- | ------------------------ | ----------------------- |
@@ -38,6 +38,31 @@ npx cap sync
 対応する接続方式でシミュレーションリーダーを使う場合は、すべてのプラットフォームで `initialize` に `isTest: true` を渡します。iOS や Web で `TerminalConnectTypes.Simulated` に依存せず、`Internet`、`Bluetooth`、`TapToPay` と `isTest: true` を組み合わせてください。
 
 Web の `discoverReaders` は `Internet` 以外を指定すると unavailable エラーで拒否されます。
+
+### プラットフォーム限定 API
+
+| API                          | Web               | iOS                                 | Android                                         |
+| ---------------------------- | ----------------- | ----------------------------------- | ----------------------------------------------- |
+| `setTapToPayUxConfiguration` | no-op（ログのみ） | 未実装                              | 対応。`initialize` 後、`connectReader` 前に呼ぶ |
+| `isTapToPayAccountLinked`    | 利用不可（例外）  | iOS 16.4以降、`initialize` 後に対応 | 未実装                                          |
+
+設定手順と制限は [Tap to Pay](/docs/tap-to-pay)を参照してください。
+
+### Web の no-op と未対応ライフサイクルメソッド
+
+次のメソッドはプラグインインターフェースに存在しますが、Web の Stripe Terminal JS SDK は操作しません。
+
+- `cancelDiscoverReaders` — no-op
+- `setSimulatorConfiguration` — no-op
+- `installAvailableUpdate` — no-op
+- `cancelInstallUpdate` — no-op
+- `rebootReader` — no-op
+- `cancelReaderReconnection` — no-op
+- `setTapToPayUxConfiguration` — no-op
+
+Web の `isTapToPayAccountLinked` は `unavailable` をスローします。
+
+Web の Internet リーダーでは、`initialize`、`discoverReaders`、`connectReader`、`getConnectedReader`、`disconnectReader`、`collectPaymentMethod`、`cancelCollectPaymentMethod`、`confirmPaymentIntent`、`setReaderDisplay`、`clearReaderDisplay`、`setConnectionToken` と、接続・支払い状態のリスナーを利用できます。
 
 ## Web の設定
 
@@ -68,37 +93,7 @@ Web の `discoverReaders` は `Internet` 以外を指定すると unavailable �
   ext {
 -    minSdkVersion = 24
 +    minSdkVersion = 26
+  }
 ```
 
 Stripe Reader S700 などの Stripe Android 端末向けアプリを開発し、`TerminalConnectTypes.HandOff` を使う場合は、[Stripe のクライアント側セットアップガイド](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app)に従ってください。
-
-## 次のステップ
-
-上の必須プラットフォーム設定のあと、[支払いを受け付ける](/docs/collect-a-payment)へ進みます。
-
-## プラットフォーム参照
-
-### プラットフォーム限定 API
-
-| API                          | Web               | iOS                                 | Android                                         |
-| ---------------------------- | ----------------- | ----------------------------------- | ----------------------------------------------- |
-| `setTapToPayUxConfiguration` | no-op（ログのみ） | 未実装                              | 対応。`initialize` 後、`connectReader` 前に呼ぶ |
-| `isTapToPayAccountLinked`    | 利用不可（例外）  | iOS 16.4以降、`initialize` 後に対応 | 未実装                                          |
-
-設定手順と制限は [Tap to Pay](/docs/tap-to-pay)を参照してください。
-
-### Web の no-op と未対応ライフサイクルメソッド
-
-次のメソッドはプラグインインターフェースに存在しますが、Web の Stripe Terminal JS SDK は操作しません。
-
-- `cancelDiscoverReaders` — no-op
-- `setSimulatorConfiguration` — no-op
-- `installAvailableUpdate` — no-op
-- `cancelInstallUpdate` — no-op
-- `rebootReader` — no-op
-- `cancelReaderReconnection` — no-op
-- `setTapToPayUxConfiguration` — no-op
-
-Web の `isTapToPayAccountLinked` は `unavailable` をスローします。
-
-Web の Internet リーダーでは、`initialize`、`discoverReaders`、`connectReader`、`getConnectedReader`、`disconnectReader`、`collectPaymentMethod`、`cancelCollectPaymentMethod`、`confirmPaymentIntent`、`setReaderDisplay`、`clearReaderDisplay`、`setConnectionToken` と、接続・支払い状態のリスナーを利用できます。

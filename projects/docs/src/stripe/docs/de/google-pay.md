@@ -1,8 +1,8 @@
 ---
 title: "Google Pay"
 code: ["/docs/stripe/google-pay/strings.xml.md", "/docs/stripe/google-pay/android-manifest.xml.md", "/docs/stripe/google-pay/google-pay.ts.md"]
-scrollActiveLine: []
-sourceRevision: "e6b1266613980b4ed9868f8a782c3da54181265b444b17dfc385f20559e8ccfb"
+scrollActiveLine: [{"id":"","activeLine":{}},{"id":"strings.xml","activeLine":{"strings.xml":[7,14]}},{"id":"androidmanifest.xml","activeLine":{"AndroidManifest.xml":[36,60]}},{"id":"1.-isgooglepayavailable","activeLine":{"google-pay.ts":[4,10]}},{"id":"2.-creategooglepay","activeLine":{"google-pay.ts":[15,33]}},{"id":"3.-presentgooglepay","activeLine":{"google-pay.ts":[33,39]}},{"id":"4.-addlistener","activeLine":{"google-pay.ts":[11,14]}}]
+sourceRevision: "68c857f2439433f5d6f6f6e2d798fd4744b4ccb0b04e1f67c0421aa43197b094"
 ---
 Google Pay bestätigt einen PaymentIntent in einer einzigen Darstellung. Die Android-Implementierung akzeptiert zusätzlich einen SetupIntent, die Web-Implementierung nicht.
 
@@ -141,23 +141,20 @@ try {
 }
 ```
 
-!::isGooglePayAvailable::
+<!-- !::isGooglePayAvailable:: -->
 
 ## 2. createGooglePay
 
-Rufen Sie ein PaymentIntent-Client-Secret von Ihrem Backend ab. Unter Android können Sie stattdessen ein SetupIntent-Client-Secret übergeben. Ersetzen Sie `/your-intent-endpoint` im Beispiel durch die Backend-URL aus [Serverintegration](/docs/server-integration). Die Option heißt für beide Intent-Typen `paymentIntentClientSecret`. Im Web sind außerdem `paymentSummaryItems`, `merchantIdentifier`, `countryCode` und `currency` erforderlich.
+Rufen Sie ein PaymentIntent-Client-Secret von Ihrem Backend ab. Unter Android können Sie stattdessen ein SetupIntent-Client-Secret übergeben. Siehe [Serverintegration](/docs/server-integration). Die Option heißt für beide Intent-Typen `paymentIntentClientSecret`. Im Web sind außerdem `paymentSummaryItems`, `merchantIdentifier`, `countryCode` und `currency` erforderlich.
 
 ```ts
-// `/your-intent-endpoint` durch Ihr Backend aus der Anleitung zur Serverintegration ersetzen.
-const response = await fetch('/your-intent-endpoint', {
-  method: 'POST',
-});
-if (!response.ok) {
-  throw new Error(`Intent request failed: ${response.status}`);
-}
-const { paymentIntent } = (await response.json()) as {
-  paymentIntent: string;
-};
+import { firstValueFrom } from 'rxjs';
+
+const { paymentIntent } = await firstValueFrom(
+  this.http.post<{
+    paymentIntent: string;
+  }>(environment.api + 'intent', {}),
+);
 
 await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
@@ -173,9 +170,9 @@ await Stripe.createGooglePay({
 });
 ```
 
-!::createGooglePay::
+<!-- !::createGooglePay:: -->
 
-!::CreateGooglePayOption::
+<!-- !::CreateGooglePayOption:: -->
 
 :::message
 `paymentSummaryItems`, `merchantIdentifier`, `countryCode` und `currency` sind im Web erforderlich. Android verwendet stattdessen Land und Händlername aus den Metadaten.
@@ -188,13 +185,13 @@ Ein SetupIntent-Client-Secret beginnt mit `seti_`. Android erkennt dieses Präfi
 ```ts
 const result = await Stripe.presentGooglePay();
 if (result.paymentResult === GooglePayEventsEnum.Completed) {
-  // Nur die UI aktualisieren. Den Intent vor der Leistungserbringung per Webhook bestätigen.
+  // Nur die UI aktualisieren. Vor der Leistungserbringung den Zahlungserfolg auf Ihrem Server per Webhook überprüfen.
 }
 ```
 
-!::presentGooglePay::
+<!-- !::presentGooglePay:: -->
 
-!::GooglePayResultInterface::
+<!-- !::GooglePayResultInterface:: -->
 
 Behandeln Sie `Canceled` als Abbruch und `Failed` als Fehler. Bevorzugen Sie nach der Neuerstellung einer Android-Activity Ergebnis-Listener. Siehe [Ereignis-Listener](/docs/learn/event-listeners).
 
@@ -206,7 +203,7 @@ Stripe.addListener(GooglePayEventsEnum.Completed, () => {
 });
 ```
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->
 
 ## Referenz
 

@@ -2,22 +2,11 @@
 title: "Identity Verification Sheet"
 code: ["identity-verification-sheet/example.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"example.ts":[1,1]}},{"id":"auf-das-ergebnis-h%C3%B6ren","activeLine":{"example.ts":[5,18]}},{"id":"sitzungszugangsdaten-beziehen","activeLine":{"example.ts":[31,34]}},{"id":"die-web-plattform-initialisieren","activeLine":{"example.ts":[27,31]}},{"id":"das-sheet-erstellen-und-anzeigen","activeLine":{"example.ts":[34,42]}},{"id":"failedtoload-verarbeiten","activeLine":{"example.ts":[18,27]}},{"id":"verificationresult-verarbeiten","activeLine":{"example.ts":[5,18]}},{"id":"fehler-und-abbruch","activeLine":{"example.ts":[5,18]}}]
-sourceRevision: "f1ef38cf6f85e81d0ab969d17174fe4680e030d4c66aa998cb09fc22cfaec596"
+sourceRevision: "0bb119687660873953841768d1e3100fbb0f9557b9472a3aaa7eeac40e922078"
 ---
 Stripe Identity prüft Identitätsdokumente unter iOS und Android in einem nativen Sheet und im Web über Stripe.js. Der Anwendungscode bleibt dabei in Capacitor.
 
 Das Plugin unterstützt iOS, Android und Web. Native Plattformen zeigen das Stripe Identity Verification Sheet mit `verificationId` und `ephemeralKeySecret` an. Das Web ruft nach `initialize` `verifyIdentity` mit `clientSecret` auf.
-
-## Der Weg zur ersten Verifizierung
-
-Gehen Sie für die erste erfolgreiche Übermittlung in dieser Reihenfolge vor:
-
-1. Erstellen Sie eine VerificationSession auf Ihrem Backend und geben Sie die folgenden für den Client sicheren Felder zurück.
-2. Registrieren Sie den Listener `VerificationResult` einmal beim Anwendungsstart, vor `present()`.
-3. Rufen Sie im Web `initialize` mit dem veröffentlichbaren Schlüssel auf.
-4. Rufen Sie `create` und anschließend `present()` auf.
-
-Erster Erfolg auf dem Gerät: Das Sheet öffnet sich und Sie erhalten `Completed`, nachdem der Nutzer das Testdokument hochgeladen hat. `Completed` bedeutet, dass die Übermittlung abgeschlossen ist, nicht die Prüfung. Bestätigen Sie das offizielle Ergebnis mit Identity-Webhooks auf Ihrem Server. Das Codepanel folgt demselben Ablauf.
 
 ## Auf das Ergebnis hören
 

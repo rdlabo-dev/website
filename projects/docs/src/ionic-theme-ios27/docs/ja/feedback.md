@@ -55,7 +55,7 @@ export interface IonicConfig {
 
 ### ion-back-buttonのアニメーションを無効にする
 
-解決済み: [transitionの実装](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.0/src/transition)を作成しました。
+解決済み: [transitionの実装](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.1/src/transition)を作成しました。
 
 ## feat(): ion-content[fullscreen=true]に.content-fullscreenクラスを付ける
 

@@ -1,6 +1,6 @@
 ---
 title: "Annonces récompensées"
-sourceRevision: "2fbd73e4314022a6ca92242b8eb17d540daee64848938bd3e29e5bfe60ee571b"
+sourceRevision: "0c51c35e63037c85b947672eebb189fea8d4a2684f282cdf4f5c392eed834d3f"
 ---
 # Annonces récompensées
 
@@ -58,6 +58,19 @@ console.log(rewardItem);
 <!-- !::AdMobRewardItem:: -->
 
 Sans `adId` passé à `showRewardVideoAd()`, l’annonce préparée le plus récemment est affichée.
+
+### Événements de clic (depuis 8.2.0)
+
+Enregistrez `adClicked` avant d’afficher une annonce récompensée. Cet événement transmet les clics enregistrés par le SDK, y compris après l’obtention d’une récompense tant que l’annonce reste affichée. Il ne signifie pas qu’une récompense a été obtenue et ne s’applique pas aux annonces interstitielles récompensées.
+
+```ts
+const clickListener = await AdMob.addListener(RewardAdPluginEvents.adClicked, () => {
+  console.log('Rewarded ad clicked');
+});
+
+// Lors de la destruction de l’écran propriétaire :
+await clickListener.remove();
+```
 
 ### Préparer plusieurs annonces
 

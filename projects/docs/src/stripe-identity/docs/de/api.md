@@ -2,9 +2,9 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "f356d45638e3abbc56fcf92bd932439ba9e40517c0de9117798743319005ecd1"
+sourceRevision: "8e3e3e902cb290a89fde5e69ac2370f02dcf058ca20be64dd127a31af69b50a9"
 ---
-Öffentliche Methoden, Ergebnistypen, Fehlertypen und Ereignisse, die `@capacitor/docgen` aus `@capacitor-community/stripe-identity` v8.2.1 auflöst.
+Öffentliche Methoden, Ergebnistypen, Fehlertypen und Ereignisse, die `@capacitor/docgen` aus `@capacitor-community/stripe-identity` v8.3.0 auflöst.
 
 `addListener` wird für die drei unterstützten Ereignisnamen `Loaded`, `FailedToLoad` und `VerificationResult` generiert. `Completed`, `Canceled` und `Failed` sind Werte von `IdentityVerificationResult.result` (`IdentityVerificationSheetResultInterface`). Sie werden nicht als separate `addListener`-Überladungen unterstützt.
 

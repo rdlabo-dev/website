@@ -1,7 +1,7 @@
 ---
 title: "Apple Pay"
 code: ["/docs/stripe/apple-pay/apple-pay.ts.md"]
-scrollActiveLine: []
+scrollActiveLine: [{"id":"","activeLine":{}},{"id":"1.-isapplepayavailable","activeLine":{"apple-pay.ts":[4,10]}},{"id":"2.-createapplepay","activeLine":{"apple-pay.ts":[15,31]}},{"id":"3.-presentapplepay","activeLine":{"apple-pay.ts":[31,37]}},{"id":"4.-addlistener","activeLine":{"apple-pay.ts":[11,14]}}]
 ---
 
 Apple Pay は一度の表示で PaymentIntent を確定します。
@@ -44,23 +44,20 @@ try {
 }
 ```
 
-!::isApplePayAvailable::
+<!-- !::isApplePayAvailable:: -->
 
 ## 2. createApplePay
 
-バックエンドから PaymentIntent のクライアントシークレットを取得します。例の `/your-intent-endpoint` は [サーバー連携](/docs/server-integration) で用意したバックエンドの URL に置き換えてください。その後 `paymentIntentClientSecret`、`paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` を渡します。
+バックエンドから PaymentIntent のクライアントシークレットを取得します。[サーバー連携](/docs/server-integration)を参照してください。その後 `paymentIntentClientSecret`、`paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` を渡します。
 
 ```ts
-// `/your-intent-endpoint` を「サーバー連携」で用意したバックエンドのURLに置き換えます。
-const response = await fetch('/your-intent-endpoint', {
-  method: 'POST',
-});
-if (!response.ok) {
-  throw new Error(`Intent request failed: ${response.status}`);
-}
-const { paymentIntent } = (await response.json()) as {
-  paymentIntent: string;
-};
+import { firstValueFrom } from 'rxjs';
+
+const { paymentIntent } = await firstValueFrom(
+  this.http.post<{
+    paymentIntent: string;
+  }>(environment.api + 'intent', {}),
+);
 
 await Stripe.createApplePay({
   paymentIntentClientSecret: paymentIntent,
@@ -74,8 +71,8 @@ await Stripe.createApplePay({
 });
 ```
 
-!::createApplePay::
-!::CreateApplePayOption::
+<!-- !::createApplePay:: -->
+<!-- !::CreateApplePayOption:: -->
 
 `requiredShippingContactFields` は住所、電話、メール、氏名を Apple Pay に要求します。`allowedCountries` に含まれない配送先の国は拒否されます。
 
@@ -84,12 +81,12 @@ await Stripe.createApplePay({
 ```ts
 const result = await Stripe.presentApplePay();
 if (result.paymentResult === ApplePayEventsEnum.Completed) {
-  // UIだけを更新します。商品発送やサービス提供の前にWebhookでIntentを確認してください。
+  // UI だけを更新します。商品発送やサービス提供の前に、サーバーで Webhook を使って支払い成功を確認してください。
 }
 ```
 
-!::presentApplePay::
-!::ApplePayResultInterface::
+<!-- !::presentApplePay:: -->
+<!-- !::ApplePayResultInterface:: -->
 
 `Canceled` はキャンセル、`Failed` はエラーとして扱います。
 
@@ -103,11 +100,13 @@ Stripe.addListener(ApplePayEventsEnum.Completed, () => {
 });
 ```
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
 ## 5. updateApplePaySheet
 
-iOS の `DidSelectShippingContact` には `contact` と `updateId` が含まれます。合計を再計算し、その `updateId` で `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは25秒後に元の明細へ戻ります。
+iOS の `DidSelectShippingContact` には `contact` と `updateId` が含まれます。合計を再計算し、その `updateId` で `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは 25 秒後に最後に受理した明細へ戻ります。更新時も現在の配送方法は維持されます。
+
+`paymentSummaryItems` は配列である必要があります。空配列（`[]`）は既存の明細を変更せずに現在の選択を受理します。空でない配列では、各項目に空でない文字列のラベルと有限の数値の金額が必要です。割引の負数は許可されますが、最終合計は 0 以上でなければなりません。不正な入力は保留中の更新を消費せずに拒否されるため、タイムアウト前に修正して再試行できます。受理されるのは最後に選択された配送先の `updateId` のみで、重複した更新や古い更新は拒否されます。
 
 ```ts
 Stripe.addListener(ApplePayEventsEnum.DidSelectShippingContact, async (data) => {
@@ -122,14 +121,14 @@ Stripe.addListener(ApplePayEventsEnum.DidSelectShippingContact, async (data) => 
 });
 ```
 
-!::updateApplePaySheet::
-!::DidSelectShippingContact::
-!::PaymentSummaryItem::
+<!-- !::updateApplePaySheet:: -->
+<!-- !::DidSelectShippingContact:: -->
+<!-- !::PaymentSummaryItem:: -->
 
 `DidCreatePaymentMethod` には Apple が支払い方法を作成した後の配送先が含まれます。Apple は支払い成功まで住所全体を返しません。
 
-!::DidCreatePaymentMethod::
-!::ShippingContact::
+<!-- !::DidCreatePaymentMethod:: -->
+<!-- !::ShippingContact:: -->
 
 ## 参考資料
 

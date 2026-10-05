@@ -1,7 +1,7 @@
 ---
 title: "Vertical Bars (Vorschau)"
 headingAliases: { 'vertikale-leisten-aktivieren': 'vertical-bars-aktivieren' }
-sourceRevision: "0daed02571bc73ffce840b233aa934d67360c82d05c9fbe30550b1461854d732"
+sourceRevision: "8c5a60399c6c97dee637a7a81a038d84e15845669ba59194ee2020a30f0e1c71"
 ---
 # Vertical Bars (Vorschau)
 
@@ -86,6 +86,8 @@ Alle Füllungen (`default`, `clear`, `solid` und `outline`) und Ionic-Farben fol
 
 Die Regel gilt für einzelne Schaltflächen und Schaltflächen innerhalb von `ion-buttons`, sowohl auf normalen Seiten als auch im obersten Modal über die volle Breite. Zentrierte Modals, Menüs und Popovers behalten ihr eigenes Werkzeugleistenlayout. Fügen Sie `.ios-theme-horizontal-only` zu einer Gruppe oder einzelnen Schaltfläche hinzu, um sie horizontal zu belassen. Die Platzierung wird beim Eintritt einer gerouteten Seite gewählt. Das Ändern des Inhalts oder Symbol-Slots einer vorhandenen Schaltfläche verschiebt sie erst zwischen Werkzeugleiste und Leiste, wenn die Seite verlassen und erneut geöffnet wird.
 
+Eine Werkzeugleiste, deren gesamter Inhalt in die seitliche Leiste verschoben wurde, wird während der Projektion eingeklappt. Werkzeugleisten mit einem Titel, direktem Text, anderen Inhalten oder einem ausschließlich horizontal angezeigten Bedienelement bleiben sichtbar. Beim Aufheben der Projektion wird die ursprüngliche Werkzeugleiste wiederhergestellt.
+
 ### Das Aussehen von Schaltflächen wählen
 
 `buttonProjection` und die folgenden lokalen Projektionseinstellungen sind in `1.2.0` verfügbar.
@@ -101,7 +103,7 @@ Wählen Sie für native vertikale `ion-button`- und `ion-menu-button`-Aktionen, 
 const rail = await enableVerticalControlArea({ buttonProjection: 'source' });
 ```
 
-Sowohl `enableVerticalControlArea()` als auch `enableNativeUIShell()` akzeptieren diese Option. Verwenden Sie eine einzige Laufzeit und zerstören Sie diese vor dem Neustart mit anderen Optionen. Beide Modi erhalten Aktionen, Deaktivierungszustand und Gruppierung. Diese Darstellungseinstellungen betreffen weder horizontale Bedienelemente noch Quellelemente oder Web-Rückfallklone. Vergleichen Sie das native Aussehen daher auf unterstütztem iOS.
+Sowohl `enableVerticalControlArea()` als auch `enableNativeUIShell()` akzeptieren diese Option. Verwenden Sie eine einzige Laufzeit und zerstören Sie diese vor dem Neustart mit anderen Optionen. Beide Modi erhalten Aktionen, Deaktivierungszustand und Gruppierung. Deaktivierte Symbole verwenden die native Darstellung für den deaktivierten Zustand. Diese Darstellungseinstellungen betreffen weder horizontale Bedienelemente noch Quellelemente oder Web-Rückfallklone. Vergleichen Sie das native Aussehen daher auf unterstütztem iOS.
 
 **Migration von experimentellen Versionen:** Der Standard wechselt von quellengetreuer Gestaltung zu `system`. Setzen Sie `buttonProjection: 'source'`, um das bisherige Projektionsverhalten beizubehalten.
 

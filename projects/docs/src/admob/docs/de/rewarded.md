@@ -1,6 +1,6 @@
 ---
 title: "Rewarded-Anzeigen"
-sourceRevision: "2fbd73e4314022a6ca92242b8eb17d540daee64848938bd3e29e5bfe60ee571b"
+sourceRevision: "0c51c35e63037c85b947672eebb189fea8d4a2684f282cdf4f5c392eed834d3f"
 ---
 # Rewarded-Anzeigen
 
@@ -58,6 +58,19 @@ console.log(rewardItem);
 <!-- !::AdMobRewardItem:: -->
 
 Ohne `adId` an `showRewardVideoAd()` wird die zuletzt vorbereitete Anzeige gezeigt.
+
+### Klickereignisse (seit 8.2.0)
+
+Registrieren Sie `adClicked`, bevor Sie eine belohnte Anzeige zeigen. Damit werden vom SDK erfasste Klicks weitergeleitet, auch nach dem Erhalt einer Belohnung, solange die Anzeige sichtbar bleibt. Das Ereignis bedeutet nicht, dass eine Belohnung verdient wurde, und gilt nicht für belohnte Interstitial-Anzeigen.
+
+```ts
+const clickListener = await AdMob.addListener(RewardAdPluginEvents.adClicked, () => {
+  console.log('Rewarded ad clicked');
+});
+
+// Wenn der zugehörige Bildschirm zerstört wird:
+await clickListener.remove();
+```
 
 ### Mehrere Anzeigen vorbereiten
 

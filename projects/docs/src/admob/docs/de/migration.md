@@ -1,10 +1,48 @@
 ---
 title: "Migration"
-sourceRevision: "927523735104b3d935a575b947b0907905b4ec4ae086eae2218fb1009a730434"
+sourceRevision: "4e5cec9335cf1701c5e41a109c61afddabb6b0ff0399bad9c16d93a0834ee896"
 ---
-# Migrationsanleitung
+# Migrationsleitfaden
 
-Wenn Sie `@capacitor-community/admob` v8 installiert haben, benötigen Sie die folgenden Schritte für einzelne Versionen nicht. Sie dokumentieren öffentliche API-Änderungen älterer Veröffentlichungen.
+## Änderungen in 8.2.0
+
+### Capacitor ab Version 8.5 ist erforderlich
+
+Aktualisieren Sie `@capacitor/core`, `@capacitor/cli` und die verwendeten nativen Plattformpakete (`@capacitor/android` / `@capacitor/ios`) auf mindestens 8.5 innerhalb von v8 und führen Sie anschließend `npx cap sync` aus.
+
+Ältere Capacitor-Versionen können die Android-Fensterabstände (Window Insets) bereits verarbeiten, ohne sie an das Banner weiterzureichen. Aktualisieren Sie Capacitor, um die aktuelle Behandlung der sicheren Bereiche zu verwenden. Folgen Sie für die Migration der nativen Projekte dem [Leitfaden zum Update auf Capacitor 8.5](https://capacitorjs.com/docs/updating/8-5).
+
+### Die Android-Initialisierung kann abgelehnt werden
+
+`AdMob.initialize()` wartet nun auf die übergeordnete Ansicht des nativen Banners. Erscheint sie nicht innerhalb von 5 Sekunden, wird die Initialisierung abgelehnt. Eine nicht verfügbare Activity oder Inhaltsansicht kann sofort zum Fehlschlag führen. Das gilt auch für Apps, die nur Vollbildanzeigen verwenden. Zuvor konnte eine fehlende untergeordnete Ansicht die Initialisierung erfolgreich abschließen lassen und spätere Banneranfragen zum Absturz bringen.
+
+Behandeln Sie Initialisierungsfehler, ohne den App-Start zu blockieren. Versuchen Sie es erneut, sobald die native Ansicht verfügbar ist. Ein Beispiel finden Sie unter [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration).
+
+### iOS-Einnahmen werden nun in Mikroeinheiten angegeben
+
+Das Feld `valueMicros` meldet nun für Banner, Interstitial-, belohnte, belohnte Interstitial- und App-Open-Anzeigen korrekt Millionstel einer Währungseinheit. Beispielsweise ergab ein Wert von `0.0012` Währungseinheiten zuvor `0`, jetzt ergibt er `1200`. Android-Werte und Ereignisnamen bleiben unverändert.
+
+Teilen Sie `valueMicros` auf beiden Plattformen durch `1_000_000`, um Währungseinheiten zu erhalten. Überprüfen Sie iOS-spezifische Korrekturen in Ihrer Analysepipeline. Frühere iOS-Werte wurden vor der Umrechnung abgeschnitten. Durch Multiplikation dieser gespeicherten Werte lassen sich die verlorenen Nachkommabeträge daher nicht wiederherstellen.
+
+### Einwilligung vor der SDK-Initialisierung
+
+Unter iOS können `showConsentForm()` und `showPrivacyOptionsForm()` nun wie unter Android vor `AdMob.initialize()` aufgerufen werden. Fordern Sie Einwilligungsinformationen an und zeigen Sie bei Bedarf ein Formular an. Initialisieren Sie anschließend das Mobile Ads SDK und laden Sie Anzeigen nur dann, wenn `canRequestAds` true ist. Die vollständige Reihenfolge finden Sie unter [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Bestehende Integrationen mit vorheriger Initialisierung bleiben aufrufbar, sollten aber diese Reihenfolge übernehmen.
+
+### Anzeigenladefehler behalten native Codes bei
+
+`prepareInterstitial()`, `prepareRewardVideoAd()` und `prepareRewardInterstitialAd()` lehnen SDK-Ladefehler nun mit einem `code` als Zeichenkette und der nativen Fehlermeldung ab. Die Codes sind plattformspezifisch und werden zwischen Android und iOS nicht vereinheitlicht. Die Codes von `FailedToLoad`-Ereignissen bleiben Zahlen; unter iOS enthalten sie nun den tatsächlichen SDK-Code statt des festen Werts `0`.
+
+Aktualisieren Sie Fehlerbehandlungen, die nach der iOS-Meldung `Loading failed` suchen oder einen Ereigniscode von `0` voraussetzen. Verwenden Sie die SDK-Fehlerdefinitionen der jeweiligen Plattform, wenn Sie fehlende Anzeigenverfügbarkeit und andere Fehler behandeln.
+
+### Klickereignis für belohnte Anzeigen
+
+`RewardAdPluginEvents.adClicked` ist ein neuer optionaler Listener für belohnte Anzeigen unter Android und iOS. Seine Ereigniszeichenkette lautet `onRewardedVideoAdClicked`. Klicks sind von verdienten Belohnungen getrennt. Gewähren Sie Belohnungen weiterhin nur einmal, anhand des `Rewarded`-Ereignisses oder des Anzeigeergebnisses. Siehe [Belohnte Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded).
+
+### Build-Kompatibilität mit AGP 9
+
+Die Android-Bibliothek verweist nun auf `proguard-android-optimize.txt` und vermeidet damit die Ablehnung der älteren Standarddatei durch AGP 9. Dadurch wird weder die Minifizierung der Bibliothek aktiviert noch die AGP-Version Ihres Projekts aktualisiert. Die übrigen Migrationsschritte für AGP 9 gelten weiterhin für die Host-App.
+
+Die versionsweisen Schritte unter „Inkompatible Änderungen früherer Versionen“ gelten für Releases vor v8.
 
 ## Versionen des Google Mobile Ads SDK
 

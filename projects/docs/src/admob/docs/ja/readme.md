@@ -12,7 +12,7 @@ Capacitor 向けのコミュニティ製ネイティブ AdMob プラグインで
 
 このプラグインには Google Mobile Ads SDK が同梱されています。パッケージを入れたあと、AdMob の **アプリ** ID を AndroidManifest / Info.plist に追加します。アプリ ID と SKAdNetwork（Apple の広告コンバージョン ID）は Google の Get started（[Android](https://developers.google.com/admob/android/quick-start?hl=ja) / [iOS](https://developers.google.com/admob/ios/quick-start?hl=ja)）を見てください。Mobile Ads の依存関係を二重に足さないでください。
 
-このプラグインは `@capacitor-community/admob` **v8** と Capacitor 8 を対象にします。iOS 15 以降、Android API 24 以降に対応します。
+このプラグインは `@capacitor-community/admob` **v8.2.0** と Capacitor 8.5 以降（v8 内）を対象にします。iOS 15 以降、Android API 24 以降に対応します。
 
 ```bash
 npm install @capacitor-community/admob
@@ -90,7 +90,7 @@ CocoaPods が `Google-Mobile-Ads-SDK` を解決できない場合:
 
 ## 最初のテストバナー
 
-インストールとプラットフォーム設定のあと、SDK を初期化し、同意を取り、Google のデモバナーを表示します。広告ユニット ID は [テスト](/docs/testing) のプラットフォーム別バナー ID を使い、この初回確認では自分のユニットを作らないでください。
+インストールとプラットフォーム設定のあと、同意を取得し、広告をリクエストできる状態になってから SDK を初期化して Google のデモバナーを表示します。[テスト](/docs/testing) のプラットフォーム別バナー ID を使ってください。最初の確認用に独自の広告ユニットを作らないでください。
 
 `startAdMob` はモジュール評価時だけではなく、ユーザー操作や UI 準備後（ボタンや遷移後など）から呼び出してください。
 
@@ -104,8 +104,6 @@ const bannerAdId =
     : 'ca-app-pub-3940256099942544/6300978111';
 
 async function startAdMob() {
-  await AdMob.initialize();
-
   let consentInfo = await AdMob.requestConsentInfo();
   if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
     consentInfo = await AdMob.showConsentForm();
@@ -115,6 +113,8 @@ async function startAdMob() {
     // 同意の準備が完了していないため、バナーを表示しません。
     return;
   }
+
+  await AdMob.initialize();
 
   const options: BannerAdOptions = {
     adId: bannerAdId,
@@ -140,7 +140,7 @@ async function startAdMob() {
 
 ## ドキュメント
 
-上の [インストール](#インストール) から始め、[initialize](/docs/configuration) と [同意管理](/docs/consent) を見たあと、最初のテストバナーを実行してください。デモユニットとデバイスは [テスト](/docs/testing) です。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルは GitHub リポジトリにあります。メソッドのシグネチャは API 節にあります。
+上の [インストール](#インストール) から始め、[initialize](/docs/configuration) と [同意管理](/docs/consent) を見たあと、最初のテストバナーを実行してください。デモユニットとデバイスは [テスト](/docs/testing) です。形式は上の表から選びます。同じガイドは [ドキュメントサイト](https://docs.rdlabo.dev/ja/projects/capacitor-admob)（英語と日本語）にもあります。npm でこの README を開いている場合は、ガイドはサイトを使ってください。`docs/` のファイルはパッケージにも含まれています。メソッドのシグネチャは API 節にあります。
 
 - [initialize](/docs/configuration) — `AdMob.initialize` と SDK オプション。
 - [同意管理](/docs/consent) — プライバシー同意と iOS のトラッキング許可。
@@ -151,4 +151,4 @@ async function startAdMob() {
   - [リワード広告](/docs/rewarded) — リワード動画、リワード付きインタースティシャル、サーバーサイド検証。
 - [アプリ起動時広告](/docs/app-open) — フォアグラウンド遷移でのロードと表示。
 - [広告イベント](/docs/events) — 共通のライフサイクル、エラー、売上データ。
-- [移行ガイド](/docs/migration) — 古いプラグイン版からの変更点。
+- [移行ガイド](/docs/migration) — v8.2.0 およびそれ以前の版のアップグレード手順と動作変更。

@@ -4,7 +4,7 @@ code: []
 scrollActiveLine: []
 ---
 
-Reference generated from the public API metadata for `@capacitor-community/stripe` v8.2.1. Platform limits, inherited option fields, result listener lifecycle, and server responsibilities are documented on the method pages.
+Reference generated from the public API metadata for `@capacitor-community/stripe` v8.3.0. Platform limits, inherited option fields, result listener lifecycle, and server responsibilities are documented on the method pages.
 
 ## Methods
 
@@ -58,6 +58,7 @@ Reference generated from the public API metadata for `@capacitor-community/strip
 | `countryCode` | `string` | Wallet country, default `US` |
 | `merchantDisplayName` | `string` | PaymentSheet merchant name |
 | `returnURL` | `string` | iOS redirect-based authentication |
+| `allowsDelayedPaymentMethods` | `boolean` | iOS and Android delayed payment methods; default `false` |
 | `paymentMethodLayout` | `'horizontal' \| 'vertical' \| 'automatic'` | Android |
 | `style` | `'alwaysLight' \| 'alwaysDark'` | iOS |
 | `withZipCode` | `boolean` | Web |

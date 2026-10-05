@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "7541f9b1da764596f8c0a84f59b28ea228a5adf43f0d9da208f8579298c09265"
+sourceRevision: "7614c0933935b836308b2d44fe98ca199e8736296d9f4ccf0d4eeb2dd21515b6"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,7 +41,7 @@ Erstellt mit [contributors-img](https://contrib.rocks).
 
 ## Demo
 
-[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.1.0/demo)
+[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.2.0/demo)
 
 ### Screenshots
 
@@ -60,7 +60,7 @@ Capacitor-Community-Plugin für natives AdMob. Dieses Plugin kapselt das Google 
 
 Dieses Plugin enthält das Google Mobile Ads SDK bereits. Installieren Sie das Paket und ergänzen Sie anschließend Ihre AdMob-**Anwendungs**-ID in AndroidManifest / Info.plist. Die Google-Einstiegsanleitungen für [Android](https://developers.google.com/admob/android/quick-start) und [iOS](https://developers.google.com/admob/ios/quick-start) erklären Anwendungs-IDs und SKAdNetwork-Bezeichner, also Apples Kennungen zur Anzeigenkonversion. Fügen Sie keine zweite Mobile-Ads-Abhängigkeit hinzu.
 
-Dieses Plugin richtet sich an `@capacitor-community/admob` **v8** und Capacitor 8. Es unterstützt iOS ab 15 und Android API ab 24.
+Dieses Plugin richtet sich an `@capacitor-community/admob` **v8.2.0** und Capacitor ab 8.5 innerhalb von v8. Es unterstützt iOS ab Version 15 und Android ab API 24.
 
 ```bash
 npm install @capacitor-community/admob
@@ -138,7 +138,7 @@ Führen Sie in `ios/` `pod repo update` aus und anschließend erneut `npx cap sy
 
 ## Das erste Testbanner
 
-Initialisieren Sie nach Installation und Plattformkonfiguration das SDK, fragen Sie die Einwilligung ab und zeigen Sie ein Google-Demobanner an. Verwenden Sie die plattformspezifischen Banner-IDs aus [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing). Erstellen Sie für diese erste Prüfung keinen eigenen Anzeigenblock.
+Holen Sie nach Installation und Plattformkonfiguration die Einwilligung ein, initialisieren Sie das SDK, sobald Anzeigen angefordert werden dürfen, und zeigen Sie ein Google-Demobanner an. Verwenden Sie die plattformspezifischen Banner-IDs aus [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing). Erstellen Sie für diese erste Prüfung keinen eigenen Anzeigenblock.
 
 Rufen Sie `startAdMob` aus einer Nutzeraktion oder nach Bereitschaft der UI auf, beispielsweise über eine Schaltfläche oder einen Hook nach der Navigation, nicht ausschließlich bei der Modulauswertung.
 
@@ -152,8 +152,6 @@ const bannerAdId =
     : 'ca-app-pub-3940256099942544/6300978111';
 
 async function startAdMob() {
-  await AdMob.initialize();
-
   let consentInfo = await AdMob.requestConsentInfo();
   if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
     consentInfo = await AdMob.showConsentForm();
@@ -163,6 +161,8 @@ async function startAdMob() {
     // Einwilligung noch nicht bereit — es wird kein Banner angezeigt.
     return;
   }
+
+  await AdMob.initialize();
 
   const options: BannerAdOptions = {
     adId: bannerAdId,
@@ -188,7 +188,7 @@ Erwartetes Ergebnis: Bei `canRequestAds` true erscheint ein Google-Testbanner am
 
 ## Dokumentation
 
-Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) und [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Führen Sie das erste Testbanner aus und verwenden Sie anschließend [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) für Demo-Anzeigenblöcke und Geräte. Wählen Sie ein Anzeigenformat aus der obigen Tabelle. Dieselben Anleitungen finden Sie auch auf der [Dokumentationsseite](https://docs.rdlabo.dev/projects/capacitor-admob) auf Englisch und Japanisch. Wenn Sie dieses README auf npm geöffnet haben, verwenden Sie die Website für die Anleitungen; die Dateien unter `docs/` liegen im GitHub-Repository. Methodensignaturen stehen im folgenden API-Abschnitt.
+Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) und [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Führen Sie das erste Testbanner aus und verwenden Sie anschließend [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) für Demo-Anzeigenblöcke und Geräte. Wählen Sie ein Anzeigenformat aus der obigen Tabelle. Dieselben Anleitungen finden Sie auch auf der [Dokumentationsseite](https://docs.rdlabo.dev/projects/capacitor-admob) auf Englisch und Japanisch. Wenn Sie dieses README auf npm geöffnet haben, verwenden Sie die Website für die Anleitungen; die Dateien unter `docs/` sind auch im Paket enthalten. Methodensignaturen stehen im folgenden API-Abschnitt.
 
 - [Konfiguration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) — `AdMob.initialize` und SDK-Optionen.
 - [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) — Datenschutzeinwilligung und iOS-Tracking-Berechtigung.
@@ -199,7 +199,7 @@ Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit 
   - [Belohnte Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded) — belohnte Videos, belohnte Interstitials und serverseitige Verifizierung.
 - [App-Open-Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/app-open) — Laden und Anzeigen beim Wechsel in den Vordergrund.
 - [Anzeigenereignisse](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events) — gemeinsame Lebenszyklusereignisse, Fehler und Umsatzdaten.
-- [Migrationsanleitung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) — historische Hinweise beim Wechsel von älteren Plugin-Versionen.
+- [Migrationsleitfaden](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) — Aktualisierungsschritte und Verhaltensänderungen in v8.2.0 und früheren Versionen.
 
 <!-- rdlabo-docs-omit -->
 ## Inhaltsverzeichnis
@@ -245,6 +245,7 @@ Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit 
 * [`addListener(InterstitialAdPluginEvents.AdImpression, ...)`](/docs/readme#addlistenerinterstitialadplugineventsadimpression-)
 * [`prepareRewardVideoAd(...)`](/docs/readme#preparerewardvideoad)
 * [`showRewardVideoAd(...)`](/docs/readme#showrewardvideoad)
+* [`addListener(RewardAdPluginEvents.adClicked, ...)`](/docs/readme#addlistenerrewardadplugineventsadclicked-)
 * [`addListener(RewardAdPluginEvents.FailedToLoad, ...)`](/docs/readme#addlistenerrewardadplugineventsfailedtoload-)
 * [`addListener(RewardAdPluginEvents.Loaded, ...)`](/docs/readme#addlistenerrewardadplugineventsloaded-)
 * [`addListener(RewardAdPluginEvents.Rewarded, ...)`](/docs/readme#addlistenerrewardadplugineventsrewarded-)
@@ -772,6 +773,9 @@ prepareInterstitial(options: AdOptions) => Promise<AdLoadInfo>
 
 Lädt eine Interstitial-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
 
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
+
 | Parameter         | Typ                                            | Beschreibung                        |
 | ------------- | ----------------------------------------------- | ---------------------------------- |
 | **`options`** | <code><a href="#adoptions">AdOptions</a></code> | <a href="#adoptions">AdOptions</a> |
@@ -916,6 +920,9 @@ prepareRewardVideoAd(options: RewardAdOptions) => Promise<AdLoadInfo>
 
 Lädt eine Rewarded-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
 
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
+
 | Parameter         | Typ                                                        | Beschreibung                                    |
 | ------------- | ----------------------------------------------------------- | ---------------------------------------------- |
 | **`options`** | <code><a href="#rewardadoptions">RewardAdOptions</a></code> | <a href="#rewardadoptions">RewardAdOptions</a> |
@@ -942,6 +949,25 @@ Zeigt eine geladene Rewarded-Anzeige an und wird aufgelöst, wenn der Nutzer die
 **Rückgabe:** <code>Promise&lt;<a href="#admobrewarditem">AdMobRewardItem</a>&gt;</code>
 
 **Seit:** 1.1.2
+
+--------------------
+
+
+### addListener(RewardAdPluginEvents.adClicked, ...)
+
+```typescript
+addListener(eventName: RewardAdPluginEvents.adClicked, listenerFunc: () => void) => Promise<PluginListenerHandle>
+```
+
+Lauscht auf vom SDK für belohnte Anzeigen erfasste Klicks, auch nach dem Erhalt einer Belohnung.
+Ein Klick bedeutet nicht, dass der Nutzer eine Belohnung verdient hat.
+
+| Parameter              | Typ                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code><a href="#rewardadpluginevents">RewardAdPluginEvents.adClicked</a></code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>                                                      |
+
+**Rückgabe:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
@@ -1079,6 +1105,9 @@ prepareRewardInterstitialAd(options: RewardInterstitialAdOptions) => Promise<AdL
 ```
 
 Lädt eine Rewarded-Interstitial-Anzeige und gibt die Kennung des geladenen Anzeigenblocks zurück.
+
+SDK-Ladefehler führen zu einer Ablehnung mit der nativen Fehlermeldung und einem `code` als Zeichenkette.
+Die Codes sind plattformspezifisch; FailedToLoad-Ereignisse liefern denselben Code als Zahl.
 
 | Parameter         | Typ                                                                                | Beschreibung                                                            |
 | ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -1572,6 +1601,7 @@ Wählt aus T eine Menge von Properties, deren Schlüssel in der Union K enthalte
 
 | Member            | Wert                                        | Beschreibung                                                                                                                                                        |
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`adClicked`**    | <code>'onRewardedVideoAdClicked'</code>      | Wird ausgelöst, wenn das SDK einen Klick auf eine belohnte Anzeige erfasst.                                                                                                               |
 | **`Loaded`**       | <code>'onRewardedVideoAdLoaded'</code>       | Wird ausgelöst, wenn eine Rewarded-Anzeige geladen und zur Anzeige bereit ist.                                                                                                          |
 | **`FailedToLoad`** | <code>'onRewardedVideoAdFailedToLoad'</code> | Wird ausgelöst, wenn eine Rewarded-Anzeige nicht geladen werden kann.                                                                                                                            |
 | **`Showed`**       | <code>'onRewardedVideoAdShowed'</code>       | Wird ausgelöst, wenn eine Rewarded-Anzeige angezeigt wird.                                                                                                                                 |

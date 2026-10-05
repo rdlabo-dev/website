@@ -2,41 +2,41 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "5a5105140c785b122fc8c24d9b0fa2e7ecf226fea2e8451c28c0d820f330d400"
+sourceRevision: "ab3be995a23f412d0b6981704309a7f168c6c8338d3909fd3b69579c3ed44a58"
 ---
-Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.2.1 erzeugte Referenz. Plattformgrenzen, geerbte Optionsfelder, Lebenszyklus der Ergebnis-Listener und Serverzuständigkeiten sind auf den Methodenseiten dokumentiert.
+Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.3.0 erzeugte Referenz. Plattformgrenzen, geerbte Optionsfelder, Lebenszyklus der Ergebnis-Listener und Serverzuständigkeiten sind auf den Methodenseiten dokumentiert.
 
 ## Methoden
 
-!::initialize::
+<!-- !::initialize:: -->
 
-!::handleURLCallback::
+<!-- !::handleURLCallback:: -->
 
-!::isApplePayAvailable::
+<!-- !::isApplePayAvailable:: -->
 
-!::createApplePay::
+<!-- !::createApplePay:: -->
 
-!::presentApplePay::
+<!-- !::presentApplePay:: -->
 
-!::updateApplePaySheet::
+<!-- !::updateApplePaySheet:: -->
 
-!::isGooglePayAvailable::
+<!-- !::isGooglePayAvailable:: -->
 
-!::createGooglePay::
+<!-- !::createGooglePay:: -->
 
-!::presentGooglePay::
+<!-- !::presentGooglePay:: -->
 
-!::createPaymentFlow::
+<!-- !::createPaymentFlow:: -->
 
-!::presentPaymentFlow::
+<!-- !::presentPaymentFlow:: -->
 
-!::confirmPaymentFlow::
+<!-- !::confirmPaymentFlow:: -->
 
-!::createPaymentSheet::
+<!-- !::createPaymentSheet:: -->
 
-!::presentPaymentSheet::
+<!-- !::presentPaymentSheet:: -->
 
-!::addListener::
+<!-- !::addListener:: -->
 
 ## Interfaces
 
@@ -58,6 +58,7 @@ Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.2.1 erz
 | `countryCode` | `string` | Wallet-Land, Standard `US` |
 | `merchantDisplayName` | `string` | PaymentSheet-Händlername |
 | `returnURL` | `string` | Weiterleitungsbasierte iOS-Authentifizierung |
+| `allowsDelayedPaymentMethods` | `boolean` | Verzögerte Zahlungsmethoden unter iOS und Android; Standard `false` |
 | `paymentMethodLayout` | `'horizontal' \| 'vertical' \| 'automatic'` | Android |
 | `style` | `'alwaysLight' \| 'alwaysDark'` | iOS |
 | `withZipCode` | `boolean` | Web |
@@ -65,56 +66,56 @@ Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.2.1 erz
 
 Dies sind optionale Felder. Kombinationen und Web-Einschränkungen beschreiben [PaymentSheet](/docs/payment-sheet) und [PaymentFlow](/docs/payment-flow).
 
-!::StripeInitializationOptions::
+<!-- !::StripeInitializationOptions:: -->
 
-!::StripeURLHandlingOptions::
+<!-- !::StripeURLHandlingOptions:: -->
 
-!::CreatePaymentSheetOption::
+<!-- !::CreatePaymentSheetOption:: -->
 
-!::CreatePaymentFlowOption::
+<!-- !::CreatePaymentFlowOption:: -->
 
-!::CreateApplePayOption::
+<!-- !::CreateApplePayOption:: -->
 
-!::CreateGooglePayOption::
+<!-- !::CreateGooglePayOption:: -->
 
-!::PaymentSummaryItem::
+<!-- !::PaymentSummaryItem:: -->
 
-!::DefaultBillingDetails::
+<!-- !::DefaultBillingDetails:: -->
 
-!::Address::
+<!-- !::Address:: -->
 
-!::AddressDetails::
+<!-- !::AddressDetails:: -->
 
-!::BillingDetailsCollectionConfiguration::
+<!-- !::BillingDetailsCollectionConfiguration:: -->
 
-!::DidSelectShippingContact::
+<!-- !::DidSelectShippingContact:: -->
 
-!::DidCreatePaymentMethod::
+<!-- !::DidCreatePaymentMethod:: -->
 
-!::ShippingContact::
+<!-- !::ShippingContact:: -->
 
-!::PluginListenerHandle::
+<!-- !::PluginListenerHandle:: -->
 
 ## Typaliase
 
-!::PaymentSheetResultInterface::
+<!-- !::PaymentSheetResultInterface:: -->
 
-!::PaymentFlowResultInterface::
+<!-- !::PaymentFlowResultInterface:: -->
 
-!::ApplePayResultInterface::
+<!-- !::ApplePayResultInterface:: -->
 
-!::GooglePayResultInterface::
+<!-- !::GooglePayResultInterface:: -->
 
-!::CollectionMode::
+<!-- !::CollectionMode:: -->
 
-!::AddressCollectionMode::
+<!-- !::AddressCollectionMode:: -->
 
 ## Enums
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->

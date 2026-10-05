@@ -2,41 +2,41 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "5a5105140c785b122fc8c24d9b0fa2e7ecf226fea2e8451c28c0d820f330d400"
+sourceRevision: "ab3be995a23f412d0b6981704309a7f168c6c8338d3909fd3b69579c3ed44a58"
 ---
-Référence générée à partir des métadonnées de l’API publique de `@capacitor-community/stripe` v8.2.1. Les limites des plateformes, les champs d’options hérités, le cycle de vie des écouteurs de résultat et les responsabilités du serveur sont documentés sur les pages des méthodes.
+Référence générée à partir des métadonnées de l’API publique de `@capacitor-community/stripe` v8.3.0. Les limites des plateformes, les champs d’options hérités, le cycle de vie des écouteurs de résultat et les responsabilités du serveur sont documentés sur les pages des méthodes.
 
 ## Méthodes
 
-!::initialize::
+<!-- !::initialize:: -->
 
-!::handleURLCallback::
+<!-- !::handleURLCallback:: -->
 
-!::isApplePayAvailable::
+<!-- !::isApplePayAvailable:: -->
 
-!::createApplePay::
+<!-- !::createApplePay:: -->
 
-!::presentApplePay::
+<!-- !::presentApplePay:: -->
 
-!::updateApplePaySheet::
+<!-- !::updateApplePaySheet:: -->
 
-!::isGooglePayAvailable::
+<!-- !::isGooglePayAvailable:: -->
 
-!::createGooglePay::
+<!-- !::createGooglePay:: -->
 
-!::presentGooglePay::
+<!-- !::presentGooglePay:: -->
 
-!::createPaymentFlow::
+<!-- !::createPaymentFlow:: -->
 
-!::presentPaymentFlow::
+<!-- !::presentPaymentFlow:: -->
 
-!::confirmPaymentFlow::
+<!-- !::confirmPaymentFlow:: -->
 
-!::createPaymentSheet::
+<!-- !::createPaymentSheet:: -->
 
-!::presentPaymentSheet::
+<!-- !::presentPaymentSheet:: -->
 
-!::addListener::
+<!-- !::addListener:: -->
 
 ## Interfaces
 
@@ -58,6 +58,7 @@ Référence générée à partir des métadonnées de l’API publique de `@capa
 | `countryCode` | `string` | Pays du portefeuille, `US` par défaut |
 | `merchantDisplayName` | `string` | Nom du marchand dans PaymentSheet |
 | `returnURL` | `string` | Authentification iOS avec redirection |
+| `allowsDelayedPaymentMethods` | `boolean` | Moyens de paiement différés sur iOS et Android ; `false` par défaut |
 | `paymentMethodLayout` | `'horizontal' \| 'vertical' \| 'automatic'` | Android |
 | `style` | `'alwaysLight' \| 'alwaysDark'` | iOS |
 | `withZipCode` | `boolean` | Web |
@@ -65,56 +66,56 @@ Référence générée à partir des métadonnées de l’API publique de `@capa
 
 Ces champs sont facultatifs. Consultez [PaymentSheet](/docs/payment-sheet) et [PaymentFlow](/docs/payment-flow) pour les combinaisons et les limites du Web.
 
-!::StripeInitializationOptions::
+<!-- !::StripeInitializationOptions:: -->
 
-!::StripeURLHandlingOptions::
+<!-- !::StripeURLHandlingOptions:: -->
 
-!::CreatePaymentSheetOption::
+<!-- !::CreatePaymentSheetOption:: -->
 
-!::CreatePaymentFlowOption::
+<!-- !::CreatePaymentFlowOption:: -->
 
-!::CreateApplePayOption::
+<!-- !::CreateApplePayOption:: -->
 
-!::CreateGooglePayOption::
+<!-- !::CreateGooglePayOption:: -->
 
-!::PaymentSummaryItem::
+<!-- !::PaymentSummaryItem:: -->
 
-!::DefaultBillingDetails::
+<!-- !::DefaultBillingDetails:: -->
 
-!::Address::
+<!-- !::Address:: -->
 
-!::AddressDetails::
+<!-- !::AddressDetails:: -->
 
-!::BillingDetailsCollectionConfiguration::
+<!-- !::BillingDetailsCollectionConfiguration:: -->
 
-!::DidSelectShippingContact::
+<!-- !::DidSelectShippingContact:: -->
 
-!::DidCreatePaymentMethod::
+<!-- !::DidCreatePaymentMethod:: -->
 
-!::ShippingContact::
+<!-- !::ShippingContact:: -->
 
-!::PluginListenerHandle::
+<!-- !::PluginListenerHandle:: -->
 
 ## Alias de types
 
-!::PaymentSheetResultInterface::
+<!-- !::PaymentSheetResultInterface:: -->
 
-!::PaymentFlowResultInterface::
+<!-- !::PaymentFlowResultInterface:: -->
 
-!::ApplePayResultInterface::
+<!-- !::ApplePayResultInterface:: -->
 
-!::GooglePayResultInterface::
+<!-- !::GooglePayResultInterface:: -->
 
-!::CollectionMode::
+<!-- !::CollectionMode:: -->
 
-!::AddressCollectionMode::
+<!-- !::AddressCollectionMode:: -->
 
 ## Énumérations
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->

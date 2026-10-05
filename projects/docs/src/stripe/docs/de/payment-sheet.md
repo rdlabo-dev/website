@@ -1,8 +1,8 @@
 ---
 title: "PaymentSheet"
 code: ["/docs/stripe/payment-sheet/payment-sheet.ts.md"]
-scrollActiveLine: []
-sourceRevision: "2ad63baa378ddc42d209135d2788e5e1aa5d5485298be8f515af52c582fc63b3"
+scrollActiveLine: [{"id":"","activeLine":{}},{"id":"1.-createpaymentsheet","activeLine":{"payment-sheet.ts":[9,22]}},{"id":"2.-presentpaymentsheet","activeLine":{"payment-sheet.ts":[22,28]}},{"id":"3.-addlistener","activeLine":{"payment-sheet.ts":[4,8]}}]
+sourceRevision: "2ef0f896a6b2286f80cef952b32ae1c8a7ce6140ef3014406df1847915897203"
 ---
 PaymentSheet erfasst Zahlungsdetails und bestätigt den Intent in einer einzigen Darstellung. Wenn Sie eine zunächst vorgemerkte Karte und einen späteren Bestätigungsschritt benötigen, verwenden Sie [PaymentFlow](/docs/payment-flow).
 
@@ -22,25 +22,21 @@ Das Web rendert kein natives PaymentSheet. Im Web verwendet `createPaymentSheet`
 
 ## 1. createPaymentSheet
 
-Rufen Sie für den Client sichere Secrets von Ihrem Backend ab und rufen Sie anschließend `createPaymentSheet` auf. Das Plugin kommuniziert nicht mit der geheimen Stripe-API. Ersetzen Sie `/your-intent-endpoint` im Beispiel durch die Backend-URL aus [Serverintegration](/docs/server-integration).
+Rufen Sie für den Client sichere Secrets von Ihrem Backend ab und rufen Sie anschließend `createPaymentSheet` auf. Das Plugin kommuniziert nicht mit der geheimen Stripe-API. Verwenden Sie `HttpClient`, `fetch` oder einen anderen HTTP-Client.
 
 Übergeben Sie unter iOS und Android **entweder** `paymentIntentClientSecret` **oder** `setupIntentClientSecret`. Übergeben Sie im Web `paymentIntentClientSecret`. `customerId` und `customerEphemeralKeySecret` sind gemeinsam optional. Wenn Sie `customerId` setzen, müssen Sie auch `customerEphemeralKeySecret` setzen. Ein PaymentIntent ohne Customer ist gültig. Siehe die Demo-Struktur `intent/without-customer` unter [Serverintegration](/docs/server-integration).
 
 ```ts
+import { firstValueFrom } from 'rxjs';
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 
-// `/your-intent-endpoint` durch Ihr Backend aus der Anleitung zur Serverintegration ersetzen.
-const response = await fetch('/your-intent-endpoint', {
-  method: 'POST',
-});
-if (!response.ok) {
-  throw new Error(`Intent request failed: ${response.status}`);
-}
-const { paymentIntent, ephemeralKey, customer } = (await response.json()) as {
-  paymentIntent: string;
-  ephemeralKey: string;
-  customer: string;
-};
+const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
+  this.http.post<{
+    paymentIntent: string;
+    ephemeralKey: string;
+    customer: string;
+  }>(environment.api + 'intent', {}),
+);
 
 await Stripe.createPaymentSheet({
   paymentIntentClientSecret: paymentIntent,
@@ -50,11 +46,13 @@ await Stripe.createPaymentSheet({
 });
 ```
 
-!::createPaymentSheet::
+<!-- !::createPaymentSheet:: -->
 
-!::CreatePaymentSheetOption::
+<!-- !::CreatePaymentSheetOption:: -->
 
-Optionale native Einstellungen umfassen `style` (`alwaysLight` oder `alwaysDark`, nur iOS), `enableApplePay` mit `applePayMerchantId`, `enableGooglePay`, `returnURL` für 3D Secure unter iOS und Optionen zur Erfassung von Rechnungsdaten. `withZipCode` ist ausschließlich für das Web bestimmt. `currencyCode` ist erforderlich, wenn `enableGooglePay` bei einem SetupIntent true ist.
+Optionale native Einstellungen umfassen `style` (`alwaysLight` oder `alwaysDark`, nur iOS), `enableApplePay` mit `applePayMerchantId`, `enableGooglePay` und Optionen zur Erfassung von Rechnungsdaten. Konfigurieren Sie unter iOS `returnURL` und `handleURLCallback` für PayPal, 3D Secure und andere weiterleitungsbasierte Zahlungsmethoden. Ohne Rückkehr-URL bietet Stripe ansonsten geeignete weiterleitungsbasierte Methoden nicht an. Siehe [Weiterleitungsbasierte Zahlungsmethoden unter iOS](/docs/initialize#redirect-based-payment-methods-on-ios). `withZipCode` ist ausschließlich für das Web bestimmt. `currencyCode` ist erforderlich, wenn `enableGooglePay` bei einem SetupIntent aktiviert ist.
+
+Seit v8.3.0 können Sie in den Erstellungsoptionen `allowsDelayedPaymentMethods: true` setzen, um geeignete verzögerte Zahlungsmethoden wie ACH und SEPA Debit unter iOS und Android zuzulassen. Der Standardwert ist `false`; diese Option hat keine Auswirkung auf das Web. Aktivieren Sie die Methoden in Stripe und konfigurieren Sie den Intent entsprechend. Ein Ergebnis `Completed` kann bedeuten, dass die Zahlung noch verarbeitet wird: Warten Sie vor der Erfüllung der Bestellung auf einen Webhook, der die erfolgreiche Zahlung bestätigt. Siehe die [Stripe-Anleitung zu verzögerten Zahlungsmethoden](https://docs.stripe.com/payments/mobile/accept-payment?platform=ios&type=payment#handle-post-payment-events).
 
 ## 2. presentPaymentSheet
 
@@ -63,15 +61,15 @@ Rufen Sie `presentPaymentSheet` erst nach einem erfolgreichen `createPaymentShee
 ```ts
 const result = await Stripe.presentPaymentSheet();
 if (result.paymentResult === PaymentSheetEventsEnum.Completed) {
-  // Nur die UI aktualisieren. Den Intent vor der Leistungserbringung per Webhook bestätigen.
+  // Nur die UI aktualisieren. Vor der Leistungserbringung den Zahlungserfolg auf Ihrem Server per Webhook überprüfen.
 }
 ```
 
-Behandeln Sie `Canceled` als Schließen des Sheets durch den Kunden. Behandeln Sie `Failed` als Fehler. Keines der Ergebnisse autorisiert allein die Erfüllung einer Bestellung.
+Im Web wird das Promise bei einem Abbruch mit `paymentResult: PaymentSheetEventsEnum.Canceled` aufgelöst. Verarbeiten Sie dieses Ergebnis, statt sich ausschließlich auf `catch` zu verlassen. Behandeln Sie `Canceled` als Schließen des Sheets durch den Kunden. Behandeln Sie `Failed` als Fehler. Keines der Ergebnisse autorisiert allein die Erfüllung einer Bestellung.
 
-!::presentPaymentSheet::
+<!-- !::presentPaymentSheet:: -->
 
-!::PaymentSheetResultInterface::
+<!-- !::PaymentSheetResultInterface:: -->
 
 ## 3. addListener
 
@@ -91,7 +89,7 @@ await Promise.all([
 ]);
 ```
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
 ## Referenz
 

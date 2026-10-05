@@ -2,7 +2,7 @@
 title: "Angular-Schnellstart"
 code: []
 scrollActiveLine: []
-sourceRevision: "b10514b51676c15d9f75d0e77b4c219af1e11103ff6d8eb8e82808687e57ba33"
+sourceRevision: "6fe60ce57814cbfc0ba73c86398a43fbd493582369cf58aff1b04aa9fd602080"
 ---
 Initialisieren Sie das Plugin beim Anwendungsstart einmal. Angular-22-Anwendungen sollten `provideAppInitializer` verwenden, damit die Initialisierung vor dem Anzeigen der Stripe-UI ausgeführt wird.
 
@@ -35,8 +35,9 @@ npm install stripe-pwa-elements
 import { bootstrapApplication } from '@angular/platform-browser';
 import { defineCustomElements } from 'stripe-pwa-elements/loader';
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent)
+bootstrapApplication(AppComponent, appConfig)
   .then(() => defineCustomElements(window))
   .catch((err) => console.log(err));
 ```
@@ -54,5 +55,3 @@ const { paymentIntent, ephemeralKey, customer } = await firstValueFrom(
   }>(environment.api + 'intent', {}),
 );
 ```
-
-Als Nächstes erstellen Sie diese Secrets auf Ihrem Server ([Serverintegration](/docs/server-integration)) und zeigen anschließend [PaymentSheet](/docs/payment-sheet) an.

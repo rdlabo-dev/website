@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "a280bb144b9c13f5698f1b6673789966874ad0fb68364a9dd93921984b35c1bb"
+sourceRevision: "a15bab5a14ca6b4756b8c5637a7402983104f4be9ac7105f92ec7a72c781e111"
 ---
 # Ionic Theme iOS27
 
@@ -11,9 +11,9 @@ Un thème pour les applications Ionic qui apporte Liquid Glass et les animations
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : Réglages en mode clair avec une barre de recherche Liquid Glass" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : Réglages en mode sombre" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec des boutons et une barre d’onglets Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : Réglages en mode clair avec une barre de recherche Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : Réglages en mode sombre" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec des boutons et une barre d’onglets Liquid Glass" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -30,7 +30,7 @@ Sur Capacitor iOS, [Native UI Shell](https://docs.rdlabo.dev/projects/ionic-them
 
 **Glissement d’onglet sur iOS 27 :** le même écran Library avec Native UI Shell désactivé (Web) et activé (UIKit). Les deux captures ont été prises pendant le glissement de l’onglet sélectionné ; les panneaux inférieurs agrandissent le verre autour de la barre d’onglets.
 
-[![Native UI Shell désactivé et activé pendant le même glissement d’onglet Library, avec les barres d’onglets agrandies](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/native-ui-shell-drag/comparison.png)](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.0/screenshots/native-ui-shell-drag/comparison.png)
+[![Native UI Shell désactivé et activé pendant le même glissement d’onglet Library, avec les barres d’onglets agrandies](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/native-ui-shell-drag/comparison.png)](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/native-ui-shell-drag/comparison.png)
 
 ### S’adapter à l’appareil de l’utilisateur
 

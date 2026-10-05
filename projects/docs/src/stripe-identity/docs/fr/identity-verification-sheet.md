@@ -2,22 +2,11 @@
 title: "Identity Verification Sheet"
 code: ["identity-verification-sheet/example.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"example.ts":[1,1]}},{"id":"écouter-le-résultat","activeLine":{"example.ts":[5,18]}},{"id":"obtenir-les-identifiants-de-session","activeLine":{"example.ts":[31,34]}},{"id":"initialiser-la-plateforme-web","activeLine":{"example.ts":[27,31]}},{"id":"créer-et-présenter-la-feuille","activeLine":{"example.ts":[34,42]}},{"id":"gérer-failedtoload","activeLine":{"example.ts":[18,27]}},{"id":"gérer-verificationresult","activeLine":{"example.ts":[5,18]}},{"id":"erreurs-et-annulation","activeLine":{"example.ts":[5,18]}}]
-sourceRevision: "f1ef38cf6f85e81d0ab969d17174fe4680e030d4c66aa998cb09fc22cfaec596"
+sourceRevision: "0bb119687660873953841768d1e3100fbb0f9557b9472a3aaa7eeac40e922078"
 ---
 Stripe Identity vérifie les documents d’identité dans une feuille native sur iOS et Android, et via Stripe.js sur le Web, tout en conservant le code applicatif dans Capacitor.
 
 Le plugin prend en charge iOS, Android et le Web. Les plateformes natives présentent Identity Verification Sheet de Stripe avec `verificationId` et `ephemeralKeySecret`. Le Web appelle `verifyIdentity` avec `clientSecret` après `initialize`.
-
-## Premier parcours de vérification
-
-Suivez cet ordre pour le premier envoi réussi :
-
-1. Créez une VerificationSession sur votre backend et renvoyez les champs ci-dessous qui peuvent être exposés au client.
-2. Enregistrez l’écouteur `VerificationResult` une seule fois au démarrage de l’application, avant `present()`.
-3. Sur le Web, appelez `initialize` avec la clé publique.
-4. Appelez `create`, puis `present()`.
-
-Premier résultat sur appareil : la feuille s’ouvre et vous recevez `Completed` après l’envoi du document de test par l’utilisateur. `Completed` signifie que l’envoi est terminé, pas que l’examen est terminé ; confirmez le résultat officiel avec les webhooks Identity sur votre serveur. Le panneau de code suit le même parcours.
 
 ## Écouter le résultat
 

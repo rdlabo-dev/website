@@ -2,7 +2,7 @@
 title: "Écouteurs d’événements"
 code: []
 scrollActiveLine: []
-sourceRevision: "d090def7f677a3530555dd6b1f91d7f656a6beaadae60b432e0a4897d0bc4203"
+sourceRevision: "0654fb38a5aa55cb46f4574a2420fdad5a451ddd4a7fa1e7b6cc3cd7e5b337a3"
 ---
 Utilisez les événements de résultat comme parcours de résultat par défaut. Enregistrez les écouteurs de résultat au niveau de l’application une seule fois par démarrage de l’application JavaScript, aussi tôt que possible — par exemple dans `main.ts`, un initialiseur d’application ou un service singleton initialisé au démarrage — et avant de présenter l’interface Stripe.
 
@@ -22,7 +22,7 @@ await Promise.all([
 ]);
 ```
 
-!::PluginListenerHandle::
+<!-- !::PluginListenerHandle:: -->
 
 ## Recréation de l’Activity Android
 
@@ -36,9 +36,9 @@ Gardez les écouteurs de résultat au niveau de l’application enregistrés pen
 
 ## Événements PaymentSheet
 
-!::addListener.PaymentSheetEventsEnum::
+<!-- !::addListener.PaymentSheetEventsEnum:: -->
 
-!::PaymentSheetEventsEnum::
+<!-- !::PaymentSheetEventsEnum:: -->
 
 Déroulement habituel de PaymentSheet :
 
@@ -48,13 +48,13 @@ Déroulement habituel de PaymentSheet :
 4. Appelez `presentPaymentSheet()`.
 5. Recevez `Completed`, `Canceled` ou `Failed`.
 
-`Canceled` signifie que le client a fermé la feuille. Traitez-le comme une annulation, pas comme une erreur levée. `Failed` et `FailedToLoad` contiennent une chaîne d’erreur. N’exécutez pas une commande sur la seule base de l’événement client ; confirmez le PaymentIntent ou SetupIntent avec un [webhook](/docs/server-integration).
+`Canceled` signifie que le client a fermé la feuille. Traitez-le comme une annulation, pas comme une erreur levée. `Failed` et `FailedToLoad` contiennent une chaîne d’erreur. N’exécutez pas une commande sur la seule base de l’événement client ; vérifiez l’état de l’Intent sur votre serveur à l’aide d’un [webhook](/docs/server-integration).
 
 ## Événements PaymentFlow
 
-!::addListener.PaymentFlowEventsEnum::
+<!-- !::addListener.PaymentFlowEventsEnum:: -->
 
-!::PaymentFlowEventsEnum::
+<!-- !::PaymentFlowEventsEnum:: -->
 
 Déroulement habituel de PaymentFlow :
 
@@ -68,18 +68,18 @@ Déroulement habituel de PaymentFlow :
 
 ## Événements Apple Pay
 
-!::addListener.ApplePayEventsEnum::
+<!-- !::addListener.ApplePayEventsEnum:: -->
 
-!::ApplePayEventsEnum::
+<!-- !::ApplePayEventsEnum:: -->
 
-`DidSelectShippingContact` contient `contact` et `updateId`. Sur iOS, appelez `updateApplePaySheet` avec cet `updateId` et les `paymentSummaryItems` mis à jour. Si JavaScript ne répond pas, la feuille native revient aux éléments initiaux au bout de 25 secondes. `updateApplePaySheet` n’est pas implémenté sur Android ni sur le Web.
+`DidSelectShippingContact` contient `contact` et `updateId`. Sur iOS, appelez `updateApplePaySheet` avec cet `updateId` et les `paymentSummaryItems` mis à jour. Si JavaScript ne répond pas, la feuille native revient aux derniers éléments acceptés au bout de 25 secondes, en conservant les modes de livraison actuels. `updateApplePaySheet` n’est pas implémenté sur Android ni sur le Web.
 
 `DidCreatePaymentMethod` contient le `contact` de livraison. Apple ne renvoie l’adresse complète qu’après un paiement réussi.
 
 ## Événements Google Pay
 
-!::addListener.GooglePayEventsEnum::
+<!-- !::addListener.GooglePayEventsEnum:: -->
 
-!::GooglePayEventsEnum::
+<!-- !::GooglePayEventsEnum:: -->
 
 Google Pay est disponible sur Android et sur le Web. Il n’est pas implémenté sur iOS.

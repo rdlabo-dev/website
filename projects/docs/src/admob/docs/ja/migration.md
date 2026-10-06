@@ -49,7 +49,9 @@ Android ライブラリは `proguard-android-optimize.txt` を参照するよう
 
 Google の [Android 向け Next-Gen SDK](https://developers.google.com/admob/android/next-gen) も次のメジャーまで待ちます。SDK 初期化、広告リクエスト、メディエーションが変わります。
 
-固定版: Android 25.4.x、iOS 13.6.0（Swift Package Manager と CocoaPods）。CocoaPods 対応は次のメジャーで外す予定です。
+固定版: Android 25.4.x、iOS 13.11.0（Swift Package Manager と CocoaPods）。CocoaPods 対応は次のメジャーで外す予定です。
+
+Android は、[SDK 25.5.0 で最低 Android API レベルが引き上げられる](https://developers.google.com/admob/android/rel-notes)ため、25.4.x を維持します。iOS の 13.6.0 から 13.11.0 への更新では、プラグインの既存のプラットフォーム要件とツールチェーン要件を維持します。プラグインの公開 API を変更する必要はありません。
 
 ## 以前の版からの破壊的変更
 

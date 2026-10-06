@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { normalizeTranslationCode } from './translation-code';
+import {
+  articleProseBlockRevision,
+  assertArticleTranslationCode,
+} from './article-translation-code';
 
 const block = (language: string, code: string) => `\`\`\`${language}\n${code}\n\`\`\`\n`;
 
@@ -194,5 +198,45 @@ test('keeps exact Swift comparison for syntax outside line-comment support', () 
   ]) {
     const original = block('swift', `// 説明\n${code}`);
     assert.equal(normalizeTranslationCode(original), original);
+  }
+});
+
+test('article prose diagrams require an explicit hash without exempting executable code', () => {
+  const source = block('text', 'スクロールイベント\n  → requestAnimationFrame');
+  const target = block('text', 'Scroll event\n  → requestAnimationFrame');
+  const code = block('html', '<ad-slot id="feed"></ad-slot>');
+  const hash = articleProseBlockRevision(source);
+  assert.deepEqual(assertArticleTranslationCode([source, code], [target, code], [hash]), [
+    'Scroll event\n  → requestAnimationFrame',
+  ]);
+  assert.throws(() => assertArticleTranslationCode([source], [target]), /fenced code differs/);
+  assert.throws(
+    () =>
+      assertArticleTranslationCode([source, code], [target, code.replace('feed', 'other')], [hash]),
+    /fenced code differs/,
+  );
+  assert.throws(
+    () => assertArticleTranslationCode([code], [code], [articleProseBlockRevision(code)]),
+    /non-empty text fence/,
+  );
+  assert.throws(
+    () => assertArticleTranslationCode([source], [target.replace('text', 'bash')], [hash]),
+    /non-empty text fence/,
+  );
+});
+
+test('article prose review rejects source drift, removed blocks, and malformed metadata', () => {
+  const source = block('text', 'スクロールイベント');
+  const target = block('text', 'Scroll event');
+  const hash = articleProseBlockRevision(source);
+  assert.throws(() => assertArticleTranslationCode([source], [], [hash]), /block count/);
+  const changed = block('text', '別の処理');
+  assert.throws(() => assertArticleTranslationCode([changed], [changed], [hash]), /source changed/);
+  assert.throws(() => assertArticleTranslationCode([], [], [hash]), /source changed/);
+  for (const invalid of [hash, [hash, hash], ['not-a-hash'], [42]]) {
+    assert.throws(
+      () => assertArticleTranslationCode([source], [target], invalid),
+      /unique SHA-256/,
+    );
   }
 });

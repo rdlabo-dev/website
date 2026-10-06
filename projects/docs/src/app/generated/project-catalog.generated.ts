@@ -1219,7 +1219,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.2.0",
+    "version": "8.2.1",
     "description": "Native Google AdMob ads for Capacitor applications.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -1257,6 +1257,13 @@ export const PROJECTS_EN = [
         "slug": "banner",
         "section": "Ad formats",
         "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Native Ads (Preview)",
+        "navTitle": "Native Ads (Preview)",
+        "slug": "native-ads",
+        "section": "Ad formats",
+        "path": "/projects/capacitor-admob/docs/native-ads"
       },
       {
         "title": "Interstitial Ads",
@@ -2846,7 +2853,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.2.0",
+    "version": "8.2.1",
     "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -2884,6 +2891,13 @@ export const PROJECTS_JA = [
         "slug": "banner",
         "section": "広告フォーマット",
         "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Native Ads（プレビュー）",
+        "navTitle": "Native Ads（プレビュー）",
+        "slug": "native-ads",
+        "section": "広告フォーマット",
+        "path": "/projects/capacitor-admob/docs/native-ads"
       },
       {
         "title": "インタースティシャル広告",
@@ -4473,7 +4487,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.2.0",
+    "version": "8.2.1",
     "description": "Annonces Google AdMob natives pour les applications Capacitor.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -4511,6 +4525,13 @@ export const PROJECTS_FR = [
         "slug": "banner",
         "section": "Formats publicitaires",
         "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Native Ads (version préliminaire)",
+        "navTitle": "Native Ads (version préliminaire)",
+        "slug": "native-ads",
+        "section": "Formats publicitaires",
+        "path": "/projects/capacitor-admob/docs/native-ads"
       },
       {
         "title": "Annonces interstitielles",
@@ -6100,7 +6121,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.2.0",
+    "version": "8.2.1",
     "description": "Native Google-AdMob-Anzeigen für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -6138,6 +6159,13 @@ export const PROJECTS_DE = [
         "slug": "banner",
         "section": "Anzeigenformate",
         "path": "/projects/capacitor-admob/docs/banner"
+      },
+      {
+        "title": "Native Ads (Vorschau)",
+        "navTitle": "Native Ads (Vorschau)",
+        "slug": "native-ads",
+        "section": "Anzeigenformate",
+        "path": "/projects/capacitor-admob/docs/native-ads"
       },
       {
         "title": "Interstitial-Anzeigen",

@@ -81,6 +81,7 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
   'Await printFile until the OS no longer needs the source, then delete it safely.':
     'Attendez la fin de printFile, jusqu’à ce que le système n’ait plus besoin du fichier source, puis supprimez-le en toute sécurité.',
   'Banner Ads': 'Bannières publicitaires',
+  'Native Ads (Preview)': 'Native Ads (version préliminaire)',
   'Banner ads': 'Bannières publicitaires',
   'Barcode and QR scanning for Capacitor through a native modal.':
     'Lecture de codes-barres et de codes QR pour Capacitor dans une fenêtre modale native.',

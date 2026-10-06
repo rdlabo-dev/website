@@ -1,6 +1,6 @@
 ---
 title: "Migration"
-sourceRevision: "4e5cec9335cf1701c5e41a109c61afddabb6b0ff0399bad9c16d93a0834ee896"
+sourceRevision: "0b4de25ac8e740c51af9d08ff9da0198defaaefcb9aa8f0530ce68be52520247"
 ---
 # Guide de migration
 
@@ -50,7 +50,9 @@ Cette version majeure conserve des API du SDK Google Mobile Ads obsolètes mais 
 
 Le [SDK Next-Gen pour Android](https://developers.google.com/admob/android/next-gen) de Google attend également la prochaine version majeure : il modifie l’initialisation du SDK, les demandes d’annonces et la médiation.
 
-Versions fixées : Android 25.4.x, iOS 13.6.0 (Swift Package Manager et CocoaPods). La prise en charge de CocoaPods devrait être supprimée dans la prochaine version majeure.
+Versions fixées : Android 25.4.x, iOS 13.11.0 (Swift Package Manager et CocoaPods). La prise en charge de CocoaPods devrait être supprimée dans la prochaine version majeure.
+
+Android reste sur la version 25.4.x, car le [SDK 25.5.0 augmente le niveau d’API Android minimal](https://developers.google.com/admob/android/rel-notes). La mise à jour iOS de la version 13.6.0 à la version 13.11.0 conserve les exigences actuelles du plugin en matière de plateforme et de chaîne d’outils ; aucune modification de l’API publique du plugin n’est nécessaire.
 
 ## Changements incompatibles des versions précédentes
 

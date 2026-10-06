@@ -2,7 +2,8 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import fm from 'front-matter';
 import { isTranslationArticle } from './import-zenn-articles';
-import { extractFencedCodeBlocks, normalizeTranslationCode } from './translation-code';
+import { extractFencedCodeBlocks } from './translation-code';
+import { assertArticleTranslationCode } from './article-translation-code';
 export { extractFencedCodeBlocks } from './translation-code';
 
 interface TranslationFrontMatter {
@@ -10,6 +11,7 @@ interface TranslationFrontMatter {
   description?: string;
   zennSlug?: string;
   emoji?: string;
+  translatedProseBlocks?: string[];
 }
 
 const root = resolve(process.cwd());
@@ -78,9 +80,14 @@ async function validate(): Promise<void> {
     if (target.attributes.emoji !== source.attributes.emoji) errors.push(`${slug}: emoji changed`);
 
     const sourceCode = extractFencedCodeBlocks(source.body);
-    const matchesCode = (blocks: string[]): boolean =>
-      JSON.stringify(sourceCode.map(normalizeTranslationCode)) ===
-      JSON.stringify(blocks.map(normalizeTranslationCode));
+    const matchesCode = (blocks: string[]): boolean => {
+      try {
+        assertArticleTranslationCode(sourceCode, blocks, target.attributes.translatedProseBlocks);
+        return true;
+      } catch {
+        return false;
+      }
+    };
     let targetCode = extractFencedCodeBlocks(target.body);
     if (fixCode && sourceCode.length === targetCode.length && !matchesCode(targetCode)) {
       const restoredBody = restoreFencedCodeBlocks(target.body, sourceCode);
@@ -89,8 +96,15 @@ async function validate(): Promise<void> {
       target = fm<TranslationFrontMatter>(targetRaw);
       targetCode = extractFencedCodeBlocks(target.body);
     }
-    if (!matchesCode(targetCode)) {
-      errors.push(`${slug}: fenced code differs from the Japanese source beyond comments`);
+    let translatedProse: string[] = [];
+    try {
+      translatedProse = assertArticleTranslationCode(
+        sourceCode,
+        targetCode,
+        target.attributes.translatedProseBlocks,
+      );
+    } catch (error) {
+      errors.push(`${slug}: ${error instanceof Error ? error.message : String(error)}`);
     }
 
     if (
@@ -100,7 +114,9 @@ async function validate(): Promise<void> {
       errors.push(`${slug}: heading levels/order changed`);
     }
 
-    const japaneseCharacters = countJapaneseProseCharacters(target.body);
+    const japaneseCharacters = countJapaneseProseCharacters(
+      [target.body, ...translatedProse].join('\n'),
+    );
     if (japaneseCharacters > 0) untranslated.push({ slug, japaneseCharacters });
   }
 

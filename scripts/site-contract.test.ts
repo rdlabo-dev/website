@@ -1496,6 +1496,7 @@ test('loads AdMob English pages from GitHub', async () => {
       'consent',
       'testing',
       'banner',
+      'native-ads',
       'interstitial',
       'rewarded',
       'app-open',

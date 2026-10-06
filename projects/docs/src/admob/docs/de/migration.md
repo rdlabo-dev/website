@@ -1,6 +1,6 @@
 ---
 title: "Migration"
-sourceRevision: "4e5cec9335cf1701c5e41a109c61afddabb6b0ff0399bad9c16d93a0834ee896"
+sourceRevision: "0b4de25ac8e740c51af9d08ff9da0198defaaefcb9aa8f0530ce68be52520247"
 ---
 # Migrationsleitfaden
 
@@ -50,7 +50,9 @@ Diese Hauptversion behält veraltete, aber weiterhin unterstützte APIs des Goog
 
 Googles [Next-Gen SDK für Android](https://developers.google.com/admob/android/next-gen) ist ebenfalls für die nächste Hauptversion vorgesehen: Es verändert SDK-Initialisierung, Anzeigenanfragen und Mediation.
 
-Festgelegte Versionen: Android 25.4.x, iOS 13.6.0 für Swift Package Manager und CocoaPods. Die Entfernung der CocoaPods-Unterstützung ist für die nächste Hauptversion geplant.
+Festgelegte Versionen: Android 25.4.x, iOS 13.11.0 für Swift Package Manager und CocoaPods. Die Entfernung der CocoaPods-Unterstützung ist für die nächste Hauptversion geplant.
+
+Android bleibt bei 25.4.x, da [SDK 25.5.0 das erforderliche Android-API-Mindestlevel erhöht](https://developers.google.com/admob/android/rel-notes). Das iOS-Update von 13.6.0 auf 13.11.0 behält die bisherigen Plattform- und Toolchain-Anforderungen des Plugins bei; Änderungen an der öffentlichen Plugin-API sind nicht erforderlich.
 
 ## Inkompatible Änderungen früherer Versionen
 

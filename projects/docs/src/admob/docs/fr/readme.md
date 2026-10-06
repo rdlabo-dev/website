@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "7614c0933935b836308b2d44fe98ca199e8736296d9f4ccf0d4eeb2dd21515b6"
+sourceRevision: "01f1a25a9d0bf34c72f510eb28a56198297bc330806e65021f6cf909ef52818b"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,7 +41,7 @@ Créé avec [contributors-img](https://contrib.rocks).
 
 ## Démonstration
 
-[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.2.0/demo)
+[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.2.1/demo)
 
 ### Captures d’écran
 
@@ -71,7 +71,7 @@ Si vous utilisez encore Capacitor 7, installez `@capacitor-community/admob@7`.
 
 ### Versions du SDK Google Mobile Ads
 
-Cette version majeure fixe le SDK Google Mobile Ads à **25.4.x** sur Android et **13.6.0** sur iOS (Swift Package Manager et CocoaPods). Conservez ces versions sauf besoin particulier. Le [SDK Next-Gen pour Android](https://developers.google.com/admob/android/next-gen) de Google attendra la prochaine version majeure du plugin. Consultez [Migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) pour connaître la politique de fixation des versions.
+Cette version majeure fixe le SDK Google Mobile Ads à **25.4.x** sur Android et **13.11.0** sur iOS (Swift Package Manager et CocoaPods). Conservez ces versions sauf besoin particulier. Le [SDK Next-Gen pour Android](https://developers.google.com/admob/android/next-gen) de Google attendra la prochaine version majeure du plugin. Consultez [Migration](https://docs.rdlabo.dev/projects/capacitor-admob/docs/migration) pour connaître la politique de fixation des versions.
 
 ### Configuration Android
 
@@ -194,6 +194,7 @@ Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configu
 - [Consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) — consentement relatif à la confidentialité et autorisation de suivi iOS.
 - [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) — blocs d’annonces de démonstration, appareils de test et tests de consentement.
 - [Bannières](https://docs.rdlabo.dev/projects/capacitor-admob/docs/banner) — options, cycle de vie et événements des bannières.
+- [Native Ads (version préliminaire)](/docs/native-ads) — utilisable pour les tests et en production. Son API peut changer lors d’une version mineure tant que la fonctionnalité reste en version préliminaire.
 - Annonces plein écran :
   - [Annonces interstitielles](https://docs.rdlabo.dev/projects/capacitor-admob/docs/interstitial) — chargement, affichage et préparation de plusieurs annonces.
   - [Annonces récompensées](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded) — vidéo récompensée, interstitielle récompensée et vérification côté serveur.

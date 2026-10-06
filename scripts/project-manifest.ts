@@ -2196,7 +2196,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@capacitor-community/admob',
     repositoryUrl: 'https://github.com/capacitor-community/admob',
     // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'c8cc94ca69ee83441068ad96fc3b28527fe8af42',
+    englishDocsRef: 'a8f8ac48df11ac79805fef7059546e97f028be1b',
     category: 'capacitor-plugins',
     icon: 'ads',
     seoTitle: text(
@@ -2260,7 +2260,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.',
           '@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。',
         ),
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-10-07', ja: '2026-10-07', fr: '2026-10-07', de: '2026-10-07' },
       }),
       page(
         'Initialize',
@@ -2280,6 +2280,17 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       page('Banner Ads', 'バナー広告', 'banner', 'banner.md', 'Ad formats', '広告フォーマット', {
         updatedAt: { ja: '2026-10-01' },
       }),
+      page(
+        'Native Ads (Preview)',
+        'Native Ads（プレビュー）',
+        'native-ads',
+        'native-ads.md',
+        'Ad formats',
+        '広告フォーマット',
+        {
+          updatedAt: { en: '2026-10-07', ja: '2026-10-07', fr: '2026-10-07', de: '2026-10-07' },
+        },
+      ),
       page(
         'Interstitial Ads',
         'インタースティシャル広告',
@@ -2321,7 +2332,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
       }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-10-07', ja: '2026-10-07', fr: '2026-10-07', de: '2026-10-07' },
       }),
     ],
   },

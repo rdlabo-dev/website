@@ -23,7 +23,7 @@ Capacitor 7 を使う場合は `@capacitor-community/admob@7` をインストー
 
 ### Google Mobile Ads SDK の版
 
-このメジャーでは Android の Google Mobile Ads SDK を **25.4.x**、iOS を **13.6.0**（Swift Package Manager と CocoaPods）に固定しています。必要がない限り上書きしないでください。Android 向け [Next-Gen SDK](https://developers.google.com/admob/android/next-gen) は次のプラグインメジャーまで待ちます。固定の方針は [移行](/docs/migration) を見てください。
+このメジャーでは Android の Google Mobile Ads SDK を **25.4.x**、iOS を **13.11.0**（Swift Package Manager と CocoaPods）に固定しています。必要がない限り上書きしないでください。Android 向け [Next-Gen SDK](https://developers.google.com/admob/android/next-gen) は次のプラグインメジャーまで待ちます。固定の方針は [移行](/docs/migration) を見てください。
 
 ### Android の設定
 
@@ -146,6 +146,7 @@ async function startAdMob() {
 - [同意管理](/docs/consent) — プライバシー同意と iOS のトラッキング許可。
 - [テスト](/docs/testing) — デモ広告ユニット、テストデバイス、同意のテスト。
 - [バナー広告](/docs/banner) — バナーのオプション、ライフサイクル、イベント。
+- [Native Ads（プレビュー）](/docs/native-ads) — テストと本番環境で利用できます。プレビュー期間中は、マイナーリリースで API が変更される場合があります。
 - フルスクリーン広告:
   - [インタースティシャル広告](/docs/interstitial) — ロード、表示、複数準備。
   - [リワード広告](/docs/rewarded) — リワード動画、リワード付きインタースティシャル、サーバーサイド検証。

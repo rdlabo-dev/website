@@ -42,7 +42,9 @@ function prepareUnfencedMarkdown(markdown: string, inlineCodes: string[]): strin
     }
 
     if (lower.startsWith('<a', index)) {
-      const match = markdown.slice(index).match(/^<a\s+href=(['"])(#[^'"]+)\1>([\s\S]*?)<\/a>/i);
+      const match = markdown
+        .slice(index)
+        .match(/^<a\s+href=(['"])((?:#|\/docs\/api#)[^'"]+)\1>([\s\S]*?)<\/a>/i);
       if (match) {
         output += `[${JSDOM.fragment(match[3]).textContent ?? ''}](${match[2]})`;
         index += match[0].length;

@@ -4,6 +4,7 @@ import test from 'node:test';
 import { JSDOM } from 'jsdom';
 import markdownToHtml from 'zenn-markdown-html';
 import { prepareDocgenMarkdown, restoreDocgenInlineCode } from './docgen-inline-code';
+import { expandApiPlaceholders } from './package-markdown';
 
 async function render(markdown: string): Promise<Document> {
   const prepared = prepareDocgenMarkdown(markdown);
@@ -87,4 +88,16 @@ test('leaves no escaped docgen markup or placeholder tokens in generated project
     const source = await readFile(new URL(file, generatedDirectory), 'utf8');
     assert.doesNotMatch(source, /&lt;\/?code&gt;|&lt;a href=|RDLABODOCGENCODE\d+PLACEHOLDER/, file);
   }
+});
+
+test('renders relocated API links as clickable anchors after placeholder expansion', async () => {
+  const source = expandApiPlaceholders(
+    '!::BannerAdOptions::',
+    new Map([['BannerAdOptions', 'This interface extends <a href="#adoptions">AdOptions</a>.']]),
+    new Map([['adoptions', '/docs/api#adoptions']]),
+  );
+  const document = await render(source.expanded);
+  assert.equal(document.querySelector('a')?.getAttribute('href'), '/docs/api#adoptions');
+  assert.equal(document.body.textContent?.trim(), 'This interface extends AdOptions.');
+  assert.doesNotMatch(document.body.innerHTML, /&lt;a href=/);
 });

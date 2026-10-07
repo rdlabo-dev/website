@@ -1,5 +1,5 @@
 ---
-title: "Native Ads in Capacitor: Different Approaches to Scroll Tracking on iOS and Android"
+title: "Implementing Native Ads in a Capacitor Plugin: Different Scroll Tracking Approaches on iOS and Android"
 description: "Why native ads can lag behind a Capacitor feed, and how tracking UIScrollView on iOS and reducing bridge and layout work on Android improved alignment in measured comparisons."
 zennSlug: capacitor-admob-nativead-approaches
 emoji: "📱"

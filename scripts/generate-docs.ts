@@ -560,6 +560,10 @@ async function generateProject(
     sourcePages.push(docgenApiPage);
   }
 
+  const apiLinks = sourcePages.some(({ page }) => page.slug === 'api')
+    ? new Map([...apiAnchors].map(([name, fragment]) => [name, `/docs/api#${fragment}`]))
+    : new Map<string, string>();
+
   for (const {
     page,
     body,
@@ -574,7 +578,7 @@ async function generateProject(
   } of sourcePages) {
     const { slug, file } = page;
     const context = fromPackage ? sourcePath : relative(root, sourcePath);
-    const { expanded, missing: missingApiEntries } = expandApiPlaceholders(body, api);
+    const { expanded, missing: missingApiEntries } = expandApiPlaceholders(body, api, apiLinks);
     if (missingApiEntries.length) {
       throw new Error(`${context} references missing API entries: ${missingApiEntries.join(', ')}`);
     }

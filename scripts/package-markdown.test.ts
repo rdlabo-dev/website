@@ -405,3 +405,18 @@ test('rewrites relative links on locally hosted nested pages', () => {
     'See [deny-element](/docs/rules/deny-element), [root](/docs/api), and [external](https://example.com/a.md).',
   );
 });
+
+test('routes injected API type links to the reference while preserving guide fragments', () => {
+  const api = new Map([
+    [
+      'BannerAdOptions',
+      '#### `interface` BannerAdOptions\n<a href="#adoptions">AdOptions</a> <a href="#unknown">unknown</a>\n',
+    ],
+  ]);
+  const source = '[guide](#adoptions)\n\n!::BannerAdOptions::\n';
+  assert.equal(
+    expandApiPlaceholders(source, api, new Map([['adoptions', '/docs/api#adoptions']])).expanded,
+    '[guide](#adoptions)\n\n#### `interface` BannerAdOptions\n<a href="/docs/api#adoptions">AdOptions</a> <a href="#unknown">unknown</a>\n\n',
+  );
+  assert.match(expandApiPlaceholders(source, api).expanded, /href="#adoptions"/);
+});

@@ -129,12 +129,19 @@ const API_PLACEHOLDER = /^(?:<!--\s*)?!::([a-zA-Z0-9_.-]+)::(?:\s*-->)?[ \t]*$/g
 export function expandApiPlaceholders(
   markdown: string,
   api: Map<string, string>,
+  apiLinks: ReadonlyMap<string, string> = new Map(),
 ): { expanded: string; missing: string[] } {
   const missing: string[] = [];
   const expanded = markdown.replace(API_PLACEHOLDER, (_, id: string) => {
     const entry = api.get(id);
     if (!entry) missing.push(id);
-    return entry ?? '';
+    return (entry ?? '').replace(
+      /(<a\b[^>]*\bhref=["'])#([^"']+)(["'])/g,
+      (link, prefix: string, fragment: string, quote: string) => {
+        const target = apiLinks.get(fragment.toLowerCase());
+        return target ? `${prefix}${target}${quote}` : link;
+      },
+    );
   });
   return { expanded, missing };
 }

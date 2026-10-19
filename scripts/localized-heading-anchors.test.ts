@@ -31,6 +31,20 @@ test('incomplete or structurally changed translations cannot create misleading h
   }
 });
 
+test('explicit source aliases survive translation and can be regenerated without duplicates', () => {
+  const source =
+    '<h2 id="2.-install"><span id="2-install" data-docs-heading-alias aria-hidden="true"></span>2. Install</h2>';
+  const translated = '<h2 id="installation">Installation</h2>';
+  const once = preserveSourceHeadingLinks(source, translated, 'fr/integration');
+  const twice = preserveSourceHeadingLinks(source, once, 'fr/integration');
+  const document = new JSDOM(twice).window.document;
+  for (const id of ['2.-install', '2-install']) {
+    assert.equal(document.querySelectorAll(`[id="${id}"]`).length, 1);
+    assert.equal(document.getElementById(id)?.parentElement?.id, 'installation');
+  }
+  assert.equal(document.querySelector('h2')?.textContent, 'Installation');
+});
+
 test('a translated heading cannot reuse an English fragment that points to another section', () => {
   assert.throws(
     () =>

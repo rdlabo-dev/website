@@ -128,7 +128,12 @@ async function englishGuideSource(
 }
 
 test('Local LLM and Workers guides keep Japanese code identical to pinned package sources', async () => {
-  for (const id of ['capacitor-local-llm', 'workers-timezone', 'workers-mysql']) {
+  for (const id of [
+    'capacitor-local-llm',
+    'workers-timezone',
+    'workers-mysql',
+    'workers-capacitor',
+  ]) {
     const project = projectDefinitions.find((entry) => entry.id === id);
     assert.ok(project, `${id} must be registered`);
     for (const page of project.pages) {

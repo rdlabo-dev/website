@@ -21,18 +21,23 @@ export function preserveSourceHeadingLinks(
     }
     for (const [index, heading] of sourceHeadings.entries()) {
       const target = translatedHeadings[index];
-      if (!heading.id || heading.id === target.id) continue;
-      const existing = translated.getElementById(heading.id);
-      if (existing) {
-        throw new Error(
-          `${context}: translated heading collides with source anchor #${heading.id}`,
-        );
+      const ids = [
+        heading.id,
+        ...[...heading.querySelectorAll('[data-docs-heading-alias]')].map((alias) => alias.id),
+      ];
+      for (const id of ids) {
+        if (!id || id === target.id) continue;
+        const existing = translated.getElementById(id);
+        if (existing?.closest('h2, h3, h4') === target) continue;
+        if (existing) {
+          throw new Error(`${context}: translated heading collides with source anchor #${id}`);
+        }
+        const alias = translated.createElement('span');
+        alias.id = id;
+        alias.setAttribute('data-docs-heading-alias', '');
+        alias.setAttribute('aria-hidden', 'true');
+        target.prepend(alias);
       }
-      const alias = translated.createElement('span');
-      alias.id = heading.id;
-      alias.setAttribute('data-docs-heading-alias', '');
-      alias.setAttribute('aria-hidden', 'true');
-      target.prepend(alias);
     }
     return translated.body.innerHTML;
   } finally {

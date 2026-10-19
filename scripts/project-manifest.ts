@@ -28,6 +28,8 @@ export interface ProjectPageDefinition {
    * Edit links use the portal path (`fromPackage: false`).
    */
   localEnglishSource?: boolean;
+  /** English source fragments that differ from the portal renderer's heading IDs. */
+  headingAliases?: Readonly<Record<string, string>>;
   demo?: {
     url: string;
     title: LocalizedText;
@@ -214,6 +216,156 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
 );
 
 export const projectDefinitions: readonly ProjectDefinition[] = [
+  {
+    id: 'workers-capacitor',
+    slug: 'workers-capacitor',
+    sourceDirectory: 'workers-capacitor',
+    name: 'workers-capacitor',
+    shortName: 'workers-capacitor',
+    packageName: 'workers-capacitor',
+    repositoryUrl: 'https://github.com/rdlabo-dev/workers-capacitor',
+    category: 'capacitor-plugins',
+    icon: 'app',
+    adapter: 'markdown',
+    entryGuideSlugs: ['integration', 'void', 'opennext'],
+    description: text(
+      'Bring Cloudflare Workers apps to iOS and Android with Capacitor. Version 0.1.0 is a Preview release.',
+      'Cloudflare WorkersアプリをCapacitorでiOS・Androidへ展開します。0.1.0はPreview版です。',
+    ),
+    headline: text(
+      'Bring your Cloudflare Workers app to mobile',
+      'Cloudflare Workersアプリをモバイルへ',
+    ),
+    overview: text(
+      'Reuse existing pages, routes, and application logic in a Capacitor app. Run supported code on the device and keep cloud services and secrets on your deployed Worker. Follow the integration guide and verify the Preview on your target platforms.',
+      '既存のページ・ルート・アプリケーションロジックをCapacitorアプリで再利用します。対応コードは端末で実行し、クラウドサービスや秘密情報はデプロイ済みWorkerに保持します。導入ガイドに沿って組み込み、対象プラットフォームでPreview版を検証してください。',
+    ),
+    featuresHeading: text('What you can do', 'できること'),
+    features: [
+      {
+        icon: 'app',
+        title: text('Reuse your Workers app', 'Workersアプリを再利用'),
+        description: text(
+          'Integrate existing Workers projects, including Void, Hono, Workers Express, and Next.js / OpenNext.',
+          'Void、Hono、Workers Express、Next.js / OpenNextなどの既存Workersプロジェクトへ組み込みます。',
+        ),
+      },
+      {
+        icon: 'server',
+        title: text('Device and cloud execution', '端末とクラウドでの実行'),
+        description: text(
+          'Choose execution policies for bindings and route cloud-dependent requests to your deployed Worker.',
+          'バインディングの実行方針を選び、クラウドに依存するリクエストをデプロイ済みWorkerへ送ります。',
+        ),
+      },
+      {
+        icon: 'app',
+        title: text('Native mobile integration', 'ネイティブモバイル連携'),
+        description: text(
+          'Configure native rendering, safe areas, and Capacitor plugins, then test on iOS and Android.',
+          'ネイティブ描画、Safe Area、Capacitorプラグインを設定し、iOS・Androidで検証します。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
+      page(
+        'Integration',
+        '導入手順',
+        'integration',
+        'integration.md',
+        'Quickstart',
+        'クイックスタート',
+        {
+          headingAliases: {
+            '2-install-capacitor-and-this-package': '2.-install-capacitor-and-this-package',
+            '3-configure-and-build-the-native-application':
+              '3.-configure-and-build-the-native-application',
+            '5-security-the-device-is-not-a-trusted-server':
+              '5.-security%3A-the-device-is-not-a-trusted-server',
+          },
+        },
+      ),
+      page('Void', 'Void', 'void', 'void.md', 'Guides', 'ガイド'),
+      page('Build setup', 'ビルド設定', 'build-setup', 'build-setup.md', 'Guides', 'ガイド', {
+        headingAliases: { 'browser-es-modules-no-bundler': 'browser-es-modules-(no-bundler)' },
+      }),
+      page(
+        'Next.js / OpenNext',
+        'Next.js / OpenNext',
+        'opennext',
+        'opennext.md',
+        'Guides',
+        'ガイド',
+      ),
+      page('Runtime behavior', 'ランタイムの動作', 'runtime', 'runtime.md', 'Guides', 'ガイド'),
+      page(
+        'Cloudflare bindings',
+        'Cloudflareバインディング',
+        'cloudflare-bindings',
+        'cloudflare-bindings.md',
+        'Guides',
+        'ガイド',
+      ),
+      page('Workers KV', 'Workers KV', 'kv', 'kv.md', 'Guides', 'ガイド'),
+      page(
+        'D1 transparent migration',
+        'D1の透過的な移行',
+        'd1-transparent-migration',
+        'd1-transparent-migration.md',
+        'Guides',
+        'ガイド',
+      ),
+      page(
+        'Hyperdrive transparent migration',
+        'Hyperdriveの透過的な移行',
+        'hyperdrive-transparent-migration',
+        'hyperdrive-transparent-migration.md',
+        'Guides',
+        'ガイド',
+      ),
+      page(
+        'Remote service bindings',
+        'リモートサービスバインディング',
+        'remote-service-bindings',
+        'remote-service-bindings.md',
+        'Guides',
+        'ガイド',
+      ),
+      page(
+        'Native rendering API',
+        'ネイティブ描画API',
+        'native-rendering-api',
+        'native-rendering-api.md',
+        'Reference',
+        'リファレンス',
+      ),
+      page(
+        'Compatibility and limitations',
+        '互換性と制限事項',
+        'compatibility',
+        'compatibility.md',
+        'Reference',
+        'リファレンス',
+      ),
+      page(
+        'Runtime contracts',
+        'ランタイムの契約',
+        'contracts',
+        'contracts.md',
+        'Reference',
+        'リファレンス',
+      ),
+      page(
+        'Development and testing',
+        '開発とテスト',
+        'development',
+        'development.md',
+        'Reference',
+        'リファレンス',
+      ),
+    ],
+  },
   {
     id: 'ionic-docs',
     slug: 'ionic-docs',

@@ -189,6 +189,36 @@ export function rewriteRelativeDocLinks(markdown: string, pageFile: string): str
   });
 }
 
+/** Keep repository examples and contribution files outside the portal's guide routes. */
+export function rewriteRepositoryResourceLinks(
+  markdown: string,
+  repositoryUrl: string,
+  ref: string,
+): string {
+  // Earlier guide normalization may already have changed demo/*.md to /docs/demo/*.
+  // Leave code examples untouched, including prompt text containing Markdown links.
+  return markdown
+    .split(
+      /(^ {0,3}```[^\n]*\n[\s\S]*?^ {0,3}```[^\n]*(?:\n|$)|^ {0,3}~~~[^\n]*\n[\s\S]*?^ {0,3}~~~[^\n]*(?:\n|$))/m,
+    )
+    .map((part, index) => {
+      if (index % 2) return part;
+      return part.replace(/\]\(([^)]+)\)/g, (match, target: string) => {
+        const normalized = target.startsWith('/docs/');
+        const relative = target.replace(/^(?:\/docs\/|(?:\.\.\/)*(?:\.\/)?)/, '');
+        if (relative === target && /^(?:[a-z]+:|\/|#)/i.test(target)) return match;
+        const hashIndex = relative.indexOf('#');
+        let path = hashIndex < 0 ? relative : relative.slice(0, hashIndex);
+        const hash = hashIndex < 0 ? '' : relative.slice(hashIndex);
+        if (!/^(?:demo\/|CONTRIBUTING(?:\.md)?$|LICENSE(?:\.md)?$)/.test(path)) return match;
+        if (normalized) path += '.md';
+        const kind = /\.[^/]+$/.test(path) || /^LICENSE$/.test(path) ? 'blob' : 'tree';
+        return `](${repositoryUrl}/${kind}/${ref}/${path}${hash})`;
+      });
+    })
+    .join('');
+}
+
 export function rewritePackageDocLinks(
   markdown: string,
   apiAnchors: Map<string, string>,

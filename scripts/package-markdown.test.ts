@@ -9,9 +9,28 @@ import {
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   rewriteRelativeDocLinks,
+  rewriteRepositoryResourceLinks,
   stripLeadingH1,
   stripRdlaboDocsOmit,
 } from './package-markdown';
+
+test('repository resources retain pinned upstream targets instead of nonexistent portal guides', () => {
+  const source =
+    '[guide](/docs/integration) [demo](/docs/demo/README#setup) [native](../demo/rendering) [contribute](../CONTRIBUTING.md#ci) [license](LICENSE) [external](https://example.com/demo/README.md)';
+  const result = rewriteRepositoryResourceLinks(
+    source,
+    'https://github.com/rdlabo-dev/workers-capacitor',
+    'v0.1.0',
+  );
+  assert.match(result, /\[guide\]\(\/docs\/integration\)/);
+  assert.match(result, /blob\/v0\.1\.0\/demo\/README\.md#setup/);
+  assert.match(result, /tree\/v0\.1\.0\/demo\/rendering/);
+  assert.match(result, /blob\/v0\.1\.0\/CONTRIBUTING\.md#ci/);
+  assert.match(result, /blob\/v0\.1\.0\/LICENSE/);
+  assert.match(result, /https:\/\/example\.com\/demo\/README\.md/);
+  const code = '```text\n[demo](../demo/README.md)\n```\n';
+  assert.equal(rewriteRepositoryResourceLinks(code, 'https://example.com/repo', 'v1.0.0'), code);
+});
 
 test('keeps Overview through Documentation and drops preamble, Index, and API', () => {
   const markdown = `<p align="center">badge</p>

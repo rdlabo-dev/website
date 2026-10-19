@@ -35,6 +35,7 @@ import {
   normalizePackageMarkdown,
   rewritePackageDocLinks,
   rewriteRelativeDocLinks,
+  rewriteRepositoryResourceLinks,
   stripLeadingH1,
   stripRdlaboDocsOmit,
 } from './package-markdown';
@@ -486,7 +487,11 @@ async function generateProject(
     }
     sourcePages.push({
       page: declaredPage,
-      body: splitReadme ? splitReadme.readme : preparedBody,
+      body: rewriteRepositoryResourceLinks(
+        splitReadme ? splitReadme.readme : preparedBody,
+        project.repositoryUrl,
+        `${project.releaseTagPrefix ?? 'v'}${packageJson.version}`,
+      ),
       useFrontMatterTitle: !resolved.fromPackage,
       parsed,
       sourcePath: resolved.sourcePath,
@@ -613,7 +618,13 @@ async function generateProject(
     ) {
       normalizeImportedReadmeHeadings(htmlDocument);
     }
-    addHeadingAliases(htmlDocument, parsed.attributes.headingAliases, context);
+    addHeadingAliases(
+      htmlDocument,
+      locale === 'en' && page.headingAliases
+        ? { ...page.headingAliases, ...parsed.attributes.headingAliases }
+        : parsed.attributes.headingAliases,
+      context,
+    );
     const headingIds = Array.from(htmlDocument.querySelectorAll<HTMLElement>('h1, h2, h3, h4')).map(
       (heading) => heading.id,
     );

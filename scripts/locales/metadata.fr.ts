@@ -1,5 +1,34 @@
 /** Reviewed French translations keyed by the exact English manifest text. */
 export const METADATA_FR: Readonly<Record<string, string>> = {
+  'Bring Cloudflare Workers apps to iOS and Android with Capacitor. Version 0.1.0 is a Preview release.':
+    'Portez vos applications Cloudflare Workers sur iOS et Android avec Capacitor. La version 0.1.0 est une Preview.',
+  'Bring your Cloudflare Workers app to mobile':
+    'Portez votre application Cloudflare Workers sur mobile',
+  'Reuse existing pages, routes, and application logic in a Capacitor app. Run supported code on the device and keep cloud services and secrets on your deployed Worker. Follow the integration guide and verify the Preview on your target platforms.':
+    'Réutilisez les pages, les routes et la logique de votre application dans une application Capacitor. Exécutez le code pris en charge sur l’appareil et conservez les services cloud et les secrets sur votre Worker déployé. Suivez le guide d’intégration et vérifiez la Preview sur vos plateformes cibles.',
+  'Reuse your Workers app': 'Réutilisez votre application Workers',
+  'Integrate existing Workers projects, including Void, Hono, Workers Express, and Next.js / OpenNext.':
+    'Intégrez vos projets Workers existants, notamment Void, Hono, Workers Express et Next.js / OpenNext.',
+  'Device and cloud execution': 'Exécution sur l’appareil et dans le cloud',
+  'Choose execution policies for bindings and route cloud-dependent requests to your deployed Worker.':
+    'Choisissez les politiques d’exécution des bindings et acheminez les requêtes dépendantes du cloud vers votre Worker déployé.',
+  'Native mobile integration': 'Intégration mobile native',
+  'Configure native rendering, safe areas, and Capacitor plugins, then test on iOS and Android.':
+    'Configurez le rendu natif, les zones de sécurité et les plugins Capacitor, puis testez sur iOS et Android.',
+  Integration: 'Intégration',
+  Void: 'Void',
+  'Build setup': 'Configuration du build',
+  'Next.js / OpenNext': 'Next.js / OpenNext',
+  'Runtime behavior': 'Comportement du runtime',
+  'Cloudflare bindings': 'Bindings Cloudflare',
+  'Workers KV': 'Workers KV',
+  'D1 transparent migration': 'Migration transparente de D1',
+  'Hyperdrive transparent migration': 'Migration transparente de Hyperdrive',
+  'Remote service bindings': 'Bindings de services distants',
+  'Native rendering API': 'API de rendu natif',
+  'Compatibility and limitations': 'Compatibilité et limites',
+  'Runtime contracts': 'Contrats du runtime',
+  'Development and testing': 'Développement et tests',
   '2026-08-25': '2026-08-25',
   '2026-08-31': '2026-08-31',
   '2026-09-06': '2026-09-06',

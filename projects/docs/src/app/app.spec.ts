@@ -138,7 +138,9 @@ describe('App', () => {
     expect(track.classList.contains('is-detail')).toBe(true);
     expect(track.classList.contains('animate-ready')).toBe(false);
     expect(compiled.querySelector('.docs-active-project')?.textContent).toContain('Stripe');
-    expect(compiled.querySelector('app-library-picker a')?.getAttribute('href')).toBe(path);
+    expect(compiled.querySelector('app-library-picker a.is-active')?.getAttribute('href')).toBe(
+      path,
+    );
     expect(compiled.querySelector('app-library-picker')?.textContent).not.toContain(
       'Workers MySQL',
     );

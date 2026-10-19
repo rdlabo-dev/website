@@ -12,6 +12,49 @@ import {
   PAST_SPONSORS,
 } from '../projects/docs/src/app/generated/sponsors.generated';
 
+test('workers-capacitor publishes the Preview and resolves localized guide and repository links', async () => {
+  const project = projectDefinitions.find((entry) => entry.id === 'workers-capacitor');
+  assert.ok(project);
+  const installed = JSON.parse(
+    await readFile('node_modules/workers-capacitor/package.json', 'utf8'),
+  );
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const base = `${subPath ? `/${subPath}` : ''}/projects/workers-capacitor`;
+    const documents = new Map<string, Document>();
+    for (const suffix of ['', ...project.pages.map((page) => `/docs/${page.slug}`)]) {
+      const path = `${base}${suffix}`;
+      const html = await readFile(`dist/docs/browser${path}/index.html`, 'utf8');
+      documents.set(path, new JSDOM(html).window.document);
+    }
+    const landing = documents.get(base)!;
+    assert.ok(landing.body.textContent?.includes(installed.version));
+    assert.match(landing.body.textContent ?? '', /Preview/);
+    for (const [path, document] of documents) {
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+        const href = link.getAttribute('href')!;
+        const url = new URL(href, `https://docs.rdlabo.dev${path}/`);
+        if (url.origin === 'https://docs.rdlabo.dev' && url.pathname.startsWith(`${base}/docs/`)) {
+          const target = documents.get(url.pathname.replace(/\/$/, ''));
+          assert.ok(target, `${path}: missing guide ${href}`);
+          if (url.hash) {
+            const id = url.hash.slice(1);
+            assert.ok(
+              target.getElementById(id) || target.getElementById(decodeURIComponent(id)),
+              `${path}: missing heading ${href}`,
+            );
+          }
+        }
+        if (/github\.com\/rdlabo-dev\/workers-capacitor\/(blob|tree)\//.test(href)) {
+          assert.ok(
+            href.includes(`/v${installed.version}/`),
+            `${path}: unpinned repository link ${href}`,
+          );
+        }
+      }
+    }
+  }
+});
+
 test('removed Ionic Framework feedback pages stay out of published docs', async () => {
   const sitemap = await readFile('dist/docs/browser/sitemap.xml', 'utf8');
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
@@ -471,7 +514,9 @@ test('Workers landing pages and guides expose distinct Cloudflare Workers metada
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
     const titles = new Set<string>();
     const descriptions = new Set<string>();
-    for (const project of projectDefinitions.filter((entry) => entry.id.startsWith('workers-'))) {
+    for (const project of projectDefinitions.filter(
+      (entry) => entry.id.startsWith('workers-') && entry.category === 'developer-tools',
+    )) {
       for (const page of [undefined, ...project.pages]) {
         const path = `${subPath ? `/${subPath}` : ''}/projects/${project.slug}${page ? `/docs/${page.slug}` : ''}`;
         const html = await readFile(

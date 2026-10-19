@@ -17,6 +17,7 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | --- | --- |
 | Ionic Framework Japanese Documentation | `ionic-jp/ionic-docs` |
 | Capacitor Japanese Documentation | `ionic-jp/capacitor-docs` |
+| workers-capacitor | `projects/docs/src/workers-capacitor/docs` |
 | Capacitor Community Stripe | `projects/docs/src/stripe/docs` |
 | Capacitor Community Stripe Identity | `projects/docs/src/stripe-identity/docs` |
 | Capacitor Community Stripe Terminal | `projects/docs/src/stripe-terminal/docs` |
@@ -140,7 +141,7 @@ The generator also accepts the bare `!::createPaymentSheet::` form. Package guid
 Capacitor READMEs containing both `<docgen-index>` and `<docgen-api>` are automatically exposed as
 separate README and API pages. The source README remains the single file to update.
 
-Every project exposes a dedicated API page. Hand-authored API Markdown uses semantic entry headings
+Projects expose API references through dedicated API pages or focused reference guides. Hand-authored API Markdown uses semantic entry headings
 such as `` #### `component` PhotoEditorPage `` or `` #### `function` generate ``; the generator
 normalizes those entries and Capacitor docgen output into the same API-card presentation.
 

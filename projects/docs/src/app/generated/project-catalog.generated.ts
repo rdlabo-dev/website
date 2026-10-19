@@ -547,7 +547,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "3.0.0",
+    "version": "3.0.2",
     "description": "Automate ionIcons collection and export for Ionic Angular projects.",
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [
@@ -2181,7 +2181,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "3.0.0",
+    "version": "3.0.2",
     "description": "Ionic Angularプロジェクト向けのionIcons収集・エクスポート自動化。",
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [
@@ -3815,7 +3815,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "3.0.0",
+    "version": "3.0.2",
     "description": "Automatisez la collecte et l’exportation des ionIcons dans les projets Ionic Angular.",
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [
@@ -5449,7 +5449,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-collect-icons",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "3.0.0",
+    "version": "3.0.2",
     "description": "Das Sammeln und Exportieren von ionIcons in Ionic-Angular-Projekten automatisieren.",
     "path": "/projects/ionic-angular-collect-icons",
     "pages": [

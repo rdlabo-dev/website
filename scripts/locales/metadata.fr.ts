@@ -7,6 +7,7 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
   '2026-09-15': '2026-09-15',
   '2026-09-26': '2026-09-26',
   '2026-09-30': '2026-09-30',
+  '2026-10-19': '2026-10-19',
   API: 'API',
   'API reference for workers-hono-kit on Cloudflare Workers: HTTP, Firebase auth, database adapters, queues, realtime, and testing helpers.':
     'Référence de l’API workers-hono-kit pour Cloudflare Workers : HTTP, authentification Firebase, adaptateurs de base de données, files d’attente, temps réel et outils de test.',

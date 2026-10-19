@@ -25,21 +25,22 @@ npx @rdlabo/ionic-angular-collect-icons --interactive true
 
 ### --initialize [boolean]
 
-`addIcons` を自動で初期化したい場合は、`--initialize` フラグを使えます。デフォルトは `false` です。CLI は次の行を追加します:
+アイコン登録を自動で初期化したい場合は、`--initialize` フラグを使えます。デフォルトは `false` です。CLI は次の行を追加します:
 
 ```diff
-+ import { addIcons } from 'ionicons';
-+ import * as allIcons from 'ionicons/icons';
++ import { initializeIonicons } from '@rdlabo/ionic-angular-collect-icons/runtime';
 + import * as useIcons from './use-icons';
 
   if (environment.production) {
     enableProdMode();
   }
 
-+  addIcons(environment.production ? useIcons : allIcons);
++  void initializeIonicons(useIcons);
 ```
 
 CLI は `enableProdMode()` があるファイルに行を追加します。もちろん、手動で設定することもできます。
+
+`--initialize` が必要なのは、初期化処理がまだないプロジェクトに追加する場合だけです。既存の初期化処理を移行するには、別途確認が必要です。
 
 あわせて、クラスコンストラクタ内の他の `addIcons` 呼び出しも削除します。
 
@@ -55,6 +56,24 @@ CLI は `enableProdMode()` があるファイルに行を追加します。も�
 ```bash
 npx @rdlabo/ionic-angular-collect-icons --initialize true
 ```
+
+### --migrate [boolean]
+
+対話形式のターミナルでは、コレクターが認識したソースの移行を適用する前に、それぞれ確認を求めます。既定の選択肢は **Yes** です。**No** を選ぶと、その移行の対象は変更されません。
+
+CI などの非対話環境では、このオプションで明示的に回答できます。
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true
+```
+
+ファイルを書き換えずに生成される差分を確認するには、次を実行します。
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true --dry-run true
+```
+
+対話形式の実行時に確認できるよう、このオプションは既定では未設定です。
 
 ### --project-path [string]
 

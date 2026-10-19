@@ -1,8 +1,10 @@
 ---
 title: "Initialisation"
-sourceRevision: "dd7527b567ce8a676662743a9f557b4d4a9b2116134e2cb107e4a21c4d684b4c"
+sourceRevision: "37ba1da1d28d1ac57abe2bf5a8227ee2f8f3b80eae8af0f65cd11f35881481fc"
 ---
-Configurez `addIcons` après l’[installation](../README.md#installation). Consultez également [Utilisation](./usage.md).
+Configurez `addIcons` après l’[installation](/docs/readme#installation). Consultez également [Utilisation](./usage.md).
+
+Les environnements de build doivent installer les dépendances de développement : le code généré importe le runtime de ce package, qui est intégré au bundle de l’application.
 
 ### Configuration automatique
 
@@ -25,16 +27,26 @@ Cela génère `src/use-icons.ts`.
 #### 2. Importer le fichier généré dans `main.ts` ou `app.config.ts` :
 
 ```diff
-+ import { addIcons } from 'ionicons';
-+ import * as allIcons from 'ionicons/icons';
++ import { initializeIonicons } from '@rdlabo/ionic-angular-collect-icons/runtime';
 + import * as useIcons from './use-icons';
 
   if (environment.production) {
     enableProdMode();
   }
 
-+  addIcons(environment.production ? useIcons : allIcons);
++  void initializeIonicons(useIcons);
 ```
+
+`initializeIonicons` enregistre les icônes collectées de manière synchrone. La fonction
+`isDevMode()` d’Angular active ensuite le catalogue complet depuis un bundle isolé chargé à la demande
+en développement. En production, l’application démarre sans télécharger ce bundle de catalogue.
+
+Lorsqu’une exécution interactive du collecteur détecte l’initialiseur ternaire généré par
+les anciennes versions, elle demande s’il faut le migrer. La réponse par défaut est **Yes** (Oui).
+Choisir **No** (Non) laisse l’initialiseur inchangé. Les appels personnalisés existants à
+`addIcons(...)` restent également inchangés. Consultez la
+[migration](./migration.md#upgrade-the-icon-initializer) pour les détails de prévisualisation,
+d’exécution non interactive et de reconnaissance de l’initialiseur.
 
 #### 3. Supprimer les autres appels `addIcons` des constructeurs de classes
 

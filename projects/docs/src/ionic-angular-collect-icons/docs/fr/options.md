@@ -1,6 +1,6 @@
 ---
 title: "Options de la CLI"
-sourceRevision: "906beb87d88e6f08bb73b97c8c674114348e12cb8d2ba64fec4eb200a176cc35"
+sourceRevision: "0c0e667cecb8e0467b291af34c978f30c68aa4b4087ef9de80a100788cb54a13"
 ---
 Options de `npx @rdlabo/ionic-angular-collect-icons`. Le tableau synthétique se trouve sur la page [CLI API](https://docs.rdlabo.dev/projects/ionic-angular-collect-icons/docs/api).
 
@@ -23,21 +23,22 @@ npx @rdlabo/ionic-angular-collect-icons --interactive true
 
 ### --initialize [boolean]
 
-Pour initialiser `addIcons` automatiquement, utilisez l’option `--initialize`. La valeur par défaut est `false`. La CLI ajoute les lignes suivantes :
+Pour initialiser automatiquement l’enregistrement des icônes, utilisez l’option `--initialize`. La valeur par défaut est `false`. La CLI ajoute les lignes suivantes :
 
 ```diff
-+ import { addIcons } from 'ionicons';
-+ import * as allIcons from 'ionicons/icons';
++ import { initializeIonicons } from '@rdlabo/ionic-angular-collect-icons/runtime';
 + import * as useIcons from './use-icons';
 
   if (environment.production) {
     enableProdMode();
   }
 
-+  addIcons(environment.production ? useIcons : allIcons);
++  void initializeIonicons(useIcons);
 ```
 
 La CLI ajoute ces lignes au fichier contenant `enableProdMode()`. Vous pouvez bien sûr aussi effectuer la configuration manuellement.
+
+`--initialize` est nécessaire uniquement pour ajouter l’initialiseur à un projet qui n’en possède pas. La migration d’un initialiseur existant nécessite une confirmation distincte.
 
 Elle supprime également les autres appels `addIcons` des constructeurs de classes.
 
@@ -53,6 +54,27 @@ Elle supprime également les autres appels `addIcons` des constructeurs de class
 ```bash
 npx @rdlabo/ionic-angular-collect-icons --initialize true
 ```
+
+### --migrate [boolean]
+
+Dans un terminal interactif, le collecteur demande confirmation avant d’appliquer chaque
+migration de code source reconnue. **Yes** (Oui) est sélectionné par défaut ; **No** (Non) laisse
+la cible de cette migration inchangée.
+
+Utilisez cette option pour répondre explicitement, par exemple en CI ou dans un autre
+environnement non interactif :
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true
+```
+
+Prévisualisez les différences générées sans écrire de fichiers :
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true --dry-run true
+```
+
+Par défaut, cette option n’est pas définie afin qu’une exécution interactive puisse demander confirmation.
 
 ### --project-path [string]
 

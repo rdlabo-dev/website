@@ -1138,8 +1138,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Collect Icons',
     packageName: '@rdlabo/ionic-angular-collect-icons',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-collect-icons',
-    // The translated migration guide follows this reviewed immutable docs revision.
-    englishDocsRef: 'c38d732e0973c979e174ce4c7c06f8c9ae608faa',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -1187,17 +1185,24 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Initialize', '初期化', 'initialize', 'initialize.md', 'Guides', 'ガイド', {
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: text('2026-10-19', '2026-10-19'),
       }),
       page('Usage', '使い方', 'usage', 'usage.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('CLI Options', 'CLI オプション', 'options', 'options.md', 'Guides', 'ガイド'),
+      page('CLI Options', 'CLI オプション', 'options', 'options.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-10-19', '2026-10-19'),
+      }),
       page('FAQ', 'FAQ', 'faq', 'faq.md', 'Guides', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-10-01'),
       }),
-      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド'),
-      page('CLI API', 'CLI API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
+        updatedAt: text('2026-10-19', '2026-10-19'),
+      }),
+      page('CLI API', 'CLI API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: text('2026-10-19', '2026-10-19'),
+      }),
     ],
   },
   {

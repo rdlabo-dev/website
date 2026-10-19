@@ -2,6 +2,72 @@
 title: 移行
 ---
 
+## アイコンの初期化処理を更新する
+
+この節は、3.0.1 以前から `initializeIonicons` を提供するリリースへ更新する場合に適用されます。
+
+旧バージョンは、Ionicons の全アイコンに対する名前空間インポートを生成していました。
+
+```ts
+import { addIcons } from "ionicons";
+import * as allIcons from "ionicons/icons";
+import * as useIcons from "./use-icons";
+
+addIcons(environment.production ? useIcons : allIcons);
+```
+
+実行時には本番用の分岐で `useIcons` が選ばれていましたが、名前空間インポートにより、最適化したアプリケーションのバンドルにも全アイコンが残る可能性がありました。このパッケージは、本番環境の依存関係に対してツリーシェイキングが効くブラウザー用ランタイムを提供するようになりました。
+
+まずパッケージを更新してから、対話形式のターミナルでコレクターを実行します。
+
+```bash
+npm install --save-dev @rdlabo/ionic-angular-collect-icons@latest
+npx @rdlabo/ionic-angular-collect-icons
+```
+
+生成されたアプリケーションコードはコンパイル時にブラウザー用ランタイムをインポートするため、ビルド環境では開発依存関係もインストールしてください。そのランタイムはアプリケーションの出力にバンドルされます。
+
+生成された初期化処理を検出すると、CLI は移行するか確認します。既定の選択肢は **Yes** です。**No** を選ぶと初期化処理を変更せず、通常のアイコン収集を続けます。
+
+先にソースの差分を確認するには、**No** を選び、次を実行します。
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true --dry-run true
+```
+
+CI などの非対話環境では、`--migrate true` で移行を明示的に許可してください。このフラグがなければ、初期化処理は変更されません。許可した場合は次のコードになります。
+
+```ts
+import { initializeIonicons } from "@rdlabo/ionic-angular-collect-icons/runtime";
+import * as useIcons from "./use-icons";
+
+void initializeIonicons(useIcons);
+```
+
+`initializeIonicons` は収集済みのアイコンを同期的に登録します。その後、開発時には Angular の `isDevMode()` により、分離された遅延読み込みバンドルから全アイコンを読み込みます。本番環境では、そのバンドルをダウンロードせずに起動します。
+
+確認を経た移行では、旧バージョンが生成した次の三項演算子による初期化処理だけを書き換えます。
+
+```ts
+addIcons(environment.production ? useIcons : allIcons);
+```
+
+インポートのバインディングも、既知の生成構造と一致する必要があります。その他の `addIcons(...)` 呼び出しと、独自のアプリケーションコードが使うインポートは保持されます。移行処理は、生成ファイルの旧来のパス `"use-icons"` と、正規の相対パス `"./use-icons"` の両方を認識し、移行後は正規の形式で出力します。
+`--migrate true` を明示的に指定した場合は、従来の `addIcons(useIcons)` 形式も更新対象になります。ただし、`useIcons` が設定されたアイコン生成ファイルの名前空間インポートである場合に限ります。初期化処理を独自に変更している場合は、インポートと呼び出しを手動で置き換え、独自の登録処理を別に保持してください。
+
+本番バンドルのツリーシェイキングを維持したままランタイムとの統合を取り消すには、インポートと呼び出しを次のように置き換えます。
+
+```ts
+import { addIcons } from "ionicons";
+import * as useIcons from "./use-icons";
+
+addIcons(useIcons);
+```
+
+この切り戻しでは、開発時も全アイコンは登録されません。本番バンドルが肥大化する原因となるため、旧来の `allIcons` の名前空間インポートには戻さないでください。
+
+移行後は、利用側のアプリケーションのテストと、最適化した本番ビルドを実行してください。バンドル統計では、初期読み込みの依存関係に含まれるアイコンが `use-icons.ts` からエクスポートされたものだけであることを確認します。Ionicons の全アイコンが別の遅延読み込みチャンクとして存在することはありますが、本番環境の起動時にダウンロードされてはいけません。
+
 ## Ionic Angular 9への移行
 
 このversionはIonic Angular 9を対象とし、[Ionic Framework 9の破壊的変更](https://github.com/ionic-team/ionic-framework/blob/main/BREAKING.md#version-9x)に従います。

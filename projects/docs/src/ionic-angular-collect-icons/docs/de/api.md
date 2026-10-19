@@ -1,8 +1,8 @@
 ---
 title: "CLI-API"
-sourceRevision: "ac6612cb51c6aaa89ce55ae8d992a9c60f808d72720db50cfa7a6572695bf3f5"
+sourceRevision: "c17cbbf13f8fa5a84be602a7bcd8bc69cbf8b31420f41a8124ba8482e0eb1d15"
 ---
-Befehlsreferenz für `@rdlabo/ionic-angular-collect-icons` v3.0.0.
+Befehlsreferenz für `@rdlabo/ionic-angular-collect-icons` v3.0.2.
 
 ## Befehl
 
@@ -14,6 +14,7 @@ Durchsucht Angular-Quellcode und Templates und schreibt die von der Anwendung ve
 | -------------------- | --------- | ----------------------------------------------------------------------------- | ------------------ |
 | **`--dry-run`**      | `boolean` | Meldet Änderungen, ohne Dateien zu schreiben.                                        | `false`            |
 | **`--interactive`**  | `boolean` | Erfasst alle Optionen über Eingabeaufforderungen und ermöglicht die Prüfung des Ergebnisses.           | `false`            |
-| **`--initialize`**   | `boolean` | Ergänzt die Initialisierung von `addIcons` und entfernt Registrierungen auf Komponentenebene. | `false`            |
+| **`--initialize`**   | `boolean` | Ergänzt die Initialisierung von `initializeIonicons` und entfernt Registrierungen auf Komponentenebene. | `false`            |
+| **`--migrate`** | `boolean` | Bestätigt oder verwirft erkannte Quellcodemigrationen ausdrücklich; fragt in einem interaktiven Terminal nach, wenn die Option nicht gesetzt ist. | nicht gesetzt |
 | **`--project-path`** | `string`  | Projektverzeichnis, dessen `src`-Baum durchsucht wird.                                | aktuelles Verzeichnis  |
 | **`--icon-path`**    | `string`  | Erzeugte Datei zur Symbolregistrierung.                                             | `src/use-icons.ts` |

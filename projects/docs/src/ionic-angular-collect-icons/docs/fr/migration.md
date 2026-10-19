@@ -1,8 +1,74 @@
 ---
 title: "Migration"
-sourceRevision: "c4b917f0d294c34f78b9db694644d90f3e006aa2c4faa1980fc82160bd8594ca"
+sourceRevision: "8f924038c0f47c377f5128cccef98553d2b3b58b7610939139e05e7616353501"
 ---
 # Guide de migration
+
+## Mettre à niveau l’initialiseur d’icônes
+
+Cette section s’applique lors d’une mise à niveau depuis la version 3.0.1 ou une version antérieure vers une version qui fournit `initializeIonicons`.
+
+Les anciennes versions généraient une importation d’espace de noms pour le catalogue Ionicons complet :
+
+```ts
+import { addIcons } from "ionicons";
+import * as allIcons from "ionicons/icons";
+import * as useIcons from "./use-icons";
+
+addIcons(environment.production ? useIcons : allIcons);
+```
+
+Même si la branche de production sélectionnait `useIcons` à l’exécution, cette importation pouvait conserver le catalogue complet dans les bundles optimisés de l’application. Le package fournit désormais un runtime pour navigateur qui permet l’élimination du code inutilisé dans le graphe de dépendances de production.
+
+Mettez d’abord le package à jour, puis exécutez le collecteur dans un terminal interactif :
+
+```bash
+npm install --save-dev @rdlabo/ionic-angular-collect-icons@latest
+npx @rdlabo/ionic-angular-collect-icons
+```
+
+Les environnements de build doivent installer les dépendances de développement, car le code généré importe le runtime pour navigateur pendant la compilation. Ce runtime est ensuite intégré au bundle de l’application.
+
+Lorsqu’elle détecte cet initialiseur généré, la CLI demande s’il faut le migrer. **Yes** (Oui) est sélectionné par défaut. Choisir **No** (Non) laisse l’initialiseur inchangé et poursuit la collecte normale des icônes.
+
+Pour prévisualiser d’abord les différences de code source, choisissez **No** (Non), puis exécutez :
+
+```bash
+npx @rdlabo/ionic-angular-collect-icons --migrate true --dry-run true
+```
+
+Pour la CI ou tout autre environnement non interactif, approuvez explicitement la migration avec `--migrate true`. Sans cette option, l’initialiseur reste inchangé. Après approbation, le code obtenu est :
+
+```ts
+import { initializeIonicons } from "@rdlabo/ionic-angular-collect-icons/runtime";
+import * as useIcons from "./use-icons";
+
+void initializeIonicons(useIcons);
+```
+
+`initializeIonicons` enregistre les icônes collectées de manière synchrone. La fonction `isDevMode()` d’Angular charge ensuite le catalogue complet depuis un bundle isolé chargé à la demande en développement. En production, l’application démarre sans télécharger ce bundle de catalogue.
+
+La migration confirmée réécrit uniquement l’initialiseur ternaire généré par les anciennes versions :
+
+```ts
+addIcons(environment.production ? useIcons : allIcons);
+```
+
+Les liaisons d’importation doivent également correspondre à la structure générée connue. Les autres appels `addIcons(...)` et les importations utilisés par le code personnalisé de l’application sont conservés. L’outil reconnaît aussi bien l’ancien chemin généré sans préfixe, comme `"use-icons"`, que sa forme relative canonique `"./use-icons"`, et écrit la forme canonique après migration.
+Lorsque `--migrate true` est demandé explicitement, la forme conventionnelle `addIcons(useIcons)` est également mise à niveau, uniquement si `useIcons` est l’importation d’espace de noms du fichier d’icônes généré configuré. Si l’initialiseur a été personnalisé, remplacez manuellement l’importation et l’appel, et conservez séparément les enregistrements personnalisés.
+
+Pour annuler l’intégration du runtime tout en conservant l’élimination du code inutilisé dans les bundles de production, remplacez son importation et son appel par :
+
+```ts
+import { addIcons } from "ionicons";
+import * as useIcons from "./use-icons";
+
+addIcons(useIcons);
+```
+
+Ce retour en arrière n’enregistre pas le catalogue complet en développement. Ne rétablissez pas l’ancienne importation d’espace de noms `allIcons`, car elle est à l’origine de la régression de taille du bundle de production.
+
+Après la migration, exécutez les tests de l’application utilisatrice et un build de production optimisé. Les statistiques du bundle doivent contenir uniquement les icônes exportées par `use-icons.ts` dans le graphe initial. Le catalogue Ionicons complet peut apparaître dans un fragment séparé chargé à la demande, mais la production ne doit pas le télécharger au démarrage.
 
 ## Migrer vers Ionic Angular 9
 

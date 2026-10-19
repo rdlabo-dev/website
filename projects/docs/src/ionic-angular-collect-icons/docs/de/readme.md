@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "3e9bc955d3157e9d292e2679edaa72d1b438a6d6d1ff5b0523be180c5f3f5775"
+sourceRevision: "50ecc78db9ea57048dcd53380996c570c16e4669f4fc6fe7f88a801d11ffda81"
 ---
 # @rdlabo/ionic-angular-collect-icons
 
@@ -63,6 +63,22 @@ Automatisieren Sie den Collector wie unter [Verwendung](/docs/usage) gezeigt mit
 <!-- rdlabo-docs-omit -->
 
 **Vollständige Dokumentation:** [https://docs.rdlabo.dev/projects/ionic-angular-collect-icons](https://docs.rdlabo.dev/projects/ionic-angular-collect-icons)
+
+## Vorabversionskanäle
+
+Ein offener Pull Request, der kein Entwurf ist, kann unter dem npm-Dist-Tag `beta` veröffentlicht werden, nachdem seine Workflows `CI`, `Lint` und `Package Candidate` erfolgreich abgeschlossen wurden. Ein Repository-Eigentümer oder Maintainer muss einen Kommentar hinzufügen, dessen vollständiger Inhalt wie folgt lautet:
+
+```text
+/beta
+```
+
+Die Anfrage autorisiert nur den Head-SHA des Pull Requests zum Zeitpunkt des Kommentars. Unmittelbar vor der Veröffentlichung prüft der Workflow die Berechtigung des Eigentümers oder Maintainers sowie den Head-SHA erneut. Jeder neue Commit erfordert erneut erfolgreiche CI-Prüfungen und einen neuen `/beta`-Kommentar eines Eigentümers oder Maintainers. Pull Requests aus Forks werden unterstützt. Pull Requests, die einen Workflow zur Freigabe von Veröffentlichungen ändern, können erst als Beta veröffentlicht werden, wenn diese Workflow-Änderungen in `main` übernommen wurden.
+
+Beta-Versionen verwenden `<base>-beta.pr<PR number>.sha<12-character SHA>`. Der Kandidat wird in einem schreibgeschützten Workflow ohne npm-Zugangsdaten für Veröffentlichungen gebaut. Der privilegierte Release-Workflow veröffentlicht ausschließlich das validierte unveränderliche Paketartefakt mit deaktivierten Lebenszyklus-Skripten. Ein Benachrichtigungsfehler kann eine erfolgreiche npm-Veröffentlichung nicht ungültig machen.
+
+Wird ein Pull Request in `main` zusammengeführt, erfolgt die automatische Veröffentlichung unter `beta` erst, nachdem die erforderliche CI und `Package Candidate` für genau diesen Merge-Commit erfolgreich abgeschlossen wurden. Direkte Pushes auf `main` veröffentlichen keinen Kandidaten.
+
+Nur `npm run release` erstellt ein Release-Tag. Stabile `vX.Y.Z`-Tags werden auf npm unter `latest` veröffentlicht; Revisions- und Vorabversions-Tags unter `next`. Weder Veröffentlichungen unter `beta` noch unter `next` ändern das npm-Dist-Tag `latest`.
 
 ## Maintainer
 

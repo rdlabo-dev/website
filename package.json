@@ -97,7 +97,7 @@
     "@rdlabo/capacitor-printer": "8.0.1",
     "@rdlabo/capacitor-screenshot-event": "8.0.0",
     "@rdlabo/eslint-plugin-rules": "22.1.0",
-    "@rdlabo/ionic-angular-collect-icons": "3.0.0",
+    "@rdlabo/ionic-angular-collect-icons": "3.0.2",
     "@rdlabo/ionic-angular-kit": "22.0.3",
     "@rdlabo/ionic-angular-photo-editor": "22.0.3",
     "@rdlabo/ionic-angular-scroll-header": "22.0.3",

@@ -1,6 +1,6 @@
 ---
 title: "HTTP et authentification"
-sourceRevision: "59f1e73332c95e13facccee4efdfaf9553e453e7480f32a18766cf68f9ace72f"
+sourceRevision: "cf585e3d9c0da2d81e5be748898922b3b7efd1e322683a5674f7aeb84b7f2d92"
 ---
 # HTTP et authentification
 
@@ -25,7 +25,9 @@ app.get('/items', validate('query', querySchema), async (c) => {
 
 ## Authentification
 
-`createAuthMiddleware()` lit un en-tête contenant un jeton, vérifie un jeton d’identification Firebase, résout éventuellement l’identifiant de l’utilisateur dans l’application et stocke le résultat dans le contexte Hono. Utilisez `createRemoteFirebaseVerifier(projectId)` pour une vérification JWKS distante avec cache, ou `createServiceAccountVerifier()` si les opérations `getUser` et `deleteUser` d’Identity Toolkit sont nécessaires.
+`createAuthMiddleware()` lit un en-tête contenant un jeton, vérifie un jeton d’identification Firebase, résout éventuellement l’identifiant de l’utilisateur dans l’application et stocke le résultat dans le contexte Hono. Utilisez `createRemoteFirebaseVerifier(projectId)` pour une vérification JWKS distante avec cache, ou `createServiceAccountVerifier()` si les opérations `getUser`, `getUsers`, `getUserByEmail` et `deleteUser` d’Identity Toolkit sont nécessaires.
+
+`getUser`, `getUsers` et `getUserByEmail` renvoient un `FirebaseUserRecord` (`uid`, ainsi que `email` et `disabled` facultatifs). Le kit renvoie aussi les comptes désactivés ; les appelants décident de les rejeter ou non. La date de création du compte n’est pas récupérée. La recherche par e-mail utilise l’adresse principale et partage le cache de jetons OAuth avec les recherches par UID. Les utilisateurs inexistants donnent `null` (ou sont omis des résultats par lots), tandis que les échecs HTTP du fournisseur déclenchent une exception, y compris pour les recherches par UID qui renvoyaient auparavant un résultat vide en cas d’échec.
 
 Distinguez les échecs d’identité, de réauthentification et d’identifiants propres à une fonctionnalité grâce aux utilitaires qui produisent un corps d’erreur d’authentification stable.
 
@@ -45,4 +47,4 @@ Installez `createMaintenanceMiddleware()` après CORS et avant le middleware de 
 
 ## Étape suivante
 
-Poursuivez avec [Couche de données](./data-layer.md) pour MySQL et Hyperdrive, ou consultez [API](./api.md) pour la liste complète des exports.
+Poursuivez avec [Couche de données](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer) pour MySQL et Hyperdrive, ou consultez [API](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/api) pour la liste complète des exports.

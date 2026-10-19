@@ -1,6 +1,6 @@
 ---
 title: "Zeitzonen und Kalendertage"
-sourceRevision: "ae712728312a984ab84b088a37db99564eb16864e55834d0f7c25ad44c893109"
+sourceRevision: "dfd7bad05cce7cbbc2fc1b0ffb41741965c46545acfb777146249fcfd11e9784"
 ---
 # Zeitzonen und Kalendertage
 
@@ -38,4 +38,4 @@ Die Konstruktion ungültiger Kalenderwerte löst einen Fehler aus, statt den Jav
 
 Dieses Paket konfiguriert MySQL nicht. `@rdlabo/workers-mysql` besitzt unabhängige Wire-Hilfsfunktionen mit festem `+09:00`. Das Ändern der Geschäftszeitzone hier ändert weder diese Hilfsfunktionen noch mysql2-Optionen oder die MySQL-Sitzungszeitzone. Trennen Sie die Speicherung von Zeitpunkten von der Kalenderkonvertierung für Nutzer.
 
-Siehe [API](./api.md) und [Migration](./migration.md).
+Siehe [API](https://docs.rdlabo.dev/projects/workers-timezone/docs/api) und [Migration](https://docs.rdlabo.dev/projects/workers-timezone/docs/migration).

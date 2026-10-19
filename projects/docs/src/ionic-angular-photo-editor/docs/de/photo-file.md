@@ -1,8 +1,8 @@
 ---
 title: "PhotoFileService"
-sourceRevision: "53cdfc80235f4aabe79c254c4dee4f08257e8d7ca7870ab415e2c7a41f9cdd61"
+sourceRevision: "dc55e05c76a753f43a0bc9652feac6f554f3e2ffadff264be70c80199af3702e"
 ---
-Laden Sie Fotos über die Dateiauswahl im Browser oder auf nativen Plattformen von Kamera oder Album. Verwenden Sie dies nach der [Installation](../README.md#installation).
+Laden Sie Fotos über die Dateiauswahl im Browser oder auf nativen Plattformen von Kamera oder Album. Verwenden Sie dies nach der [Installation](/docs/readme#installation).
 
 ## Browser: auswählen und anzeigen
 

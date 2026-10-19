@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "0911987f4d59aa74b6cc1742220cef6f22d6ab16076d0b86e553ae9d09e7476f"
+sourceRevision: "d12e7c4b43f75e518017c960d8b0f01d27802ddb6c78853d057e2559b03d8992"
 ---
-Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.3. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
+Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.6. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
 
 ## Kern
 
@@ -16,11 +16,19 @@ sourceRevision: "0911987f4d59aa74b6cc1742220cef6f22d6ab16076d0b86e553ae9d09e7476
 | HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [Authentifizierung und HTTP](/docs/auth-http)     |
 | Echtzeit       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Offline und Echtzeit](/docs/offline-realtime) |
 
+`KitAuthLoginExchange` und `kitPreloadAuthLoginForNavigation` teilen Anmeldeanfragen beim Start. Siehe [Authentifizierung und HTTP](/docs/auth-http).
+
 ## Optionale Einstiegspunkte
 
 #### `module` @rdlabo/ionic-angular-kit/offline
 
 APIs für Offline-Repository, synchronisiertes Replikat, Outbox, Anfragerichtlinien, Schema, Identität und Wiederherstellung. Verwenden Sie `provideOffline` oder seine gezielten Provider-Varianten als zentralen Ort der Zusammenstellung.
+
+`OfflineStorageLifecycle` und `OfflineStorageGenerationChangedError` verwalten ausdrücklich verwerfbare Speichergenerationen. Siehe [Offline und Echtzeit](/docs/offline-realtime).
+
+#### `module` @rdlabo/ionic-angular-kit/offline/storage-generation
+
+`inspectOfflineStorageGeneration` prüft Speichermarker beim Start, ohne die Offline-Laufzeit frühzeitig zu laden.
 
 #### `module` @rdlabo/ionic-angular-kit/forms
 
@@ -30,9 +38,21 @@ APIs für Offline-Repository, synchronisiertes Replikat, Outbox, Anfragerichtlin
 
 Provider für Firebase-Authentifizierung und typisierte Funktionen für Anmeldung, Registrierung, Verknüpfung, erneute Authentifizierung, Verifizierung, Passwörter und Kontoaktualisierungen.
 
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/apple
+
+Helfer für Apple-Anmeldung und -Verknüpfung mit ihren Antwort- und Optionstypen.
+
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/facebook
+
+Helfer für Facebook-Anmeldung, -Verknüpfung und -Abmeldung mit ihren Antwort- und Optionstypen.
+
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/google
+
+Helfer für Google-Popup/native Anmeldung, Firebase-Sitzungsverknüpfung und Abmeldung mit ihren Antwort- und Optionstypen.
+
 #### `module` @rdlabo/ionic-angular-kit/auth-firebase/social
 
-Hilfsfunktionen für soziale Authentifizierung mit Apple und Facebook sowie deren Antwort- und Optionstypen.
+**Veraltet, zur Kompatibilität erhalten.** Hilfsfunktionen für soziale Authentifizierung mit Apple und Facebook sowie deren Antwort- und Optionstypen. Bevorzugen Sie anbieterspezifische Einstiegspunkte; dieser kombinierte Einstiegspunkt benötigt beide Plugins.
 
 #### `module` @rdlabo/ionic-angular-kit/app-update
 

@@ -87,7 +87,6 @@ export interface ProjectDefinition {
 }
 
 const text = (en: string, ja: string): LocalizedText => ({ en, ja });
-const ionicAngularLibraryDocsRef = 'daf7864a1bc7c0a7b4376811ec3429270d319974';
 
 export const projectCategoryDefinitions: readonly ProjectCategoryDefinition[] = [
   {
@@ -206,6 +205,11 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
     ].includes(ruleName)
       ? { updatedAt: text('2026-09-06', '2026-10-01') }
       : { updatedAt: { ja: '2026-10-01' } }),
+    ...(ruleName === 'require-ion-item-group'
+      ? {
+          updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+        }
+      : {}),
   }),
 );
 
@@ -326,7 +330,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'daf7864a1bc7c0a7b4376811ec3429270d319974',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -385,7 +388,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'getting-started.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
       ),
       page(
         'Storage and Overlays',
@@ -432,7 +435,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'auth-http.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-10-01') },
+        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
       ),
       page(
         'Offline and Realtime',
@@ -441,7 +444,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'offline-realtime.md',
         'Guide',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
       ),
       page(
         'Optional Features',
@@ -450,8 +453,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'optional-features.md',
         'Reference',
         'リファレンス',
+        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
       ),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+      }),
     ],
   },
   {
@@ -462,7 +469,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Photo Editor',
     packageName: '@rdlabo/ionic-angular-photo-editor',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
     category: 'frontend-tools',
     icon: 'app',
@@ -533,7 +539,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Theme', 'テーマ', 'theme', 'theme.md', 'Guides', 'ガイド'),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+      }),
     ],
   },
   {
@@ -544,7 +553,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Scroll Header',
     packageName: '@rdlabo/ionic-angular-scroll-header',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
     category: 'frontend-tools',
     icon: 'app',
@@ -627,7 +635,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+      }),
     ],
   },
   {
@@ -638,7 +649,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Angular CDK Scroll Strategies',
     packageName: '@rdlabo/ngx-cdk-scroll-strategies',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: ionicAngularLibraryDocsRef,
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies',
     category: 'frontend-tools',
     icon: 'app',
@@ -737,7 +747,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         ),
         updatedAt: text('2026-08-25', '2026-08-25'),
       }),
-      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス'),
+      page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
+        localEnglishSource: true,
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+      }),
     ],
   },
   {
@@ -1213,8 +1226,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Timezone',
     packageName: '@rdlabo/workers-timezone',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Cloudflare Workers timezone utilities + ESLint | rdlabo',
       'Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo',
@@ -1350,8 +1361,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers MySQL',
     packageName: '@rdlabo/workers-mysql',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Cloudflare Workers MySQL + Hyperdrive library | rdlabo',
       'Cloudflare WorkersのMySQL・Hyperdrive連携 | rdlabo',
@@ -1491,8 +1500,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Workers Hono Kit',
     packageName: '@rdlabo/workers-hono-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/workers-hono-kit',
-    // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: 'fe1bf936e26027aca63ae196988cc071b0ac164e',
     seoTitle: text(
       'Hono for Cloudflare Workers: API toolkit | rdlabo',
       'Cloudflare WorkersのHono API開発ツールキット | rdlabo',
@@ -1583,7 +1590,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Install workers-hono-kit for Hono APIs on Cloudflare Workers. Choose entry points for HTTP, authentication, queues, and testing.',
             'Cloudflare WorkersのHono APIにworkers-hono-kitを導入。HTTP、認証、Queue、テストに必要なエントリポイントを紹介します。',
           ),
-          updatedAt: text('2026-09-06', '2026-10-01'),
+          updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
         },
       ),
       page(
@@ -1602,7 +1609,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, consistent JSON errors, and response finalization helpers.',
             'Cloudflare WorkersのHono APIでバリデーション、Firebase認証、共通JSONエラー、レスポンス確定のヘルパーを利用する方法を解説します。',
           ),
-          updatedAt: text('2026-09-06', '2026-09-06'),
+          updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
         },
       ),
       page('Data Layer', 'データ層', 'data-layer', 'data-layer.md', 'Guide', 'ガイド', {
@@ -1664,7 +1671,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Cloudflare Workers向けworkers-hono-kitのAPI。HTTP、Firebase認証、DB adapter、Queue、Realtime、テストのエントリポイントを掲載。',
         ),
         localEnglishSource: true,
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
       }),
     ],
   },
@@ -1676,8 +1683,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
-    // Reviewed runnable guides; API package versions remain pinned independently.
-    englishDocsRef: '4f7aa80c5bfd443b53fe746e66fcaf07375da275',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -2694,7 +2699,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Brother Print',
     packageName: '@rdlabo/capacitor-brotherprint',
     repositoryUrl: 'https://github.com/rdlabo-dev/capacitor-brotherprint',
-    englishDocsRef: 'c3486da72432a88512d8870a634f0c6a6868f901',
     category: 'capacitor-plugins',
     icon: 'terminal',
     adapter: 'markdown',
@@ -2739,7 +2743,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: text('2026-09-10', '2026-10-01'),
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
       }),
       page(
         'Installation',
@@ -2759,7 +2763,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'connection-management.md',
         'JavaScript helpers',
         'JavaScriptヘルパー',
-        { updatedAt: text('2026-09-10', '2026-10-01') },
+        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
       ),
       page(
         'Helper design decisions',
@@ -2771,7 +2775,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         { updatedAt: text('2026-09-10', '2026-09-10') },
       ),
       page('Search', 'Search', 'search', 'search.md', 'Plugin API', 'プラグインAPI', {
-        updatedAt: text('2026-09-10', '2026-10-01'),
+        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
       }),
       page('Print', 'Print', 'print', 'print.md', 'Plugin API', 'プラグインAPI', {
         updatedAt: text('2026-09-06', '2026-10-01'),

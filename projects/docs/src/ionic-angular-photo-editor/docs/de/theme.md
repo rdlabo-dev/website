@@ -1,8 +1,8 @@
 ---
 title: "Theme"
-sourceRevision: "40fb446dcf00c070708e98c90222fdbc4a9a19513d0914184a9009b30a261cb3"
+sourceRevision: "59f095d99d81841807f10cbc30cd2b374811078bbeb77bc7d8c2c96aead55225"
 ---
-Überschreiben Sie die Editorfarben nach der [Installation](../README.md#installation).
+Überschreiben Sie die Editorfarben nach der [Installation](/docs/readme#installation).
 
 Die Standardfarben sind im Stylesheet der Bibliothek definiert. Überschreiben Sie sie mit CSS-Variablen:
 
@@ -23,7 +23,7 @@ Die Standardfarben sind im Stylesheet der Bibliothek definiert. Überschreiben S
 }
 ```
 
-Quellreferenz: [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/photo-editor/src/lib/pages/core.scss).
+Quellreferenz: [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/photo-editor/src/lib/pages/core.scss).
 
 ## Farbschema der Toolbar
 

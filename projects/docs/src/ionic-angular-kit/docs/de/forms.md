@@ -1,6 +1,6 @@
 ---
 title: "Formulare"
-sourceRevision: "1bedd2967dc882ce35bcef004341a18eb66c51fe9865ba2ffdca1d27249d975b"
+sourceRevision: "807e4b68621a2244e9d6aa7e1eda623ab54d72a01989b384ccf0269476498a9a"
 ---
 # Ionic Signal Forms
 
@@ -60,4 +60,4 @@ export const appConfig: ApplicationConfig = {
 
 Angular führt mehrere Klassenkonfigurationen von `provideSignalFormsConfig` nicht zusammen. Stellt die Anwendung eine eigene Konfiguration bereit, kombinieren Sie alle erforderlichen Klassenzuordnungen in einem Provider, statt beide Provider zu registrieren und sich auf deren Reihenfolge zu verlassen.
 
-Die passende Lint-Konfiguration finden Sie unter [Die Kit-Integration mit ESLint prüfen](./eslint.md).
+Die passende Lint-Konfiguration finden Sie unter [Die Kit-Integration mit ESLint prüfen](/docs/eslint).

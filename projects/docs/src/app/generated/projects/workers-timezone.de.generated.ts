@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
   "category": "developer-tools",
   "icon": "server",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "seoTitle": "Zeitzonenhilfen für Cloudflare Workers und ESLint | rdlabo",
   "description": "IANA-Zeitzonenumrechnung und Kalenderhilfen für Cloudflare Workers, ergänzt durch ESLint-Prüfungen für implizite Zeitzonenverwendung in Date und Intl.",
   "headline": "Zeitzonenumrechnung für Cloudflare Workers",

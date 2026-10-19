@@ -44,5 +44,5 @@ const label = instant.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
 
 ## 実装
 
-- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-implicit-timezone.ts)
-- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-implicit-timezone.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-implicit-timezone.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-implicit-timezone.ts)

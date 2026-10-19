@@ -1,6 +1,6 @@
 ---
 title: "Vérifier l’intégration du kit avec ESLint"
-sourceRevision: "621cfef57d9f6b603d1075c99817d1188aa4668c85888ef1d43096f94e106dfb"
+sourceRevision: "9c53bb3945b16d41d6a229b13c9ebd026478c74e33cf090409f9b1771b91adbf"
 ---
 Assurez la cohérence des lanceurs de fenêtres modales, des gestionnaires d’actions asynchrones et des erreurs de formulaire à mesure que votre application Ionic Angular évolue. `@rdlabo/eslint-plugin-rules` vérifie les formes d’appel compatibles avec `@rdlabo/ionic-angular-kit`.
 
@@ -48,7 +48,7 @@ Ces règles sont également incluses dans `rdlabo.configs.recommended`.
 
 `deny-overlay-create` signale les appels `.create()` sur `ModalController` et `PopoverController`. `prefer-modal-launcher` vérifie que les appels à `presentModal` se trouvent dans des fonctions `launch*`.
 
-Avec `overlay` et `DetailPage` issus de votre [configuration des overlays](./storage-overlays.md), le code suivant est signalé :
+Avec `overlay` et `DetailPage` issus de votre [configuration des overlays](/docs/storage-overlays), le code suivant est signalé :
 
 ```ts
 export const openDetail = () => overlay.presentModal(DetailPage);
@@ -87,7 +87,7 @@ La règle vérifie l’appel d’encapsulation, pas le comportement du travail a
 
 Par défaut, `require-ion-error-text` exige une source de texte d’erreur sur les contrôles Ionic dotés de `[formField]`.
 
-Pour les applications Angular 22 utilisant [Kit Signal Forms](./forms.md), importez `FormField` et `KitIonicFormField` dans chaque composant concerné et installez `provideKitIonicSignalForms()`. Remplacez ensuite cette entrée dans les `rules` de la configuration HTML :
+Pour les applications Angular 22 utilisant [Kit Signal Forms](/docs/forms), importez `FormField` et `KitIonicFormField` dans chaque composant concerné et installez `provideKitIonicSignalForms()`. Remplacez ensuite cette entrée dans les `rules` de la configuration HTML :
 
 ```js
 '@rdlabo/rules/require-ion-error-text': [

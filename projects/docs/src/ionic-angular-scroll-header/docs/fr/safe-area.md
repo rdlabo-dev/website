@@ -1,10 +1,10 @@
 ---
 title: "Zone de sécurité"
-sourceRevision: "1dfbfdfd3499605339d61d10d39d216305e99d1016bd3f3bf9ab450d9533236a"
+sourceRevision: "087da82956e73bbc2ab6b291bca176d1cf2ba6b3485a0b183b6f01bf9729ac46"
 ---
 En-têtes masqués préservant la zone de sécurité et en-têtes natifs toujours visibles.
 
-Partez de l’en-tête sensible au défilement d’[IonContent](./ion-content.md), puis choisissez ci-dessous la structure d’en-tête adaptée à votre mise en page.
+Partez de l’en-tête sensible au défilement d’[IonContent](/docs/ion-content), puis choisissez ci-dessous la structure d’en-tête adaptée à votre mise en page.
 
 ## Pourquoi définir un en-tête masqué pour la zone de sécurité ?
 

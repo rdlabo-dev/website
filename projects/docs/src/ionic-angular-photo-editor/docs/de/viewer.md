@@ -1,8 +1,8 @@
 ---
 title: "Fotobetrachter"
-sourceRevision: "1cb39a942464db1e23c19cd0897b6369034e7c8f0a187af65bc6de0cad39d582"
+sourceRevision: "8dfb575e465baa0e04ea2b999f132d3c845299ced3ba680de485f505dd36a4ad"
 ---
-Öffnen Sie `PhotoViewerPage` über eine Schaltfläche oder eine vorhandene Seitenmethode als modalen Ionic-Dialog. Verwenden Sie dies nach der [Installation](../README.md#installation). Installieren Sie `swiper`, wenn Sie den Betrachter einsetzen.
+Öffnen Sie `PhotoViewerPage` über eine Schaltfläche oder eine vorhandene Seitenmethode als modalen Ionic-Dialog. Verwenden Sie dies nach der [Installation](/docs/readme#installation). Installieren Sie `swiper`, wenn Sie den Betrachter einsetzen.
 
 ```typescript
 import { Component, inject } from '@angular/core';
@@ -81,7 +81,7 @@ Bei `true` wird unter iOS ein Safe-Area-Abstand im Footer ergänzt.
 
 ### toolbarColorScheme: 'light' | 'dark'
 
-**Erforderlich.** Verwenden Sie `dark` für eine dunkle bzw. schwarze `ion-toolbar` und `light` für eine helle bzw. weiße Toolbar. Siehe [Theme](./theme.md).
+**Erforderlich.** Verwenden Sie `dark` für eine dunkle bzw. schwarze `ion-toolbar` und `light` für eine helle bzw. weiße Toolbar. Siehe [Theme](/docs/theme).
 
 ### imageAlt: string | ((url: string, index: number) => string)
 

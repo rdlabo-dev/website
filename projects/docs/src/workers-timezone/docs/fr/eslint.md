@@ -1,10 +1,10 @@
 ---
 title: "Détecter les erreurs de fuseau horaire avec ESLint"
-sourceRevision: "66b3cbb9eb67eda2713293b99c52480b8051271990b81416d16e37235befe02f"
+sourceRevision: "2dae856cd947f479ad8f712fd2d54aa3d17bcf4a37e7ffe431835fa4c0a0145e"
 ---
 Faites respecter la même règle de fuseau horaire au nouveau code Cloudflare Workers. Associez `@rdlabo/workers-timezone` à `@rdlabo/eslint-plugin-rules` pour détecter les opérations `Date` / `Intl` dans le fuseau de l’hôte et les initialisations à la portée d’une requête.
 
-Pour une démonstration exécutable des deux packages, commencez par [Essayer les conversions et le lint](./quickstart.md).
+Pour une démonstration exécutable des deux packages, commencez par [Essayer les conversions et le lint](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart).
 
 ## Activer le préréglage associé
 
@@ -95,4 +95,4 @@ npx eslint 'src/**/*.ts' --max-warnings 0
 
 Adaptez le chemin des sources à votre application. Conservez les tests de fuseau horaire pour l’heure d’été et les limites calendaires : les contrôles statiques couvrent les opérations reconnaissables, pas toutes les valeurs dynamiques.
 
-Consultez la [règle Date / Intl](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone), la [règle d’initialisation](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope) et le [comportement des fuseaux horaires](./timezones.md).
+Consultez la [règle Date / Intl](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone), la [règle d’initialisation](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope) et le [comportement des fuseaux horaires](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones).

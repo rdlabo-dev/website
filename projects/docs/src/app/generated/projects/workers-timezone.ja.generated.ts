@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
   "category": "developer-tools",
   "icon": "server",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "seoTitle": "Cloudflare Workersのタイムゾーン・日時変換とESLint | rdlabo",
   "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
   "headline": "Cloudflare Workersの日時変換",

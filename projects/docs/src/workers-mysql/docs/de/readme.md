@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "5df84bf9a09391b9d0102756651e33804bba6160b18422967bdb897dd591709f"
+sourceRevision: "a18d5386321e910a8df1ad6289265c5584a2bb19ae89c7fac01797b9e50481a8"
 ---
 # @rdlabo/workers-mysql
 
@@ -39,7 +39,7 @@ Verwenden Sie die passende unterstützte Hauptversion für Ihre Werkzeuge. Autom
 
 ## Mit einer echten Abfrage beginnen
 
-[Ihre erste MySQL-Abfrage ausführen](/docs/quickstart): Starten Sie eine kurzlebige lokale Datenbank, führen Sie ein parametrisiertes `SELECT` aus und prüfen Sie das Ergebnis. Die Anleitung zeigt anschließend den vollständigen Worker-Handler für eine bestehende Hyperdrive-Bindung.
+[Ihre erste MySQL-Abfrage ausführen](https://docs.rdlabo.dev/projects/workers-mysql/docs/quickstart): Starten Sie eine kurzlebige lokale Datenbank, führen Sie ein parametrisiertes `SELECT` aus und prüfen Sie das Ergebnis. Die Anleitung zeigt anschließend den vollständigen Worker-Handler für eine bestehende Hyperdrive-Bindung.
 
 ## Einen Einstiegspunkt wählen
 

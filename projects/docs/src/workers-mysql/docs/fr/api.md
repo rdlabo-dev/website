@@ -1,11 +1,11 @@
 ---
 title: "API"
-sourceRevision: "6f206b9502858de3bbc997d222bfc2d31dc6e22697856c143aa54c1a06cd3b20"
+sourceRevision: "7d9ef6a8d879caff5a8c4970ce625e6825a1c4c434e165ebd02b616b08608fda"
 ---
 # API
 
 Les exports publics sont regroupés par chemin d’importation. Les déclarations TypeScript installées fournissent les signatures
-génériques complètes. Commencez par [Environnement d’exécution](./runtime.md) pour le cycle de vie et les nouvelles tentatives.
+génériques complètes. Commencez par [Environnement d’exécution](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime) pour le cycle de vie et les nouvelles tentatives.
 
 ## `@rdlabo/workers-mysql`
 
@@ -23,7 +23,7 @@ Accepte `{ orm, replica }` et renvoie `Database<TDrizzle>`. L’appelant gère l
 #### `function` hyperdriveConnectionOptions
 
 `hyperdriveConnectionOptions(hyperdrive, extra?)` crée les options mysql2 depuis une liaison structurelle
-`HyperdriveLike`. Consultez [Drizzle et dates](./drizzle.md) pour les valeurs par défaut.
+`HyperdriveLike`. Consultez [Drizzle et dates](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle) pour les valeurs par défaut.
 
 #### `function` withMysqlConnections
 
@@ -58,7 +58,7 @@ La configuration et la résolution des secrets sont destinées aux outils Node.j
 
 Node.js uniquement : `baselineMigrations`, `readBaselineEntry` et `resolveDbSecret`.
 Types : `BaselineMigrationsOptions`, `BaselineResult`, `BaselineEntry` et `ResolvedDbSecret`.
-Consultez les exigences de sûreté dans [Migrations et tests](./tooling.md).
+Consultez les exigences de sûreté dans [Migrations et tests](https://docs.rdlabo.dev/projects/workers-mysql/docs/tooling).
 
 ## `@rdlabo/workers-mysql/testing`
 

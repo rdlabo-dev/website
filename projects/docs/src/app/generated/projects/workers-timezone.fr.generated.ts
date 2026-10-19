@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
   "category": "developer-tools",
   "icon": "server",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "seoTitle": "Utilitaires de fuseaux horaires pour Cloudflare Workers et ESLint | rdlabo",
   "description": "Conversion des fuseaux horaires IANA et utilitaires de calendrier pour Cloudflare Workers, associés à des contrôles ESLint de l’utilisation implicite du fuseau horaire dans Date et Intl.",
   "headline": "Conversion des fuseaux horaires pour Cloudflare Workers",

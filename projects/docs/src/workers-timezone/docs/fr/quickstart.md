@@ -1,6 +1,6 @@
 ---
 title: "Essayer ensemble les conversions de fuseau horaire et ESLint"
-sourceRevision: "9ed437287a41f0f96e3a8f3fbb0779e4ffcc3044c42031334e6626391c130e28"
+sourceRevision: "57227ca41afb532c6f82543e339c44165c160db90607e54994e3513eaa8d20fb"
 ---
 Un même instant peut appartenir à des dates calendaires différentes. Observez d’abord cette différence, puis faites signaler par ESLint le code qui utilise par erreur le fuseau horaire de l’hôte.
 
@@ -115,4 +115,4 @@ Le lint doit de nouveau réussir ; la dernière ligne ajoutée affiche `2026-01-
 
 ## 4. Utiliser ces outils dans l’application
 
-Suivez la [configuration de l’application](../README.md) pour choisir le fuseau horaire par défaut, puis [activez ESLint dans la CI](./eslint.md). Consultez [Fuseaux horaires et dates calendaires](./timezones.md) pour les paramètres par utilisateur, l’heure d’été et la séparation avec la base de données.
+Suivez la [configuration de l’application](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme) pour choisir le fuseau horaire par défaut, puis [activez ESLint dans la CI](https://docs.rdlabo.dev/projects/workers-timezone/docs/eslint). Consultez [Fuseaux horaires et dates calendaires](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones) pour les paramètres par utilisateur, l’heure d’été et la séparation avec la base de données.

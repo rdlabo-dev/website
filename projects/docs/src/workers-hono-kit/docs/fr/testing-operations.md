@@ -1,6 +1,6 @@
 ---
 title: "Tests et exploitation"
-sourceRevision: "28e908a57608242217553841a36d42490fd0a06d6403693db26060bf197da40c"
+sourceRevision: "39493fcf5bc68faf5f4d6309f9050b7749cf90ae34e620bb0d4381a0e61d689b"
 ---
 # Tests et exploitation
 
@@ -36,4 +36,4 @@ Les clients AWS, Firebase, AI Gateway, Stripe et de base de données sont config
 
 ## Étape suivante
 
-Consultez [API de test](./api-testing.md) pour les tableaux d’exports, [CLI](./cli.md) pour les détails des commandes, ou [API](./api.md) pour la liste complète des packages et points d’entrée.
+Consultez [API de test](./api-testing.md) pour les tableaux d’exports, [CLI](./cli.md) pour les détails des commandes, ou [API](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/api) pour la liste complète des packages et points d’entrée.

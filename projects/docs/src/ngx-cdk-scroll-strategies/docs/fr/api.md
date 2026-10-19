@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "2bf220047960f996876e915ac1be4d8efc7add61286b7abfda6fc71bc918b396"
+sourceRevision: "1a79b6ee28a67d0a1b735436d1a969310b1876bc819a44967ba59c4d63660444"
 ---
-Référence de l’API publique exportée par `@rdlabo/ngx-cdk-scroll-strategies` v22.0.3.
+Référence de l’API publique exportée par `@rdlabo/ngx-cdk-scroll-strategies` v22.0.6.
 
 ## Directive
 

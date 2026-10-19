@@ -1,6 +1,6 @@
 ---
 title: "Drucken"
-sourceRevision: "df3ec2ae1952ac70cd33e94e9c496f844ccec438d5e24a144368f7d49c1bdb52"
+sourceRevision: "3a23717d09f43712422a8a924c20cb22c300b35a199e9172a396a1d0ed0803c2"
 ---
 # Drucken
 
@@ -33,7 +33,7 @@ const printImage = async (printer: BRLMChannelResult, encodedImage: string) => {
 
 Eine vollständige Seite finden Sie in der Demo:
 
-https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/demo/src/app/home/home.page.ts
+https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/demo/src/app/home/home.page.ts
 
 <!-- !::printImage:: -->
 

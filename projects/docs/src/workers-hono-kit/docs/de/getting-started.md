@@ -1,12 +1,12 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "01402388df976e0a8ad93e162a5b70b4567aab5178940bdb2447f3bbe8cdcd2c"
+sourceRevision: "8be3ec9d53ccfc01cd119064d7e4d732b1959f192b4fcdf92351ee72e5147d2c"
 ---
 # @rdlabo/workers-hono-kit
 
 Gemeinsame Hono-Bausteine für Cloudflare Workers-APIs: schwache ETags, Validierung und Fehlerantworten im NestJS-Format, Firebase-Authentifizierungsmiddleware, AWS-Hilfsfunktionen, AI Gateway-Anbindung, Stripe, KV, Queues sowie Echtzeit- und Offline-Verträge.
 
-[Probieren Sie eine Hono-API lokal aus](./docs/quickstart.md): Senden Sie eine Health-Check-Anfrage, prüfen Sie ihren schwachen ETag und sehen Sie sich die JSON-Antwort für eine fehlende Route an. Für die erste Übung benötigen Sie weder ein Cloudflare-Konto noch einen offenen Port.
+[Probieren Sie eine Hono-API lokal aus](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/quickstart): Senden Sie eine Health-Check-Anfrage, prüfen Sie ihren schwachen ETag und sehen Sie sich die JSON-Antwort für eine fehlende Route an. Für die erste Übung benötigen Sie weder ein Cloudflare-Konto noch einen offenen Port.
 
 ## Installation
 
@@ -68,6 +68,27 @@ Der Haupteinstiegspunkt lädt weder MySQL noch Drizzle oder die nur für Node vo
 ### Veraltete Kompatibilitäts-Imports
 
 Die Kit-Pfade `/db` und `/business-time` sowie die datenbankbezogenen `/testing`-Exports (`createTestDb`, Pool-/Noop-Datenbank-Doubles und gemeinsame `Database`-Typen) tragen auf Symbolebene `@deprecated`-Tags, die auf `@rdlabo/workers-mysql` / `@rdlabo/workers-timezone` verweisen. Verwenden Sie diese Pakete bevorzugt für neuen Code. Die Kompatibilitätsaliasnamen behalten dieselbe Identität zur Laufzeit und dieselben Signaturen; ihre Entfernung ist nicht geplant. Kit-eigene Hilfsfunktionen wie `reopenGuardedPaymentFailedSet`, `createContainerRuntime` aus `/mysql` und Firebase-/Auth-/KV-/Stripe-Testhilfsfunktionen werden durch diese Migration nicht als veraltet markiert.
+
+### Soziale Authentifizierung (Google / Apple)
+
+Die Root-Exports `verifyGoogleIdentityToken`, `verifyAppleIdentityToken`, `hasFirebaseProviderIdentity` und `createAppleClientSecret` bieten wiederverwendbare Hilfsfunktionen zur Prüfung des OIDC-Subjects, zum Abgleich mit einer Firebase-Identität und zum Signieren des Apple-`client_secret`. HTTP-Antworten, Persistenz sowie der Austausch oder Widerruf von Provider-Tokens bleiben in der Verantwortung der Anwendung.
+
+`hasFirebaseProviderIdentity` erwartet die Payload eines **verifizierten** Firebase-ID-Tokens. Übergeben Sie `requireSignInProvider: true`, wenn ein Endpunkt eine Anmeldung über diesen Provider voraussetzt (das Subject ist verknüpft **und** `firebase.sign_in_provider` stimmt überein). Behalten Sie `false` (Standard) für Verknüpfungs-/Trennungsprüfungen oder kombinierte Anmelde-/Verknüpfungsendpunkte bei, die auch über einen anderen Provider aufgebaute Sitzungen akzeptieren. Diese Richtlinie legt die Anwendung fest.
+
+```ts
+import { hasFirebaseProviderIdentity, verifyGoogleIdentityToken } from '@rdlabo/workers-hono-kit';
+
+// firebaseVerifier ist der konfigurierte FirebaseVerifier der Anwendung.
+const verifiedFirebaseToken = await firebaseVerifier.verifyIdToken(firebaseIdToken);
+const subject = await verifyGoogleIdentityToken(googleIdToken, GOOGLE_CLIENT_IDS);
+// Anmeldung: aktive Google-Anmeldung voraussetzen
+if (!hasFirebaseProviderIdentity(verifiedFirebaseToken, 'google.com', subject, true)) {
+  return c.json({ error: 'Google identity mismatch' }, 401);
+}
+// Verknüpfen / Trennen: das Vorhandensein des Subjects reicht aus
+// hasFirebaseProviderIdentity(verifiedFirebaseToken, 'google.com', subject)
+```
+
 
 ## Dokumentation
 

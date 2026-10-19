@@ -1,12 +1,12 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "60d2c684422539fad0b404ef0516a5f272e37792e4c5abc13f274e8d43105fc6"
+sourceRevision: "7ddab3baad7d1397670e02d7421025a93a0483102b2ed14a1c6ce28d2f0ec543"
 ---
 # @rdlabo/workers-timezone
 
 Zeitzonenbewusste Hilfsfunktionen für Kalenderdaten und lokale Uhrzeiten in Cloudflare Workers. Workers arbeiten mit UTC-Zeitpunkten. Dieses Paket ermöglicht einer Anwendung, einmal pro Isolate eine IANA-Zeitzone zu wählen, und berücksichtigt Sommerzeit beim Konvertieren zwischen Zeitpunkten und lokalen Datumswerten.
 
-Probieren Sie die [Konvertierungsdemo](/docs/quickstart) aus. Wir empfehlen, die Bibliothek mit [ESLint-Prüfungen](/docs/eslint) zu kombinieren, um implizite Zeitzonenverwendung zu erkennen.
+Probieren Sie die [Konvertierungsdemo](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart) aus. Wir empfehlen, die Bibliothek mit [ESLint-Prüfungen](https://docs.rdlabo.dev/projects/workers-timezone/docs/eslint) zu kombinieren, um implizite Zeitzonenverwendung zu erkennen.
 
 ## Installation
 

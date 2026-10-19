@@ -1,10 +1,10 @@
 ---
 title: "API"
-sourceRevision: "1fbfc5bf4ba86f0be75644457954e1e7d6772bb6cec9fcafbc37052caf886674"
+sourceRevision: "f6b7caf6a607dc107b7a26eb06d78c37f498b5264be72305788972c1ee1bf6a7"
 ---
 # API
 
-Alle folgenden Exporte stammen aus `@rdlabo/workers-timezone`. `timeZone?` verwendet den initialisierten Standard oder vor der Initialisierung `Asia/Tokyo`. Fehler- und Sommerzeitverhalten beschreibt [Zeitzonen](./timezones.md).
+Alle folgenden Exporte stammen aus `@rdlabo/workers-timezone`. `timeZone?` verwendet den initialisierten Standard oder vor der Initialisierung `Asia/Tokyo`. Fehler- und Sommerzeitverhalten beschreibt [Zeitzonen](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones).
 
 ## Konfiguration
 

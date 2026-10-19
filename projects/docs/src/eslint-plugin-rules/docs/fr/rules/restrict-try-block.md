@@ -1,6 +1,6 @@
 ---
 title: "restrict-try-block"
-sourceRevision: "85b249d8d46a2a9fdce6ec03dad33be3234b989024ddcf1eb3aab26ddb3cc216"
+sourceRevision: "87bb0387c3fa7415c957b0dea84629388e92b076938e14a26b16dda881681dbb"
 ---
 # @rdlabo/rules/restrict-try-block
 
@@ -185,5 +185,5 @@ La vérification de `Promise.resolve()` reconnaît le `Promise` global non masqu
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/restrict-try-block.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/restrict-try-block.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/restrict-try-block.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/restrict-try-block.ts)

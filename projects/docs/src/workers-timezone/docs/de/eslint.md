@@ -1,10 +1,10 @@
 ---
 title: "Zeitzonenfehler mit ESLint erkennen"
-sourceRevision: "66b3cbb9eb67eda2713293b99c52480b8051271990b81416d16e37235befe02f"
+sourceRevision: "2dae856cd947f479ad8f712fd2d54aa3d17bcf4a37e7ffe431835fa4c0a0145e"
 ---
 Halten Sie neuen Cloudflare-Workers-Code an derselben Zeitzonenstrategie fest. Kombinieren Sie `@rdlabo/workers-timezone` mit `@rdlabo/eslint-plugin-rules`, um hostlokale `Date`- / `Intl`-Operationen und Initialisierungen innerhalb von Anfragen zu erkennen.
 
-Beginnen Sie für eine ausführbare Demo beider Pakete mit [Konvertierungen und Lint ausprobieren](./quickstart.md).
+Beginnen Sie für eine ausführbare Demo beider Pakete mit [Konvertierungen und Lint ausprobieren](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart).
 
 ## Das ergänzende Preset aktivieren
 
@@ -95,4 +95,4 @@ npx eslint 'src/**/*.ts' --max-warnings 0
 
 Passen Sie den Quellpfad an Ihre Anwendung an. Behalten Sie Zeitzonentests für Sommerzeit und Kalendergrenzen bei. Statische Prüfungen decken erkennbare Operationen ab, nicht jeden dynamischen Wert.
 
-Siehe die [Date-/Intl-Regel](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone), die [Initialisierungsregel](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope) und das [Zeitzonenverhalten](./timezones.md).
+Siehe die [Date-/Intl-Regel](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone), die [Initialisierungsregel](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope) und das [Zeitzonenverhalten](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones).

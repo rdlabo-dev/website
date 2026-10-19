@@ -54,13 +54,15 @@ const stopSearching = async () => {
 
 ### BluetoothとBLE
 
-iOSの`bluetooth`は、最初に接続済みのMFiプリンターを一覧にします。接続済みの機器がない場合はシステムのBluetoothアクセサリ選択画面を表示し、プリンターを選択・ペアリングできます。探索のPromiseは選択画面のコールバック後に完了し、選択画面のエラーではrejectします。
+iOSの`bluetooth`は、最初に接続済みのMFiプリンターを一覧にします。接続済みの機器がない場合はシステムのBluetoothアクセサリ選択画面を表示し、プリンターを選択・ペアリングできます。探索のPromiseは選択画面のコールバック後に完了し、選択画面のエラーではrejectします。選択画面の待機は `searchDuration` 秒後（既定値15、最小1）、または `cancelSearchBluetoothPrinter()` の呼び出し時にrejectします。遅れて届いた結果は無視します。Appleはこの選択画面を閉じるAPIを提供していないため、再試行前に閉じてください。以前の選択画面が開いている間、新しい選択画面の要求は即座にrejectします。システムが選択画面を表示も終了もしない場合は、アプリを再起動してから再試行してください。
+
+Capacitor 8.5への更新時などに `SceneDelegate` へ移行する場合は、システムのアクセサリ選択画面が使う `AppDelegate.window` にもシーンのウィンドウを設定してください。シーンのウィンドウを作成した後に `(UIApplication.shared.delegate as? AppDelegate)?.window = window` を設定します。この参照がないと、探索が始まっていても選択画面が表示されない場合があります。
 
 BLE対応プリンターには`port: BRLMPrinterPort.bluetoothLowEnergy`を使います。iOSではBluetoothアクセサリ選択画面を使わず、`startBLESearch`で探索します。探索結果の`channelInfo`（BLEローカル名）を変更せず、`isChannelAvailable`や`printImage`へ渡してください。BLE探索エラーではPromiseがrejectします。QL-820NWB/QL-820NWBcはBLE印刷に対応していないため、`bluetooth`または`wifi`を使います。
 
 Androidでは、`bluetooth`で探索する前にシステム設定でペアリングしてください。SDKはペアリング済みプリンターを一覧にし、iOSのようなアクセサリ選択画面は提供しません。Bluetooth・BLEの探索は完了時にresolveし、SDKエラーではrejectします。Android 12以降は「付近のデバイス」、Android 11以前のBLEでは位置情報の権限を要求します。Bluetoothの権限がない場合、`isChannelAvailable`は`false`を返します。
 
-`searchDuration` は `wifi` と `bluetoothLowEnergy` で使います。`usb` は Android のみです。見つからない場合はエラーにはならず、プリンターも届きません。
+`searchDuration` は `wifi`、`bluetoothLowEnergy`、iOSの `bluetooth` アクセサリ選択画面の待機に使います。`usb` は Android のみです。Wi-Fi・BLE探索が結果なしで完了した場合は、プリンターなしでresolveします。iOSのアクセサリ選択画面のエラー、キャンセル、待機タイムアウトでは探索がrejectします。キャンセルは実行中のiOS Bluetooth初回スキャンもrejectし、遅れて届いた結果による選択画面の表示を防ぎます。
 
 !::search::
 

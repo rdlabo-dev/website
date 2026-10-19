@@ -2,11 +2,15 @@
 title: API
 ---
 
-`@rdlabo/workers-hono-kit` v0.12.2 と独立MySQL・タイムゾーンパッケージのエントリポイントです。
+`@rdlabo/workers-hono-kit` v0.13.0 と独立MySQL・タイムゾーンパッケージのエントリポイントです。
 
 #### `module` @rdlabo/workers-hono-kit
 
 MySQLの実行時依存を持たないHono・インフラhelper
+
+ルートのソーシャル認証exportには `verifyGoogleIdentityToken`、`verifyAppleIdentityToken`、`hasFirebaseProviderIdentity`、`createAppleClientSecret`、および `AppleClientSecretConfig`、`APPLE_IDENTITY_ISSUER`、`GOOGLE_IDENTITY_ISSUERS` があります。Identity tokenの検証は署名・issuer・audience・有効期限を確認してprovider subjectを返します。`hasFirebaseProviderIdentity` は検証済みFirebase payloadを調べるだけで、Firebase JWT自体は検証しません。アプリが決定するログイン・リンクのポリシーは[ソーシャル認証](/docs/getting-started)を参照してください。
+
+`FirebaseVerifier` は `getUser`、`getUsers`、`getUserByEmail` によるアカウント検索を提供し、`IdentityToolkit` はそれぞれに対応する `lookup`、`lookupMany`、`lookupByEmail` を提供します。`FirebaseUserRecord` は `uid` と任意の `email` / `disabled` を持ちます。無効化されたアカウントも返され、判断はアプリが行います。存在しないユーザーは `null` を返すかbatch結果から除外し、プロバイダーの失敗は例外になります。[HTTP・認証](/docs/http-auth)を参照してください。
 
 #### `module` @rdlabo/workers-mysql
 

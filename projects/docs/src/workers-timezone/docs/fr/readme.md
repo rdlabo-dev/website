@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "60d2c684422539fad0b404ef0516a5f272e37792e4c5abc13f274e8d43105fc6"
+sourceRevision: "7ddab3baad7d1397670e02d7421025a93a0483102b2ed14a1c6ce28d2f0ec543"
 ---
 # @rdlabo/workers-timezone
 
@@ -8,7 +8,7 @@ Utilitaires de calendrier et d’heure locale tenant compte des fuseaux horaires
 ce package permet à l’application de choisir un fuseau horaire IANA une fois par isolate et gère l’heure d’été
 lors des conversions entre instants et dates locales.
 
-Essayez la [démonstration de conversion](/docs/quickstart). Nous recommandons d’associer la bibliothèque aux [contrôles ESLint](/docs/eslint) pour détecter les utilisations implicites du fuseau horaire.
+Essayez la [démonstration de conversion](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart). Nous recommandons d’associer la bibliothèque aux [contrôles ESLint](https://docs.rdlabo.dev/projects/workers-timezone/docs/eslint) pour détecter les utilisations implicites du fuseau horaire.
 
 ## Installer
 

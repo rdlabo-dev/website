@@ -1,6 +1,6 @@
 ---
 title: "API"
-sourceRevision: "c35774f0e6362afaa778d676b06476131fe6756382de9f6ae9de263a678f82c2"
+sourceRevision: "0f35f3c1cda1930aca45886d510b171064e5c8cec1d9a8e5f249371a9e4fa809"
 ---
 * [`printImage(...)`](#printimage)
 * [`search(...)`](#search)
@@ -205,7 +205,7 @@ Ces paramètres sont facultatifs. S’ils ne sont pas définis, l’imprimante l
 
 #### BRLMSearchOption
 
-<code>{ /** * 'usb' is android only, and now developing. */ port: <a href="#brlmprinterport">BRLMPrinterPort</a>; /** * searchDuration is the time to end search for devices. * default is 15 seconds. * use only port is 'wifi' or 'bluetoothLowEnergy'. */ searchDuration: number; /** * Android Bluetooth Classic only. Include only devices whose Bluetooth class * reports a printer. Defaults to false; ignored for other ports and on iOS. * This does not identify Brother devices. Devices with an unknown class are excluded when true. */ bluetoothPrintersOnly?: boolean; }</code>
+<code>{ /** * 'usb' is android only, and now developing. */ port: <a href="#brlmprinterport">BRLMPrinterPort</a>; /** * searchDuration is the time to end search for devices. * default is 15 seconds. * Used for Wi-Fi, BLE, and the iOS Bluetooth accessory picker wait. * Timing out does not dismiss the system accessory picker; close it before retrying. */ searchDuration: number; /** * Android Bluetooth Classic only. Include only devices whose Bluetooth class * reports a printer. Defaults to false; ignored for other ports and on iOS. * This does not identify Brother devices. Devices with an unknown class are excluded when true. */ bluetoothPrintersOnly?: boolean; }</code>
 
 #### isChannelAvailableResult
 

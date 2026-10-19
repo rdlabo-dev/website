@@ -1,6 +1,6 @@
 ---
 title: "Drizzle et dates"
-sourceRevision: "cb2864278489e406bf537d9e3209860bdf658959ef22aa45d90844ab560a8d42"
+sourceRevision: "7e4a3e16ce927a27d41a8c6675fd9257c96bafc29feb868469261c8d8ed0b4e4"
 ---
 # Drizzle et dates
 
@@ -38,4 +38,4 @@ calendaire. Validez séparément les entrées utilisateur ; cette fonction n’�
 Pour les horodatages de mise à jour, `jstOnUpdateNow(fsp?)` fournit l’expression SQL utilisée avec
 `.$onUpdateFn(() => jstOnUpdateNow(6))`. Examinez les migrations générées et le fuseau horaire du serveur.
 
-Consultez [Environnement d’exécution](./runtime.md), [Outils](./tooling.md) et [API](./api.md).
+Consultez [Environnement d’exécution](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime), [Outils](https://docs.rdlabo.dev/projects/workers-mysql/docs/tooling) et [API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api).

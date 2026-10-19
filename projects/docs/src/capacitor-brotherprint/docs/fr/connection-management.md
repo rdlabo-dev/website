@@ -1,6 +1,6 @@
 ---
 title: "Utilitaires JavaScript pour imprimantes"
-sourceRevision: "067159fea3da3298614f4cf7f3115015fb281490f317635e7ba4120dafc1ab8f"
+sourceRevision: "f4d2eec4a5b3fcaa66053453f5868e9804e60109352f81f6b8dddf8ffbb8cbc6"
 ---
 # Utilitaires JavaScript pour imprimantes
 
@@ -49,7 +49,7 @@ const printers = await searchBrotherPrinters(
 3. Transmettez le `port` et le `channelInfo` du canal choisi, ainsi que le modèle, le papier et l’image, à `session.printImage`. Consultez [Impression](/docs/print) pour les options d’impression natives.
 4. Appelez `dispose()` dans le gestionnaire de sortie de l’écran. Il n’est pas nécessaire d’attendre la fin de l’impression pour fermer l’écran.
 
-L’exemple suivant montre la création et le nettoyage d’une session. Pour combiner sélection et impression, consultez l’[exemple TypeScript](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts).
+L’exemple suivant montre la création et le nettoyage d’une session. Pour combiner sélection et impression, consultez l’[exemple TypeScript](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts).
 
 
 Utilisez un `BrotherPrinterSession` par écran d’impression. Les utilitaires de connexion utilisent directement la plateforme Capacitor ; la session gère les résultats de recherche, les notifications d’impression et la fermeture. Ne réutilisez pas une session fermée. Les utilitaires sans état restent disponibles pour les opérations indépendantes de la durée de vie d’un écran.
@@ -128,10 +128,10 @@ y compris les alias de produits comme QL-820NWBc. Les noms inconnus renvoient `u
 
 ## Ordre des recherches et erreurs
 
-La recherche, la préparation et les vérifications explicites de connexion partagent une file d’attente. L’appel suivant commence après la fin de l’opération native précédente et du nettoyage de ses écouteurs, même si cet appel a échoué. Aucun délai d’expiration JavaScript ne libère prématurément la file. Ne combinez pas des appels directs concurrents à `BrotherPrint.search()` ou à la vérification de connexion avec ces utilitaires : les appels directs contournent la file et les événements natifs n’ont pas d’identifiant de requête. L’impression reste également en dehors de cette file ; attendez la préparation de la connexion avant d’appeler `printImage`. Le modèle facultatif filtre les résultats non USB ; les résultats USB sont conservés même si le SDK renvoie un modèle ou une adresse vide. Les choix de connexion n’étendent pas la prise en charge native ; consultez le README existant et les instructions d’installation du SDK.
+La recherche, la préparation et les vérifications explicites de connexion partagent une file d’attente. L’appel suivant commence après la fin de l’opération native précédente et du nettoyage de ses écouteurs, même si cet appel a échoué. Aucun délai d’expiration JavaScript ne libère prématurément la file. Ne combinez pas des appels directs concurrents à `BrotherPrint.search()` ou à la vérification de connexion avec ces utilitaires : les appels directs contournent la file et les événements natifs n’ont pas d’identifiant de requête. L’impression reste également en dehors de cette file ; attendez la préparation de la connexion avant d’appeler `printImage`. La découverte conserve tous les résultats dont le port correspond, y compris ceux de modèles différents ; elle n’exclut aucun résultat selon le nom du modèle. Les résultats d’un autre port sont écartés, et les doublons de port et d’adresse sont éliminés. L’argument de modèle facultatif de `searchBrotherPrinters` et `session.search` est conservé pour compatibilité, mais n’est pas utilisé. Les résultats USB sont conservés même si le SDK renvoie un modèle ou une adresse vide. Les choix de connexion n’étendent pas la prise en charge native ; consultez le README existant et les instructions d’installation du SDK.
 
 Avec les fonctions sans état, l’application gère les indicateurs de chargement, l’interface de sélection et la mise en cache. Transmettez son canal enregistré à `prepareBrotherPrinters`, choisissez un canal renvoyé et appelez la méthode existante `BrotherPrint.printImage()` avec le port et l’adresse sélectionnés. L’utilitaire ne réessaie pas l’impression. Enregistrez le canal choisi dans l’application pour la préparation suivante.
 
 Utilisez `searchDuration: 3` pour une recherche préliminaire courte ou `10` pour une recherche normale ; il s’agit de choix de l’appelant, pas de nouvelles tentatives automatiques. L’annulation par les méthodes natives existantes affecte la recherche active ; elle ne retire pas les appels aux utilitaires en attente. Aucune instance de contrôleur ni aucun appel séparé de nettoyage des écouteurs n’est requis.
 
-Consultez l’[exemple d’impression en TypeScript simple](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts). Dans une copie des sources, `npm test` teste les utilitaires et vérifie les types de cet exemple.
+Consultez l’[exemple d’impression en TypeScript simple](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts). Dans une copie des sources, `npm test` teste les utilitaires et vérifie les types de cet exemple.

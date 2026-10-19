@@ -1,13 +1,13 @@
 ---
 title: "Einfache Verwendung"
-sourceRevision: "44a5927716257eeaa8abe1ce979a3e3d256ee95453e94f8f6104d42eda714b63"
+sourceRevision: "01b1d9bb00917e1e7970209fe2b7f418b475feaae7d338884abc36017789db7e"
 ---
-Rufen Sie dies nach der [Installation](../README.md#installation) auf.
+Rufen Sie dies nach der [Installation](/docs/readme#installation) auf.
 
 > Für Elemente, deren unterschiedliche Höhen bereits bekannt sind.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/simple
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.3/projects/demo/src/app/scroll-strategies/pages/scroll-simple
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.6/projects/demo/src/app/scroll-strategies/pages/scroll-simple
 
 Geben Sie dem Viewport im globalen CSS eine feste Höhe:
 

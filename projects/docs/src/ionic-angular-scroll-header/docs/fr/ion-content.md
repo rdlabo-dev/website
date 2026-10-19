@@ -1,11 +1,11 @@
 ---
 title: "IonContent"
-sourceRevision: "21a016a78f5b3a1dc1b58e2a695b517ba04fb34e2949d7faa04f3e47ecb5da2c"
+sourceRevision: "1cbdf6ba2a8d0c2c126ea7dba3a0d820d21e7a38ee1c5fec543288cd0e675282"
 ---
-Associez des en-têtes sensibles au défilement au contenu Ionic. Faites-le après l’[installation](../README.md#installation). Importez d’abord globalement le CSS du package. Les en-têtes masqués préservant la zone de sécurité et les en-têtes natifs toujours visibles sont décrits dans [Zone de sécurité](./safe-area.md).
+Associez des en-têtes sensibles au défilement au contenu Ionic. Faites-le après l’[installation](/docs/readme#installation). Importez d’abord globalement le CSS du package. Les en-têtes masqués préservant la zone de sécurité et les en-têtes natifs toujours visibles sont décrits dans [Zone de sécurité](/docs/safe-area).
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';
@@ -40,4 +40,4 @@ export class ScrollHeaderPage {
 }
 ```
 
-Faites défiler vers le bas : l’en-tête du contenu disparaît. Faites défiler vers le haut : il réapparaît. L’élément externe `ion-header.hidden` réserve l’espace de la zone de sécurité ; consultez [Zone de sécurité](./safe-area.md) si vous avez besoin d’une autre disposition d’en-tête.
+Faites défiler vers le bas : l’en-tête du contenu disparaît. Faites défiler vers le haut : il réapparaît. L’élément externe `ion-header.hidden` réserve l’espace de la zone de sécurité ; consultez [Zone de sécurité](/docs/safe-area) si vous avez besoin d’une autre disposition d’en-tête.

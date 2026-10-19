@@ -1,6 +1,6 @@
 ---
 title: "deny-soft-private-modifier"
-sourceRevision: "e5ed155a59e482bdaa36b67842116a4feb28be6df68b4e3dc80c7fd25e02e794"
+sourceRevision: "835c59f9ecaabd6fb32fbf47434caf6db6aa8481b4d2720d7f5407bf0bdf0c31"
 ---
 # @rdlabo/rules/deny-soft-private-modifier
 
@@ -67,5 +67,5 @@ Aktivieren Sie diese Regel, wenn ein Projekt zur Laufzeit durchgesetzte Kapselun
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-soft-private-modifier.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-soft-private-modifier.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-soft-private-modifier.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-soft-private-modifier.ts)

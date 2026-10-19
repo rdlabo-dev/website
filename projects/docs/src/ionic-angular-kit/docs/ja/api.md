@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-kit` v22.0.3 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
+`@rdlabo/ionic-angular-kit` v22.0.6 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
 
 ## Core
 
@@ -16,11 +16,19 @@ title: API
 | HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [認証・HTTP](/docs/auth-http)               |
 | Realtime       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Offline・Realtime](/docs/offline-realtime) |
 
+起動時のログインリクエストを共有する `KitAuthLoginExchange` と `kitPreloadAuthLoginForNavigation` です。[認証・HTTP](/docs/auth-http)を参照してください。
+
 ## Optional entry point
 
 #### `module` @rdlabo/ionic-angular-kit/offline
 
 Offline repository、同期Replica、Outbox、Request Policy、Schema、Identity、Recovery APIです。Composition Rootには `provideOffline` または用途別Providerを使います。
+
+明示的に破棄可能としたストレージ世代を管理する `OfflineStorageLifecycle` と `OfflineStorageGenerationChangedError` です。[Offline・Realtime](/docs/offline-realtime)を参照してください。
+
+#### `module` @rdlabo/ionic-angular-kit/offline/storage-generation
+
+`inspectOfflineStorageGeneration` はoffline runtimeを先行ロードせずに起動時のストレージmarkerを確認します。
 
 #### `module` @rdlabo/ionic-angular-kit/forms
 
@@ -30,9 +38,21 @@ Angular 22 Signal FormsをIonic controlへadaptする `KitIonicFormField`、`pro
 
 Firebase Authentication Providerと、Sign-in、Sign-up、Link、Reauthentication、Verification、Password、Account更新の型付き関数です。
 
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/apple
+
+Appleのsign-inとlinking helper、およびresponse・option typeです。
+
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/facebook
+
+Facebookのlogin、linking、logout helper、およびresponse・option typeです。
+
+#### `module` @rdlabo/ionic-angular-kit/auth-firebase/google
+
+Google popup/Native sign-in、Firebase session linking、logout helper、およびresponse・option typeです。
+
 #### `module` @rdlabo/ionic-angular-kit/auth-firebase/social
 
-Apple・Facebook Social Authentication helperとresponse・option typeです。
+**非推奨。互換性のため維持。** Apple・Facebook Social Authentication helperとresponse・option typeです。プロバイダー別entry pointを優先してください。この統合entry pointは両pluginを必要とします。
 
 #### `module` @rdlabo/ionic-angular-kit/app-update
 

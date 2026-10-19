@@ -1,6 +1,6 @@
 ---
 title: "no-reactive-forms"
-sourceRevision: "96444cfdcc19d491565c8f5476942560117d1e84ee132a1b338872d3c0a155a1"
+sourceRevision: "4ab596ad014bcc6cf0ec06ef6a798f995909df60a52f263dd3483fa11aee37b7"
 ---
 # @rdlabo/rules/no-reactive-forms
 
@@ -79,5 +79,5 @@ Aktivieren Sie diese Regel in Angular-Projekten, die Signal Forms übernommen ha
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-reactive-forms.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-reactive-forms.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-reactive-forms.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-reactive-forms.ts)

@@ -1,11 +1,11 @@
 ---
 title: "Défilement virtuel"
-sourceRevision: "b9b083ed0ebd4a7676d82d743f942a2d109aa57182aeb831fed7a2cea7de1d9f"
+sourceRevision: "860d9dd28cef8762485731fcadbf34d84ab58f4dd303ae551b873ad428481f88"
 ---
-Ajoutez des en-têtes sensibles au défilement à un viewport de défilement virtuel CDK existant. Partez de [IonContent](./ion-content.md) pour le modèle d’en-tête et de zone de sécurité, puis remplacez l’hôte du défilement par un viewport. Faites-le après l’[installation](../README.md#installation).
+Ajoutez des en-têtes sensibles au défilement à un viewport de défilement virtuel CDK existant. Partez de [IonContent](/docs/ion-content) pour le modèle d’en-tête et de zone de sécurité, puis remplacez l’hôte du défilement par un viewport. Faites-le après l’[installation](/docs/readme#installation).
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';
@@ -54,7 +54,7 @@ export class VirtualScrollHeaderPage {
 }
 ```
 
-Donnez au viewport une hauteur définie grâce au CSS global de l’[installation](../README.md#installation).
+Donnez au viewport une hauteur définie grâce au CSS global de l’[installation](/docs/readme#installation).
 
 ### Éviter les sauts et le scintillement en haut du défilement
 

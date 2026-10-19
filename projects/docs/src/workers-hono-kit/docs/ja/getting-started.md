@@ -69,6 +69,27 @@ export default app;
 
 kitが所有する `reopenGuardedPaymentFailedSet`、`/mysql` の `createContainerRuntime`、Firebase・認証・KV・Stripeのテストhelperは、この移行では非推奨になりません。
 
+### ソーシャル認証（Google / Apple）
+
+ルートからexportされる `verifyGoogleIdentityToken`、`verifyAppleIdentityToken`、`hasFirebaseProviderIdentity`、`createAppleClientSecret` は、OIDC subjectの検証、Firebase identityとの照合、Appleの `client_secret` 署名を共通化します。HTTPレスポンス、永続化、プロバイダーのtoken交換・失効処理はアプリケーションが担当します。
+
+`hasFirebaseProviderIdentity` には**検証済み**のFirebase ID token payloadを渡します。そのプロバイダーでのサインインが必要なendpointでは、`requireSignInProvider: true` を指定します（subjectがリンク済みで、かつ `firebase.sign_in_provider` が一致）。リンク・解除の確認や、別のプロバイダーで確立したセッションも受け入れるログイン・リンク共用endpointでは、`false`（既定値）のままにします。このポリシーはアプリケーションが決定します。
+
+```ts
+import { hasFirebaseProviderIdentity, verifyGoogleIdentityToken } from '@rdlabo/workers-hono-kit';
+
+// firebaseVerifierはアプリケーションで構成したFirebaseVerifierです。
+const verifiedFirebaseToken = await firebaseVerifier.verifyIdToken(firebaseIdToken);
+const subject = await verifyGoogleIdentityToken(googleIdToken, GOOGLE_CLIENT_IDS);
+// ログイン: Googleでの有効なサインインを必須にする
+if (!hasFirebaseProviderIdentity(verifiedFirebaseToken, 'google.com', subject, true)) {
+  return c.json({ error: 'Google identity mismatch' }, 401);
+}
+// リンク・解除: subjectが含まれていればよい
+// hasFirebaseProviderIdentity(verifiedFirebaseToken, 'google.com', subject)
+```
+
+
 ## ドキュメント
 
 - [HTTP・認証](/docs/http-auth)

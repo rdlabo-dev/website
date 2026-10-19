@@ -43,7 +43,7 @@ const printers = await searchBrotherPrinters(
 3. 選んだチャネルの`port`・`channelInfo`と、モデル・用紙・画像を`session.printImage`へ渡します。[Print](/docs/print)で印刷オプションを確認できます。
 4. 画面を離れる処理で`dispose()`を呼びます。印刷処理を待ってから破棄する必要はありません。
 
-以下はセッションの作成と終了の例です。実際の選択・印刷を含む例は[TypeScriptサンプル](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts)を参照してください。
+以下はセッションの作成と終了の例です。実際の選択・印刷を含む例は[TypeScriptサンプル](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts)を参照してください。
 
 
 印刷画面ごとに1つの`BrotherPrinterSession`を使います。接続ヘルパーはCapacitorのプラットフォームを直接使い、セッションは探索結果、印刷通知、破棄を管理します。破棄済みのセッションは再利用しません。画面の寿命に紐付かない処理にはステートレスなヘルパーも利用できます。
@@ -122,10 +122,10 @@ const session = new BrotherPrinterSession({
 
 探索、接続準備、明示的な接続確認は同じキューを共有します。前のネイティブ処理とリスナーの片付けが完了してから次の呼び出しが始まり、前の処理が失敗しても継続します。JavaScriptの探索タイムアウトでキューを早期解放しません。直接の`BrotherPrint.search()`や接続確認をヘルパーと並行実行しないでください。直接呼び出しはキューを通らず、ネイティブイベントにはリクエストIDがありません。印刷もこのキューの対象外なので、接続準備をawaitしてから`printImage`を呼びます。
 
-任意のモデル指定はUSB以外の結果を絞り込みます。USBではSDKが空のモデル名やアドレスを返しても結果を保持します。接続方法の選択肢がネイティブの対応範囲を拡張するわけではありません。既存のREADMEとSDKのインストール手順も確認してください。
+探索では、異なるモデルを含め、ポートが一致するすべての結果を保持し、モデル名による除外は行いません。ポートが異なる結果は除外し、同じポートとアドレスの結果は重複を除きます。`searchBrotherPrinters` と `session.search` の任意のモデル引数は互換性のために残されていますが、使用しません。USBではSDKが空のモデル名やアドレスを返しても結果を保持します。接続方法の選択肢がネイティブの対応範囲を拡張するわけではありません。既存のREADMEとSDKのインストール手順も確認してください。
 
 ステートレスな関数を使う場合、読み込み表示、選択UI、キャッシュはアプリが管理します。保存済みチャネルを`prepareBrotherPrinters`へ渡し、返されたチャネルを選んで、ポートとアドレスを既存の`BrotherPrint.printImage()`へ渡します。ヘルパーは印刷をリトライしません。選んだチャネルを次回の接続準備のためにアプリで保存します。
 
 短い事前探索なら`searchDuration: 3`、通常の探索なら`10`を指定できます。これは呼び出し元の選択で、自動リトライではありません。既存のネイティブメソッドによるキャンセルは実行中の探索に作用し、待機中のヘルパー呼び出しを削除しません。コントローラーのインスタンスや別のリスナー削除呼び出しは不要です。
 
-[素のTypeScriptによる印刷例](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts)も参照してください。ソースのチェックアウトで`npm test`を実行すると、ヘルパーのテストとこの例の型検査を行います。
+[素のTypeScriptによる印刷例](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts)も参照してください。ソースのチェックアウトで`npm test`を実行すると、ヘルパーのテストとこの例の型検査を行います。

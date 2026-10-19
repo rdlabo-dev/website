@@ -1,6 +1,6 @@
 ---
 title: "Migrations et tests"
-sourceRevision: "6eecda01792307173d33dbe68c7086167a6a7bde07485e2b57107ff077872828"
+sourceRevision: "ea35881385d08fa78a530a9c4bf6e5348e5d7291c9111fae03356f6b18733a53"
 ---
 # Migrations et tests
 
@@ -48,4 +48,4 @@ de base distinct. `createPoolDatabase({ pool, orm })` utilise un pool unique pou
 lors de `dispose()`. `createNoopDatabase()` renvoie des lectures vides et déclenche une erreur pour les écritures ou
 transactions inattendues ; c’est un stub, pas un test d’acceptation avec MySQL.
 
-Consultez les types disponibles dans l’[API](./api.md).
+Consultez les types disponibles dans l’[API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api).

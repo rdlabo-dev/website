@@ -23,7 +23,9 @@ app.get('/items', validate('query', querySchema), async (c) => {
 
 ## 認証
 
-`createAuthMiddleware()` はtoken headerを読み、Firebase ID tokenを検証し、必要ならアプリのuser IDを解決してHono contextへ保存します。Remote JWKSをcacheして検証するには `createRemoteFirebaseVerifier(projectId)`、Identity Toolkitの `getUser`・`deleteUser` が必要なら `createServiceAccountVerifier()` を使います。
+`createAuthMiddleware()` はtoken headerを読み、Firebase ID tokenを検証し、必要ならアプリのuser IDを解決してHono contextへ保存します。Remote JWKSをcacheして検証するには `createRemoteFirebaseVerifier(projectId)`、Identity Toolkitの `getUser`・`getUsers`・`getUserByEmail`・`deleteUser` が必要なら `createServiceAccountVerifier()` を使います。
+
+`getUser`、`getUsers`、`getUserByEmail` は `FirebaseUserRecord`（`uid`、任意の `email` と `disabled`）を返します。kitは無効化されたアカウントも返すため、拒否するかどうかは呼び出し側が決定します。アカウント作成日時は取得しません。メールアドレス検索はprimary emailを使用し、UID検索とOAuth token cacheを共有します。ユーザーが存在しない場合は `null` を返します（batchでは結果から除外）。プロバイダーのHTTPエラーは例外になります。以前は失敗時に空の結果を返していたUID検索も同様です。
 
 共通identity、再認証、機能credentialの失敗はstable auth-failure body helperで区別します。
 

@@ -1,8 +1,8 @@
 ---
 title: "Éditeur de photos"
-sourceRevision: "d4b495090399c75bd7377cd4bc03a697c390ab9f03c230dd40b5f692024d9495"
+sourceRevision: "a0592d194ebd215bfa5979ccb5ebb8f6d29b0d023d4f39d9b650fe0fa1c9bf99"
 ---
-Présentez `PhotoEditorPage` depuis un bouton ou une méthode de page existante via une fenêtre modale Ionic. Faites-le après l’[installation](../README.md#installation).
+Présentez `PhotoEditorPage` depuis un bouton ou une méthode de page existante via une fenêtre modale Ionic. Faites-le après l’[installation](/docs/readme#installation).
 
 ```typescript
 import { Component, inject } from '@angular/core';
@@ -71,7 +71,7 @@ URL de l’image ou URL de données à modifier.
 
 ### toolbarColorScheme: 'light' | 'dark'
 
-**Obligatoire.** Utilisez `dark` pour un `ion-toolbar` sombre/noir et `light` pour une barre claire/blanche. La bibliothèque ne peut pas déduire l’apparence de la barre depuis le CSS, sa translucidité ou les modifications de thème à l’exécution. Consultez [Thème](./theme.md).
+**Obligatoire.** Utilisez `dark` pour un `ion-toolbar` sombre/noir et `light` pour une barre claire/blanche. La bibliothèque ne peut pas déduire l’apparence de la barre depuis le CSS, sa translucidité ou les modifications de thème à l’exécution. Consultez [Thème](/docs/theme).
 
 ### labels: Partial&lt;PhotoEditorLabels&gt;
 

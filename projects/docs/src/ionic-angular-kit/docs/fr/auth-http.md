@@ -1,6 +1,6 @@
 ---
 title: "Authentification et HTTP"
-sourceRevision: "66614e310f548bc9ec22af4ea4243fc2dd6a517d01f272f224c7d62fd11ac55b"
+sourceRevision: "1851fbaaf3fc89785e9d73f853569dbfa63ae0ecfa57e95fa3401f831d8ca85f"
 ---
 ## Capacité d’accès
 
@@ -48,6 +48,14 @@ export const routes: Routes = [
 ```
 
 Utilisez `kitRequiredUnauthorizedGuard`, `kitRequireConfirmingGuard` et `kitRequireAuthorizedGuard` dans les définitions de routes. Une décision asynchrone protégée suspend la capacité distante précédemment publiée jusqu’à la réussite du bail d’autorisation courant.
+
+## Partager les requêtes de connexion au démarrage
+
+`KitAuthLoginExchange<Identity, Result>` partage une requête de connexion au backend en cours. Un résultat préchargé (y compris un échec) peut être consommé une seule fois par l’autorisation tant que la navigation d’origine est courante, jusqu’à 30 secondes après son achèvement. Les appels d’autorisation suivants effectuent une nouvelle requête ; ce n’est pas un cache de permissions.
+
+Conservez une seule instance dans le service d’authentification de l’application. Capturez l’utilisateur Firebase lors de la construction de la requête, rejetez les réponses destinées à un utilisateur remplacé et appelez `clear()` à la déconnexion. L’éligibilité des fournisseurs, la récupération après suppression, l’acceptation des conditions et le traitement des réponses restent à la charge de l’application.
+
+Pour les applications qui initialisent un runtime local avant l’autorisation, appelez `kitPreloadAuthLoginForNavigation(router, isCurrent => auth.preloadTokenLogin(isCurrent))` après la disponibilité de Firebase et la récupération de compte requise, avant d’attendre l’initialisation du runtime. Exécutez la fonction de nettoyage renvoyée si l’initialisation échoue. Elle abandonne le travail non consommé lorsque cette navigation se termine ou est annulée. Les applications sans travail de démarrage utile à exécuter en parallèle peuvent utiliser uniquement `run(identity, request)`.
 
 ## Règles HTTP
 

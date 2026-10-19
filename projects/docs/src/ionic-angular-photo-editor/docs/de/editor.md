@@ -1,8 +1,8 @@
 ---
 title: "Fotoeditor"
-sourceRevision: "d4b495090399c75bd7377cd4bc03a697c390ab9f03c230dd40b5f692024d9495"
+sourceRevision: "a0592d194ebd215bfa5979ccb5ebb8f6d29b0d023d4f39d9b650fe0fa1c9bf99"
 ---
-Öffnen Sie `PhotoEditorPage` über eine Schaltfläche oder eine vorhandene Seitenmethode als modalen Ionic-Dialog. Verwenden Sie dies nach der [Installation](../README.md#installation).
+Öffnen Sie `PhotoEditorPage` über eine Schaltfläche oder eine vorhandene Seitenmethode als modalen Ionic-Dialog. Verwenden Sie dies nach der [Installation](/docs/readme#installation).
 
 ```typescript
 import { Component, inject } from '@angular/core';
@@ -71,7 +71,7 @@ Zu bearbeitende Bild-URL oder Daten-URL.
 
 ### toolbarColorScheme: 'light' | 'dark'
 
-**Erforderlich.** Verwenden Sie `dark` für eine dunkle bzw. schwarze `ion-toolbar` und `light` für eine helle bzw. weiße Toolbar. Die Bibliothek kann das Aussehen der Toolbar nicht aus CSS, Transparenz oder Theme-Überschreibungen zur Laufzeit ableiten. Siehe [Theme](./theme.md).
+**Erforderlich.** Verwenden Sie `dark` für eine dunkle bzw. schwarze `ion-toolbar` und `light` für eine helle bzw. weiße Toolbar. Die Bibliothek kann das Aussehen der Toolbar nicht aus CSS, Transparenz oder Theme-Überschreibungen zur Laufzeit ableiten. Siehe [Theme](/docs/theme).
 
 ### labels: Partial&lt;PhotoEditorLabels&gt;
 

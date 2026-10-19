@@ -31,7 +31,8 @@ import { disableHandler, KitStorageService } from '@rdlabo/ionic-angular-kit';
 @Component({
   selector: 'app-preferences-demo',
   imports: [IonButton],
-  template: `<ion-button type="button" (click)="disableHandler($event, save())">Save preference</ion-button><p>{{ result() }}</p>`,
+  template: `<ion-button type="button" (click)="disableHandler($event, save())">Save preference</ion-button>
+    <p>{{ result() }}</p>`,
 })
 export class PreferencesDemo {
   private readonly storage = inject(KitStorageService);
@@ -61,6 +62,12 @@ Core packageは `@ionic/storage-angular` とCapacitor Core、App、Haptics、Key
 
 Firebase、Social Login、Live Update、Preferences、Status Bar、In-App Review、Printer/PDFの依存は任意機能のpeerです。選択したsecondary entry pointが使う依存だけをinstallし、各plugin固有の互換範囲に従ってください。一部の任意pluginはCapacitor 8だけをサポートします。
 
+`/auth-firebase/google` entry pointは `@capawesome/capacitor-google-sign-in` 0.1.xを使用するため、Capacitor 8が必要です。Capacitor 7を使い続けるアプリはKitのcoreと互換性のある他のentry pointを使えますが、このGoogle entry pointは使えません。
+
+importするプロバイダーのentry pointに対応するNative pluginだけをinstallしてください。`/auth-firebase/social` は非推奨ですが後方互換性のため維持されます。AppleとFacebookを再exportするため、両方のpluginが必要です。適切な時期にimportを `/auth-firebase/apple` と `/auth-firebase/facebook` へ移行してください。今回の変更では削除しません。`/auth-firebase/internal` は各entry pointが使うプロバイダー非依存の共有実装で、サポート対象のアプリ用APIではありません。
+
+Social Loginのcallbackは成功payloadの認証済み `user` でリクエストのidentityを固定します。`before` / `success`（Googleでは `exchange` も）の失敗は `error` に通知され、`{ status: false }` を返し、必ず `finally` を実行します。`error` / `finally` 自体の失敗は呼び出しをrejectします。Native AppleはiOSのみで動作し、WebではFirebase popupを使います。キャンセル扱いになるのはNative adapterがキャンセルコードを保持する場合だけです。不明なNativeエラーは `other` です（翻訳済みメッセージからキャンセルを推測しないでください）。
+
 ## Entry point
 
 | Import                                    | 役割                                                                         |
@@ -72,6 +79,10 @@ Firebase、Social Login、Live Update、Preferences、Status Bar、In-App Review
 | `@rdlabo/ionic-angular-kit/review`        | 頻度制御付きNative In-App Review                                             |
 | `@rdlabo/ionic-angular-kit/printer`       | DOM-to-PNG、Brother Label、PDF helper                                        |
 | `@rdlabo/ionic-angular-kit/auth-firebase` | Firebase依存配線と認証Flow                                                   |
+| `@rdlabo/ionic-angular-kit/auth-firebase/apple` | Appleのsign-in/link（Apple pluginのみ） |
+| `@rdlabo/ionic-angular-kit/auth-firebase/facebook` | Facebookのlogin/link/logout（Facebook pluginのみ） |
+| `@rdlabo/ionic-angular-kit/auth-firebase/google` | Google popup/Native sign-in、Firebase session linking、logout |
+| `@rdlabo/ionic-angular-kit/auth-firebase/social` | **非推奨。互換性のため維持。** Apple/Facebook helper |
 | `@rdlabo/ionic-angular-kit/app-update`    | Angular Service Workerのatomicなupdate transition                            |
 | `@rdlabo/ionic-angular-kit/live-update`   | Capawesome Live Update readiness provider                                    |
 

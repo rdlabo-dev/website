@@ -1,11 +1,11 @@
 ---
 title: "IonContent"
-sourceRevision: "21a016a78f5b3a1dc1b58e2a695b517ba04fb34e2949d7faa04f3e47ecb5da2c"
+sourceRevision: "1cbdf6ba2a8d0c2c126ea7dba3a0d820d21e7a38ee1c5fec543288cd0e675282"
 ---
-Binden Sie scrollabhängige Header an Ionic-Inhalte an. Verwenden Sie dies nach der [Installation](../README.md#installation) und importieren Sie zuvor das Paket-CSS global. Verborgene Safe-Area-Header und dauerhaft sichtbare native Header werden unter [Safe Area](./safe-area.md) beschrieben.
+Binden Sie scrollabhängige Header an Ionic-Inhalte an. Verwenden Sie dies nach der [Installation](/docs/readme#installation) und importieren Sie zuvor das Paket-CSS global. Verborgene Safe-Area-Header und dauerhaft sichtbare native Header werden unter [Safe Area](/docs/safe-area) beschrieben.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';
@@ -40,4 +40,4 @@ export class ScrollHeaderPage {
 }
 ```
 
-Scrollen Sie nach unten: Der Inhaltsheader wird ausgeblendet. Scrollen Sie nach oben: Er erscheint wieder. Der äußere `ion-header.hidden` reserviert Platz für die Safe Area. Für ein anderes Header-Layout siehe [Safe Area](./safe-area.md).
+Scrollen Sie nach unten: Der Inhaltsheader wird ausgeblendet. Scrollen Sie nach oben: Er erscheint wieder. Der äußere `ion-header.hidden` reserviert Platz für die Safe Area. Für ein anderes Header-Layout siehe [Safe Area](/docs/safe-area).

@@ -1,10 +1,10 @@
 ---
 title: "Migration"
-sourceRevision: "de9dd1781ec167db1c8164d0ecb74a96278ca0e25147df9959b5fcc62464ce2e"
+sourceRevision: "9e3e7ddbb0bc8eba0b9220cfc682dfe62545a016605422c8bdb4d923d2d46b00"
 ---
 # Migration
 
-Ab Kit `0.12.0` ist `@rdlabo/workers-hono-kit/business-time` ein veralteter Re-Export dieses Pakets. Installieren Sie `@rdlabo/workers-timezone` direkt und ändern Sie den Importpfad. Bestehende Funktionsnamen bleiben verfügbar. Neuer Code kann `toLocalDateTime`, `localDateTimeToInstant` und die weiteren zeitzonenneutralen Namen aus der [API](./api.md) verwenden.
+Ab Kit `0.12.0` ist `@rdlabo/workers-hono-kit/business-time` ein veralteter Re-Export dieses Pakets. Installieren Sie `@rdlabo/workers-timezone` direkt und ändern Sie den Importpfad. Bestehende Funktionsnamen bleiben verfügbar. Neuer Code kann `toLocalDateTime`, `localDateTimeToInstant` und die weiteren zeitzonenneutralen Namen aus der [API](https://docs.rdlabo.dev/projects/workers-timezone/docs/api) verwenden.
 
 ## Verhaltensänderungen
 

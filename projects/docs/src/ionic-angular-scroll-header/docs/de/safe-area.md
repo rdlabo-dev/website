@@ -1,10 +1,10 @@
 ---
 title: "Safe Area"
-sourceRevision: "1dfbfdfd3499605339d61d10d39d216305e99d1016bd3f3bf9ab450d9533236a"
+sourceRevision: "087da82956e73bbc2ab6b291bca176d1cf2ba6b3485a0b183b6f01bf9729ac46"
 ---
 Verborgene Safe-Area-Header und dauerhaft sichtbare native Header.
 
-Beginnen Sie mit dem scrollabhängigen Header unter [IonContent](./ion-content.md) und wählen Sie dann die folgende Header-Struktur passend zu Ihrem Layout.
+Beginnen Sie mit dem scrollabhängigen Header unter [IonContent](/docs/ion-content) und wählen Sie dann die folgende Header-Struktur passend zu Ihrem Layout.
 
 ## Warum ist ein verborgener Header für die Safe Area nötig?
 

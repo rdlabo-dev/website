@@ -210,3 +210,22 @@ createOfflineAuthBridge({
 `KitRealtimeConnection` を継承し、接続意図と `{ url, protocols }` targetを指定します。Kitがforeground・network suspension、target単位のreconnect、exponential backoff、ping/pong検出、self-echo annotation、`reconnected$` による再同期通知を所有します。
 
 認証情報と安定した `KIT_REALTIME_CLIENT_ID` はURL parameterでなく `kitRealtimeProtocols()` によるWebSocket subprotocolで渡します。Offline対応の認証clientは `requireRemoteAccess: true` を指定し、`none`・`local` modeではsocketを閉じたままにします。
+
+## 破棄可能なストレージ世代
+
+`OfflineStorageLifecycle` は、ローカルデータの段階的なmigrationを保持する方法に代わる明示的な選択肢です。Wire protocolは変更せず、一般的なエラーに反応してストレージをリセットすることもありません。製品側で `discardPendingCommands: true` を指定してopt-inする必要があります。設定したreplica全体、cursor、ローカルsnapshot、未送信Outboxを破棄可能とします。認証情報と、このクリーンアップに関係のない設定は対象外に置きます。データの再取得には通信が必要です。
+
+起動用のlifecycleインスタンスを1つ作り、同じインスタンスを `provideOffline` / `provideRouteScopedOffline` の `storageLifecycle` に渡します。DBを開く製品serviceを構築する前に `prepare()` を待ってください。Kitもこのインスタンスを通じてrepositoryの初期化を制御します。`reload-required` はrepositoryを開いてよいという意味ではありません。製品のリセット／更新UIを描画し、`requestRebuildAfterBootstrap(waitUntilReady, location)` を呼び、コールドリスタート後にのみ再開します。`beforeCleanup` hookでは、時間のかかるNativeファイル削除より前にLive Updateの準備完了を通知できます。KitはLive Update pluginに依存せず、製品のメッセージやナビゲーションも提供しません。
+
+軽量な `@rdlabo/ionic-angular-kit/offline/storage-generation` entry pointは `inspectOfflineStorageGeneration` をexportし、offline runtimeを先行ロードせずに起動guardで使用できます。世代値とmarker keyは製品が管理します。SeatKeepは `OFFLINE_SCHEMA_VERSION:schemaHash` のidentityを、Winecodeは世代 `4` と既存keyを維持します。Markerが一致すればデータを削除せず、migrationだけのためにリセットを強制しません。ローカルschemaを変えた場合は設定した世代を変更してください。サーバー契約自体に非互換性がない限り `wireProtocol` を変更してはいけません。明示的な数値の世代を維持する製品は、ローカルストレージの構造が変わるたびに値を上げる必要があります。
+
+Nativeの対象には、既存のリセット接続lifecycleと互換性のあるDBだけを列挙します。他のDBやメディアファイルは `additionalCleanup` が管理します。保留中のリセットは、削除失敗、完了markerの書き込み失敗、クリーンアップ中断後も維持されます。全クリーンアップの成功後にのみ完了を記録します。遅延モードでは対象DBが存在しない新規installをリロードなしで受け入れられます。既存の手動リセットと暗号化migration APIは引き続き使用でき、動作も変わりません。
+
+Webの対象にはWeb Locks（セキュアコンテキスト）が必要です。協調するすべてのruntimeは既存の `offline:` namespaceに対してorigin全体のlockを1つ使います。準備と書き込みは排他的、読み込みは共有です。Repositoryはlock内で世代とreset revisionを検証します。古いruntimeは、同じ世代の手動リセット後も含め、再構築済みデータに触れる前に `OfflineStorageGenerationChangedError` をthrowします。製品側でそのruntimeをリロードしてください。Web Locksがなければ削除前に失敗し、安全でないタブ単位のfallbackはありません。このprotocolを持たない出荷済みclientを新しいlibraryから隔離することはできないため、rollout時に古いタブを置き換えるかリロードする必要があります。
+
+検証コマンド：
+
+- `npm test -- --project kit --include='../offline/src/lib/offline-storage-lifecycle.spec.ts'`
+- `npm run test:storage-lifecycle:browser`（headless Chromium、同じoriginの2ページ）
+
+ブラウザテストはWeb Locksと小さなlocalStorage adapterで実際のlifecycleを実行します。Repositoryの統合テストではKitStorageService境界と古いrepositoryの読み書きを別途検証します。

@@ -1,6 +1,6 @@
 ---
 title: "require-ion-item-group"
-sourceRevision: "b84fbd7d5c9b713e13571d425572bcaad0f30c76a0421a5f6f27d94a2f32984e"
+sourceRevision: "11152c4831896aeb85194ce45ed330375ab83913ba654d3b1dba861aefade2da"
 ---
 # @rdlabo/rules/require-ion-item-group
 
@@ -13,14 +13,14 @@ Die Listengestaltung von Ionic für iOS 26 und Material Design 3 erwartet eine O
 
 ## Einzelheiten der Regel
 
-Ein `ion-item` innerhalb einer `ion-list` muss genau eine der folgenden Strukturen verwenden:
+Zwischen einem `ion-item` innerhalb einer `ion-list` und seiner nächstgelegenen umschließenden Liste muss eine unterstützte Gruppe liegen. Häufige Strukturen sind:
 
 - `ion-list > ion-item-group > ion-item`
 - `ion-list > ion-reorder-group > ion-item`
 - `ion-list > ion-accordion-group > ion-accordion > ion-item`
 - `ion-list > ion-radio-group > ion-item`
 
-Angular-Kontrollflussblöcke wie `@if`, `@for`, `@empty`, `@switch` und `@defer` sind für diese Strukturprüfung transparent, da sie kein Element rendern. Auch `ng-container` und `ng-template` sind transparent. Gerenderte HTML- oder Angular-Elemente sind nicht transparent. Ein `div` zwischen Liste, Gruppe oder Element wird gemeldet.
+Angular-Kontrollflussblöcke wie `@if`, `@for`, `@empty`, `@switch` und `@defer` sind für diese Strukturprüfung transparent, da sie kein Element rendern. Auch `ng-container` und `ng-template` sind transparent. Gerenderte umschließende Elemente und verschachtelte Gruppen sind erlaubt. Beispielsweise ist `ion-list > ion-item-group > ion-accordion-group > ion-accordion > ion-item` gültig. Diese Regel erkennt fehlende Gruppen, ohne eine genaue Layouttiefe vorzuschreiben. Die Gruppe einer äußeren Liste erfüllt die Anforderung für Elemente innerhalb einer verschachtelten `ion-list` nicht.
 
 Die Regel prüft ausschließlich `ion-item`-Elemente innerhalb einer `ion-list`. Ein `ion-item` außerhalb einer Liste wird nicht gemeldet. `.spec.html`-Dateien werden ignoriert.
 
@@ -83,5 +83,5 @@ Aktivieren Sie diese Regel in Ionic-Angular-Anwendungen mit den Listendesigns vo
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-item-group.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-item-group.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-item-group.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-item-group.ts)

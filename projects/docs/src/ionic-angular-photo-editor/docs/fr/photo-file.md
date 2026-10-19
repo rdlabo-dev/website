@@ -1,8 +1,8 @@
 ---
 title: "PhotoFileService"
-sourceRevision: "53cdfc80235f4aabe79c254c4dee4f08257e8d7ca7870ab415e2c7a41f9cdd61"
+sourceRevision: "dc55e05c76a753f43a0bc9652feac6f554f3e2ffadff264be70c80199af3702e"
 ---
-Chargez des photos depuis le sélecteur de fichiers du navigateur ou, sur les plateformes natives, depuis l’appareil photo ou la galerie. Appelez cette fonction après l’[installation](../README.md#installation).
+Chargez des photos depuis le sélecteur de fichiers du navigateur ou, sur les plateformes natives, depuis l’appareil photo ou la galerie. Appelez cette fonction après l’[installation](/docs/readme#installation).
 
 ## Navigateur : sélectionner et afficher
 

@@ -1,11 +1,11 @@
 ---
 title: "API"
-sourceRevision: "1fbfc5bf4ba86f0be75644457954e1e7d6772bb6cec9fcafbc37052caf886674"
+sourceRevision: "f6b7caf6a607dc107b7a26eb06d78c37f498b5264be72305788972c1ee1bf6a7"
 ---
 # API
 
 Tous les exports ci-dessous proviennent de `@rdlabo/workers-timezone`. `timeZone?` utilise la valeur par défaut initialisée,
-ou `Asia/Tokyo` avant l’initialisation. Consultez [Fuseaux horaires](./timezones.md) pour le traitement des erreurs et de l’heure d’été.
+ou `Asia/Tokyo` avant l’initialisation. Consultez [Fuseaux horaires](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones) pour le traitement des erreurs et de l’heure d’été.
 
 ## Configuration
 

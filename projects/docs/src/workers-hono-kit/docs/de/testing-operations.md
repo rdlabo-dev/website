@@ -1,6 +1,6 @@
 ---
 title: "Tests und Betrieb"
-sourceRevision: "28e908a57608242217553841a36d42490fd0a06d6403693db26060bf197da40c"
+sourceRevision: "39493fcf5bc68faf5f4d6309f9050b7749cf90ae34e620bb0d4381a0e61d689b"
 ---
 # Tests und Betrieb
 
@@ -36,4 +36,4 @@ Die nutzende Anwendung konfiguriert die Clients für AWS, Firebase, AI Gateway, 
 
 ## Nächster Schritt
 
-Die Exporttabellen finden Sie unter [Test-APIs](./api-testing.md), Befehlsdetails unter [CLI](./cli.md) und die vollständige Übersicht der Pakete und Einstiegspunkte unter [API](./api.md).
+Die Exporttabellen finden Sie unter [Test-APIs](./api-testing.md), Befehlsdetails unter [CLI](./cli.md) und die vollständige Übersicht der Pakete und Einstiegspunkte unter [API](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/api).

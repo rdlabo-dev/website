@@ -1,6 +1,6 @@
 ---
 title: "Echtzeit und Offline"
-sourceRevision: "77a5be22679f789e3deb845fb348a34b8f9d85044685a2ea783ca3728ad8ab32"
+sourceRevision: "ab96a23cfcd7d0663dd1f46c33da9392b5ff8b062c135aec0d095509a839fc4f"
 ---
 # Echtzeit und Offline
 
@@ -36,4 +36,4 @@ Die Journal-Hilfsfunktionen setzen Cursor-Abdeckung, Aufbewahrung, Mutationstran
 
 ## Nächster Schritt
 
-Fahren Sie mit [Tests und Betrieb](./testing-operations.md) fort oder lesen Sie unter [Offline-API](./api-offline.md) die Details zu den Exporten für Konverter und Austauschformate.
+Fahren Sie mit [Tests und Betrieb](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/testing-operations) fort oder lesen Sie unter [Offline-API](./api-offline.md) die Details zu den Exporten für Konverter und Austauschformate.

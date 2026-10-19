@@ -1,6 +1,6 @@
 ---
 title: "signal-use-as-signal"
-sourceRevision: "fbc6184adff8efe7c46d0a82fd071c8154894886518b7fcf4f0fbe3e7a208acf"
+sourceRevision: "9b4c670d908875b3b1a382c9dc114ffa223e39173d06f5cfe3d57fbfa9d1615e"
 ---
 # @rdlabo/rules/signal-use-as-signal
 
@@ -148,5 +148,5 @@ Aktivieren Sie diese Regel in jedem Angular-Projekt mit Signals. Sie ergänzt [`
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/signal-use-as-signal.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/signal-use-as-signal.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/signal-use-as-signal.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/signal-use-as-signal.ts)

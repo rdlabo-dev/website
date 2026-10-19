@@ -1,10 +1,10 @@
 ---
 title: "API"
-sourceRevision: "6f206b9502858de3bbc997d222bfc2d31dc6e22697856c143aa54c1a06cd3b20"
+sourceRevision: "7d9ef6a8d879caff5a8c4970ce625e6825a1c4c434e165ebd02b616b08608fda"
 ---
 # API
 
-Öffentliche Exporte sind nach Importpfad gruppiert. Die installierten TypeScript-Deklarationen liefern die vollständigen generischen Signaturen. Beginnen Sie mit [Laufzeit](./runtime.md) für Lebenszyklus- und Wiederholungsverhalten.
+Öffentliche Exporte sind nach Importpfad gruppiert. Die installierten TypeScript-Deklarationen liefern die vollständigen generischen Signaturen. Beginnen Sie mit [Laufzeit](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime) für Lebenszyklus- und Wiederholungsverhalten.
 
 ## `@rdlabo/workers-mysql`
 
@@ -18,7 +18,7 @@ Nimmt `{ orm, replica }` entgegen und gibt `Database<TDrizzle>` zurück. Der Auf
 
 #### `function` hyperdriveConnectionOptions
 
-`hyperdriveConnectionOptions(hyperdrive, extra?)` erstellt mysql2-Optionen aus einer strukturellen `HyperdriveLike`-Bindung. Standardwerte beschreibt [Drizzle und Datumswerte](./drizzle.md).
+`hyperdriveConnectionOptions(hyperdrive, extra?)` erstellt mysql2-Optionen aus einer strukturellen `HyperdriveLike`-Bindung. Standardwerte beschreibt [Drizzle und Datumswerte](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle).
 
 #### `function` withMysqlConnections
 
@@ -40,7 +40,7 @@ Benötigt die optionale Drizzle-Peer-Abhängigkeit. Exportiert `jstTimestamp`, `
 
 ## `@rdlabo/workers-mysql/migrations`
 
-Nur Node.js: `baselineMigrations`, `readBaselineEntry` und `resolveDbSecret`. Typen: `BaselineMigrationsOptions`, `BaselineResult`, `BaselineEntry` und `ResolvedDbSecret`. Sicherheitsanforderungen finden Sie unter [Migrationen und Tests](./tooling.md).
+Nur Node.js: `baselineMigrations`, `readBaselineEntry` und `resolveDbSecret`. Typen: `BaselineMigrationsOptions`, `BaselineResult`, `BaselineEntry` und `ResolvedDbSecret`. Sicherheitsanforderungen finden Sie unter [Migrationen und Tests](https://docs.rdlabo.dev/projects/workers-mysql/docs/tooling).
 
 ## `@rdlabo/workers-mysql/testing`
 

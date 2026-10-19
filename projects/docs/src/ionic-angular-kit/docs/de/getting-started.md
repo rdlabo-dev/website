@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "ebdca7dec9b77896e2294742c1204f130ab59f9bdc7712695f2db591ca887145"
+sourceRevision: "a94e05c74443cfc8ea6e072bf44de0b92e19f89efbcd45e46492e0f544e2a943"
 ---
 # @rdlabo/ionic-angular-kit
 
@@ -33,7 +33,8 @@ import { disableHandler, KitStorageService } from '@rdlabo/ionic-angular-kit';
 @Component({
   selector: 'app-preferences-demo',
   imports: [IonButton],
-  template: `<ion-button type="button" (click)="disableHandler($event, save())">Save preference</ion-button><p>{{ result() }}</p>`,
+  template: `<ion-button type="button" (click)="disableHandler($event, save())">Save preference</ion-button>
+    <p>{{ result() }}</p>`,
 })
 export class PreferencesDemo {
   private readonly storage = inject(KitStorageService);
@@ -63,6 +64,12 @@ Das Kernpaket deklariert `@ionic/storage-angular` sowie Capacitor Core, App, Hap
 
 Firebase, Social Login, Live Update, Preferences, Status Bar, In-App-Bewertungen sowie Drucker-/PDF-Abhängigkeiten sind optionale Peer-Abhängigkeiten für Zusatzfunktionen. Installieren Sie nur die von den gewählten sekundären Einstiegspunkten benötigten Abhängigkeiten und beachten Sie den jeweiligen Kompatibilitätsbereich des Plugins. Einige optionale Plugins unterstützen ausschließlich Capacitor 8.
 
+Der Einstiegspunkt `/auth-firebase/google` verwendet `@capawesome/capacitor-google-sign-in` 0.1.x und benötigt daher Capacitor 8. Anwendungen, die bei Capacitor 7 bleiben, können weiterhin den Kit-Kern und andere kompatible Einstiegspunkte nutzen, jedoch nicht diesen Google-Einstiegspunkt.
+
+Installieren Sie nur das native Plugin für den importierten Anbieter-Einstiegspunkt. `/auth-firebase/social` ist veraltet, bleibt aber zur Abwärtskompatibilität erhalten; er exportiert Apple und Facebook erneut und benötigt daher beide Plugins. Migrieren Sie die Imports bei Gelegenheit zu `/auth-firebase/apple` und `/auth-firebase/facebook`; eine Entfernung ist nicht Teil dieser Änderung. `/auth-firebase/internal` ist eine anbieterneutrale gemeinsame Implementierung dieser Einstiegspunkte und keine unterstützte Anwendungs-API.
+
+Callbacks für soziale Anmeldung binden die Anfrageidentität an den authentifizierten `user` in der Erfolgsmeldung. Fehler in `before`/`success` (bei Google auch `exchange`) werden an `error` gemeldet, geben `{ status: false }` zurück und führen immer `finally` aus. Fehler innerhalb von `error`/`finally` selbst führen zur Ablehnung des Aufrufs. Natives Apple läuft nur unter iOS; im Web wird das Firebase-Popup verwendet. Ein Abbruch wird nur erkannt, wenn der native Adapter einen Abbruchcode erhält; unbekannte native Fehler gelten als `other` (leiten Sie Abbrüche nicht aus lokalisierten Meldungen ab).
+
 ## Einstiegspunkte
 
 | Import                                    | Zuständigkeit                                                                     |
@@ -74,6 +81,10 @@ Firebase, Social Login, Live Update, Preferences, Status Bar, In-App-Bewertungen
 | `@rdlabo/ionic-angular-kit/review`        | Gedrosselte native Anfragen für In-App-Bewertungen                                            |
 | `@rdlabo/ionic-angular-kit/printer`       | Hilfen für DOM-zu-PNG, Brother-Etiketten und PDF                                         |
 | `@rdlabo/ionic-angular-kit/auth-firebase` | Einbindung von Firebase-Abhängigkeiten und Authentifizierungsabläufe                                |
+| `@rdlabo/ionic-angular-kit/auth-firebase/apple` | Apple-Anmeldung/Verknüpfung (nur eigenes Apple-Plugin) |
+| `@rdlabo/ionic-angular-kit/auth-firebase/facebook` | Facebook-Anmeldung/Verknüpfung/Abmeldung (nur eigenes Facebook-Plugin) |
+| `@rdlabo/ionic-angular-kit/auth-firebase/google` | Google-Popup/native Anmeldung, Firebase-Sitzungsverknüpfung und Abmeldung |
+| `@rdlabo/ionic-angular-kit/auth-firebase/social` | **Veraltet, zur Kompatibilität erhalten.** Apple/Facebook-Helfer |
 | `@rdlabo/ionic-angular-kit/app-update`    | Atomare Übergänge bei Angular-Service-Worker-Updates                                   |
 | `@rdlabo/ionic-angular-kit/live-update`   | Provider zur Bereitschaftsprüfung für Capawesome Live Update                                          |
 
@@ -89,7 +100,7 @@ Die meisten Funktionen stellen einen Provider bereit, dessen Callbacks Routen, O
 
 - [Speicher und Overlays](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/storage-overlays)
 - [Formulare](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/forms)
-- [Die Kit-Integration mit ESLint prüfen](./docs/eslint.md)
+- [Die Kit-Integration mit ESLint prüfen](/docs/eslint)
 - [Authentifizierung und HTTP](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/auth-http)
 - [Offline und Echtzeit](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/offline-realtime)
 - [Optionale Funktionen](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/optional-features)

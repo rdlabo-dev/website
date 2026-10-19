@@ -1,6 +1,6 @@
 ---
 title: "Ihre erste MySQL-Abfrage ausführen"
-sourceRevision: "e9b1d81a62b128ea9e61238684c7022d38872a8ce2d7367abb93eaadf22720ff"
+sourceRevision: "9696e6e17e37926bb3ea5a7681970ca9543a7135bfc9f0ea93490d9cd43c8771"
 ---
 Lesen Sie ein tatsächliches MySQL-Ergebnis über das Paket, ohne Tabellen oder ein Anwendungsschema anzulegen. Sehen Sie anschließend genau, was sich beim Wechsel von einer lokalen Node.js-Verbindung zu einer Workers-Hyperdrive-Bindung ändert.
 
@@ -105,6 +105,6 @@ export default {
 };
 ```
 
-Verwenden Sie `query()` für SELECTs auf dem Primary und `read()` für Replikat-Lesezugriffe. Ergänzen Sie ein ORM-Schema erst, wenn Sie typisierte Tabellenabfragen benötigen. [Laufzeit](./runtime.md) erklärt Aufruflebensdauer, Snapshot-Lesezugriffe und Wiederholungen. [Drizzle und Datumswerte](./drizzle.md) behandelt Spalten- und Speicherverhalten.
+Verwenden Sie `query()` für SELECTs auf dem Primary und `read()` für Replikat-Lesezugriffe. Ergänzen Sie ein ORM-Schema erst, wenn Sie typisierte Tabellenabfragen benötigen. [Laufzeit](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime) erklärt Aufruflebensdauer, Snapshot-Lesezugriffe und Wiederholungen. [Drizzle und Datumswerte](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle) behandelt Spalten- und Speicherverhalten.
 
 Ergänzen Sie für Hono-Anfragecontainer den [Kit-Adapter `/mysql`](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer). Umschließen Sie Datenbankmethoden mit bereits integrierter Wiederholung nicht mit einer weiteren Wiederholungsschleife. Ein Transaktionscallback kann erneut ausgeführt werden; halten Sie deshalb E-Mails, Zahlungen und andere externe Nebenwirkungen außerhalb davon.

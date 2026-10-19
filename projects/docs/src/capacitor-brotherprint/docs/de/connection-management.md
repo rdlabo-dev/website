@@ -1,6 +1,6 @@
 ---
 title: "JavaScript-Druckhilfen"
-sourceRevision: "067159fea3da3298614f4cf7f3115015fb281490f317635e7ba4120dafc1ab8f"
+sourceRevision: "f4d2eec4a5b3fcaa66053453f5868e9804e60109352f81f6b8dddf8ffbb8cbc6"
 ---
 # JavaScript-Druckhilfen
 
@@ -49,7 +49,7 @@ const printers = await searchBrotherPrinters(
 3. Übergeben Sie `port` und `channelInfo` des ausgewählten Kanals sowie Modell, Papier und Bild an `session.printImage`. Native Druckoptionen finden Sie unter [Drucken](/docs/print).
 4. Rufen Sie im Handler zum Verlassen der Ansicht `dispose()` auf. Sie müssen nicht warten, bis der Druck abgeschlossen ist, um die Ansicht freizugeben.
 
-Das folgende Beispiel zeigt die Einrichtung und Bereinigung einer Sitzung. Ein Beispiel, das Auswahl und Drucken verbindet, finden Sie im [TypeScript-Beispiel](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts).
+Das folgende Beispiel zeigt die Einrichtung und Bereinigung einer Sitzung. Ein Beispiel, das Auswahl und Drucken verbindet, finden Sie im [TypeScript-Beispiel](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts).
 
 
 Verwenden Sie pro Druckansicht eine `BrotherPrinterSession`. Verbindungshilfen verwenden direkt die Capacitor-Plattform; die Sitzung verwaltet Suchergebnisse, Druckbenachrichtigungen und Freigabe. Verwenden Sie eine freigegebene Sitzung nicht erneut. Für Vorgänge, die nicht an die Lebensdauer einer Ansicht gebunden sind, bleiben die zustandslosen Hilfsfunktionen verfügbar.
@@ -128,10 +128,10 @@ Speichern Sie bei einem manuell eingegebenen Gerät neben der Adresse auch den a
 
 ## Reihenfolge von Suchvorgängen und Fehler
 
-Suche, Vorbereitung und explizite Verbindungsprüfungen teilen sich eine Warteschlange. Der nächste Aufruf beginnt erst, wenn der vorherige native Vorgang und die Listener-Bereinigung abgeschlossen sind, auch wenn der vorherige Aufruf fehlgeschlagen ist. Kein JavaScript-Suchtimeout gibt die Warteschlange vorzeitig frei. Kombinieren Sie diese Hilfsfunktionen nicht mit gleichzeitigen direkten Aufrufen von `BrotherPrint.search()` oder Verbindungsprüfungen: Direkte Aufrufe umgehen die Warteschlange, und native Ereignisse haben keine Anfrage-ID. Auch das Drucken bleibt außerhalb dieser Warteschlange; warten Sie auf die Verbindungsvorbereitung, bevor Sie `printImage` aufrufen. Das optionale Modell filtert Nicht-USB-Ergebnisse. USB-Ergebnisse bleiben erhalten, selbst wenn das SDK ein leeres Modell oder eine leere Adresse zurückgibt. Die Verbindungsauswahl erweitert nicht die native Unterstützung; beachten Sie die vorhandene README und die SDK-Installationsanleitung.
+Suche, Vorbereitung und explizite Verbindungsprüfungen teilen sich eine Warteschlange. Der nächste Aufruf beginnt erst, wenn der vorherige native Vorgang und die Listener-Bereinigung abgeschlossen sind, auch wenn der vorherige Aufruf fehlgeschlagen ist. Kein JavaScript-Suchtimeout gibt die Warteschlange vorzeitig frei. Kombinieren Sie diese Hilfsfunktionen nicht mit gleichzeitigen direkten Aufrufen von `BrotherPrint.search()` oder Verbindungsprüfungen: Direkte Aufrufe umgehen die Warteschlange, und native Ereignisse haben keine Anfrage-ID. Auch das Drucken bleibt außerhalb dieser Warteschlange; warten Sie auf die Verbindungsvorbereitung, bevor Sie `printImage` aufrufen. Die Suche behält alle Ergebnisse mit passendem Port bei, auch für andere Modelle; sie schließt keine Ergebnisse anhand des Modellnamens aus. Ergebnisse mit einem anderen Port werden verworfen, und Duplikate mit demselben Port und derselben Adresse werden entfernt. Das optionale Modellargument von `searchBrotherPrinters` und `session.search` bleibt aus Kompatibilitätsgründen erhalten, wird aber nicht verwendet. USB-Ergebnisse bleiben erhalten, selbst wenn das SDK ein leeres Modell oder eine leere Adresse zurückgibt. Die Verbindungsauswahl erweitert nicht die native Unterstützung; beachten Sie die vorhandene README und die SDK-Installationsanleitung.
 
 Bei zustandslosen Funktionen verantwortet die App Ladeanzeigen, Auswahloberfläche und Caching. Übergeben Sie ihren gespeicherten Kanal an `prepareBrotherPrinters`, wählen Sie einen zurückgegebenen Kanal und rufen Sie das vorhandene `BrotherPrint.printImage()` mit dem ausgewählten Port und der Adresse auf. Die Hilfsfunktion wiederholt den Druck nicht. Speichern Sie den gewählten Kanal in der App für die nächste Vorbereitung.
 
 Verwenden Sie `searchDuration: 3` für eine kurze Vorabsuche oder `10` für eine normale Suche. Dies sind Entscheidungen des Aufrufers, keine automatischen Wiederholungen. Ein Abbruch über die vorhandenen nativen Methoden betrifft die aktive Suche; eingereihte Hilfsfunktionsaufrufe werden dadurch nicht entfernt. Es werden weder eine Controller-Instanz noch ein separater Aufruf zur Listener-Bereinigung benötigt.
 
-Siehe das [Druckbeispiel in reinem TypeScript](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/examples/plain-typescript.ts). In einem Quellcode-Checkout testet `npm test` die Hilfsfunktionen und prüft die Typen dieses Beispiels.
+Siehe das [Druckbeispiel in reinem TypeScript](https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/examples/plain-typescript.ts). In einem Quellcode-Checkout testet `npm test` die Hilfsfunktionen und prüft die Typen dieses Beispiels.

@@ -1,12 +1,12 @@
 ---
 title: "Essayer une API Hono en local"
-sourceRevision: "d966cba21be3dfabc95d4ac5ca73d510d15904a4e63c2c6363bdecf525db5e6a"
+sourceRevision: "32d3ddaf71df1261aaef128a951517a788cfd94192f3b872e50348e01b742182"
 ---
 Donnez à une API Hono un comportement HTTP cohérent : une réponse de vérification de l’état avec un ETag faible et une réponse JSON prévisible pour les routes inexistantes. Vous observerez ces deux réponses sans ouvrir de port ni créer de compte Cloudflare.
 
 ## 1. Créer un petit projet
 
-Utilisez Node.js 24 et npm pour cet exercice. Les commandes fixent la version du kit documentée ici. npm installe ses dépendances pair requises ; les gestionnaires de packages configurés pour les omettre doivent suivre les [prérequis d’installation](../README.md).
+Utilisez Node.js 24 et npm pour cet exercice. Les commandes fixent la version du kit documentée ici. npm installe ses dépendances pair requises ; les gestionnaires de packages configurés pour les omettre doivent suivre les [prérequis d’installation](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/getting-started).
 
 ```sh
 mkdir hono-kit-demo
@@ -55,9 +55,9 @@ Vous avez vérifié le comportement HTTP ajouté par le kit. Cet exercice ne con
 
 ## 3. Intégrer le code dans votre application
 
-Conservez l’enregistrement des middlewares et des routes, supprimez les requêtes de démonstration et exportez `app` comme gestionnaire de votre Worker. Poursuivez avec [HTTP et authentification](./http-auth.md). Ajoutez l’[adaptateur MySQL](./data-layer.md) uniquement si l’application a besoin d’une base de données.
+Conservez l’enregistrement des middlewares et des routes, supprimez les requêtes de démonstration et exportez `app` comme gestionnaire de votre Worker. Poursuivez avec [HTTP et authentification](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/http-auth). Ajoutez l’[adaptateur MySQL](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer) uniquement si l’application a besoin d’une base de données.
 
-Les utilisateurs existants du kit doivent vérifier [la migration des imports en 0.12](./data-layer.md) avant la mise à niveau. Les anciens chemins `/db` et `/business-time` sont des exports de compatibilité ; les nouvelles intégrations utilisent les packages autonomes.
+Les utilisateurs existants du kit doivent vérifier [la migration des imports en 0.12](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer) avant la mise à niveau. Les anciens chemins `/db` et `/business-time` sont des exports de compatibilité ; les nouvelles intégrations utilisent les packages autonomes.
 
 ## Étapes suivantes
 

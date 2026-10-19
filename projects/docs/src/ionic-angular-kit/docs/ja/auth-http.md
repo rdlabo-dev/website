@@ -49,6 +49,14 @@ export const routes: Routes = [
 
 Route定義では `kitRequiredUnauthorizedGuard`、`kitRequireConfirmingGuard`、`kitRequireAuthorizedGuard` を使います。保護対象の非同期判定開始時には、現在のauthorization leaseが成功するまで以前のremote権限を一時停止します。
 
+## 起動時のログインリクエストを共有する
+
+`KitAuthLoginExchange<Identity, Result>` は処理中のバックエンドログインリクエストを共有します。事前取得した結果（失敗を含む）は、起点のナビゲーションが継続している間、完了後最大30秒まで認可で一度だけ消費できます。その後の認可呼び出しは新しいリクエストを実行します。権限のキャッシュではありません。
+
+アプリの認証サービスでインスタンスを1つ保持してください。リクエストの構築時にFirebaseユーザーを捕捉し、ユーザーが切り替わった場合はレスポンスを拒否し、サインアウト時に `clear()` を呼びます。プロバイダーの利用可否、削除からの復旧、利用規約への同意、レスポンス処理はアプリが管理します。
+
+認可前にローカルランタイムを初期化するアプリでは、Firebaseの準備と必要なアカウント復旧が終わった後、ランタイム初期化を待つ前に `kitPreloadAuthLoginForNavigation(router, isCurrent => auth.preloadTokenLogin(isCurrent))` を呼びます。初期化に失敗した場合は返されたクリーンアップを実行します。ナビゲーションの終了またはキャンセル時に、未消費の処理は破棄されます。重ねて実行する有用な起動処理がないアプリは `run(identity, request)` だけを使えます。
+
 ## HTTPポリシー
 
 `provideKitHttp()` はcredential付与、bypass規則、一時障害処理、アプリのerror hookを備えた `kitAuthInterceptor` を設定します。Interceptor自体は `provideHttpClient` で別途登録します。必須なのは `getAuthHeaders` だけで、他のhookはすべて任意でアプリ所有です。

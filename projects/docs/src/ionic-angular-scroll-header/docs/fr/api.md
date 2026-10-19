@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "ae70dc5d9b9d37c6e523ec4615189e715c6afaf619fad30e075347f87e16d78b"
+sourceRevision: "184d47ec4fadad7439d2d15f8bf2b864df1a0b2c5e04d244383ecae796699f31"
 ---
-Référence des directives standalone publiques exportées par `@rdlabo/ionic-angular-scroll-header` v22.0.3.
+Référence des directives standalone publiques exportées par `@rdlabo/ionic-angular-scroll-header` v22.0.6.
 
 ## Directives
 

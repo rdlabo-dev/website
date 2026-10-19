@@ -1,6 +1,6 @@
 ---
 title: "Recherche"
-sourceRevision: "ed754807663073572eaf8db74a52ce653403aafa7041e0aa3bec67eec0385694"
+sourceRevision: "66e07f7b0a82ececde7b70dd8a6384bb8afd47d69828de846b4b41dc5b785f74"
 ---
 # Recherche
 
@@ -51,13 +51,15 @@ const stopSearching = async () => {
 
 Appelez `searchWifiPrinters` depuis le bouton de recherche et attendez `stopSearching` lorsque l’utilisateur quitte l’écran.
 
-Sur iOS, `bluetooth` liste d’abord les imprimantes MFi connectées. Si aucune n’est connectée, l’application affiche le sélecteur système d’accessoires Bluetooth pour choisir et appairer une imprimante. La promesse de recherche se termine après le callback du sélecteur ; les erreurs du sélecteur rejettent la promesse.
+Sur iOS, `bluetooth` liste d’abord les imprimantes MFi connectées. Si aucune n’est connectée, l’application affiche le sélecteur système d’accessoires Bluetooth pour choisir et appairer une imprimante. La promesse de recherche se termine après le callback du sélecteur ; les erreurs du sélecteur rejettent la promesse. L’attente du sélecteur est rejetée après `searchDuration` secondes (15 par défaut, minimum 1), ou lors d’un appel à `cancelSearchBluetoothPrinter()`. Les résultats tardifs sont ignorés. Apple ne fournit aucune API pour fermer ce sélecteur : fermez-le avant de réessayer. Tant que l’ancien sélecteur reste ouvert, une nouvelle demande de sélecteur est rejetée immédiatement. Si le système ne l’affiche ni ne le ferme, redémarrez l’application avant de réessayer.
+
+Lors de la migration vers `SceneDelegate`, notamment pendant la mise à jour vers Capacitor 8.5, affectez également la fenêtre de la scène à `AppDelegate.window`, utilisé par le sélecteur système d’accessoires. Après avoir créé la fenêtre de la scène, définissez `(UIApplication.shared.delegate as? AppDelegate)?.window = window`. Sans cette référence, le sélecteur peut ne pas apparaître même si la recherche a commencé.
 
 Pour les imprimantes compatibles BLE, utilisez `port: BRLMPrinterPort.bluetoothLowEnergy`. Sur iOS, cela utilise `startBLESearch` sans le sélecteur d’accessoires Bluetooth. Transmettez sans modification le `channelInfo` de l’imprimante découverte, son nom local BLE, à `isChannelAvailable` ou `printImage`. Les erreurs de recherche BLE rejettent la promesse de recherche. QL-820NWB/QL-820NWBc ne prennent pas en charge l’impression BLE ; utilisez `bluetooth` ou `wifi` pour ces modèles.
 
 Sur Android, appairez une imprimante Bluetooth dans les réglages système avant d’appeler `search` avec `bluetooth` ; le SDK liste les imprimantes appairées et ne fournit pas le sélecteur d’accessoires iOS. Les recherches Bluetooth et BLE se terminent à la fin de la recherche, ou sont rejetées en cas d’erreur du SDK. Android 12 et les versions ultérieures demandent les autorisations Appareils à proximité ; Android 11 et les versions antérieures demandent l’autorisation de localisation pour BLE. `isChannelAvailable` renvoie `false` si l’autorisation Bluetooth manque.
 
-`searchDuration` s’applique à `wifi` et `bluetoothLowEnergy`. `usb` est réservé à Android. Si rien n’est trouvé, vous ne recevez ni erreur ni imprimante. Les signatures figurent sur la page [API](/docs/api#brlmsearchoption).
+`searchDuration` s’applique à `wifi`, à `bluetoothLowEnergy` et à l’attente du sélecteur d’accessoires `bluetooth` sur iOS. `usb` est réservé à Android. Les recherches Wi-Fi/BLE terminées sans résultat se résolvent sans imprimante ; les erreurs du sélecteur iOS, l’annulation et l’expiration du délai d’attente rejettent la recherche. L’annulation rejette aussi la recherche initiale Bluetooth iOS en cours et empêche son résultat tardif d’ouvrir le sélecteur. Les signatures figurent sur la page [API](/docs/api#brlmsearchoption).
 
 Sur Android, les recherches Bluetooth Classic renvoient les appareils appairés. Pour ne conserver que ceux déclarant la classe Bluetooth Imaging/Printer :
 

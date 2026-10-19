@@ -1,6 +1,6 @@
 ---
 title: "Formulaires"
-sourceRevision: "1bedd2967dc882ce35bcef004341a18eb66c51fe9865ba2ffdca1d27249d975b"
+sourceRevision: "807e4b68621a2244e9d6aa7e1eda623ab54d72a01989b384ccf0269476498a9a"
 ---
 # Ionic Signal Forms
 
@@ -60,4 +60,4 @@ export const appConfig: ApplicationConfig = {
 
 Angular ne fusionne pas plusieurs configurations de classes `provideSignalFormsConfig`. Si l’application fournit sa propre configuration, regroupez toutes les correspondances de classes requises dans un seul fournisseur plutôt que d’enregistrer deux fournisseurs et de dépendre de leur ordre.
 
-Pour la configuration de lint correspondante, consultez [Vérifier l’intégration du kit avec ESLint](./eslint.md).
+Pour la configuration de lint correspondante, consultez [Vérifier l’intégration du kit avec ESLint](/docs/eslint).

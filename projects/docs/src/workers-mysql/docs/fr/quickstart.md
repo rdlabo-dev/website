@@ -1,6 +1,6 @@
 ---
 title: "Exécuter votre première requête MySQL"
-sourceRevision: "e9b1d81a62b128ea9e61238684c7022d38872a8ce2d7367abb93eaadf22720ff"
+sourceRevision: "9696e6e17e37926bb3ea5a7681970ca9543a7135bfc9f0ea93490d9cd43c8771"
 ---
 Lisez un véritable résultat MySQL via le package sans créer de tables ni de schéma applicatif. Voyez ensuite précisément ce qui change en passant d’une connexion Node.js locale à une liaison Hyperdrive dans Workers.
 
@@ -105,6 +105,6 @@ export default {
 };
 ```
 
-Utilisez `query()` pour les SELECT sur le primaire et `read()` pour les lectures sur la réplique. Ajoutez un schéma ORM uniquement si vous avez besoin de requêtes de tables typées. [Environnement d’exécution](./runtime.md) explique la durée de vie d’une invocation, les lectures par instantané et les nouvelles tentatives ; [Drizzle et dates](./drizzle.md) couvre le comportement des colonnes et du stockage.
+Utilisez `query()` pour les SELECT sur le primaire et `read()` pour les lectures sur la réplique. Ajoutez un schéma ORM uniquement si vous avez besoin de requêtes de tables typées. [Environnement d’exécution](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime) explique la durée de vie d’une invocation, les lectures par instantané et les nouvelles tentatives ; [Drizzle et dates](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle) couvre le comportement des colonnes et du stockage.
 
 Pour les conteneurs de requête Hono, ajoutez l’[adaptateur `/mysql` du kit](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer). N’encapsulez pas dans une autre boucle de nouvelle tentative les méthodes de base de données qui retentent déjà leurs opérations. Un callback de transaction peut s’exécuter à nouveau : gardez donc les e-mails, paiements et autres effets de bord externes hors de celui-ci.

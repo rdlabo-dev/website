@@ -1,6 +1,6 @@
 ---
 title: "Temps réel et mode hors ligne"
-sourceRevision: "77a5be22679f789e3deb845fb348a34b8f9d85044685a2ea783ca3728ad8ab32"
+sourceRevision: "ab96a23cfcd7d0663dd1f46c33da9392b5ff8b062c135aec0d095509a839fc4f"
 ---
 # Temps réel et mode hors ligne
 
@@ -36,4 +36,4 @@ Les utilitaires de journal imposent la couverture des curseurs, la rétention, l
 
 ## Étape suivante
 
-Poursuivez avec [Tests et exploitation](./testing-operations.md), ou consultez [API hors ligne](./api-offline.md) pour les détails des exports de convertisseurs et de format d’échange.
+Poursuivez avec [Tests et exploitation](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/testing-operations), ou consultez [API hors ligne](./api-offline.md) pour les détails des exports de convertisseurs et de format d’échange.

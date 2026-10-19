@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
   "category": "developer-tools",
   "icon": "server",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "seoTitle": "MySQL- und Hyperdrive-Bibliothek für Cloudflare Workers | rdlabo",
   "description": "MySQL-Zugriff für Cloudflare Workers mit Hyperdrive, Primary-/Replica-Routing, Wiederholungsversuchen bei Deadlocks und Drizzle-Integration.",
   "headline": "MySQL und Hyperdrive für Cloudflare Workers",

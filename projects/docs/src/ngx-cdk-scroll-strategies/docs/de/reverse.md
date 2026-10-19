@@ -1,13 +1,13 @@
 ---
 title: "Umgekehrtes Scrollen"
-sourceRevision: "ba7c1bf9f5146241ac971c0fb431e8fa3408816803cef56ec91ed2b0bde3a274"
+sourceRevision: "dfba20118012c34ad194c6351743df2e7a7b430174107f2b1ca3e988fd96dba0"
 ---
-Rufen Sie dies nach der [Installation](../README.md#installation) auf.
+Rufen Sie dies nach der [Installation](/docs/readme#installation) auf.
 
-> Übernehmen Sie das Datenmodell, das `dynamicSize`-Computed, `trackBy` und die Viewport-Imports aus der [einfachen Verwendung](./simple.md). Diese Seite ergänzt CSS für die umgekehrte Anordnung und `[isReverse]="true"` für eine Chat-Liste.
+> Übernehmen Sie das Datenmodell, das `dynamicSize`-Computed, `trackBy` und die Viewport-Imports aus der [einfachen Verwendung](/docs/simple). Diese Seite ergänzt CSS für die umgekehrte Anordnung und `[isReverse]="true"` für eine Chat-Liste.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.3/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.6/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
 
 Fügen Sie für umgekehrtes Scrollen die Direktive `isReverse` zum Element `cdk-virtual-scroll-viewport` hinzu.
 
@@ -64,7 +64,7 @@ div.reverse-items {
 ```
 
 **Beim umgekehrten Scrollen funktioniert measureScrollOffset von CdkVirtualScrollViewport nicht. Verwenden Sie stattdessen scrollOffset dieser Direktive.**
-https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
+https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
 
 Die umgekehrte Anordnung verwendet negative native `scrollTop`-Werte. `scrollToIndex()` nimmt wie üblich einen logischen Elementindex entgegen und wandelt dessen kumulierten Versatz intern in diese native Koordinate um.
 
@@ -76,4 +76,4 @@ Dieses Paket enthält einen Hilfsdienst, der die Entwicklung mit Virtual Scroll 
 import { DynamicSizeVirtualScrollService } from '@rdlabo/ngx-cdk-scroll-strategies';
 ```
 
-Weitere Informationen: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts
+Weitere Informationen: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts

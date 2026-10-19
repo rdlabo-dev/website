@@ -1,6 +1,6 @@
 ---
 title: "no-component-writable-signal"
-sourceRevision: "33dc0d0718b1f568596cd52600d5b2340c60ec7a0c9d64f9e5ea7a74155195df"
+sourceRevision: "ae1091ea7653a1a5fd1823852b31216d37ff802f78b5c13c1b8f668e0f92b2be"
 ---
 # @rdlabo/rules/no-component-writable-signal
 
@@ -87,5 +87,5 @@ Activez cette règle lorsqu’un projet utilise le modèle ViewModel avec `@rdla
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/no-component-writable-signal.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/no-component-writable-signal.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-component-writable-signal.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-component-writable-signal.ts)

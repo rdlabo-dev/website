@@ -1,6 +1,6 @@
 ---
 title: "Drizzle und Datumswerte"
-sourceRevision: "cb2864278489e406bf537d9e3209860bdf658959ef22aa45d90844ab560a8d42"
+sourceRevision: "7e4a3e16ce927a27d41a8c6675fd9257c96bafc29feb868469261c8d8ed0b4e4"
 ---
 # Drizzle und Datumswerte
 
@@ -22,4 +22,4 @@ Die Anwendung verwaltet Schemadefinitionen und erstellt das ORM. `DRIZZLE_ORM_OP
 
 Für Aktualisierungszeitstempel liefert `jstOnUpdateNow(fsp?)` den SQL-Ausdruck zur Verwendung mit `.$onUpdateFn(() => jstOnUpdateNow(6))`. Prüfen Sie sowohl erzeugte Migrationen als auch die Serverzeitzone.
 
-Siehe [Laufzeit](./runtime.md), [Werkzeuge](./tooling.md) und [API](./api.md).
+Siehe [Laufzeit](https://docs.rdlabo.dev/projects/workers-mysql/docs/runtime), [Werkzeuge](https://docs.rdlabo.dev/projects/workers-mysql/docs/tooling) und [API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api).

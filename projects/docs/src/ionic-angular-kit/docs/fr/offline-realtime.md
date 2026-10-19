@@ -1,6 +1,6 @@
 ---
 title: "Hors ligne et temps réel"
-sourceRevision: "e8b44456df10406c86f670c97206661c6cb5d7abf31fb1321a248d8d817734e2"
+sourceRevision: "5e84a48a22fa4c38f507893039a06f294e477df21d9fcd00ddec1537901d9115"
 ---
 ## Environnement hors ligne à portée limitée
 
@@ -225,3 +225,22 @@ est encore en cours.
 Étendez `KitRealtimeConnection` pour fournir l’intention de connexion et les cibles `{ url, protocols }`. Le kit gère la suspension liée au premier plan et au réseau, la reconnexion par cible, le délai exponentiel, la détection ping/pong, l’annotation des échos de ses propres messages et le signal de resynchronisation `reconnected$`.
 
 Utilisez `kitRealtimeProtocols()` pour transporter l’authentification et le `KIT_REALTIME_CLIENT_ID` stable dans les sous-protocoles WebSocket plutôt que dans les paramètres d’URL. Les clients authentifiés compatibles hors ligne définissent `requireRemoteAccess: true` ; les sockets restent alors fermés dans les modes `none` et `local`.
+
+## Générations de stockage jetables
+
+`OfflineStorageLifecycle` est une alternative explicite au maintien de migrations incrémentales des données locales. Il ne modifie pas le protocole réseau et ne réinitialise jamais le stockage en réaction à une erreur générique. Les produits doivent l’activer avec `discardPendingCommands: true` : toute la réplique configurée, les curseurs, les instantanés locaux et l’Outbox non envoyée sont jetables. L’authentification et les préférences sans rapport restent hors des cibles de nettoyage. Le repeuplement nécessite une connexion.
+
+Créez une instance de cycle de vie pour le démarrage et transmettez cette même instance comme `storageLifecycle` à `provideOffline` / `provideRouteScopedOffline`. Attendez `prepare()` avant de construire les services du produit qui ouvrent la base. Kit conditionne également l’initialisation du dépôt à cette instance. `reload-required` n’autorise pas l’ouverture du dépôt : affichez l’interface de réinitialisation/mise à jour du produit, appelez `requestRebuildAfterBootstrap(waitUntilReady, location)` et ne reprenez qu’après un redémarrage à froid. Le hook `beforeCleanup` peut signaler la disponibilité de Live Update avant une suppression lente des fichiers natifs. Kit ne dépend pas du plugin Live Update et ne fournit ni messages ni navigation du produit.
+
+Le point d’entrée léger `@rdlabo/ionic-angular-kit/offline/storage-generation` exporte `inspectOfflineStorageGeneration` pour les gardes de démarrage, sans charger immédiatement le runtime hors ligne. Les valeurs de génération et les clés des marqueurs appartiennent au produit. SeatKeep conserve son identité `OFFLINE_SCHEMA_VERSION:schemaHash` ; Winecode conserve la génération `4` et ses clés existantes. Des marqueurs correspondants sont acceptés sans suppression de données ni réinitialisation imposée uniquement pour une migration. Une modification du schéma local doit changer la génération configurée ; elle ne doit pas changer `wireProtocol` sauf si le contrat serveur lui-même est incompatible. Conserver une génération numérique explicite impose au produit de l’incrémenter lorsque la structure de son stockage local change.
+
+Les cibles natives ne répertorient que les bases compatibles avec le cycle de vie existant des connexions de réinitialisation ; `additionalCleanup` prend en charge les autres bases et fichiers multimédias. Une réinitialisation en attente survit à l’échec de suppression, à l’échec du marqueur de fin et à l’interruption du nettoyage. L’achèvement n’est enregistré qu’après la réussite de tout le nettoyage. Le mode différé peut adopter une nouvelle installation sans rechargement lorsqu’aucune base cible n’existe. Les API existantes de réinitialisation manuelle et de migration du chiffrement restent disponibles et conservent leur comportement.
+
+Les cibles Web nécessitent Web Locks (contexte sécurisé). Tous les runtimes coopérants utilisent un verrou commun à l’origine pour l’espace de noms `offline:` existant : préparation et écritures exclusives, lectures partagées. Le dépôt valide la génération et une révision de réinitialisation sous le verrou. Un runtime obsolète lève `OfflineStorageGenerationChangedError` avant de toucher les données reconstruites, y compris après une réinitialisation manuelle de la même génération. Le produit doit recharger ce runtime. L’absence de Web Locks provoque un échec avant toute suppression ; il n’existe pas de repli non sûr par onglet. Les clients déjà distribués sans ce protocole ne peuvent pas être isolés par la nouvelle bibliothèque ; leurs anciens onglets doivent être remplacés ou rechargés lors du déploiement.
+
+Commandes de validation :
+
+- `npm test -- --project kit --include='../offline/src/lib/offline-storage-lifecycle.spec.ts'`
+- `npm run test:storage-lifecycle:browser` (Chromium sans interface, deux pages de la même origine)
+
+Le test navigateur exécute le cycle de vie réel avec Web Locks et un petit adaptateur localStorage. Les tests d’intégration du dépôt couvrent séparément la frontière KitStorageService et les lectures/écritures des dépôts obsolètes.

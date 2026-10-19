@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "148043aae11d5b3e8acd888db7cb96fddefc290388a0ec476c89031d71350fa4"
+sourceRevision: "1f1712f8cbb784ac43b57b7949f962e5a87ed7b9c3ce5ea5288725ff8a3aef1d"
 ---
 # @rdlabo/ionic-angular-photo-editor
 
@@ -98,7 +98,7 @@ Importez les composants et services uniquement depuis leur point d’entrée. Im
 | Recadrer et modifier dans une fenêtre modale          | [Éditeur de photos](https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/editor)                                             |
 | Parcourir des images dans une fenêtre modale          | [Visionneuse de photos](https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/viewer)                                             |
 | Personnaliser les couleurs de l’éditeur            | [Thème](https://docs.rdlabo.dev/projects/ionic-angular-photo-editor/docs/theme)                                                     |
-| Mettre à niveau depuis une version antérieure   | [Guide de migration](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/docs/migration.md#rdlaboionic-angular-photo-editor) |
+| Mettre à niveau depuis une version antérieure   | [Guide de migration](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/docs/migration.md#rdlaboionic-angular-photo-editor) |
 
 <!-- rdlabo-docs-omit -->
 

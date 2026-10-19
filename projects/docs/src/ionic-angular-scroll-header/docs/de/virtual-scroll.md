@@ -1,11 +1,11 @@
 ---
 title: "Virtuelles Scrollen"
-sourceRevision: "b9b083ed0ebd4a7676d82d743f942a2d109aa57182aeb831fed7a2cea7de1d9f"
+sourceRevision: "860d9dd28cef8762485731fcadbf34d84ab58f4dd303ae551b873ad428481f88"
 ---
-Erweitern Sie einen vorhandenen virtuellen CDK-Scroll-Viewport um scrollabhängige Header. Beginnen Sie mit [IonContent](./ion-content.md) für das Header-/Safe-Area-Muster und ersetzen Sie anschließend den Scroll-Host durch einen Viewport. Verwenden Sie dies nach der [Installation](../README.md#installation).
+Erweitern Sie einen vorhandenen virtuellen CDK-Scroll-Viewport um scrollabhängige Header. Beginnen Sie mit [IonContent](/docs/ion-content) für das Header-/Safe-Area-Muster und ersetzen Sie anschließend den Scroll-Host durch einen Viewport. Verwenden Sie dies nach der [Installation](/docs/readme#installation).
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';
@@ -54,7 +54,7 @@ export class VirtualScrollHeaderPage {
 }
 ```
 
-Geben Sie dem Viewport mit dem globalen CSS aus der [Installation](../README.md#installation) eine feste Höhe.
+Geben Sie dem Viewport mit dem globalen CSS aus der [Installation](/docs/readme#installation) eine feste Höhe.
 
 ### Scrollsprünge und Flackern am oberen Rand verhindern
 

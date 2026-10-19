@@ -1,6 +1,6 @@
 ---
 title: "HTTP und Authentifizierung"
-sourceRevision: "59f1e73332c95e13facccee4efdfaf9553e453e7480f32a18766cf68f9ace72f"
+sourceRevision: "cf585e3d9c0da2d81e5be748898922b3b7efd1e322683a5674f7aeb84b7f2d92"
 ---
 # HTTP und Authentifizierung
 
@@ -25,7 +25,9 @@ app.get('/items', validate('query', querySchema), async (c) => {
 
 ## Authentifizierung
 
-`createAuthMiddleware()` liest einen Token-Header, überprüft ein Firebase-ID-Token, ermittelt optional die Benutzer-ID der Anwendung und speichert das Ergebnis im Hono-Kontext. Verwenden Sie `createRemoteFirebaseVerifier(projectId)` für eine entfernte JWKS-Verifizierung mit Cache oder `createServiceAccountVerifier()`, wenn die Identity Toolkit-Operationen `getUser` und `deleteUser` benötigt werden.
+`createAuthMiddleware()` liest einen Token-Header, überprüft ein Firebase-ID-Token, ermittelt optional die Benutzer-ID der Anwendung und speichert das Ergebnis im Hono-Kontext. Verwenden Sie `createRemoteFirebaseVerifier(projectId)` für eine entfernte JWKS-Verifizierung mit Cache oder `createServiceAccountVerifier()`, wenn die Identity Toolkit-Operationen `getUser`, `getUsers`, `getUserByEmail` und `deleteUser` benötigt werden.
+
+`getUser`, `getUsers` und `getUserByEmail` geben `FirebaseUserRecord` zurück (`uid` sowie die optionalen Felder `email` und `disabled`). Das Kit gibt auch deaktivierte Konten zurück; Aufrufer entscheiden, ob sie diese ablehnen. Der Erstellungszeitpunkt des Kontos wird nicht abgerufen. Die E-Mail-Suche verwendet die primäre E-Mail-Adresse und teilt den OAuth-Token-Cache mit UID-Abfragen. Nicht vorhandene Benutzer ergeben `null` (oder werden aus Stapelergebnissen ausgelassen), während HTTP-Fehler des Providers eine Ausnahme auslösen. Dies gilt auch für UID-Abfragen, die zuvor bei Fehlern ein leeres Ergebnis zurückgaben.
 
 Unterscheiden Sie Fehler bei der Identitätsprüfung, erneuten Authentifizierung und funktionsbezogenen Zugangsdaten mithilfe der Hilfsfunktionen für ein stabiles Authentifizierungsfehlerformat.
 
@@ -45,4 +47,4 @@ Registrieren Sie `createMaintenanceMiddleware()` nach CORS und vor der Container
 
 ## Nächster Schritt
 
-Fahren Sie für MySQL und Hyperdrive mit [Datenschicht](./data-layer.md) fort oder lesen Sie unter [API](./api.md) die vollständige Exportliste.
+Fahren Sie für MySQL und Hyperdrive mit [Datenschicht](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/data-layer) fort oder lesen Sie unter [API](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/api) die vollständige Exportliste.

@@ -1,12 +1,16 @@
 ---
 title: "API"
-sourceRevision: "9a5b4e8dddd6e80b2a6036c60d3372696f40384e1db6187bcaf92c0d984f9f80"
+sourceRevision: "a02fb5de505073672651cead4a364845bc5bccaaecd53b108c95dda0b2e8da7a"
 ---
-Points d’entrée publics de `@rdlabo/workers-hono-kit` v0.12.2 et des packages autonomes MySQL et de gestion des fuseaux horaires.
+Points d’entrée publics de `@rdlabo/workers-hono-kit` v0.13.0 et des packages autonomes MySQL et de gestion des fuseaux horaires.
 
 #### `module` @rdlabo/workers-hono-kit
 
 Utilitaires Hono et d’infrastructure compatibles avec Workers, sans dépendance MySQL à l’exécution.
+
+Les exports racine d’authentification sociale comprennent `verifyGoogleIdentityToken`, `verifyAppleIdentityToken`, `hasFirebaseProviderIdentity` et `createAppleClientSecret`, ainsi que `AppleClientSecretConfig`, `APPLE_IDENTITY_ISSUER` et `GOOGLE_IDENTITY_ISSUERS`. La vérification du jeton d’identité renvoie le sujet du fournisseur après contrôle de la signature, de l’émetteur, de l’audience et de l’expiration. `hasFirebaseProviderIdentity` inspecte uniquement une charge utile Firebase déjà vérifiée ; cette fonction ne vérifie pas le JWT Firebase. Consultez [Authentification sociale](/docs/getting-started) pour la politique de connexion/liaison définie par l’application.
+
+`FirebaseVerifier` expose les recherches de comptes `getUser`, `getUsers` et `getUserByEmail` ; `IdentityToolkit` fournit les méthodes correspondantes `lookup`, `lookupMany` et `lookupByEmail`. `FirebaseUserRecord` contient `uid` et les champs facultatifs `email` / `disabled` ; les comptes désactivés sont renvoyés pour que l’application décide de leur traitement. Les utilisateurs inexistants donnent `null` ou sont omis des résultats par lots, tandis que les échecs du fournisseur déclenchent une exception. Consultez [HTTP et authentification](/docs/http-auth).
 
 #### `module` @rdlabo/workers-mysql
 

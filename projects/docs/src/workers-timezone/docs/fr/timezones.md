@@ -1,6 +1,6 @@
 ---
 title: "Fuseaux horaires et dates calendaires"
-sourceRevision: "ae712728312a984ab84b088a37db99564eb16864e55834d0f7c25ad44c893109"
+sourceRevision: "dfd7bad05cce7cbbc2fc1b0ffb41741965c46545acfb777146249fcfd11e9784"
 ---
 # Fuseaux horaires et dates calendaires
 
@@ -46,4 +46,4 @@ Ce package ne configure pas MySQL. `@rdlabo/workers-mysql` possède des utilitai
 modifier ici le fuseau métier ne change ni ces utilitaires, ni les options mysql2,
 ni le fuseau horaire de la session MySQL. Séparez le stockage des instants des conversions calendaires destinées aux utilisateurs.
 
-Consultez [API](./api.md) et [Migration](./migration.md).
+Consultez [API](https://docs.rdlabo.dev/projects/workers-timezone/docs/api) et [Migration](https://docs.rdlabo.dev/projects/workers-timezone/docs/migration).

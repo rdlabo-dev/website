@@ -22,14 +22,14 @@ IonicのiOS 26とMaterial Design 3のリストスタイルでは、項目をそ�
 
 ## ルール詳細
 
-`ion-list` 内の `ion-item` は、次のいずれかの構造を正確に使う必要があります。
+`ion-list` 内の `ion-item` は、自身と最も近い外側のリストとの間に、対応するグループが必要です。一般的な構造は次のとおりです。
 
 - `ion-list > ion-item-group > ion-item`
 - `ion-list > ion-reorder-group > ion-item`
 - `ion-list > ion-accordion-group > ion-accordion > ion-item`
 - `ion-list > ion-radio-group > ion-item`
 
-`@if`、`@for`、`@empty`、`@switch`、`@defer` などのAngular制御フローブロックは要素を描画しないため、この構造検査では無視して内側の要素を調べます。`ng-container` と `ng-template` も同様に扱います。描画されるHTML要素やAngular要素は省略して扱いません。リスト、グループ、項目の間に `div` を挿入すると報告されます。
+`@if`、`@for`、`@empty`、`@switch`、`@defer` などのAngular制御フローブロックは要素を描画しないため、この構造検査では無視して内側の要素を調べます。`ng-container` と `ng-template` も同様に扱います。描画されるラッパーや入れ子のグループも使用できます。たとえば、`ion-list > ion-item-group > ion-accordion-group > ion-accordion > ion-item` は有効です。このルールはグループの欠落を検出し、レイアウトの深さを厳密には制限しません。外側のリストのグループでは、入れ子の `ion-list` 内の項目に対する要件を満たせません。
 
 このルールは `ion-list` に含まれる `ion-item` だけを検査します。リスト外の `ion-item` は報告せず、`.spec.html` ファイルは無視します。
 
@@ -92,5 +92,5 @@ iOS 26とMaterial Design 3のリストデザインを対象とするIonic Angula
 
 ## 実装
 
-- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-item-group.ts)
-- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-item-group.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-item-group.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-item-group.ts)

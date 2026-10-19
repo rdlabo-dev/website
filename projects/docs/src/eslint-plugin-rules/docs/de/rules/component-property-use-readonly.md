@@ -1,6 +1,6 @@
 ---
 title: "component-property-use-readonly"
-sourceRevision: "aa55325bb731d532f0305106d69bdffa7e50fa62c1ef8d4b4b829e84531c9abe"
+sourceRevision: "9e3c07b99a897980fa45e930f1f2cea5efd1cd66f240845a07bf8fffd6d43431"
 ---
 # @rdlabo/rules/component-property-use-readonly
 
@@ -99,5 +99,5 @@ Aktivieren Sie diese Regel, wenn Komponentenproperties stabile Referenzen bereit
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/component-property-use-readonly.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/component-property-use-readonly.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/component-property-use-readonly.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/component-property-use-readonly.ts)

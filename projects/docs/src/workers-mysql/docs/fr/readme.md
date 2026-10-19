@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "5df84bf9a09391b9d0102756651e33804bba6160b18422967bdb897dd591709f"
+sourceRevision: "a18d5386321e910a8df1ad6289265c5584a2bb19ae89c7fac01797b9e50481a8"
 ---
 # @rdlabo/workers-mysql
 
@@ -44,7 +44,7 @@ Utilisez la version majeure compatible avec vos outils. Sous pnpm, l’installat
 
 ## Commencer par une véritable requête
 
-[Exécuter votre première requête MySQL](/docs/quickstart) : démarrez une base locale jetable, exécutez un `SELECT` paramétré et vérifiez le résultat. Le guide présente ensuite le gestionnaire Worker complet pour une liaison Hyperdrive existante.
+[Exécuter votre première requête MySQL](https://docs.rdlabo.dev/projects/workers-mysql/docs/quickstart) : démarrez une base locale jetable, exécutez un `SELECT` paramétré et vérifiez le résultat. Le guide présente ensuite le gestionnaire Worker complet pour une liaison Hyperdrive existante.
 
 ## Choisir un point d’entrée
 

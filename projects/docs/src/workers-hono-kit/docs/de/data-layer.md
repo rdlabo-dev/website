@@ -1,6 +1,6 @@
 ---
 title: "Datenschicht"
-sourceRevision: "1b9ddd010afdf64e0b3b859fcad8be611f51c3c3d1be332a19f4f6934e027018"
+sourceRevision: "2fb4d16d1612fd92be0715cf1e8798e50afe18e3d59cc5ede6828bbe5abfb776"
 ---
 # Datenschicht
 
@@ -101,4 +101,4 @@ Die alten `/db`-Exports und die datenbankbezogenen `/testing`-Exports bleiben au
 
 ## Nächster Schritt
 
-Fahren Sie mit [Echtzeit und Offline](./realtime-offline.md) fort oder lesen Sie die Anleitungen für das eigenständige Paket [`@rdlabo/workers-mysql`](https://docs.rdlabo.dev/projects/workers-mysql/docs/readme).
+Fahren Sie mit [Echtzeit und Offline](https://docs.rdlabo.dev/projects/workers-hono-kit/docs/realtime-offline) fort oder lesen Sie die Anleitungen für das eigenständige Paket [`@rdlabo/workers-mysql`](https://docs.rdlabo.dev/projects/workers-mysql/docs/readme).

@@ -1,6 +1,6 @@
 ---
 title: "deny-element"
-sourceRevision: "15b7371e233c9c398e7eb47c237103ff023955d473ebcb929aa6a95051241a62"
+sourceRevision: "967ace55de77fe1ac285b0f45a9f8cdb5b8408a32a948c9f54af7cbb61afb1a3"
 ---
 # @rdlabo/rules/deny-element
 
@@ -83,5 +83,5 @@ Aktivieren Sie diese Regel in Projekten mit Launcher-Muster für Overlays. Sie e
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-element.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-element.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-element.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-element.ts)

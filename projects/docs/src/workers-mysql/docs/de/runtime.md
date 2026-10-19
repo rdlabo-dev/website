@@ -1,10 +1,10 @@
 ---
 title: "Laufzeit"
-sourceRevision: "fbb6a2b8030f005446b9d6369d1d140ac7d243f6eb938530b05138763c164e3c"
+sourceRevision: "160cf590542b74abc21b2ac98e581f3f0d4e69e403c4e77e6b9f67d07fd6a28e"
 ---
 # Laufzeit
 
-Aktivieren Sie `nodejs_compat` in Ihrem Worker und installieren Sie die im [README](../README.md) beschriebenen Abhängigkeiten. `mysql2` ist enthalten. Die Anwendung liefert ihre Hyperdrive-Bindungen, ihr Schema und ihre ORM-Factory.
+Aktivieren Sie `nodejs_compat` in Ihrem Worker und installieren Sie die im [README](https://docs.rdlabo.dev/projects/workers-mysql/docs/readme) beschriebenen Abhängigkeiten. `mysql2` ist enthalten. Die Anwendung liefert ihre Hyperdrive-Bindungen, ihr Schema und ihre ORM-Factory.
 
 ## Lebensdauer eines Aufrufs
 
@@ -56,4 +56,4 @@ Hyperdrive-SELECTs und schreibgeschützte Transaktionen können nach einem fatal
 
 `createMysqlDatabase({ orm, replica })` und `databaseFrom(orm, replica)` umschließen vorhandene Handles. Der Aufrufer verwaltet deren Verbindungsbereinigung. Sie stellen `Database` bereit, nicht die zusätzlichen Primary-Lesemethoden von Hyperdrive. Verwenden Sie für Hono-Container `@rdlabo/workers-hono-kit/mysql` ab Kit `0.12.0`.
 
-Verbindungsstandards beschreibt [Drizzle und Datumswerte](./drizzle.md); Exporte finden Sie unter [API](./api.md).
+Verbindungsstandards beschreibt [Drizzle und Datumswerte](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle); Exporte finden Sie unter [API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api).

@@ -1,6 +1,6 @@
 ---
 title: "Die Kit-Integration mit ESLint prüfen"
-sourceRevision: "621cfef57d9f6b603d1075c99817d1188aa4668c85888ef1d43096f94e106dfb"
+sourceRevision: "9c53bb3945b16d41d6a229b13c9ebd026478c74e33cf090409f9b1771b91adbf"
 ---
 Halten Sie modale Starter, asynchrone Aktionshandler und Formularfehler einheitlich, während Ihre Ionic-Angular-App wächst. `@rdlabo/eslint-plugin-rules` prüft die Aufrufmuster, die zu `@rdlabo/ionic-angular-kit` passen.
 
@@ -48,7 +48,7 @@ Diese Regeln sind auch in `rdlabo.configs.recommended` enthalten.
 
 `deny-overlay-create` meldet `.create()`-Aufrufe an `ModalController` und `PopoverController`. `prefer-modal-launcher` prüft, ob sich `presentModal`-Aufrufe in `launch*`-Funktionen befinden.
 
-Mit `overlay` und `DetailPage` aus Ihrer [Overlay-Konfiguration](./storage-overlays.md) wird Folgendes gemeldet:
+Mit `overlay` und `DetailPage` aus Ihrer [Overlay-Konfiguration](/docs/storage-overlays) wird Folgendes gemeldet:
 
 ```ts
 export const openDetail = () => overlay.presentModal(DetailPage);
@@ -87,7 +87,7 @@ Die Regel prüft den Aufruf der Hüllfunktion, nicht das Verhalten des asynchron
 
 Standardmäßig verlangt `require-ion-error-text` an Ionic-Eingabeelementen mit `[formField]` eine Quelle für Fehlertexte.
 
-Für Angular-22-Apps mit [Kit Signal Forms](./forms.md) importieren Sie `FormField` und `KitIonicFormField` in jeder betroffenen Komponente und installieren Sie `provideKitIonicSignalForms()`. Überschreiben Sie anschließend diesen Eintrag in den `rules` der HTML-Konfiguration:
+Für Angular-22-Apps mit [Kit Signal Forms](/docs/forms) importieren Sie `FormField` und `KitIonicFormField` in jeder betroffenen Komponente und installieren Sie `provideKitIonicSignalForms()`. Überschreiben Sie anschließend diesen Eintrag in den `rules` der HTML-Konfiguration:
 
 ```js
 '@rdlabo/rules/require-ion-error-text': [

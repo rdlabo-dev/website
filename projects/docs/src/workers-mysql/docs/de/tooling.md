@@ -1,6 +1,6 @@
 ---
 title: "Migrationen und Tests"
-sourceRevision: "6eecda01792307173d33dbe68c7086167a6a7bde07485e2b57107ff077872828"
+sourceRevision: "ea35881385d08fa78a530a9c4bf6e5348e5d7291c9111fae03356f6b18733a53"
 ---
 # Migrationen und Tests
 
@@ -30,4 +30,4 @@ Die installierte CLI lautet `workers-mysql-db-baseline --migrations ./drizzle`. 
 
 Richten Sie diese Hilfsfunktionen niemals auf gemeinsam genutzte oder Produktionsdaten. Getrennte Testläufe sollten unterschiedliche Datenbanknamen verwenden. `createPoolDatabase({ pool, orm })` verwendet einen Pool für Lese-/Schreibzugriffe und schließt ihn bei `dispose()`. `createNoopDatabase()` liefert leere Leseergebnisse und löst bei unerwarteten Schreiboperationen oder Transaktionen Fehler aus. Es ist ein Stub, kein Akzeptanztest gegen MySQL.
 
-Die verfügbaren Typen finden Sie unter [API](./api.md).
+Die verfügbaren Typen finden Sie unter [API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api).

@@ -18,7 +18,7 @@ npm install @rdlabo/workers-mysql drizzle-orm
 npm install -D @types/node@20
 ```
 
-開発用tarballの導入は[Development](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.12.2/packages/hono-kit/docs/development.md)を参照してください。
+開発用tarballの導入は[Development](https://github.com/rdlabo-dev/workers-hono-kit/blob/v0.13.0/packages/hono-kit/docs/development.md)を参照してください。
 
 ## Hyperdriveデータベース
 

@@ -1,8 +1,8 @@
 ---
 title: "Visionneuse de photos"
-sourceRevision: "1cb39a942464db1e23c19cd0897b6369034e7c8f0a187af65bc6de0cad39d582"
+sourceRevision: "8dfb575e465baa0e04ea2b999f132d3c845299ced3ba680de485f505dd36a4ad"
 ---
-Présentez `PhotoViewerPage` depuis un bouton ou une méthode de page existante via une fenêtre modale Ionic. Faites-le après l’[installation](../README.md#installation). Installez `swiper` pour utiliser la visionneuse.
+Présentez `PhotoViewerPage` depuis un bouton ou une méthode de page existante via une fenêtre modale Ionic. Faites-le après l’[installation](/docs/readme#installation). Installez `swiper` pour utiliser la visionneuse.
 
 ```typescript
 import { Component, inject } from '@angular/core';
@@ -81,7 +81,7 @@ Si la valeur est `true`, ajoute une marge interne de zone de sécurité au pied 
 
 ### toolbarColorScheme: 'light' | 'dark'
 
-**Obligatoire.** Utilisez `dark` pour un `ion-toolbar` sombre/noir et `light` pour une barre claire/blanche. Consultez [Thème](./theme.md).
+**Obligatoire.** Utilisez `dark` pour un `ion-toolbar` sombre/noir et `light` pour une barre claire/blanche. Consultez [Thème](/docs/theme).
 
 ### imageAlt: string | ((url: string, index: number) => string)
 

@@ -1,13 +1,13 @@
 ---
 title: "Défilement inversé"
-sourceRevision: "ba7c1bf9f5146241ac971c0fb431e8fa3408816803cef56ec91ed2b0bde3a274"
+sourceRevision: "dfba20118012c34ad194c6351743df2e7a7b430174107f2b1ca3e988fd96dba0"
 ---
-Appelez cette fonction après l’[installation](../README.md#installation).
+Appelez cette fonction après l’[installation](/docs/readme#installation).
 
-> Réutilisez le modèle de données, le computed `dynamicSize`, `trackBy` et les importations du viewport de [Utilisation simple](./simple.md). Cette page ajoute le CSS de disposition inversée et `[isReverse]="true"` pour une liste de type chat.
+> Réutilisez le modèle de données, le computed `dynamicSize`, `trackBy` et les importations du viewport de [Utilisation simple](/docs/simple). Cette page ajoute le CSS de disposition inversée et `[isReverse]="true"` pour une liste de type chat.
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/reverse
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.3/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.6/projects/demo/src/app/scroll-strategies/pages/scroll-reverse
 
 Pour un défilement inversé, ajoutez la directive `isReverse` à la balise `cdk-virtual-scroll-viewport`.
 
@@ -64,7 +64,7 @@ div.reverse-items {
 ```
 
 **En défilement inversé, measureScrollOffset de CdkVirtualScrollViewport ne fonctionne pas. Utilisez le scrollOffset de cette directive.**
-https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
+https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll-strategy.ts
 
 La disposition inversée utilise des valeurs natives `scrollTop` négatives. `scrollToIndex()` accepte un index logique d’élément comme d’habitude et convertit son décalage cumulé en cette coordonnée native en interne.
 
@@ -76,4 +76,4 @@ Ce package contient un service utilitaire qui simplifie le développement avec l
 import { DynamicSizeVirtualScrollService } from '@rdlabo/ngx-cdk-scroll-strategies';
 ```
 
-Détails : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.3/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts
+Détails : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/scroll-strategies/src/lib/dynamic-size-virtual-scroll.service.ts

@@ -1,6 +1,6 @@
 ---
 title: "Événements"
-sourceRevision: "8b7ee1e8f897b23d409811a80ed4ff8fc0e8fef2ea8f6e177bf8e64733013cd8"
+sourceRevision: "fa001b63fb6330bcbc3bed1ac110e5ab6fd6ef9b27eeefb99c8cde4c17d325a3"
 ---
 # Événements
 
@@ -51,7 +51,7 @@ Lorsque `printImage` rejette une image invalide, un modèle ou un port non pris 
 
 Consultez la démo pour une page complète :
 
-https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.1/demo/src/app/home/home.page.ts
+https://github.com/rdlabo-dev/capacitor-brotherprint/blob/v8.2.3/demo/src/app/home/home.page.ts
 
 <!-- !::addListener.BrotherPrintEventsEnum:: -->
 

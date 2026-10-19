@@ -1,6 +1,6 @@
 ---
 title: "deny-element"
-sourceRevision: "15b7371e233c9c398e7eb47c237103ff023955d473ebcb929aa6a95051241a62"
+sourceRevision: "967ace55de77fe1ac285b0f45a9f8cdb5b8408a32a948c9f54af7cbb61afb1a3"
 ---
 # @rdlabo/rules/deny-element
 
@@ -83,5 +83,5 @@ Activez cette règle dans les projets qui utilisent le modèle de lanceur pour l
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/deny-element.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/deny-element.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-element.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-element.ts)

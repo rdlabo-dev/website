@@ -1,11 +1,11 @@
 ---
 title: "Environnement d’exécution"
-sourceRevision: "fbb6a2b8030f005446b9d6369d1d140ac7d243f6eb938530b05138763c164e3c"
+sourceRevision: "160cf590542b74abc21b2ac98e581f3f0d4e69e403c4e77e6b9f67d07fd6a28e"
 ---
 # Environnement d’exécution
 
 Activez `nodejs_compat` dans votre Worker et installez les dépendances décrites dans le
-[README](../README.md). `mysql2` est inclus. L’application fournit ses liaisons Hyperdrive,
+[README](https://docs.rdlabo.dev/projects/workers-mysql/docs/readme). `mysql2` est inclus. L’application fournit ses liaisons Hyperdrive,
 son schéma et sa factory ORM.
 
 ## Durée de vie d’une invocation
@@ -69,4 +69,4 @@ leur résultat peut être inconnu. Gérez l’idempotence dans l’application a
 l’appelant gère le nettoyage des connexions. Ils exposent `Database`, sans les méthodes supplémentaires de lecture primaire
 d’Hyperdrive. Pour les conteneurs Hono, utilisez `@rdlabo/workers-hono-kit/mysql`, à partir du kit `0.12.0`.
 
-Consultez [Drizzle et dates](./drizzle.md) pour les valeurs de connexion par défaut et l’[API](./api.md) pour les exports.
+Consultez [Drizzle et dates](https://docs.rdlabo.dev/projects/workers-mysql/docs/drizzle) pour les valeurs de connexion par défaut et l’[API](https://docs.rdlabo.dev/projects/workers-mysql/docs/api) pour les exports.

@@ -1,6 +1,6 @@
 ---
 title: "Authentifizierung und HTTP"
-sourceRevision: "66614e310f548bc9ec22af4ea4243fc2dd6a517d01f272f224c7d62fd11ac55b"
+sourceRevision: "1851fbaaf3fc89785e9d73f853569dbfa63ae0ecfa57e95fa3401f831d8ca85f"
 ---
 ## Zugriffsberechtigungen
 
@@ -48,6 +48,14 @@ export const routes: Routes = [
 ```
 
 Verwenden Sie `kitRequiredUnauthorizedGuard`, `kitRequireConfirmingGuard` und `kitRequireAuthorizedGuard` in den Routendefinitionen. Eine geschützte asynchrone Entscheidung setzt zuvor veröffentlichte Remote-Berechtigungen aus, bis die aktuelle Autorisierungsfreigabe erfolgreich ist.
+
+## Anmeldeanfragen beim Start gemeinsam nutzen
+
+`KitAuthLoginExchange<Identity, Result>` teilt eine laufende Backend-Anmeldeanfrage. Ein vorgeladenes Ergebnis (einschließlich Fehlern) kann einmalig für die Autorisierung verwendet werden, solange die ursprüngliche Navigation aktuell ist, bis zu 30 Sekunden nach Abschluss. Spätere Autorisierungsaufrufe stellen eine neue Anfrage; dies ist kein Berechtigungs-Cache.
+
+Halten Sie eine Instanz im Authentifizierungsdienst der Anwendung. Erfassen Sie den Firebase-Benutzer beim Erstellen der Anfrage, verwerfen Sie Antworten für einen inzwischen ersetzten Benutzer und rufen Sie bei der Abmeldung `clear()` auf. Die Eignung der Anbieter, die Wiederherstellung nach Löschung, die Zustimmung zu Bedingungen und die Antwortverarbeitung bleiben Aufgabe der Anwendung.
+
+Anwendungen, die vor der Autorisierung eine lokale Laufzeit initialisieren, rufen `kitPreloadAuthLoginForNavigation(router, isCurrent => auth.preloadTokenLogin(isCurrent))` nach der Firebase-Bereitschaft und der erforderlichen Kontowiederherstellung auf, bevor sie die Laufzeitinitialisierung abwarten. Führen Sie bei fehlgeschlagener Initialisierung die zurückgegebene Bereinigungsfunktion aus. Sie verwirft nicht verbrauchte Arbeit, wenn diese Navigation endet oder abgebrochen wird. Anwendungen ohne sinnvolle überlappende Startarbeit können allein `run(identity, request)` verwenden.
 
 ## HTTP-Richtlinie
 

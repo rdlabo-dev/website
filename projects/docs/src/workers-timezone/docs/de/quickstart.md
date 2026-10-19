@@ -1,6 +1,6 @@
 ---
 title: "Zeitzonen-Konvertierungen und ESLint gemeinsam ausprobieren"
-sourceRevision: "9ed437287a41f0f96e3a8f3fbb0779e4ffcc3044c42031334e6626391c130e28"
+sourceRevision: "57227ca41afb532c6f82543e339c44165c160db90607e54994e3513eaa8d20fb"
 ---
 Ein einzelner Zeitpunkt kann zu unterschiedlichen Kalenderdaten gehören. Beobachten Sie zunächst diesen Unterschied und lassen Sie ESLint anschließend Code melden, der versehentlich auf die Zeitzone des Hosts zurückfällt.
 
@@ -115,4 +115,4 @@ Lint sollte wieder erfolgreich sein. Die zuletzt hinzugefügte Zeile gibt `2026-
 
 ## 4. In Ihrer Anwendung verwenden
 
-Folgen Sie der [Anwendungseinrichtung](../README.md), um die Standardzeitzone zu wählen, und [aktivieren Sie anschließend ESLint in CI](./eslint.md). Nutzerspezifische Einstellungen, Sommerzeit und Datenbankgrenzen beschreibt [Zeitzonen und Kalenderdaten](./timezones.md).
+Folgen Sie der [Anwendungseinrichtung](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme), um die Standardzeitzone zu wählen, und [aktivieren Sie anschließend ESLint in CI](https://docs.rdlabo.dev/projects/workers-timezone/docs/eslint). Nutzerspezifische Einstellungen, Sommerzeit und Datenbankgrenzen beschreibt [Zeitzonen und Kalenderdaten](https://docs.rdlabo.dev/projects/workers-timezone/docs/timezones).

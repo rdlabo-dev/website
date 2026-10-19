@@ -1,6 +1,6 @@
 ---
 title: "require-ion-item-group"
-sourceRevision: "b84fbd7d5c9b713e13571d425572bcaad0f30c76a0421a5f6f27d94a2f32984e"
+sourceRevision: "11152c4831896aeb85194ce45ed330375ab83913ba654d3b1dba861aefade2da"
 ---
 # @rdlabo/rules/require-ion-item-group
 
@@ -13,14 +13,14 @@ Les styles de listes Ionic pour iOS 26 et Material Design 3 attendent que les é
 
 ## Détails de la règle
 
-Un `ion-item` dans `ion-list` doit utiliser exactement l’une de ces structures :
+Un `ion-item` dans `ion-list` doit avoir un groupe pris en charge entre lui-même et la liste englobante la plus proche. Voici des structures courantes :
 
 - `ion-list > ion-item-group > ion-item`
 - `ion-list > ion-reorder-group > ion-item`
 - `ion-list > ion-accordion-group > ion-accordion > ion-item`
 - `ion-list > ion-radio-group > ion-item`
 
-Les blocs de contrôle Angular comme `@if`, `@for`, `@empty`, `@switch` et `@defer` sont transparents pour cette vérification structurelle, car ils n’affichent pas d’élément. `ng-container` et `ng-template` sont également transparents. Les éléments HTML ou Angular affichés ne le sont pas : insérer un `div` entre la liste, le groupe ou l’élément est signalé.
+Les blocs de contrôle Angular comme `@if`, `@for`, `@empty`, `@switch` et `@defer` sont transparents pour cette vérification structurelle, car ils n’affichent pas d’élément. `ng-container` et `ng-template` sont également transparents. Les éléments englobants rendus et les groupes imbriqués sont autorisés. Par exemple, `ion-list > ion-item-group > ion-accordion-group > ion-accordion > ion-item` est valide. Cette règle détecte les groupes manquants sans imposer une profondeur exacte de mise en page. Le groupe d’une liste externe ne satisfait pas cette exigence pour les éléments d’une `ion-list` imbriquée.
 
 La règle vérifie uniquement les éléments `ion-item` contenus dans `ion-list`. Un `ion-item` hors d’une liste n’est pas signalé et les fichiers `.spec.html` sont ignorés.
 
@@ -83,5 +83,5 @@ Activez cette règle dans les applications Ionic Angular qui ciblent les designs
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/src/rules/require-ion-item-group.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.0/tests/rules/require-ion-item-group.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-item-group.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-item-group.ts)

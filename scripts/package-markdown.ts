@@ -168,6 +168,18 @@ export function normalizePackageMarkdown(markdown: string): string {
 const RELATIVE_DOC_FILE_PATTERN =
   /^(?:\.\.\/)*(?:\.\/)?(?:docs\/)?((?:[a-z0-9-]+\/)*[a-z0-9-]+)\.md$/i;
 
+/** Keep links between the split theme and Native UI guides inside the portal. */
+export function rewriteThemeWorkspaceLinks(markdown: string): string {
+  return markdown.replace(
+    /\]\((?:(?:\.\.\/)+(theme-ios27|capacitor-native-ui)\/|https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/blob\/(?:main|ios27-v\d+\.\d+\.\d+(?:-[\w.-]+)?)\/packages\/(theme-ios27|capacitor-native-ui)\/)(?:docs\/([a-z0-9-]+)\.md|README\.md)(#[^)]*)?\)/g,
+    (_, relative: string, absolute: string, slug: string | undefined, hash = '') => {
+      const project =
+        (relative ?? absolute) === 'theme-ios27' ? 'ionic-theme-ios27' : 'capacitor-native-ui';
+      return `](/${project}/docs/${slug ?? 'readme'}${hash})`;
+    },
+  );
+}
+
 /** Resolves a relative `*.md` link against the containing page's directory into a page slug. */
 export function resolveRelativeDocSlug(path: string, pageFile?: string): string | undefined {
   if (!RELATIVE_DOC_FILE_PATTERN.test(path)) return undefined;
@@ -180,13 +192,17 @@ export function resolveRelativeDocSlug(path: string, pageFile?: string): string 
 }
 
 export function rewriteRelativeDocLinks(markdown: string, pageFile: string): string {
-  return markdown.replace(/\]\((?!https?:|mailto:)([^)]+)\)/g, (match, target: string) => {
-    const hashIndex = target.indexOf('#');
-    const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
-    const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
-    const slug = resolveRelativeDocSlug(path, pageFile);
-    return slug ? `](/docs/${slug}${hash})` : match;
-  });
+  return rewriteThemeWorkspaceLinks(markdown).replace(
+    /\]\((?!https?:|mailto:)([^)]+)\)/g,
+    (match, target: string) => {
+      if (target.startsWith('/')) return match;
+      const hashIndex = target.indexOf('#');
+      const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
+      const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
+      const slug = resolveRelativeDocSlug(path, pageFile);
+      return slug ? `](/docs/${slug}${hash})` : match;
+    },
+  );
 }
 
 /** Keep repository examples and contribution files outside the portal's guide routes. */
@@ -225,32 +241,35 @@ export function rewritePackageDocLinks(
   landingSlug = 'readme',
   pageFile?: string,
 ): string {
-  return markdown.replace(/\]\((?!https?:|mailto:)([^)]+)\)/g, (match, target: string) => {
-    const hashIndex = target.indexOf('#');
-    const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
-    const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
-    const hashId = hash.slice(1).toLowerCase();
+  return rewriteThemeWorkspaceLinks(markdown).replace(
+    /\]\((?!https?:|mailto:)([^)]+)\)/g,
+    (match, target: string) => {
+      const hashIndex = target.indexOf('#');
+      const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
+      const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
+      const hashId = hash.slice(1).toLowerCase();
 
-    // A guide's fragment belongs to that guide, even when its name also occurs
-    // in the README's extracted API. Only landing-page fragments are relocated.
-    if (!path && pageFile && !['readme.md', 'getting-started.md'].includes(pageFile)) {
+      // A guide's fragment belongs to that guide, even when its name also occurs
+      // in the README's extracted API. Only landing-page fragments are relocated.
+      if (!path && pageFile && !['readme.md', 'getting-started.md'].includes(pageFile)) {
+        return match;
+      }
+
+      if (
+        !path ||
+        path === '../README.md' ||
+        path === './README.md' ||
+        path === `/docs/${landingSlug}`
+      ) {
+        if (hashId === 'api') return '](/docs/api)';
+        const apiFragment = hashId ? apiAnchors.get(hashId) : undefined;
+        if (apiFragment) return `](/docs/api#${apiFragment})`;
+        return `](/docs/${landingSlug}${hash})`;
+      }
+
+      const slug = resolveRelativeDocSlug(path, pageFile);
+      if (slug) return `](/docs/${slug}${hash})`;
       return match;
-    }
-
-    if (
-      !path ||
-      path === '../README.md' ||
-      path === './README.md' ||
-      path === `/docs/${landingSlug}`
-    ) {
-      if (hashId === 'api') return '](/docs/api)';
-      const apiFragment = hashId ? apiAnchors.get(hashId) : undefined;
-      if (apiFragment) return `](/docs/api#${apiFragment})`;
-      return `](/docs/${landingSlug}${hash})`;
-    }
-
-    const slug = resolveRelativeDocSlug(path, pageFile);
-    if (slug) return `](/docs/${slug}${hash})`;
-    return match;
-  });
+    },
+  );
 }

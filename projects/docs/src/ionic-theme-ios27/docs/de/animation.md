@@ -1,7 +1,8 @@
 ---
 title: "Animation"
-sourceRevision: "f68a688e70ca4672d3a1e30ab2c1602d1453a7c376a0522e41254ec0927a4eb1"
+sourceRevision: "165b184fd4cd2f23315982e52bcd68ea1061be29e4fbe39be0f4029a50c2715d"
 ---
+
 # Animation
 
 Diese Hilfsfunktionen für Gesten und Animationen sind produktionsreif und optional. Das Theme funktioniert auch ohne sie.
@@ -29,9 +30,9 @@ const registeredSegmentEffect = segment ? registerSegmentEffect(segment) : undef
 
 const destroy = () => {
   /**
-   * Wenn das registrierte DOM-Element entfernt wird, etwa durch Seitennavigation,
-   * müssen Geste und Animation zerstört werden. Dadurch werden auch die Ereignis-Listener entfernt.
-   * Bei Bedarf können sie erneut registriert werden.
+   * Wenn das registrierte DOM-Element entfernt wird, etwa bei Seitennavigation,
+   * müssen Geste und Animation zerstört werden. Dies entfernt auch die Ereignislistener.
+   * Bei Bedarf können Sie sie erneut registrieren.
    */
   registeredTabBarEffect?.destroy();
   registeredSegmentEffect?.destroy();
@@ -50,22 +51,38 @@ import { closeOutline } from 'ionicons/icons';
 
 const searchbar = document.querySelector<HTMLIonSearchbarElement>('ion-searchbar')!;
 searchbar.animated = true;
-searchbar.showCancelButton = 'focus'; // 'always' und 'never' sind ebenfalls möglich
+searchbar.showCancelButton = 'focus'; // 'always' und 'never' funktionieren ebenfalls
 searchbar.cancelButtonIcon = closeOutline;
 searchbar.clearIcon = closeOutline;
-searchbar.cancelButtonText = 'Close search'; // Zugänglicher Name des Icon-Buttons
+searchbar.cancelButtonText = 'Close search'; // zugänglicher Name der Symbolschaltfläche
 const effect = supportSeachbarCancelButtonIcon(searchbar);
 
 // Nach einer Änderung der JavaScript-Eigenschaft cancelButtonIcon effect.refresh() aufrufen.
-// Beim Zerstören der Komponente oder Seite:
+// Beim Zerstören der Komponente/Seite:
 // effect.destroy();
 ```
 
-Registrieren Sie die Funktion nach der Initialisierung des Ionic-Elements, beispielsweise in `ngAfterViewInit` von Angular. Sie erhält die Ionic-Schaltfläche und ihre Ereignishandler; `destroy()` stellt ihren Textinhalt wieder her. Sie gilt nicht für Suchleisten im MD-Modus oder mit `searchbar-classic`, `ios-theme-disabled` beziehungsweise `ios26-disabled`. Die CSS-Animation folgt `animated` und berücksichtigt `prefers-reduced-motion`. Normale CSS-Variablen der Suchleiste wie `--background`, `--box-shadow`, `--border-radius` und `--cancel-button-color` bleiben verfügbar.
+### Registrierung und Ausschlüsse
 
-Die Löschen-Schaltfläche verwendet dasselbe 44px-Glasdesign und erscheint neben der Eingabe. Sie verwendet `clearIcon`, `showClearButton` und `--clear-button-color` von Ionic. Beim Löschen bleibt die Eingabe fokussiert; Abbrechen beendet die Suche. Löschen und Abbrechen können gleichzeitig angezeigt werden. Setzen Sie `clearIcon` und `cancelButtonIcon` auf dasselbe Symbol, um beiden dasselbe Aussehen zu geben.
+Registrieren Sie das Ionic-Element nach seiner Initialisierung, beispielsweise in Angulars `ngAfterViewInit`.
 
-Beide externen Glasschaltflächen verwenden die zentrierte Druckfeder der iOS-27-Abbrechen-Schaltfläche, verkleinert auf den verfügbaren Innenabstand von 8px, ohne den Rahmen abzuschneiden: 44px im Ruhezustand, 57,2px beim Gedrückthalten und etwa 58,26px beim Überschwingen (nativ: 60px gehalten, Spitzenwert 61,29px). Druck- und Loslasskurven folgen UIKit-Messungen der Darstellungsebene im iPhone-18-Pro-Simulator. Reduzierte Bewegung deaktiviert die Skalierung. Dieses gemeinsame externe Löschdesign unterscheidet sich bewusst von der kleinen, nicht expandierenden Löschen-Schaltfläche im UIKit-Textfeld. Ionic liefert die Symbole; die Glyphenpixel sind daher nicht identisch mit SF Symbols.
+| Bedingung | Verhalten |
+| --- | --- |
+| Unterstützte Suchleiste im iOS-Modus | Behält Ionics Schaltfläche und Ereignishandler bei; `destroy()` stellt den Textinhalt wieder her. |
+| MD-Modus, `searchbar-classic`, `ios-theme-disabled` oder `ios26-disabled` | Der Helfer wird nicht angewendet. |
+| `animated` / `prefers-reduced-motion` | Werden von der CSS-Animation berücksichtigt. |
+| CSS-Anpassung | `--background`, `--box-shadow`, `--border-radius` und `--cancel-button-color` bleiben verfügbar. |
+
+### Schaltflächen zum Leeren und Abbrechen
+
+| Schaltfläche | Ionic-Darstellungseinstellungen | Aktion |
+| --- | --- | --- |
+| Leeren | `clearIcon`, `showClearButton`, `--clear-button-color` | Leert die Eingabe und behält den Eingabefokus. |
+| Abbrechen | `cancelButtonIcon`, `--cancel-button-color` | Beendet die Suche. |
+
+Beide können gleichzeitig neben der Eingabe erscheinen. Setzen Sie `clearIcon` und `cancelButtonIcon` für eine einheitliche Darstellung auf dasselbe Symbol.
+
+Beide externen Glasschaltflächen sind im Ruhezustand 44px groß und vergrößern sich beim Drücken. Reduzierte Bewegung deaktiviert die Skalierung. Die Schaltfläche zum Leeren erscheint außerhalb des Textfelds; Ionic stellt die Symbole bereit.
 
 Beim Gedrückthalten wird der Glashintergrund undurchsichtig und die Symboldeckkraft beträgt 0,55; seine konfigurierte Farbe bleibt erhalten. Verwenden Sie `--background-activated`, um den gedrückten Hintergrund unabhängig von `--background` anzupassen.
 
@@ -85,10 +102,10 @@ Verwenden Sie die folgende Struktur innerhalb von `ion-tabs`, um eine Suchschalt
 <ion-footer [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <!-- name von ion-icon wird durch die Animation dynamisch gesetzt -->
+      <!-- ion-icon name wird dynamisch von der Animation gesetzt -->
       <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon> </ion-button>
     </ion-buttons>
-    <!-- Benutzerdefinierte Ereignisse wie `ionChange`. -->
+    <!-- Benutzerdefinierte Ereignisse wie `ionChange` setzen. -->
     <ion-searchbar aria-label="Search" (ionChange)="example($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-footer>
@@ -100,7 +117,7 @@ import type { TabBarSearchableFunction } from '@rdlabo/ionic-theme-ios27';
 
 let searchableFun: TabBarSearchableFunction | undefined;
 const initialize = () => {
-  // attachTabBarSearchable hat Zustand und sollte pro Seite initialisiert werden.
+  // attachTabBarSearchable ist zustandsbehaftet. Pro Seite initialisieren.
   const tabBar = document.querySelector<HTMLElement>('ion-tab-bar');
   const fabButton = document.querySelector<HTMLElement>('ion-fab-button');
   const footer = document.querySelector<HTMLElement>('ion-footer');

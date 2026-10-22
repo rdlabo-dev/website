@@ -732,4 +732,28 @@ export const METADATA_DE: Readonly<Record<string, string>> = {
   'restrict-try-block': 'restrict-try-block',
   'signal-use-as-signal': 'signal-use-as-signal',
   'signal-use-as-signal-template': 'signal-use-as-signal-template',
+  'iOS 27 styling, motion, and Web layout for Ionic.':
+    'iOS-27-Stile, Animationen und Web-Layout für Ionic.',
+  'Ionic Theme iOS27': 'Ionic Theme iOS27',
+  'Apply Liquid Glass, animations, and device-driven layouts to Ionic. Add the separate Capacitor Native UI plugin when you need native controls.':
+    'Nutzen Sie Liquid Glass, Animationen und geräteabhängige Layouts in Ionic. Für native Bedienelemente ergänzen Sie das separate Plugin Capacitor Native UI.',
+  'Theme setup': 'Theme einrichten',
+  'Adaptive themes': 'Adaptive Themes',
+  'Add Native UI': 'Native UI hinzufügen',
+  'Vertical Bars layout': 'Layout von Vertical Bars',
+  'Theme migration': 'Theme migrieren',
+  'Native controls for Ionic and HTML apps, with Web-owned state and events.':
+    'Native Bedienelemente für Ionic und HTML mit Zustand und Ereignissen im Web.',
+  'Capacitor Native UI': 'Capacitor Native UI',
+  'Project supported Ionic and HTML controls into UIKit and SwiftUI on iOS. Keep your theme and Web fallback; app-local SwiftUI and Android Compose extensions are experimental.':
+    'Stellen Sie unterstützte Ionic- und HTML-Bedienelemente unter iOS mit UIKit und SwiftUI dar. Theme und Web-Fallback bleiben erhalten; App-lokale SwiftUI- und Android-Compose-Erweiterungen sind experimentell.',
+  'Ionic setup': 'Ionic einrichten',
+  'Native UI without Ionic': 'Native UI ohne Ionic',
+  'Add Vertical Bars while keeping your theme': 'Vertical Bars mit eigenem Theme hinzufügen',
+  'Native UI (Preview)': 'Native UI (Vorschau)',
+  'Light and dark appearance': 'Helle und dunkle Darstellung',
+  'Vertical Bars': 'Vertical Bars',
+  'App-local Native UI extensions (experimental)':
+    'App-lokale Native UI-Erweiterungen (experimentell)',
+  'Native UI': 'Native UI',
 };

@@ -1,10 +1,12 @@
 ---
-title: ion-item-groupの使用方法
+title: ion-item-group の使い方
 ---
 
-ほとんどのIonicマークアップは変更せずに使えます。`ion-list` で `inset="true"` を使う場合は、itemを `ion-item-group` で囲み、`ion-list-header` はgroupの外に置きます。
+# インセットリストでの `ion-item-group` の使い方
 
-以下はframeworkに依存しないWeb Component形式のマークアップです。ReactまたはVueでは、各frameworkに対応するcomponentとpropertyの構文に置き換えてください。
+ほとんどの Ionic マークアップは変更せずに使えます。`ion-list` が `inset="true"` を使う場合、項目を `ion-item-group` で囲み、`ion-list-header` はグループの外に置いてください。
+
+例ではフレームワークに依存しない Web Component のマークアップを使用します。React と Vue では対応するコンポーネントとプロパティの構文を使用してください。
 
 ```html
 <ion-list inset="true">
@@ -16,30 +18,30 @@ title: ion-item-groupの使用方法
 </ion-list>
 ```
 
-`inset="true"` を使わないlistでは、このwrapperは不要です。
+`inset="true"` を使わないリストにはラッパーは不要です。
 
-[ESLintでリストの構造を整える](/docs/eslint)。
+[ESLint でリスト構造を確認する](eslint.md)。
 
-## wrapperが必要な理由
+## ラッパーが必要な理由
 
-Ionicは通常、`ion-list` 自体に背景を設定するため、`ion-list-header` もitemと同じsurface内に表示されます。iOS 27のlayoutではheaderとitemのsurfaceを分離します。
+通常 Ionic は `ion-list` に背景を適用するため、`ion-list-header` は項目と同じ面の中に表示されます。iOS 27 のレイアウトではヘッダーと項目の面を別々に扱います。
 
-![ion-item-groupが必要な理由を示すinset listの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/why-ion-list-inset.png)
+![ion-item-group が必要な理由を示すインセットリストの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/v3.0.0/screenshots/why-ion-list-inset.png)
 
-そのため、このテーマは次のようにstyleを適用します。
+このためテーマは次のように動作します。
 
-- inset `ion-list` の背景を透明にする
-- itemのsurfaceを `ion-item-group` に適用する
-- `ion-list-header` をsurfaceの外に置く
+- インセットの `ion-list` の背景を透明にする。
+- 項目の背景を `ion-item-group` に適用する。
+- `ion-list-header` をその背景の外に置く。
 
-## Material Designとのマークアップ共有
+## Material Design とマークアップを共有する
 
-`@rdlabo/ionic-theme-md3` も同じgroup構造に対応しているため、両方のIonic modeで1つのtemplateを共有できます。
+`@rdlabo/ionic-theme-md3` は同じグループ構造に対応するため、1 つのテンプレートを両方の Ionic モードで使用できます。
 
-このpackageを `@rdlabo/ionic-theme-md3` なしで使うapplicationでは、Material modeにも同じgroup layoutを適用するため、任意のstylesheetをimportします。
+`@rdlabo/ionic-theme-md3` なしでこのパッケージを使う場合は、任意のスタイルシートを読み込むと Material モードでも同じグループ構造になります。
 
 ```css
 @import '@rdlabo/ionic-theme-ios27/dist/css/md-ion-list-inset.css';
 ```
 
-2行itemとsection header groupについては [特別なマークアップとクラス](/docs/special-markup) を参照してください。
+2 行の項目とセクションヘッダーのグループは[特別なマークアップとクラス](special-markup.md)を参照してください。

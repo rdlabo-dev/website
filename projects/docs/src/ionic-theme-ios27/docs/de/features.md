@@ -1,23 +1,28 @@
 ---
 title: "Funktionen"
-sourceRevision: "cc7b0d9801f399dd2244c38b41d5478f193813bfd0cd502ef7ed5091cdb1eed6"
+sourceRevision: "ca9e70202f746ec210d577177059d7b8f96a8287aa69cdec05a3c35940ac0f33"
 ---
+
 # Funktionen
 
-Passen Sie das Theme mit CSS-Variablen und Sass-Mixins an oder übernehmen Sie es schrittweise für einzelne Komponenten. Markupspezifische Aktivierungen sind unter [Spezielles Markup und Klassen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup) dokumentiert.
+Passen Sie das Theme mit CSS-Variablen und Sass-Mixins an oder übernehmen Sie es komponentenweise. Markup-spezifische Optionen beschreibt [Spezielles Markup und Klassen](special-markup.md).
 
 ## CSS-Variablen
 
 Zur Anpassung der Standard-Styles der Bibliothek an Ihr Design stehen mehrere CSS-Variablen bereit. Einzelheiten finden Sie in dieser Datei:
 [Standardvariablen](../src/styles/default-variables.scss)
 
-Für Menüs setzt `--ios-theme-menu-background-rgb` die RGB-Kanäle der Fläche (hell: `225, 230, 240`; dunkel: `26, 31, 34`). `--ios-theme-menu-background-opacity` steuert die Deckkraft und hat den Standardwert `0.96`. Beide sind öffentliche Anpassungsvariablen und können auf `ion-menu` gesetzt werden.
+| Variable | Standard | Zweck |
+| --- | --- | --- |
+| `--ios-theme-menu-background-rgb` | Hell: `225, 230, 240`; dunkel: `26, 31, 34` | RGB-Kanäle der Menüfläche; auf `ion-menu` setzen. |
+| `--ios-theme-menu-background-opacity` | `0.96` | Deckkraft der Menüfläche; auf `ion-menu` setzen. |
+| `--ios-theme-button-press-duration` | `380ms` | Dauer der `:active`-Skalierung einer Schaltfläche mit leichtem Überschwingen. |
 
-Die Skalierung beim Drücken einer Schaltfläche folgt `:active` mit einem leichten Überschwingen. Legen Sie die Dauer mit `--ios-theme-button-press-duration` (Standard: `380ms`) fest, statt die gemeinsamen Variablen für die Dauer aktivierter Übergänge zu verwenden.
+Verwenden Sie zum Anpassen der Skalierung beim Drücken `--ios-theme-button-press-duration` statt der gemeinsam genutzten Variablen für die Aktivierungsübergangsdauer.
 
-## Liquid-Glass-Mixin
+## Liquid Glass-Mixin
 
-Importieren Sie die SCSS-Dateien aus dem Hauptpaket, um das Liquid-Glass-Mixin zu verwenden.
+Importieren Sie die SCSS-Dateien aus dem Hauptpaket, um das Liquid Glass-Mixin zu verwenden.
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/src/styles/utils/api.scss';
@@ -27,9 +32,9 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## Native UI Shell (Vorschau)
+## Native UI
 
-Capacitor-iOS-Anwendungen können die optionale [Native UI Shell](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell) verwenden, um unterstützte fest positionierte Ionic-Bedienelemente mit UIKit und systemeigenem Liquid Glass zu rendern. Sie ist in `1.2.0` als Vorschau verfügbar. Inhalt und Anwendungslogik bleiben in der WebView; Ionic verwaltet Routing und Seitenübergänge. Die Anleitung erklärt den Ursprung des hybriden Ansatzes bei Basecamp und Capacitor, die Einrichtung, unterstützte Bedienelemente und das Web-Rückfallverhalten.
+Sobald Ihr Theme funktioniert, können Sie [Native UI hinzufügen](add-native-ui.md), um unterstützte fixierte Bedienelemente unter iOS mit UIKit und SwiftUI darzustellen. Behalten Sie die Theme-Stile für Web-Inhalte und Fallback-Bedienelemente. Native UI wird ab Version 2.0.0 offiziell unterstützt und muss weiterhin ausdrücklich aktiviert werden; Stylesheets allein aktivieren sie nicht.
 
 ## Selektive Komponenten-Imports
 
@@ -40,7 +45,7 @@ Für eine schrittweise Einführung können Sie einzelne Komponenten statt der vo
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-action-sheet';
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-alert';
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-button';
-/* Importieren Sie die übrigen Komponenten, die Ihre Anwendung verwendet. */
+/* Import the remaining components your application uses. */
 ```
 
 ### Dunkler Modus mit einzelnen Komponenten

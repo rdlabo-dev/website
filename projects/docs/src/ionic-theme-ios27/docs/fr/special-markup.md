@@ -1,6 +1,6 @@
 ---
-title: "Balisage et classes particuliers"
-sourceRevision: "57b550a4998353c1fb3973721350141c72b45fad2d3f00be6286d0413d3464c8"
+title: "Balisage et classes spécifiques"
+sourceRevision: "ecb29e5d934622760bb22358e91a833d4489b4adfae7672735d7ca0943361dad"
 ---
 # Balisage et classes particuliers
 
@@ -28,15 +28,38 @@ buttons: [
 ];
 ```
 
-Les boutons sans rôle ou avec `default` conservent la couleur de texte normale. `cancel` conserve le comportement d’annulation d’Ionic, `selected` reste un état de sélection et `destructive` utilise `--ios-theme-destructive-color`. Un rôle `confirm` existant n’est pas considéré comme recommandé. Utilisez `preferred` pour l’action recommandée, et pas simplement pour toute action qui confirme un choix.
+Choisissez le rôle selon la sémantique de l’action :
+
+| Rôle | Apparence et comportement |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| `preferred` | Action principale avec remplissage ; la fermeture rapporte `preferred`. Ne la sélectionne ni ne l’invoque automatiquement. |
+| Aucun rôle ou `default` | Couleur de texte normale. |
+| `cancel` | Conserve le comportement d’annulation Ionic. |
+| `selected` | Conserve l’état de sélection. |
+| `destructive` | Utilise `--ios-theme-destructive-color`. |
+| `confirm` | N’est pas considéré comme préféré. Utilisez `preferred` pour une action recommandée, pas pour n’importe quelle confirmation. |
 
 ## Feuilles flottantes sur iPad
 
-Définissez `expandToScroll: false` sur une modale de type sheet pour obtenir des coins inférieurs flottants et un espace de 20px en bas sur iPad. Ionic dimensionne alors la page visible à chaque point d’arrêt ; le thème peut donc la styliser uniquement en CSS. Le contenu défile dans le point d’arrêt actuel ; faire glisser la poignée redimensionne toujours la feuille. Avec `expandToScroll: true`, valeur par défaut, la feuille conserve la disposition attachée au bas et l’expansion au défilement d’Ionic.
+Choisissez le comportement de défilement de la feuille avec `expandToScroll` :
+
+| Réglage | Apparence sur iPad | Défilement et redimensionnement |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `false` | Coins inférieurs flottants et espace inférieur de 20px. | Le contenu défile au palier actuel ; faire glisser la poignée redimensionne la feuille. Ionic dimensionne la page visible à chaque palier pour permettre sa mise en forme CSS. |
+| `true` (par défaut) | Disposition Ionic attachée au bas de l’écran. | Le défilement agrandit la feuille. |
 
 ## Position de la barre d’onglets
 
-Ajoutez `tab-bar-position-start`, `tab-bar-position-center` ou `tab-bar-position-end` à un `ion-tab-bar` iOS pour positionner toute la barre dans sa zone sûre. Ces classes fonctionnent avec `slot="top"` et `slot="bottom"`, et conservent la largeur de la barre et son animation d’appui. Start et end suivent le sens du texte et s’inversent en RTL. Sans classe, la position existante ne change pas.
+Choisissez une classe sur une `ion-tab-bar` iOS pour positionner toute la barre dans sa zone de sécurité :
+
+| Classe | Placement |
+| ------------------------- | ------------------------------- |
+| `tab-bar-position-start` | Début du sens de lecture. |
+| `tab-bar-position-center` | Centre. |
+| `tab-bar-position-end` | Fin du sens de lecture. |
+| Aucune | Placement existant inchangé. |
+
+Les trois classes prennent en charge `slot="top"` et `slot="bottom"`, préservent la largeur et l’animation d’appui, et résolvent début/fin en RTL.
 
 ```html
 <ion-tab-bar slot="bottom" class="tab-bar-position-center">
@@ -47,15 +70,15 @@ Ajoutez `tab-bar-position-start`, `tab-bar-position-center` ou `tab-bar-position
 
 Ces classes ne repositionnent pas un `ion-fab` distinct ; réservez-lui de la place lorsque vous choisissez la position de la barre.
 
-## Prendre en charge iPhone Duo (préversion)
+## Prise en charge d’iPhone Duo
 
-La prise en charge d’iPhone Duo, y compris Vertical Bars en mode autonome, est disponible en **préversion** dans `1.2.0`, avec Native UI Shell. Ses API et comportements pris en charge peuvent évoluer.
+La prise en charge d’iPhone Duo, y compris Vertical Bars autonome, est stable à partir de la version 2.0.0.
 
-La prise en charge d’iPhone Duo — rail système vertical, position de la charnière et panneaux divisés selon cette position — est indépendante du thème iOS 27 et du Native UI Shell complet. Consultez [Prise en charge d’iPhone Duo](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo) pour la configuration complète, y compris le suivi de la disposition de l’appareil sans moteur de projection.
+La prise en charge d’iPhone Duo — rail système vertical, posture de la charnière et disposition des panneaux divisés selon la posture — est indépendante du thème iOS 27 et de Native UI complet. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, notamment la surveillance sans runtime de projection.
 
-Consultez [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
+Consultez [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/vertical-bars.md) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
 
-Pour une configuration autonome conservant votre thème existant, consultez [iPhone Duo avec votre thème existant](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
+Pour une configuration autonome conservant votre thème existant, consultez [iPhone Duo avec votre thème existant](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
 
 ## Éléments de liste en retrait sur deux lignes
 
@@ -115,7 +138,15 @@ Pour les segments colorés, utilisez la propriété `color` d’Ionic, par exemp
 
 Ajoutez `.segment-expand` lorsque les boutons du segment doivent se partager également la largeur disponible. La classe modifie aussi la taille de l’effet Liquid Glass lorsque `registerSegmentEffect` est utilisé.
 
-Les segments ont une hauteur minimale de 32px dans le contenu et de 48px dans `ion-toolbar`. `.segment-expand` conserve la disposition compacte de 32px dans une barre d’outils. Les segments compacts conservent l’arrière-plan plat et les couleurs d’indicateur d’Ionic ; seule la variante normale de barre d’outils a un conteneur en verre et redimensionne son conteneur extérieur pendant l’appui. Les segments de contenu et développés conservent leurs limites extérieures. La lentille de verre mobile facultative est indépendante de l’arrière-plan du conteneur.
+### Taille des segments et comportement à l’appui
+
+| Placement | Hauteur minimale | Comportement du conteneur |
+| ----------------------------------------- | -------------- | ---------------------------------------------------------------- |
+| Dans le contenu | 32px | Fond et indicateur compacts et plats ; limites externes fixes. |
+| Dans `ion-toolbar` | 48px | Conteneur de verre ; le conteneur externe change d’échelle à l’appui. |
+| `.segment-expand`, y compris dans une barre d’outils | 32px | Fond et indicateur compacts et plats ; limites externes fixes. |
+
+La lentille de verre mobile facultative est indépendante du fond du conteneur.
 
 ```html preview
 <ion-segment class="segment-expand" value="new">
@@ -178,4 +209,4 @@ Ajoutez `.ios-theme-disabled` à un composant Ionic individuel lorsqu’il doit 
 <ion-button>iOS 27 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
-Pour le modèle d’arrière-plan des listes avec retrait, consultez [Utiliser `ion-item-group`](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group).
+Pour le modèle d’arrière-plan des listes avec retrait, consultez [Utiliser `ion-item-group`](using-ion-item-group.md).

@@ -18,6 +18,8 @@ import {
 import { fetchEnglishProjectMarkdown } from './package-repository';
 import { PROJECT as ionicThemeIos27En } from '../projects/docs/src/app/generated/projects/ionic-theme-ios27.en.generated';
 import { PROJECT as ionicThemeIos27Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-ios27.ja.generated';
+import { PROJECT as nativeUiEn } from '../projects/docs/src/app/generated/projects/capacitor-native-ui.en.generated';
+import { PROJECT as nativeUiJa } from '../projects/docs/src/app/generated/projects/capacitor-native-ui.ja.generated';
 import { PROJECT as ionicThemeIos26En } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.en.generated';
 import { PROJECT as ionicThemeIos26Ja } from '../projects/docs/src/app/generated/projects/ionic-theme-ios26.ja.generated';
 import { PROJECT as ionicThemeMd3En } from '../projects/docs/src/app/generated/projects/ionic-theme-md3.en.generated';
@@ -637,24 +639,25 @@ test('lists ionic theme packages and pins localized README imports', async () =>
     assert.equal(installedPackage.version, expected.version);
 
     const docsRoot = new URL(`../projects/docs/src/${projectId}/docs/`, import.meta.url);
-    const apiPage = project.pages.find((page) => page.file === 'api.md');
-    assert.ok(apiPage, `${projectId} must declare an API page`);
-    const [englishApi, japaneseApi] = await Promise.all([
-      englishGuideSource(project, 'api.md'),
-      readFile(new URL('ja/api.md', docsRoot), 'utf8'),
-    ]);
-    for (const [locale, markdown] of [
-      ['en', englishApi],
-      ['ja', japaneseApi],
-    ] as const) {
-      const escapedPackage = expected.packageName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      assert.match(
-        markdown,
-        new RegExp(`\`${escapedPackage}\`\\s+v${expected.version}\\b`),
-        `${projectId} ${locale} api.md must pin the installed ${expected.packageName} v${expected.version}`,
-      );
+    if (projectId !== 'ionic-theme-ios27') {
+      const apiPage = project.pages.find((page) => page.file === 'api.md');
+      assert.ok(apiPage, `${projectId} must declare an API page`);
+      const [englishApi, japaneseApi] = await Promise.all([
+        englishGuideSource(project, 'api.md'),
+        readFile(new URL('ja/api.md', docsRoot), 'utf8'),
+      ]);
+      for (const [locale, markdown] of [
+        ['en', englishApi],
+        ['ja', japaneseApi],
+      ] as const) {
+        const escapedPackage = expected.packageName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        assert.match(
+          markdown,
+          new RegExp(`\`${escapedPackage}\`\\s+v${expected.version}\\b`),
+          `${projectId} ${locale} api.md must pin the installed ${expected.packageName} v${expected.version}`,
+        );
+      }
     }
-
     const pageFiles = project.pages.map((page) => page.file).filter((file) => file !== 'api.md');
     for (const pageFile of pageFiles) {
       const [english, japanese] = await Promise.all([
@@ -682,7 +685,8 @@ test('lists ionic theme packages and pins localized README imports', async () =>
           new RegExp(`https://github\\.com/rdlabo-dev/${projectId}/(?:blob|tree)/[^\\s)\\]]+`, 'g'),
         )) {
           assert.ok(
-            link[0].includes(`/${project.releaseTagPrefix ?? 'v'}${expected.version}/`),
+            link[0].includes(`/${project.releaseTagPrefix ?? 'v'}${expected.version}/`) ||
+              (projectId === 'ionic-theme-ios27' && link[0].endsWith('/tree/ios27-v1.2.1')),
             `${projectId} source link must use v${expected.version}: ${link[0]}`,
           );
         }
@@ -1343,6 +1347,19 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
       source: '/ja/stripe/docs/*',
       destination: 'https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat',
     },
+    ...['', '/ja', '/fr', '/de'].flatMap((prefix) =>
+      [
+        ['native-ui-shell', 'capacitor-native-ui/docs/native-ui'],
+        ['vertical-bars', 'capacitor-native-ui/docs/vertical-bars'],
+        ['iphone-duo', 'ionic-theme-ios27/docs/vertical-bars-layout'],
+        ['iphone-duo-with-original-theme', 'capacitor-native-ui/docs/ionic-vertical-bars'],
+        ['api', 'ionic-theme-ios27/docs/setup'],
+        ['e2e-testing', 'ionic-theme-ios27/docs/readme'],
+      ].map(([old, destination]) => ({
+        source: `${prefix}/projects/ionic-theme-ios27/docs/${old}`,
+        destination: `https://docs.rdlabo.dev${prefix}/projects/${destination}`,
+      })),
+    ),
   ]);
   const redirectSources = parsedRedirects.map(({ source }) => source);
   const docsIdentityIndex = redirectSources.indexOf('/docs/identity');
@@ -1598,66 +1615,58 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
   const newGuide = ionicThemeIos27En.pages.find((page) => page.slug === 'migration');
   assert.match(oldGuide!.editUrl, /\/edit\/ios26\/docs\/migration\.md$/);
-  assert.match(newGuide!.editUrl, /\/edit\/main\/docs\/migration\.md$/);
+  assert.match(newGuide!.editUrl, /\/edit\/main\/packages\/theme-ios27\/docs\/migration\.md$/);
   assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
 });
 
-test('publishes linked iPhone Duo guides and API links in both locales', () => {
-  for (const [project, prefix] of [
-    [ionicThemeIos27En, ''],
-    [ionicThemeIos27Ja, '/ja'],
+test('publishes separate theme and Native UI guides with current package APIs', () => {
+  for (const [theme, native, prefix] of [
+    [ionicThemeIos27En, nativeUiEn, ''],
+    [ionicThemeIos27Ja, nativeUiJa, '/ja'],
   ] as const) {
-    const duo = project.pages.find((page) => page.slug === 'iphone-duo');
-    assert.ok(duo, 'iPhone Duo must be a navigable guide');
-    assert.match(duo.html, /enableVerticalControlArea/);
-    assert.match(duo.html, /getFoldState/);
-    assert.match(duo.html, /barPlacementChange/);
-    assert.match(duo.html, /nativeEdge/);
-    assert.match(duo.html, /split-pane-fold-layout/);
-    assert.match(duo.html, /applyFoldStateClasses/);
-    assert.match(duo.html, /ios-theme-fold-expanded/);
-    const verticalBars = project.pages.find((page) => page.slug === 'vertical-bars');
-    assert.ok(verticalBars, 'Vertical Bars must be a navigable guide');
-    assert.match(verticalBars.html, /buttonProjection/);
-    assert.match(verticalBars.html, /buttonDefaultFill/);
-    assert.match(verticalBars.html, /data-projection/);
-    assert.ok(duo.html.includes(`href="${prefix}/projects/ionic-theme-ios27/docs/vertical-bars"`));
-    for (const slug of ['special-markup', 'native-ui-shell', 'api']) {
-      const guide = project.pages.find((page) => page.slug === slug);
-      assert.ok(guide);
-      assert.ok(
-        guide.html.includes(`href="${prefix}/projects/ionic-theme-ios27/docs/iphone-duo"`),
-        `${slug} must link to the localized iPhone Duo guide`,
-      );
-    }
-    const standalone = project.pages.find((page) => page.slug === 'iphone-duo-with-original-theme');
-    assert.ok(standalone);
-    assert.match(standalone.html, /enableVerticalControlArea/);
+    assert.equal(theme.version, '2.0.0');
+    assert.equal(native.version, theme.version);
+    assert.equal(native.packageName, '@rdlabo/capacitor-native-ui');
+    assert.equal(native.pages.find((page) => page.slug === 'native-ui')!.title, 'Native UI');
+    assert.doesNotMatch(native.description, /Preview|プレビュー/);
     assert.ok(
-      duo.html.includes(
-        `href="${prefix}/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"`,
+      !theme.pages.some((page) =>
+        ['native-ui-shell', 'vertical-bars', 'iphone-duo'].includes(page.slug),
       ),
     );
-    const api = project.pages.find((page) => page.slug === 'api')!;
-    assert.match(api.html, /VerticalControlAreaOptions/);
-    assert.match(api.html, /applyFoldStateClasses/);
-    const shell = project.pages.find((page) => page.slug === 'native-ui-shell')!;
-    assert.match(shell.html, /data-shell/);
-    for (const guide of [verticalBars, shell]) {
-      const document = new JSDOM(guide.html).window.document;
-      for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) {
-        const fragment = decodeURIComponent(link.getAttribute('href')!.slice(1));
-        assert.ok(
-          Array.from(document.querySelectorAll('[id]')).some(
-            (element) => decodeURIComponent(element.id) === fragment,
-          ),
-          `${project.id}/${guide.slug}: missing local anchor ${fragment}`,
-        );
+    const layout = theme.pages.find((page) => page.slug === 'vertical-bars-layout')!;
+    assert.match(layout.html, /setVerticalBarsLayout/);
+    assert.match(layout.html, /applyFoldStateClasses/);
+    const setup = native.pages.find((page) => page.slug === 'ionic-vertical-bars')!;
+    assert.match(setup.html, /enableNativeUI/);
+    assert.match(setup.html, /barPlacementChange/);
+    assert.ok(
+      setup.html.includes(`href="${prefix}/projects/ionic-theme-ios27/docs/vertical-bars-layout`),
+    );
+    assert.ok(
+      layout.html.includes(`href="${prefix}/projects/capacitor-native-ui/docs/ionic-vertical-bars`),
+    );
+    assert.match(
+      native.pages.find((page) => page.slug === 'framework-independent')!.html,
+      /@rdlabo\/capacitor-native-ui\/core/,
+    );
+    for (const project of [theme, native]) {
+      for (const guide of project.pages) {
+        if (guide.slug !== 'migration') {
+          assert.doesNotMatch(guide.html, /@rdlabo\/ionic-theme-ios27\/(?:native|vertical-bars)/);
+        }
+        const document = new JSDOM(guide.html).window.document;
+        for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) {
+          const fragment = decodeURIComponent(link.getAttribute('href')!.slice(1));
+          assert.ok(
+            Array.from(document.querySelectorAll('[id]')).some(
+              (element) => decodeURIComponent(element.id) === fragment,
+            ),
+            `${project.id}/${guide.slug}: missing local anchor ${fragment}`,
+          );
+        }
       }
-      assert.doesNotMatch(guide.html, /\/docs\/readme#(?:getstatus|suspend|destroy|setplacement)/);
     }
-    assert.match(api.html, /DeviceLayout/);
-    assert.match(api.html, /HingeStatus/);
   }
 });
 
@@ -1668,4 +1677,20 @@ test('imported portal links stay in the current tab', () => {
     assert.doesNotMatch(tag, /target="_blank"/);
   }
   assert.match(html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
+});
+
+test('Native UI Japanese guides preserve the released executable examples', async () => {
+  const project = projectDefinitions.find((entry) => entry.id === 'capacitor-native-ui')!;
+  assert.equal(project.category, 'capacitor-plugins');
+  for (const page of project.pages) {
+    const [english, japanese] = await Promise.all([
+      englishGuideSource(project, page.file),
+      readFile(`projects/docs/src/capacitor-native-ui/docs/ja/${page.file}`, 'utf8'),
+    ]);
+    assert.deepEqual(
+      fencedCodeBlocks(japanese),
+      fencedCodeBlocks(english),
+      `${page.file}: preserve non-comment code`,
+    );
+  }
 });

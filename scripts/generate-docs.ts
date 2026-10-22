@@ -362,6 +362,9 @@ async function resolvePageSource(
       assertReviewedDocsTranslation(english.content, content, relative(root, srcPath), {
         api: page.slug === 'api',
       });
+    } else if (locale !== 'en' && project.sourceHeadingAliases?.includes(locale)) {
+      const english = await resolvePageSource(project, 'en', page, repositoryCache);
+      importedMarkdown = english.fromPackage;
     }
     return {
       content,
@@ -752,7 +755,10 @@ async function main(): Promise<void> {
         repositoryCache,
       );
       if (locale === 'en') englishProject = generated;
-      else if (requiresDocsTranslationReview(locale)) {
+      else if (
+        requiresDocsTranslationReview(locale) ||
+        project.sourceHeadingAliases?.includes(locale)
+      ) {
         for (const page of generated.pages) {
           const sourcePage = englishProject.pages.find((source: any) => source.slug === page.slug);
           if (!sourcePage)

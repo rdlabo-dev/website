@@ -1,6 +1,6 @@
 ---
 title: "Animation"
-sourceRevision: "f68a688e70ca4672d3a1e30ab2c1602d1453a7c376a0522e41254ec0927a4eb1"
+sourceRevision: "165b184fd4cd2f23315982e52bcd68ea1061be29e4fbe39be0f4029a50c2715d"
 ---
 # Animation
 
@@ -61,11 +61,27 @@ const effect = supportSeachbarCancelButtonIcon(searchbar);
 // effect.destroy();
 ```
 
-Enregistrez la barre après l’initialisation de l’élément Ionic, par exemple dans `ngAfterViewInit` d’Angular. L’utilitaire conserve le bouton et les gestionnaires d’événements d’Ionic ; `destroy()` restaure son texte. Il ne s’applique pas au mode MD ni aux barres `searchbar-classic`, `ios-theme-disabled` ou `ios26-disabled`. L’animation CSS suit `animated` et respecte `prefers-reduced-motion`. Les variables CSS standard des barres de recherche, comme `--background`, `--box-shadow`, `--border-radius` et `--cancel-button-color`, restent disponibles.
+### Enregistrement et exclusions
 
-Le bouton d’effacement partage le design en verre de 44px et apparaît à côté de l’entrée. Il utilise `clearIcon`, `showClearButton` et `--clear-button-color` d’Ionic ; l’effacement conserve le focus de l’entrée, tandis que l’annulation termine la recherche. Les deux boutons peuvent être affichés ensemble. Définissez la même icône pour `clearIcon` et `cancelButtonIcon` pour leur donner la même apparence.
+Enregistrez après l’initialisation de l’élément Ionic (par exemple dans `ngAfterViewInit` avec Angular).
 
-Les deux boutons en verre externes utilisent le ressort d’appui centré du bouton d’annulation iOS 27, réduit pour tenir dans les 8px de marge disponibles sans couper la bordure : 44px au repos, 57.2px maintenu, avec un dépassement d’environ 58.26px, contre 60px maintenu et 61.29px au pic en natif. Les courbes d’appui et de relâchement suivent les mesures de la couche de présentation UIKit sur le simulateur iPhone 18 Pro ; Réduire les animations désactive la mise à l’échelle. Ce design externe commun d’effacement diffère volontairement du petit bouton d’effacement UIKit, sans agrandissement, à l’intérieur du champ. Ionic fournit les icônes : les pixels des glyphes ne sont donc pas identiques à SF Symbols.
+| Condition | Comportement |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Barre de recherche compatible en mode iOS | Préserve le bouton et les gestionnaires d’événements Ionic ; `destroy()` restaure le texte. |
+| Mode MD, `searchbar-classic`, `ios-theme-disabled` ou `ios26-disabled` | L’utilitaire ne s’applique pas. |
+| `animated` / `prefers-reduced-motion` | Respectés par l’animation CSS. |
+| Personnalisation CSS | `--background`, `--box-shadow`, `--border-radius` et `--cancel-button-color` restent disponibles. |
+
+### Boutons d’effacement et d’annulation
+
+| Bouton | Réglages d’apparence Ionic | Action |
+| ------ | ------------------------------------------------------ | ----------------------------------- |
+| Effacer | `clearIcon`, `showClearButton`, `--clear-button-color` | Efface en conservant le focus de saisie. |
+| Annuler | `cancelButtonIcon`, `--cancel-button-color` | Termine la recherche. |
+
+Les deux peuvent apparaître ensemble à côté du champ. Définissez `clearIcon` et `cancelButtonIcon` avec la même icône pour harmoniser leur apparence.
+
+Les deux boutons de verre externes mesurent 44px au repos et s’agrandissent à l’appui. La réduction des animations désactive cette mise à l’échelle. Le bouton d’effacement apparaît hors du champ ; Ionic fournit les icônes.
 
 Pendant l’appui, le fond en verre devient opaque et l’opacité de l’icône est 0.55, tout en conservant sa couleur configurée. Utilisez `--background-activated` pour personnaliser le fond appuyé indépendamment de `--background`.
 

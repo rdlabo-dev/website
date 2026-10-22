@@ -1,7 +1,8 @@
 ---
-title: "ion-item-group verwenden"
-sourceRevision: "6480211a0fc46b565282cfe154aae64f22ff53e2e9dd7a1073bb54b5290131de"
+title: "ion-item-group in eingerückten Listen verwenden"
+sourceRevision: "77c7183b9d27a9fd4f8c027515abce321db29cda98e97f00e9dc4bc674390c62"
 ---
+
 # `ion-item-group` in eingerückten Listen verwenden
 
 Das meiste Ionic-Markup funktioniert unverändert. Wenn eine `ion-list` mit `inset="true"` verwendet wird, umschließen Sie ihre Elemente mit `ion-item-group` und belassen Sie `ion-list-header` außerhalb der Gruppe.
@@ -20,13 +21,13 @@ Die Beispiele verwenden frameworkunabhängiges Web-Component-Markup. Verwenden S
 
 Für Listen ohne `inset="true"` ist kein Wrapper erforderlich.
 
-[Die Listenstruktur mit ESLint prüfen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint).
+[Listenstruktur mit ESLint prüfen](eslint.md).
 
 ## Warum der Wrapper erforderlich ist
 
 Ionic weist normalerweise `ion-list` den Hintergrund zu. Dadurch erscheint `ion-list-header` auf derselben Fläche wie die Listenelemente. Das iOS-27-Layout behandelt die Überschrift und die Elementfläche getrennt.
 
-![Vergleich der Hintergründe eingerückter Listen zur Erklärung des erforderlichen ion-item-group-Wrappers](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/why-ion-list-inset.png)
+![Vergleich der Hintergründe eingerückter Listen, der die Notwendigkeit von ion-item-group zeigt](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.0/screenshots/why-ion-list-inset.png)
 
 Das Theme führt deshalb folgende Änderungen durch:
 
@@ -44,4 +45,4 @@ Wenn eine Anwendung dieses Paket ohne `@rdlabo/ionic-theme-md3` verwendet, impor
 @import '@rdlabo/ionic-theme-ios27/dist/css/md-ion-list-inset.css';
 ```
 
-Zweizeilige Elemente und Gruppen mit Abschnittsüberschriften finden Sie unter [Spezielles Markup und Klassen](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup).
+Zweizeilige Einträge und Gruppen für Abschnittsüberschriften beschreibt [Spezielles Markup und Klassen](special-markup.md).

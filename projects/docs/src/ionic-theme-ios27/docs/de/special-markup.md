@@ -1,8 +1,9 @@
 ---
-title: "Besonderes Markup und Klassen"
-sourceRevision: "57b550a4998353c1fb3973721350141c72b45fad2d3f00be6286d0413d3464c8"
+title: "Spezielles Markup und Klassen"
+sourceRevision: "ecb29e5d934622760bb22358e91a833d4489b4adfae7672735d7ca0943361dad"
 ---
-# Besonderes Markup und Klassen
+
+# Spezielles Markup und Klassen
 
 Das meiste Ionic-Markup funktioniert unverändert. Die folgenden Kombinationen werden vom Theme bereitgestellt und müssen ausdrücklich aktiviert werden.
 
@@ -28,15 +29,38 @@ buttons: [
 ];
 ```
 
-Schaltflächen ohne Rolle oder mit `default` behalten die normale Textfarbe. `cancel` behält das Abbruchverhalten von Ionic, `selected` bleibt ein Auswahlzustand, und `destructive` verwendet `--ios-theme-destructive-color`. Eine vorhandene Rolle `confirm` wird nicht als bevorzugt behandelt. Verwenden Sie `preferred` für die empfohlene Aktion, nicht einfach für jede Aktion, die eine Auswahl bestätigt.
+Wählen Sie die Rolle nach der Bedeutung der Aktion:
+
+| Rolle | Darstellung und Verhalten |
+| --- | --- |
+| `preferred` | Gefüllte primäre Aktion; beim Schließen wird `preferred` gemeldet. Wählt oder aktiviert sie nicht automatisch. |
+| Keine Rolle oder `default` | Normale Textfarbe. |
+| `cancel` | Behält Ionics Abbruchverhalten. |
+| `selected` | Behält den Auswahlzustand. |
+| `destructive` | Verwendet `--ios-theme-destructive-color`. |
+| `confirm` | Wird nicht als bevorzugt behandelt. Verwenden Sie `preferred` für eine empfohlene Aktion, nicht für jede Bestätigung. |
 
 ## Frei schwebende iPad-Sheets
 
-Setzen Sie bei einem Sheet-Modal `expandToScroll: false`, um auf dem iPad frei schwebende untere Ecken und einen Abstand von 20px zum unteren Rand zu erhalten. Ionic passt dann die Größe der sichtbaren Seite an jedem Breakpoint an, sodass das Theme sie ausschließlich mit CSS gestalten kann. Der Inhalt scrollt innerhalb des aktuellen Breakpoints; das Ziehen des Griffs verändert weiterhin die Sheet-Größe. Mit dem Standardwert `expandToScroll: true` behält das Sheet die am unteren Rand verankerte Anordnung und das Scroll-to-expand-Verhalten von Ionic bei.
+Wählen Sie das Scrollverhalten des Sheets mit `expandToScroll`:
+
+| Einstellung | iPad-Darstellung | Scrollen und Größenänderung |
+| --- | --- | --- |
+| `false` | Frei schwebende untere Ecken und 20px Abstand unten. | Der Inhalt scrollt am aktuellen Breakpoint; Ziehen am Griff ändert die Größe des Sheets. Ionic passt die sichtbare Seite an jedem Breakpoint an, damit CSS sie gestalten kann. |
+| `true` (Standard) | Ionics am unteren Rand befestigtes Layout. | Scrollen erweitert das Sheet. |
 
 ## Position der Tab-Leiste
 
-Fügen Sie `tab-bar-position-start`, `tab-bar-position-center` oder `tab-bar-position-end` zu einer iOS-`ion-tab-bar` hinzu, um die gesamte Leiste innerhalb ihrer Safe Area zu positionieren. Diese Klassen funktionieren sowohl mit `slot="top"` als auch mit `slot="bottom"` und erhalten die Leistenbreite sowie die Druckanimation. Anfang und Ende folgen der Textrichtung und werden bei RTL vertauscht. Ohne Klasse bleibt die bisherige Position unverändert.
+Wählen Sie eine Klasse auf einer iOS-`ion-tab-bar`, um die gesamte Leiste innerhalb ihrer Safe Area zu positionieren:
+
+| Klasse | Position |
+| --- | --- |
+| `tab-bar-position-start` | Anfang der Leserichtung. |
+| `tab-bar-position-center` | Mitte. |
+| `tab-bar-position-end` | Ende der Leserichtung. |
+| Keine | Bestehende Position unverändert. |
+
+Alle drei Klassen unterstützen `slot="top"` und `slot="bottom"`, erhalten Breite und Druckanimation und berücksichtigen Start/Ende bei RTL.
 
 ```html
 <ion-tab-bar slot="bottom" class="tab-bar-position-center">
@@ -47,15 +71,15 @@ Fügen Sie `tab-bar-position-start`, `tab-bar-position-center` oder `tab-bar-pos
 
 Diese Klassen verschieben kein separates `ion-fab`. Planen Sie bei der Wahl der Leistenposition Platz dafür ein.
 
-## iPhone Duo unterstützen (Vorschau)
+## iPhone Duo unterstützen
 
-Die iPhone-Duo-Unterstützung einschließlich der eigenständigen Funktion Vertical Bars ist in `1.2.0` neben der Native UI Shell als **Vorschau** verfügbar. Ihre APIs und das unterstützte Verhalten können sich ändern.
+Die Unterstützung für iPhone Duo einschließlich eigenständiger Vertical Bars ist ab Version 2.0.0 stabil.
 
-Die iPhone-Duo-Unterstützung — vertikale Systemleiste, Scharnierstellung und die davon gesteuerte geteilte Ansicht — ist unabhängig vom iOS-27-Theme und der vollständigen Native UI Shell. Die gesamte Einrichtung einschließlich der Überwachung des Gerätelayouts ohne Projektionslaufzeit finden Sie unter [iPhone-Duo-Unterstützung](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo).
+Die Unterstützung für iPhone Duo — vertikale Systemleiste, Scharnierstellung und davon abhängiges Split-Pane-Layout — ist unabhängig vom iOS-27-Theme und der vollständigen Native UI. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung einschließlich Gerätelayout-Überwachung ohne Projektionslaufzeit.
 
-Informationen zu Layoutklassen der Leiste, unterstützten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertical Bars](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars).
+Informationen zu Layoutklassen, geeigneten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/vertical-bars.md).
 
-Die eigenständige Einrichtung unter Beibehaltung Ihres vorhandenen Themes beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme).
+Die eigenständige Einrichtung unter Beibehaltung Ihres Themes beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
 
 ## Zweizeilige Elemente in eingerückten Listen
 
@@ -113,9 +137,17 @@ Fügen Sie `.segment-style-glass` hinzu, um einem Segment dieselbe Glasfläche u
 
 Verwenden Sie für farbige Segmente die Ionic-Property `color`, beispielsweise `color="primary"` oder `color="secondary"`. Ionic verwendet die Grundfarbe der Palette für die leicht eingefärbte Bahn; Auswahlfläche und Beschriftungen bleiben neutral. Eine umgebende farbige Werkzeugleiste liefert nur dann Farben, wenn das Segment keine eigene Farbe hat. Das optionale bewegte Glas übernimmt die Farbe der Auswahlfläche. Benutzerdefinierte Ionic-Paletten funktionieren ohne zusätzliche Registrierung.
 
-Fügen Sie `.segment-expand` hinzu, wenn die Segment-Schaltflächen die verfügbare Breite gleichmäßig aufteilen sollen. Bei Verwendung von `registerSegmentEffect` verändert die Klasse außerdem die Größe des Liquid-Glass-Effekts.
+Fügen Sie `.segment-expand` hinzu, wenn die Segment-Schaltflächen die verfügbare Breite gleichmäßig aufteilen sollen. Bei Verwendung von `registerSegmentEffect` verändert die Klasse außerdem die Größe des Liquid Glass-Effekts.
 
-Segmente haben im Inhaltsbereich eine Mindesthöhe von 32px und innerhalb einer `ion-toolbar` eine Mindesthöhe von 48px. `.segment-expand` erhält in einer Werkzeugleiste das kompakte 32px-Layout. Kompakte Segmente behalten die flachen Hintergrund- und Markierungsfarben von Ionic. Nur die normale Werkzeugleistenvariante hat einen Glascontainer und skaliert den äußeren Container beim Drücken. Segmente im Inhalt und expandierte Segmente behalten ihre äußeren Grenzen. Die optionale bewegte Glaslinse ist unabhängig vom Containerhintergrund.
+### Segmentgröße und Verhalten beim Drücken
+
+| Position | Mindesthöhe | Containerverhalten |
+| --- | --- | --- |
+| Im Inhalt | 32px | Kompakter, flacher Hintergrund und Indikator; äußere Grenzen bleiben fest. |
+| Innerhalb von `ion-toolbar` | 48px | Glascontainer; äußerer Container skaliert beim Drücken. |
+| `.segment-expand`, auch in einer Werkzeugleiste | 32px | Kompakter, flacher Hintergrund und Indikator; äußere Grenzen bleiben fest. |
+
+Die optionale bewegliche Glaslinse ist unabhängig vom Containerhintergrund.
 
 ```html preview
 <ion-segment class="segment-expand" value="new">
@@ -178,4 +210,4 @@ Fügen Sie `.ios-theme-disabled` zu einer einzelnen Ionic-Komponente hinzu, wenn
 <ion-button>iOS 27 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
-Das Hintergrundmodell eingerückter Listen beschreibt [Verwendung von `ion-item-group`](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group).
+Das Hintergrundmodell eingerückter Listen beschreibt [`ion-item-group` verwenden](using-ion-item-group.md).

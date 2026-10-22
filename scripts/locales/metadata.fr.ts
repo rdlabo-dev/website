@@ -740,4 +740,28 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
   'restrict-try-block': 'restrict-try-block',
   'signal-use-as-signal': 'signal-use-as-signal',
   'signal-use-as-signal-template': 'signal-use-as-signal-template',
+  'iOS 27 styling, motion, and Web layout for Ionic.':
+    'Styles, animations et disposition Web iOS 27 pour Ionic.',
+  'Ionic Theme iOS27': 'Ionic Theme iOS27',
+  'Apply Liquid Glass, animations, and device-driven layouts to Ionic. Add the separate Capacitor Native UI plugin when you need native controls.':
+    'Appliquez Liquid Glass, des animations et des dispositions adaptées à l’appareil dans Ionic. Ajoutez le plugin distinct Capacitor Native UI pour les contrôles natifs.',
+  'Theme setup': 'Configurer le thème',
+  'Adaptive themes': 'Thèmes adaptatifs',
+  'Add Native UI': 'Ajouter Native UI',
+  'Vertical Bars layout': 'Disposition de Vertical Bars',
+  'Theme migration': 'Migration du thème',
+  'Native controls for Ionic and HTML apps, with Web-owned state and events.':
+    'Contrôles natifs pour Ionic et HTML, avec état et événements gérés par le Web.',
+  'Capacitor Native UI': 'Capacitor Native UI',
+  'Project supported Ionic and HTML controls into UIKit and SwiftUI on iOS. Keep your theme and Web fallback; app-local SwiftUI and Android Compose extensions are experimental.':
+    'Projetez les contrôles Ionic et HTML pris en charge dans UIKit et SwiftUI sur iOS. Conservez votre thème et le repli Web ; les extensions locales SwiftUI et Android Compose sont expérimentales.',
+  'Ionic setup': 'Configuration Ionic',
+  'Native UI without Ionic': 'Native UI sans Ionic',
+  'Add Vertical Bars while keeping your theme': 'Ajouter Vertical Bars en conservant votre thème',
+  'Native UI (Preview)': 'Native UI (préversion)',
+  'Light and dark appearance': 'Apparence claire et sombre',
+  'Vertical Bars': 'Vertical Bars',
+  'App-local Native UI extensions (experimental)':
+    'Extensions Native UI locales à l’application (expérimentales)',
+  'Native UI': 'Native UI',
 };

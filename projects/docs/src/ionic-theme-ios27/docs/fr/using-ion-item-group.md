@@ -1,6 +1,6 @@
 ---
 title: "Utiliser ion-item-group"
-sourceRevision: "6480211a0fc46b565282cfe154aae64f22ff53e2e9dd7a1073bb54b5290131de"
+sourceRevision: "77c7183b9d27a9fd4f8c027515abce321db29cda98e97f00e9dc4bc674390c62"
 ---
 # Utiliser `ion-item-group` dans les listes en retrait
 
@@ -20,13 +20,13 @@ Les exemples utilisent le balisage des Web Components, indépendant du framework
 
 Aucun conteneur supplémentaire n’est nécessaire pour les listes qui n’utilisent pas `inset="true"`.
 
-[Vérifier la structure des listes avec ESLint](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/eslint).
+[Vérifier la structure des listes avec ESLint](eslint.md).
 
 ## Pourquoi ce conteneur est nécessaire
 
 Ionic applique normalement l’arrière-plan à `ion-list`, ce qui fait apparaître `ion-list-header` sur la même surface que les éléments. La disposition iOS 27 distingue l’en-tête de la surface des éléments.
 
-![Comparaison des arrière-plans de listes avec retrait montrant pourquoi ion-item-group est requis](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v1.2.1/screenshots/why-ion-list-inset.png)
+![Comparaison des arrière-plans de listes avec retrait montrant pourquoi ion-item-group est requis](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.0/screenshots/why-ion-list-inset.png)
 
 Le thème procède donc ainsi :
 
@@ -44,4 +44,4 @@ Lorsqu’une application utilise ce package sans `@rdlabo/ionic-theme-md3`, impo
 @import '@rdlabo/ionic-theme-ios27/dist/css/md-ion-list-inset.css';
 ```
 
-Pour les éléments sur deux lignes et les groupes avec en-tête de section, consultez [Balisage et classes spécifiques](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup).
+Pour les éléments sur deux lignes et les groupes avec en-tête de section, consultez [Balisage et classes spécifiques](special-markup.md).

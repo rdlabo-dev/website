@@ -75,31 +75,42 @@ test('removed Ionic Framework feedback pages stay out of published docs', async 
   }
 });
 
-test('transition guides link to existing localized onboarding headings', async () => {
+test('split theme and Native UI guides resolve localized links and heading fragments', async () => {
+  const ids = ['ionic-theme-ios27', 'capacitor-native-ui'];
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
-    const locale = subPath ? `${subPath}/` : '';
-    const route = `${locale}projects/ionic-theme-ios27/docs/`;
-    const target = new JSDOM(
-      await readFile(`dist/docs/browser/${route}iphone-duo-with-original-theme/index.html`, 'utf8'),
-    ).window.document;
-    for (const page of ['migration', 'native-ui-shell']) {
-      const document = new JSDOM(
-        await readFile(`dist/docs/browser/${route}${page}/index.html`, 'utf8'),
-      ).window.document;
-      const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href]'))
-        .map(
-          (link) => new URL(link.getAttribute('href')!, `https://docs.rdlabo.dev/${route}${page}`),
-        )
-        .filter((url) => url.pathname.endsWith('/iphone-duo-with-original-theme') && url.hash);
-      assert.ok(links.length, `${locale}${page} should link to transition setup`);
-      for (const url of links) {
-        assert.equal(url.pathname, `/${route}iphone-duo-with-original-theme`);
-        const fragment = url.hash.slice(1);
-        // Accented and Japanese headings use URI-encoded IDs; punctuation may also be encoded.
-        assert.ok(
-          target.getElementById(fragment) ?? target.getElementById(decodeURIComponent(fragment)),
-          url.href,
+    const prefix = subPath ? `/${subPath}` : '';
+    const documents = new Map<string, Document>();
+    for (const id of ids) {
+      const project = projectDefinitions.find((entry) => entry.id === id)!;
+      for (const page of project.pages) {
+        const route = `${prefix}/projects/${id}/docs/${page.slug}`;
+        documents.set(
+          route,
+          new JSDOM(await readFile(`dist/docs/browser${route}/index.html`, 'utf8')).window.document,
         );
+      }
+    }
+    for (const [route, document] of documents) {
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('main a[href]')) {
+        const url = new URL(link.getAttribute('href')!, `https://docs.rdlabo.dev${route}`);
+        if (
+          url.origin !== 'https://docs.rdlabo.dev' ||
+          !ids.some((id) => url.pathname.includes(`/projects/${id}/docs/`))
+        )
+          continue;
+        assert.ok(
+          url.pathname.startsWith(`${prefix}/projects/`),
+          `${route}: wrong locale ${url.href}`,
+        );
+        const target = documents.get(url.pathname.replace(/\/$/, ''));
+        assert.ok(target, `${route}: missing guide ${url.href}`);
+        if (url.hash) {
+          const id = url.hash.slice(1);
+          assert.ok(
+            target.getElementById(id) || target.getElementById(decodeURIComponent(id)),
+            `${route}: missing heading ${url.href}`,
+          );
+        }
       }
     }
   }

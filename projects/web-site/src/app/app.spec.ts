@@ -84,13 +84,13 @@ describe('App', () => {
     fixture.destroy();
   });
 
-  it('renders four featured projects and four distinct recent articles', async () => {
+  it('renders five featured projects and four distinct recent articles', async () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('.featured-project-card')).toHaveLength(4);
+    expect(compiled.querySelectorAll('.featured-project-card')).toHaveLength(5);
     expect(
       [...compiled.querySelectorAll<HTMLAnchorElement>('.workers-projects a')].map(
         (link) => link.href,
@@ -105,6 +105,7 @@ describe('App', () => {
     );
     expect(compiled.textContent).toContain('@capacitor-community/stripe');
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-ios27');
+    expect(compiled.textContent).toContain('@rdlabo/capacitor-native-ui');
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-md3');
     expect(compiled.textContent).toContain('@rdlabo/ngx-cdk-scroll-strategies');
     const allProjects = compiled.querySelector<HTMLAnchorElement>('.project-grid__all a');

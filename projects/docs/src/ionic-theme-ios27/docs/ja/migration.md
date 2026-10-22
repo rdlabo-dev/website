@@ -1,45 +1,55 @@
 ---
-title: 移行
+title: テーマの移行
 ---
 
-## Native UI Shellの画面遷移アダプター
+# テーマの移行
 
-`withNativeUIShellTransition()` を使うと、既存のIonic画面遷移アニメーションを維持しながらNative UI Shellの部品を連携できます。
+## Native UI パッケージの分離
 
-- `@rdlabo/ionic-theme-ios27` から `iosTransitionAnimation` をimportしている場合は、[本パッケージのアニメーション設定](/docs/iphone-duo-with-original-theme#本パッケージのiosアニメーションを使う)を維持します。設定変更は不要です。内部で共通アダプターを使うため、追加のラップは不要です。
-- `navAnimation` を設定せずIonic標準のアニメーションを使っている場合は、[Ionicの標準アニメーションを維持する](/docs/iphone-duo-with-original-theme#ionicの標準アニメーションを維持する)を参照してください。遷移modeに応じてIonic標準のiOSまたはMD builderを選ぶ例を掲載しています。
-- Native UI Shellまたは独立したVertical Control Areaで独自の画面遷移を使う場合、Ionic設定時に既存のbuilderをラップします。
+テーマのスタイルと通常のテーマ API のインポートは引き続き利用できます。このパッケージ経由でネイティブコントロールを使用していた場合、`/native` と `/vertical-bars` エントリーは削除されています。
 
-```diff
-+ import { withNativeUIShellTransition } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+| 以前のインポート | 置き換え先 |
+| ----------------------------------------- | ------------------------------------------- |
+| `@rdlabo/ionic-theme-ios27/native`        | `@rdlabo/capacitor-native-ui`               |
+| `@rdlabo/ionic-theme-ios27/vertical-bars` | `@rdlabo/capacitor-native-ui/vertical-bars` |
 
-  const ionicConfig = {
--   navAnimation: existingTransition,
-+   navAnimation: withNativeUIShellTransition(existingTransition),
-  };
+ネイティブパッケージをアプリの直接依存に追加し、インポートを更新して Web アセットを再ビルドし、`npx cap sync ios` を実行します。1.2.1 の起動設定とネイティブプロジェクトの変更は [Native UI 移行ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/migration.md)に従ってください。テーマだけを使用するアプリにはネイティブの起動やプラグインの設定は不要です。
+
+## 2.0 のデバイスレイアウト
+
+標準セットアップの一部として、テーマと一緒に Foldable をインストールします。
+
+```sh
+npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-Ionicの初期化前に、既存設定へこのオプションを統合します。アダプターはアニメーションの効果、duration、easingを維持しながら、ネイティブ部品の退避、スワイプの進捗、キャンセルを連携します。既存テーマのスタイルシートのimportと、Native UI ShellまたはVertical Control Areaの起動処理は維持します。
+従来のデバイスレイアウト API を Foldable の購読に置き換えます。
 
-アダプターは画面遷移だけに使い、modalやpopoverのアニメーションは維持します。Ionicが遷移後に破棄するため、builderは遷移ごとに新しい `Animation` を作成してください。部品登録とアニメーションなしの遷移には、引き続きlifecycle eventを使います。独自builderが水平の戻るボタンを別途アニメーションする場合、`.ios-theme-vertical-bars` が有効な間はその効果を対象から外してください。
+| 以前の API | 置き換え先 |
+| ------------------------------------ | ----------------------------------------------------------------------------------- |
+| `DeviceLayout`、`HingeStatus` | `@erkamyaman/capacitor-foldable` の `BarPlacement`、`FoldState`、`HingeStatus` |
+| `getDeviceLayout()` | `Foldable.getBarPlacement()` と `Foldable.getFoldState()` |
+| `deviceLayoutChange` | `barPlacementChange` と `foldStateChange` のリスナー |
+| デバイスレイアウト監視の開始・停止 | `addListener()` で購読し、終了時に各リスナーを削除 |
+| WebView の角丸半径の単発取得 | Native UI の `getWebViewMetrics()` |
 
-導入手順と対応範囲は[画面遷移アニメーションを接続する](/docs/iphone-duo-with-original-theme#3.-画面遷移アニメーションを接続する)を参照してください。
+テーマからインポートした `setVerticalBarsLayout` で配置を、`applyFoldStateClasses` で折りたたみ状態を適用します。変更の購読に加えて初期状態も取得してください。現在の設定は[デバイスレイアウトと分割ペイン](vertical-bars-layout.md#read-the-device-layout)および[レールへの投影](../../capacitor-native-ui/docs/vertical-bars.md#use-with-capacitor-foldable)を参照してください。パッケージをインストールするだけでは、デバイスイベントの購読や投影は有効になりません。
 
-## iOS 26テーマからの移行
+## iOS 26 テーマからの移行
 
-既存アプリが `@rdlabo/ionic-theme-ios26` を使っている場合は、iOS 26を残して `@rdlabo/ionic-theme-ios27` を追加する方法を推奨します。[READMEの導入手順](/docs/readme#導入)では、ブラウザの機能に応じてiOS 26／27のスタイルを切り替え、どちらにも対応しないブラウザではIonic標準のiOS外観を維持します。
+`@rdlabo/ionic-theme-ios26` を使用するアプリでは、そのパッケージを維持して `@rdlabo/ionic-theme-ios27` を追加する移行を推奨します。[環境に応じたテーマ設定](adaptive-themes.md)は、ブラウザーの機能で iOS 27/26 のスタイルを選択し、古いブラウザーでは Ionic 標準の iOS 外観を維持します。
 
 ### 1. 新しいパッケージを追加する
 
-iOS 26パッケージを残したままiOS 27を追加します。新テーマには `@ionic/core` 8.8.1以降（Ionic 8／9）が必要です。
+iOS 26 パッケージを残して iOS 27 を追加します。新しいテーマには `@ionic/core` 8.8.1 以降（Ionic 8 または 9）が必要です。
 
 ```bash
-npm install @rdlabo/ionic-theme-ios27
+npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-### 2. スタイルを切り替える
+### 2. スタイルを環境に応じて切り替える
 
-グローバルSassで無条件に読み込んでいたiOS 26のスタイルを、排他的な2つの条件に置き換えます。classベースのダークモードの例です。
+グローバル Sass スタイルシートの無条件の iOS 26 インポートを、互いに排他的な 2 つの分岐へ置き換えます。この例はクラス方式のダークモードです。
 
 ```diff
 + @use 'sass:meta';
@@ -63,11 +73,11 @@ npm install @rdlabo/ionic-theme-ios27
 + }
 ```
 
-Ionic側の対応するダークパレットも維持してください。system／alwaysの場合は両方の `-dark-class` を対応するvariantに変えます。`md-ion-list-inset` を使う場合は各条件内で対応するパッケージから読み込みます。どちらの条件も満たさないブラウザはIonic標準のスタイルを維持します。
+対応する Ionic のダークパレットは維持します。システム連動または常時ダークモードでは、両方の `-dark-class` を対応するバリアントに置き換えます。`md-ion-list-inset` を使用する場合は各分岐内で対応パッケージのスタイルシートを読み込んでください。どちらの機能にも非対応のブラウザーでは Ionic 標準のスタイルを維持します。
 
 ### 3. アニメーションを切り替える
 
-iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ機能で有効化します。Ionicの初期化前に設定してください。
+iOS 26 のアニメーションインポートを置き換え、同じブラウザー機能を条件に iOS 27 のアニメーションを有効にします。Ionic の初期化前にオプションを決定してください。
 
 ```diff
 - import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
@@ -92,11 +102,11 @@ iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ�
   });
 ```
 
-両方の世代でiOS 27の画面遷移とpopoverアニメーションを使います。古いブラウザはIonic標準のアニメーションを維持します。例はAngularです。Reactでは `setupIonicReact`、Vueでは `IonicVue` に同じオプションを渡します。
+iOS 27 の画面遷移とポップオーバーのアニメーションを両世代のテーマで使用します。古いブラウザーは Ionic の既定値を維持します。この例は Angular ですが、React の `setupIonicReact` や Vue の `IonicVue` にも同じオプションを渡します。
 
-### 4. カスタマイズ名を更新する
+### 4. カスタマイズを更新する
 
-アプリで使っているテーマ変数と除外クラスを更新します。
+アプリのテーマ変数と適用除外クラスを改名します。例:
 
 ```diff
   ion-content {
@@ -108,11 +118,11 @@ iOS 26からのimportをiOS 27に変更し、スタイルと同じブラウザ�
 + <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
-旧名はdeprecatedのフォールバックとして残ります。対応ブラウザでライト・ダーク両モードの画面を確認してください。
+以前の名前は非推奨のフォールバックとして残ります。対応ブラウザーのライト・ダーク両モードで画面を確認してください。
 
-### iOS 27だけに切り替える場合
+### iOS 27 のみを使う
 
-iOS 26パッケージを削除し、スタイルシートとアニメーションのimportをiOS 27に変更します。スタイルの差分は次のとおりです。
+iOS 27 へ完全に切り替えるには、iOS 26 パッケージを削除してスタイルシートとアニメーションのインポートを置き換えます。スタイルシートの変更は次のとおりです。
 
 ```diff
 - @use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss';
@@ -125,21 +135,26 @@ iOS 26パッケージを削除し、スタイルシートとアニメーショ�
 + @use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
 ```
 
-アニメーションのimport元も `@rdlabo/ionic-theme-ios26` から `@rdlabo/ionic-theme-ios27` に変更します。既存の `isPlatform('ios')` 設定はそのまま使えます。[iOS 27単体の導入手順](/docs/readme#ios-27テーマだけを使う)も参照してください。無条件のimportではIonic iOSモードを使う全ブラウザに新しいスタイルが適用されます。
+アニメーションのインポートを `@rdlabo/ionic-theme-ios26` から `@rdlabo/ionic-theme-ios27` に変更します。既存の `isPlatform('ios')` 設定は維持できます。[iOS 27 のセットアップ](setup.md)を参照してください。無条件のインポートは Ionic の iOS モードを使うすべてのブラウザーに新しいスタイルを適用します。
 
-## iOS 27の命名
+## iOS 27 の命名
 
-iOS 27の条件内、またはiOS 27だけを使うアプリでは `@rdlabo/ionic-theme-ios27` を読み込みます。スタイルシート名は `ionic-theme-ios27.scss` または `ionic-theme-ios27.css` です。`dark-always`、`dark-system`、`dark-class` のvariantも同様です。併用構成のiOS 26側では旧パッケージのスタイルシート名を維持します。
+iOS 27 分岐または iOS 27 専用アプリでは `@rdlabo/ionic-theme-ios27` を使います。スタイルシートは `ionic-theme-ios27.scss` または `ionic-theme-ios27.css` と、`-dark-always`、`-dark-system`、`-dark-class` の各バリアントです。環境に応じた設定の iOS 26 分岐では iOS 26 のファイル名を維持してください。
 
-CSS変数にはバージョンに依存しない `--ios-theme-*` を使います。`--ios26-*` はdeprecatedのフォールバックとして使え、両方ある場合は新名が優先されます。例えば `--ios26-content-box-shadow-rgb` を `--ios-theme-content-box-shadow-rgb` に変更します。
+| カスタマイズ | 現在の名前 | 以前の名前の動作 |
+| ------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| CSS 変数 | `--ios-theme-*`（例: `--ios-theme-content-box-shadow-rgb`） | 対応する `--ios26-*` は非推奨のフォールバックとして残ります。両方を指定した場合は現在の名前が優先されます。 |
+| テーマ適用除外クラス | `ios-theme-disabled` | `ios26-disabled` は非推奨の別名として残ります。適宜既存のマークアップを移行してください。 |
 
-テーマを除外するときは `ios-theme-disabled` を使います。`ios26-disabled` はdeprecatedの互換名として残ります。
+新しいカスタマイズにはバージョンに依存しない名前を使用してください。
 
-現在の名称は[特別なマークアップとクラス](/docs/special-markup)と[デフォルト変数](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.1/src/styles/default-variables.scss)を参照してください。以前の移行案内は[iOS 26の移行ガイド](/ionic-theme-ios26/docs/migration)にあります。
+現在の名前は[特別なマークアップとクラス](special-markup.md)と[既定の変数](../src/styles/default-variables.scss)を参照してください。
+
+以前の移行メモは [iOS 26 移行ガイド](https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/migration)に残しています。
 
 ## 送信ボタンの外観
 
-送信ボタンはIonicの各色の標準コントラスト値と、iOS 27の方向性を持つ縁取りを使います。テーマ専用のbrightness変数を削除してください。
+送信ボタンは各 Ionic カラーの標準のコントラスト値と、iOS 27 の方向性のある縁の表現を使用するようになりました。テーマ固有の明るさの変数は削除してください。
 
 ```diff
   :root {

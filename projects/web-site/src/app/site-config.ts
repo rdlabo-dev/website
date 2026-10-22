@@ -46,10 +46,18 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
   {
     name: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
-    description:
-      'Stable iOS 27 styling, motion, and Liquid Glass for Ionic, with an experimental native UI shell for Capacitor iOS.',
+    description: 'iOS 27 styling, motion, Liquid Glass, and device-driven Web layouts for Ionic.',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27',
+  },
+  {
+    name: 'Capacitor Native UI',
+    packageName: '@rdlabo/capacitor-native-ui',
+    description:
+      'Native iOS controls for Ionic and HTML apps, with Web-owned state, routing, and handlers. Use it with your existing theme.',
+    repositoryUrl:
+      'https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
+    docsUrl: 'https://docs.rdlabo.dev/projects/capacitor-native-ui',
   },
   {
     name: 'Ionic Theme MD3',

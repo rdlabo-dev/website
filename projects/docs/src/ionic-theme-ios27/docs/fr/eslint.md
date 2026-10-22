@@ -1,7 +1,9 @@
 ---
-title: "Assurer la cohérence des listes avec ESLint"
-sourceRevision: "71c9ca2a5ddbb99692cacb560e03df86cc4cc90e66cca0f6c752b4c9d9eed20e"
+title: "Garder des listes cohérentes avec ESLint"
+sourceRevision: "1909b4776ea97001ffb614c0955b3930706b57fdea68459f9c514b323760145d"
 ---
+# Garder des listes cohérentes avec ESLint
+
 Détectez les groupes de liste manquants avant l’affichage. Dans les applications Ionic Angular, `@rdlabo/eslint-plugin-rules` vérifie le balisage utilisé par iOS 27.
 
 ## Activer la vérification des listes
@@ -60,7 +62,7 @@ Regroupez les éléments et importez `IonItemGroup` dans le composant standalone
 
 La règle vérifie tous les éléments `ion-list`, y compris les listes sans retrait. Les groupes de boutons radio, de réorganisation et d’accordéons sont également pris en charge. Elle vérifie les modèles Angular ; elle n’inspecte pas les modèles React ou Vue.
 
-Consultez [Utiliser ion-item-group](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group) pour les exemples de disposition et la [référence de la règle](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group) pour les structures prises en charge et les corrections automatiques.
+Consultez [Utiliser ion-item-group](using-ion-item-group.md) pour les exemples de disposition et la [référence de la règle](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group) pour les structures prises en charge et les corrections automatiques.
 
 ## Maintenir la vérification
 

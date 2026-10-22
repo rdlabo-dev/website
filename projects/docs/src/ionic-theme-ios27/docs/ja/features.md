@@ -2,20 +2,26 @@
 title: 機能
 ---
 
-CSS変数とSass mixinでテーマをカスタマイズしたり、コンポーネント単位で段階的に導入したりできます。マークアップ固有のopt-inは [特別なマークアップとクラス](/docs/special-markup) を参照してください。
+# 機能
 
-## CSS変数
+CSS 変数と Sass ミックスインでテーマをカスタマイズしたり、コンポーネントごとに導入したりできます。マークアップで有効にする機能は[特別なマークアップとクラス](special-markup.md)を参照してください。
 
-ライブラリのデフォルトスタイルをデザインに合わせてカスタマイズできるよう、複数のCSS変数を提供しています。詳細は次のファイルを参照してください。
-https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v1.2.1/src/styles/default-variables.scss
+## CSS 変数
 
-メニューの背景RGBは `--ios-theme-menu-background-rgb`（ライト: `225, 230, 240`、ダーク: `26, 31, 34`）、不透明度は `--ios-theme-menu-background-opacity`（既定値: `0.96`）で指定します。どちらも `ion-menu` に設定できる公開CSS変数です。
+ライブラリーの標準スタイルをデザインに合わせて調整する CSS 変数を用意しています。詳細は次のファイルを参照してください。
+[既定の変数](../src/styles/default-variables.scss)
 
-ボタン押下時の拡縮は `:active` に従い、少しovershootします。継続時間は共通のactivated transition変数ではなく、`--ios-theme-button-press-duration`（既定値: `380ms`）で変更します。
+| 変数 | 既定値 | 用途 |
+| ------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------- |
+| `--ios-theme-menu-background-rgb` | ライト: `225, 230, 240`、ダーク: `26, 31, 34` | メニュー背景の RGB 値。`ion-menu` に設定します。 |
+| `--ios-theme-menu-background-opacity` | `0.96` | メニュー背景の不透明度。`ion-menu` に設定します。 |
+| `--ios-theme-button-press-duration` | `380ms` | 少しオーバーシュートするボタンの `:active` 拡大縮小の所要時間。 |
 
-## Liquid Glass mixin
+ボタン押下時の拡大縮小には、共通の activated-transition 時間変数ではなく `--ios-theme-button-press-duration` を使用してください。
 
-Liquid Glass mixinを使うには、メインパッケージからSCSSファイルをimportします。
+## Liquid Glass ミックスイン
+
+Liquid Glass ミックスインを使うには、メインパッケージの SCSS ファイルをインポートします。
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/src/styles/utils/api.scss';
@@ -25,29 +31,27 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## Native UI Shell（プレビュー）
+## Native UI
 
-`1.2.0` でプレビューとして利用できます。
+テーマの動作を確認したら、[Native UI を追加](add-native-ui.md)して、対応する固定コントロールを iOS の UIKit と SwiftUI で描画できます。Web コンテンツとフォールバック用コントロールのテーマスタイルは維持してください。Native UI は 2.0.0 から正式サポートされており、引き続き明示的な有効化が必要です。スタイルを追加するだけでは有効になりません。
 
-Capacitor iOSアプリでは、任意のプレビュー機能[Native UI Shell](/docs/native-ui-shell)で、対応する固定コントロールをUIKitとシステムのLiquid Glassで描画できます。内容とロジックはWebViewに残り、Ionicがルーティングと画面遷移を管理します。ガイドではBasecampとCapacitorに由来する考え方、導入、対応部品、Web描画へのフォールバックを説明します。
+## コンポーネント単位のインポート
 
-## コンポーネント単位のimport
-
-段階的に導入する場合は、テーマ全体ではなく個別のコンポーネントをimportできます。
+段階的に導入するには、テーマ全体の代わりに個々のコンポーネントをインポートできます。
 
 ```css
 @import '@rdlabo/ionic-theme-ios27/dist/css/utils/translucent';
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-action-sheet';
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-alert';
 @import '@rdlabo/ionic-theme-ios27/dist/css/components/ion-button';
-/* Import the remaining components your application uses. */
+/* アプリで使う残りのコンポーネントをインポートします。 */
 ```
 
-### コンポーネント単位でのDark Mode
+### 個別コンポーネントのダークモード
 
-Dark Mode対応のコンポーネントを個別にimportする場合は、Always、System、Class modeでselectorが異なるためSCSSを使います。
+ダークモード対応のコンポーネントを個別にインポートする場合、Always・System・Class でセレクターが異なるため SCSS を使用します。
 
-Always:
+常時ダーク:
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
@@ -62,7 +66,7 @@ Always:
 @include theme-dark.ion-segment;
 ```
 
-System:
+システム連動:
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
@@ -79,7 +83,7 @@ System:
 }
 ```
 
-Class:
+クラス方式:
 
 ```scss
 @use '@rdlabo/ionic-theme-ios27/src/styles/utils/theme-dark';
@@ -94,6 +98,6 @@ Class:
 }
 ```
 
-## インタラクティブな例
+## 操作できる使用例
 
-[デモでrender済みの例を見る](https://ionic-theme-ios27.rdlabo.dev/main/docs)。
+[デモで描画結果を確認する](https://ionic-theme-ios27.rdlabo.dev/main/docs)。

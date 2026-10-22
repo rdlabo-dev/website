@@ -232,6 +232,11 @@ function packageScopedDirectory(project: {
 }): string | undefined {
   const { repositoryUrl, sourceDirectory } = project;
 
+  if (repositoryUrl === 'https://github.com/rdlabo-dev/ionic-theme-ios27') {
+    if (sourceDirectory === 'ionic-theme-ios27') return 'packages/theme-ios27';
+    if (sourceDirectory === 'capacitor-native-ui') return 'packages/capacitor-native-ui';
+  }
+
   if (repositoryUrl === 'https://github.com/rdlabo-dev/workers-hono-kit') {
     if (sourceDirectory === 'workers-timezone') return 'packages/timezone';
     if (sourceDirectory === 'workers-mysql') return 'packages/mysql';

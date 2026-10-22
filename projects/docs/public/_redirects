@@ -20,3 +20,29 @@
 /ja/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301
 /ja/stripe https://docs.rdlabo.dev/ja/projects/capacitor-stripe 301
 /ja/stripe/docs/* https://docs.rdlabo.dev/ja/projects/capacitor-stripe/docs/:splat 301
+
+# iOS 27 2.0.0 separates Web theme layout from the Native UI plugin.
+/projects/ionic-theme-ios27/docs/native-ui-shell https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui 301
+/projects/ionic-theme-ios27/docs/vertical-bars https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/vertical-bars 301
+/projects/ionic-theme-ios27/docs/iphone-duo https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars-layout 301
+/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/ionic-vertical-bars 301
+/projects/ionic-theme-ios27/docs/api https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/setup 301
+/projects/ionic-theme-ios27/docs/e2e-testing https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme 301
+/ja/projects/ionic-theme-ios27/docs/native-ui-shell https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/native-ui 301
+/ja/projects/ionic-theme-ios27/docs/vertical-bars https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/vertical-bars 301
+/ja/projects/ionic-theme-ios27/docs/iphone-duo https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/vertical-bars-layout 301
+/ja/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/ionic-vertical-bars 301
+/ja/projects/ionic-theme-ios27/docs/api https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/setup 301
+/ja/projects/ionic-theme-ios27/docs/e2e-testing https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme 301
+/fr/projects/ionic-theme-ios27/docs/native-ui-shell https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/native-ui 301
+/fr/projects/ionic-theme-ios27/docs/vertical-bars https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/vertical-bars 301
+/fr/projects/ionic-theme-ios27/docs/iphone-duo https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/vertical-bars-layout 301
+/fr/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/ionic-vertical-bars 301
+/fr/projects/ionic-theme-ios27/docs/api https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/setup 301
+/fr/projects/ionic-theme-ios27/docs/e2e-testing https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/readme 301
+/de/projects/ionic-theme-ios27/docs/native-ui-shell https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/native-ui 301
+/de/projects/ionic-theme-ios27/docs/vertical-bars https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/vertical-bars 301
+/de/projects/ionic-theme-ios27/docs/iphone-duo https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/vertical-bars-layout 301
+/de/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/ionic-vertical-bars 301
+/de/projects/ionic-theme-ios27/docs/api https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/setup 301
+/de/projects/ionic-theme-ios27/docs/e2e-testing https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/readme 301

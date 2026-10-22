@@ -1,19 +1,23 @@
 ---
 title: "Fonctionnalités"
-sourceRevision: "cc7b0d9801f399dd2244c38b41d5478f193813bfd0cd502ef7ed5091cdb1eed6"
+sourceRevision: "ca9e70202f746ec210d577177059d7b8f96a8287aa69cdec05a3c35940ac0f33"
 ---
 # Fonctionnalités
 
-Personnalisez le thème avec les variables CSS et mixins Sass, ou adoptez-le composant par composant. Les activations propres au balisage sont documentées dans [Balisage et classes spécifiques](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup).
+Personnalisez le thème avec les variables CSS et mixins Sass, ou adoptez-le composant par composant. Les activations propres au balisage sont documentées dans [Balisage et classes spécifiques](special-markup.md).
 
 ## Variables CSS
 
 Plusieurs variables CSS permettent d’adapter les styles par défaut de la bibliothèque à votre design. Consultez ce fichier pour en savoir plus :
 [Variables par défaut](../src/styles/default-variables.scss)
 
-Pour les menus, `--ios-theme-menu-background-rgb` définit les composantes RGB de la surface : `225, 230, 240` en clair, `26, 31, 34` en sombre. `--ios-theme-menu-background-opacity` contrôle l’opacité et vaut `0.96` par défaut. Ces deux variables publiques de personnalisation peuvent être définies sur `ion-menu`.
+| Variable | Valeur par défaut | Fonction |
+| ------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------- |
+| `--ios-theme-menu-background-rgb` | Clair : `225, 230, 240` ; sombre : `26, 31, 34` | Composantes RGB de la surface du menu ; à définir sur `ion-menu`. |
+| `--ios-theme-menu-background-opacity` | `0.96` | Opacité de la surface du menu ; à définir sur `ion-menu`. |
+| `--ios-theme-button-press-duration` | `380ms` | Durée de la mise à l’échelle `:active` du bouton, avec un léger dépassement. |
 
-La mise à l’échelle à l’appui des boutons suit `:active` avec un léger dépassement. Définissez `--ios-theme-button-press-duration`, par défaut `380ms`, pour personnaliser sa durée plutôt que les variables partagées de durée de transition d’activation.
+Utilisez `--ios-theme-button-press-duration` plutôt que les variables partagées de durée de transition d’activation pour personnaliser la mise à l’échelle à l’appui.
 
 ## Mixin Liquid Glass
 
@@ -27,9 +31,9 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## Native UI Shell (préversion)
+## Native UI
 
-Les applications Capacitor iOS peuvent utiliser [Native UI Shell](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/native-ui-shell), facultatif, pour afficher les contrôles Ionic fixes compatibles avec UIKit et le Liquid Glass système. Il est disponible en préversion dans `1.2.0`. Le contenu et la logique de l’application restent dans la WebView ; Ionic gère le routage et les transitions de pages. Le guide explique les origines de l’approche hybride chez Basecamp et Capacitor, la configuration, les contrôles pris en charge et le repli Web.
+Une fois votre thème opérationnel, [ajoutez Native UI](add-native-ui.md) pour afficher les contrôles fixes pris en charge avec UIKit et SwiftUI sur iOS. Conservez les styles du thème pour le contenu Web et les contrôles de repli. Native UI est officiellement pris en charge depuis la version 2.0.0 et reste à activer explicitement ; l’ajout des styles ne l’active pas.
 
 ## Imports sélectifs de composants
 

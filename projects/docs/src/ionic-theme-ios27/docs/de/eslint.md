@@ -1,8 +1,11 @@
 ---
-title: "Einheitliche Listen mit ESLint sicherstellen"
-sourceRevision: "71c9ca2a5ddbb99692cacb560e03df86cc4cc90e66cca0f6c752b4c9d9eed20e"
+title: "Listen mit ESLint konsistent halten"
+sourceRevision: "1909b4776ea97001ffb614c0955b3930706b57fdea68459f9c514b323760145d"
 ---
-Erkennen Sie fehlende Listengruppen, bevor sie auf dem Bildschirm erscheinen. In Ionic-Angular-Anwendungen prüft `@rdlabo/eslint-plugin-rules` das für iOS 27 verwendete Markup.
+
+# Listen mit ESLint konsistent halten
+
+Erkennen Sie fehlende Listengruppen, bevor sie auf dem Bildschirm erscheinen. In Ionic-Angular-Apps prüft `@rdlabo/eslint-plugin-rules` das von iOS 27 verwendete Markup.
 
 ## Die Listenprüfung aktivieren
 
@@ -60,7 +63,7 @@ Gruppieren Sie die Elemente und importieren Sie `IonItemGroup` in der Standalone
 
 Die Regel prüft alle `ion-list`-Elemente einschließlich nicht eingerückter Listen. Radio-, Reorder- und Accordion-Gruppen werden ebenfalls unterstützt. Sie prüft Angular-Templates, jedoch keine React- oder Vue-Templates.
 
-Layoutbeispiele finden Sie unter [Verwendung von ion-item-group](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group). Unterstützte Strukturen und automatische Korrekturen beschreibt die [Regelreferenz](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group).
+Layoutbeispiele finden Sie unter [ion-item-group verwenden](using-ion-item-group.md); unterstützte Strukturen und automatische Korrekturen beschreibt die [Regelreferenz](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group).
 
 ## Die Prüfung dauerhaft ausführen
 

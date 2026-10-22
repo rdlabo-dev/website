@@ -1,42 +1,50 @@
 ---
-title: "Migration"
-sourceRevision: "faa1349bd2c073cb973ed6b69790c19a8aa4fd4a2a1bd085486ce08e8c60d099"
+title: "Migration du thème"
+sourceRevision: "244725aff2ee6a242f6a70f611c239f390ce7a3fc3a89e57aab181b8450af7d4"
 ---
-# Migration
+# Migration du thème
 
-## Adaptateur de transition Native UI Shell
+## Séparation du package Native UI
 
-Utilisez `withNativeUIShellTransition()` pour conserver votre animation de navigation Ionic existante tout en coordonnant les contrôles Native UI Shell.
+Les styles et imports ordinaires des API du thème restent pris en charge. Si vous utilisiez les contrôles natifs via ce package, les points d’entrée `/native` et `/vertical-bars` ont été supprimés :
 
-- Si vous importez déjà `iosTransitionAnimation` depuis `@rdlabo/ionic-theme-ios27`, conservez la [configuration d’animation du package](./iphone-duo-with-original-theme.md#use-this-package%27s-ios-animation) ; aucun changement de configuration n’est nécessaire. Elle utilise désormais l’adaptateur partagé en interne : n’ajoutez pas d’autre enveloppe.
-- Si vous utilisez l’animation par défaut d’Ionic sans option `navAnimation`, suivez [Conserver l’animation par défaut d’Ionic](./iphone-duo-with-original-theme.md#keep-ionic%27s-default-animation). L’exemple choisit le constructeur standard iOS ou MD selon le mode de transition.
-- Si vous utilisez une animation de navigation personnalisée avec Native UI Shell ou la zone de contrôle verticale autonome, enveloppez votre constructeur existant lors de la configuration d’Ionic :
+| Ancien import | Remplacement |
+| ----------------------------------------- | ------------------------------------------- |
+| `@rdlabo/ionic-theme-ios27/native` | `@rdlabo/capacitor-native-ui` |
+| `@rdlabo/ionic-theme-ios27/vertical-bars` | `@rdlabo/capacitor-native-ui/vertical-bars` |
 
-```diff
-+ import { withNativeUIShellTransition } from '@rdlabo/ionic-theme-ios27/vertical-bars';
+Ajoutez le package natif comme dépendance directe, mettez à jour les imports, recompilez les ressources Web et exécutez `npx cap sync ios`. Suivez le [guide de migration Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/migration.md) pour les paramètres de démarrage de la version 1.2.1 et les modifications du projet natif. Les applications utilisant uniquement le thème n’ont besoin ni de démarrage natif ni de configuration du plugin.
 
-  const ionicConfig = {
--   navAnimation: existingTransition,
-+   navAnimation: withNativeUIShellTransition(existingTransition),
-  };
+## Disposition de l’appareil dans la version 2.0
+
+Installez Foldable avec le thème dans la configuration standard :
+
+```sh
+npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-Fusionnez cette option dans votre configuration Ionic existante avant l’initialisation. L’adaptateur conserve les effets, la durée et la courbe d’accélération de l’animation, tout en coordonnant le retrait natif, la progression du glissement et l’annulation. Conservez vos imports de feuilles de style et le démarrage de Native UI Shell ou Vertical Control Area.
+Remplacez les anciennes API de disposition par des abonnements Foldable :
 
-Utilisez l’adaptateur uniquement pour la navigation ; gardez les animations de modales et de popovers inchangées. Votre constructeur doit créer une nouvelle `Animation` pour chaque navigation, car Ionic la détruit ensuite. Conservez les événements de cycle de vie pour l’enregistrement des contrôles et les transitions sans animation. Si le constructeur personnalisé anime séparément un bouton de retour horizontal, excluez cet effet lorsque `.ios-theme-vertical-bars` est actif.
+| Ancienne API | Remplacement |
+| ------------------------------------ | ----------------------------------------------------------------------------------- |
+| `DeviceLayout`, `HingeStatus` | `BarPlacement`, `FoldState` et `HingeStatus` de `@erkamyaman/capacitor-foldable` |
+| `getDeviceLayout()` | `Foldable.getBarPlacement()` et `Foldable.getFoldState()` |
+| `deviceLayoutChange` | Écouteurs `barPlacementChange` et `foldStateChange` |
+| Démarrer/arrêter la surveillance de la disposition | S’abonner avec `addListener()` ; retirer chaque écouteur au nettoyage |
+| Lecture ponctuelle du rayon des coins de la WebView | `getWebViewMetrics()` de Native UI |
 
-Consultez [Relier votre animation de navigation](./iphone-duo-with-original-theme.md#3.-connect-your-navigation-animation) pour la configuration et le périmètre pris en charge.
+Appliquez le placement avec `setVerticalBarsLayout` et la posture avec `applyFoldStateClasses`, tous deux importés du thème. Lisez l’état initial en plus de vous abonner aux changements. Consultez la [disposition et les panneaux divisés](vertical-bars-layout.md#read-the-device-layout) et la [projection du rail](../../capacitor-native-ui/docs/vertical-bars.md#use-with-capacitor-foldable) pour la configuration actuelle. Installer les packages ne suffit pas pour s’abonner aux événements de l’appareil ou activer la projection.
 
 ## Depuis le thème iOS 26
 
-Pour une application utilisant `@rdlabo/ionic-theme-ios26`, la migration recommandée conserve ce package et ajoute `@rdlabo/ionic-theme-ios27`. La [configuration du README](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme#get-started) choisit les styles iOS 27 ou iOS 26 selon les capacités du navigateur et garde l’apparence iOS par défaut d’Ionic sur les navigateurs plus anciens.
+Pour une application utilisant `@rdlabo/ionic-theme-ios26`, la migration recommandée conserve ce package et ajoute `@rdlabo/ionic-theme-ios27`. La [configuration des thèmes adaptatifs](adaptive-themes.md) choisit les styles iOS 27 ou iOS 26 selon les capacités du navigateur et conserve l’apparence iOS par défaut d’Ionic sur les navigateurs plus anciens.
 
 ### 1. Ajouter le nouveau package
 
 Conservez le package iOS 26 et ajoutez iOS 27. Le nouveau thème nécessite `@ionic/core` 8.8.1 ou ultérieur, avec Ionic 8 ou 9.
 
 ```bash
-npm install @rdlabo/ionic-theme-ios27
+npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
 ### 2. Rendre les styles adaptatifs
@@ -127,17 +135,20 @@ Pour passer entièrement à iOS 27, retirez le package iOS 26 et remplacez ses i
 + @use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
 ```
 
-Remplacez l’import d’animation de `@rdlabo/ionic-theme-ios26` par `@rdlabo/ionic-theme-ios27` ; la configuration existante `isPlatform('ios')` peut rester. Consultez la [configuration iOS 27 uniquement](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme#use-only-the-ios-27-theme) du README. Les imports inconditionnels appliquent les nouveaux styles à tous les navigateurs utilisant le mode iOS d’Ionic.
+Remplacez l’import d’animation `@rdlabo/ionic-theme-ios26` par `@rdlabo/ionic-theme-ios27` ; la configuration `isPlatform('ios')` existante peut rester. Consultez la [configuration iOS 27](setup.md). Les imports inconditionnels appliquent les nouveaux styles à tous les navigateurs utilisant le mode Ionic iOS.
 
 ## Noms iOS 27
 
 Pour la branche iOS 27 ou une application exclusivement iOS 27, utilisez `@rdlabo/ionic-theme-ios27`. Ses feuilles de style sont `ionic-theme-ios27.scss` ou `ionic-theme-ios27.css`, avec les variantes `-dark-always`, `-dark-system` et `-dark-class`. Conservez les noms de feuilles de style iOS 26 dans la branche iOS 26 d’une configuration adaptative.
 
-Utilisez les variables CSS `--ios-theme-*` indépendantes de la version. Les variables correspondantes `--ios26-*` restent prises en charge comme solutions de repli obsolètes. Lorsque les deux sont définies, le nouveau nom est prioritaire. Utilisez par exemple `--ios-theme-content-box-shadow-rgb` à la place de `--ios26-content-box-shadow-rgb`.
+| Personnalisation | Nom actuel | Comportement historique |
+| ------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Variables CSS | `--ios-theme-*`, par exemple `--ios-theme-content-box-shadow-rgb` | Les noms `--ios26-*` correspondants restent des replis obsolètes. Les noms actuels sont prioritaires si les deux sont définis. |
+| Classe de désactivation du thème | `ios-theme-disabled` | `ios26-disabled` reste un alias obsolète ; migrez le balisage existant lorsque vous le pouvez. |
 
-Pour désactiver le thème, utilisez la classe `ios-theme-disabled` indépendante de la version. La classe `ios26-disabled` reste prise en charge comme alias obsolète ; migrez le balisage existant lorsque cela vous convient.
+Utilisez les noms indépendants de la version pour les nouvelles personnalisations.
 
-Consultez [Balisage et classes spécifiques](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup) et [Variables par défaut](../src/styles/default-variables.scss) pour les noms actuels.
+Consultez [Balisage et classes spécifiques](special-markup.md) et [Variables par défaut](../src/styles/default-variables.scss) pour les noms actuels.
 
 Les notes de migration antérieures sont conservées dans le [guide de migration iOS 26](https://docs.rdlabo.dev/projects/ionic-theme-ios26/docs/migration).
 

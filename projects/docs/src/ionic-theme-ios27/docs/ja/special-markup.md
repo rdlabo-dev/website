@@ -2,22 +2,24 @@
 title: 特別なマークアップとクラス
 ---
 
-ほとんどのIonicマークアップは変更せずに使えます。以下はテーマが提供する明示的なopt-inです。
+# 特別なマークアップとクラス
 
-## Primaryのsubmit button
+ほとんどの Ionic マークアップは変更せずに使えます。以下の組み合わせはテーマが提供する明示的な有効化の指定です。
 
-solidの送信ボタンは前景にIonicの色のcontrast値を使います。iOS 27の強調ボタンに合わせた方向性のある縁取りを適用するため、追加のbrightness色は不要です。
+## 主な送信ボタン
+
+塗りつぶしの送信ボタンは、前景に Ionic カラーのコントラスト値を使用します。方向性のある縁の表現は iOS 27 の目立つボタンの外観に合わせており、追加の明るさの色は不要です。
 
 ```html preview
 <ion-button type="submit" color="primary">Submit</ion-button>
 <ion-button class="button-submit" fill="solid" color="primary">Continue</ion-button>
 ```
 
-buttonに `type="submit"` を指定できない場合に同じstyleを適用するには、`.button-submit` を使います。
+同じ外観が必要でも `type="submit"` を使用できない場合は `.button-submit` を使います。
 
-## 推奨するオーバーレイ操作
+## 推奨するオーバーレイの操作
 
-iOSのalertとaction sheetでは、ボタンに `role: 'preferred'` を設定すると、背景が `--ion-color-primary`、文字とアイコンが `--ion-color-primary-contrast` になります。押下中の背景は `--ion-color-primary-shade` です。Ionicのカスタムroleを使うテーマの規約であり、操作の自動選択・実行はしません。閉じた際のroleは `preferred` です。
+iOS のアラートやアクションシートでは、ボタンに `role: 'preferred'` を設定すると、背景が `--ion-color-primary`、テキストとアイコンが `--ion-color-primary-contrast` になります。押下中の背景には `--ion-color-primary-shade` を使います。Ionic のカスタムボタンロールを用いたテーマの規約であり、操作を自動選択・実行しません。閉じる際のロールは `preferred` として通知されます。
 
 ```ts
 buttons: [
@@ -26,15 +28,38 @@ buttons: [
 ];
 ```
 
-roleなしと `default` は通常の文字色を使います。`cancel` はIonicのキャンセル処理、`selected` は選択状態を維持し、`destructive` は `--ios-theme-destructive-color` を使います。既存の `confirm` は推奨操作として扱いません。単に確定する操作ではなく、推奨する操作に `preferred` を使います。
+操作の意味に合わせてロールを選びます。
 
-## iPadのフローティングシート
+| ロール | 外観と動作 |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| `preferred` | 塗りつぶしの主要操作。閉じる際は `preferred` と通知されます。自動で選択・実行しません。 |
+| 未指定または `default` | 通常の文字色。 |
+| `cancel` | Ionic のキャンセル動作を維持します。 |
+| `selected` | 選択状態を維持します。 |
+| `destructive` | `--ios-theme-destructive-color` を使用します。 |
+| `confirm` | 推奨操作として扱いません。単なる確認ではなく、推奨する操作に `preferred` を使用してください。 |
 
-sheet modalに `expandToScroll: false` を設定すると、iPadで下側の角を丸め、下端に20pxの隙間を設けます。Ionicが各breakpointの表示領域を決めるため、テーマはCSSだけで装飾できます。現在のbreakpoint内で内容がスクロールし、ハンドルのドラッグでサイズを変えられます。既定の `expandToScroll: true` では、下端に接した配置とスクロールによる展開を維持します。
+## iPad の浮いたシート
 
-## タブバーの配置
+`expandToScroll` でシートのスクロール動作を選びます。
 
-iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、`tab-bar-position-end` のいずれかを追加すると、safe area内でバー全体の配置を指定できます。`slot="top"` と `slot="bottom"` の両方で幅と押下アニメーションを維持します。startとendは文字方向に従い、RTLでは反転します。classなしの配置は変わりません。
+| 設定 | iPad の外観 | スクロールとサイズ変更 |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `false` | 下側の角が浮き、下端に 20px の余白。 | 現在のブレークポイント内で内容がスクロールし、ハンドルのドラッグでサイズを変更します。Ionic が各ブレークポイントで表示ページのサイズを設定するため CSS で装飾できます。 |
+| `true`（既定値） | Ionic の下端に接するレイアウト。 | スクロールで展開します。 |
+
+## タブバーの位置
+
+iOS の `ion-tab-bar` にクラスを指定して、セーフエリア内でバー全体の位置を選びます。
+
+| クラス | 配置 |
+| ------------------------- | ------------------------------- |
+| `tab-bar-position-start` | 読字方向の始端。 |
+| `tab-bar-position-center` | 中央。 |
+| `tab-bar-position-end` | 読字方向の終端。 |
+| なし | 既存の配置を維持。 |
+
+すべて `slot="top"` と `slot="bottom"` に対応し、幅と押下時のアニメーションを維持し、RTL の始端・終端を解決します。
 
 ```html
 <ion-tab-bar slot="bottom" class="tab-bar-position-center">
@@ -43,21 +68,21 @@ iOSの `ion-tab-bar` に `tab-bar-position-start`、`tab-bar-position-center`、
 </ion-tab-bar>
 ```
 
-別の `ion-fab` の位置は変わらないため、そのスペースも確保してください。
+これらのクラスは別の `ion-fab` の位置を変えません。バーの位置を選ぶときは、その領域を確保してください。
 
-## iPhone Duo対応（プレビュー）
+## iPhone Duo への対応
 
-独立したVertical Barsを含むiPhone Duo対応は、Native UI Shellとともに `1.2.0` で利用できる **プレビュー機能** です。APIと対応する動作は変更される可能性があります。
+単独の Vertical Bars を含め、iPhone Duo 対応は 2.0.0 から安定版です。
 
-縦のシステム操作領域、ヒンジの状態、開閉状態に応じたsplit paneの配置は、iOS 27テーマと完全なNative UI Shellから独立しています。描画runtimeを使わないレイアウト監視を含め、詳細は[iPhone Duo対応](/docs/iphone-duo)を参照してください。
+iPhone Duo の縦向きシステムレール、ヒンジの状態、折りたたみ状態に応じた分割ペインのレイアウトは、iOS 27 テーマや Native UI 全体から独立しています。投影ランタイムなしでのデバイスレイアウト監視を含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
 
-[Vertical Bars](/docs/vertical-bars)には、操作領域のクラス、部品の対応条件、ネイティブボタンの外観を記載しています。
+レールのレイアウトクラス、コントロールの対象条件、ネイティブボタンの外観は [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/vertical-bars.md)を参照してください。
 
-既存テーマを維持する独立した導入手順は、[既存テーマでiPhone Duoに対応する](/docs/iphone-duo-with-original-theme)を参照してください。
+既存のテーマを維持した単独セットアップは[既存のテーマで iPhone Duo に対応する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/ionic-vertical-bars.md)を参照してください。
 
-## 2行のinset list item
+## 2 行のインセットリスト項目
 
-slotを指定しない `ion-label` と `ion-note` を隣接させると、2行のitemとして表示します。iOS styleのinset list背景を使う場合はitemを `ion-item-group` で囲み、`ion-list-header` はgroupの外に置きます。
+slot を指定しない `ion-label` のすぐ横に、slot を指定しない `ion-note` を置くと 2 行の項目になります。iOS スタイルのインセットリスト背景を使う場合は項目を `ion-item-group` で囲み、`ion-list-header` はグループの外に置いてください。
 
 ```html preview
 <ion-list inset="true">
@@ -73,13 +98,13 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 </ion-list>
 ```
 
-通常の末尾noteとして表示したい場合は、`ion-note` に `slot="end"` を指定します。
+通常の末尾注記のレイアウトを使う場合は、`ion-note` に `slot="end"` を指定します。
 
-## inset listのsection header
+## インセットリストのセクションヘッダー
 
-`.item-group-header` を `ion-item-group` に追加すると、component demo pageの先頭で使われている中央揃えのicon、title、descriptionを表示できます。
+`ion-item-group` に `.item-group-header` を追加すると、コンポーネントのデモページ上部にある中央揃えのアイコン、タイトル、説明を作れます。
 
-これは導入用のgroupです。通常のlist itemは、その後に置く別の `ion-item-group` に入れてください。
+これは導入説明用のグループです。通常のリスト項目はその後に別の `ion-item-group` を置いて配置してください。
 
 ```html preview
 <ion-list inset="true">
@@ -98,9 +123,9 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 </ion-list>
 ```
 
-## 幅いっぱいのsegment
+## 全幅のセグメント
 
-`.segment-style-glass` を追加すると、タブバーと同じglass面と選択indicatorの処理を適用します。既存の寸法と文字色を維持し、スクロール可能なsegmentとIonicの公開 `--background` プロパティにも対応します。
+`.segment-style-glass` を追加すると、タブバーと同じガラス面と選択インジケーターの表現をセグメントに適用できます。既存のサイズと文字色を維持し、スクロール可能なセグメントにも対応し、Ionic の公開プロパティ `--background` を尊重します。
 
 ```html
 <ion-segment class="segment-style-glass" value="available">
@@ -109,11 +134,19 @@ slotを指定しない `ion-label` と `ion-note` を隣接させると、2行�
 </ion-segment>
 ```
 
-色付きsegmentにはIonicの `color`（例: `color="primary"`、`color="secondary"`）を使います。Ionicはパレットのbase色でtrackを淡く着色し、選択面とラベルはニュートラルに保ちます。周囲の色付きtoolbarはsegment自身に色指定がない場合だけ色を供給します。任意の移動するglassは選択面の色を引き継ぎ、独自のIonicパレットも追加登録なしで使えます。
+色付きセグメントには Ionic の `color`（例: `color="primary"`、`color="secondary"`）を使います。Ionic はパレットの基本色でトラックを淡く着色し、選択面とラベルは中立色に保ちます。周囲の色付きツールバーは、セグメントに固有色がない場合のみ色を提供します。任意の移動するガラスは選択面の色を継承し、独自の Ionic パレットも追加登録なしで使えます。
 
-segment buttonを利用可能な幅に均等配置する場合は `.segment-expand` を追加します。`registerSegmentEffect` を使う場合、このclassはLiquid Glass effectのsizeも変更します。
+セグメントボタンで使用可能な幅を均等に分けるには `.segment-expand` を追加します。`registerSegmentEffect` の使用時には Liquid Glass エフェクトのサイズも変わります。
 
-セグメントの最小の高さは、コンテンツ内では 32px、`ion-toolbar` 内では 48px です。`.segment-expand` を付けると、ツールバー内でもコンパクトな 32px のレイアウトを維持します。コンパクトなセグメントは Ionic 標準のフラットな背景と選択インジケーターの色を維持します。ガラス調のコンテナーを表示し、押している間に外側のコンテナーを拡大・縮小するのは、通常のツールバー内セグメントだけです。コンテンツ内のセグメントと `.segment-expand` を付けたセグメントは、外側の領域を維持します。任意で追加できる移動するガラスレンズは、コンテナーの背景とは独立しています。
+### セグメントのサイズと押下動作
+
+| 配置 | 最小の高さ | コンテナーの動作 |
+| ----------------------------------------- | -------------- | ---------------------------------------------------------------- |
+| コンテンツ内 | 32px | 小型で平らな背景とインジケーター。外側の境界は固定。 |
+| `ion-toolbar` 内 | 48px | ガラスのコンテナー。押下中に外側のコンテナーが拡大縮小。 |
+| ツールバー内を含む `.segment-expand` | 32px | 小型で平らな背景とインジケーター。外側の境界は固定。 |
+
+任意の移動するガラスレンズは、コンテナーの背景から独立しています。
 
 ```html preview
 <ion-segment class="segment-expand" value="new">
@@ -122,13 +155,13 @@ segment buttonを利用可能な幅に均等配置する場合は `.segment-expa
 </ion-segment>
 ```
 
-## condense header内のclassic search bar
+## 縮小するヘッダー内の従来型検索バー
 
-Themeはdefaultでsearch barにiOS 27の外観を適用します。`collapse="condense"` を指定した `ion-header` のlarge titleの下に表示するsearch fieldには、`.searchbar-classic` を追加します。従来の塗りつぶされたiOSの外観になり、固定headerに残らずlarge titleと一緒にcollapseします。
+テーマは既定で iOS 検索バーに iOS 27 の外観を適用します。`collapse="condense"` を持つ `ion-header` の大きなタイトルの下に表示する検索欄には `.searchbar-classic` を追加します。従来の塗りつぶしの iOS 外観を使い、固定ヘッダーに残らず大きなタイトルと一緒に折りたたまれます。
 
-`color="light"` など、colorを指定したtoolbar内に配置してください。classic背景は、そのcolorのcontrast値から生成されます。
+`color="light"` など色を指定したツールバー内に置いてください。従来型の背景はその色のコントラスト値から生成します。
 
-次の例はIonic標準のcollapse可能なlarge title構造です。previewをscrollするとlarge titleがcollapseし、固定headerが表示されます。
+例は Ionic 標準の折りたたみ可能な大きなタイトル構造を使用します。プレビューをスクロールすると大きなタイトルが縮み、固定ヘッダーが表示されます。
 
 ```html preview
 <div class="ion-page">
@@ -164,16 +197,16 @@ Themeはdefaultでsearch barにiOS 27の外観を適用します。`collapse="co
 </div>
 ```
 
-`.ion-page` wrapperによって、埋め込みpreviewが完全なrouted pageとして動作します。`ion-router-outlet` を使うapplicationでは通常、このpage containerは自動的に追加されます。Inset listとitemはscrollを実演するための十分なcontentを用意しているだけで、`.searchbar-classic` の必須要素ではありません。
+`.ion-page` ラッパーにより埋め込みプレビューが通常のルーティングされたページのように動作します。`ion-router-outlet` を使うアプリでは通常、このページコンテナーが自動で付与されます。インセットリストと項目はスクロール実演用の内容を確保するだけで、`.searchbar-classic` の必須要件ではありません。
 
-## Themeを無効にする
+## テーマの適用を除外する
 
-個別のIonic componentで標準のiOS styleを維持する場合は `.ios-theme-disabled` を追加します。
+Ionic 標準の iOS スタイルを維持したいコンポーネントに `.ios-theme-disabled` を追加します。
+
+`.ios26-disabled` は非推奨ですが、同じ動作の別名として使用できます。新しいコードには `.ios-theme-disabled` を使用してください。
 
 ```html preview
 <ion-button>iOS 27 theme</ion-button> <ion-button class="ios-theme-disabled">Standard Ionic button</ion-button>
 ```
 
-Inset listの背景modelについては [ion-item-groupの使用方法](/docs/using-ion-item-group) を参照してください。
-
-`ios26-disabled` はdeprecatedですが、`ios-theme-disabled` と同じ動作の互換名として引き続き利用できます。新規コードでは `ios-theme-disabled` を使ってください。
+インセットリストの背景の仕組みは [`ion-item-group` の使い方](using-ion-item-group.md)を参照してください。

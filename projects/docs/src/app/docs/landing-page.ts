@@ -58,6 +58,7 @@ import { resolveDocsLocale } from '../../../../../shared/docs-locales';
         @if (p.overviewHtml) {
           <div class="project-media znc [&_img]:mx-auto [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-xl [&_p]:m-0 [&_p:has(>img+img)]:flex [&_p:has(>img+img)]:items-start" [innerHTML]="p.overviewHtml | safeHtml"></div>
         }
+        @if (p.features.length) {
         <section class="project-section">
           <h2>{{ p.featuresHeading }}</h2>
           <ul class="feature-grid">
@@ -77,6 +78,7 @@ import { resolveDocsLocale } from '../../../../../shared/docs-locales';
             }
           </ul>
         </section>
+        }
         @if (p.pages.length) {
           <section id="documentation" class="project-section scroll-mt-8" aria-labelledby="all-documentation">
             <h2 id="all-documentation" i18n="@@allDocumentation">All documentation</h2>

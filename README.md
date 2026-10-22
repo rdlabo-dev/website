@@ -32,6 +32,7 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | rdlabo Ionic Angular Photo Editor | `projects/docs/src/ionic-angular-photo-editor/docs` |
 | rdlabo Ionic Angular Scroll Header | `projects/docs/src/ionic-angular-scroll-header/docs` |
 | rdlabo Angular CDK Scroll Strategies | `projects/docs/src/ngx-cdk-scroll-strategies/docs` |
+| Capacitor Native UI | `projects/docs/src/capacitor-native-ui/docs` |
 | rdlabo Ionic Theme iOS27 | `projects/docs/src/ionic-theme-ios27/docs` |
 | rdlabo Ionic Theme iOS26 | `projects/docs/src/ionic-theme-ios26/docs` |
 | rdlabo Ionic Theme Material Design 3 | `projects/docs/src/ionic-theme-md3/docs` |

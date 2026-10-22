@@ -5,10 +5,13 @@ import test from 'node:test';
 import { compileString } from 'sass';
 import ts from 'typescript';
 
-for (const page of ['iphone-duo', 'iphone-duo-with-original-theme', 'vertical-bars']) {
+for (const [project, page] of [
+  ['ionic-theme-ios27', 'vertical-bars-layout'],
+  ['capacitor-native-ui', 'ionic-vertical-bars'],
+]) {
   test(`${page} examples compile against the installed release`, () => {
     const markdown = readFileSync(
-      resolve(`projects/docs/src/ionic-theme-ios27/docs/ja/${page}.md`),
+      resolve(`projects/docs/src/${project}/docs/ja/${page}.md`),
       'utf8',
     );
     // Keep temporary modules beside node_modules so package exports resolve normally.
@@ -26,12 +29,13 @@ for (const page of ['iphone-duo', 'iphone-duo-with-original-theme', 'vertical-ba
         if (code.startsWith('await listener.remove();')) {
           assert.ok(examples.length > 0, 'Cleanup must follow a setup example');
           examples[examples.length - 1] += code;
-        } else if (!code.includes('import ') && code.includes('enableVerticalControlArea(')) {
-          // Appearance alternatives reuse the entry-point import shown above.
+        } else if (!code.includes('import ') && code.startsWith('setVerticalBarsLayout(')) {
           examples.push(
-            "import { enableVerticalControlArea } from '@rdlabo/ionic-theme-ios27/vertical-bars';\n" +
-              code,
+            "import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';\n" + code,
           );
+        } else if (!code.includes('import ') && code.includes('enableNativeUI(')) {
+          // Appearance alternatives reuse the plugin import from the setup above.
+          examples.push("import { enableNativeUI } from '@rdlabo/capacitor-native-ui';\n" + code);
         } else {
           examples.push(code);
         }

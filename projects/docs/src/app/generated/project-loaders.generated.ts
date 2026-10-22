@@ -36,6 +36,12 @@ export const PROJECT_LOADERS = {
     fr: () => import('./projects/ionic-theme-ios27.fr.generated').then((module) => module.PROJECT),
     de: () => import('./projects/ionic-theme-ios27.de.generated').then((module) => module.PROJECT),
   },
+  "capacitor-native-ui": {
+    en: () => import('./projects/capacitor-native-ui.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/capacitor-native-ui.ja.generated').then((module) => module.PROJECT),
+    fr: () => import('./projects/capacitor-native-ui.fr.generated').then((module) => module.PROJECT),
+    de: () => import('./projects/capacitor-native-ui.de.generated').then((module) => module.PROJECT),
+  },
   "ionic-theme-ios26": {
     en: () => import('./projects/ionic-theme-ios26.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/ionic-theme-ios26.ja.generated').then((module) => module.PROJECT),

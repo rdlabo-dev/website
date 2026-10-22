@@ -439,3 +439,24 @@ test('routes injected API type links to the reference while preserving guide fra
   );
   assert.match(expandApiPlaceholders(source, api).expanded, /href="#adoptions"/);
 });
+
+test('keeps split theme and Native UI cross-package guides in the portal', () => {
+  const markdown = [
+    '[native](../../capacitor-native-ui/docs/setup.md#start)',
+    '[theme](../theme-ios27/README.md)',
+    '[appearance](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/setup.md#choose-one-dark-mode-pair)',
+    '[example](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/demo/src/native-ui/counter.ts)',
+  ].join('\n');
+  for (const result of [
+    rewritePackageDocLinks(markdown, new Map()),
+    rewriteRelativeDocLinks(markdown, 'setup.md'),
+  ]) {
+    assert.match(result, /\[native\]\(\/capacitor-native-ui\/docs\/setup#start\)/);
+    assert.match(result, /\[theme\]\(\/ionic-theme-ios27\/docs\/readme\)/);
+    assert.match(
+      result,
+      /\[appearance\]\(\/ionic-theme-ios27\/docs\/setup#choose-one-dark-mode-pair\)/,
+    );
+    assert.match(result, /\/blob\/ios27-v2\.0\.0\/demo\/src\/native-ui\/counter\.ts/);
+  }
+});

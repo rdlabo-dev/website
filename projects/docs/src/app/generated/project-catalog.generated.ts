@@ -413,16 +413,37 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.1",
-    "description": "Stable iOS 27 styling and motion for Ionic, with an optional preview Native UI Shell.",
+    "version": "2.0.0",
+    "description": "iOS 27 styling, motion, and Web layout for Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
         "slug": "readme",
-        "section": "Quickstart",
+        "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "Theme setup",
+        "navTitle": "Theme setup",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Adaptive themes",
+        "navTitle": "Adaptive themes",
+        "slug": "adaptive-themes",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
+      },
+      {
+        "title": "Add Native UI",
+        "navTitle": "Add Native UI",
+        "slug": "add-native-ui",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
       },
       {
         "title": "Using ion-item-group",
@@ -446,34 +467,6 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios27/docs/eslint"
       },
       {
-        "title": "Native UI Shell (Preview)",
-        "navTitle": "Native UI Shell (Preview)",
-        "slug": "native-ui-shell",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
-      },
-      {
-        "title": "iPhone Duo support (preview)",
-        "navTitle": "iPhone Duo support (preview)",
-        "slug": "iphone-duo",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
-      },
-      {
-        "title": "iPhone Duo with your existing theme (preview)",
-        "navTitle": "iPhone Duo with your existing theme (preview)",
-        "slug": "iphone-duo-with-original-theme",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
-      },
-      {
-        "title": "Vertical Bars (preview)",
-        "navTitle": "Vertical Bars (preview)",
-        "slug": "vertical-bars",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
-      },
-      {
         "title": "Features",
         "navTitle": "Features",
         "slug": "features",
@@ -488,25 +481,103 @@ export const PROJECTS_EN = [
         "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
+        "title": "Vertical Bars layout",
+        "navTitle": "Vertical Bars layout",
+        "slug": "vertical-bars-layout",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
+      },
+      {
+        "title": "Theme migration",
+        "navTitle": "Theme migration",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-native-ui",
+    "slug": "capacitor-native-ui",
+    "shortName": "Capacitor Native UI",
+    "packageName": "@rdlabo/capacitor-native-ui",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.0.0",
+    "description": "Native controls for Ionic and HTML apps, with Web-owned state and events.",
+    "path": "/projects/capacitor-native-ui",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/readme"
+      },
+      {
+        "title": "Ionic setup",
+        "navTitle": "Ionic setup",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/setup"
+      },
+      {
+        "title": "Native UI without Ionic",
+        "navTitle": "Native UI without Ionic",
+        "slug": "framework-independent",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/framework-independent"
+      },
+      {
+        "title": "Add Vertical Bars while keeping your theme",
+        "navTitle": "Add Vertical Bars while keeping your theme",
+        "slug": "ionic-vertical-bars",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
+      },
+      {
+        "title": "Native UI",
+        "navTitle": "Native UI",
+        "slug": "native-ui",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/native-ui"
+      },
+      {
+        "title": "Configuration",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/configuration"
+      },
+      {
+        "title": "Light and dark appearance",
+        "navTitle": "Light and dark appearance",
+        "slug": "appearance",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Vertical Bars",
+        "navTitle": "Vertical Bars",
+        "slug": "vertical-bars",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
+      },
+      {
+        "title": "App-local Native UI extensions (experimental)",
+        "navTitle": "App-local Native UI extensions (experimental)",
+        "slug": "native-ui-extensions",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
+      },
+      {
         "title": "Migration",
         "navTitle": "Migration",
         "slug": "migration",
         "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      },
-      {
-        "title": "E2E screenshot testing",
-        "navTitle": "E2E screenshot testing",
-        "slug": "e2e-testing",
-        "section": "Development",
-        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Reference",
-        "path": "/projects/ionic-theme-ios27/docs/api"
+        "path": "/projects/capacitor-native-ui/docs/migration"
       }
     ]
   },
@@ -2166,19 +2237,40 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.1",
-    "description": "Ionic向けの安定版iOS 27スタイルとアニメーション。プレビュー版のNative UI Shellも選択できます。",
+    "version": "2.0.0",
+    "description": "Ionic向けのiOS 27スタイル、アニメーション、Webレイアウト。",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
         "title": "はじめに",
         "navTitle": "はじめに",
         "slug": "readme",
-        "section": "クイックスタート",
+        "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/readme"
       },
       {
-        "title": "ion-item-groupの使用方法",
+        "title": "iOS 27 テーマをセットアップする",
+        "navTitle": "テーマの設定",
+        "slug": "setup",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "iOS 26、iOS 27、MD3 のテーマを使う",
+        "navTitle": "テーマの自動切り替え",
+        "slug": "adaptive-themes",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
+      },
+      {
+        "title": "テーマに Native UI を追加する",
+        "navTitle": "Native UIの追加",
+        "slug": "add-native-ui",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
+      },
+      {
+        "title": "ion-item-group の使い方",
         "navTitle": "ion-item-groupの使用方法",
         "slug": "using-ion-item-group",
         "section": "ガイド",
@@ -2192,39 +2284,11 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/special-markup"
       },
       {
-        "title": "ESLintでリストの構造を整える",
+        "title": "ESLint でリストの一貫性を保つ",
         "navTitle": "ESLintでリストの構造を整える",
         "slug": "eslint",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Native UI Shell（プレビュー）",
-        "navTitle": "Native UI Shell（プレビュー）",
-        "slug": "native-ui-shell",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
-      },
-      {
-        "title": "iPhone Duo対応（プレビュー）",
-        "navTitle": "iPhone Duo対応（プレビュー）",
-        "slug": "iphone-duo",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
-      },
-      {
-        "title": "既存テーマでiPhone Duoに対応する（プレビュー）",
-        "navTitle": "既存テーマでiPhone Duoに対応する（プレビュー）",
-        "slug": "iphone-duo-with-original-theme",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
-      },
-      {
-        "title": "Vertical Bars（プレビュー）",
-        "navTitle": "Vertical Bars（プレビュー）",
-        "slug": "vertical-bars",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
       },
       {
         "title": "機能",
@@ -2241,25 +2305,103 @@ export const PROJECTS_JA = [
         "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
+        "title": "Vertical Bars のレイアウト",
+        "navTitle": "Vertical Barsのレイアウト",
+        "slug": "vertical-bars-layout",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
+      },
+      {
+        "title": "テーマの移行",
+        "navTitle": "テーマの移行",
+        "slug": "migration",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-native-ui",
+    "slug": "capacitor-native-ui",
+    "shortName": "Capacitor Native UI",
+    "packageName": "@rdlabo/capacitor-native-ui",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.0.0",
+    "description": "Web側の状態とイベントを維持する、Ionic／HTMLアプリ向けのNative UI。",
+    "path": "/projects/capacitor-native-ui",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/readme"
+      },
+      {
+        "title": "Ionic アプリで Native UI をセットアップする",
+        "navTitle": "Ionicの設定",
+        "slug": "setup",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/setup"
+      },
+      {
+        "title": "Ionic なしで Native UI を使う",
+        "navTitle": "Ionicを使わないNative UI",
+        "slug": "framework-independent",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/framework-independent"
+      },
+      {
+        "title": "既存テーマを維持して Vertical Bars を追加する",
+        "navTitle": "既存テーマへのVertical Barsの追加",
+        "slug": "ionic-vertical-bars",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
+      },
+      {
+        "title": "Native UI",
+        "navTitle": "Native UI",
+        "slug": "native-ui",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/native-ui"
+      },
+      {
+        "title": "設定",
+        "navTitle": "設定",
+        "slug": "configuration",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/configuration"
+      },
+      {
+        "title": "ライト／ダーク表示",
+        "navTitle": "ライト／ダーク表示",
+        "slug": "appearance",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Vertical Bars",
+        "navTitle": "Vertical Bars",
+        "slug": "vertical-bars",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
+      },
+      {
+        "title": "アプリ内の Native UI 拡張（実験的）",
+        "navTitle": "アプリ内のNative UI拡張（実験的）",
+        "slug": "native-ui-extensions",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
+      },
+      {
         "title": "移行",
         "navTitle": "移行",
         "slug": "migration",
         "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      },
-      {
-        "title": "E2Eスクリーンショットテスト",
-        "navTitle": "E2Eスクリーンショットテスト",
-        "slug": "e2e-testing",
-        "section": "開発",
-        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "リファレンス",
-        "path": "/projects/ionic-theme-ios27/docs/api"
+        "path": "/projects/capacitor-native-ui/docs/migration"
       }
     ]
   },
@@ -3919,16 +4061,37 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.1",
-    "description": "Styles et animations iOS 27 stables pour Ionic, avec un Native UI Shell facultatif en préversion.",
+    "version": "2.0.0",
+    "description": "Styles, animations et disposition Web iOS 27 pour Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
         "title": "Premiers pas",
         "navTitle": "Premiers pas",
         "slug": "readme",
-        "section": "Démarrage rapide",
+        "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/readme"
+      },
+      {
+        "title": "Configurer le thème iOS 27",
+        "navTitle": "Configurer le thème",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Utiliser les thèmes iOS 26, iOS 27 et MD3",
+        "navTitle": "Thèmes adaptatifs",
+        "slug": "adaptive-themes",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
+      },
+      {
+        "title": "Ajouter Native UI à votre thème",
+        "navTitle": "Ajouter Native UI",
+        "slug": "add-native-ui",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
       },
       {
         "title": "Utiliser ion-item-group",
@@ -3938,46 +4101,18 @@ export const PROJECTS_FR = [
         "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
       },
       {
-        "title": "Balisage et classes particuliers",
+        "title": "Balisage et classes spécifiques",
         "navTitle": "Balisage et classes particuliers",
         "slug": "special-markup",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/special-markup"
       },
       {
-        "title": "Assurer la cohérence des listes avec ESLint",
+        "title": "Garder des listes cohérentes avec ESLint",
         "navTitle": "Assurer la cohérence des listes avec ESLint",
         "slug": "eslint",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Native UI Shell (préversion)",
-        "navTitle": "Native UI Shell (préversion)",
-        "slug": "native-ui-shell",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
-      },
-      {
-        "title": "Prise en charge d’iPhone Duo (préversion)",
-        "navTitle": "Prise en charge d’iPhone Duo (préversion)",
-        "slug": "iphone-duo",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
-      },
-      {
-        "title": "iPhone Duo avec votre thème existant (préversion)",
-        "navTitle": "iPhone Duo avec votre thème existant (préversion)",
-        "slug": "iphone-duo-with-original-theme",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
-      },
-      {
-        "title": "Vertical Bars (préversion)",
-        "navTitle": "Vertical Bars (préversion)",
-        "slug": "vertical-bars",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
       },
       {
         "title": "Fonctionnalités",
@@ -3994,25 +4129,103 @@ export const PROJECTS_FR = [
         "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
+        "title": "Disposition Vertical Bars",
+        "navTitle": "Disposition de Vertical Bars",
+        "slug": "vertical-bars-layout",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
+      },
+      {
+        "title": "Migration du thème",
+        "navTitle": "Migration du thème",
+        "slug": "migration",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-native-ui",
+    "slug": "capacitor-native-ui",
+    "shortName": "Capacitor Native UI",
+    "packageName": "@rdlabo/capacitor-native-ui",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.0.0",
+    "description": "Contrôles natifs pour Ionic et HTML, avec état et événements gérés par le Web.",
+    "path": "/projects/capacitor-native-ui",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/readme"
+      },
+      {
+        "title": "Configurer Native UI dans une application Ionic",
+        "navTitle": "Configuration Ionic",
+        "slug": "setup",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/setup"
+      },
+      {
+        "title": "Native UI sans Ionic",
+        "navTitle": "Native UI sans Ionic",
+        "slug": "framework-independent",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/framework-independent"
+      },
+      {
+        "title": "Ajouter Vertical Bars en conservant votre thème",
+        "navTitle": "Ajouter Vertical Bars en conservant votre thème",
+        "slug": "ionic-vertical-bars",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
+      },
+      {
+        "title": "Native UI",
+        "navTitle": "Native UI",
+        "slug": "native-ui",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/native-ui"
+      },
+      {
+        "title": "Configurer Native UI",
+        "navTitle": "Configuration",
+        "slug": "configuration",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/configuration"
+      },
+      {
+        "title": "Apparence claire et sombre",
+        "navTitle": "Apparence claire et sombre",
+        "slug": "appearance",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Vertical Bars",
+        "navTitle": "Vertical Bars",
+        "slug": "vertical-bars",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
+      },
+      {
+        "title": "Extensions Native UI locales à l’application (expérimentales)",
+        "navTitle": "Extensions Native UI locales à l’application (expérimentales)",
+        "slug": "native-ui-extensions",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
+      },
+      {
         "title": "Migration",
         "navTitle": "Migration",
         "slug": "migration",
         "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      },
-      {
-        "title": "Tests E2E par captures d’écran",
-        "navTitle": "Tests E2E par captures d’écran",
-        "slug": "e2e-testing",
-        "section": "Développement",
-        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Référence",
-        "path": "/projects/ionic-theme-ios27/docs/api"
+        "path": "/projects/capacitor-native-ui/docs/migration"
       }
     ]
   },
@@ -5672,65 +5885,58 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "1.2.1",
-    "description": "Stabile iOS-27-Gestaltung und Bewegungseffekte für Ionic, mit optionaler Native UI Shell als Vorschau.",
+    "version": "2.0.0",
+    "description": "iOS-27-Stile, Animationen und Web-Layout für Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
       {
         "title": "Erste Schritte",
         "navTitle": "Erste Schritte",
         "slug": "readme",
-        "section": "Schnellstart",
+        "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/readme"
       },
       {
-        "title": "ion-item-group verwenden",
+        "title": "Das iOS-27-Theme einrichten",
+        "navTitle": "Theme einrichten",
+        "slug": "setup",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "iOS-26-, iOS-27- und MD3-Themes verwenden",
+        "navTitle": "Adaptive Themes",
+        "slug": "adaptive-themes",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
+      },
+      {
+        "title": "Native UI zum Theme hinzufügen",
+        "navTitle": "Native UI hinzufügen",
+        "slug": "add-native-ui",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
+      },
+      {
+        "title": "ion-item-group in eingerückten Listen verwenden",
         "navTitle": "ion-item-group verwenden",
         "slug": "using-ion-item-group",
         "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
       },
       {
-        "title": "Besonderes Markup und Klassen",
+        "title": "Spezielles Markup und Klassen",
         "navTitle": "Besonderes Markup und Klassen",
         "slug": "special-markup",
         "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/special-markup"
       },
       {
-        "title": "Einheitliche Listen mit ESLint sicherstellen",
+        "title": "Listen mit ESLint konsistent halten",
         "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
         "slug": "eslint",
         "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Native UI Shell (Vorschau)",
-        "navTitle": "Native UI Shell (Vorschau)",
-        "slug": "native-ui-shell",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/native-ui-shell"
-      },
-      {
-        "title": "iPhone-Duo-Unterstützung (Vorschau)",
-        "navTitle": "iPhone-Duo-Unterstützung (Vorschau)",
-        "slug": "iphone-duo",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo"
-      },
-      {
-        "title": "iPhone Duo mit Ihrem vorhandenen Theme (Vorschau)",
-        "navTitle": "iPhone Duo mit Ihrem vorhandenen Theme (Vorschau)",
-        "slug": "iphone-duo-with-original-theme",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme"
-      },
-      {
-        "title": "Vertical Bars (Vorschau)",
-        "navTitle": "Vertical Bars (Vorschau)",
-        "slug": "vertical-bars",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars"
       },
       {
         "title": "Funktionen",
@@ -5747,25 +5953,103 @@ export const PROJECTS_DE = [
         "path": "/projects/ionic-theme-ios27/docs/animation"
       },
       {
+        "title": "Vertical Bars-Layout",
+        "navTitle": "Layout von Vertical Bars",
+        "slug": "vertical-bars-layout",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
+      },
+      {
+        "title": "Theme-Migration",
+        "navTitle": "Theme migrieren",
+        "slug": "migration",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/migration"
+      }
+    ]
+  },
+  {
+    "id": "capacitor-native-ui",
+    "slug": "capacitor-native-ui",
+    "shortName": "Capacitor Native UI",
+    "packageName": "@rdlabo/capacitor-native-ui",
+    "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
+    "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
+    "category": "capacitor-plugins",
+    "icon": "app",
+    "version": "2.0.0",
+    "description": "Native Bedienelemente für Ionic und HTML mit Zustand und Ereignissen im Web.",
+    "path": "/projects/capacitor-native-ui",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/readme"
+      },
+      {
+        "title": "Native UI in einer Ionic-App einrichten",
+        "navTitle": "Ionic einrichten",
+        "slug": "setup",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/setup"
+      },
+      {
+        "title": "Native UI ohne Ionic",
+        "navTitle": "Native UI ohne Ionic",
+        "slug": "framework-independent",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/framework-independent"
+      },
+      {
+        "title": "Vertical Bars hinzufügen und das Theme behalten",
+        "navTitle": "Vertical Bars mit eigenem Theme hinzufügen",
+        "slug": "ionic-vertical-bars",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
+      },
+      {
+        "title": "Native UI",
+        "navTitle": "Native UI",
+        "slug": "native-ui",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/native-ui"
+      },
+      {
+        "title": "Native UI konfigurieren",
+        "navTitle": "Konfiguration",
+        "slug": "configuration",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/configuration"
+      },
+      {
+        "title": "Helle und dunkle Darstellung",
+        "navTitle": "Helle und dunkle Darstellung",
+        "slug": "appearance",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Vertical Bars",
+        "navTitle": "Vertical Bars",
+        "slug": "vertical-bars",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
+      },
+      {
+        "title": "App-lokale Native UI-Erweiterungen (experimentell)",
+        "navTitle": "App-lokale Native UI-Erweiterungen (experimentell)",
+        "slug": "native-ui-extensions",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
+      },
+      {
         "title": "Migration",
         "navTitle": "Migration",
         "slug": "migration",
         "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      },
-      {
-        "title": "E2E-Tests mit Screenshots",
-        "navTitle": "E2E-Tests mit Screenshots",
-        "slug": "e2e-testing",
-        "section": "Entwicklung",
-        "path": "/projects/ionic-theme-ios27/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Referenz",
-        "path": "/projects/ionic-theme-ios27/docs/api"
+        "path": "/projects/capacitor-native-ui/docs/migration"
       }
     ]
   },

@@ -226,8 +226,15 @@ export function rewriteRepositoryResourceLinks(
         const hashIndex = relative.indexOf('#');
         let path = hashIndex < 0 ? relative : relative.slice(0, hashIndex);
         const hash = hashIndex < 0 ? '' : relative.slice(hashIndex);
-        if (!/^(?:demo\/|CONTRIBUTING(?:\.md)?$|LICENSE(?:\.md)?$)/.test(path)) return match;
-        if (normalized) path += '.md';
+        if (normalized && path === 'README') {
+          path = 'docs/README.md';
+        } else if (/^test-execution-time(?:\.md)?$/.test(path)) {
+          path = 'docs/test-execution-time.md';
+        } else {
+          if (!/^(?:demo\/|scripts\/|CONTRIBUTING(?:\.md)?$|LICENSE(?:\.md)?$)/.test(path))
+            return match;
+          if (normalized) path += '.md';
+        }
         const kind = /\.[^/]+$/.test(path) || /^LICENSE$/.test(path) ? 'blob' : 'tree';
         return `](${repositoryUrl}/${kind}/${ref}/${path}${hash})`;
       });

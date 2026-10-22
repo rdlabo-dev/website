@@ -25,196 +25,272 @@
     <loc>https://docs.rdlabo.dev/de/support</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native</loc>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/readme</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/readme</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/readme</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/readme</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/readme</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/readme</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/readme</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/readme</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/integration</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/native-embedding</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/integration</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/native-embedding</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/integration</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/native-embedding</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/integration</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/native-embedding</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/void</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/integration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/void</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/integration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/void</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/integration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/void</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/integration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/build-setup</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/void</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/build-setup</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/void</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/build-setup</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/void</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/build-setup</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/void</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/opennext</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/build-setup</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/opennext</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/build-setup</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/opennext</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/build-setup</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/opennext</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/build-setup</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/runtime</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/opennext</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/runtime</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/opennext</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/runtime</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/opennext</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/runtime</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/opennext</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/cloudflare-bindings</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/runtime</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/cloudflare-bindings</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/runtime</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/cloudflare-bindings</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/runtime</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/cloudflare-bindings</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/runtime</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/kv</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/cloudflare-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/kv</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/cloudflare-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/kv</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/cloudflare-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/kv</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/cloudflare-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/d1-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/kv</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/d1-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/kv</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/d1-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/kv</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/d1-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/kv</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/hyperdrive-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/d1-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/hyperdrive-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/d1-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/hyperdrive-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/d1-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/hyperdrive-transparent-migration</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/d1-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/remote-service-bindings</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/hyperdrive-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/remote-service-bindings</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/hyperdrive-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/remote-service-bindings</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/hyperdrive-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/remote-service-bindings</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/hyperdrive-transparent-migration</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/native-rendering-api</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/remote-service-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/native-rendering-api</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/remote-service-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/native-rendering-api</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/remote-service-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/native-rendering-api</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/remote-service-bindings</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/compatibility</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/native-rendering-api</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/compatibility</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/native-rendering-api</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/compatibility</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/native-rendering-api</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/compatibility</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/native-rendering-api</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/contracts</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/compatibility</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/contracts</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/compatibility</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/contracts</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/compatibility</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/contracts</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/compatibility</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/workers-capacitor/docs/development</loc>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/contracts</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/workers-capacitor/docs/development</loc>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/contracts</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/workers-capacitor/docs/development</loc>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/contracts</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/workers-capacitor/docs/development</loc>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/contracts</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/cf-workers-native/docs/development</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/cf-workers-native/docs/development</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/cf-workers-native/docs/development</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/cf-workers-native/docs/development</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit</loc>

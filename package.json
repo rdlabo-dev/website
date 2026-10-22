@@ -117,6 +117,7 @@
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "angular-eslint": "22.1.0",
+    "cf-workers-native": "0.1.2",
     "eslint": "^10.9.1",
     "jsdom": "^28.0.0",
     "pagefind": "1.5.2",
@@ -129,7 +130,6 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "8.68.0",
     "vitest": "^4.0.8",
-    "workers-capacitor": "0.1.0",
     "wrangler": "4.123.0"
   }
 }

@@ -1,5 +1,13 @@
 /** Reviewed German translations keyed by the exact English manifest text. */
 export const METADATA_DE: Readonly<Record<string, string>> = {
+  'Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.':
+    'Integrieren Sie Cloudflare-Workers-Anwendungen in bestehende iOS- und Android-Apps oder erstellen Sie mit Capacitor eine neue mobile App.',
+  'Reuse your pages, routes, and application logic in UIKit, SwiftUI, Android, or Capacitor apps. Keep your backend and secrets on Workers, and choose which supported public routes run on the device.':
+    'Verwenden Sie Ihre Seiten, Routen und Anwendungslogik in UIKit-, SwiftUI-, Android- oder Capacitor-Apps weiter. Belassen Sie Ihr Backend und Ihre Geheimnisse auf Workers und wählen Sie aus, welche unterstützten öffentlichen Routen auf dem Gerät ausgeführt werden.',
+  'Embed a Workers screen in an existing native app without Capacitor CLI setup, or use Capacitor to create a new mobile app.':
+    'Betten Sie eine Workers-Ansicht ohne Einrichtung der Capacitor-CLI in eine bestehende native App ein oder erstellen Sie mit Capacitor eine neue mobile App.',
+  'Native embedding': 'Einbettung in eine native App',
+  'Capacitor integration': 'Integration mit Capacitor',
   'Bring Cloudflare Workers apps to iOS and Android with Capacitor. Version 0.1.0 is a Preview release.':
     'Bringen Sie Cloudflare-Workers-Apps mit Capacitor auf iOS und Android. Version 0.1.0 ist eine Preview.',
   'Bring your Cloudflare Workers app to mobile':

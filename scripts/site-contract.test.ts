@@ -72,6 +72,28 @@ function fencedCodeBlocks(markdown: string): { language: string; body: string }[
   return blocks;
 }
 
+test('cf-workers-native is an independent project with native and Capacitor entry guides', async () => {
+  const project = projectDefinitions.find(({ id }) => id === 'cf-workers-native');
+  assert.ok(project);
+  assert.equal(project.category, 'developer-tools');
+  assert.equal(project.packageName, 'cf-workers-native');
+  assert.equal(project.repositoryUrl, 'https://github.com/rdlabo-dev/cf-workers-native');
+  assert.ok(project.pages.some(({ slug }) => slug === 'native-embedding'));
+  assert.ok(project.pages.some(({ slug }) => slug === 'integration'));
+  assert.equal(project.entryGuideSlugs?.[0], 'native-embedding');
+  assert.ok(
+    !projectDefinitions.some(({ id }) => id === 'workers-capacitor' || id === 'cf-workers-mobile'),
+  );
+  for (const locale of ['en', 'ja', 'fr', 'de']) {
+    await access(
+      `projects/docs/src/app/generated/projects/cf-workers-native.${locale}.generated.ts`,
+    );
+    await assert.rejects(() =>
+      access(`projects/docs/src/app/generated/projects/workers-capacitor.${locale}.generated.ts`),
+    );
+  }
+});
+
 test('Japanese API page titles preserve the published method identifier', async () => {
   let checked = 0;
   for (const project of projectDefinitions) {
@@ -134,7 +156,7 @@ test('Local LLM and Workers guides keep Japanese code identical to pinned packag
     'capacitor-local-llm',
     'workers-timezone',
     'workers-mysql',
-    'workers-capacitor',
+    'cf-workers-native',
   ]) {
     const project = projectDefinitions.find((entry) => entry.id === id);
     assert.ok(project, `${id} must be registered`);
@@ -1359,6 +1381,18 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
         source: `${prefix}/projects/ionic-theme-ios27/docs/${old}`,
         destination: `https://docs.rdlabo.dev${prefix}/projects/${destination}`,
       })),
+    ),
+    ...['', '/ja', '/fr', '/de'].flatMap((prefix) =>
+      ['workers-capacitor', 'cf-workers-mobile'].flatMap((old) => [
+        ...['', '/'].map((suffix) => ({
+          source: `${prefix}/projects/${old}${suffix}`,
+          destination: `https://docs.rdlabo.dev${prefix}/projects/cf-workers-native`,
+        })),
+        {
+          source: `${prefix}/projects/${old}/*`,
+          destination: `https://docs.rdlabo.dev${prefix}/projects/cf-workers-native/:splat`,
+        },
+      ]),
     ),
   ]);
   const redirectSources = parsedRedirects.map(({ source }) => source);

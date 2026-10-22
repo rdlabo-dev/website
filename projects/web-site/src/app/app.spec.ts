@@ -84,13 +84,16 @@ describe('App', () => {
     fixture.destroy();
   });
 
-  it('renders five featured projects and four distinct recent articles', async () => {
+  it('renders six featured projects and four distinct recent articles', async () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('.featured-project-card')).toHaveLength(5);
+    expect(compiled.querySelectorAll('.featured-project-card')).toHaveLength(6);
+    expect(compiled.querySelector('.featured-project-card')?.textContent).toContain(
+      'cf-workers-native',
+    );
     expect(
       [...compiled.querySelectorAll<HTMLAnchorElement>('.workers-projects a')].map(
         (link) => link.href,
@@ -101,7 +104,7 @@ describe('App', () => {
       'https://docs.rdlabo.dev/projects/workers-timezone',
     ]);
     expect(compiled.querySelector<HTMLAnchorElement>('.featured-project-card')?.href).toBe(
-      'https://docs.rdlabo.dev/projects/capacitor-stripe',
+      'https://docs.rdlabo.dev/projects/cf-workers-native',
     );
     expect(compiled.textContent).toContain('@capacitor-community/stripe');
     expect(compiled.textContent).toContain('@rdlabo/ionic-theme-ios27');

@@ -46,3 +46,29 @@
 /de/projects/ionic-theme-ios27/docs/iphone-duo-with-original-theme https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/ionic-vertical-bars 301
 /de/projects/ionic-theme-ios27/docs/api https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/setup 301
 /de/projects/ionic-theme-ios27/docs/e2e-testing https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/readme 301
+
+# workers-capacitor is now the independent cf-workers-native project.
+/projects/workers-capacitor https://docs.rdlabo.dev/projects/cf-workers-native 301
+/projects/workers-capacitor/ https://docs.rdlabo.dev/projects/cf-workers-native 301
+/projects/workers-capacitor/* https://docs.rdlabo.dev/projects/cf-workers-native/:splat 301
+/projects/cf-workers-mobile https://docs.rdlabo.dev/projects/cf-workers-native 301
+/projects/cf-workers-mobile/ https://docs.rdlabo.dev/projects/cf-workers-native 301
+/projects/cf-workers-mobile/* https://docs.rdlabo.dev/projects/cf-workers-native/:splat 301
+/ja/projects/workers-capacitor https://docs.rdlabo.dev/ja/projects/cf-workers-native 301
+/ja/projects/workers-capacitor/ https://docs.rdlabo.dev/ja/projects/cf-workers-native 301
+/ja/projects/workers-capacitor/* https://docs.rdlabo.dev/ja/projects/cf-workers-native/:splat 301
+/ja/projects/cf-workers-mobile https://docs.rdlabo.dev/ja/projects/cf-workers-native 301
+/ja/projects/cf-workers-mobile/ https://docs.rdlabo.dev/ja/projects/cf-workers-native 301
+/ja/projects/cf-workers-mobile/* https://docs.rdlabo.dev/ja/projects/cf-workers-native/:splat 301
+/fr/projects/workers-capacitor https://docs.rdlabo.dev/fr/projects/cf-workers-native 301
+/fr/projects/workers-capacitor/ https://docs.rdlabo.dev/fr/projects/cf-workers-native 301
+/fr/projects/workers-capacitor/* https://docs.rdlabo.dev/fr/projects/cf-workers-native/:splat 301
+/fr/projects/cf-workers-mobile https://docs.rdlabo.dev/fr/projects/cf-workers-native 301
+/fr/projects/cf-workers-mobile/ https://docs.rdlabo.dev/fr/projects/cf-workers-native 301
+/fr/projects/cf-workers-mobile/* https://docs.rdlabo.dev/fr/projects/cf-workers-native/:splat 301
+/de/projects/workers-capacitor https://docs.rdlabo.dev/de/projects/cf-workers-native 301
+/de/projects/workers-capacitor/ https://docs.rdlabo.dev/de/projects/cf-workers-native 301
+/de/projects/workers-capacitor/* https://docs.rdlabo.dev/de/projects/cf-workers-native/:splat 301
+/de/projects/cf-workers-mobile https://docs.rdlabo.dev/de/projects/cf-workers-native 301
+/de/projects/cf-workers-mobile/ https://docs.rdlabo.dev/de/projects/cf-workers-native 301
+/de/projects/cf-workers-mobile/* https://docs.rdlabo.dev/de/projects/cf-workers-native/:splat 301

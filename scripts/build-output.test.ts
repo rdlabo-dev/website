@@ -12,14 +12,14 @@ import {
   PAST_SPONSORS,
 } from '../projects/docs/src/app/generated/sponsors.generated';
 
-test('workers-capacitor publishes the Preview and resolves localized guide and repository links', async () => {
-  const project = projectDefinitions.find((entry) => entry.id === 'workers-capacitor');
+test('cf-workers-native publishes independent native guides and resolves localized links', async () => {
+  const project = projectDefinitions.find((entry) => entry.id === 'cf-workers-native');
   assert.ok(project);
   const installed = JSON.parse(
-    await readFile('node_modules/workers-capacitor/package.json', 'utf8'),
+    await readFile('node_modules/cf-workers-native/package.json', 'utf8'),
   );
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
-    const base = `${subPath ? `/${subPath}` : ''}/projects/workers-capacitor`;
+    const base = `${subPath ? `/${subPath}` : ''}/projects/cf-workers-native`;
     const documents = new Map<string, Document>();
     for (const suffix of ['', ...project.pages.map((page) => `/docs/${page.slug}`)]) {
       const path = `${base}${suffix}`;
@@ -28,7 +28,8 @@ test('workers-capacitor publishes the Preview and resolves localized guide and r
     }
     const landing = documents.get(base)!;
     assert.ok(landing.body.textContent?.includes(installed.version));
-    assert.match(landing.body.textContent ?? '', /Preview/);
+    assert.doesNotMatch(landing.body.textContent ?? '', /Preview/);
+    assert.equal(project.category, 'developer-tools');
     for (const [path, document] of documents) {
       for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href]')) {
         const href = link.getAttribute('href')!;
@@ -44,7 +45,7 @@ test('workers-capacitor publishes the Preview and resolves localized guide and r
             );
           }
         }
-        if (/github\.com\/rdlabo-dev\/workers-capacitor\/(blob|tree)\//.test(href)) {
+        if (/github\.com\/rdlabo-dev\/cf-workers-native\/(blob|tree)\//.test(href)) {
           assert.ok(
             href.includes(`/v${installed.version}/`),
             `${path}: unpinned repository link ${href}`,

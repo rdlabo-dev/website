@@ -219,28 +219,30 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
 
 export const projectDefinitions: readonly ProjectDefinition[] = [
   {
-    id: 'workers-capacitor',
-    slug: 'workers-capacitor',
-    sourceDirectory: 'workers-capacitor',
-    name: 'workers-capacitor',
-    shortName: 'workers-capacitor',
-    packageName: 'workers-capacitor',
-    repositoryUrl: 'https://github.com/rdlabo-dev/workers-capacitor',
-    category: 'capacitor-plugins',
+    id: 'cf-workers-native',
+    slug: 'cf-workers-native',
+    sourceDirectory: 'cf-workers-native',
+    name: 'cf-workers-native',
+    shortName: 'cf-workers-native',
+    packageName: 'cf-workers-native',
+    repositoryUrl: 'https://github.com/rdlabo-dev/cf-workers-native',
+    category: 'developer-tools',
     icon: 'app',
     adapter: 'markdown',
-    entryGuideSlugs: ['integration', 'void', 'opennext'],
+    englishDocsRef: 'e5092d3abc51c573d44999568db8c06d79e6227d',
+    sourceHeadingAliases: ['ja'],
+    entryGuideSlugs: ['native-embedding', 'integration', 'void'],
     description: text(
-      'Bring Cloudflare Workers apps to iOS and Android with Capacitor. Version 0.1.0 is a Preview release.',
-      'Cloudflare WorkersアプリをCapacitorでiOS・Androidへ展開します。0.1.0はPreview版です。',
+      'Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.',
+      'Cloudflare Workersアプリを既存のiOS・Androidアプリへ組み込むか、Capacitorで新しいモバイルアプリを作成します。',
     ),
     headline: text(
       'Bring your Cloudflare Workers app to mobile',
       'Cloudflare Workersアプリをモバイルへ',
     ),
     overview: text(
-      'Reuse existing pages, routes, and application logic in a Capacitor app. Run supported code on the device and keep cloud services and secrets on your deployed Worker. Follow the integration guide and verify the Preview on your target platforms.',
-      '既存のページ・ルート・アプリケーションロジックをCapacitorアプリで再利用します。対応コードは端末で実行し、クラウドサービスや秘密情報はデプロイ済みWorkerに保持します。導入ガイドに沿って組み込み、対象プラットフォームでPreview版を検証してください。',
+      'Reuse your pages, routes, and application logic in UIKit, SwiftUI, Android, or Capacitor apps. Keep your backend and secrets on Workers, and choose which supported public routes run on the device.',
+      '既存のページ・ルート・アプリケーションロジックをUIKit、SwiftUI、Android、Capacitorアプリで再利用します。バックエンドと秘密情報はWorkersに保持し、対応する公開ルートから端末で実行するものを選択します。',
     ),
     featuresHeading: text('What you can do', 'できること'),
     features: [
@@ -264,16 +266,24 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         icon: 'app',
         title: text('Native mobile integration', 'ネイティブモバイル連携'),
         description: text(
-          'Configure native rendering, safe areas, and Capacitor plugins, then test on iOS and Android.',
-          'ネイティブ描画、Safe Area、Capacitorプラグインを設定し、iOS・Androidで検証します。',
+          'Embed a Workers screen in an existing native app without Capacitor CLI setup, or use Capacitor to create a new mobile app.',
+          'Capacitor CLIの設定なしで既存のネイティブアプリにWorkersの画面を組み込むか、Capacitorで新しいモバイルアプリを作成します。',
         ),
       },
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート'),
       page(
-        'Integration',
-        '導入手順',
+        'Native embedding',
+        '既存のネイティブアプリへの組み込み',
+        'native-embedding',
+        'native-embedding.md',
+        'Quickstart',
+        'クイックスタート',
+      ),
+      page(
+        'Capacitor integration',
+        'Capacitorへの組み込み',
         'integration',
         'integration.md',
         'Quickstart',
@@ -285,6 +295,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
               '3.-configure-and-build-the-native-application',
             '5-security-the-device-is-not-a-trusted-server':
               '5.-security%3A-the-device-is-not-a-trusted-server',
+            '6-verify-the-existing-application-in-capacitor':
+              '6.-verify-the-existing-application-in-capacitor',
           },
         },
       ),
@@ -366,7 +378,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Reference',
         'リファレンス',
       ),
-    ],
+    ].map((guide) => ({
+      ...guide,
+      updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+    })),
   },
   {
     id: 'ionic-docs',

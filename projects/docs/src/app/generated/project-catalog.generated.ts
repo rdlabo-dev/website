@@ -28,121 +28,128 @@ export const PROJECT_CATEGORIES_EN = [
 
 export const PROJECTS_EN = [
   {
-    "id": "workers-capacitor",
-    "slug": "workers-capacitor",
-    "shortName": "workers-capacitor",
-    "packageName": "workers-capacitor",
-    "repositoryUrl": "https://github.com/rdlabo-dev/workers-capacitor",
-    "category": "capacitor-plugins",
+    "id": "cf-workers-native",
+    "slug": "cf-workers-native",
+    "shortName": "cf-workers-native",
+    "packageName": "cf-workers-native",
+    "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
+    "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.0",
-    "description": "Bring Cloudflare Workers apps to iOS and Android with Capacitor. Version 0.1.0 is a Preview release.",
-    "path": "/projects/workers-capacitor",
+    "version": "0.1.2",
+    "description": "Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.",
+    "path": "/projects/cf-workers-native",
     "pages": [
       {
         "title": "Getting Started",
         "navTitle": "Getting Started",
         "slug": "readme",
         "section": "Quickstart",
-        "path": "/projects/workers-capacitor/docs/readme"
+        "path": "/projects/cf-workers-native/docs/readme"
       },
       {
-        "title": "Integration",
-        "navTitle": "Integration",
+        "title": "Native embedding",
+        "navTitle": "Native embedding",
+        "slug": "native-embedding",
+        "section": "Quickstart",
+        "path": "/projects/cf-workers-native/docs/native-embedding"
+      },
+      {
+        "title": "Capacitor integration",
+        "navTitle": "Capacitor integration",
         "slug": "integration",
         "section": "Quickstart",
-        "path": "/projects/workers-capacitor/docs/integration"
+        "path": "/projects/cf-workers-native/docs/integration"
       },
       {
         "title": "Void",
         "navTitle": "Void",
         "slug": "void",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/void"
+        "path": "/projects/cf-workers-native/docs/void"
       },
       {
         "title": "Build setup",
         "navTitle": "Build setup",
         "slug": "build-setup",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/build-setup"
+        "path": "/projects/cf-workers-native/docs/build-setup"
       },
       {
         "title": "Next.js / OpenNext",
         "navTitle": "Next.js / OpenNext",
         "slug": "opennext",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/opennext"
+        "path": "/projects/cf-workers-native/docs/opennext"
       },
       {
         "title": "Runtime behavior",
         "navTitle": "Runtime behavior",
         "slug": "runtime",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/runtime"
+        "path": "/projects/cf-workers-native/docs/runtime"
       },
       {
         "title": "Cloudflare bindings",
         "navTitle": "Cloudflare bindings",
         "slug": "cloudflare-bindings",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/cloudflare-bindings"
+        "path": "/projects/cf-workers-native/docs/cloudflare-bindings"
       },
       {
         "title": "Workers KV",
         "navTitle": "Workers KV",
         "slug": "kv",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/kv"
+        "path": "/projects/cf-workers-native/docs/kv"
       },
       {
         "title": "D1 transparent migration",
         "navTitle": "D1 transparent migration",
         "slug": "d1-transparent-migration",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/d1-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/d1-transparent-migration"
       },
       {
         "title": "Hyperdrive transparent migration",
         "navTitle": "Hyperdrive transparent migration",
         "slug": "hyperdrive-transparent-migration",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/hyperdrive-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/hyperdrive-transparent-migration"
       },
       {
         "title": "Remote service bindings",
         "navTitle": "Remote service bindings",
         "slug": "remote-service-bindings",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/remote-service-bindings"
+        "path": "/projects/cf-workers-native/docs/remote-service-bindings"
       },
       {
         "title": "Native rendering API",
         "navTitle": "Native rendering API",
         "slug": "native-rendering-api",
         "section": "Reference",
-        "path": "/projects/workers-capacitor/docs/native-rendering-api"
+        "path": "/projects/cf-workers-native/docs/native-rendering-api"
       },
       {
         "title": "Compatibility and limitations",
         "navTitle": "Compatibility and limitations",
         "slug": "compatibility",
         "section": "Reference",
-        "path": "/projects/workers-capacitor/docs/compatibility"
+        "path": "/projects/cf-workers-native/docs/compatibility"
       },
       {
         "title": "Runtime contracts",
         "navTitle": "Runtime contracts",
         "slug": "contracts",
         "section": "Reference",
-        "path": "/projects/workers-capacitor/docs/contracts"
+        "path": "/projects/cf-workers-native/docs/contracts"
       },
       {
         "title": "Development and testing",
         "navTitle": "Development and testing",
         "slug": "development",
         "section": "Reference",
-        "path": "/projects/workers-capacitor/docs/development"
+        "path": "/projects/cf-workers-native/docs/development"
       }
     ]
   },
@@ -1852,121 +1859,128 @@ export const PROJECT_CATEGORIES_JA = [
 
 export const PROJECTS_JA = [
   {
-    "id": "workers-capacitor",
-    "slug": "workers-capacitor",
-    "shortName": "workers-capacitor",
-    "packageName": "workers-capacitor",
-    "repositoryUrl": "https://github.com/rdlabo-dev/workers-capacitor",
-    "category": "capacitor-plugins",
+    "id": "cf-workers-native",
+    "slug": "cf-workers-native",
+    "shortName": "cf-workers-native",
+    "packageName": "cf-workers-native",
+    "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
+    "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.0",
-    "description": "Cloudflare WorkersアプリをCapacitorでiOS・Androidへ展開します。0.1.0はPreview版です。",
-    "path": "/projects/workers-capacitor",
+    "version": "0.1.2",
+    "description": "Cloudflare Workersアプリを既存のiOS・Androidアプリへ組み込むか、Capacitorで新しいモバイルアプリを作成します。",
+    "path": "/projects/cf-workers-native",
     "pages": [
       {
         "title": "はじめに",
         "navTitle": "はじめに",
         "slug": "readme",
         "section": "クイックスタート",
-        "path": "/projects/workers-capacitor/docs/readme"
+        "path": "/projects/cf-workers-native/docs/readme"
+      },
+      {
+        "title": "ネイティブアプリへの埋め込み",
+        "navTitle": "既存のネイティブアプリへの組み込み",
+        "slug": "native-embedding",
+        "section": "クイックスタート",
+        "path": "/projects/cf-workers-native/docs/native-embedding"
       },
       {
         "title": "既存の Workers アプリケーションを Capacitor と統合する",
-        "navTitle": "導入手順",
+        "navTitle": "Capacitorへの組み込み",
         "slug": "integration",
         "section": "クイックスタート",
-        "path": "/projects/workers-capacitor/docs/integration"
+        "path": "/projects/cf-workers-native/docs/integration"
       },
       {
         "title": "Void React Pages",
         "navTitle": "Void",
         "slug": "void",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/void"
+        "path": "/projects/cf-workers-native/docs/void"
       },
       {
         "title": "ビルド設定",
         "navTitle": "ビルド設定",
         "slug": "build-setup",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/build-setup"
+        "path": "/projects/cf-workers-native/docs/build-setup"
       },
       {
         "title": "OpenNext と vinext のサポート",
         "navTitle": "Next.js / OpenNext",
         "slug": "opennext",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/opennext"
+        "path": "/projects/cf-workers-native/docs/opennext"
       },
       {
         "title": "ランタイムの動作",
         "navTitle": "ランタイムの動作",
         "slug": "runtime",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/runtime"
+        "path": "/projects/cf-workers-native/docs/runtime"
       },
       {
         "title": "Capacitor での Cloudflare バインディング",
         "navTitle": "Cloudflareバインディング",
         "slug": "cloudflare-bindings",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/cloudflare-bindings"
+        "path": "/projects/cf-workers-native/docs/cloudflare-bindings"
       },
       {
         "title": "ローカル KV バインディング",
         "navTitle": "Workers KV",
         "slug": "kv",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/kv"
+        "path": "/projects/cf-workers-native/docs/kv"
       },
       {
         "title": "Capacitor で D1 を使う Workers",
         "navTitle": "D1の透過的な移行",
         "slug": "d1-transparent-migration",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/d1-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/d1-transparent-migration"
       },
       {
         "title": "Capacitor で Hyperdrive を使う Workers",
         "navTitle": "Hyperdriveの透過的な移行",
         "slug": "hyperdrive-transparent-migration",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/hyperdrive-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/hyperdrive-transparent-migration"
       },
       {
         "title": "リモートサービスバインディングのディスパッチ",
         "navTitle": "リモートサービスバインディング",
         "slug": "remote-service-bindings",
         "section": "ガイド",
-        "path": "/projects/workers-capacitor/docs/remote-service-bindings"
+        "path": "/projects/cf-workers-native/docs/remote-service-bindings"
       },
       {
         "title": "workersCapacitor によるネイティブドキュメントレンダリング",
         "navTitle": "ネイティブ描画API",
         "slug": "native-rendering-api",
         "section": "リファレンス",
-        "path": "/projects/workers-capacitor/docs/native-rendering-api"
+        "path": "/projects/cf-workers-native/docs/native-rendering-api"
       },
       {
         "title": "互換性と制限",
         "navTitle": "互換性と制限事項",
         "slug": "compatibility",
         "section": "リファレンス",
-        "path": "/projects/workers-capacitor/docs/compatibility"
+        "path": "/projects/cf-workers-native/docs/compatibility"
       },
       {
         "title": "Feature 契約 API",
         "navTitle": "ランタイムの契約",
         "slug": "contracts",
         "section": "リファレンス",
-        "path": "/projects/workers-capacitor/docs/contracts"
+        "path": "/projects/cf-workers-native/docs/contracts"
       },
       {
         "title": "開発とテスト",
         "navTitle": "開発とテスト",
         "slug": "development",
         "section": "リファレンス",
-        "path": "/projects/workers-capacitor/docs/development"
+        "path": "/projects/cf-workers-native/docs/development"
       }
     ]
   },
@@ -3676,121 +3690,128 @@ export const PROJECT_CATEGORIES_FR = [
 
 export const PROJECTS_FR = [
   {
-    "id": "workers-capacitor",
-    "slug": "workers-capacitor",
-    "shortName": "workers-capacitor",
-    "packageName": "workers-capacitor",
-    "repositoryUrl": "https://github.com/rdlabo-dev/workers-capacitor",
-    "category": "capacitor-plugins",
+    "id": "cf-workers-native",
+    "slug": "cf-workers-native",
+    "shortName": "cf-workers-native",
+    "packageName": "cf-workers-native",
+    "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
+    "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.0",
-    "description": "Portez vos applications Cloudflare Workers sur iOS et Android avec Capacitor. La version 0.1.0 est une Preview.",
-    "path": "/projects/workers-capacitor",
+    "version": "0.1.2",
+    "description": "Intégrez vos applications Cloudflare Workers à des applications iOS et Android existantes, ou créez une nouvelle application mobile avec Capacitor.",
+    "path": "/projects/cf-workers-native",
     "pages": [
       {
-        "title": "workers-capacitor",
+        "title": "Premiers pas",
         "navTitle": "Premiers pas",
         "slug": "readme",
         "section": "Démarrage rapide",
-        "path": "/projects/workers-capacitor/docs/readme"
+        "path": "/projects/cf-workers-native/docs/readme"
+      },
+      {
+        "title": "Intégrer une interface Workers dans une application native existante",
+        "navTitle": "Intégration dans une application native",
+        "slug": "native-embedding",
+        "section": "Démarrage rapide",
+        "path": "/projects/cf-workers-native/docs/native-embedding"
       },
       {
         "title": "Intégrer une application Workers existante à Capacitor",
-        "navTitle": "Intégration",
+        "navTitle": "Intégration avec Capacitor",
         "slug": "integration",
         "section": "Démarrage rapide",
-        "path": "/projects/workers-capacitor/docs/integration"
+        "path": "/projects/cf-workers-native/docs/integration"
       },
       {
         "title": "Void React Pages",
         "navTitle": "Void",
         "slug": "void",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/void"
+        "path": "/projects/cf-workers-native/docs/void"
       },
       {
         "title": "Configuration du build",
         "navTitle": "Configuration du build",
         "slug": "build-setup",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/build-setup"
+        "path": "/projects/cf-workers-native/docs/build-setup"
       },
       {
         "title": "Prise en charge d’OpenNext et vinext",
         "navTitle": "Next.js / OpenNext",
         "slug": "opennext",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/opennext"
+        "path": "/projects/cf-workers-native/docs/opennext"
       },
       {
         "title": "Comportement du runtime",
         "navTitle": "Comportement du runtime",
         "slug": "runtime",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/runtime"
+        "path": "/projects/cf-workers-native/docs/runtime"
       },
       {
         "title": "Bindings Cloudflare dans Capacitor",
         "navTitle": "Bindings Cloudflare",
         "slug": "cloudflare-bindings",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/cloudflare-bindings"
+        "path": "/projects/cf-workers-native/docs/cloudflare-bindings"
       },
       {
         "title": "Binding KV local",
         "navTitle": "Workers KV",
         "slug": "kv",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/kv"
+        "path": "/projects/cf-workers-native/docs/kv"
       },
       {
         "title": "Workers utilisant D1 dans Capacitor",
         "navTitle": "Migration transparente de D1",
         "slug": "d1-transparent-migration",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/d1-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/d1-transparent-migration"
       },
       {
         "title": "Workers utilisant Hyperdrive dans Capacitor",
         "navTitle": "Migration transparente de Hyperdrive",
         "slug": "hyperdrive-transparent-migration",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/hyperdrive-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/hyperdrive-transparent-migration"
       },
       {
         "title": "Acheminement distant des bindings de services",
         "navTitle": "Bindings de services distants",
         "slug": "remote-service-bindings",
         "section": "Guides",
-        "path": "/projects/workers-capacitor/docs/remote-service-bindings"
+        "path": "/projects/cf-workers-native/docs/remote-service-bindings"
       },
       {
         "title": "Rendu natif de documents avec workersCapacitor",
         "navTitle": "API de rendu natif",
         "slug": "native-rendering-api",
         "section": "Référence",
-        "path": "/projects/workers-capacitor/docs/native-rendering-api"
+        "path": "/projects/cf-workers-native/docs/native-rendering-api"
       },
       {
         "title": "Compatibilité et limites",
         "navTitle": "Compatibilité et limites",
         "slug": "compatibility",
         "section": "Référence",
-        "path": "/projects/workers-capacitor/docs/compatibility"
+        "path": "/projects/cf-workers-native/docs/compatibility"
       },
       {
         "title": "API des contrats de fonctionnalités",
         "navTitle": "Contrats du runtime",
         "slug": "contracts",
         "section": "Référence",
-        "path": "/projects/workers-capacitor/docs/contracts"
+        "path": "/projects/cf-workers-native/docs/contracts"
       },
       {
         "title": "Développement et tests",
         "navTitle": "Développement et tests",
         "slug": "development",
         "section": "Référence",
-        "path": "/projects/workers-capacitor/docs/development"
+        "path": "/projects/cf-workers-native/docs/development"
       }
     ]
   },
@@ -5500,121 +5521,128 @@ export const PROJECT_CATEGORIES_DE = [
 
 export const PROJECTS_DE = [
   {
-    "id": "workers-capacitor",
-    "slug": "workers-capacitor",
-    "shortName": "workers-capacitor",
-    "packageName": "workers-capacitor",
-    "repositoryUrl": "https://github.com/rdlabo-dev/workers-capacitor",
-    "category": "capacitor-plugins",
+    "id": "cf-workers-native",
+    "slug": "cf-workers-native",
+    "shortName": "cf-workers-native",
+    "packageName": "cf-workers-native",
+    "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
+    "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.0",
-    "description": "Bringen Sie Cloudflare-Workers-Apps mit Capacitor auf iOS und Android. Version 0.1.0 ist eine Preview.",
-    "path": "/projects/workers-capacitor",
+    "version": "0.1.2",
+    "description": "Integrieren Sie Cloudflare-Workers-Anwendungen in bestehende iOS- und Android-Apps oder erstellen Sie mit Capacitor eine neue mobile App.",
+    "path": "/projects/cf-workers-native",
     "pages": [
       {
-        "title": "workers-capacitor",
+        "title": "Erste Schritte",
         "navTitle": "Erste Schritte",
         "slug": "readme",
         "section": "Schnellstart",
-        "path": "/projects/workers-capacitor/docs/readme"
+        "path": "/projects/cf-workers-native/docs/readme"
+      },
+      {
+        "title": "Workers-Oberflächen in eine bestehende native Anwendung einbetten",
+        "navTitle": "Einbettung in eine native App",
+        "slug": "native-embedding",
+        "section": "Schnellstart",
+        "path": "/projects/cf-workers-native/docs/native-embedding"
       },
       {
         "title": "Eine bestehende Workers-Anwendung mit Capacitor integrieren",
-        "navTitle": "Integration",
+        "navTitle": "Integration mit Capacitor",
         "slug": "integration",
         "section": "Schnellstart",
-        "path": "/projects/workers-capacitor/docs/integration"
+        "path": "/projects/cf-workers-native/docs/integration"
       },
       {
         "title": "Void React Pages",
         "navTitle": "Void",
         "slug": "void",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/void"
+        "path": "/projects/cf-workers-native/docs/void"
       },
       {
         "title": "Build-Einrichtung",
         "navTitle": "Build-Einrichtung",
         "slug": "build-setup",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/build-setup"
+        "path": "/projects/cf-workers-native/docs/build-setup"
       },
       {
         "title": "Unterstützung für OpenNext und vinext",
         "navTitle": "Next.js / OpenNext",
         "slug": "opennext",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/opennext"
+        "path": "/projects/cf-workers-native/docs/opennext"
       },
       {
         "title": "Laufzeitverhalten",
         "navTitle": "Laufzeitverhalten",
         "slug": "runtime",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/runtime"
+        "path": "/projects/cf-workers-native/docs/runtime"
       },
       {
         "title": "Cloudflare-Bindings in Capacitor",
         "navTitle": "Cloudflare-Bindings",
         "slug": "cloudflare-bindings",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/cloudflare-bindings"
+        "path": "/projects/cf-workers-native/docs/cloudflare-bindings"
       },
       {
         "title": "Lokales KV-Binding",
         "navTitle": "Workers KV",
         "slug": "kv",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/kv"
+        "path": "/projects/cf-workers-native/docs/kv"
       },
       {
         "title": "D1-gestützte Worker in Capacitor",
         "navTitle": "Transparente D1-Migration",
         "slug": "d1-transparent-migration",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/d1-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/d1-transparent-migration"
       },
       {
         "title": "Hyperdrive-gestützte Worker in Capacitor",
         "navTitle": "Transparente Hyperdrive-Migration",
         "slug": "hyperdrive-transparent-migration",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/hyperdrive-transparent-migration"
+        "path": "/projects/cf-workers-native/docs/hyperdrive-transparent-migration"
       },
       {
         "title": "Dispatch entfernter Service Bindings",
         "navTitle": "Remote-Service-Bindings",
         "slug": "remote-service-bindings",
         "section": "Anleitungen",
-        "path": "/projects/workers-capacitor/docs/remote-service-bindings"
+        "path": "/projects/cf-workers-native/docs/remote-service-bindings"
       },
       {
         "title": "Natives Dokumentrendering mit workersCapacitor",
         "navTitle": "API für natives Rendering",
         "slug": "native-rendering-api",
         "section": "Referenz",
-        "path": "/projects/workers-capacitor/docs/native-rendering-api"
+        "path": "/projects/cf-workers-native/docs/native-rendering-api"
       },
       {
         "title": "Kompatibilität und Einschränkungen",
         "navTitle": "Kompatibilität und Einschränkungen",
         "slug": "compatibility",
         "section": "Referenz",
-        "path": "/projects/workers-capacitor/docs/compatibility"
+        "path": "/projects/cf-workers-native/docs/compatibility"
       },
       {
         "title": "Feature-Contract-API",
         "navTitle": "Laufzeitverträge",
         "slug": "contracts",
         "section": "Referenz",
-        "path": "/projects/workers-capacitor/docs/contracts"
+        "path": "/projects/cf-workers-native/docs/contracts"
       },
       {
         "title": "Entwicklung und Tests",
         "navTitle": "Entwicklung und Tests",
         "slug": "development",
         "section": "Referenz",
-        "path": "/projects/workers-capacitor/docs/development"
+        "path": "/projects/cf-workers-native/docs/development"
       }
     ]
   },

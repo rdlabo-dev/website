@@ -36,6 +36,14 @@ export const NAV_LINKS: readonly NavLink[] = [
 
 export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
   {
+    name: 'cf-workers-native',
+    packageName: 'cf-workers-native',
+    description:
+      'Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor. Reuse your pages and keep your backend on Workers.',
+    repositoryUrl: 'https://github.com/rdlabo-dev/cf-workers-native',
+    docsUrl: 'https://docs.rdlabo.dev/projects/cf-workers-native',
+  },
+  {
     name: 'Capacitor Community Stripe',
     packageName: '@capacitor-community/stripe',
     description:

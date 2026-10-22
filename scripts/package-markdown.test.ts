@@ -19,7 +19,7 @@ test('repository resources retain pinned upstream targets instead of nonexistent
     '[guide](/docs/integration) [demo](/docs/demo/README#setup) [native](../demo/rendering) [contribute](../CONTRIBUTING.md#ci) [license](LICENSE) [external](https://example.com/demo/README.md)';
   const result = rewriteRepositoryResourceLinks(
     source,
-    'https://github.com/rdlabo-dev/workers-capacitor',
+    'https://github.com/rdlabo-dev/cf-workers-native',
     'v0.1.0',
   );
   assert.match(result, /\[guide\]\(\/docs\/integration\)/);
@@ -30,6 +30,22 @@ test('repository resources retain pinned upstream targets instead of nonexistent
   assert.match(result, /https:\/\/example\.com\/demo\/README\.md/);
   const code = '```text\n[demo](../demo/README.md)\n```\n';
   assert.equal(rewriteRepositoryResourceLinks(code, 'https://example.com/repo', 'v1.0.0'), code);
+  assert.equal(
+    rewriteRepositoryResourceLinks(
+      '[cost](/docs/test-execution-time) [source](test-execution-time.md#baseline)',
+      'https://github.com/rdlabo-dev/cf-workers-native',
+      'v0.1.2',
+    ),
+    '[cost](https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/docs/test-execution-time.md) [source](https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/docs/test-execution-time.md#baseline)',
+  );
+  assert.equal(
+    rewriteRepositoryResourceLinks(
+      '[index](/docs/README) [release](/docs/scripts/android-release/README) [script](../scripts/check.mjs)',
+      'https://github.com/rdlabo-dev/cf-workers-native',
+      'v0.1.2',
+    ),
+    '[index](https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/docs/README.md) [release](https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/scripts/android-release/README.md) [script](https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/scripts/check.mjs)',
+  );
 });
 
 test('keeps Overview through Documentation and drops preamble, Index, and API', () => {

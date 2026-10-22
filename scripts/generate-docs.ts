@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, unlink, writeFile } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import fm from 'front-matter';
 import markdownToHtml from 'zenn-markdown-html';
@@ -919,6 +919,17 @@ async function main(): Promise<void> {
     join(root, 'projects/docs/public/robots.txt'),
     `User-agent: *\nAllow: /\n\nSitemap: ${SITE_CONFIG.origin}/sitemap.xml\n`,
   );
+  // Renamed or removed projects must not leave stale lazy modules in the output tree.
+  const expectedModules = new Set(
+    projectDefinitions
+      .filter((project) => !project.hostedUrl)
+      .flatMap((project) => locales.map((locale) => `${project.id}.${locale}.generated.ts`)),
+  );
+  for (const file of await readdir(projectsDirectory)) {
+    if (file.endsWith('.generated.ts') && !expectedModules.has(file)) {
+      await unlink(join(projectsDirectory, file));
+    }
+  }
   const pageCount = projectsByLocale.en.reduce((count, project) => count + project.pages.length, 0);
   console.log(
     `Generated ${pageCount * locales.length} localized documentation pages in ${projectDefinitions.filter((project) => !project.hostedUrl).length * locales.length} lazy project modules.`,

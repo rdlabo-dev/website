@@ -122,4 +122,4 @@ const shell = await enableNativeUI({
 
 ## 使用例
 
-[通常の HTML の例](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.0/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。
+[通常の HTML の例](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.1/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。

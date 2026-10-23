@@ -1,6 +1,6 @@
 ---
 title: "Balisage et classes spécifiques"
-sourceRevision: "ecb29e5d934622760bb22358e91a833d4489b4adfae7672735d7ca0943361dad"
+sourceRevision: "0027371499606e8a4fc030f534fbb0e0c67bf24b2e813e060b92da521fd92aee"
 ---
 # Balisage et classes particuliers
 
@@ -74,11 +74,11 @@ Ces classes ne repositionnent pas un `ion-fab` distinct ; réservez-lui de la pl
 
 La prise en charge d’iPhone Duo, y compris Vertical Bars autonome, est stable à partir de la version 2.0.0.
 
-La prise en charge d’iPhone Duo — rail système vertical, posture de la charnière et disposition des panneaux divisés selon la posture — est indépendante du thème iOS 27 et de Native UI complet. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, notamment la surveillance sans runtime de projection.
+La prise en charge d’iPhone Duo — rail système vertical, posture de la charnière et disposition des panneaux divisés selon la posture — est indépendante du thème iOS 27 et de Native UI complet. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, notamment la surveillance sans runtime de projection.
 
-Consultez [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/vertical-bars.md) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
+Consultez [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/vertical-bars.md) pour les classes de disposition du rail, l’admissibilité des contrôles et l’apparence des boutons natifs.
 
-Pour une configuration autonome conservant votre thème existant, consultez [iPhone Duo avec votre thème existant](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
+Pour une configuration autonome conservant votre thème existant, consultez [iPhone Duo avec votre thème existant](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
 
 ## Éléments de liste en retrait sur deux lignes
 

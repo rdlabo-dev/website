@@ -1,6 +1,6 @@
 ---
 title: "Migration du thème"
-sourceRevision: "244725aff2ee6a242f6a70f611c239f390ce7a3fc3a89e57aab181b8450af7d4"
+sourceRevision: "cbe207035199408060d545f7aead1a6f0d6795b766fcb6cfb9b98e1922cc5758"
 ---
 # Migration du thème
 
@@ -13,7 +13,7 @@ Les styles et imports ordinaires des API du thème restent pris en charge. Si vo
 | `@rdlabo/ionic-theme-ios27/native` | `@rdlabo/capacitor-native-ui` |
 | `@rdlabo/ionic-theme-ios27/vertical-bars` | `@rdlabo/capacitor-native-ui/vertical-bars` |
 
-Ajoutez le package natif comme dépendance directe, mettez à jour les imports, recompilez les ressources Web et exécutez `npx cap sync ios`. Suivez le [guide de migration Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/migration.md) pour les paramètres de démarrage de la version 1.2.1 et les modifications du projet natif. Les applications utilisant uniquement le thème n’ont besoin ni de démarrage natif ni de configuration du plugin.
+Ajoutez le package natif comme dépendance directe, mettez à jour les imports, recompilez les ressources Web et exécutez `npx cap sync ios`. Suivez le [guide de migration Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/migration.md) pour les paramètres de démarrage de la version 1.2.1 et les modifications du projet natif. Les applications utilisant uniquement le thème n’ont besoin ni de démarrage natif ni de configuration du plugin.
 
 ## Disposition de l’appareil dans la version 2.0
 

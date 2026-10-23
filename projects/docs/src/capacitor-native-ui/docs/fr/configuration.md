@@ -1,6 +1,6 @@
 ---
 title: "Configurer Native UI"
-sourceRevision: "db88d5020c11e414684703be1833e5c8ecdd0c8c631ffa15263925943070e80f"
+sourceRevision: "b5121d82d91e64768d6e707cd76d775b409ee118d8e3d12938bd0a19225715ba"
 ---
 # Configurer Native UI
 
@@ -85,6 +85,29 @@ Horizontal et vertical décrivent le **placement du contrôle**, pas l’orienta
 | `fab` | Sélectionner les boutons d’action flottants pris en charge. |
 
 Les attributs locaux `data-horizontal-bars="true|false"` et `data-vertical-bars="true|false"` remplacent la sélection par défaut correspondante. Sur `ion-buttons`, ils contrôlent uniquement le groupement. Les sources explicites `data-native-ui` sont indépendantes de ces valeurs. Les exclusions structurelles et la disponibilité du rail restent applicables. Consultez la [sélection et le groupement dans la barre d’outils](native-ui.md#toolbar-selection-and-grouping).
+
+### Correspondance des boutons de la barre d’outils
+
+Les boutons natifs de la barre d’outils reçoivent automatiquement des identifiants de présentation. Les boutons ordinaires correspondent selon leur barre d’outils, leur emplacement logique et leur ordre parmi les boutons projetés. Les boutons Menu et Back en première position correspondent dans les barres horizontales comme verticales. Changer l’axe de disposition préserve les identifiants de présentation et l’ordre des groupes. Chaque surface possède ses propres positions enfants : ajouter ou supprimer des boutons dans un groupe ne modifie donc pas les identifiants des surfaces suivantes ni de leurs boutons. Les libellés et gestionnaires de clic peuvent changer sans attribut d’identification. Les barres d’en-tête et de pied de page constituent des portées distinctes.
+
+Vous pouvez définir `data-transition-id` sur un bouton individuel pour qu’il suive une action particulière lors d’un réordonnancement au sein de la surface correspondante :
+
+```html
+<!-- Page source -->
+<ion-button data-transition-id="edit">Edit</ion-button>
+<!-- Page de destination -->
+<ion-button data-transition-id="edit">Done</ion-button>
+```
+
+Une clé explicite remplace la position automatique dans la barre d’outils correspondante. Elle ne modifie ni l’`id` HTML, ni le routage, ni l’acheminement des clics. Conservez le gestionnaire d’origine sur le bouton source de chaque page. Les valeurs vides utilisent la correspondance automatique ; les clés explicites dupliquées dans une barre sont traitées comme des sources distinctes sans correspondance. Placez l’attribut sur chaque bouton, y compris les enfants d’un groupe `ion-buttons`. Les clés enfants sont comparées au sein d’une surface correspondante ; elles ne déplacent pas une action entre groupes différents. Pour préserver un groupe entier lors d’un réordonnancement, attribuez aussi une clé de surface à son élément `ion-buttons`. La clé du groupe identifie le fond partagé et les clés enfants identifient ses boutons, même lorsqu’un seul enfant subsiste.
+
+Ces identifiants pilotent la barre d’outils native SwiftUI de Vertical Bars. Avec l’adaptateur d’animation de navigation du thème, les surfaces fixes correspondantes des barres horizontales restent natives et suivent la progression de l’animation de page Ionic, y compris son inversion interactive. La géométrie et le contenu évoluent pendant la lecture ; la responsabilité des actions ne change qu’après validation de la navigation. Un balayage annulé restaure la barre d’origine. Les actions des barres horizontales conservées sont ignorées jusqu’à la fin de la navigation et de la mise à jour de la destination.
+
+Les contrôles sortants sans identifiant de surface correspondant restent natifs et disparaissent sur place par un fondu synchronisé avec la progression de la page ; l’annulation inverse ce fondu. Cette animation d’opacité ne reproduit pas le flou de la barre de navigation système. Les nouveaux contrôles de destination sont préparés nativement avant la lecture et apparaissent en grandissant, en conservant la même vue native à la fin de la navigation. Boutons seuls et groupes utilisent les mêmes positions numérotées dans chaque emplacement de barre, comptées depuis le bord extérieur logique : depuis inline-start pour start et depuis inline-end pour end. Les enfants d’un groupe suivent la même règle. En LTR, start se compte depuis la gauche et end depuis la droite ; RTL inverse ces bords. Un groupe à la position end 0 peut devenir un bouton seul à la position end 0 ; changer son nombre d’enfants ou son remplissage ne rompt pas la correspondance et ne renumérote pas la surface suivante. Le fond se redimensionne pendant que les boutons ajoutés ou supprimés grandissent ou rétrécissent. Un `data-transition-id` facultatif sur une surface remplace son identité positionnelle. Le contenu de page en mouvement, la suspension explicite du runtime, les contrôles non pris en charge, le refus natif et le repli lié aux overlays utilisent aussi la présentation Web. Les boutons Ionic clear dans `ion-buttons` partagent une surface de verre, y compris ceux dont le `fill` omis se résout en clear.
+
+Les mises à jour de progression utilisent une capacité facultative dont le plugin natif confirme la prise en charge. Les anciens binaires natifs qui ne la confirment pas ne reçoivent pas la nouvelle méthode du pont : les surfaces sortantes de la barre, même sans correspondance, restent visibles jusqu’au transfert effectué en fin de transition. Les anciens adaptateurs de transition conservent leur comportement. Mettre à jour le thème et le plugin natif active la synchronisation de progression.
+
+Vertical Bars reflète la hiérarchie des pages Web dans une `NavigationStack` SwiftUI pour utiliser ses animations standard de barre d’outils push/pop. Le routage Web et chaque bouton source déterminent toujours navigation et actions ; la pile native n’introduit pas un autre historique de navigation. Une navigation annulée restaure le chemin précédent, et les pages des onglets et des modales conservent leur propre ascendance. Lors d’un balayage interactif, Vertical Bars conserve la barre source tant que le doigt touche l’écran, conformément au comportement de la barre verticale native. Un balayage annulé la laisse inchangée. Lorsque le doigt se lève et que le geste est validé, la transition standard de barre commence pendant que la page Web rejoint sa position finale. Les sources Web projetées de la barre restent masquées et les interactions du rail natif sont suspendues jusqu’à la fin du balayage. Les barres horizontales suivent, elles, la progression de l’animation de page image par image. Les identifiants positionnels automatiques demandent une correspondance par position ; utilisez donc une clé explicite pour qu’une action suive un réordonnancement.
 
 ### Autres réglages
 

@@ -1,6 +1,6 @@
 ---
 title: "Native UI ohne Ionic"
-sourceRevision: "7d3c0376671c9bae4784347e501acc366c338fa9a737caf4a3bc66507735dd01"
+sourceRevision: "278a38db5b8af5890e4c71c5026b2f501f834edcab0ee7a7c06baf95f16a50be"
 ---
 # Native UI ohne Ionic
 
@@ -122,4 +122,4 @@ Der HTML-Adapter unterstützt derzeit Schaltflächen und Zurückschaltflächen. 
 
 ## Beispiel
 
-Das [reine HTML-Beispiel](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.0/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.
+Das [reine HTML-Beispiel](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.1/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.

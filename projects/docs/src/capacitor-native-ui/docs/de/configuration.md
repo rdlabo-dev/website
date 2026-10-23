@@ -1,6 +1,6 @@
 ---
 title: "Native UI konfigurieren"
-sourceRevision: "db88d5020c11e414684703be1833e5c8ecdd0c8c631ffa15263925943070e80f"
+sourceRevision: "b5121d82d91e64768d6e707cd76d775b409ee118d8e3d12938bd0a19225715ba"
 ---
 # Native UI konfigurieren
 
@@ -85,6 +85,29 @@ Horizontal und vertikal beschreiben die **Position des Bedienelements**, nicht B
 | `fab` | Unterstützte schwebende Aktionsschaltflächen auswählen. |
 
 Lokale Attribute `data-horizontal-bars="true|false"` und `data-vertical-bars="true|false"` überschreiben den jeweiligen Auswahlstandard. Auf `ion-buttons` steuern sie nur die Gruppierung. Explizite `data-native-ui`-Quellen sind von diesen Standardwerten unabhängig. Strukturelle Ausschlüsse und Seitenleistenverfügbarkeit gelten weiterhin. Siehe [Werkzeugleistenauswahl und Gruppierung](native-ui.md#toolbar-selection-and-grouping).
+
+### Zuordnung von Werkzeugleistenschaltflächen
+
+Native Werkzeugleistenschaltflächen erhalten automatisch Darstellungskennungen. Gewöhnliche Schaltflächen werden anhand ihrer Werkzeugleiste, ihres logischen Slots und ihrer Reihenfolge unter den projizierten Schaltflächen zugeordnet. Menu- und Back-Schaltflächen an der führenden Position entsprechen einander in horizontalen wie vertikalen Leisten. Ein Wechsel der Layoutachse erhält die Darstellungskennungen und die Gruppenreihenfolge. Jede Fläche besitzt eigene Kindpositionen. Das Hinzufügen oder Entfernen von Schaltflächen innerhalb einer Gruppe ändert daher nicht die Kennungen nachfolgender Flächen oder ihrer Schaltflächen. Beschriftungen und Klick-Handler können ohne ID-Attribut geändert werden. Kopf- und Fußwerkzeugleisten bilden getrennte Gültigkeitsbereiche.
+
+Setzen Sie optional `data-transition-id` auf einer einzelnen Schaltfläche, wenn sie beim Umordnen innerhalb der zugehörigen Fläche einer bestimmten Aktion folgen soll:
+
+```html
+<!-- Ausgangsseite -->
+<ion-button data-transition-id="edit">Edit</ion-button>
+<!-- Zielseite -->
+<ion-button data-transition-id="edit">Done</ion-button>
+```
+
+Ein expliziter Schlüssel überschreibt die automatische Position innerhalb der zugehörigen Werkzeugleiste. Er verändert weder die HTML-`id` noch Routing oder Klickzustellung. Behalten Sie den ursprünglichen Handler auf der Quellschaltfläche jeder Seite bei. Leere Werte verwenden die automatische Zuordnung; doppelte explizite Schlüssel innerhalb einer Werkzeugleiste werden als getrennte Quellen ohne Zuordnung behandelt. Setzen Sie das Attribut auf jede Schaltfläche, einschließlich der Kinder einer `ion-buttons`-Gruppe. Kindschlüssel werden innerhalb einer zugehörigen Fläche abgeglichen; sie verschieben keine Aktion zwischen verschiedenen Gruppen. Um eine ganze Gruppe beim Umordnen zu erhalten, geben Sie auch ihrem `ion-buttons`-Element einen Flächenschlüssel. Der Gruppenschlüssel identifiziert den gemeinsamen Hintergrund, die Kindschlüssel seine Schaltflächen, selbst wenn nur ein Kind verbleibt.
+
+Diese Kennungen steuern die native SwiftUI-Werkzeugleiste von Vertical Bars. Mit dem Navigationsanimationsadapter des Themes bleiben zugehörige horizontale, ortsfeste Werkzeugleistenflächen nativ und folgen dem Fortschritt der Ionic-Seitenanimation einschließlich interaktiver Umkehr. Geometrie und Inhalt ändern sich während der Wiedergabe; die Zuständigkeit für Aktionen wechselt erst, wenn die Navigation festgeschrieben ist. Ein abgebrochener Wischvorgang stellt die ursprüngliche Werkzeugleiste wieder her. Aktionen beibehaltener horizontaler Werkzeugleisten werden ignoriert, bis Navigation und Zielaktualisierung abgeschlossen sind.
+
+Ausgehende Bedienelemente ohne zugehörige Flächenkennung bleiben nativ und werden mit dem Seitenfortschritt an Ort und Stelle ausgeblendet; ein Abbruch kehrt die Überblendung um. Diese Deckkraftanimation bildet den Unschärfeeffekt der Systemnavigationsleiste nicht nach. Neue Zielbedienelemente werden vor der Wiedergabe nativ vorbereitet und wachsen an ihrer Position ein. Nach Navigationsabschluss behalten sie dieselbe native Ansicht. Einzelne Schaltflächen und Gruppen verwenden dieselben nummerierten Positionen innerhalb jedes Werkzeugleistenslots, gezählt von der logischen Außenkante: start von inline-start, end von inline-end. Gruppenkinder folgen derselben Regel. In LTR wird start von links und end von rechts gezählt; RTL spiegelt diese Kanten. Eine Gruppe an end-Position 0 kann zu einer einzelnen Schaltfläche an end-Position 0 werden. Änderungen der Kinderzahl oder Füllung unterbrechen die Zuordnung nicht und nummerieren die nachfolgende Fläche nicht neu. Der Hintergrund ändert seine Größe, während hinzugefügte oder entfernte Schaltflächen wachsen oder schrumpfen. Ein optionales `data-transition-id` auf einer Fläche überschreibt ihre positionsbasierte Kennung. Bewegter Seiteninhalt, explizites Pausieren der Laufzeit, nicht unterstützte Bedienelemente, native Ablehnung und Overlay-Fallback verwenden ebenfalls die Web-Darstellung. Ionic-clear-Schaltflächen innerhalb von `ion-buttons` teilen sich eine Glasfläche, einschließlich der Schaltflächen, deren ausgelassenes `fill` als clear aufgelöst wird.
+
+Fortschrittsaktualisierungen verwenden eine optionale Fähigkeit, deren Unterstützung das native Plugin bestätigt. Ältere native Binärdateien ohne diese Bestätigung erhalten die neue Bridge-Methode nicht: Ausgehende Werkzeugleistenflächen einschließlich solcher ohne Zuordnung bleiben bis zur Übergabe am Ende sichtbar. Ältere Übergangsadapter behalten ihr bisheriges Verhalten. Die Aktualisierung von Theme und nativem Plugin aktiviert die Fortschrittssynchronisierung.
+
+Vertical Bars bildet die Web-Seitenhierarchie in einem SwiftUI-`NavigationStack` ab, um dessen standardmäßige push/pop-Werkzeugleistenanimationen zu verwenden. Web-Routing und jede Quellschaltfläche bestimmen weiterhin Navigation und Aktionen; der native Stapel führt keinen zusätzlichen Navigationsverlauf ein. Abgebrochene Navigation stellt den vorherigen Pfad wieder her, und Tab- sowie Modalseiten behalten ihre eigene Hierarchie. Bei einem interaktiven Wischvorgang behält Vertical Bars die Ausgangswerkzeugleiste bei, solange der Finger auf dem Bildschirm liegt, entsprechend dem Verhalten der nativen vertikalen Werkzeugleiste. Ein abgebrochener Wischvorgang lässt sie unverändert. Sobald der Finger angehoben und die Geste bestätigt wird, beginnt der standardmäßige Werkzeugleistenübergang, während die Web-Seite ihre Endposition einnimmt. Die projizierten Web-Werkzeugleistenquellen bleiben verborgen und Eingaben an der nativen Seitenleiste sind bis zum Ende des Wischvorgangs ausgesetzt. Horizontale Werkzeugleisten folgen dem Fortschritt der Seitenanimation dagegen Bild für Bild. Automatische Positionskennungen fordern eine Zuordnung anhand der Position an. Verwenden Sie daher einen expliziten Schlüssel, wenn eine Aktion einer Umordnung folgen soll.
 
 ### Weitere Einstellungen
 

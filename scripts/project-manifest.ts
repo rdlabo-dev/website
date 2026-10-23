@@ -931,10 +931,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
-    // Reviewed support-status update after the npm 2.0.0 release.
-    englishDocsRef: '6314e690599c4ecaad7df616ac5c0b581487f344',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.0',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.1',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1041,10 +1039,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     repositoryBrowseUrl:
       'https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
-    // Reviewed support-status update after the npm 2.0.0 release.
-    englishDocsRef: '6314e690599c4ecaad7df616ac5c0b581487f344',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.0',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.1',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',
@@ -1100,21 +1096,21 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'keep-ionics-default-animation': "keep-ionic's-default-animation",
           'use-the-themes-ios-animation': "use-the-theme's-ios-animation",
         },
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-10-23', ja: '2026-10-23', fr: '2026-10-23', de: '2026-10-23' },
       },
       {
         title: text('Native UI', 'Native UI'),
         section: text('Guides', 'ガイド'),
         slug: 'native-ui',
         file: 'native-ui.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-10-23', ja: '2026-10-23', fr: '2026-10-23', de: '2026-10-23' },
       },
       {
         title: text('Configuration', '設定'),
         section: text('Guides', 'ガイド'),
         slug: 'configuration',
         file: 'configuration.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-10-23', ja: '2026-10-23', fr: '2026-10-23', de: '2026-10-23' },
       },
       {
         title: text('Light and dark appearance', 'ライト／ダーク表示'),

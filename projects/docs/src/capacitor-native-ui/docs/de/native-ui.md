@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "e9a1cedfed8b18c585dc11052d77777508c04b0638c4dc1067f8daf5ee21d2a5"
+sourceRevision: "46853216ec3c1a4f9a4ec91bfb52f996d753a5bfd031287c87003bef2e325a8a"
 ---
 
 # Native UI
@@ -13,7 +13,7 @@ Die [Funktionsweise der Projektion](../README.md#how-projection-works) beschreib
 
 ## Native UI aktivieren
 
-Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/add-native-ui.md). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
+Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
 
 Installieren Sie das native Paket als direkte Anwendungsabhängigkeit, damit Capacitor es erkennen kann:
 
@@ -294,11 +294,11 @@ Benutzerdefinierte Host-Animationen oder Transition-Deklarationen am FAB, an der
 
 ## Übergänge und Wiederherstellung
 
-Die integrierte `iosTransitionAnimation` wartet vor dem Web-Animationsstart auf die native Auflösung. Interaktiver Fortschritt und Abschluss/Abbruch werden währenddessen eingereiht. Unbewegte gemeinsame Tabs bleiben erhalten. Erstes Rendering und Übergänge ohne Animationsbuilder werden von Startlaufzeit und Ionic-Lebenszyklusereignissen abgedeckt. Standard-Ionic- und eigene Navigationsbuilder können dieselbe Integration über das von `@rdlabo/ionic-theme-ios27` exportierte `withNativeUITransition()` verwenden. Die Einrichtung beschreibt [Navigationsanimation verbinden](ionic-vertical-bars.md#2-connect-your-navigation-animation).
+Die integrierte `iosTransitionAnimation` bereitet native Bedienelemente vor dem Web-Animationsstart vor. Unterstützte ortsfeste Werkzeugleistenbedienelemente bleiben nativ; bewegte Seitenbedienelemente kehren zur Web-Darstellung zurück. Interaktiver Fortschritt und Abschluss/Abbruch werden während der Vorbereitung eingereiht. Unbewegte gemeinsame Tabs bleiben erhalten. Erstes Rendering und Übergänge ohne Animationsbuilder werden von Startlaufzeit und Ionic-Lebenszyklusereignissen abgedeckt. Standard-Ionic- und eigene Navigationsbuilder können dieselbe Integration über das von `@rdlabo/ionic-theme-ios27` exportierte `withNativeUITransition()` verwenden. Die Einrichtung beschreibt [Navigationsanimation verbinden](ionic-vertical-bars.md#2-connect-your-navigation-animation).
 
 Gewöhnliche native/Web-Übergaben verwenden eine gemeinsame 180ms-Deckkraftüberblendung, einschließlich Vertical Bars in beide Richtungen. Ausgehende Darstellungen erhalten weder Eingaben noch Barrierefreiheitsfokus. Reduce Motion und Modal-Darstellung verwenden sofortige Übergaben; Suchcontroller behalten ihre UIKit-gesteuerten Übergänge.
 
-Beim Tab-Wechsel entfällt die Web-/native Überblendung, damit ein auslaufender UIKit-Snapshot nicht über dem nächsten Tab stehen bleibt. Die Erkennung vergleicht die Router-URL mit dem noch ausgewählten Tab in `ionViewWillLeave` sowie mit den Vanilla-DOM-Ereignissen `ionTabsWillChange` / `ionTabsDidChange`. Beim Hinzufügen und Entfernen von Seiten im Stapel bleibt die normale 180ms-Übergabe erhalten.
+Beim Tab-Wechsel entfällt die Web-/native Überblendung, damit ein auslaufender UIKit-Snapshot nicht über dem nächsten Tab stehen bleibt. Die Erkennung vergleicht die Router-URL mit dem noch ausgewählten Tab in `ionViewWillLeave` sowie mit den Vanilla-DOM-Ereignissen `ionTabsWillChange` / `ionTabsDidChange`. Mit dem Navigationsadapter verwendet Vertical Bars native push/pop-Werkzeugleistenanimationen; bei einem interaktiven Wischvorgang bleibt die Ausgangswerkzeugleiste erhalten, bis die Geste bestätigt ist. Die horizontale Werkzeugleistennavigation erhält zugehörige native Flächen, bereitet neue Ziele nativ vor und blendet ausgehende Flächen ohne Zuordnung mit dem Seitenfortschritt an Ort und Stelle aus. Ein Abbruch kehrt die Überblendung um. Der Austritt verwendet Deckkraft und bildet den Unschärfeeffekt der Systemnavigationsleiste nicht nach. Die [Zuordnung von Werkzeugleistenschaltflächen](configuration.md#toolbar-button-correspondence) beschreibt die Kennungsregeln und das Verhalten älterer nativer Binärdateien.
 
 Standard-Ionic-Overlays setzen gewöhnliche native Projektion bis zum Schließen aus. Vertical Bars verwendet eine separate Regel:
 
@@ -398,7 +398,7 @@ Natives Material und Aussehen der Bedienelemente folgen der laufenden iOS-Versio
 
 Die Unterstützung für iPhone Duo einschließlich eigenständiger Vertical Bars ist ab Version 2.0.0 stabil.
 
-Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
+Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
 
 Vertical Bars verwendet eine SwiftUI-`TabView` und Werkzeugleiste in der Systemseitenleiste. Ionic bleibt Quelle für Beschriftungen, Symbole, Auswahl-/Deaktivierungszustand und Aktionen. Seitenleistenlayout, nativen Fallback und unterstützte Overlays beschreibt [Vertical Bars](vertical-bars.md).
 

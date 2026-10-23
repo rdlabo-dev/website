@@ -1,6 +1,6 @@
 ---
 title: "Ajouter Vertical Bars en conservant votre thème"
-sourceRevision: "daddbae0344f3e6527f6cf746cff1b1772adc08ec974917da625ca50221e8601"
+sourceRevision: "3614362737e0cbb33b34c6c1595926ac77eaa98b14d77f8c218e39948863bf68"
 ---
 # Ajouter Vertical Bars en conservant votre thème
 
@@ -44,7 +44,7 @@ Nous adoptons [Capacitor Foldable](https://github.com/erkamyaman/capacitor-folda
 
 ### 2. Raccorder votre animation de navigation
 
-Configurez `navAnimation` avant l’initialisation d’Ionic. Démarrer l’environnement du rail n’enregistre pas cette option. L’adaptateur attend le retrait des contrôles natifs et coordonne la progression du balayage et l’annulation tout en conservant votre animation existante.
+Configurez `navAnimation` avant l’initialisation d’Ionic. Démarrer l’environnement du rail n’enregistre pas cette option. L’adaptateur prépare les contrôles natifs et coordonne la progression de la navigation et l’annulation tout en conservant votre animation de page existante.
 
 #### Garder l’animation par défaut d’Ionic
 

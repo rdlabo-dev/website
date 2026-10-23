@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars hinzufügen und das Theme behalten"
-sourceRevision: "daddbae0344f3e6527f6cf746cff1b1772adc08ec974917da625ca50221e8601"
+sourceRevision: "3614362737e0cbb33b34c6c1595926ac77eaa98b14d77f8c218e39948863bf68"
 ---
 
 # Vertical Bars hinzufügen und das Theme behalten
@@ -45,7 +45,7 @@ Wir verwenden [Capacitor Foldable](https://github.com/erkamyaman/capacitor-folda
 
 ### 2. Navigationsanimation verbinden
 
-Konfigurieren Sie `navAnimation`, bevor Ionic initialisiert wird. Der Start der Leistenlaufzeit registriert diese Option nicht. Der Adapter wartet auf das Entfernen nativer Bedienelemente und koordiniert Wischfortschritt und Abbruch, wobei Ihre bestehende Animation erhalten bleibt.
+Konfigurieren Sie `navAnimation`, bevor Ionic initialisiert wird. Der Start der Leistenlaufzeit registriert diese Option nicht. Der Adapter bereitet native Bedienelemente vor und koordiniert Navigationsfortschritt und Abbruch, wobei Ihre bestehende Seitenanimation erhalten bleibt.
 
 #### Die Standardanimation von Ionic beibehalten
 

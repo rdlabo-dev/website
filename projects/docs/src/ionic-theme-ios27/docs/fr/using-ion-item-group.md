@@ -1,6 +1,6 @@
 ---
 title: "Utiliser ion-item-group"
-sourceRevision: "77c7183b9d27a9fd4f8c027515abce321db29cda98e97f00e9dc4bc674390c62"
+sourceRevision: "ce7af1e7b9164f27d0688540a7c8a487e613700ab313a26c1b8ced9f8b0cbd80"
 ---
 # Utiliser `ion-item-group` dans les listes en retrait
 
@@ -26,7 +26,7 @@ Aucun conteneur supplémentaire n’est nécessaire pour les listes qui n’util
 
 Ionic applique normalement l’arrière-plan à `ion-list`, ce qui fait apparaître `ion-list-header` sur la même surface que les éléments. La disposition iOS 27 distingue l’en-tête de la surface des éléments.
 
-![Comparaison des arrière-plans de listes avec retrait montrant pourquoi ion-item-group est requis](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.0/screenshots/why-ion-list-inset.png)
+![Comparaison des arrière-plans de listes avec retrait montrant pourquoi ion-item-group est requis](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/why-ion-list-inset.png)
 
 Le thème procède donc ainsi :
 

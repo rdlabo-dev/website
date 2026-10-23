@@ -1,6 +1,6 @@
 ---
 title: "Native UI sans Ionic"
-sourceRevision: "7d3c0376671c9bae4784347e501acc366c338fa9a737caf4a3bc66507735dd01"
+sourceRevision: "278a38db5b8af5890e4c71c5026b2f501f834edcab0ee7a7c06baf95f16a50be"
 ---
 # Native UI sans Ionic
 
@@ -122,4 +122,4 @@ L’adaptateur HTML prend actuellement en charge les boutons et boutons de retou
 
 ## Exemple
 
-L’[exemple HTML simple](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.0/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.
+L’[exemple HTML simple](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.1/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.

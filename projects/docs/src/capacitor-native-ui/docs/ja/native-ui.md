@@ -12,7 +12,7 @@ DOM とネイティブ表示の共有モデルは[投影の仕組み](../README.
 
 ## Native UI を有効にする
 
-iOS テーマを使用中なら[テーマに Native UI を追加する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/add-native-ui.md)に従ってください。その他の Web 外観では [Native UI のセットアップ](setup.md)を使用します。
+iOS テーマを使用中なら[テーマに Native UI を追加する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md)に従ってください。その他の Web 外観では [Native UI のセットアップ](setup.md)を使用します。
 
 Capacitor が検出できるよう、ネイティブパッケージをアプリの直接依存としてインストールします。
 
@@ -301,11 +301,11 @@ FAB、リスト、ボタンに独自のホストアニメーションや transit
 
 ## 遷移と復旧
 
-組み込みの `iosTransitionAnimation` はネイティブ表示の終了を待ってから Web アニメーションを開始します。終了処理中の対話的な進行、完了・キャンセルはキューに入れます。位置が変わらない共有タブは維持します。初回描画とアニメーションビルダーのない遷移は起動ランタイムと Ionic ライフサイクルイベントで処理します。Ionic 標準・独自ビルダーも `@rdlabo/ionic-theme-ios27` の `withNativeUITransition()` で同じ連携を使えます。[ナビゲーションアニメーションの接続](ionic-vertical-bars.md#2-connect-your-navigation-animation)を参照してください。
+組み込みの `iosTransitionAnimation` はネイティブコントロールを準備してから Web アニメーションを開始します。サポート対象の固定ツールバーコントロールはネイティブ表示を維持し、移動するページ内のコントロールは Web 表示へ戻ります。準備中の対話的な進行、完了・キャンセルはキューに入れます。位置が変わらない共有タブは維持します。初回描画とアニメーションビルダーのない遷移は起動ランタイムと Ionic ライフサイクルイベントで処理します。Ionic 標準・独自ビルダーも `@rdlabo/ionic-theme-ios27` の `withNativeUITransition()` で同じ連携を使えます。[ナビゲーションアニメーションの接続](ionic-vertical-bars.md#2-connect-your-navigation-animation)を参照してください。
 
 通常のネイティブ/Web の切り替えは、Vertical Bars の両方向も含め 180ms の不透明度クロスフェードを共有します。終了する表示は入力もアクセシビリティーフォーカスも受けません。Reduce Motion（視差効果を減らす）とモーダル表示では即時切り替え、検索コントローラーは UIKit 管理の遷移を維持します。
 
-タブ切り替えでは終了中の UIKit スナップショットが次のタブを覆わないよう、Web/ネイティブのクロスフェードを省略します。`ionViewWillLeave` でルーター URL と選択中のタブを比較して検出します（素の `ionTabsWillChange` / `ionTabsDidChange` DOM イベントも使用）。スタックの push/pop は通常の 180ms の切り替えです。
+タブ切り替えでは終了中の UIKit スナップショットが次のタブを覆わないよう、Web/ネイティブのクロスフェードを省略します。`ionViewWillLeave` でルーター URL と選択中のタブを比較して検出します（素の `ionTabsWillChange` / `ionTabsDidChange` DOM イベントも使用）。ナビゲーションアダプターを使う場合、Vertical Bars はネイティブの push/pop ツールバーアニメーションを使い、対話的なスワイプ中はジェスチャーが確定するまで遷移元のツールバーを維持します。水平ツールバーのナビゲーションは、対応するネイティブサーフェスを維持し、新しい遷移先をネイティブで準備し、対応付けのない遷移元のサーフェスをページの進行に合わせてその場でフェードアウトします。キャンセルするとフェードが逆再生されます。退出には不透明度を使い、システムのナビゲーションバーのぼかし効果は再現しません。識別子の規則と古いネイティブバイナリーの動作は[ツールバーボタンの対応付け](configuration.md#toolbar-button-correspondence)を参照してください。
 
 標準の Ionic オーバーレイは、閉じるまで通常のネイティブ投影を中断します。Vertical Bars は別の規則です。
 
@@ -405,7 +405,7 @@ try {
 
 単独の Vertical Bars を含め、iPhone Duo 対応は 2.0.0 から安定版です。
 
-単独の Vertical Control Area エントリーポイント（`@rdlabo/capacitor-native-ui/vertical-bars`）はアプリが提供する Web レイアウトで動作します。テーマの[任意のレールスタイルシート](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` は、iOS 27 の外観全体なしで利用できます。この用途では `enableNativeUI({ controls: 'verticalOnly' })` を呼び、縦領域に配置したコントロールを選択します。すでに `enableNativeUI()` を呼ぶアプリは両方を起動せず、単一ランタイムを維持してください。Shell を使わないアプリのヒンジ状態・分割ペインも含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
+単独の Vertical Control Area エントリーポイント（`@rdlabo/capacitor-native-ui/vertical-bars`）はアプリが提供する Web レイアウトで動作します。テーマの[任意のレールスタイルシート](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` は、iOS 27 の外観全体なしで利用できます。この用途では `enableNativeUI({ controls: 'verticalOnly' })` を呼び、縦領域に配置したコントロールを選択します。すでに `enableNativeUI()` を呼ぶアプリは両方を起動せず、単一ランタイムを維持してください。Shell を使わないアプリのヒンジ状態・分割ペインも含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
 
 Vertical Bars はシステムレール内で SwiftUI の `TabView` とツールバーを使います。ラベル、アイコン、選択・無効状態、操作の正は引き続き Ionic です。レールのレイアウト、ネイティブのフォールバック、対応オーバーレイは [Vertical Bars](vertical-bars.md)を参照してください。
 

@@ -1,10 +1,10 @@
 ---
 title: "Vertical Bars-Layout"
-sourceRevision: "09013f23310a526c032e91c0c4c7c5ec5e67c48cb2006e147940c3203b0fdf45"
+sourceRevision: "0e2871e8ff357cc5d356056d3c55cb326bc58bcc5e7668c75181fcc2d4e46b74"
 ---
 # Vertical Bars-Layout
 
-Dieses optionale Theme-Stylesheet übernimmt Web-Abstände und Positionierung um eine vertikale Seitenleiste. Es lässt sich mit Ihrem bestehenden Theme verwenden, ohne die vollständige iOS-27-Darstellung zu laden. Natives Rendering und Zustandssynchronisierung stellt separat [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/vertical-bars.md) bereit.
+Dieses optionale Theme-Stylesheet übernimmt Web-Abstände und Positionierung um eine vertikale Seitenleiste. Es lässt sich mit Ihrem bestehenden Theme verwenden, ohne die vollständige iOS-27-Darstellung zu laden. Natives Rendering und Zustandssynchronisierung stellt separat [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/vertical-bars.md) bereit.
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
@@ -14,7 +14,7 @@ npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
-Das folgende Layoutverhalten setzt dieses Stylesheet voraus. Für die native Laufzeit und Geräteposition folgen Sie der [Integrationsanleitung](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
+Das folgende Layoutverhalten setzt dieses Stylesheet voraus. Für die native Laufzeit und Geräteposition folgen Sie der [Integrationsanleitung](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
 
 ## Die vertikale Leiste reservieren
 

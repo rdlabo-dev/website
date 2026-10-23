@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "e9a1cedfed8b18c585dc11052d77777508c04b0638c4dc1067f8daf5ee21d2a5"
+sourceRevision: "46853216ec3c1a4f9a4ec91bfb52f996d753a5bfd031287c87003bef2e325a8a"
 ---
 # Native UI
 
@@ -12,7 +12,7 @@ Consultez le [fonctionnement de la projection](../README.md#how-projection-works
 
 ## Activer Native UI
 
-Vous utilisez déjà le thème iOS ? Suivez [Ajouter Native UI à votre thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/add-native-ui.md). Pour d’autres apparences Web, utilisez la [configuration Native UI](setup.md).
+Vous utilisez déjà le thème iOS ? Suivez [Ajouter Native UI à votre thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md). Pour d’autres apparences Web, utilisez la [configuration Native UI](setup.md).
 
 Installez le package natif comme dépendance directe pour que Capacitor le découvre :
 
@@ -301,11 +301,11 @@ Les déclarations personnalisées d’animation ou de transition de l’hôte su
 
 ## Transitions et récupération
 
-L’animation intégrée `iosTransitionAnimation` attend le retrait natif avant de commencer l’animation Web. Progression interactive et fin/annulation sont mises en file pendant ce retrait. Les onglets partagés immobiles sont conservés. Le premier rendu et les transitions sans constructeur d’animation sont couverts par le runtime et le cycle de vie Ionic. Les constructeurs Ionic par défaut et personnalisés peuvent utiliser la même intégration via `withNativeUITransition()`, exporté par `@rdlabo/ionic-theme-ios27`. Consultez [Raccorder votre animation de navigation](ionic-vertical-bars.md#2-connect-your-navigation-animation).
+L’animation intégrée `iosTransitionAnimation` prépare les contrôles natifs avant de commencer l’animation Web. Les contrôles fixes de barre d’outils pris en charge restent natifs ; les contrôles de page en mouvement reviennent à la présentation Web. Progression interactive et fin/annulation sont mises en file pendant cette préparation. Les onglets partagés immobiles sont conservés. Le premier rendu et les transitions sans constructeur d’animation sont couverts par le runtime et le cycle de vie Ionic. Les constructeurs Ionic par défaut et personnalisés peuvent utiliser la même intégration via `withNativeUITransition()`, exporté par `@rdlabo/ionic-theme-ios27`. Consultez [Raccorder votre animation de navigation](ionic-vertical-bars.md#2-connect-your-navigation-animation).
 
 Les passages natif/Web ordinaires utilisent un fondu d’opacité de 180ms, y compris Vertical Bars dans les deux sens. Les visuels sortants ne reçoivent ni interaction ni focus d’accessibilité. La réduction des animations et les modales utilisent des passages immédiats ; les contrôleurs de recherche conservent leur transition UIKit.
 
-Les changements d’onglet évitent le fondu Web/natif pour qu’un instantané UIKit en retrait ne reste pas sur l’onglet suivant. La détection compare l’URL du routeur à l’onglet encore sélectionné dans `ionViewWillLeave`, ainsi qu’aux événements DOM vanilla `ionTabsWillChange` / `ionTabsDidChange`. Les ajouts et retraits de pages de la pile conservent le passage normal de 180ms.
+Les changements d’onglet évitent le fondu Web/natif pour qu’un instantané UIKit en retrait ne reste pas sur l’onglet suivant. La détection compare l’URL du routeur à l’onglet encore sélectionné dans `ionViewWillLeave`, ainsi qu’aux événements DOM vanilla `ionTabsWillChange` / `ionTabsDidChange`. Avec l’adaptateur de navigation, Vertical Bars utilise les animations natives push/pop de barre d’outils ; lors d’un balayage interactif, la barre source est conservée jusqu’à la validation du geste. La navigation des barres horizontales conserve les surfaces natives correspondantes, prépare nativement les nouvelles destinations et fait disparaître sur place les surfaces sortantes sans correspondance par un fondu synchronisé avec la progression de la page. L’annulation inverse ce fondu. La sortie utilise l’opacité sans reproduire le flou de la barre de navigation système. Consultez la [correspondance des boutons de la barre d’outils](configuration.md#toolbar-button-correspondence) pour les règles d’identification et le comportement des anciens binaires natifs.
 
 Les superpositions Ionic standard suspendent la projection native ordinaire jusqu’à fermeture. Vertical Bars suit une politique distincte :
 
@@ -405,7 +405,7 @@ Le matériau et l’apparence des contrôles natifs suivent la version d’iOS e
 
 La prise en charge d’iPhone Duo, y compris Vertical Bars autonome, est stable à partir de la version 2.0.0.
 
-Le point d’entrée autonome Vertical Control Area (`@rdlabo/capacitor-native-ui/vertical-bars`) fonctionne avec une disposition Web fournie par l’application. Le thème propose une [feuille de style de rail facultative](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, utilisable sans toute l’apparence iOS 27. Appelez `enableNativeUI({ controls: 'verticalOnly' })` pour ce cas ; sa sélection par défaut vise les contrôles de la zone verticale. Une application appelant déjà `enableNativeUI()` doit conserver ce runtime unique plutôt que démarrer les deux. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.0/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, y compris posture de charnière et panneaux pour les applications n’utilisant pas ce shell.
+Le point d’entrée autonome Vertical Control Area (`@rdlabo/capacitor-native-ui/vertical-bars`) fonctionne avec une disposition Web fournie par l’application. Le thème propose une [feuille de style de rail facultative](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, utilisable sans toute l’apparence iOS 27. Appelez `enableNativeUI({ controls: 'verticalOnly' })` pour ce cas ; sa sélection par défaut vise les contrôles de la zone verticale. Une application appelant déjà `enableNativeUI()` doit conserver ce runtime unique plutôt que démarrer les deux. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, y compris posture de charnière et panneaux pour les applications n’utilisant pas ce shell.
 
 Vertical Bars utilise un `TabView` et une barre d’outils SwiftUI dans le rail système. Ionic reste la source des libellés, icônes, états sélectionné/désactivé et actions. Consultez [Vertical Bars](vertical-bars.md) pour la disposition du rail, le repli natif et les superpositions prises en charge.
 

@@ -13,7 +13,7 @@ title: テーマの移行
 | `@rdlabo/ionic-theme-ios27/native`        | `@rdlabo/capacitor-native-ui`               |
 | `@rdlabo/ionic-theme-ios27/vertical-bars` | `@rdlabo/capacitor-native-ui/vertical-bars` |
 
-ネイティブパッケージをアプリの直接依存に追加し、インポートを更新して Web アセットを再ビルドし、`npx cap sync ios` を実行します。1.2.1 の起動設定とネイティブプロジェクトの変更は [Native UI 移行ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/migration.md)に従ってください。テーマだけを使用するアプリにはネイティブの起動やプラグインの設定は不要です。
+ネイティブパッケージをアプリの直接依存に追加し、インポートを更新して Web アセットを再ビルドし、`npx cap sync ios` を実行します。1.2.1 の起動設定とネイティブプロジェクトの変更は [Native UI 移行ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/migration.md)に従ってください。テーマだけを使用するアプリにはネイティブの起動やプラグインの設定は不要です。
 
 ## 2.0 のデバイスレイアウト
 

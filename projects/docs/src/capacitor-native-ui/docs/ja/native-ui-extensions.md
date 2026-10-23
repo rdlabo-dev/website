@@ -387,8 +387,8 @@ element 配置ではソースがビューポートと祖先の overflow クリ�
 
 ブリッジの確認応答は Capacitor の Promise メソッドです。
 
-[デモのリーダー](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/src/native-ui/counter.ts)と [SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/ios/App/App/NativeUICounter.swift)はアプリ内のファイルで両配置を示します。Native UI デモページでネイティブ投影と Web フォールバックを比較できます。
+[デモのリーダー](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/src/native-ui/counter.ts)と [SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/ios/App/App/NativeUICounter.swift)はアプリ内のファイルで両配置を示します。Native UI デモページでネイティブ投影と Web フォールバックを比較できます。
 
 ## 例: ミニプレーヤー
 
-デモのミニプレーヤーは曲のメタデータと再生操作で同じ方式を示します。[DOM リーダーと Web フォールバック](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/src/native-ui/mini-player.ts)と[アプリ内 SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/ios/App/App/NativeMiniPlayer.swift)を組み合わせます。再生状態とモーダル表示は Web アプリが管理し、ネイティブの `open` と `toggle` は元のボタンを実行します。音声エンジンではなく UI の例です。上記の拡張設定を終えてからファイルを調整してください。
+デモのミニプレーヤーは曲のメタデータと再生操作で同じ方式を示します。[DOM リーダーと Web フォールバック](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/src/native-ui/mini-player.ts)と[アプリ内 SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/ios/App/App/NativeMiniPlayer.swift)を組み合わせます。再生状態とモーダル表示は Web アプリが管理し、ネイティブの `open` と `toggle` は元のボタンを実行します。音声エンジンではなく UI の例です。上記の拡張設定を終えてからファイルを調整してください。

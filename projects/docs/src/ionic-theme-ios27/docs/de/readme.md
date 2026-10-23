@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "791355a318cf70a001596d6d8fe088cbe15fac7991d7a4955bb820f369e04916"
+sourceRevision: "955c1cb5086ab0df89e19ea454d6313fbc891bfd8eb6352a456c82f02406c554"
 ---
 # Ionic Theme iOS27
 
@@ -12,9 +12,9 @@ Ein Theme für Ionic-Anwendungen, das iOS 27 Liquid Glass und dessen Bewegungsef
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-settings.png" width="32%" alt="iOS-27-Theme: Einstellungen im hellen Modus mit einer Liquid Glass-Suchleiste" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-settings-dark.png" width="32%" alt="iOS-27-Theme: Einstellungen im dunklen Modus" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-library.png" width="32%" alt="iOS-27-Theme: Bibliothek mit Liquid Glass-Schaltflächen und Tab-Leiste" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-settings.png" width="32%" alt="iOS-27-Theme: Einstellungen im hellen Modus mit einer Liquid Glass-Suchleiste" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-settings-dark.png" width="32%" alt="iOS-27-Theme: Einstellungen im dunklen Modus" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-library.png" width="32%" alt="iOS-27-Theme: Bibliothek mit Liquid Glass-Schaltflächen und Tab-Leiste" />
 </p>
 
 <!-- /rdlabo-docs-pick -->

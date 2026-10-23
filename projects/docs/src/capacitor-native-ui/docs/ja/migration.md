@@ -15,7 +15,7 @@ Native UI は 2.0.0 で Preview を卒業し、正式サポートになりまし
 
 ## Native UI パッケージの分離
 
-新規連携には [Native UI 設定](setup.md)、iOS テーマを使用中なら[テーマに Native UI を追加](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md)を参照してください。以下は既存アプリのパッケージ名とネイティブプロジェクトの移行です。
+新規連携には [Native UI 設定](setup.md)、iOS テーマを使用中なら[テーマに Native UI を追加](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md)を参照してください。以下は既存アプリのパッケージ名とネイティブプロジェクトの移行です。
 
 テーマとネイティブコントロールは別パッケージになりました。使用する動作に応じて依存関係を選びます。
 

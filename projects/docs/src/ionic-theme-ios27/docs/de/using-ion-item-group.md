@@ -1,6 +1,6 @@
 ---
 title: "ion-item-group in eingerückten Listen verwenden"
-sourceRevision: "ce7af1e7b9164f27d0688540a7c8a487e613700ab313a26c1b8ced9f8b0cbd80"
+sourceRevision: "c6c69b4bc9bfc6eb2527dc7d89b1f79a33fb488655cccd9a24830ba155d96a73"
 ---
 
 # `ion-item-group` in eingerückten Listen verwenden
@@ -27,7 +27,7 @@ Für Listen ohne `inset="true"` ist kein Wrapper erforderlich.
 
 Ionic weist normalerweise `ion-list` den Hintergrund zu. Dadurch erscheint `ion-list-header` auf derselben Fläche wie die Listenelemente. Das iOS-27-Layout behandelt die Überschrift und die Elementfläche getrennt.
 
-![Vergleich der Hintergründe eingerückter Listen, der die Notwendigkeit von ion-item-group zeigt](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/why-ion-list-inset.png)
+![Vergleich der Hintergründe eingerückter Listen, der die Notwendigkeit von ion-item-group zeigt](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/why-ion-list-inset.png)
 
 Das Theme führt deshalb folgende Änderungen durch:
 

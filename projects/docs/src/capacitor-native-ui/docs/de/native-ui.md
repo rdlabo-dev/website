@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "46853216ec3c1a4f9a4ec91bfb52f996d753a5bfd031287c87003bef2e325a8a"
+sourceRevision: "e2243c16209f9bd7b2d7e7c92948ffa42ad9c050f59038e3e956debee29f5502"
 ---
 
 # Native UI
@@ -13,7 +13,7 @@ Die [Funktionsweise der Projektion](../README.md#how-projection-works) beschreib
 
 ## Native UI aktivieren
 
-Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
+Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
 
 Installieren Sie das native Paket als direkte Anwendungsabhängigkeit, damit Capacitor es erkennen kann:
 
@@ -140,8 +140,10 @@ Glasdarstellung allein reicht nicht. Gewöhnliche Projektion benötigt fixierte 
 | Schaltflächen direkt in Kopf-/Fußzeile, eigenständige Werkzeugleisten oder Werkzeugleisten/Kopfzeilen in scrollendem Inhalt | Bleiben im Web. |
 | FAB | Muss den festen Slot von `ion-content` verwenden. |
 | Zurückschaltfläche bei aktivem `.ios-theme-vertical-bars` | Kann außerhalb fester Werkzeugleisten projiziert werden, auch in geroutetem Inhalt oder dauerhafter App-Shell. Vertical Bars benötigt keinen `ios`-Modus. |
-| Eingeklappte Kopfzeilen, ausgeschlossene Bedienelemente und verlassene Seiten | Ausgeschlossen. |
+| Condense-Kopfzeilen, ausgeschlossene Bedienelemente und verlassene Seiten | Ausgeschlossen. |
 | Vordergrundmodal voller Breite | Kann an Vertical Bars teilnehmen; andere Overlay-Flächen behalten ihr eigenes Layout. |
+
+Die Platzierung richtet sich nach der strukturellen Rolle des Bedienelements, nicht nach dem Vorhandensein eines `collapse`-Attributs. Fixierte Kopf- und Fußzeilen bleiben mit `collapse="fade"` geeignet: Das Ausblenden ihres Hintergrunds lässt ihre Bedienelemente nicht mitscrollen. Kopf- und Fußzeilen innerhalb von `ion-content` sowie Condense-Kopfzeilen (das mitscrollende Duplikat im Ionic-Layout mit großem Titel) stellen keine fixierten Werkzeugleistenbedienelemente bereit. Wenn fixierte und Condense-Kopfzeilen gleichzeitig vorhanden sind, wird nur die Zurückschaltfläche der fixierten Kopfzeile ausgewählt. Vertical Bars kann weiterhin eine eigenständige Zurückschaltfläche in geroutetem Inhalt oder einer dauerhaften Shell auswählen; dadurch werden Bedienelemente in scrollenden Kopf- und Fußzeilen nicht geeignet.
 
 Das Verschieben eines projizierten Bedienelements an eine ausgeschlossene Position stellt Web-Rendering wieder her; Zurückverschieben prüft die Eignung erneut. Die Anwendung wählt, wo sie Vertical Bars aktiviert und welchen Ionic-Komponentenmodus sie verwendet.
 
@@ -273,6 +275,8 @@ Bei Aktivierung unterdrückt Native UI den oberen Scrollkanteneffekt der WebView
 
 Der native Suchcontroller bleibt über seiner eigenen Tastatur sichtbar. Andere projizierte Bedienelemente werden ausgeblendet, wenn eine Web-Eingabe die Tastatur öffnet. Für Standardbedienelemente gelten die UIKit-eigene Barrierefreiheit und das Verhalten bei reduzierter Bewegung. Vollständige VoiceOver-Navigation ist keine geprüfte Garantie für Gleichwertigkeit.
 
+Native Tabs, einschließlich durchsuchbarer Tabs und Vertical Bars, verwenden die berechnete Vordergrundfarbe der ausgewählten Ionic-Tab-Schaltfläche als native Auswahlfarbe. Sie folgt `--color-selected`, tab-spezifischen Überschreibungen und Änderungen zwischen hellem und dunklem Theme, ohne ein separates RGB-Palettentoken zu benötigen. Ohne ausgewählten Tab oder unterstützte berechnete RGB-Farbe wird die Systemfarbe verwendet. Tab-Leisten mit einer Ionic-`color`-Palette behalten ebenfalls die Systemfarbe: Ihre Web-Kontrastfarbe setzt einen farbigen Hintergrund voraus, den natives Glas nicht nachbildet. Normale und deaktivierte Farben, Beschriftungen und Glashintergründe folgen dem nativen Design; farbige Web-Hintergründe werden nicht nachgebildet.
+
 ## FAB-Verhalten
 
 FABs behalten `activated`, das `show` jedes Kindes, `close()` und die ursprünglichen Klickhandler von Ionic bei. Mehrere Listen, anfängliches Aufklappen, kleine Schaltflächen und `edge` verwenden das vermessene Layout jeder Schaltfläche. Die native Seite bildet die gestaffelte Sichtbarkeit von Ionic ab, ohne einen weiteren Timer oder eine eigene Öffnen-/Schließen-Steuerung hinzuzufügen. Änderungen am Hauptschaltflächensymbol werden mit dem aufgelösten `closeIcon` überblendet. Reduzierte Bewegung deaktiviert diese Überblendung. Native FAB-Schaltflächeninstanzen bleiben über Öffnen-/Schließen-Aktualisierungen hinweg bestehen. Das Quell-FAB bleibt während des normalen Öffnens und Schließens durchgehend projiziert.
@@ -398,7 +402,7 @@ Natives Material und Aussehen der Bedienelemente folgen der laufenden iOS-Versio
 
 Die Unterstützung für iPhone Duo einschließlich eigenständiger Vertical Bars ist ab Version 2.0.0 stabil.
 
-Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
+Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
 
 Vertical Bars verwendet eine SwiftUI-`TabView` und Werkzeugleiste in der Systemseitenleiste. Ionic bleibt Quelle für Beschriftungen, Symbole, Auswahl-/Deaktivierungszustand und Aktionen. Seitenleistenlayout, nativen Fallback und unterstützte Overlays beschreibt [Vertical Bars](vertical-bars.md).
 

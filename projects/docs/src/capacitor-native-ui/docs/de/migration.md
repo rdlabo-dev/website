@@ -1,6 +1,6 @@
 ---
 title: "Migration"
-sourceRevision: "c5e31b375d303760fafac9b9a60184ffdce39307fef4b8aaccb8d48ac70184b6"
+sourceRevision: "56dade2d0de7c58de6a30cf8924f70ebf7d6f6556155049711e2a192b09ee666"
 ---
 
 # Migration
@@ -16,7 +16,7 @@ Native UI wechselt mit Version 2.0.0 von der Vorschau zur offiziellen Unterstüt
 
 ## Aufteilung in ein eigenes Native UI-Paket
 
-Für eine neue native Integration folgen Sie der [Native UI-Einrichtung](setup.md) oder bei vorhandenem iOS-Theme [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md). Die folgenden Schritte behandeln bestehende Anwendungen, die Paketnamen und native Projekte migrieren.
+Für eine neue native Integration folgen Sie der [Native UI-Einrichtung](setup.md) oder bei vorhandenem iOS-Theme [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md). Die folgenden Schritte behandeln bestehende Anwendungen, die Paketnamen und native Projekte migrieren.
 
 Theme und native Bedienelemente liegen jetzt in separaten Paketen. Wählen Sie Abhängigkeiten anhand des verwendeten Verhaltens:
 

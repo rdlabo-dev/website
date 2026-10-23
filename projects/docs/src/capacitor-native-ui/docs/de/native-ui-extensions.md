@@ -1,6 +1,6 @@
 ---
 title: "App-lokale Native UI-Erweiterungen (experimentell)"
-sourceRevision: "4f5e445d0dd8936dea03e80688b1e693e7be49a16d7bf94a02803fa18e2d9fd1"
+sourceRevision: "7a6090c65dcd1aafed1efcdfc7c2c38987b43ee2966696277f6f004cbc9e9b2f"
 ---
 
 # App-lokale Native UI-Erweiterungen (experimentell)
@@ -388,8 +388,8 @@ Elementpositionierung erfordert, dass die Quelle vollständig in den Viewport un
 
 Die Bridge-Bestätigung ist eine Capacitor-Promise-Methode.
 
-Der [Demo-Reader](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/src/native-ui/counter.ts) und die [Demo-SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/ios/App/App/NativeUICounter.swift) zeigen beide Positionen mit app-lokalen Dateien. Öffnen Sie die Native UI-Demoseite, um native Projektion mit ihrem Web-Fallback zu vergleichen.
+Der [Demo-Reader](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/src/native-ui/counter.ts) und die [Demo-SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/ios/App/App/NativeUICounter.swift) zeigen beide Positionen mit app-lokalen Dateien. Öffnen Sie die Native UI-Demoseite, um native Projektion mit ihrem Web-Fallback zu vergleichen.
 
 ## Beispiel: Mini-Player
 
-Der Demo-Mini-Player zeigt dasselbe Muster mit Titelmetadaten und Wiedergabeaktionen: Ein [DOM-Reader mit Web-Fallback](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/src/native-ui/mini-player.ts) wird mit einer [app-lokalen SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/demo/ios/App/App/NativeMiniPlayer.swift) kombiniert. Die Web-App verwaltet Wiedergabezustand und Modal-Darstellung; native `open`- und `toggle`-Aktionen aktivieren ihre ursprünglichen Schaltflächen. Dies ist ein UI-Beispiel, keine Audio-Engine. Passen Sie die Dateien nach Abschluss der obigen Erweiterungseinrichtung an.
+Der Demo-Mini-Player zeigt dasselbe Muster mit Titelmetadaten und Wiedergabeaktionen: Ein [DOM-Reader mit Web-Fallback](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/src/native-ui/mini-player.ts) wird mit einer [app-lokalen SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/demo/ios/App/App/NativeMiniPlayer.swift) kombiniert. Die Web-App verwaltet Wiedergabezustand und Modal-Darstellung; native `open`- und `toggle`-Aktionen aktivieren ihre ursprünglichen Schaltflächen. Dies ist ein UI-Beispiel, keine Audio-Engine. Passen Sie die Dateien nach Abschluss der obigen Erweiterungseinrichtung an.

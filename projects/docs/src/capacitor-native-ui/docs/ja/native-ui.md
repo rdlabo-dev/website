@@ -12,7 +12,7 @@ DOM とネイティブ表示の共有モデルは[投影の仕組み](../README.
 
 ## Native UI を有効にする
 
-iOS テーマを使用中なら[テーマに Native UI を追加する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/add-native-ui.md)に従ってください。その他の Web 外観では [Native UI のセットアップ](setup.md)を使用します。
+iOS テーマを使用中なら[テーマに Native UI を追加する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md)に従ってください。その他の Web 外観では [Native UI のセットアップ](setup.md)を使用します。
 
 Capacitor が検出できるよう、ネイティブパッケージをアプリの直接依存としてインストールします。
 
@@ -147,8 +147,10 @@ Web テーマを維持して iOS Native UI だけを無効にするには、`dat
 | ヘッダー・フッター直下のボタン、単独のツールバー、スクロール内容内のツールバー・ヘッダー | Web 表示を維持。 |
 | FAB | `ion-content` の fixed slot が必須。 |
 | `.ios-theme-vertical-bars` 有効時の戻るボタン | ルーティングされた内容や常設のアプリ Shell を含め、固定ツールバー外でも投影可能。Vertical Bars は `ios` モードを要求しません。 |
-| 折りたたまれたヘッダー、除外されたコントロール、離脱したページ | 対象外。 |
+| condenseヘッダー、除外されたコントロール、離脱したページ | 対象外。 |
 | 最前面の全幅モーダル | Vertical Bars に参加可能。他のオーバーレイ面は固有のレイアウトを維持。 |
+
+配置は `collapse` 属性の有無ではなく、コントロールの構造上の役割で決まります。固定ヘッダーとフッターは `collapse="fade"` があっても対象です。背景をフェードさせても、コントロールがスクロールするわけではありません。`ion-content` 内のヘッダーとフッター、およびcondenseヘッダー（Ionicの大きなタイトルを使うレイアウトで、スクロール側に置く重複ヘッダー）は、固定ツールバーのコントロールを提供しません。固定ヘッダーとcondenseヘッダーが共存する場合、固定ヘッダーの戻るボタンだけが選択されます。Vertical Barsは、ルーティングされた内容や常設のShell内の単独の戻るボタンを引き続き選択できますが、スクロールするヘッダーやフッター内のコントロールが対象になるわけではありません。
 
 投影中のコントロールを対象外の位置に移すと Web 表示に戻り、戻すと再評価します。Vertical Bars を有効にする場所と Ionic コンポーネントのモードはアプリが選択します。
 
@@ -280,6 +282,8 @@ Vertical Bars ではネイティブレールがすべてのタブと選択を維
 
 ネイティブ検索コントローラーは自身のキーボードより上に表示され続けます。Web 入力がキーボードを開く間、他の投影コントロールは非表示です。標準コントロールには UIKit 自身のアクセシビリティーとReduce Motion（視差効果を減らす）が適用されます。VoiceOver 巡回全体の同等性は検証済みの保証ではありません。
 
+検索対応タブやVertical Barsを含むネイティブタブは、選択されたIonicタブボタンの計算済み前景色をネイティブの選択色として使います。別のRGBパレットトークンを用意することなく、`--color-selected`、タブごとの上書き、ライト／ダークテーマの変更に追従します。選択されたタブがない場合や、計算済みの色が対応するRGB形式でない場合は、システムの色を使います。Ionicの `color` パレットを指定したタブバーもシステムの色を維持します。Web側のコントラスト色は色付き背景を前提としていますが、ネイティブのガラス表示はその背景を再現しないためです。通常時・無効時の色、ラベル、ガラス背景はネイティブのデザインに従い、色付きのWeb背景は再現しません。
+
 ## FAB の動作
 
 FAB は Ionic の `activated`、各子の `show`、`close()`、元のクリックハンドラーを維持します。複数リスト、初期展開、小型ボタン、`edge` は各ボタンの計測レイアウトを使います。ネイティブ側は別のタイマーや開閉制御を加えず、Ionic の段階的表示を反映します。主ボタンのアイコン変更は解決済みの `closeIcon` でクロスフェードし、Reduce Motion（視差効果を減らす）では無効です。ネイティブ FAB ボタンのインスタンスは開閉更新を通じて維持し、通常の開閉中もソース FAB の投影を続けます。
@@ -405,7 +409,7 @@ try {
 
 単独の Vertical Bars を含め、iPhone Duo 対応は 2.0.0 から安定版です。
 
-単独の Vertical Control Area エントリーポイント（`@rdlabo/capacitor-native-ui/vertical-bars`）はアプリが提供する Web レイアウトで動作します。テーマの[任意のレールスタイルシート](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` は、iOS 27 の外観全体なしで利用できます。この用途では `enableNativeUI({ controls: 'verticalOnly' })` を呼び、縦領域に配置したコントロールを選択します。すでに `enableNativeUI()` を呼ぶアプリは両方を起動せず、単一ランタイムを維持してください。Shell を使わないアプリのヒンジ状態・分割ペインも含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
+単独の Vertical Control Area エントリーポイント（`@rdlabo/capacitor-native-ui/vertical-bars`）はアプリが提供する Web レイアウトで動作します。テーマの[任意のレールスタイルシート](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css` は、iOS 27 の外観全体なしで利用できます。この用途では `enableNativeUI({ controls: 'verticalOnly' })` を呼び、縦領域に配置したコントロールを選択します。すでに `enableNativeUI()` を呼ぶアプリは両方を起動せず、単一ランタイムを維持してください。Shell を使わないアプリのヒンジ状態・分割ペインも含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
 
 Vertical Bars はシステムレール内で SwiftUI の `TabView` とツールバーを使います。ラベル、アイコン、選択・無効状態、操作の正は引き続き Ionic です。レールのレイアウト、ネイティブのフォールバック、対応オーバーレイは [Vertical Bars](vertical-bars.md)を参照してください。
 

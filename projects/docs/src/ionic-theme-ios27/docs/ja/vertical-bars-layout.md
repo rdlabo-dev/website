@@ -4,7 +4,7 @@ title: Vertical Bars のレイアウト
 
 # Vertical Bars のレイアウト
 
-この任意のテーマスタイルシートは縦向きレール周辺の Web の余白と配置を管理します。iOS 27 の外観全体を読み込まず、既存のテーマと併用できます。ネイティブ描画と状態の同期は、別途 [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/vertical-bars.md) が提供します。
+この任意のテーマスタイルシートは縦向きレール周辺の Web の余白と配置を管理します。iOS 27 の外観全体を読み込まず、既存のテーマと併用できます。ネイティブ描画と状態の同期は、別途 [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md) が提供します。
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
@@ -14,7 +14,7 @@ npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
-以下のレイアウト動作は、このスタイルシートを読み込んだ状態を前提とします。ネイティブランタイムの設定とデバイス上の配置は[連携ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/capacitor-native-ui/docs/ionic-vertical-bars.md)に従ってください。
+以下のレイアウト動作は、このスタイルシートを読み込んだ状態を前提とします。ネイティブランタイムの設定とデバイス上の配置は[連携ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md)に従ってください。
 
 ## 縦向きレールの領域を確保する
 

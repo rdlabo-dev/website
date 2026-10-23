@@ -12,9 +12,9 @@ Ionic アプリの Web UI に iOS 27 の Liquid Glass とアニメーション�
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-settings.png" width="32%" alt="iOS 27 テーマ: Liquid Glass 検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27 テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.1/screenshots/ios27-library.png" width="32%" alt="iOS 27 テーマ: Liquid Glass ボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-settings.png" width="32%" alt="iOS 27 テーマ: Liquid Glass 検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27 テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.2/screenshots/ios27-library.png" width="32%" alt="iOS 27 テーマ: Liquid Glass ボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->

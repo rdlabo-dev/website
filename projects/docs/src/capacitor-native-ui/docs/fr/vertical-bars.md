@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars"
-sourceRevision: "2d6479b0aec18d290085e7dcf1afb45b9c1eef473758ae44729196bd4eb5a680"
+sourceRevision: "b3ac4e0b65db8b409e3bab127acc4db715a286d1b69a48bcec1decab4ee6c632"
 ---
 # Vertical Bars
 
@@ -38,7 +38,7 @@ Sur Capacitor iOS pris en charge, les contrôles admissibles utilisent le rendu 
 
 L’application ou le thème gère espacement Web, positionnement du rail et styles de repli. Le plugin lit la disposition et le placement Ionic fournis ; il ne réserve pas lui-même d’espace au contenu. Avec le thème iOS27, utilisez `setVerticalBarsLayout({ edge, inset })`. Les applications uniquement natives utilisent leur CSS ; aucun utilitaire du thème n’est requis. La disponibilité native provient des métriques de l’appareil, indépendamment de la disposition Web.
 
-La [feuille de style de rail facultative du thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md) fournit une disposition prête à l’emploi. Ses classes et variables n’imposent pas l’installation du package : l’application peut fournir un équivalent. Le runtime utilise actuellement `ios-theme-vertical-bars` sur `ion-app` pour identifier la disposition, quel que soit le fournisseur des styles.
+La [feuille de style de rail facultative du thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) fournit une disposition prête à l’emploi. Ses classes et variables n’imposent pas l’installation du package : l’application peut fournir un équivalent. Le runtime utilise actuellement `ios-theme-vertical-bars` sur `ion-app` pour identifier la disposition, quel que soit le fournisseur des styles.
 
 ## Utiliser avec Capacitor Foldable
 
@@ -88,7 +88,7 @@ Pour une disposition guidée par la charnière, lisez `getFoldState()` et abonne
 
 Sur iOS compatible, ajouter `.ios-theme-vertical-bars` ne change que les contrôles déplacés par le système dans le rail latéral physique. Native UI présente onglets admissibles, retour, boutons de menu et actions via un `TabView` et une barre SwiftUI dès application de la classe. Lorsque l’OS signale un bord — sur iPhone Duo lié à iOS 27.1 ou ultérieur — il doit correspondre au placement appliqué ; sinon le rail reste Web. Sans bord signalé, la projection conserve son repli Web. Une préférence ne peut pas activer un rail natif incompatible. SwiftUI gère placement adaptatif et Liquid Glass ; Ionic reste la source des libellés, icônes, états sélectionné/désactivé, routage, envoi de formulaires et clics.
 
-La surface SwiftUI est découpée et ses interactions limitées au rail système. Le contenu Web reste visible et interactif hors de cette région physique. Le runtime actualise de façon optimiste la sélection avant de transmettre l’action à `ion-tab-button`, avec les mêmes protections d’événements et de révisions périmées que les autres contrôles. Les superpositions suivent la [disposition facultative du rail du thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.1/packages/theme-ios27/docs/vertical-bars-layout.md#reserve-the-vertical-rail) si cette feuille est utilisée ; les dispositions personnalisées relèvent de l’application.
+La surface SwiftUI est découpée et ses interactions limitées au rail système. Le contenu Web reste visible et interactif hors de cette région physique. Le runtime actualise de façon optimiste la sélection avant de transmettre l’action à `ion-tab-button`, avec les mêmes protections d’événements et de révisions périmées que les autres contrôles. Les superpositions suivent la [disposition facultative du rail du thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md#reserve-the-vertical-rail) si cette feuille est utilisée ; les dispositions personnalisées relèvent de l’application.
 
 ### Popovers natifs (Vertical Bars uniquement)
 

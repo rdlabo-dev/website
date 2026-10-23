@@ -932,7 +932,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.1',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.2',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1040,7 +1040,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryBrowseUrl:
       'https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.1',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.2',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',

@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "e2243c16209f9bd7b2d7e7c92948ffa42ad9c050f59038e3e956debee29f5502"
+sourceRevision: d83a47dda256a943a2c907b4684df2e0d793112642917e846fcb98901236d8a5
 ---
 
 # Native UI
@@ -13,7 +13,7 @@ Die [Funktionsweise der Projektion](../README.md#how-projection-works) beschreib
 
 ## Native UI aktivieren
 
-Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
+Sie verwenden bereits das iOS-Theme? Folgen Sie [Native UI zum Theme hinzufügen](/ionic-theme-ios27/docs/add-native-ui). Für andere Web-Darstellungen verwenden Sie die [Native UI-Einrichtung](setup.md).
 
 Installieren Sie das native Paket als direkte Anwendungsabhängigkeit, damit Capacitor es erkennen kann:
 
@@ -55,6 +55,12 @@ Weder Registrierung je Seite noch Komponentenliste, nativer Callback oder Swift-
 Diese Funktion muss ausdrücklich aktiviert werden. Der gewöhnliche Theme-Einstiegspunkt `@rdlabo/ionic-theme-ios27` importiert Capacitor nicht. Native Laufzeiteinstiegspunkte benötigen `@capacitor/core`, auch in Browser-Builds. Capacitor-Sync erkennt und erstellt native Quellen weiterhin, wenn `@rdlabo/capacitor-native-ui` eine direkte Abhängigkeit eines Capacitor-Projekts ist, selbst wenn die Anwendung `enableNativeUI()` nicht aufruft.
 
 Die native helle/dunkle Darstellung wird aus dem berechneten Stil jedes Quellelements aufgelöst. Theme-Vererbung, Priorität, laufende Aktualisierungen und gemeinsames Vertical Bars-Verhalten beschreibt [Helle und dunkle Darstellung](appearance.md).
+
+## Wiederherstellung der Verbindung
+
+Unterstützende iOS-Binärdateien teilen eine einzige Verbindungsprüfung zwischen gewöhnlichen Bedienelementen, Vertical Bars, Erweiterungen und nativen Popovern. Solange das Dokument sichtbar ist, läuft sie einmal pro Sekunde ohne Layoutmessung. Sie prüft die native Sitzung, die bestätigte Revision, angehängte Flächen und Ereignisabonnements, auch während ein Overlay Seitenaktualisierungen zurückhält.
+
+Verlorene Abonnements werden ohne doppelte Callbacks ersetzt. Verlorener nativer Zustand wird aus dem aktuellen Web-Zustand rekonstruiert; Klicks, Formularübermittlungen und Erweiterungsaktionen werden nie erneut ausgeführt. Verbindungsprüfungen laufen nacheinander mit einem Timeout von fünf Sekunden; ein Timeout bricht die zugrunde liegende Bridge-Anfrage nicht ab. Drei aufeinanderfolgende fehlgeschlagene Prüfungen beenden die native Projektion und stellen Web-Rendering wieder her, auch wenn die Aktualisierungssynchronisierung bereits auf eine Wiederverbindung wartet. Eine erfolgreiche Prüfung setzt diesen Fehlerzähler zurück. Nach wiederholten Aktualisierungsfehlern erlaubt eine erfolgreiche Verbindungsprüfung einen weiteren Synchronisierungsversuch; ein anhaltender Aktualisierungsfehler erhält den bestehenden Web-Fallback, statt Aktualisierungen unbegrenzt erneut zu versuchen. Ältere Binärdateien behalten ihr bisheriges Verhalten für Ereignisse und Aktualisierungswiederholungen.
 
 ## Werkzeugleistenauswahl und Gruppierung
 
@@ -199,7 +205,7 @@ Menüschaltflächen verwenden das aufgelöste Standardsymbol oder konfigurierte 
 
 ### Tab-Geometrie und Zustandsaktualisierungen
 
-Das DOM bestimmt Beschriftungen, SVG-Inhalte, Position, ausgewählte Werte und Anwendungsverhalten. `ion-tab-bar` selbst ist die Positionsreferenz; UIKit bestimmt innere Abstände und die Größe der Glasfläche.
+Das DOM bestimmt Beschriftungen, SVG-Inhalte, Position, ausgewählte Werte und Anwendungsverhalten. `ion-tab-bar` selbst ist die Positionsreferenz; UIKit bestimmt innere Abstände und die Größe der Glasfläche. Nach der Projektion wendet die Laufzeit die gemessene native Breite auf die Web-Leiste an und behält sie beim Web-Fallback bei. Layoutanfragen verwenden weiterhin die ursprüngliche CSS-Breite, damit wiederholte Projektion die Leiste nicht schrittweise verkleinert. Änderungen an Viewport, Platzierung und Quelle machen die Messung ungültig; das Zerstören der Laufzeit stellt das ursprüngliche CSS wieder her. Ältere native Binärdateien, die keine Breiten melden, behalten die Größen des Themes bei.
 
 | Quelle oder Viewport | Natives Verhalten |
 | --- | --- |
@@ -215,7 +221,8 @@ Die Standard-Zielwerte der Web-Theme-Darstellung sind:
 
 | Messgröße | Zielwert |
 | --- | --- |
-| Viewport mindestens 768px breit, 2 / 3 / 4 / 5 Tabs | Breiten der Glasfläche etwa 188 / 274 / 336 / 414pt. Kleinere Viewports behalten Telefongrößen. |
+| 2 / 3 Tabs | Mindestbreiten der Glasfläche etwa 188 / 274pt; lange Beschriftungen vergrößern sie innerhalb der verfügbaren Viewport-Breite. |
+| Viewport mindestens 768px breit, 4 / 5 Tabs | Breiten der Glasfläche etwa 336 / 414pt. Kleinere Viewports behalten Telefongrößen. |
 | Leistenhöhe | 62pt |
 | Auswahlhöhe / Einrückung | 54pt / 4pt |
 | Benachbarte Schaltflächen | Überlappen wie UIKit-Bedienelemente. |
@@ -320,7 +327,7 @@ Native Projektion wird erst wieder aufgenommen, wenn alle Overlays geschlossen s
 
 Beim Entfernen nativer Elemente wird die Quelle wiederhergestellt und darf gezeichnet werden, bevor ihre native Abdeckung entfernt wird. Beim Übernehmen wird die Quelle erst nach einer erfolgreichen und aktuellen nativen Antwort ausgeblendet. Verzögerte Antworten werden für jedes Bedienelement erneut geprüft: Bereits geeignete Bedienelemente behalten ihre native Abdeckung, während Inhaltsaktualisierungen nachziehen. Nur entfernte oder ungeeignete Quellen kehren ins Web zurück; neu übernommene Quellen benötigen eine exakte Bestätigung. Gewöhnliche Seitenänderungen rufen nie die globale Löschoperation auf. UIKit-Tab-Instanzen und -Elemente bleiben erhalten; identische Rahmen und Auswahlen werden nicht erneut angewendet. Doppelte oder veraltete Aktivierungen werden verworfen. WebKit und UIKit rendern weiterhin getrennt. Die Implementierung vermeidet absichtlich leere Frames, bietet jedoch keine Garantie für atomare Komposition auf Betriebssystemebene. Prüfen Sie eigene Übergänge und Overlays vor der Einführung auf den von der Anwendung unterstützten Simulatoren. Unbekannte Overlay-Systeme fallen nicht unter den Vertrag der automatischen Integration.
 
-Schlägt ein Bridge-Update fehl oder läuft in einen Timeout, endet native Projektion und Web-Rendering wird wiederhergestellt. Es erfolgt keine automatische Wiederverbindung. `getStatus().reason` meldet den Fehler; bei aktivem Web-Fallback meldet das öffentliche Handle `state: 'web'`, nicht `stopped`. Für einen bewussten Neuversuch rufen Sie am Handle `destroy()` und anschließend erneut `enableNativeUI()` auf.
+Nach einem fehlgeschlagenen Bridge-Update hält die Laufzeit die Verbindung aufrecht und versucht die Zustandssynchronisierung einmal mit dem neuesten DOM erneut. Klicks und Anwendungsaktionen werden nicht erneut ausgeführt. Gewöhnliche erfolgreiche Aktualisierungen behalten die Snapshot-Deduplizierung bei. Der Neuversuch kann den Fallback um einen zusätzlichen Aktualisierungsversuch verzögern; jedes Bridge-Update hat einen Timeout von fünf Sekunden, während ein umschließender Navigations-Flush seine bestehende Frist von fünf Sekunden behält. Bei Binärdateien mit gemeinsamer Verbindungswiederherstellung wartet ein fehlgeschlagener Neuversuch oder eine Revisionsabweichung auf einen erfolgreichen Handshake, bevor ein weiterer Synchronisierungsversuch erfolgt; drei aufeinanderfolgende fehlgeschlagene Handshakes oder eine weitere fehlgeschlagene Synchronisierung stellen Web-Rendering wieder her. Ältere Binärdateien stellen Web-Rendering unmittelbar nach dem fehlgeschlagenen Neuversuch oder einer Revisionsabweichung wieder her. Auch eine abgelaufene Navigationsfrist beendet die native Projektion. Nach dem Beenden erfolgt keine automatische Wiederverbindung. `getStatus().reason` meldet den Fehler; bei aktivem Web-Fallback meldet das öffentliche Handle `state: 'web'`, nicht `stopped`. Für einen bewussten Neuversuch rufen Sie am Handle `destroy()` und anschließend erneut `enableNativeUI()` auf.
 
 Fehler oder Timeouts notwendiger Start-Bridge-Aufrufe liefern ein Web-Fallback-Handle. Optionale WebView-Metriken dürfen fehlschlagen, ohne native Bedienelemente zu deaktivieren. `destroy()` wartet auf die Bereinigung; wiederholte Aufrufe teilen deren Abschluss. Eine während laufender Bereinigung angeforderte neue Aktivierung wartet darauf, auch wenn die Anwendung `destroy()` ohne await aufruft. Warten Sie auf diese Promises, wenn der nächste Anwendungsschritt von der Bereinigung abhängt, und behandeln Sie Ablehnungen.
 
@@ -360,6 +367,8 @@ Dieselbe Option ist über `enableVerticalControlArea()` verfügbar. Verwenden Si
 Kehren Vertical Bars zum Web-Rendering zurück, vermisst die Laufzeit vor ihrer Auflösung die aktuellen nativen Zurückschaltflächen, Werkzeugleistenaktionen und Tab-Flächen. Der Web-Fallback verwendet diese Rechtecke und zeichnet vor der nativen Entfernung. Messungen sind an Quellelemente und Viewport gebunden; fehlen sie, gilt das CSS-Layout. Dies gleicht Position und Größe an, doch Web-Glas und Symbolrendering können weiterhin von Systemmaterialien abweichen.
 
 Die nativen Bedienelemente der Seite bleiben während Vorbereitung, Darstellung und Schließen projiziert. Akzeptiert derselbe native Anker während Ionics Schließvorgang einen Tipp, wird eine Aktivierung behalten und nach der Bereinigung erneut geprüft; wiederholte Tipps werden zusammengefasst. Die Weiterleitung bereitet ihre untergeordnete WebView während Ionics Inhaltsinitialisierung vor, schließt die Web-Eintrittsanimation ohne Bewegung hinter dem versteckten Quellhost ab und stellt über das standardmäßige SwiftUI-Popover der Schaltfläche dar. Sie ändert weder Größe noch Elternstruktur der Quell-WebView. Ionic behält Controller, Lebenszyklus, aktive Anwendungshandler und Schließdaten; der aktive Inhalt wandert vorübergehend ins untergeordnete Dokument und wird bei der Bereinigung zurückgeführt.
+
+Native Popover nehmen an der oben beschriebenen gemeinsamen Verbindungswiederherstellung teil. Ein nicht empfangenes natives Schließereignis wird mit Ionic abgeglichen. Geht die Darstellung verloren, während Ionic sie weiterhin benötigt (auch bei `backdropDismiss: false`), verbindet der Adapter denselben aktiven Inhalt erneut, ohne die Öffnungsaktion zu wiederholen. Ein nicht verfügbarer Anker stellt den Web-Inhalt wieder her und gibt zurückgehaltene Bedienelemente frei.
 
 Es wird jeweils nur ein Popover weitergeleitet. Ein im untergeordneten Dokument erzeugtes verschachteltes Popover oder Modal wird vor dessen Schließen als aktives Element ins Quelldokument verschoben, einschließlich außerhalb des weitergeleiteten Inhalts angehängter Overlays. Es läuft mit seinen Handlern und Schließdaten als Web-Overlay weiter; sein Darstellungsereignis wird nicht wiederholt. Ein weiteres Overlay oder Menü, Seitenwechsel, Shell-Aussetzung oder Verlust des nativen Layouts stellt Web-Rendering wieder her. Modal-, Sheet- und Alert-Weiterleitung gehören nicht zu dieser Funktion.
 
@@ -402,7 +411,7 @@ Natives Material und Aussehen der Bedienelemente folgen der laufenden iOS-Versio
 
 Die Unterstützung für iPhone Duo einschließlich eigenständiger Vertical Bars ist ab Version 2.0.0 stabil.
 
-Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
+Der eigenständige Vertical Control Area-Einstiegspunkt (`@rdlabo/capacitor-native-ui/vertical-bars`) arbeitet mit anwendungsseitigem Web-Layout. Das Theme-Paket bietet ein [optionales Seitenleisten-Stylesheet](/ionic-theme-ios27/docs/vertical-bars-layout), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, das ohne die vollständige iOS-27-Darstellung nutzbar ist. Rufen Sie dafür `enableNativeUI({ controls: 'verticalOnly' })` auf; die Standardauswahl zielt auf Bedienelemente im vertikalen Bereich. Apps, die bereits `enableNativeUI()` aufrufen, sollten diese eine Laufzeit behalten, statt beide zu starten. [Gerätelayout und Split Panes](/ionic-theme-ios27/docs/vertical-bars-layout) beschreibt die vollständige Einrichtung, einschließlich Scharnierstellung und Split-Pane-Layout für Apps ganz ohne diese Shell.
 
 Vertical Bars verwendet eine SwiftUI-`TabView` und Werkzeugleiste in der Systemseitenleiste. Ionic bleibt Quelle für Beschriftungen, Symbole, Auswahl-/Deaktivierungszustand und Aktionen. Seitenleistenlayout, nativen Fallback und unterstützte Overlays beschreibt [Vertical Bars](vertical-bars.md).
 

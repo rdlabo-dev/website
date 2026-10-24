@@ -1658,7 +1658,7 @@ test('publishes separate theme and Native UI guides with current package APIs', 
     [ionicThemeIos27En, nativeUiEn, ''],
     [ionicThemeIos27Ja, nativeUiJa, '/ja'],
   ] as const) {
-    assert.equal(theme.version, '2.0.2');
+    assert.equal(theme.version, '2.0.3');
     assert.equal(native.version, theme.version);
     assert.equal(native.packageName, '@rdlabo/capacitor-native-ui');
     assert.equal(native.pages.find((page) => page.slug === 'native-ui')!.title, 'Native UI');

@@ -1,12 +1,12 @@
 ---
 title: "Configurer Native UI dans une application Ionic"
-sourceRevision: "07b9851866dd4b90e5db1d8f9d9467dd7e54d01c1ea14da5d27114601f3e435d"
+sourceRevision: 3c32723db2b04648d1433ab6cb39619e8dab35055d6006dfd2a93e4ae53b1534
 ---
 # Configurer Native UI dans une application Ionic
 
 Conservez votre apparence Web et affichez nativement les contrôles Ionic compatibles sur iOS. Ce guide ne nécessite pas les feuilles de style du thème iOS.
 
-Vous utilisez déjà le thème iOS 27 ? Suivez [Ajouter Native UI à votre thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md). Sans Ionic, suivez plutôt la [configuration HTML](framework-independent.md).
+Vous utilisez déjà le thème iOS 27 ? Suivez [Ajouter Native UI à votre thème](/ionic-theme-ios27/docs/add-native-ui). Sans Ionic, suivez plutôt la [configuration HTML](framework-independent.md).
 
 Consultez d’abord le [fonctionnement de la projection](../README.md#how-projection-works) si vous découvrez Native UI. Ce guide relie vos contrôles Ionic existants à cette présentation.
 

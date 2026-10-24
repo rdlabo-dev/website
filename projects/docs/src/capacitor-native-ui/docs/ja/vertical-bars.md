@@ -38,7 +38,7 @@ Ionic は[標準設定](ionic-vertical-bars.md)に従います。レール CSS�
 
 Web の余白、レール配置、フォールバックのスタイルはアプリかテーマが管理します。プラグインは提供された Ionic レイアウトと配置を読み、自身では Web コンテンツの領域を確保しません。iOS27 テーマでは `setVerticalBarsLayout({ edge, inset })` を使います。ネイティブのみのアプリは独自 CSS を使い、テーマヘルパーは不要です。ネイティブの利用可否は Web レイアウトとは独立してデバイスメトリクスから取得します。
 
-[任意のテーマのレールスタイルシート](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md)は完成済みのレイアウトを提供します。クラスや CSS 変数の利用にテーマパッケージの導入は必須ではなく、アプリが同等のレイアウトを実装できます。現在のランタイムはスタイルの提供元に関係なく、`ion-app` の `ios-theme-vertical-bars` でレールレイアウトを識別します。
+[任意のテーマのレールスタイルシート](/ionic-theme-ios27/docs/vertical-bars-layout)は完成済みのレイアウトを提供します。クラスや CSS 変数の利用にテーマパッケージの導入は必須ではなく、アプリが同等のレイアウトを実装できます。現在のランタイムはスタイルの提供元に関係なく、`ion-app` の `ios-theme-vertical-bars` でレールレイアウトを識別します。
 
 ## Capacitor Foldable と併用する
 
@@ -88,7 +88,7 @@ Web レイアウト更新とネイティブの利用可否を分離してくだ�
 
 対応 iOS では `.ios-theme-vertical-bars` が変えるのはシステムが物理的なサイドレールへ移すコントロールだけです。クラス適用後、対象のタブ、戻る操作、メニューボタン、ツールバー操作を SwiftUI の `TabView` とツールバーで表示します。OS がレール edge を報告する場合（iOS 27.1 以降にリンクした iPhone Duo）、適用済みの配置と一致する必要があります。不一致やデバイスからの edge がなければ Web フォールバックを維持します。配置の希望値で非対応のネイティブレールを有効にはできません。SwiftUI が適応配置と Liquid Glass の外観を管理し、ラベル、アイコン、選択・無効状態、ルーティング、フォーム送信、クリックハンドラーは Ionic を正とします。
 
-SwiftUI の面はシステムレール内でクリップ・ヒットテストされます。その物理領域の外の Web 内容は表示・操作を維持します。ランタイムは元の `ion-tab-button` へ転送する前にタブ選択を先行更新し、他のネイティブコントロールと同じイベント・古いリビジョン対策を使います。オーバーレイは使用時に[任意のテーマレールレイアウト](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md#reserve-the-vertical-rail)に従い、独自レイアウトはアプリが管理します。
+SwiftUI の面はシステムレール内でクリップ・ヒットテストされます。その物理領域の外の Web 内容は表示・操作を維持します。ランタイムは元の `ion-tab-button` へ転送する前にタブ選択を先行更新し、他のネイティブコントロールと同じイベント・古いリビジョン対策を使います。オーバーレイは使用時に[任意のテーマレールレイアウト](/ionic-theme-ios27/docs/vertical-bars-layout#reserve-the-vertical-rail)に従い、独自レイアウトはアプリが管理します。
 
 ### ネイティブポップオーバー（Vertical Bars のみ）
 

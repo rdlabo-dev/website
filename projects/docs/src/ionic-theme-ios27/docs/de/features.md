@@ -1,6 +1,6 @@
 ---
 title: "Funktionen"
-sourceRevision: "ca9e70202f746ec210d577177059d7b8f96a8287aa69cdec05a3c35940ac0f33"
+sourceRevision: 300d42b266dcc159c7503d5c859c6635d2e12fede351fe71919753380106099d
 ---
 
 # Funktionen

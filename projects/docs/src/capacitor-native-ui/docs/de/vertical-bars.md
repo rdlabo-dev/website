@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars"
-sourceRevision: "b3ac4e0b65db8b409e3bab127acc4db715a286d1b69a48bcec1decab4ee6c632"
+sourceRevision: 692105738a7f4a3877baed82ffe0c24438aff3645fe32403dcf1294b2d17e5ce
 ---
 
 # Vertical Bars
@@ -39,7 +39,7 @@ Unter unterstütztem Capacitor iOS werden geeignete Bedienelemente nativ mit Swi
 
 Anwendung oder Theme verantworten Web-Abstände, Seitenleistenposition und Fallback-Stile. Das Plugin liest das bereitgestellte Ionic-Layout und die Position; es reserviert selbst keinen Platz für Web-Inhalte. Verwenden Sie mit dem iOS27-Theme dessen Helfer `setVerticalBarsLayout({ edge, inset })`. Rein native Anwendungen verwenden eigenes CSS; kein Theme-Helfer nötig. Native Verfügbarkeit stammt unabhängig vom Web-Layout aus Gerätemetriken.
 
-Das [optionale Seitenleisten-Stylesheet des Themes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) liefert ein fertiges Layout. Seine Klassen und CSS-Variablen zwingen nicht zur Installation des Theme-Pakets: Anwendungen können ein gleichwertiges Layout selbst liefern. Die Laufzeit erkennt das Seitenleistenlayout derzeit anhand von `ios-theme-vertical-bars` auf `ion-app`, unabhängig vom Anbieter der Stile.
+Das [optionale Seitenleisten-Stylesheet des Themes](/ionic-theme-ios27/docs/vertical-bars-layout) liefert ein fertiges Layout. Seine Klassen und CSS-Variablen zwingen nicht zur Installation des Theme-Pakets: Anwendungen können ein gleichwertiges Layout selbst liefern. Die Laufzeit erkennt das Seitenleistenlayout derzeit anhand von `ios-theme-vertical-bars` auf `ion-app`, unabhängig vom Anbieter der Stile.
 
 ## Mit Capacitor Foldable verwenden
 
@@ -89,7 +89,7 @@ Lesen Sie für scharnierabhängiges Inhaltslayout separat `getFoldState()` und a
 
 Unter unterstützten iOS-Versionen ändert `.ios-theme-vertical-bars` nur Bedienelemente, die das System in die physische Seitenleiste versetzt. Native UI stellt geeignete Tabs, Zurücknavigation, Menüschaltflächen und Werkzeugleistenaktionen nach dem Anwenden der Klasse über eine SwiftUI-`TabView` und Werkzeugleiste dar. Meldet das OS eine Seitenleistenkante — auf iPhone Duo mit Verknüpfung gegen iOS 27.1 oder neuer —, muss diese zur angewendeten Position passen; eine abweichende Meldung belässt die Seitenleiste im Web. Ohne vom Gerät gemeldete Kante bleibt der Web-Fallback. Eine Positionspräferenz aktiviert keine nicht unterstützte native Seitenleiste. SwiftUI bestimmt adaptive Position und Liquid Glass-Darstellung; Ionic bleibt Quelle für Beschriftungen, Symbole, Auswahl-/Deaktivierungszustand, Routing, Formularübermittlung und Klickhandler.
 
-Die SwiftUI-Fläche wird auf die Systemseitenleiste zugeschnitten und nur dort auf Treffer geprüft. Web-Inhalt bleibt außerhalb dieses physischen Bereichs sichtbar und interaktiv. Die Laufzeit aktualisiert die Tab-Auswahl optimistisch, bevor sie die Aktion an das ursprüngliche `ion-tab-button` weiterleitet, mit demselben Ereignis- und Schutz vor veralteten Revisionen wie andere native Bedienelemente. Bei Verwendung des optionalen Stylesheets folgt das Overlay-Layout dem [Theme-Seitenleistenlayout](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md#reserve-the-vertical-rail); eigene Layouts bleiben Aufgabe der Anwendung.
+Die SwiftUI-Fläche wird auf die Systemseitenleiste zugeschnitten und nur dort auf Treffer geprüft. Web-Inhalt bleibt außerhalb dieses physischen Bereichs sichtbar und interaktiv. Die Laufzeit aktualisiert die Tab-Auswahl optimistisch, bevor sie die Aktion an das ursprüngliche `ion-tab-button` weiterleitet, mit demselben Ereignis- und Schutz vor veralteten Revisionen wie andere native Bedienelemente. Bei Verwendung des optionalen Stylesheets folgt das Overlay-Layout dem [Theme-Seitenleistenlayout](/ionic-theme-ios27/docs/vertical-bars-layout#reserve-the-vertical-rail); eigene Layouts bleiben Aufgabe der Anwendung.
 
 ### Native Popover (nur Vertical Bars)
 

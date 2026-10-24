@@ -74,11 +74,11 @@ iOS の `ion-tab-bar` にクラスを指定して、セーフエリア内でバ�
 
 単独の Vertical Bars を含め、iPhone Duo 対応は 2.0.0 から安定版です。
 
-iPhone Duo の縦向きシステムレール、ヒンジの状態、折りたたみ状態に応じた分割ペインのレイアウトは、iOS 27 テーマや Native UI 全体から独立しています。投影ランタイムなしでのデバイスレイアウト監視を含む設定は[デバイスレイアウトと分割ペイン](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md)を参照してください。
+iPhone Duo の縦向きシステムレール、ヒンジの状態、折りたたみ状態に応じた分割ペインのレイアウトは、iOS 27 テーマや Native UI 全体から独立しています。投影ランタイムなしでのデバイスレイアウト監視を含む設定は[デバイスレイアウトと分割ペイン](/ionic-theme-ios27/docs/vertical-bars-layout)を参照してください。
 
-レールのレイアウトクラス、コントロールの対象条件、ネイティブボタンの外観は [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md)を参照してください。
+レールのレイアウトクラス、コントロールの対象条件、ネイティブボタンの外観は [Vertical Bars](/capacitor-native-ui/docs/vertical-bars)を参照してください。
 
-既存のテーマを維持した単独セットアップは[既存のテーマで iPhone Duo に対応する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md)を参照してください。
+既存のテーマを維持した単独セットアップは[既存のテーマで iPhone Duo に対応する](/capacitor-native-ui/docs/ionic-vertical-bars)を参照してください。
 
 ## 2 行のインセットリスト項目
 

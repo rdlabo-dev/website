@@ -1,6 +1,6 @@
 ---
 title: "Configurer Native UI"
-sourceRevision: "b5121d82d91e64768d6e707cd76d775b409ee118d8e3d12938bd0a19225715ba"
+sourceRevision: 6ae131fbc838b94e4a275911b28a910c3249ae733ea66dfa93d601ec76dac5e1
 ---
 # Configurer Native UI
 

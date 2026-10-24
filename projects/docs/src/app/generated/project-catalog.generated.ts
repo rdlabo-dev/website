@@ -420,7 +420,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "iOS 27 styling, motion, and Web layout for Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -512,7 +512,7 @@ export const PROJECTS_EN = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Native controls for Ionic and HTML apps, with Web-owned state and events.",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -2251,7 +2251,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Ionic向けのiOS 27スタイル、アニメーション、Webレイアウト。",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -2343,7 +2343,7 @@ export const PROJECTS_JA = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Web側の状態とイベントを維持する、Ionic／HTMLアプリ向けのNative UI。",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -4082,7 +4082,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Styles, animations et disposition Web iOS 27 pour Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -4174,7 +4174,7 @@ export const PROJECTS_FR = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Contrôles natifs pour Ionic et HTML, avec état et événements gérés par le Web.",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -5913,7 +5913,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "iOS-27-Stile, Animationen und Web-Layout für Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -6005,7 +6005,7 @@ export const PROJECTS_DE = [
     "repositoryBrowseUrl": "https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Native Bedienelemente für Ionic und HTML mit Zustand und Ereignissen im Web.",
     "path": "/projects/capacitor-native-ui",
     "pages": [

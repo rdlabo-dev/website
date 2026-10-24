@@ -1,6 +1,6 @@
 ---
 title: "iOS-26-, iOS-27- und MD3-Themes verwenden"
-sourceRevision: "ac1e37e77410d613fcfbe1a547ac8a3f7bf020bbef0a8f95e5449908c4dae56b"
+sourceRevision: 5a844ab11008cd1c9a36cb9bca3555a9698674b567a43a3c1219f3fb0f05cbfc
 ---
 # iOS-26-, iOS-27- und MD3-Themes verwenden
 

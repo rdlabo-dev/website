@@ -1,6 +1,6 @@
 ---
 title: "Spezielles Markup und Klassen"
-sourceRevision: "65a973d7965cb24465fca814455c9cce1e4e500aa621532eeca227f0ba8ebecd"
+sourceRevision: 4f333586b0d06b73d82d1d1e4bf0fce76c4a9cc20f92bd2b8f4ad4f4f51a90bf
 ---
 
 # Spezielles Markup und Klassen
@@ -75,11 +75,11 @@ Diese Klassen verschieben kein separates `ion-fab`. Planen Sie bei der Wahl der 
 
 Die Unterstützung für iPhone Duo einschließlich eigenständiger Vertical Bars ist ab Version 2.0.0 stabil.
 
-Die Unterstützung für iPhone Duo — vertikale Systemleiste, Scharnierstellung und davon abhängiges Split-Pane-Layout — ist unabhängig vom iOS-27-Theme und der vollständigen Native UI. [Gerätelayout und Split Panes](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) beschreibt die vollständige Einrichtung einschließlich Gerätelayout-Überwachung ohne Projektionslaufzeit.
+Die Unterstützung für iPhone Duo — vertikale Systemleiste, Scharnierstellung und davon abhängiges Split-Pane-Layout — ist unabhängig vom iOS-27-Theme und der vollständigen Native UI. [Gerätelayout und Split Panes](/ionic-theme-ios27/docs/vertical-bars-layout) beschreibt die vollständige Einrichtung einschließlich Gerätelayout-Überwachung ohne Projektionslaufzeit.
 
-Informationen zu Layoutklassen, geeigneten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertical Bars](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md).
+Informationen zu Layoutklassen, geeigneten Bedienelementen und dem Aussehen nativer Schaltflächen finden Sie unter [Vertical Bars](/capacitor-native-ui/docs/vertical-bars).
 
-Die eigenständige Einrichtung unter Beibehaltung Ihres Themes beschreibt [iPhone Duo mit Ihrem bestehenden Theme](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
+Die eigenständige Einrichtung unter Beibehaltung Ihres Themes beschreibt [iPhone Duo mit Ihrem bestehenden Theme](/capacitor-native-ui/docs/ionic-vertical-bars).
 
 ## Zweizeilige Elemente in eingerückten Listen
 

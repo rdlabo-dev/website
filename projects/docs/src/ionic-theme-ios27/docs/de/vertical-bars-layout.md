@@ -1,10 +1,10 @@
 ---
 title: "Vertical Bars-Layout"
-sourceRevision: "d44ef6bac3a446d8c851aace15b7206a32031020192bc565a309a994b4d0d204"
+sourceRevision: 28dd1a470ba3540ff383b9b9a080f755664b36711e54561ddf3d8b75a812cfad
 ---
 # Vertical Bars-Layout
 
-Dieses optionale Theme-Stylesheet übernimmt Web-Abstände und Positionierung um eine vertikale Seitenleiste. Es lässt sich mit Ihrem bestehenden Theme verwenden, ohne die vollständige iOS-27-Darstellung zu laden. Natives Rendering und Zustandssynchronisierung stellt separat [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md) bereit.
+Dieses optionale Theme-Stylesheet übernimmt Web-Abstände und Positionierung um eine vertikale Seitenleiste. Es lässt sich mit Ihrem bestehenden Theme verwenden, ohne die vollständige iOS-27-Darstellung zu laden. Natives Rendering und Zustandssynchronisierung stellt separat [Capacitor Native UI](/capacitor-native-ui/docs/vertical-bars) bereit.
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
@@ -14,7 +14,7 @@ npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
-Das folgende Layoutverhalten setzt dieses Stylesheet voraus. Für die native Laufzeit und Geräteposition folgen Sie der [Integrationsanleitung](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
+Das folgende Layoutverhalten setzt dieses Stylesheet voraus. Für die native Laufzeit und Geräteposition folgen Sie der [Integrationsanleitung](/capacitor-native-ui/docs/ionic-vertical-bars).
 
 ## Die vertikale Leiste reservieren
 
@@ -35,6 +35,12 @@ Die Klassen sind physisch — `-left` bezeichnet immer den physischen linken Ran
 | Nur Klassen, einschließlich Chrome-Vorschauen | `80px`; kein natives Plugin erforderlich. |
 | `setVerticalBarsLayout({ edge, inset })` | Der angegebene Abstand, auch unter `80px`. |
 | Eigene CSS-Vorschau | Überschreiben Sie `--ios-theme-vertical-bars-safe-area-left` oder `--ios-theme-vertical-bars-safe-area-right`. |
+
+### Platzierung der Web-Werkzeugleiste
+
+Die Web-Seitenleiste verwendet auch ohne native Geometrie das Werkzeugleistenlayout des iPhone Duo: einen oberen Ursprung bei 170px, quadratische Bedienelemente mit 48px Seitenlänge, 4px zwischen Bedienelementen einer Gruppe und 12px zwischen Gruppen. Bedienelemente liegen mindestens 24px vom physischen Rand entfernt oder mittig in der reservierten Seitenleiste, wenn dies einen größeren Versatz erfordert. Diese Vorgaben gelten auch für Bedienelemente im Hintergrund hinter einem Sheet-Modal. Eine Zurück-Schaltfläche belegt den Platz eines Bedienelements, gefolgt vom Gruppenabstand.
+
+`--ios-theme-vertical-bars-toolbar-top` überschreibt den oberen Ursprung. Die Positionierung modaler Werkzeugleisten berücksichtigt weiterhin den Sheet-Versatz. Verfügbare native Messwerte haben Vorrang vor diesen Web-Vorgaben.
 
 ### Inhalts- und Overlay-Layout
 

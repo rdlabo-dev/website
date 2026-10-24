@@ -4,7 +4,7 @@ title: Vertical Bars のレイアウト
 
 # Vertical Bars のレイアウト
 
-この任意のテーマスタイルシートは縦向きレール周辺の Web の余白と配置を管理します。iOS 27 の外観全体を読み込まず、既存のテーマと併用できます。ネイティブ描画と状態の同期は、別途 [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md) が提供します。
+この任意のテーマスタイルシートは縦向きレール周辺の Web の余白と配置を管理します。iOS 27 の外観全体を読み込まず、既存のテーマと併用できます。ネイティブ描画と状態の同期は、別途 [Capacitor Native UI](/capacitor-native-ui/docs/vertical-bars) が提供します。
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
@@ -14,7 +14,7 @@ npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
-以下のレイアウト動作は、このスタイルシートを読み込んだ状態を前提とします。ネイティブランタイムの設定とデバイス上の配置は[連携ガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md)に従ってください。
+以下のレイアウト動作は、このスタイルシートを読み込んだ状態を前提とします。ネイティブランタイムの設定とデバイス上の配置は[連携ガイド](/capacitor-native-ui/docs/ionic-vertical-bars)に従ってください。
 
 ## 縦向きレールの領域を確保する
 
@@ -35,6 +35,12 @@ CSS とネイティブ描画は物理座標を扱うため、クラスも物理�
 | Chrome プレビューを含む、クラスだけの指定 | `80px`。ネイティブプラグインは不要。 |
 | `setVerticalBarsLayout({ edge, inset })` | 指定したインセット。`80px` 未満でも適用。 |
 | 独自 CSS のプレビュー | `--ios-theme-vertical-bars-safe-area-left` または `--ios-theme-vertical-bars-safe-area-right` を上書き。 |
+
+### Web ツールバーの配置
+
+Web レールは、ネイティブのジオメトリがなくても iPhone Duo のツールバーレイアウトを使います。上端の基準位置は 170px、コントロールは 48px 四方、グループ内のコントロール間は 4px、グループ間は 12px です。コントロールは物理的な端から少なくとも 24px 離して配置し、予約したレールの中央に置くためにより大きなオフセットが必要な場合は中央に配置します。これらの既定値はシートモーダル背後のコントロールにも適用します。戻るボタンはコントロール 1 個分の領域を使い、その後にグループ間の間隔を設けます。
+
+`--ios-theme-vertical-bars-toolbar-top` で上端の基準位置を上書きできます。モーダルのツールバー配置では引き続きシートのオフセットを考慮します。ネイティブの計測値が利用できる場合は、これらの Web の既定値より優先します。
 
 ### コンテンツとオーバーレイのレイアウト
 

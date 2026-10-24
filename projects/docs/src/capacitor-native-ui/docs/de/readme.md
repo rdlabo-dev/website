@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "5b1080643e44c921f2c200442ac1c0a89719126504e28243ae2092df43c2817a"
+sourceRevision: 4484dc8e981ab5849c82ee0b4400cbf6959e5a026bad2c478d18078ab1583ccc
 ---
 # Capacitor Native UI
 

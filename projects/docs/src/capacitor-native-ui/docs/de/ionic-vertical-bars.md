@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars hinzufügen und das Theme behalten"
-sourceRevision: "3614362737e0cbb33b34c6c1595926ac77eaa98b14d77f8c218e39948863bf68"
+sourceRevision: 50766d325ac41dedc16a00c2f38f848fdb7a517c96b6873cceae558d21835a85
 ---
 
 # Vertical Bars hinzufügen und das Theme behalten

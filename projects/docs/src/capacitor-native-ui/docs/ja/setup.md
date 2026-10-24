@@ -6,7 +6,7 @@ title: Ionic アプリで Native UI をセットアップする
 
 既存の Web 外観を維持し、対応する Ionic コントロールを iOS でネイティブ描画します。このガイドに iOS テーマのスタイルシートは不要です。
 
-iOS 27 テーマを使用中なら[テーマに Native UI を追加する](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md)を参照してください。Ionic がなければ [HTML 設定](framework-independent.md)を使用します。
+iOS 27 テーマを使用中なら[テーマに Native UI を追加する](/ionic-theme-ios27/docs/add-native-ui)を参照してください。Ionic がなければ [HTML 設定](framework-independent.md)を使用します。
 
 Native UI が初めてなら[投影の仕組み](../README.md#how-projection-works)から読んでください。このガイドは既存の Ionic コントロールをその表示へ接続します。
 

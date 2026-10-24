@@ -1,6 +1,6 @@
 ---
 title: "Ajouter Native UI à votre thème"
-sourceRevision: "a9909ada19ace5edc87271c464f3195938dadab5aefd3d5b499bc0e37b111c8f"
+sourceRevision: 8e6c0dea9827316d87519226cd6ce439b7156f5411c429a78ba814a14754a5cd
 ---
 # Ajouter Native UI à votre thème
 

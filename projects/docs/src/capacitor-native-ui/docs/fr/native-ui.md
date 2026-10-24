@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "e2243c16209f9bd7b2d7e7c92948ffa42ad9c050f59038e3e956debee29f5502"
+sourceRevision: d83a47dda256a943a2c907b4684df2e0d793112642917e846fcb98901236d8a5
 ---
 # Native UI
 
@@ -12,7 +12,7 @@ Consultez le [fonctionnement de la projection](../README.md#how-projection-works
 
 ## Activer Native UI
 
-Vous utilisez déjà le thème iOS ? Suivez [Ajouter Native UI à votre thème](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/add-native-ui.md). Pour d’autres apparences Web, utilisez la [configuration Native UI](setup.md).
+Vous utilisez déjà le thème iOS ? Suivez [Ajouter Native UI à votre thème](/ionic-theme-ios27/docs/add-native-ui). Pour d’autres apparences Web, utilisez la [configuration Native UI](setup.md).
 
 Installez le package natif comme dépendance directe pour que Capacitor le découvre :
 
@@ -54,6 +54,12 @@ Aucun enregistrement par page, liste de composants, callback natif ou contrôleu
 Cette fonctionnalité s’active explicitement. Le point d’entrée ordinaire du thème `@rdlabo/ionic-theme-ios27` n’importe pas Capacitor. Les points d’entrée natifs nécessitent `@capacitor/core`, y compris dans les compilations navigateur. Capacitor détecte et compile tout de même les sources natives lors de la synchronisation si `@rdlabo/capacitor-native-ui` est une dépendance directe du projet, même sans appel à `enableNativeUI()`.
 
 L’apparence native claire/sombre est résolue depuis le style calculé de chaque source. Consultez [Apparence claire et sombre](appearance.md) pour l’héritage du thème, les priorités, les mises à jour à chaud et le comportement partagé de Vertical Bars.
+
+## Rétablissement de la connexion
+
+Les binaires iOS compatibles partagent un seul contrôle de connexion entre les contrôles ordinaires, Vertical Bars, les extensions et les popovers natifs. Tant que le document est visible, ce contrôle s’exécute une fois par seconde sans mesurer la disposition. Il vérifie la session native, la révision confirmée, les surfaces attachées et les abonnements aux événements, même lorsqu’une superposition retient les mises à jour de la page.
+
+Les abonnements perdus sont remplacés sans dupliquer les callbacks. L’état natif perdu est reconstruit à partir de l’état Web actuel ; les clics, soumissions et actions d’extension ne sont jamais rejoués. Les contrôles de connexion s’exécutent en série avec un délai d’expiration de cinq secondes ; l’expiration n’annule pas la requête sous-jacente du pont. Trois échecs consécutifs arrêtent la projection native et restaurent le rendu Web, même si la synchronisation attend déjà une reconnexion. Un contrôle réussi remet ce compteur à zéro. Après des échecs de mise à jour répétés, un contrôle de connexion réussi autorise une nouvelle synchronisation ; une erreur de mise à jour persistante maintient le repli Web existant au lieu de réessayer indéfiniment. Les anciens binaires conservent leur comportement existant pour les événements et les nouvelles tentatives de mise à jour.
 
 ## Sélection et groupement dans la barre d’outils
 
@@ -206,7 +212,7 @@ Les boutons de menu utilisent l’icône par défaut ou configurée résolue par
 
 ### Géométrie des onglets et mises à jour d’état
 
-Le DOM gère libellés, SVG, placement, valeurs sélectionnées et comportement applicatif. `ion-tab-bar` est la référence de placement ; UIKit gère les marges internes et le dimensionnement du plateau.
+Le DOM gère libellés, SVG, placement, valeurs sélectionnées et comportement applicatif. `ion-tab-bar` est la référence de placement ; UIKit gère les marges internes et le dimensionnement du plateau. Après la projection, le runtime applique la largeur native mesurée à la barre Web et la conserve pendant le repli Web. Les demandes de disposition utilisent toujours la largeur CSS d’origine, ce qui évite que des projections répétées rétrécissent progressivement la barre. Les changements de fenêtre, de placement ou de source invalident la mesure ; détruire le runtime restaure le CSS d’origine. Les anciens binaires natifs qui ne rapportent pas les largeurs conservent les dimensions du thème.
 
 | Source ou fenêtre | Comportement natif |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -222,7 +228,8 @@ Les cibles d’apparence standard du thème Web sont :
 
 | Mesure | Cible |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| Fenêtre d’au moins 768px, 2 / 3 / 4 / 5 onglets | Largeurs proches de 188 / 274 / 336 / 414pt respectivement. Les fenêtres plus petites gardent les dimensions téléphone. |
+| 2 / 3 onglets | Largeurs minimales du plateau proches de 188 / 274pt, augmentant pour les libellés longs dans la largeur disponible de la fenêtre. |
+| Fenêtre d’au moins 768px, 4 / 5 onglets | Largeurs du plateau proches de 336 / 414pt respectivement. Les fenêtres plus petites gardent les dimensions téléphone. |
 | Hauteur de barre | 62pt |
 | Hauteur de sélection / retrait | 54pt / 4pt |
 | Boutons adjacents | Se chevauchent comme les contrôles UIKit. |
@@ -327,7 +334,7 @@ La projection native reprend seulement après fermeture de toutes les superposit
 
 Pendant le retrait, la source est restaurée et peut se dessiner avant le retrait de sa couverture native. Pendant l’acquisition, la source n’est masquée qu’après une réponse native réussie et actuelle. Les réponses retardées sont revalidées par contrôle : les contrôles admissibles existants conservent leur couverture native pendant le rattrapage des mises à jour de contenu. Seules les sources supprimées ou inadmissibles reviennent au Web ; les sources nouvellement acquises exigent un accusé de réception exact. Les mutations ordinaires de page n’appellent jamais l’opération globale d’effacement. Les instances et éléments d’onglets UIKit sont conservés, et les cadres ou sélections identiques ne sont pas réappliqués. Les activations en double ou périmées sont ignorées. WebKit et UIKit rendent toujours séparément : l’implémentation évite une image volontairement vide, sans garantir une composition atomique au niveau du système. Validez les transitions et superpositions personnalisées sur les simulateurs pris en charge par l’application avant le déploiement ; les systèmes de superposition inconnus ne relèvent pas du contrat d’intégration automatique.
 
-Si une mise à jour du pont échoue ou expire, la projection native s’arrête et le Web est restauré. Elle ne se reconnecte pas automatiquement. `getStatus().reason` indique l’échec ; tant que le repli Web est actif, le handle public indique `state: 'web'`, pas `stopped`. Pour réessayer explicitement, appelez `destroy()` sur ce handle, puis à nouveau `enableNativeUI()`.
+Après un échec de mise à jour du pont, le runtime conserve la connexion et réessaie une fois la synchronisation avec le DOM le plus récent. Il ne rejoue ni les clics ni les actions de l’application. Les mises à jour ordinaires réussies conservent la déduplication des instantanés. Cette nouvelle tentative peut retarder le repli d’une tentative de mise à jour supplémentaire ; chaque mise à jour du pont expire après cinq secondes, tandis que le flush de navigation englobant conserve son échéance existante de cinq secondes. Sur les binaires prenant en charge le rétablissement partagé de la connexion, une nouvelle tentative échouée ou une révision incohérente attend une négociation réussie avant une dernière tentative de synchronisation ; trois négociations échouées consécutives ou un nouvel échec de synchronisation restaurent le rendu Web. Les anciens binaires restaurent immédiatement le rendu Web après l’échec de la nouvelle tentative ou une révision incohérente. L’expiration de l’échéance de navigation arrête également la projection native. Une fois arrêtée, elle ne se reconnecte pas automatiquement. `getStatus().reason` indique l’échec ; tant que le repli Web est actif, le handle public indique `state: 'web'`, pas `stopped`. Pour réessayer explicitement, appelez `destroy()` sur ce handle, puis à nouveau `enableNativeUI()`.
 
 Un échec ou délai dépassé des appels obligatoires de démarrage retourne un handle de repli Web. Les métriques WebView facultatives peuvent échouer sans désactiver les contrôles natifs. `destroy()` attend le nettoyage ; les appels répétés partagent son achèvement. Une activation demandée pendant le nettoyage l’attend, même si l’application n’a pas attendu `destroy()`. Attendez ces promesses lorsque l’opération suivante dépend du nettoyage et gérez les rejets.
 
@@ -367,6 +374,8 @@ La même option existe via `enableVerticalControlArea()`. Utilisez un `ion-popov
 Lorsque Vertical Bars redevient Web, le runtime mesure les surfaces natives actuelles du retour, des actions et des onglets avant leur retrait. Le repli Web utilise ces rectangles et s’affiche avant suppression native. Les mesures sont liées aux sources et à la fenêtre ; si elles sont indisponibles, le CSS s’applique. Cela aligne placement et taille, mais le verre et les icônes Web peuvent différer des matériaux système.
 
 Les contrôles natifs de la page restent projetés pendant préparation, présentation et fermeture. Si la même ancre native accepte un toucher pendant la fermeture Ionic, une activation est conservée puis revalidée après nettoyage ; les touchers répétés sont regroupés. Le relais prépare sa WebView enfant pendant l’initialisation Ionic du contenu, termine sans mouvement l’animation Web d’entrée derrière l’hôte source masqué et présente via le popover SwiftUI standard du bouton. Il ne redimensionne ni ne déplace la WebView source. Ionic conserve contrôleur, cycle de vie, gestionnaires actifs et données de fermeture ; le contenu actif passe temporairement dans le document enfant et est restauré au nettoyage.
+
+Les popovers natifs participent au rétablissement partagé de la connexion décrit ci-dessus. Une fermeture native non reçue est réconciliée avec Ionic. Si la présentation disparaît alors qu’Ionic la demande encore (y compris avec `backdropDismiss: false`), l’adaptateur reconnecte le même contenu vivant sans rejouer l’action d’ouverture. Une ancre indisponible restaure le contenu Web et libère les contrôles retenus.
 
 Un seul popover est relayé à la fois. Un popover imbriqué ou une modale créée dans le document enfant est retransféré comme élément actif au document source avant fermeture de l’enfant, y compris les superpositions ajoutées hors du contenu relayé. Il continue comme superposition Web avec gestionnaires et données ; son événement de présentation n’est pas rejoué. Ouvrir une autre superposition ou un menu, quitter la page, suspendre le shell ou perdre la disposition native restaure le Web. Le relais de modales, feuilles et alertes n’est pas couvert.
 
@@ -409,7 +418,7 @@ Le matériau et l’apparence des contrôles natifs suivent la version d’iOS e
 
 La prise en charge d’iPhone Duo, y compris Vertical Bars autonome, est stable à partir de la version 2.0.0.
 
-Le point d’entrée autonome Vertical Control Area (`@rdlabo/capacitor-native-ui/vertical-bars`) fonctionne avec une disposition Web fournie par l’application. Le thème propose une [feuille de style de rail facultative](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, utilisable sans toute l’apparence iOS 27. Appelez `enableNativeUI({ controls: 'verticalOnly' })` pour ce cas ; sa sélection par défaut vise les contrôles de la zone verticale. Une application appelant déjà `enableNativeUI()` doit conserver ce runtime unique plutôt que démarrer les deux. Consultez [Disposition de l’appareil et panneaux divisés](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/theme-ios27/docs/vertical-bars-layout.md) pour la configuration complète, y compris posture de charnière et panneaux pour les applications n’utilisant pas ce shell.
+Le point d’entrée autonome Vertical Control Area (`@rdlabo/capacitor-native-ui/vertical-bars`) fonctionne avec une disposition Web fournie par l’application. Le thème propose une [feuille de style de rail facultative](/ionic-theme-ios27/docs/vertical-bars-layout), `@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css`, utilisable sans toute l’apparence iOS 27. Appelez `enableNativeUI({ controls: 'verticalOnly' })` pour ce cas ; sa sélection par défaut vise les contrôles de la zone verticale. Une application appelant déjà `enableNativeUI()` doit conserver ce runtime unique plutôt que démarrer les deux. Consultez [Disposition de l’appareil et panneaux divisés](/ionic-theme-ios27/docs/vertical-bars-layout) pour la configuration complète, y compris posture de charnière et panneaux pour les applications n’utilisant pas ce shell.
 
 Vertical Bars utilise un `TabView` et une barre d’outils SwiftUI dans le rail système. Ionic reste la source des libellés, icônes, états sélectionné/désactivé et actions. Consultez [Vertical Bars](vertical-bars.md) pour la disposition du rail, le repli natif et les superpositions prises en charge.
 

@@ -1,10 +1,10 @@
 ---
 title: "Disposition Vertical Bars"
-sourceRevision: "d44ef6bac3a446d8c851aace15b7206a32031020192bc565a309a994b4d0d204"
+sourceRevision: 28dd1a470ba3540ff383b9b9a080f755664b36711e54561ddf3d8b75a812cfad
 ---
 # Disposition Vertical Bars
 
-Cette feuille de style facultative du thème gère l’espacement et le positionnement Web autour d’un rail vertical. Elle peut accompagner votre thème existant sans charger toute l’apparence iOS 27. Le rendu natif et la synchronisation d’état sont fournis séparément par [Capacitor Native UI](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/vertical-bars.md).
+Cette feuille de style facultative du thème gère l’espacement et le positionnement Web autour d’un rail vertical. Elle peut accompagner votre thème existant sans charger toute l’apparence iOS 27. Le rendu natif et la synchronisation d’état sont fournis séparément par [Capacitor Native UI](/capacitor-native-ui/docs/vertical-bars).
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
@@ -14,7 +14,7 @@ npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 @use '@rdlabo/ionic-theme-ios27/dist/css/vertical-bars.css';
 ```
 
-Le comportement décrit ci-dessous suppose que cette feuille est chargée. Pour configurer le runtime natif et le placement sur l’appareil, suivez le [guide d’intégration](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.2/packages/capacitor-native-ui/docs/ionic-vertical-bars.md).
+Le comportement décrit ci-dessous suppose que cette feuille est chargée. Pour configurer le runtime natif et le placement sur l’appareil, suivez le [guide d’intégration](/capacitor-native-ui/docs/ionic-vertical-bars).
 
 ## Réserver le rail vertical
 
@@ -35,6 +35,12 @@ Les classes sont physiques — `-left` désigne toujours le bord gauche physique
 | Classes seules, y compris les aperçus Chrome | `80px` ; aucun plugin natif requis. |
 | `setVerticalBarsLayout({ edge, inset })` | Le retrait fourni, même inférieur à `80px`. |
 | Aperçu CSS personnalisé | Remplacez `--ios-theme-vertical-bars-safe-area-left` ou `--ios-theme-vertical-bars-safe-area-right`. |
+
+### Placement de la barre d’outils Web
+
+Le rail Web utilise la disposition de la barre d’outils d’iPhone Duo même sans géométrie native : un point de départ vertical situé à 170px du haut, des contrôles carrés de 48px, 4px entre les contrôles d’un groupe et 12px entre les groupes. Les contrôles se placent à au moins 24px du bord physique, ou au centre du rail réservé si cela exige un décalage plus grand. Ces valeurs par défaut s’appliquent aussi aux contrôles en arrière-plan derrière une modale de type sheet. Un bouton de retour occupe l’espace d’un contrôle, suivi de l’espacement entre groupes.
+
+`--ios-theme-vertical-bars-toolbar-top` remplace l’origine supérieure. Le positionnement de la barre d’outils modale continue de tenir compte du décalage de la sheet. Lorsqu’elles sont disponibles, les mesures natives priment sur ces valeurs Web par défaut.
 
 ### Disposition du contenu et des superpositions
 

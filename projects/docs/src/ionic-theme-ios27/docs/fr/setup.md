@@ -1,6 +1,6 @@
 ---
 title: "Configurer le thème iOS 27"
-sourceRevision: "2c661e490b0f5bdc897f6007f9ed5b35bec22f3ef2ab2ded123fb256dd635471"
+sourceRevision: 8a9782df49bd648a7aeb643c58ad6f10e3caaca346f8eacbd902375ff18215bb
 ---
 # Configurer le thème iOS 27
 

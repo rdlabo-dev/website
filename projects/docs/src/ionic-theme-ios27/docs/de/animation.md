@@ -1,6 +1,6 @@
 ---
 title: "Animation"
-sourceRevision: "165b184fd4cd2f23315982e52bcd68ea1061be29e4fbe39be0f4029a50c2715d"
+sourceRevision: 165b184fd4cd2f23315982e52bcd68ea1061be29e4fbe39be0f4029a50c2715d
 ---
 
 # Animation

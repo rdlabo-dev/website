@@ -28,6 +28,55 @@ export const PROJECT_CATEGORIES_EN = [
 
 export const PROJECTS_EN = [
   {
+    "id": "webview-native-ui-engine",
+    "slug": "webview-native-ui-engine",
+    "shortName": "WebView Native UI Engine",
+    "packageName": "@webview-native-ui/engine",
+    "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "category": "developer-tools",
+    "icon": "app",
+    "version": "0.0.1",
+    "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
+    "path": "/projects/webview-native-ui-engine",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/readme"
+      },
+      {
+        "title": "Capacitor plugin integration",
+        "navTitle": "Capacitor plugin integration",
+        "slug": "capacitor-plugin",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+      },
+      {
+        "title": "Cordova plugin integration",
+        "navTitle": "Cordova plugin integration",
+        "slug": "cordova-plugin",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Projection behavior and advanced integration",
+        "navTitle": "Projection behavior and advanced integration",
+        "slug": "projection",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/projection"
+      },
+      {
+        "title": "Development and releases",
+        "navTitle": "Development and releases",
+        "slug": "maintenance",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/maintenance"
+      }
+    ]
+  },
+  {
     "id": "cf-workers-native",
     "slug": "cf-workers-native",
     "shortName": "cf-workers-native",
@@ -1858,6 +1907,55 @@ export const PROJECT_CATEGORIES_JA = [
 ] as const;
 
 export const PROJECTS_JA = [
+  {
+    "id": "webview-native-ui-engine",
+    "slug": "webview-native-ui-engine",
+    "shortName": "WebView Native UI Engine",
+    "packageName": "@webview-native-ui/engine",
+    "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "category": "developer-tools",
+    "icon": "app",
+    "version": "0.0.1",
+    "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
+    "path": "/projects/webview-native-ui-engine",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/readme"
+      },
+      {
+        "title": "Capacitorプラグインへの組み込み",
+        "navTitle": "Capacitorプラグインへの組み込み",
+        "slug": "capacitor-plugin",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+      },
+      {
+        "title": "Cordovaプラグインへの組み込み",
+        "navTitle": "Cordovaプラグインへの組み込み",
+        "slug": "cordova-plugin",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "投影の動作と高度な組み込み",
+        "navTitle": "投影の動作と高度な組み込み",
+        "slug": "projection",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/projection"
+      },
+      {
+        "title": "開発とリリース",
+        "navTitle": "開発とリリース",
+        "slug": "maintenance",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/maintenance"
+      }
+    ]
+  },
   {
     "id": "cf-workers-native",
     "slug": "cf-workers-native",
@@ -3690,6 +3788,55 @@ export const PROJECT_CATEGORIES_FR = [
 
 export const PROJECTS_FR = [
   {
+    "id": "webview-native-ui-engine",
+    "slug": "webview-native-ui-engine",
+    "shortName": "WebView Native UI Engine",
+    "packageName": "@webview-native-ui/engine",
+    "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "category": "developer-tools",
+    "icon": "app",
+    "version": "0.0.1",
+    "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
+    "path": "/projects/webview-native-ui-engine",
+    "pages": [
+      {
+        "title": "Premiers pas",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/readme"
+      },
+      {
+        "title": "Intégration dans un plugin Capacitor",
+        "navTitle": "Intégration dans un plugin Capacitor",
+        "slug": "capacitor-plugin",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+      },
+      {
+        "title": "Intégration dans un plugin Cordova",
+        "navTitle": "Intégration dans un plugin Cordova",
+        "slug": "cordova-plugin",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Comportement de projection et intégration avancée",
+        "navTitle": "Comportement de projection et intégration avancée",
+        "slug": "projection",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/projection"
+      },
+      {
+        "title": "Développement et publications",
+        "navTitle": "Développement et publications",
+        "slug": "maintenance",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/maintenance"
+      }
+    ]
+  },
+  {
     "id": "cf-workers-native",
     "slug": "cf-workers-native",
     "shortName": "cf-workers-native",
@@ -5520,6 +5667,55 @@ export const PROJECT_CATEGORIES_DE = [
 ] as const;
 
 export const PROJECTS_DE = [
+  {
+    "id": "webview-native-ui-engine",
+    "slug": "webview-native-ui-engine",
+    "shortName": "WebView Native UI Engine",
+    "packageName": "@webview-native-ui/engine",
+    "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "category": "developer-tools",
+    "icon": "app",
+    "version": "0.0.1",
+    "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
+    "path": "/projects/webview-native-ui-engine",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/readme"
+      },
+      {
+        "title": "Integration in ein Capacitor-Plugin",
+        "navTitle": "Integration in ein Capacitor-Plugin",
+        "slug": "capacitor-plugin",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+      },
+      {
+        "title": "Integration in ein Cordova-Plugin",
+        "navTitle": "Integration in ein Cordova-Plugin",
+        "slug": "cordova-plugin",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Projektionsverhalten und erweiterte Integration",
+        "navTitle": "Projektionsverhalten und erweiterte Integration",
+        "slug": "projection",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/projection"
+      },
+      {
+        "title": "Entwicklung und Veröffentlichungen",
+        "navTitle": "Entwicklung und Veröffentlichungen",
+        "slug": "maintenance",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/maintenance"
+      }
+    ]
+  },
   {
     "id": "cf-workers-native",
     "slug": "cf-workers-native",

@@ -26,6 +26,7 @@ import {
   fetchEnglishProjectMarkdown,
   fetchEnglishProjectReadme,
   repositorySourceLabel,
+  repositoryRawUrl,
 } from './package-repository';
 import {
   apiAnchorFragments,
@@ -343,6 +344,7 @@ type ResolvedPageSource = {
   importedMarkdown?: boolean;
   repositoryUrl: string;
   repositoryPath?: string;
+  repositoryRef?: string;
 };
 
 async function resolvePageSource(
@@ -356,14 +358,15 @@ async function resolvePageSource(
     const srcPath = srcDocsPath(project, locale, file);
     const content = await readFile(srcPath, 'utf8');
     let importedMarkdown = false;
+    let english: ResolvedPageSource | undefined;
     if (requiresDocsTranslationReview(locale)) {
-      const english = await resolvePageSource(project, 'en', page, repositoryCache);
+      english = await resolvePageSource(project, 'en', page, repositoryCache);
       importedMarkdown = english.fromPackage;
       assertReviewedDocsTranslation(english.content, content, relative(root, srcPath), {
         api: page.slug === 'api',
       });
     } else if (locale !== 'en' && project.sourceHeadingAliases?.includes(locale)) {
-      const english = await resolvePageSource(project, 'en', page, repositoryCache);
+      english = await resolvePageSource(project, 'en', page, repositoryCache);
       importedMarkdown = english.fromPackage;
     }
     return {
@@ -371,7 +374,9 @@ async function resolvePageSource(
       sourcePath: srcPath,
       fromPackage: false,
       importedMarkdown,
-      repositoryUrl: project.repositoryUrl,
+      repositoryUrl: english?.repositoryUrl ?? project.repositoryUrl,
+      repositoryPath: english?.repositoryPath,
+      repositoryRef: english?.repositoryRef,
     };
   }
 
@@ -386,6 +391,7 @@ async function resolvePageSource(
     fromPackage: true,
     repositoryUrl: fetched.repositoryUrl,
     repositoryPath: fetched.repositoryPath,
+    repositoryRef: fetched.repositoryRef,
   };
 }
 
@@ -429,6 +435,7 @@ async function generateProject(
     fromPackage: boolean;
     importedMarkdown?: boolean;
     repositoryPath?: string;
+    repositoryRef?: string;
     repositoryUrl: string;
     annotateDocgen: boolean;
   };
@@ -501,6 +508,7 @@ async function generateProject(
       fromPackage: resolved.fromPackage,
       importedMarkdown,
       repositoryPath: resolved.repositoryPath,
+      repositoryRef: resolved.repositoryRef,
       repositoryUrl: resolved.repositoryUrl,
       annotateDocgen: false,
     });
@@ -518,6 +526,7 @@ async function generateProject(
         sourcePath: resolved.sourcePath,
         fromPackage: resolved.fromPackage,
         repositoryPath: resolved.repositoryPath,
+        repositoryRef: resolved.repositoryRef,
         repositoryUrl: resolved.repositoryUrl,
         annotateDocgen: true,
       };
@@ -558,6 +567,7 @@ async function generateProject(
               ),
           fromPackage: !reviewedLocale,
           repositoryPath: readme.repositoryPath,
+          repositoryRef: readme.repositoryRef,
           repositoryUrl: readme.repositoryUrl,
           annotateDocgen: true,
         };
@@ -581,6 +591,7 @@ async function generateProject(
     fromPackage,
     importedMarkdown,
     repositoryPath,
+    repositoryRef,
     repositoryUrl,
     annotateDocgen,
   } of sourcePages) {
@@ -612,6 +623,15 @@ async function generateProject(
       locale,
     ).replace('loading="lazy"', 'loading="eager" fetchpriority="high"');
     const htmlDocument = new JSDOM(html).window.document;
+    if (repositoryPath && repositoryRef) {
+      const sourceUrl = repositoryRawUrl(repositoryUrl, repositoryRef, repositoryPath);
+      for (const image of htmlDocument.querySelectorAll('img[src]')) {
+        const src = image.getAttribute('src')!;
+        if (src && !/^(?:[a-z][a-z0-9+.-]*:|\/|#)/i.test(src)) {
+          image.setAttribute('src', new URL(src, sourceUrl).href);
+        }
+      }
+    }
     if (
       fromPackage ||
       importedMarkdown ||

@@ -1,5 +1,16 @@
 /** Reviewed French translations keyed by the exact English manifest text. */
 export const METADATA_FR: Readonly<Record<string, string>> = {
+  'WebView Native UI Engine': 'WebView Native UI Engine',
+  'Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.':
+    'Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.',
+  'Bring Web UI above the native layer': 'Placez l’interface Web au-dessus de la couche native',
+  'Coordinate native controls and Web content across scrolling screens, transitions, and overlays on iOS and Android. Integrate the Engine into your plugin while retaining its renderer and public API. The API is pre-1.0.':
+    'Coordonnez les contrôles natifs et le contenu Web lors du défilement, des transitions et des superpositions sur iOS et Android. Intégrez l’Engine à votre plugin en conservant son moteur de rendu et son API publique. L’API est encore en version pré-1.0.',
+  'Capacitor plugin integration': 'Intégration dans un plugin Capacitor',
+  'Cordova plugin integration': 'Intégration dans un plugin Cordova',
+  'Projection behavior and advanced integration':
+    'Comportement de projection et intégration avancée',
+  'Development and releases': 'Développement et publications',
   'Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.':
     'Intégrez vos applications Cloudflare Workers à des applications iOS et Android existantes, ou créez une nouvelle application mobile avec Capacitor.',
   'Reuse your pages, routes, and application logic in UIKit, SwiftUI, Android, or Capacitor apps. Keep your backend and secrets on Workers, and choose which supported public routes run on the device.':

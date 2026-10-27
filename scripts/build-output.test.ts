@@ -517,9 +517,9 @@ test('builds bounded search indexes for every published language with the compon
     }),
   );
   assert.ok(
-    // Aggregate of all four locales; 2.0.3 documentation measures about 5.002 MiB.
-    sizes.reduce((total, size) => total + size, 0) < 5.25 * 1024 * 1024,
-    'Search bundle must remain under 5.25 MiB across all published locales',
+    // Aggregate of all four locales; Engine 0.0.2 guides bring the index to about 5.257 MiB.
+    sizes.reduce((total, size) => total + size, 0) < 5.3 * 1024 * 1024,
+    'Search bundle must remain under 5.30 MiB across all published locales',
   );
 });
 

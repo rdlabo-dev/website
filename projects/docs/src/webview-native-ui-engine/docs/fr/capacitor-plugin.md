@@ -1,6 +1,6 @@
 ---
 title: "Intégration dans un plugin Capacitor"
-sourceRevision: "34d439dbd54f7cf32b83f712c6edd5d58ad5609f62c3ba8d8b15a7e8779cd22d"
+sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
 ---
 # Intégration dans un plugin Capacitor
 
@@ -261,3 +261,10 @@ Les noms des exemples sont des conventions de votre choix, pas des méthodes ré
 Fournissez pour chaque enregistrement un conteneur DOM mis en page dans la couche destinée à sa projection Web. Il peut être inséré après l’enregistrement. Le plugin reste responsable du placement et du dimensionnement de la vue native ; l’Engine ne crée ni ne dimensionne aucune des deux vues à votre place.
 
 Lisez les [exigences DOM et surfaces natives](projection.md#dom-and-native-surface-requirements) avant d’intégrer des éléments personnalisés, du contenu SDK ou plusieurs surfaces. Le suivi du défilement et le transfert d’image sont internes à l’enregistrement. Pour les applications Ionic, activez éventuellement la [prise en charge des superpositions Ionic](projection.md#ionic-overlay-support-optional) une seule fois au démarrage. Les autres frameworks émettent les notifications de projection configurées depuis leur propre cycle de vie de transitions et de superpositions.
+
+## Contrôles natifs animés
+
+Lors d’une mise à jour de l’apparence native, les images de remplacement sont préparées par défaut après un délai de debounce de 50 ms.
+Si votre contrôle continue de s’animer après sa notification de mise à jour, définissez `captureDelayMs` lors de l’enregistrement natif (Swift : `captureDelayMs: 600` ; Kotlin : `captureDelayMs = 600`).
+Ce réglage modifie la préparation des images en arrière-plan, et non le moment où l’overlay est présenté.
+Consultez le [délai de capture](projection.md#capture-timing) pour comprendre le comportement du cache et les recommandations issues des mesures.

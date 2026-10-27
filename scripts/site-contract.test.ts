@@ -1733,7 +1733,9 @@ test('Engine guides keep shared source images and localized navigation in every 
   const definition = projectDefinitions.find(
     (project) => project.id === 'webview-native-ui-engine',
   );
-  assert.ok(definition?.englishDocsRef);
+  assert.ok(definition);
+  const version = installedVersion(definition.packageName);
+  const sourceRef = definition.englishDocsRef ?? `v${version}`;
   for (const locale of ['en', 'ja', 'fr', 'de']) {
     const { PROJECT: project } = await import(
       `../projects/docs/src/app/generated/projects/webview-native-ui-engine.${locale}.generated.ts`
@@ -1743,7 +1745,7 @@ test('Engine guides keep shared source images and localized navigation in every 
     const dom = new JSDOM(page.html);
     assert.equal(
       dom.window.document.querySelector('img')?.getAttribute('src'),
-      `https://raw.githubusercontent.com/webview-native-ui/engine/${definition.englishDocsRef}/docs/assets/hero.png`,
+      `https://raw.githubusercontent.com/webview-native-ui/engine/${sourceRef}/docs/assets/hero.png`,
     );
     for (const slug of ['capacitor-plugin', 'cordova-plugin', 'projection', 'maintenance']) {
       assert.ok(

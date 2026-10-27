@@ -1,6 +1,6 @@
 ---
 title: "Comportement de projection et intégration avancée"
-sourceRevision: "d7edb1b9a6bf5a60f33d8b90c498f2111b2f224d933230a3b55aab9542cfe207"
+sourceRevision: "3d4a4c5b9fe0d7e909cd9761a2dcc898b28c8253e0e28ac8f343b8e02707f82a"
 ---
 # Comportement de projection et intégration avancée
 
@@ -259,3 +259,21 @@ Un plugin qui mesure et envoie normalement le placement natif à chaque défilem
 - Libérez la liaison au détachement d’un hôte. La propriété de session empêche la confirmation retardée d’un ancien enregistrement d’effacer l’état de projection du nouveau. Pause, visibilité définie par l’auteur et changements de disposition doivent toujours utiliser les parcours habituels de visibilité/invalidation du plugin.
 
 Cette option ne modifie pas les enregistrements sans `updatePlacement`. Android refuse `updatePlacement` sauf si `captureMode = CaptureMode.VIEW` ; vidéo en direct et autres captures non admissibles continuent le suivi du placement natif avec `failedFallback = NATIVE`.
+
+## Délai de capture
+
+`captureDelayMs` est un paramètre d’enregistrement facultatif commun à Capacitor et Cordova.
+Sa valeur par défaut est de **50 millisecondes** sur iOS, Android et dans les options de bas niveau de `createWebProjection`.
+Les valeurs doivent être finies et positives ou nulles. Ce paramètre utilise le debounce existant : une nouvelle mise à jour ou interaction relance la préparation une fois l’activité stabilisée.
+Il n’ajoute pas de second minuteur et ne retarde pas la présentation de l’overlay.
+
+Tant que les pixels de remplacement ne sont pas prêts, la dernière image terminée reste disponible.
+Si aucune image n’est terminée, le repli Web habituel s’applique.
+L’ouverture d’un overlay pendant le délai de debounce n’attend pas une nouvelle capture.
+Par conséquent, augmenter ce délai allonge aussi la période pendant laquelle l’apparence précédente peut être utilisée après une mise à jour.
+
+Pour les **animations de sélection Liquid Glass de UITabBar, une valeur de départ recommandée est de 600 ms**.
+Lors de comparaisons sur les simulateurs iPhone sous iOS 27.0 et Duo sous iOS 27.1, 50 ms capturaient une sélection agrandie, 300 ms conservaient encore une légère variation résiduelle, et 600 ms correspondaient à l’apparence stabilisée observée à 1000 ms.
+Cette recommandation concerne cette interaction ; il ne s’agit ni d’une garantie de durée d’Apple, ni d’une durée universelle pour Liquid Glass.
+Mesurez la sélection, la resélection et les mises à jour successives de votre contrôle avant de choisir une valeur.
+Un contenu qui change en continu ne garantit pas de snapshot stabilisé.

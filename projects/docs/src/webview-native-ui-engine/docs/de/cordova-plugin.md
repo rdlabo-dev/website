@@ -1,6 +1,6 @@
 ---
 title: "Integration in ein Cordova-Plugin"
-sourceRevision: "da57d4ae47d9d0bc67002a2b696f9d592810ed85e54cf60ec51f487c54479a97"
+sourceRevision: "b9c7dbc4c2b9f20415a214817f7c002e4cd9de3db914149ed6bd3ed59f7a00c9"
 ---
 # Integration in ein Cordova-Plugin
 
@@ -192,3 +192,10 @@ npm run test:cordova -- android emulator-5554
 ```
 
 Das Skript erstellt eine temporäre App, verwendet lokale SwiftPM-/Maven-Artefakte der Engine und speichert das Anwendungsergebnis im ausgegebenen temporären Verzeichnis. Es veröffentlicht niemals auf npm oder Maven. Android benötigt JDK 21+, SDK 36 und `ANDROID_HOME`; iOS benötigt Xcode.
+
+## Animierte native Steuerelemente
+
+Nach Aktualisierungen des nativen Erscheinungsbilds werden Ersatzbilder standardmäßig nach einer Debounce-Verzögerung von 50 ms vorbereitet.
+Wenn die Animation Ihres Steuerelements nach der Aktualisierungsbenachrichtigung weiterläuft, setzen Sie `captureDelayMs` bei der nativen Registrierung (Swift: `captureDelayMs: 600`; Kotlin: `captureDelayMs = 600`).
+Diese Einstellung ändert die Bildvorbereitung im Hintergrund, nicht den Zeitpunkt der Overlay-Anzeige.
+Weitere Informationen zum Cache-Verhalten und zu den auf Messungen beruhenden Empfehlungen finden Sie unter [Aufnahmezeitpunkt](projection.md#capture-timing).

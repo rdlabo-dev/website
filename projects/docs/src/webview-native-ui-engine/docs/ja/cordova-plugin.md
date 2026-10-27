@@ -1,6 +1,6 @@
 ---
 title: Cordovaプラグインへの組み込み
-sourceRevision: "da57d4ae47d9d0bc67002a2b696f9d592810ed85e54cf60ec51f487c54479a97"
+sourceRevision: "b9c7dbc4c2b9f20415a214817f7c002e4cd9de3db914149ed6bd3ed59f7a00c9"
 ---
 # Cordovaプラグインへの組み込み
 
@@ -192,3 +192,10 @@ npm run test:cordova -- android emulator-5554
 ```
 
 スクリプトは使い捨てのアプリを作成し、ローカルのSwiftPM・MavenのEngineアーティファクトを使って、表示された一時ディレクトリにアプリの実行結果を記録します。npmやMavenへの公開は行いません。AndroidにはJDK 21以上、SDK 36、`ANDROID_HOME`が、iOSにはXcodeが必要です。
+
+## アニメーションするネイティブコントロール
+
+ネイティブの外観が更新されると、既定では50 msのデバウンス後に置き換え用の画像を準備します。
+更新通知の後もコントロールのアニメーションが続く場合は、ネイティブ側の登録で`captureDelayMs`を設定してください（Swift: `captureDelayMs: 600`、Kotlin: `captureDelayMs = 600`）。
+この設定が変更するのはバックグラウンドでの画像準備であり、オーバーレイを表示するタイミングではありません。
+キャッシュの動作と計測に基づく指針については、[キャプチャのタイミング](projection.md#capture-timing)を参照してください。

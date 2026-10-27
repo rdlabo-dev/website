@@ -1,6 +1,6 @@
 ---
 title: "Integration in ein Capacitor-Plugin"
-sourceRevision: "34d439dbd54f7cf32b83f712c6edd5d58ad5609f62c3ba8d8b15a7e8779cd22d"
+sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
 ---
 # Integration in ein Capacitor-Plugin
 
@@ -261,3 +261,10 @@ Senden Sie `transitionStarted`, bevor sich das DOM bewegt, `shown`, wenn erneut 
 Stellen Sie pro Registrierung einen im Layout positionierten DOM-Container in der Ebene bereit, in die seine Web-Projektion gehört. Er darf nach der Registrierung eingefügt werden. Das Plugin bleibt für Platzierung und Größe der nativen Ansicht verantwortlich; die Engine erstellt oder dimensioniert keine der beiden Ansichten für Sie.
 
 Lesen Sie die [DOM- und nativen Flächenanforderungen](projection.md#dom-and-native-surface-requirements), bevor Sie eigene Elemente, SDK-Inhalte oder mehrere Flächen integrieren. Scrolltracking und Bildübergabe erfolgen intern in der Registrierung. Aktivieren Sie bei Ionic-Anwendungen optional einmal beim Anwendungsstart die [Ionic-Overlay-Unterstützung](projection.md#ionic-overlay-support-optional). Andere Frameworks senden die konfigurierten Projektionsbenachrichtigungen aus ihrem eigenen Übergangs- und Overlay-Lebenszyklus.
+
+## Animierte native Steuerelemente
+
+Nach Aktualisierungen des nativen Erscheinungsbilds werden Ersatzbilder standardmäßig nach einer Debounce-Verzögerung von 50 ms vorbereitet.
+Wenn die Animation Ihres Steuerelements nach der Aktualisierungsbenachrichtigung weiterläuft, setzen Sie `captureDelayMs` bei der nativen Registrierung (Swift: `captureDelayMs: 600`; Kotlin: `captureDelayMs = 600`).
+Diese Einstellung ändert die Bildvorbereitung im Hintergrund, nicht den Zeitpunkt der Overlay-Anzeige.
+Weitere Informationen zum Cache-Verhalten und zu den auf Messungen beruhenden Empfehlungen finden Sie unter [Aufnahmezeitpunkt](projection.md#capture-timing).

@@ -1,6 +1,6 @@
 ---
 title: "Projektionsverhalten und erweiterte Integration"
-sourceRevision: "d7edb1b9a6bf5a60f33d8b90c498f2111b2f224d933230a3b55aab9542cfe207"
+sourceRevision: "3d4a4c5b9fe0d7e909cd9761a2dcc898b28c8253e0e28ac8f343b8e02707f82a"
 ---
 # Projektionsverhalten und erweiterte Integration
 
@@ -259,3 +259,21 @@ Ein Plugin, das normalerweise bei jedem Scrollen native Platzierung misst und ü
 - Geben Sie die Bindung beim Ablösen eines Hosts frei. Sitzungszuständigkeit verhindert, dass eine verspätete Bestätigung einer alten Registrierung den Projektionszustand einer neuen löscht. Pause, vom Autor gesetzte Sichtbarkeit und Layoutänderungen müssen weiterhin die normalen Sichtbarkeits-/Invalidierungspfade des Plugins verwenden.
 
 Diese Option ändert keine Registrierungen ohne `updatePlacement`. Android lehnt `updatePlacement` ab, sofern nicht `captureMode = CaptureMode.VIEW` gilt; Live-Video und andere ungeeignete Aufnahmen führen unter `failedFallback = NATIVE` natives Platzierungstracking weiter.
+
+## Aufnahmezeitpunkt
+
+`captureDelayMs` ist eine optionale Registrierungseinstellung, die Capacitor und Cordova gemeinsam nutzen.
+Der Standardwert beträgt unter iOS, Android und in den Optionen der tieferen API-Ebene von `createWebProjection` **50 Millisekunden**.
+Die Werte müssen endlich und nicht negativ sein. Die Einstellung verwendet den bestehenden Debounce-Mechanismus: Eine neue Aktualisierung oder Interaktion startet die Vorbereitung erneut, sobald die Aktivität zur Ruhe gekommen ist.
+Sie fügt keinen zweiten Timer hinzu und verzögert die Anzeige des Overlays nicht.
+
+Bis die Ersatzpixel bereitstehen, bleibt das zuletzt fertiggestellte Bild verfügbar.
+Wenn noch kein fertiges Bild vorliegt, greift der normale Web-Fallback.
+Beim Öffnen eines Overlays während der Debounce-Verzögerung wird nicht auf eine neue Aufnahme gewartet.
+Eine längere Verzögerung verlängert daher auch den Zeitraum, in dem nach einer Aktualisierung noch das vorherige Erscheinungsbild verwendet werden kann.
+
+Für **Liquid Glass-Auswahlanimationen von UITabBar werden 600 ms als Ausgangswert empfohlen**.
+Bei Vergleichen im iPhone-Simulator unter iOS 27.0 und im Duo-Simulator unter iOS 27.1 erfassten 50 ms eine vergrößerte Auswahl, bei 300 ms blieb noch eine kleine Restveränderung, und 600 ms entsprachen dem bei 1000 ms beobachteten stabilen Erscheinungsbild.
+Dies ist eine Empfehlung für diese Interaktion, keine Zeitgarantie von Apple und keine allgemeingültige Dauer für Liquid Glass.
+Messen Sie die Auswahl, die erneute Auswahl und aufeinanderfolgende Aktualisierungen Ihres Steuerelements, bevor Sie einen Wert festlegen.
+Bei sich ständig ändernden Inhalten ist kein Snapshot eines stabilen Zustands garantiert.

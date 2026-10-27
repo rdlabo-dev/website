@@ -1,6 +1,6 @@
 ---
 title: "Intégration dans un plugin Cordova"
-sourceRevision: "da57d4ae47d9d0bc67002a2b696f9d592810ed85e54cf60ec51f487c54479a97"
+sourceRevision: "b9c7dbc4c2b9f20415a214817f7c002e4cd9de3db914149ed6bd3ed59f7a00c9"
 ---
 # Intégration dans un plugin Cordova
 
@@ -192,3 +192,10 @@ npm run test:cordova -- android emulator-5554
 ```
 
 Le script crée une application temporaire, utilise les artefacts Engine SwiftPM/Maven locaux et consigne le résultat applicatif dans le répertoire temporaire affiché. Il ne publie jamais sur npm ou Maven. Android nécessite JDK 21+, SDK 36 et `ANDROID_HOME` ; iOS nécessite Xcode.
+
+## Contrôles natifs animés
+
+Lors d’une mise à jour de l’apparence native, les images de remplacement sont préparées par défaut après un délai de debounce de 50 ms.
+Si votre contrôle continue de s’animer après sa notification de mise à jour, définissez `captureDelayMs` lors de l’enregistrement natif (Swift : `captureDelayMs: 600` ; Kotlin : `captureDelayMs = 600`).
+Ce réglage modifie la préparation des images en arrière-plan, et non le moment où l’overlay est présenté.
+Consultez le [délai de capture](projection.md#capture-timing) pour comprendre le comportement du cache et les recommandations issues des mesures.

@@ -1,6 +1,6 @@
 ---
 title: Capacitorプラグインへの組み込み
-sourceRevision: "34d439dbd54f7cf32b83f712c6edd5d58ad5609f62c3ba8d8b15a7e8779cd22d"
+sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
 ---
 # Capacitorプラグインへの組み込み
 
@@ -261,3 +261,10 @@ DOMが動く前に`transitionStarted`、再びネイティブ投影を要求す�
 登録ごとに、Web投影を置くべきレイヤーにレイアウト済みDOMコンテナーを1つ用意します。登録後の挿入も可能です。ネイティブビューの配置とサイズはプラグインが引き続き管理し、Engineはどちらのビューも作成・サイズ指定しません。
 
 カスタム要素、SDKコンテンツ、複数サーフェスを組み込む前に、[DOMとネイティブサーフェスの要件](projection.md#dom-and-native-surface-requirements)を確認してください。スクロール追従と画像の受け渡しは登録の内部で処理します。Ionicアプリでは、必要に応じて起動時に[Ionicオーバーレイ対応](projection.md#ionic-overlay-support-optional)を1回有効にします。他のフレームワークでは、それぞれの遷移・オーバーレイのライフサイクルから、設定した投影通知を送信します。
+
+## アニメーションするネイティブコントロール
+
+ネイティブの外観が更新されると、既定では50 msのデバウンス後に置き換え用の画像を準備します。
+更新通知の後もコントロールのアニメーションが続く場合は、ネイティブ側の登録で`captureDelayMs`を設定してください（Swift: `captureDelayMs: 600`、Kotlin: `captureDelayMs = 600`）。
+この設定が変更するのはバックグラウンドでの画像準備であり、オーバーレイを表示するタイミングではありません。
+キャッシュの動作と計測に基づく指針については、[キャプチャのタイミング](projection.md#capture-timing)を参照してください。

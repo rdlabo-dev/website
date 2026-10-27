@@ -1,6 +1,6 @@
 ---
 title: "Projektionsverhalten und erweiterte Integration"
-sourceRevision: "3d4a4c5b9fe0d7e909cd9761a2dcc898b28c8253e0e28ac8f343b8e02707f82a"
+sourceRevision: "80571a205b8bba634b25377e2fbaffe4aaef596bd5d1cdae8738cb5deda23814"
 ---
 # Projektionsverhalten und erweiterte Integration
 
@@ -202,7 +202,7 @@ Der Bildtransport akzeptiert `WebProjectionRequest` und liefert vorbereitete Tok
 | `release` | Benanntes Token, Dateien und zugehörige temporäre Ansichten freigeben. |
 | `reset` | Nur Besitzerbereinigung; alle nativen Aufnahmeressourcen freigeben. |
 
-Verwenden Sie `NativeUICoveredSnapshots.observe`, um den JS-Listener bei Beginn/Ende von Interaktionen zu benachrichtigen. Aufnahmen verwenden zusammengesetzte Pixel, um Unschärfe/Lichtbrechung zu erhalten; sie enthalten den Hintergrund unter der beschnittenen nativen Komponente. Cache-Gültigkeit umfasst deshalb Layout und visuelle Änderungsbenachrichtigungen des Plugins. Die Engine nimmt nicht fortlaufend auf und garantiert nicht die Aufnehmbarkeit jedes denkbaren Renderers.
+Verwenden Sie `NativeUICoveredSnapshots.observe`, um den JS-Listener bei Beginn und Ende von Interaktionen zu benachrichtigen. Unter iOS rasterisieren Aufnahmen das sichtbare Fenster mit `drawHierarchy(in:afterScreenUpdates:)`, einschließlich des Hintergrunds unter der beschnittenen nativen Komponente. Bildschirm-Snapshot-Views sind Kopien für die Anzeige und werden nicht als Bitmap-Quellen verwendet. Bei Materialien wie Liquid Glass kann die UIKit-Rasterisierung vom Live-Compositor abweichen; prüfen Sie das Erscheinungsbild auf physischen Geräten mit den von Ihrem Plugin unterstützten Hintergründen. Cache-Gültigkeit umfasst deshalb Layout und visuelle Änderungsbenachrichtigungen des Plugins. Die Engine nimmt nicht fortlaufend auf und garantiert nicht die Aufnehmbarkeit jedes denkbaren Renderers.
 
 ### Temporärer Speicher und Anwendungsberechtigungen
 

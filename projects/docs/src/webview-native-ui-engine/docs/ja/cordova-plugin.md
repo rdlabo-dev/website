@@ -1,6 +1,6 @@
 ---
 title: Cordovaプラグインへの組み込み
-sourceRevision: "b9c7dbc4c2b9f20415a214817f7c002e4cd9de3db914149ed6bd3ed59f7a00c9"
+sourceRevision: "edf70c254523bf21c11c70bb0da7a7701b5c0033ed1e62cb7f32233bfa18ed24"
 ---
 # Cordovaプラグインへの組み込み
 
@@ -58,7 +58,7 @@ CordovaのSwiftPMプラグインでは、プラグインターゲットの依存
 </platform>
 ```
 
-プラットフォームセクションを重複追加せず、既存セクションへこれらの設定を統合してください。[組み込み検証用の構成](https://github.com/webview-native-ui/engine/tree/v0.0.1/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
+プラットフォームセクションを重複追加せず、既存セクションへこれらの設定を統合してください。[組み込み検証用の構成](https://github.com/webview-native-ui/engine/tree/v0.0.3/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
 
 例では既存のレンダラーを拡張します。`nativeView`は接続・配置済みのビューであり、Engineが作成するビューではありません。
 

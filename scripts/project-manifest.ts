@@ -226,7 +226,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'WebView Native UI Engine',
     packageName: '@webview-native-ui/engine',
     repositoryUrl: 'https://github.com/webview-native-ui/engine',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v0.0.2',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v0.0.3',
     sourceHeadingAliases: ['ja'],
     category: 'developer-tools',
     icon: 'app',

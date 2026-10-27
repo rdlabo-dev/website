@@ -1,6 +1,6 @@
 ---
 title: "Comportement de projection et intégration avancée"
-sourceRevision: "3d4a4c5b9fe0d7e909cd9761a2dcc898b28c8253e0e28ac8f343b8e02707f82a"
+sourceRevision: "80571a205b8bba634b25377e2fbaffe4aaef596bd5d1cdae8738cb5deda23814"
 ---
 # Comportement de projection et intégration avancée
 
@@ -202,7 +202,7 @@ Le transport d’images accepte `WebProjectionRequest` et retourne un jeton/des 
 | `release` | Libérer le jeton nommé, les fichiers et les vues temporaires associées. |
 | `reset` | Nettoyage du propriétaire uniquement ; libérer toutes les ressources de capture native. |
 
-Utilisez `NativeUICoveredSnapshots.observe` pour avertir l’écouteur JS au début/à la fin des interactions. Les captures utilisent des pixels composites pour préserver flou/réfraction ; elles incluent l’arrière-plan sous le composant natif découpé. La validité du cache dépend donc de la disposition et des notifications de changements visuels du plugin. L’Engine ne capture pas en continu et ne garantit pas que tous les moteurs de rendu possibles soient capturables.
+Utilisez `NativeUICoveredSnapshots.observe` pour avertir l’écouteur JS au début et à la fin des interactions. Sur iOS, les captures rastérisent la fenêtre visible avec `drawHierarchy(in:afterScreenUpdates:)`, en incluant l’arrière-plan sous le composant natif découpé. Les vues de snapshot de l’écran sont des répliques destinées à l’affichage et ne servent pas de sources bitmap. Pour les matériaux tels que Liquid Glass, la rastérisation UIKit peut différer du compositeur en temps réel ; vérifiez l’apparence sur des appareils physiques avec les arrière-plans pris en charge par votre plugin. La validité du cache dépend donc de la disposition et des notifications de changements visuels du plugin. L’Engine ne capture pas en continu et ne garantit pas que tous les moteurs de rendu possibles soient capturables.
 
 ### Stockage temporaire et permissions applicatives
 

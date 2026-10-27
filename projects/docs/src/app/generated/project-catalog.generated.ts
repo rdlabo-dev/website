@@ -35,7 +35,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -1915,7 +1915,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -3795,7 +3795,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -5675,7 +5675,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [

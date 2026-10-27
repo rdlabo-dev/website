@@ -1,6 +1,6 @@
 ---
 title: "Entwicklung und Veröffentlichungen"
-sourceRevision: "f224b1d4469ecea5b16600e6297a2bf99637b89ceb2a7ee2c7ce5a3eb815d466"
+sourceRevision: "f49444b4000ebd9ddc4406ef84a18c9d51ca82e315541121f93402c998473c4f"
 ---
 # Entwicklung und Veröffentlichungen
 
@@ -29,13 +29,13 @@ xcodebuild -scheme WebViewNativeUIEngine -destination 'platform=iOS Simulator,id
 
 Lint kombiniert strikte TypeScript-Prüfung, die empfohlenen Standardregeln von ESLint/TypeScript und typisierte Promise-Prüfungen für `src`. Skripte und Tests erhalten Syntax-Linting; Prettier übernimmt die Formatierung. `npm run format` formatiert ausschließlich. Bridge-Payloads und Test-Doubles dürfen explizites `any` verwenden; die Validierung an Produktionsgrenzen bleibt erforderlich. Ein explizites `void` kennzeichnet Hintergrundarbeit, behandelt aber keine abgewiesene Promise. Android verwendet in CI `lintRelease` mit Warnungen als Fehlern; Swift wird auf einem iOS-Simulator kompiliert und getestet.
 
-Die Engine wird unabhängig von ihren Verbrauchern versioniert. Die Veröffentlichungsreihenfolge lautet natives Maven-Artefakt → npm-Engine; Verbraucher aktualisieren separat. Vor npm-Veröffentlichungen wird geprüft, ob das passende POM und AAR auf Maven Central existieren. Build- und Testbefehle veröffentlichen nichts. Tests decken reines DOM, Geometrie mit Nachkommastellen und RTL, veraltete ACKs, Bildzuständigkeit und natives WKWebView-Scrolltracking ab; Verbrauchertests bleiben für Ionic-/SDK-Integration verantwortlich.
+Die Engine wird unabhängig von ihren Verbrauchern versioniert. Die Veröffentlichungsreihenfolge lautet Annahme der Maven-Veröffentlichung → npm-Engine; Verbraucher aktualisieren separat. npm-Releases erfordern einen erfolgreichen Maven-Veröffentlichungsworkflow für genau den getaggten Commit. Die Verteilung über Maven Central kann noch ausstehen: Android-Verbraucher müssen warten, bis das passende POM und AAR heruntergeladen werden können, während iOS- und Web-Verbraucher sofort aktualisieren können. Build- und Testbefehle veröffentlichen nichts. Tests decken reines DOM, Geometrie mit Nachkommastellen und RTL, veraltete ACKs, Bildzuständigkeit und natives WKWebView-Scrolltracking ab; Verbrauchertests bleiben für Ionic-/SDK-Integration verantwortlich.
 
 CI-spezifische Einrichtung, Paketierungsbefehle und GitHub-Ausgaben sind in `.github/workflows/` definiert. Die Skripte enthalten weiterhin den Laufzeitbuild, wiederverwendbare Verbraucher-/Paketprüfungen und getestete Veröffentlichungslogik (Central-Zustandsbehandlung und npm-Artefaktvergleich).
 
 ## Maven-Veröffentlichung
 
-Der Workflow `Native UI Engine Maven Release` wird auf `main` manuell mit der exakten Engine-Paketversion gestartet. Der Commit muss zuvor die CI `Native UI Engine` bestehen. Der Workflow signiert ein AAR, ein Quellarchiv, generierte Kotlin-API-Dokumentation und Maven-Metadaten, lädt einmal hoch und endet, sobald Central `PUBLISHING` oder `PUBLISHED` meldet. Deployment-ID und Zustandsänderungen stehen in der Ausführungszusammenfassung. `PUBLISHING` bedeutet erfolgreiche Validierung und Annahme der Veröffentlichung durch Central; es garantiert noch keine herunterladbaren Artefakte. Dieser Workflow wartet nicht auf die Verteilung. Das npm-Release setzt weiterhin voraus, dass das passende POM und AAR auf Maven Central verfügbar sind. Bestehende Koordinaten werden nie überschrieben; prüfen Sie nach einem Upload-Timeout das verzeichnete Deployment in Central vor weiteren Maßnahmen.
+Der Workflow `Native UI Engine Maven Release` wird auf `main` manuell mit der exakten Engine-Paketversion gestartet. Der Commit muss zuvor die CI `Native UI Engine` bestehen. Der Workflow signiert ein AAR, ein Quellarchiv, generierte Kotlin-API-Dokumentation und Maven-Metadaten, lädt einmal hoch und endet, sobald Central `PUBLISHING` oder `PUBLISHED` meldet. Deployment-ID und Zustandsänderungen stehen in der Ausführungszusammenfassung. `PUBLISHING` bedeutet erfolgreiche Validierung und Annahme der Veröffentlichung durch Central; es garantiert noch keine herunterladbaren Artefakte. Dieser Workflow wartet nicht auf die Verteilung. Das npm-Release prüft, ob dieser Workflow für genau den Release-Commit erfolgreich war; es wartet nicht auf die Verteilung über Maven Central. Bestehende Koordinaten werden nie überschrieben; prüfen Sie nach einem Upload-Timeout das verzeichnete Deployment in Central vor weiteren Maßnahmen.
 
 Konfigurieren Sie die Actions-Secrets des Repositorys mit `CENTRAL_USERNAME`, `CENTRAL_PASSWORD` (Central-Benutzertoken), `MAVEN_SIGNING_KEY` (ASCII-armierter privater Schlüssel) und `MAVEN_SIGNING_PASSWORD`. Der öffentliche Signaturschlüssel muss für Central verfügbar sein. GitHub-Secrets gelten nur für dieses Repository.
 
@@ -47,9 +47,9 @@ Dieses Repository beginnt mit der zusammengeführten Engine-Implementierung aus 
 
 Die npm-Organisation `webview-native-ui` und der Maven-Central-Namensraum `io.github.webview-native-ui` sind registriert. Pflegen Sie npm Trusted Publishing für `webview-native-ui/engine`, Workflow `release.yml`, und richten Sie die oben genannten Maven-Secrets in diesem Repository ein. Das Verschieben von Quelldateien kopiert keine Zugangsdaten.
 
-1. Bereiten Sie die nächste Version und Release Notes auf `main` vor; erstellen Sie mit `npm run release` einen Standardtag `vX.Y.Z` und ein GitHub-Release. Belassen Sie das GitHub-Release als Entwurf, bis Maven herunterladbar ist.
+1. Bereiten Sie die nächste Version und Release Notes auf `main` vor; erstellen Sie mit `npm run release` einen Standardtag `vX.Y.Z` und ein GitHub-Release. Belassen Sie das GitHub-Release als Entwurf, bis der Maven-Veröffentlichungsworkflow erfolgreich abgeschlossen ist.
 2. Sobald dieser main-Commit CI besteht, starten Sie `native-ui-engine-release.yml` mit der exakten Paketversion.
-3. Central `PUBLISHING` bedeutet angenommener Upload, keine Downloadbereitschaft. Veröffentlichen Sie das vorbereitete GitHub-Release, sobald POM und AAR verfügbar sind. `release.yml` prüft Tag, Paketversion, CI und Maven-Artefakte vor der npm-Veröffentlichung (`next` für Vorabversionen, sonst `latest`).
+3. Central `PUBLISHING` bedeutet angenommener Upload, keine Downloadbereitschaft. Veröffentlichen Sie das vorbereitete GitHub-Release, sobald der Maven-Veröffentlichungsworkflow erfolgreich abgeschlossen ist. Weisen Sie in den Release Notes auf eine noch ausstehende Verteilung der Android-Artefakte hin. `release.yml` prüft Tag, Paketversion, CI und die Annahme der Maven-Veröffentlichung vor der npm-Veröffentlichung (`next` für Vorabversionen, sonst `latest`).
 
 Kein Build- oder Testbefehl veröffentlicht ein Paket. Bestehende npm-/Maven-Versionen werden nie überschrieben.
 

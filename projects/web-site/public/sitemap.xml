@@ -36,7 +36,8 @@
   <url><loc>https://rdlabo.dev/articles/workers-hono-zod-number-coercion</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-cron-subrequest-limit</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-container-lifecycle</loc></url>
-  <url><loc>https://rdlabo.dev/articles/workers-hono-perflog-vs-tracing</loc></url>
+  <url><loc>https://rdlabo.dev/articles/workers-hono-perflog-vs-tracing</loc>
+    <lastmod>2026-10-28</lastmod></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-hyperdrive-connection-lifecycle</loc></url>
   <url><loc>https://rdlabo.dev/articles/workers-hono-mysql-jst-timezone</loc>
     <lastmod>2026-09-07</lastmod></url>

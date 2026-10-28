@@ -345,8 +345,9 @@ export const ARTICLE_SUMMARIES = [
   },
   {
     "slug": "workers-hono-perflog-vs-tracing",
-    "title": "I Packaged a Hono Performance Logging Layer to Measure and Improve Cloudflare Workers Speed",
-    "description": "Use perfLog middleware with Workers Logs and Analytics Engine to find slow routes by p50/p95, then drill into Workers Tracing for a single request.",
+    "title": "Measuring and Improving Cloudflare Workers Performance with a Shared Hono Logger",
+    "description": "How perfLog middleware, Workers Logs, and Analytics Engine help identify slow Hono routes, measure improvements with p50 and p95, and guide deeper investigation with Workers Tracing.",
+    "updatedAt": "2026-10-28",
     "image": "https://rdlabo.dev/article-images/workers-hono-perflog-vs-tracing.svg",
     "imageWidth": 1200,
     "imageHeight": 630,

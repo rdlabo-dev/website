@@ -1,43 +1,47 @@
 ---
-title: "I Packaged a Hono Performance Logging Layer to Measure and Improve Cloudflare Workers Speed"
-description: "Use perfLog middleware with Workers Logs and Analytics Engine to find slow routes by p50/p95, then drill into Workers Tracing for a single request."
+title: "Measuring and Improving Cloudflare Workers Performance with a Shared Hono Logger"
+description: "How perfLog middleware, Workers Logs, and Analytics Engine help identify slow Hono routes, measure improvements with p50 and p95, and guide deeper investigation with Workers Tracing."
 zennSlug: workers-hono-perflog-vs-tracing
 emoji: "📈"
+updatedAt: "2026-10-28"
+translatedProseBlocks:
+  - d2e696ef2830842585442cf4def12a9e4f2cb923f12ca4add32f99d90f051ddd
+  - da91a4584f5fb292f02d9ae25d08c2abd1b02b30f8d2efbe1574d6db2a721c65
 ---
 
-After I migrated from NestJS to Hono + Cloudflare Workers, some APIs stood out as slow. Some projects also had low request volume, so waiting for slow moments with `wrangler tail` did not move investigation forward.
+After migrating from NestJS to Hono + Cloudflare Workers, I noticed that a few APIs were particularly slow. Some projects received so few requests that waiting for a slow one with `wrangler tail` was not a practical way to investigate.
 
-To improve, I first had to find slow endpoints. Cloudflare Workers Tracing traces fetch and bindings in detail for one request, but what I wanted first was p50 and p95 accumulated per Hono route.
+Before I could improve performance, I needed to identify the slow endpoints. Cloudflare Workers Tracing provides a detailed view of fetch and binding calls within a single request, but my first priority was to collect p50 and p95 measurements for each Hono route.
 
-So I added a performance logging layer usable across multiple Hono projects to `@rdlabo/workers-hono-kit`. The middleware is named `perfLog`. It records the same fields once per request so I can aggregate later: which endpoint is consistently slow, and whether p50 or p95 dropped before and after a fix.
+I added a shared performance logging layer to `@rdlabo/workers-hono-kit` for use across multiple Hono projects. The middleware, called `perfLog`, records a consistent set of fields for every request. I can then aggregate the data to see which endpoints are consistently slow and whether their p50 or p95 improves after a change.
 
-p50 is the median—half of requests finish within that time. p95 is the boundary within which 95% of requests finish. Averages alone hide normal speed vs the slow tail; percentiles separate them.
+p50 is the median: half of all requests finish within that time. p95 is the time within which 95% of requests finish. These percentiles help distinguish typical performance from the slower tail, a difference that averages can obscure.
 
-This article explains why I moved measurement into a shared library, what `perfLog` records, how it lands in Workers Logs and Analytics Engine, and how to find slow endpoints and confirm improvements. I use Workers Tracing when I need to go inside an endpoint I already found.
+This article explains why I moved measurement into a shared library, what `perfLog` records, how the data is stored in Workers Logs and Analytics Engine, and how to find slow endpoints and confirm improvements. I use Workers Tracing when I need to go inside an endpoint I already found.
 
 # What the performance logging layer needed
 
-Here, "logging layer" does not replace application logs or all of Tracing. It is a small layer that keeps and aggregates only what I need to compare API speed, in the same shape.
+By "logging layer," I mean a small component that stores and aggregates the fields needed to compare API performance in a consistent format. It does not replace application logs or the full capabilities of Tracing.
 
-To roll it out across Hono projects, I required:
+To use it across Hono projects, I needed it to:
 
-- Aggregate by Hono matched route, not raw URL
-- Work with low traffic—check later without waiting on live tail
-- Same schema and SQL across all projects
-- Do not break the real API response when the measurement target fails or config is missing
+- Aggregate by the route matched by Hono rather than by raw URL
+- Support later analysis of low-traffic services without waiting on a live tail
+- Use the same schema and SQL across all projects
+- Preserve the application’s API response if a telemetry destination fails or configuration is missing
 
-Even when I know "the API is slow," I cannot open one-request traces for every endpoint first. I needed an entry point that bundles all requests by route and narrows slow routes.
+Knowing that an API is slow does not tell me which individual request trace to open. I needed a starting point that groups requests by route and narrows the investigation to slow routes.
 
 | What you want to observe | Workers Tracing | perfLog + Analytics Engine |
 |---|---|---|
-| Breakdown of fetch and bindings in one request | Strong | Unknown |
+| Breakdown of fetch and binding calls within one request | Well supported | Not available |
 | CPU time, wall time, outcome | On root span | `t_app` and status only |
 | p50 / p95 per route | Needs trace search/aggregation | Fixed schema SQL |
 | Compare by colo, cold/warm | Needs attributes or custom logic | Dimensions from the start |
-| Compare weeks ago | Dashboard retention limits | Analytics Engine keeps 3 months |
-| Specific in-app steps | Custom spans | Middleware total only |
+| Compare data from several weeks ago | Limited by dashboard retention | Analytics Engine retains three months |
+| Specific application steps | Custom spans | Total time through the middleware only |
 
-This is not claiming perfLog is more capable than Tracing. perfLog finds candidates; Tracing goes inside them.
+The point is not that perfLog is more capable than Tracing. perfLog identifies requests worth investigating; Tracing reveals what happens inside them.
 
 ```text
 every request
@@ -69,11 +73,11 @@ enabled = true
 head_sampling_rate = 0.05
 ```
 
-For following a timeline of external APIs, bindings, and which in-app step waited, Tracing is far more detailed.
+Tracing provides much more detail when you need a timeline showing where time was spent in external API calls, bindings, and application steps.
 
 ## Questions perfLog answers first
 
-After moving from NestJS to Hono + Workers, the trends I wanted first looked like:
+After moving from NestJS to Hono + Workers, I first wanted answers to questions such as:
 
 - Which endpoints are slow even on warm requests?
 - What are p50 / p95 for `/user/status`?
@@ -89,7 +93,7 @@ I considered putting measurement code directly in each project. If column order,
 
 So I implemented `perfLog` as Hono middleware that leaves one small data point per request and added it to `@rdlabo/workers-hono-kit`. Each project adds one middleware line and emits performance logs in the same schema.
 
-The Analytics Engine binding type is a small interface with only the `writeDataPoint()` I need, defined inside the kit. That avoids forcing `@cloudflare/workers-types` on consumers. Cloudflare's real binding assigns directly to that interface.
+The Analytics Engine binding type is a small interface with only the `writeDataPoint()` I need, defined inside the kit. That avoids forcing `@cloudflare/workers-types` on consumers. Cloudflare’s actual binding can be assigned directly to that interface.
 
 https://github.com/rdlabo-dev/workers-hono-kit/blob/main/src/middleware/perf-log.ts
 
@@ -144,7 +148,7 @@ dataset.writeDataPoint({
 
 The real implementation also short-circuits when output is not configured, applies sampling, hashes long indexes, and protects against Analytics Engine write failures.
 
-## One request data layout
+## Data recorded for each request
 
 Analytics Engine columns and Workers Logs JSON are fixed as follows.
 
@@ -157,7 +161,7 @@ Analytics Engine columns and Workers Logs JSON are fixed as follows.
 | `blob2` | `request.cf.colo` | `perf.colo` |
 | `blob3` | HTTP method | `perf.method` |
 
-Generic Analytics Engine columns are hard to read as numbers alone, so the middleware pins this schema. Using the same SQL across Hono projects was one reason to put it in the shared kit.
+Analytics Engine’s generic column names are difficult to interpret on their own, so the middleware gives them a fixed meaning through this schema. Reusing the same SQL across Hono projects was one reason to put the middleware in the shared kit.
 
 ## Use route pattern, not raw URL
 
@@ -169,7 +173,7 @@ Storing `/users/123` as-is creates a separate series per user ID. I use the rout
 /wp-login.php   → (unmatched)
 ```
 
-Folding IDs limits cardinality and groups bots and 404 access as `(unmatched)`.
+Grouping IDs under their route patterns limits cardinality. Unmatched requests, including many bot requests and 404s, are grouped as `(unmatched)`.
 
 Analytics Engine indexes are limited to 96 bytes, so longer route patterns get a stable hash in `index1`. The full path remains in `blob1`, so display and grouping do not lose it.
 
@@ -188,7 +192,7 @@ Worker fetch
        └─ auth / container / handler  ← included in t_app
 ```
 
-Do not naively compare cold `t_app` across projects whose middleware order differs. It is an indicator for slow endpoints and before/after within each project first.
+Do not naively compare cold `t_app` across projects whose middleware order differs. Its primary purpose is to identify slow endpoints and compare performance before and after changes within each project.
 
 On Workers, `Date.now()` advances at I/O boundaries due to Spectre mitigations. `t_app` is closer to wall time including I/O waits for DB and external APIs, not a CPU profile. That property helped find APIs dominated by DB round-trips.
 
@@ -211,9 +215,9 @@ This is not a Cloudflare-guaranteed cold start metric. If several requests arriv
 
 `perfLog` has two sinks: Workers Logs for immediate checks and Analytics Engine for later aggregation. Below is how the minimum setup switches internally.
 
-## Bare call reads Hono env
+## Calling perfLog() without options reads Hono env
 
-When you pass env into Hono with `app.fetch(request, env, ctx)`, bare `perfLog()` reads:
+When you pass env into Hono with `app.fetch(request, env, ctx)`, calling `perfLog()` without options reads:
 
 - `PERF`: Analytics Engine dataset binding
 - `PERF_LOG === '1'`: output to Workers Logs
@@ -222,7 +226,7 @@ When you pass env into Hono with `app.fetch(request, env, ctx)`, bare `perfLog()
 app.use('*', perfLog());
 ```
 
-If you do not pass bindings into Hono env, specify explicitly:
+If your application does not pass bindings into Hono env, provide them explicitly:
 
 ```ts
 app.use(
@@ -258,7 +262,7 @@ Workers Logs Query Builder can filter on `$.perf.path` and `$.perf.colo`. Data i
 
 https://developers.cloudflare.com/workers/observability/logs/workers-logs/
 
-`wrangler tail` is handy right after wiring or on high-traffic Workers. On low-traffic projects, the request I need may not arrive while tail is open—that blocked me when I built perfLog. Instead of always watching live, I retain data in Workers Logs or Analytics Engine and look later.
+`wrangler tail` is useful immediately after setup or on Workers with heavy traffic. On low-traffic projects, however, the request I want to inspect may never arrive while the tail is open. That was an early obstacle when building perfLog. I store data in Workers Logs or Analytics Engine so I can inspect it later instead of waiting for it live.
 
 ## Analytics Engine for percentile aggregation
 
@@ -296,7 +300,7 @@ ORDER BY p95 DESC
 LIMIT 25
 ```
 
-What matters here is `_sample_interval`. Analytics Engine may apply adaptive sampling, so use `sum(_sample_interval)` and `quantileExactWeighted()` instead of `count()` or ordinary `quantile()`. The `n` in results reflects that weight.
+What matters here is `_sample_interval`. Analytics Engine may apply adaptive sampling, so use `sum(_sample_interval)` and `quantileExactWeighted()` instead of `count()` or ordinary `quantile()`. The `n` in the query results is the request count adjusted for that sampling weight.
 
 https://developers.cloudflare.com/analytics/analytics-engine/sampling/
 
@@ -304,7 +308,7 @@ https://developers.cloudflare.com/analytics/analytics-engine/sampling/
 
 4xx and 5xx can follow different paths than success, so I separate steady endpoint latency from them. That is not hiding errors—I check `double3 >= 400` in separate status aggregations.
 
-Routes with high volume and high p50 or p95 are first fix candidates. With this cut, I found a status endpoint that took ~2 seconds even when warm because it awaited several queries serially.
+Routes with high volume and high p50 or p95 are first fix candidates. Using these filters, I found a status endpoint that took about two seconds even for warm requests because it awaited several queries in sequence.
 
 ## Separate cold-only slowness
 
@@ -322,7 +326,7 @@ WHERE timestamp > now() - INTERVAL '7' DAY
 GROUP BY cold
 ```
 
-If only cold is slow, suspect secrets fetch, DB connection, cache warmup, etc. If warm is also slow, look at query count, indexes, external APIs per request.
+If warm requests are fast but cold requests are slow, investigate secret retrieval, database connections, and cache initialization. If warm requests are also slow, look at the work performed for every request: query counts, indexes, and external API calls.
 
 ## Compare before and after with the same SQL
 
@@ -341,11 +345,11 @@ GROUP BY day
 ORDER BY day
 ```
 
-Compare across deploy day for parallelizing serial queries, adding indexes, moving notifications to a Queue, etc. I keep p50 and p95 because averages get pulled by a few slow requests.
+Compare the periods before and after deploying changes such as parallelizing sequential queries, adding indexes, or moving notifications to a Queue. I track p50 and p95 because a handful of slow requests can skew the average.
 
-## Dig into a ~2 second status endpoint
+## Investigating a status endpoint that took about two seconds
 
-Tracing from path aggregation to code, the status endpoint awaited read queries that did not depend on each other.
+Following the status endpoint from the per-path aggregation into its code, I found that it awaited independent read queries one after another.
 
 ```ts
 const profile = await repository.getProfile(userId);
@@ -353,7 +357,7 @@ const tags = await repository.getTags(userId);
 const unread = await repository.getUnread(userId);
 ```
 
-After confirming the next query did not use the previous result and order did not affect authorization or side effects, I started them in parallel.
+After confirming that no query depended on another’s result and that changing their order would not affect authorization or side effects, I started them in parallel.
 
 ```ts
 const [profile, tags, unread] = await Promise.all([
@@ -365,7 +369,7 @@ const [profile, tags, unread] = await Promise.all([
 
 Do not mechanically parallelize every sequential `await`. On the same DB connection they may still serialize on the wire; writes, cache invalidation, and post-authorization side effects need order. Sometimes one merged query is better.
 
-Then I return to perfLog and compare p50 and p95 before and after deploy on the same route, warm, success-only conditions. The same data finds slow endpoints and confirms improvement—you do not stop at "it feels faster."
+Then I return to perfLog and compare p50 and p95 before and after deploy on the same route, warm, success-only conditions. The same data helps identify slow endpoints and confirm the improvement, so the investigation does not end with “it feels faster.”
 
 ## colo is not where the Worker runs
 
@@ -375,13 +379,13 @@ With Placement enabled, Cloudflare adds a `cf-placement` header. For example, `r
 
 https://developers.cloudflare.com/workers/configuration/placement/
 
-After Smart Placement, `t_app` for requests landing at distant edges may drop to levels similar to requests from DB-near colos. Conversely, a single cold request right after deploy or from a low-frequency region may be slow alone. Do not conclude "Smart Placement is not working" from one distant colo sample—confirm execution location with `cf-placement` or Tracing, filter to warm, and check you have enough samples.
+After enabling Smart Placement, `t_app` for requests arriving at distant edges may fall to levels similar to requests arriving near the database. Conversely, an isolated cold request just after deployment or from a region with little traffic may still be slow. Do not conclude "Smart Placement is not working" from one distant colo sample—confirm execution location with `cf-placement` or Tracing, filter to warm, and check you have enough samples.
 
 On services with few users, fixing one endpoint that takes 2 seconds often beats colo comparison. I use colo comparison as triage after finding slow endpoints.
 
-# Find the place with perfLog, go inside with Tracing
+# Locate the bottleneck with perfLog, then investigate with Tracing
 
-My actual investigation order:
+My investigation followed this sequence:
 
 1. Compute warm path p50 / p95 in Analytics Engine
 2. Pick endpoints that are slow and heavily used
@@ -390,15 +394,15 @@ My actual investigation order:
 5. Fix code and deploy
 6. Compare before and after with the same Analytics Engine SQL
 
-Use Tracing custom spans when you want names on app-specific steps.
+Use custom spans in Tracing to give application-specific steps meaningful names.
 
 https://developers.cloudflare.com/workers/observability/traces/custom-spans/
 
-perfLog alone cannot tell "which query took how many of 842 ms." Following weeks of trends for all routes with Tracing alone would need separate ops for fixed dimensions and retention.
+perfLog alone cannot tell you how much of an 842 ms request was spent on each query. Tracking several weeks of trends across all routes using Tracing alone would require additional work to provide the fixed dimensions and retention period I needed.
 
-I split broad search and deep dig instead of substituting one for the other.
+I use the two tools for different stages: finding candidates across the application, then investigating individual requests in detail.
 
-# Know perfLog limits too
+# Be explicit about perfLog’s limits
 
 It is small middleware, so what it cannot measure is clear:
 
@@ -409,19 +413,19 @@ It is small middleware, so what it cannot measure is clear:
 - No per-query breakdown inside a route
 - Not end-to-end latency including client-to-edge network
 
-For CPU, use Tracing or Workers Metrics; for inside a request, Tracing; for client feel, frontend measurement.
+Use Tracing or Workers Metrics to investigate CPU time, Tracing to inspect individual requests, and frontend measurements to understand the user’s experience.
 
 I also did not casually add dimensions beyond route pattern, colo, method, and status. I do not put user ID, email, or request body in performance logs—to avoid PII and cardinality growth.
 
-# Think sampling and cost separately
+# Consider sampling and cost for each destination
 
 `perfLog({ sampleRate })` throttles only Analytics Engine writes. Workers Logs use `observability.head_sampling_rate`; Tracing uses `observability.traces.head_sampling_rate` separately.
 
-On low traffic, dropping samples makes analysis harder, so I keep Analytics Engine `sampleRate` at 1. When traffic grows, I lower per-sink volume after checking cost.
+With low traffic, discarding samples makes analysis harder, so I keep Analytics Engine’s `sampleRate` at 1. As traffic grows, I review the volume and cost for each destination before reducing its sampling rate.
 
-As of August 11, 2026, Workers Tracing is free during beta; Cloudflare announced billing from October 1, 2026. Traces count observability events per span.
+As of August 11, 2026, Workers Tracing was free during beta, and Cloudflare had announced that billing would begin on October 1, 2026. Each span is counted as an observability event.
 
-Analytics Engine pricing is published for the future but is not billed yet at this writing. Pricing and start dates can change—recheck official info when you read this.
+At the time the original article was written, future pricing for Analytics Engine had also been published, but billing had not yet started. Prices and start dates can change, so check the official information when reading this article.
 
 https://developers.cloudflare.com/analytics/analytics-engine/pricing/
 
@@ -429,10 +433,10 @@ https://developers.cloudflare.com/analytics/analytics-engine/pricing/
 
 Performance work does not start by staring at slow requests. You first need to know which endpoints are slow, by how much, and how often.
 
-For that I added a performance logging layer to the shared library that keeps route, colo, cold/warm, status, and `t_app` in one schema. Each Hono project wires `perfLog()` in one line. From retained data you find slow endpoints and compare before and after with percentiles.
+To do that, I added a performance logging layer to the shared library that records route, colo, cold/warm state, status, and `t_app` in a consistent schema. Each Hono project adds a single `perfLog()` middleware call. The stored data makes it possible to identify slow endpoints and compare percentiles before and after a change.
 
-After finding a slow endpoint, Workers Tracing dives into fetch, bindings, and application steps for one request. After fixing causes such as serial queries, check effect again with perfLog p50 and p95.
+Once I have found a slow endpoint, I use Workers Tracing to examine fetch calls, bindings, and application steps within a request. After fixing a cause such as sequential queries, I return to perfLog’s p50 and p95 to measure the effect.
 
-Measure, narrow, investigate, compare with the same numbers after the fix. Library packaging was to roll that flow out the same way across projects.
+Measure performance, narrow down the candidates, investigate the cause, and compare the same metrics after the fix. Packaging this workflow as a library lets me apply it consistently across multiple projects.
 
 See you next time.

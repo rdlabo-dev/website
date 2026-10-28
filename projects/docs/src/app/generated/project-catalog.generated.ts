@@ -84,7 +84,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.2",
+    "version": "0.1.8",
     "description": "Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.",
     "path": "/projects/cf-workers-native",
     "pages": [
@@ -1964,7 +1964,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.2",
+    "version": "0.1.8",
     "description": "Cloudflare Workersアプリを既存のiOS・Androidアプリへ組み込むか、Capacitorで新しいモバイルアプリを作成します。",
     "path": "/projects/cf-workers-native",
     "pages": [
@@ -3844,7 +3844,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.2",
+    "version": "0.1.8",
     "description": "Intégrez vos applications Cloudflare Workers à des applications iOS et Android existantes, ou créez une nouvelle application mobile avec Capacitor.",
     "path": "/projects/cf-workers-native",
     "pages": [
@@ -5724,7 +5724,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/cf-workers-native",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.1.2",
+    "version": "0.1.8",
     "description": "Integrieren Sie Cloudflare-Workers-Anwendungen in bestehende iOS- und Android-Apps oder erstellen Sie mit Capacitor eine neue mobile App.",
     "path": "/projects/cf-workers-native",
     "pages": [

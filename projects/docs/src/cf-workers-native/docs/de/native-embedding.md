@@ -1,6 +1,6 @@
 ---
 title: "Workers-Oberflächen in eine bestehende native Anwendung einbetten"
-sourceRevision: "5de075fc501063dc8794c6a018a8e82a6c69ac9909e588b4929d167f0bf34391"
+sourceRevision: "6a9d6426c879d890930515839872ba93b7af21a21e49f6f7798aa44b45619112"
 ---
 
 # Workers-Oberflächen in eine bestehende native Anwendung einbetten
@@ -11,7 +11,7 @@ Wählen Sie für die native Einrichtung [iOS](#ios) oder [Android](#android). Be
 
 Sie erstellen die Web-Assets in Ihrem Webprojekt, ergänzen das native SDK in Ihrer App und öffnen beziehungsweise schließen einen Workers-Bildschirm über dessen native API. Das SDK löst Capacitor intern auf; Ihre native App benötigt weder Capacitor-Konfiguration noch CLI-Befehle.
 
-**0.1.2 Preview:** Installieren Sie `cf-workers-native@0.1.2` mit passenden [nativen Abhängigkeiten](#dependency-setup). Android benötigt WebView-`MULTI_PROFILE`-Unterstützung und ein lokal erstelltes SDK-Artefakt; ein öffentliches Maven-Release gibt es noch nicht.
+**0.1.7:** Installieren Sie `cf-workers-native@0.1.7` mit passenden [nativen Abhängigkeiten](#dependency-setup). Android benötigt WebView-`MULTI_PROFILE`-Unterstützung. Verwenden Sie für JavaScript und das native SDK dasselbe Release.
 
 ## Gemeinsamer Web-Build
 
@@ -64,13 +64,21 @@ Verpacken Sie das **gesamte** Ausgabeverzeichnis einschließlich `index.html` in
 
 Es gibt ein npm-Paket: `cf-workers-native`. Seine Einstiegspunkte `/ios`, `/android` und `/capacitor` sind Unterpfadimporte, keine separaten npm-Pakete. Es gibt keinen bloßen Paketstamm-Laufzeiteinstiegspunkt. `WorkersIOS` ist ein SwiftPM-Produkt; `io.github.rdlabo:cf-workers-native-android` ist ein Android-Maven-Artefakt.
 
-Das umbenannte npm-Paket wartet auf Veröffentlichung. Installieren Sie danach 0.1.2 Preview im Webprojekt:
+Installieren Sie die npm-Preview im Webprojekt. Der Tag `latest` umfasst 0.x-Preview-Releases:
 
 ```sh
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
-Erzeugen Sie bis dahin einen JavaScript-Paket-Tarball aus dem passenden Checkout:
+Verwenden Sie die folgende Kombination von Abhängigkeiten. npm 0.1.7 und SwiftPM `v0.1.7` teilen den Releasecommit. Für Capacitor enthält npm die passende native Android-Implementierung. Das eigenständige Android-SDK wird separat für dieselbe Version auf Maven Central veröffentlicht:
+
+| Komponente | Abhängigkeit |
+| --- | --- |
+| JavaScript | `cf-workers-native@0.1.7` |
+| iOS | SwiftPM-Tag `v0.1.7`, Produkt `WorkersIOS` |
+| Android | `io.github.rdlabo:cf-workers-native-android:0.1.7` |
+
+Erzeugen Sie für die lokale SDK-Entwicklung einen JavaScript-Paket-Tarball aus dem passenden Checkout:
 
 ```sh
 # Im SDK-Checkout:
@@ -78,7 +86,7 @@ npm install
 npm pack
 
 # Im Webprojekt:
-npm install /path/to/cf-workers-native/cf-workers-native-0.1.2.tgz
+npm install /path/to/cf-workers-native/cf-workers-native-0.1.7.tgz
 ```
 
 `npm pack` führt den Build über `prepack` aus; der obige Dateiname verwendet die aktuelle Quellversion. Installieren Sie den Tarball statt des Checkout-Verzeichnisses, um einen Symlink zurück in den SDK-Baum zu vermeiden, der für Apps innerhalb dieses Checkouts rekursive Pfade erzeugen kann. Verwenden Sie dieselbe Git-Revision für das iOS-Swift-Paket und die Android-Veröffentlichung. Die Installation des veröffentlichten `workers-capacitor@0.1.1` stellt diese Einstiegspunkte nicht bereit.
@@ -89,7 +97,7 @@ Das native Projekt konsumiert nur generierte Assets und native Abhängigkeiten. 
 
 ## iOS
 
-Fügen Sie `https://github.com/rdlabo-dev/cf-workers-native` als Swift-Paket hinzu, für das npm-Paket 0.1.2 Preview festgeschrieben auf Tag `v0.1.2` beziehungsweise bei Quellbuilds auf die passende Revision, und wählen Sie das Produkt `WorkersIOS`. Verwenden Sie Xcode 26 / Swift 6.2 oder neuer gemäß den Anforderungen der nativen Abhängigkeitswerkzeugkette. Ergänzen Sie die generierten Assets als Ordnerressource, etwa `WorkerWeb`, und erzeugen Sie den Controller aus diesem Verzeichnis auf dem Main Actor:
+Fügen Sie `https://github.com/rdlabo-dev/cf-workers-native` als Swift-Paket hinzu, für npm 0.1.7 festgeschrieben auf Tag `v0.1.7` beziehungsweise bei Quellbuilds auf die passende Revision, und wählen Sie das Produkt `WorkersIOS`. Der bestehende Tag `v0.1.2` stammt aus der Zeit vor der Paketumbenennung; verwenden Sie für dieses Release `v0.1.7`. Verwenden Sie Xcode 26 / Swift 6.2 oder neuer gemäß den Anforderungen der nativen Abhängigkeitswerkzeugkette. Ergänzen Sie die generierten Assets als Ordnerressource, etwa `WorkerWeb`, und erzeugen Sie den Controller aus diesem Verzeichnis auf dem Main Actor:
 
 ```swift
 import WorkersIOS
@@ -116,11 +124,11 @@ Ein fehlgeschlagener Worker-Start gibt die eingebettete Laufzeit frei und meldet
 
 ## Android
 
-Fügen Sie die Android-Maven-Veröffentlichung des SDKs zu Ihren App-Abhängigkeiten hinzu und legen Sie das generierte Webverzeichnis unter `src/main/assets/` ab, etwa als `worker-web`. Die Veröffentlichung löst Capacitor und weitere native Abhängigkeiten auf. Die neue Maven-Koordinate lautet `io.github.rdlabo:cf-workers-native-android:0.1.2`. Ihre Veröffentlichung steht noch aus. Erstellen Sie bis dahin eine lokale Maven-Veröffentlichung anhand des [unabhängigen Android-Verbrauchers](../demo/tests/native-embedding/android/README.md). Nach Veröffentlichung wird sie über Maven Central aufgelöst. Verwenden Sie Java 21 und Android SDK 36; `ANDROID_HOME` muss auf das installierte SDK zeigen. Ergänzen Sie `google()` und `mavenCentral()` in den Abhängigkeitsrepositorys Ihrer App. In deren Groovy-`build.gradle`:
+Fügen Sie die Android-Maven-Veröffentlichung des SDKs zu Ihren App-Abhängigkeiten hinzu und legen Sie das generierte Webverzeichnis unter `src/main/assets/` ab, etwa als `worker-web`. Die Veröffentlichung löst Capacitor und weitere native Abhängigkeiten auf. Verwenden Sie `io.github.rdlabo:cf-workers-native-android:0.1.7` mit npm 0.1.7. Ältere Maven-Artefakte ersetzen die passende native Bridge nicht. Verwenden Sie für die lokale SDK-Entwicklung die passende Quellrevision und den [lokalen Veröffentlichungsablauf](development.md#android-maven-publication). Verwenden Sie Java 21 und Android SDK 36; `ANDROID_HOME` muss auf das installierte SDK zeigen. Ergänzen Sie `google()` und `mavenCentral()` in den Abhängigkeitsrepositorys Ihrer App. Die Groovy-Abhängigkeit lautet:
 
 ```groovy
 dependencies {
-    implementation 'io.github.rdlabo:cf-workers-native-android:0.1.2'
+    implementation 'io.github.rdlabo:cf-workers-native-android:0.1.7'
 }
 android {
     compileOptions {
@@ -158,7 +166,7 @@ Es kann jeweils nur ein SDK-Bildschirm aktiv sein. Bei einer Activity-Neuerstell
 
 ## Kompatibilität
 
-Verwenden Sie übereinstimmende JS- und native SDK-Revisionen. Die neuen Hosts teilen die vorhandene cf-workers-native-Laufzeit und Buildwerkzeuge; sie ändern keine Cloudflare-Deployment-Eingaben und ergänzen kein Remote-Worker-Deployment.
+Verwenden Sie die obige kompatible Kombination von JS- und nativen Abhängigkeiten. Verwenden Sie bei Quellbuilds übereinstimmende Revisionen. Die neuen Hosts teilen die vorhandene cf-workers-native-Laufzeit und Buildwerkzeuge; sie ändern keine Cloudflare-Deployment-Eingaben und ergänzen kein Remote-Worker-Deployment.
 
 Für allgemeine native Plugins verwenden Sie die bestehende [Capacitor-Integration](native-rendering-api.md). Diese Einbettungs-Hosts stellen die Workers-Oberfläche und ihre Laufzeitverbindung bereit.
 

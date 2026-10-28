@@ -1,44 +1,71 @@
 ---
 title: "互換性と制限"
+sourceRevision: "eabce73d3a2453218f8df88a57e0edc701428356d16b61eb18fd6b8065336747"
 ---
 
 # 互換性と制限
 
 対象は Cloudflare Workers であり、単独の Node.js プロセスではありません。Node プロファイルは workerd `1.20261012.1`、compatibility date `2026-10-17` を追加フラグなしで使います。他の日付やフラグはこのプロファイルの対象外です。WebView は workerd や V8 を含みません。iOS は独自の JavaScript エンジンを使います。
 
-旧 `workers-capacitor` の 0.1.0 Preview と明示的に承認された 0.1.1 Preview は、[バージョン固有のリリース例外](../CONTRIBUTING.md#010-preview-exception)に基づき、以下の制限を伴う既存の互換実装を含みます。明示的に承認された `cf-workers-native@0.1.2` Preview も[リリース例外](../CONTRIBUTING.md#012-preview-follow-up)に基づき記載の制限を維持します。収録は Workers や Node.js の完全互換を意味しません。
+リリースには[リモート優先のアプリケーションリリース基準](../CONTRIBUTING.md#remote-first-application-release-gate)を適用します。既定のネットワークポリシーでは、サーバー実装をデプロイ済みWorkerに保持します。モバイルアプリケーションでの検証に成功しても、WorkersやNode.jsとの完全互換を証明するものではありません。ローカルAPIの完成に向けた作業は、以下の制限を伴いながら独立して進みます。
 
 ## ネイティブホスト
 
 | ホスト | 範囲 |
 | --- | --- |
-| iOS 埋め込み | UIKit/SwiftUI 向け 0.1.2 Preview の `WorkersIOS` SwiftPM product。UIKit コントローラーを取り除く前に close が必要。SwiftUI の dismantling は自動で閉じる。 |
-| Android 埋め込み | ローカル Maven SDK 配布。公開 Maven リリースはなし。WebView の `MULTI_PROFILE` が必須。SDK 画面は同時に 1 つで、永続 SDK Cookie をホストの Cookie から分離。 |
-| Capacitor | 既存の Capacitor 8 連携。8.5.3 で検証。汎用ネイティブプラグインにはこの経路を使用。 |
+| iOS埋め込み | UIKit/SwiftUI向け0.1.7の`WorkersIOS` SwiftPM product。UIKitコントローラーを取り除く前に閉じてください。SwiftUIのdismantlingでは自動で閉じます。 |
+| Android埋め込み | Maven Central SDK `io.github.rdlabo:cf-workers-native-android:0.1.7`。WebViewの`MULTI_PROFILE`が必須です。SDK画面は同時に1つで、永続SDK CookieはホストCookieから分離されます。 |
+| Capacitor | 既存のCapacitor 8連携。8.5.3で検証済みです。汎用ネイティブプラグインにはこの経路を使用します。 |
 
-0.1.2 Preview の npm 名は `cf-workers-native` です。公開後にインストールしてください。埋め込みホストは JS・ネイティブの版の一致が必要で、旧 `workers-capacitor@0.1.1` には含まれません。両方とも 30 秒後に未完了の起動を検出します。同じランタイムとビルドツールを再利用するため、以下の API・フレームワーク制限を維持します。プラットフォームの動作は[埋め込み設定とライフサイクル](native-embedding.md)、ホストごとの根拠は[検証範囲](native-embedding.md#verification)を参照してください。
+npmのPreviewは`cf-workers-native`という名前です。[依存関係の対応表](native-embedding.md#dependency-setup)にある正確なバージョンと対応するネイティブ依存を使ってください。文書化された互換性のあるJS・ネイティブ依存セットを使用します。これらは旧`workers-capacitor@0.1.1`には含まれません。両ホストとも30秒後に未完了の起動を検出します。同じランタイムとビルドツールを再利用するため、以下のAPI・フレームワーク制限を維持します。プラットフォームの動作は[埋め込み設定とライフサイクル](native-embedding.md)、ホストごとの根拠は[検証範囲](native-embedding.md#verification)を参照してください。
 
 ## Node.js
 
-Node 全体の互換性は未完成です。モジュールのインポートに成功しても、メソッド、検証、状態、スケジューリング、エンジンの動作が同等であるとは確認できません。
+Node全体の互換性は未完成です。モジュールのインポートに成功しても、メソッド、検証、状態、スケジューリング、エンジンの動作が同等であるとは確認できません。
+
+既存の契約テストに合格するモジュールも含め、モジュール全体の状態は引き続き**進行中**です。リリース検証は実装済みのシナリオを対象とし、未検証の操作を認定するものではありません。以下の未実装API、既知の差異、未検証の操作範囲は、リリース後も未完了の課題として残ります。
 
 | 領域 | 動作と制限 |
 | --- | --- |
-| path, querystring, string_decoder, buffer, timers | 固定した Workers プロファイルを実装します。Workers の stub は stub のままです。例えば matchesGlob は固定したバージョンの拒否動作を再現します。 |
-| HTTP と net | インメモリのサーバーディスパッチです。OS で待ち受けるサーバーはありません。外向き TCP / TLS にはネイティブトランスポートが必要です。 |
-| fs / fs/promises | 読み取り専用の埋め込み仮想ファイルです。書き込み、FileHandle、watch、完全なファイルシステムのセマンティクスには対応しません。 |
-| module | 限定的な builtin registry です。createRequire は VFS の JSON だけを読み込みます。実行可能モジュールはバンドルする必要があり、任意の動的解決は未対応です。 |
-| process, events, console, util / util/types / sys | export や動作に不足があります。エンジンの introspection、call site、host object の検出は Workers と同等ではありません。 |
-| crypto と zlib | 依存ライブラリの実装は Workers の全 export、アルゴリズム、鍵、codec を網羅しません。暗号や圧縮の同等性を仮定しないでください。 |
-| TLS と HTTP 内部 | node:tls は未完成です。\_http_common、\_http_outgoing、\_http_server、\_tls_wrap、\_stream_wrap は import 監査に失敗します。ネイティブ TLS トランスポートがあることは、Node TLS API 互換性を意味しません。 |
-| Streams | host にバイトストリームがない場合、パッケージの fallback が提供します。Workers の tee の cancel reason と pipeTo の abort timing は完全には再現していません。 |
-| async_hooks | ビルド変換された async 関数はスコープ付き store を維持します。未変換のネイティブ async コールバックは拒否します。任意の動的コードとリクエストの発生元の分離は完全には対応していません。 |
-| diagnostics_channel | 同期的な channel / store 契約を実装します。非同期の伝播は async-hooks の制限に依存します。 |
-| worker_threads | Workers の stub とローカル MessagePort の動作であり、Node の thread ではありません。trusted-event branding、host object のシリアライズ、グローバルの同一性は異なります。 |
-| DNS | DNS-over-HTTPS 実装です。Service Binding / Hyperdrive の合成アドレス override は未実装です。 |
-| その他のモジュール | 実装と共有契約はありますが、モジュール全体の受け入れ検証は未完了です。namespace が一致するだけでは不十分です。 |
+| path, querystring, string_decoder, buffer, timers | 固定したWorkersプロファイルを実装します。Workersのstubはstubのままです。例えばmatchesGlobは固定したバージョンの拒否動作を再現します。 |
+| HTTPとnet | インメモリのサーバーディスパッチです。OSで待ち受けるサーバーはありません。外向きTCP/TLSにはネイティブトランスポートが必要です。 |
+| fs / fs/promises | 読み取り専用の埋め込みファイルに加え、リクエスト内だけで有効なインメモリの`/tmp`を提供し、書き込み、ディスクリプター、FileHandle操作に対応します。Workersと同様にwatchは未対応です。ファイルシステム全体のセマンティクスは引き続き監査中です。 |
+| module | 限定的なbuiltin registryです。createRequireはVFSのJSONだけを読み込みます。実行可能モジュールはバンドルする必要があり、任意の動的解決は未対応です。 |
+| process, console, util / util/types / sys | processは設定、環境ファイルの読み込み、標準ストリームを含みます。abort/reallyExit/getBuiltinModuleは未実装です。エンジンのintrospection、call site、host objectの検出はWorkersと同等ではありません。 |
+| cryptoとzlib | 選択されたプロファイルはrandom/Hash/HMAC/PBKDF2/HKDF/scrypt、共通鍵・非対称鍵、署名、素数、Brotli/Zstdストリーミングを扱います。X509Certificateの解析、フィールド、チェックは固定したWorkersの制限に合わせて実装しています。追加アルゴリズムや暗号・codecの完全な同等性には未対応の部分が残ります。 |
+| TLSとHTTP内部 | 直接TLSとSTARTTLSは認証付きのネイティブトランスポートを使い、close_notifyと途中で切れた接続を区別します。STARTTLSはWorkersの早期secureConnect通知を公開しますが、アプリケーションのI/Oは証明書認証が終わるまで待ちます。クラス・状態全体の受け入れ検証は未完了です。 |
+| WebSocket | 独自実装のWebSocketとWebSocketPairは、ネイティブWS/WSS、accept、close、圧縮、attachmentを実装します。attachmentのサイズ計算には、対象を明示したエンジン表現上の境界があります。API全体の受け入れ検証は未完了です。 |
+| Streams | 独自実装が全ホストでバイトストリームと、テスト済みのWorkersのteeキャンセル・pipeTo中止動作を提供します。モジュール全体の受け入れ検証は未完了です。 |
+| async_hooks | ビルド変換されたasync関数はスコープ付きstoreを維持します。未変換のネイティブasyncコールバックは拒否します。任意の動的コードとリクエスト発生元の分離は完全には対応していません。 |
+| diagnostics_channel | 同期的なchannel/store契約を実装します。非同期の伝播はasync-hooksの制限に依存します。 |
+| worker_threads | WorkersのstubとローカルMessagePortの動作であり、Nodeのthreadではありません。trusted-event branding、host objectのシリアライズ、グローバルの同一性は異なります。 |
+| DNS | DNS-over-HTTPS実装です。Service Binding/Hyperdriveの合成アドレスoverrideは未実装です。 |
+| events | [WebView events profile](../src/compat/events/README.md): EventEmitter、abort・反復処理のヘルパー、変換済みAsyncResourceの伝播、process warningの配信。ネイティブasyncとV8 inspectionには制限が残ります。 |
+| その他のモジュール | 実装と共有契約はありますが、モジュール全体の受け入れ検証は未完了です。namespaceが一致するだけでは不十分です。 |
 
-不足 / 余分な export の正確な基準は、[固定した export](../demo/tests/experiments/node-compat/exports.json) に対する [surface-gaps.json](../demo/tests/experiments/node-compat/surface-gaps.json) で管理します。これらのファイルが正本であり、このガイドに export 一覧を重複して載せません。確認するには `npm run build` の後、`npm run test:node-inventory --prefix demo` を実行します。動作契約は `src/compat` の各実装の隣にあります。
+[WebSocketのattachmentの境界](../src/browser/websocket/README.md)は、エンジン内部の非公開表現に依存するシリアライズ後のサイズにだけ適用されます。対応する値、スナップショットの分離、通常のサイズ制限、TLS認証、ネットワーク動作を免除するものではありません。
+
+不足・余分なexportの正確な基準は、[固定したexport](../demo/tests/experiments/node-compat/exports.json)に対する[surface-gaps.json](../demo/tests/experiments/node-compat/surface-gaps.json)で管理します。これらのファイルが正本であり、このガイドにexport一覧を重複して載せません。確認するには`npm run build`の後、`npm run test:node-inventory --prefix demo`を実行します。動作契約は`src/compat`の各実装の隣にあります。
+
+### 完成度の評価
+
+インポート監査は、export名とそのJavaScriptの型を固定したWorkersプロファイルと比較します。監査の成功は新たな公開APIの退行がないことを意味し、モジュール全体の互換性を証明しません。特に、関数をオブジェクトに置き換えると、export名が変わらなくても退行として検出します。
+
+`npm run build`の後に`npm run test:node-completion --prefix demo`を実行し、`demo/artifacts/node-inventory/completion.json`を再生成します。レポートはChromiumとWebKitの両方で固定対象の全モジュールを扱い、公開APIの不足と、公開APIは一致しているが認定されていないモジュールを区別し、根拠への参照とともに次の調査を記録します。エンジン、モジュール、型監査データが不足している場合やプロファイルが一致しない場合は生成に失敗します。任意のレポートフラグ`--require-complete`は公開APIの表面だけの根拠を拒否します。このフラグによってレポート生成を互換性認定として扱ってはいけません。
+
+残る作業には異なる原因があります。
+
+- **実装の不足:** `crypto`、`zlib`、残る仮想ファイルシステムのセマンティクスには、操作単位の実装と検証が必要です。未実装であることは技術的に不可能である証拠ではありません。
+- **動作の不足:** ストリームのライフサイクルや合成DNSの残る動作には、正しい名前をexportするだけでなく、専用のアダプターと契約が必要です。
+- **エンジンの境界:** proxy/promiseのintrospection、ネイティブasyncの継続hook、信頼済みMessagePortのbrandingには観測可能な差異があります。ビルド時変換やネイティブブリッジには、明示的な範囲と個別の検証が必要です。
+- **Workersのstub:** 固定したランタイムの実際のno-op・拒否動作を維持します。Nodeに存在するという理由だけでデスクトップNodeの機能を実装しないでください。
+- **検証の不足:** exportの表面が一致していても、完成と呼ぶにはモジュール全体の操作・prototypeの網羅とネイティブ受け入れ検証が必要です。
+
+codecオプションのgetterは、ネイティブ処理の前に入力や辞書を変更できます。この通常の変更は維持します。サイズ変更可能なArrayBufferと拡張可能なSharedArrayBufferのviewは、Workersと同様に変換時にスナップショットを取得します。オプションgetterから転送される固定長ArrayBufferは、より限定的なエンジン上の境界です。Workersは切り離し後もネイティブのbacking storeを保持できますが、JavaScriptでは転送直前の変更を復元できません。ローカルの高速codecは、空データを黙って圧縮するのではなく、このケースを`TypeError`で拒否します。オプションgetterから入力や辞書のバッファーを転送しないでください。この制限は、他のcodecオプションやライフサイクル動作を免除しません。
+
+反例の確認には`npm run test:node-boundaries --prefix demo`を、Workers eventsの基準と実装の確認には`npm run test:events --prefix demo`を実行します。`node:events`は[WebView events profile](../src/compat/events/README.md)を経由し、process warningの配信とmicrotaskのスケジューリングをそのアダプターと共有します。テストは、ページ内とDedicated Workersで通常のVite/esbuildインポートを比較します。エンジンのinspectionと未変換のnative-asyncの境界は明示したままです。このプロファイルとの一致は、Workers/Nodeの全モジュールを認定するものではありません。
+
+[追加の互換性プロファイル](../src/compat/expansion/README.md)は、consoleのstub、sys/utilのalias、選択されたcrypto操作、リクエスト内だけで有効な`/tmp`、共通鍵型のKeyObject、Brotli/Zstd/CRC32、ファイルシステムのメタデータ、ストリームのキャンセル、モジュールのメタデータ、HTTPヘルパーを扱います。固定したWorkersバージョンとのライブ差分テストには`npm run test:node-expansion --prefix demo`を実行します。CIは既存のeventsスイートと併せてこれらを実行します。ネイティブ検証では、`npm run test:events:native:prepare --prefix demo`でインストール済み利用側を準備し、`npm run test:node-expansion:native --prefix demo -- ios <simulator-uuid>`または`npm run test:node-expansion:native --prefix demo -- android <emulator-serial>`を実行します。ネイティブレポートは、`demo/artifacts/node-inventory/native-expansion/`配下に候補のハッシュとインストールしたtarballの識別情報を含みます。
 
 Workers で機能しないモジュールが端末機能を得るわけではありません。VM isolate、プロセス生成、V8 heap へのアクセス、UDP socket、OS terminal は提供しません。`node:test` が公開するのは Workers の mock API であり、Node の完全なテスト runner ではありません。
 

@@ -1,6 +1,6 @@
 ---
 title: "Build-Einrichtung"
-sourceRevision: "c8207e44e81bc309f7ec6f13387ef9b4f048d9a56d3bcaa0e35b952a2cf149a0"
+sourceRevision: "08294f510fa4d9d608db9bc8a9964cb5c51842fed830c5fe8cca31ff55592e0f"
 ---
 
 # Build-Einrichtung
@@ -21,9 +21,13 @@ Das Bundler-Plugin heißt bei jedem Host weiterhin `workersCapacitorPlugin`. Nur
 | Android | `workersAndroid` aus `cf-workers-native/android` | [Bestehende Android-App](native-embedding.md#android) |
 | Capacitor | `workersCapacitor` aus `cf-workers-native/capacitor` | [Capacitor-App](integration.md) |
 
-Verwenden Sie `cf-workers-native@0.1.2` mit passenden nativen Abhängigkeiten; siehe [Abhängigkeiten einrichten](native-embedding.md#dependency-setup). Erstellen Sie für jedes Ziel den entsprechenden Einstiegspunkt und verpacken Sie anschließend das gesamte Ausgabeverzeichnis. Die folgenden bestehenden Capacitor-Beispiele verwenden `workersCapacitor`; dieselben Optionen gelten für `workersIOS` und `workersAndroid` in ihren SDK-Hosts.
+Verwenden Sie `cf-workers-native@0.1.7` mit passenden nativen Abhängigkeiten; siehe [Abhängigkeiten einrichten](native-embedding.md#dependency-setup). Erstellen Sie für jedes Ziel den entsprechenden Einstiegspunkt und verpacken Sie anschließend das gesamte Ausgabeverzeichnis. Die folgenden bestehenden Capacitor-Beispiele verwenden `workersCapacitor`; dieselben Optionen gelten für `workersIOS` und `workersAndroid` in ihren SDK-Hosts.
 
 ## Frameworks
+
+Behalten Sie für den ersten mobilen Build die standardmäßige Netzwerkausführung bei und konfigurieren Sie die HTTPS-URL des bereitgestellten Workers. Nicht unterstützte Server-APIs können auf diesem Worker bleiben; sie benötigen keine lokalen Polyfills. Eine clientseitige Bibliothek, die den WebView-Origin vor dem Senden einer Anfrage ablehnt, benötigt weiterhin eine Integrationsänderung. Remote-Dispatch behebt diesen Fehler bei der Clientinitialisierung nicht.
+
+Netzwerkausführung benötigt eine Verbindung. Eine fehlgeschlagene Mutation wird dem Aufrufer ohne automatische Wiederholung gemeldet. Die Routenauswahl erfolgt vor der Ausführung eines lokalen Handlers; eine lokale Ausnahme führt niemals zu einem entfernten Wiederholungsversuch. Lässt sich eine optionale lokale Route nicht sicher abtrennen, behalten Sie den gesamten Worker remote und prüfen Sie den generierten Bindingbericht. Explizites `execution: "local"` benötigt ein eigenes unterstütztes API-Profil und aktiviert diesen Fallback nicht.
 
 Für die folgenden Integrationen liegen Beispiele und Verifizierungsnachweise vor. Die Unterstützung beschränkt sich auf die hier beschriebenen Ausführungspfade; API- und Anwendungseinschränkungen finden Sie unter [Kompatibilitätsgrenzen](compatibility.md).
 

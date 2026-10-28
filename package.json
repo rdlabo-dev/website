@@ -118,7 +118,7 @@
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "angular-eslint": "22.1.0",
-    "cf-workers-native": "0.1.2",
+    "cf-workers-native": "0.1.8",
     "eslint": "^10.9.1",
     "jsdom": "^28.0.0",
     "pagefind": "1.5.2",

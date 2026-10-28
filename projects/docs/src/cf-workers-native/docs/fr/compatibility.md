@@ -1,45 +1,71 @@
 ---
 title: "Compatibilité et limites"
-sourceRevision: "56a446de52da202777215a195ebdae7a922d12c21cd566fa4456c828c04be0b4"
+sourceRevision: "eabce73d3a2453218f8df88a57e0edc701428356d16b61eb18fd6b8065336747"
 ---
 
 # Compatibilité et limites
 
 La cible est Cloudflare Workers, pas un processus Node.js autonome. Le profil Node utilise workerd `1.20261012.1`, la date de compatibilité `2026-10-17`, sans indicateur supplémentaire. Les autres dates et indicateurs ne sont pas couverts par ce profil. La WebView ne contient ni workerd ni V8 ; iOS utilise son propre moteur JavaScript.
 
-Les anciennes versions `workers-capacitor` 0.1.0 Preview et 0.1.1 Preview, cette dernière explicitement autorisée, incluent les implémentations de compatibilité existantes avec les limites ci-dessous dans le cadre d’une [exception de publication propre à la version](../CONTRIBUTING.md#010-preview-exception). La préversion `cf-workers-native@0.1.2` explicitement autorisée conserve les limites documentées dans son [exception de publication](../CONTRIBUTING.md#012-preview-follow-up). Leur inclusion ne signifie pas une compatibilité complète avec Workers ou Node.js.
+Les publications suivent le [critère de validation des applications privilégiant l’exécution distante](../CONTRIBUTING.md#remote-first-application-release-gate). La politique réseau par défaut conserve l’implémentation serveur sur le Worker déployé. La validation d’une application mobile ne démontre pas une compatibilité complète avec Workers ou Node.js. L’achèvement des API locales se poursuit indépendamment, avec les limites ci-dessous.
 
 ## Hôtes natifs
 
 | Hôte | Périmètre |
 | --- | --- |
-| Intégration iOS | Produit SwiftPM `WorkersIOS` 0.1.2 Preview pour UIKit/SwiftUI. Fermez avant de retirer un contrôleur UIKit ; le démontage SwiftUI ferme automatiquement. |
-| Intégration Android | Publication Maven locale ; aucune version Maven publique. Nécessite WebView `MULTI_PROFILE` ; un écran SDK à la fois, avec des cookies SDK persistants isolés de ceux de l’hôte. |
+| Intégration iOS | Produit SwiftPM `WorkersIOS` 0.1.7 pour UIKit/SwiftUI. Fermez avant de retirer un contrôleur UIKit ; le démontage SwiftUI ferme automatiquement. |
+| Intégration Android | SDK Maven Central `io.github.rdlabo:cf-workers-native-android:0.1.7`. Nécessite WebView `MULTI_PROFILE` ; un écran SDK à la fois, avec des cookies SDK persistants isolés de ceux de l’hôte. |
 | Capacitor | Intégration Capacitor 8 existante, vérifiée avec 8.5.3 ; utilisez cette voie pour les plugins natifs généraux. |
 
-La préversion 0.1.2 utilise le nom npm `cf-workers-native` ; installez-la après publication. Les hôtes intégrés exigent des versions JS/natives correspondantes ; ils ne sont pas inclus dans l’ancienne version `workers-capacitor@0.1.1`. Les deux détectent un démarrage incomplet après 30 secondes. Ils réutilisent le runtime et les outils de compilation et conservent donc les limites d’API/framework ci-dessous. Consultez la [configuration et le cycle de vie de l’intégration](native-embedding.md) pour le comportement des plateformes et le [périmètre de vérification](native-embedding.md#verification) pour les preuves propres à chaque hôte.
+La préversion npm utilise le nom `cf-workers-native` ; utilisez la version exacte et les dépendances natives correspondantes dans la [matrice des dépendances](native-embedding.md#dependency-setup). Utilisez l’ensemble compatible de dépendances JS/natives documenté ; ces hôtes ne sont pas inclus dans l’ancienne version `workers-capacitor@0.1.1`. Les deux détectent un démarrage incomplet après 30 secondes. Ils réutilisent le runtime et les outils de compilation et conservent donc les limites d’API/framework ci-dessous. Consultez la [configuration et le cycle de vie de l’intégration](native-embedding.md) pour le comportement des plateformes et le [périmètre de vérification](native-embedding.md#verification) pour les preuves propres à chaque hôte.
 
 ## Node.js
 
 La compatibilité avec l’ensemble de Node est incomplète. L’import réussi d’un module ne démontre pas l’équivalence de ses méthodes, de sa validation, de son état, de son ordonnancement ou du comportement du moteur.
 
+Le statut des modules entiers reste **En cours**, y compris pour ceux dont les contrats existants passent. La validation de publication couvre les scénarios implémentés ; elle ne certifie pas les opérations non testées. Les API manquantes, les différences connues et les opérations non vérifiées ci-dessous restent à traiter après publication.
+
 | Domaine | Comportement et limites |
 | --- | --- |
 | path, querystring, string_decoder, buffer, timers | Implémentent le profil Workers épinglé. Les stubs Workers restent des stubs ; par exemple, matchesGlob reproduit le rejet épinglé. |
 | HTTP et net | Acheminement serveur en mémoire ; aucun serveur système en écoute. Le TCP/TLS sortant nécessite le transport natif. |
-| fs / fs/promises | Fichiers virtuels embarqués en lecture seule. Les écritures, FileHandle, watch et la sémantique complète du système de fichiers ne sont pas pris en charge. |
+| fs / fs/promises | Fichiers embarqués en lecture seule et `/tmp` en mémoire propre à chaque requête, avec écritures, descripteurs et opérations FileHandle. Watch n’est pas pris en charge, comme dans Workers. La sémantique complète du système de fichiers reste en cours d’audit. |
 | module | Registre limité de modules intégrés ; createRequire charge uniquement le JSON du VFS. Les modules exécutables doivent être regroupés ; la résolution dynamique arbitraire n’est pas prise en charge. |
-| process, events, console, util / util/types / sys | Exports ou comportement incomplets. L’introspection du moteur, les sites d’appel et la détection d’objets hôtes ne sont pas équivalents à Workers. |
-| crypto et zlib | Les implémentations des dépendances ne couvrent pas tous les exports, algorithmes, clés ou codecs Workers. Ne supposez pas une parité cryptographique ou de compression. |
-| TLS et composants internes HTTP | node:tls est incomplet. \_http_common, \_http_outgoing, \_http_server, \_tls_wrap et \_stream_wrap échouent à l’audit d’import. Le transport TLS natif n’implique pas la compatibilité avec l’API TLS de Node. |
-| Streams | Une solution de repli empaquetée fournit des flux d’octets si l’hôte n’en dispose pas. Les motifs d’annulation de tee et le moment de l’annulation de pipeTo de Workers ne sont pas intégralement reproduits. |
+| process, console, util / util/types / sys | Process inclut la configuration, le chargement de fichiers d’environnement et les flux standard ; abort/reallyExit/getBuiltinModule restent absents. L’introspection du moteur, les sites d’appel et la détection d’objets hôtes ne sont pas équivalents à Workers. |
+| crypto et zlib | Certains profils couvrent random/Hash/HMAC/PBKDF2/HKDF/scrypt, les clés secrètes/asymétriques, les signatures, les nombres premiers et le streaming Brotli/Zstd. L’analyse, les champs et les vérifications de X509Certificate sont implémentés avec les limites de Workers épinglées ; d’autres algorithmes et la parité complète crypto/codec restent à couvrir. |
+| TLS et composants internes HTTP | TLS direct et STARTTLS utilisent des transports natifs authentifiés et distinguent close_notify des connexions tronquées. STARTTLS expose la notification secureConnect anticipée de Workers, tandis que les E/S applicatives attendent toujours l’authentification du certificat. La validation complète des classes/états reste à faire. |
+| WebSocket | Les implémentations propres de WebSocket et WebSocketPair prennent en charge WS/WSS natif, accept, close, la compression et les pièces jointes. Le calcul de taille des pièces jointes a une limite explicitement définie liée à la représentation interne du moteur ; la validation de l’API entière reste à faire. |
+| Streams | Une implémentation propre fournit des flux d’octets et les comportements Workers testés d’annulation de tee et d’abandon de pipeTo sur chaque hôte. La validation du module entier reste à faire. |
 | async_hooks | Les fonctions async transformées au build conservent des stores par portée. Les callbacks async natifs non transformés sont rejetés ; le code dynamique arbitraire et l’isolation par origine de requête ne sont pas entièrement pris en charge. |
 | diagnostics_channel | Les contrats synchrones de canal/store sont implémentés ; la propagation asynchrone dépend des limites d’async-hooks. |
 | worker_threads | Stubs Workers et comportement local de MessagePort, pas des threads Node. Le marquage des événements de confiance, la sérialisation des objets hôtes et l’identité globale diffèrent. |
 | DNS | Implémentation DNS-over-HTTPS ; les substitutions d’adresses synthétiques Service Binding/Hyperdrive ne sont pas implémentées. |
+| events | [WebView events profile](../src/compat/events/README.md) : EventEmitter, utilitaires d’abandon/itération, propagation AsyncResource transformée et transmission des avertissements process. Async natif et inspection V8 restent limités. |
 | Autres modules | Des implémentations et contrats partagés existent, mais la validation de modules entiers reste à faire. L’égalité des espaces de noms ne suffit pas. |
 
+La [limite des pièces jointes WebSocket](../src/browser/websocket/README.md) concerne uniquement les tailles sérialisées dépendant de la représentation privée du moteur. Elle ne dispense pas du respect des valeurs prises en charge, de l’isolation des instantanés, des limites de taille normales, de l’authentification TLS ou du comportement réseau.
+
 La base exacte des exports manquants/supplémentaires est maintenue dans [surface-gaps.json](../demo/tests/experiments/node-compat/surface-gaps.json), par rapport aux [exports épinglés](../demo/tests/experiments/node-compat/exports.json). Ces fichiers font autorité ; ce guide ne recopie pas la liste des exports. Exécutez `npm run build`, puis `npm run test:node-inventory --prefix demo` pour la vérifier. Les contrats comportementaux se trouvent à côté de chaque implémentation dans `src/compat`.
+
+### Évaluation de l’achèvement
+
+L’audit d’import compare les noms des exports et leurs types JavaScript au profil Workers épinglé. Un audit réussi signifie qu’aucune nouvelle régression de surface n’a été introduite ; il ne démontre pas la compatibilité du module entier. En particulier, remplacer une fonction par un objet constitue désormais une régression, même si le nom de l’export est inchangé.
+
+Après `npm run build`, exécutez `npm run test:node-completion --prefix demo` pour régénérer `demo/artifacts/node-inventory/completion.json`. Le rapport couvre chaque module épinglé dans Chromium et WebKit, distingue les lacunes de surface des modules alignés mais non certifiés et consigne la prochaine investigation avec des références aux preuves. L’absence de moteurs, de modules ou de données d’audit des types, ou un profil divergent, fait échouer la génération. L’option facultative du rapport `--require-complete` rejette les preuves limitées à la surface ; elle ne doit pas servir à transformer la génération du rapport en certificat de compatibilité.
+
+Le travail restant a différentes causes :
+
+- **Lacunes d’implémentation :** `crypto`, `zlib` et la sémantique restante du système de fichiers virtuel nécessitent encore une implémentation et une vérification opération par opération. Leur absence ne prouve pas une impossibilité technique.
+- **Lacunes de comportement :** les comportements restants du cycle de vie des flux et du DNS synthétique nécessitent des adaptateurs et des contrats spécifiques, au-delà de l’export des bons noms.
+- **Limites du moteur :** l’introspection proxy/promise, les hooks de continuation async native et le marquage de confiance de MessagePort présentent des différences observables. Les transformations à la compilation ou les ponts natifs nécessitent un périmètre explicite et une vérification distincte.
+- **Stubs Workers :** conservez le comportement réel sans effet ou de rejet du runtime épinglé. N’implémentez pas les capacités de Node de bureau au seul motif que Node les expose.
+- **Lacunes de vérification :** même une surface d’exports alignée nécessite une couverture des opérations/prototypes du module entier et une validation native avant d’être considérée comme complète.
+
+Un getter d’option de codec peut modifier une entrée ou un dictionnaire avant le traitement natif ; ces modifications ordinaires sont conservées. Les ArrayBuffers redimensionnables et les vues SharedArrayBuffer extensibles sont copiés en instantanés lors de la conversion, comme dans Workers. Un ArrayBuffer fixe transféré par un getter d’option relève d’une limite plus étroite du moteur : Workers peut conserver son stockage natif après détachement, tandis que JavaScript ne peut pas récupérer les modifications effectuées juste avant le transfert. Les codecs locaux rapides rejettent ce cas avec `TypeError` au lieu de compresser silencieusement des données vides. Évitez de transférer les buffers d’entrée ou de dictionnaire depuis des getters d’options. Cette limite ne dispense pas de respecter les autres options de codec ou leur cycle de vie.
+
+Exécutez `npm run test:node-boundaries --prefix demo` pour les contre-exemples et `npm run test:events --prefix demo` pour la référence Workers events et son implémentation. `node:events` passe par le [WebView events profile](../src/compat/events/README.md) ; la transmission des avertissements process et l’ordonnancement des microtâches sont partagés avec cet adaptateur. Les tests comparent les imports Vite/esbuild ordinaires dans la page et dans des Dedicated Workers. Les limites d’inspection du moteur et d’async natif non transformé restent explicites ; la conformité à ce profil ne certifie pas tous les modules Workers/Node.
+
+Les [profils de compatibilité supplémentaires](../src/compat/expansion/README.md) couvrent les stubs console, les alias sys/util, certaines opérations cryptographiques, `/tmp` propre à chaque requête, les KeyObjects secrets, Brotli/Zstd/CRC32, les métadonnées du système de fichiers, l’annulation des flux, les métadonnées des modules et les utilitaires HTTP. Exécutez `npm run test:node-expansion --prefix demo` pour les tests différentiels en direct avec la version Workers épinglée. La CI exécute ces contrôles avec la suite events existante. Pour la vérification native, préparez un consommateur installé avec `npm run test:events:native:prepare --prefix demo`, puis exécutez `npm run test:node-expansion:native --prefix demo -- ios <simulator-uuid>` ou `npm run test:node-expansion:native --prefix demo -- android <emulator-serial>`. Les rapports natifs incluent le hash du candidat et l’identité de l’archive installée sous `demo/artifacts/node-inventory/native-expansion/`.
 
 Les modules non fonctionnels de Workers n’acquièrent pas de capacités de l’appareil : les isolats VM, la création de processus, l’accès au tas V8, les sockets UDP et un terminal système ne sont pas fournis. `node:test` expose l’API de mocks Workers, pas l’exécuteur de tests complet de Node.
 

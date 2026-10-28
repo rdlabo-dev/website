@@ -1,5 +1,6 @@
 ---
 title: "既存の Workers アプリケーションを Capacitor と統合する"
+sourceRevision: "1915798ff91011d23d9112d443021b39438de8d45ebbc9771d9c1ffc4423ea6c"
 ---
 
 # 既存の Workers アプリケーションを Capacitor と統合する
@@ -12,30 +13,25 @@ title: "既存の Workers アプリケーションを Capacitor と統合する"
 
 最も重要な成功基準は、最小限の統合作業でネイティブアプリケーションが動くことです。新しいアーキテクチャを作ることではありません。アプリケーションが通常の HTML ドキュメント、リンク、フォームを使っている場合はそれらを維持してください。SPA への変換、新しいクライアント router、App Shell の再設計、SSR / API の分離、ハイドレーションの追加は前提条件ではありません。
 
-## 既存の Worker ページが画面に届く仕組み
+## 始める前に
 
-`render` を使うと、ライブラリは Worker のレスポンスを WebView のドキュメントリクエストへのレスポンスとして渡します。WebView はその HTML をページとして描画し、script を実行してリソースを読み込みます。アプリケーション側で既存の DOM に HTML を挿入したり、iframe に表示したりする必要はありません。
+この手順はWorkersのWebアプリを持ち、モバイル版を追加したい開発者向けです。Capacitorがネイティブプロジェクトを提供し、cf-workers-nativeが既存のWorkerページとリクエストを接続します。
 
-```text
-WebView opens /notes at the app's local origin
-  → the library receives the document request
-  → generated dispatch selects local or remote execution
-      local:  the existing Fetch handler runs on the device
-      remote: the request goes to the existing deployed Worker
-  → response status, headers and HTML body return through the document bridge
-  → WebView renders the page
-```
+次のものを用意してください。
 
-両方の実行経路が同じドキュメントレスポンスの仕組みを使います。D1 を使うページは認証、クエリ、SSR をリモート Worker に維持でき、互換性のある独立したページはローカルで描画できます。安全に分離できない場合、ビルドは Worker 全体をリモート実行に選ぶことがあります。これはリクエストのディスパッチであり、D1 の個々の操作をランタイム間で移動するものではありません。
+- アプリケーションのソースと動作するWebビルド。最初の例には[Hono / Expressのページ](../demo/rendering/README.md)や[Void + D1](../demo/void/README.md)を使えます。
+- クラウドを使うページ・データ・認証向けの、デプロイ済みの**テスト用**Worker URL。D1とサーバーの認証情報はそのWorkerに保持します。
+- Nodeとプラットフォーム開発ツール。iOSではmacOSとXcode、AndroidではAndroidのツールチェーンが必要です。[Capacitorの環境設定](https://capacitorjs.com/docs/getting-started/environment-setup)と、フレームワークのバージョン要件に従ってください。
+- モバイルプロジェクトのアプリ名とID。初回の実行にはシミュレーターかエミュレーターで十分です。
 
-通常のリンクをたどると、同じ仕組みで次のドキュメントリクエストが発生します。対応するフォーム送信と同一オリジンのリダイレクトも、ドキュメントナビゲーションを維持します。既存のクライアントスクリプトは、フレームワークが使用する対話機能やハイドレーションを提供できます。バンドル済みアセットは Worker router を迂回し、その他のリクエストは設定されたルーティングに従います。再設計を考える前に、アプリケーションの既存のページモデルを維持してください。
+最初の到達点は、アプリで既存のページが表示され、リンクで遷移でき、フォームまたはデータ操作が成功することです。その後、[受け入れチェックリスト](#6-verify-the-existing-application-in-capacitor)でログインやセッション処理を含む全フローを検証します。Web認証にはモバイル向けのコールバック設定が必要な場合があるため、対象アプリで評価してください。
 
-iOS のブリッジは `WKURLSchemeHandler`、Android は Service Worker を使います。表示ページはアプリローカルの URL（通常 iOS は `capacitor://localhost`、Android は `https://localhost`）を維持し、Worker は論理的な HTTP(S) URL を受け取ります。これはネイティブドキュメントレンダリングであり、リモートのブラウザタブやローカル HTTP サーバーではありません。フォーム、リダイレクト、アセット、ライフサイクルの制限は[ネイティブレンダリングガイド](native-rendering-api.md)を参照してください。ブラウザやフレームワークのあらゆる機能を保証するものではありません。
+このガイドでは、モバイルビルドの設定とネイティブプロジェクトのセットアップが必要です。署名、ストアアカウント、申請、審査はアプリの動作後に進めます。
 
 ## AI アシスタントに渡すプロンプト
 
 ```text
-Follow https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/docs/integration.md
+Follow https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.8/docs/integration.md
 to bring this app to iOS and Android with cf-workers-native.
 Preserve its pages, routes and authentication; verify it on the target platforms.
 ```
@@ -85,10 +81,10 @@ npx cap init
 
 以下の Vite の例では、まだ導入されていなければ `vite@7` を開発依存に追加します。対応する esbuild 設定がすでにある場合は、Vite を追加せずそれを維持してください。
 
-アプリ固有の ID・名前と `webDir: "www"` を設定します。iOS は Swift Package Manager を使います。CocoaPods 連携はありません。改名後のパッケージは公開準備中なので、それまでは以下のソース tarball を使います。公開後は npm から 0.1.2 Preview を導入します。
+アプリ固有の ID・名前と `webDir: "www"` を設定します。iOS は Swift Package Manager を使います。CocoaPods 連携はありません。npmのPreviewを正確なバージョンでインストールしてください。`latest`タグには0.xのPreviewリリースも含まれます。
 
 ```sh
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
 ソースビルドを使う場合は、チェックアウトからパッケージ tarball を作ります。
@@ -99,20 +95,20 @@ npm install
 npm pack
 
 # アプリパッケージ内:
-npm install /path/to/cf-workers-native/cf-workers-native-0.1.2.tgz
+npm install /path/to/cf-workers-native/cf-workers-native-0.1.7.tgz
 ```
 
 `npm pack` は `prepack` で SDK をビルドします。チェックアウトのディレクトリーではなく生成 tarball を導入してください。ディレクトリー導入は SDK ツリーへのシンボリックリンクになり、アプリがその中にある場合は再帰パスになることがあります。上の tarball 名は現在のソースバージョンです。
 
-導入パッケージ名は `cf-workers-native` ですが、チェックアウトのディレクトリー名はリポジトリー名のままで構いません。公開済みの旧 `workers-capacitor@0.1.1` Preview にはここで示すインポートはありません。JavaScript とネイティブ依存は同じソースリビジョンに揃えてください。
+導入パッケージ名は `cf-workers-native` ですが、チェックアウトのディレクトリー名はリポジトリー名のままで構いません。公開済みの旧 `workers-capacitor@0.1.1` Preview にはここで示すインポートはありません。[文書化されたJS・ネイティブの依存セット](native-embedding.md#dependency-setup)を使用するか、ソースビルドの依存を同じリビジョンに揃えてください。
 
 ### 旧 npm パッケージから移行する
 
-すでに `workers-capacitor` に依存するアプリは、新名を導入する前に削除します。両方を残すと Capacitor が同じネイティブプラグインを二重検出・登録する可能性があります。アプリ側で 0.1.2 Preview を使う場合:
+すでに `workers-capacitor` に依存するアプリは、新名を導入する前に削除します。両方を残すと Capacitor が同じネイティブプラグインを二重検出・登録する可能性があります。アプリ側で 0.1.7 を使う場合:
 
 ```sh
 npm uninstall workers-capacitor
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
 ランタイムのインポートを `workers-capacitor` から `cf-workers-native/capacitor` に変更し、他のサブパスも `cf-workers-native` 接頭辞へ変更します。既存のコマンドでモバイル Web アセットを再ビルドし、`npx cap sync` でネイティブ依存を再生成します。新規アプリは上の導入手順を直接使います。
@@ -346,3 +342,23 @@ Capacitor のバンドルは検査できます。JS、ネイティブソース�
 - アプリケーションの既存のクラウドテストを実行し、統合がサーバーの動作を変えていないことを確認します。ブラウザテストはネイティブのナビゲーション / セッションテストの代わりにはなりません。
 
 追加した統合ファイル、必要になった各アプリケーション変更と理由、実行したコマンド、検証したプラットフォーム、実行境界、残る制限を報告してください。シミュレーター / エミュレーターと実機の確認、リモート実行とローカル互換性を区別します。デプロイ済みテストバックエンドやネイティブ SDK がなければ、完了と主張せず、何を検証でき、何を検証できなかったかを示してください。
+
+## 既存の Worker ページが画面に届く仕組み
+
+`render` を使うと、ライブラリは Worker のレスポンスを WebView のドキュメントリクエストへのレスポンスとして渡します。WebView はその HTML をページとして描画し、script を実行してリソースを読み込みます。アプリケーション側で既存の DOM に HTML を挿入したり、iframe に表示したりする必要はありません。
+
+```text
+WebView opens /notes at the app's local origin
+  → the library receives the document request
+  → generated dispatch selects local or remote execution
+      local:  the existing Fetch handler runs on the device
+      remote: the request goes to the existing deployed Worker
+  → response status, headers and HTML body return through the document bridge
+  → WebView renders the page
+```
+
+両方の実行経路が同じドキュメントレスポンスの仕組みを使います。D1 を使うページは認証、クエリ、SSR をリモート Worker に維持でき、互換性のある独立したページはローカルで描画できます。安全に分離できない場合、ビルドは Worker 全体をリモート実行に選ぶことがあります。これはリクエストのディスパッチであり、D1 の個々の操作をランタイム間で移動するものではありません。
+
+通常のリンクをたどると、同じ仕組みで次のドキュメントリクエストが発生します。対応するフォーム送信と同一オリジンのリダイレクトも、ドキュメントナビゲーションを維持します。既存のクライアントスクリプトは、フレームワークが使用する対話機能やハイドレーションを提供できます。バンドル済みアセットは Worker router を迂回し、その他のリクエストは設定されたルーティングに従います。再設計を考える前に、アプリケーションの既存のページモデルを維持してください。
+
+iOS のブリッジは `WKURLSchemeHandler`、Android は Service Worker を使います。表示ページはアプリローカルの URL（通常 iOS は `capacitor://localhost`、Android は `https://localhost`）を維持し、Worker は論理的な HTTP(S) URL を受け取ります。これはネイティブドキュメントレンダリングであり、リモートのブラウザタブやローカル HTTP サーバーではありません。フォーム、リダイレクト、アセット、ライフサイクルの制限は[ネイティブレンダリングガイド](native-rendering-api.md)を参照してください。ブラウザやフレームワークのあらゆる機能を保証するものではありません。

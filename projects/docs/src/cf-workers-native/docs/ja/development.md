@@ -1,5 +1,6 @@
 ---
 title: "開発とテスト"
+sourceRevision: "0d229ff9f33eaa4ab26c10cea182679b9e167470679371f6562c75cbbf2c8fce"
 ---
 
 # 開発とテスト
@@ -114,3 +115,25 @@ CI はライブラリー・型検査、ローカル workerd 契約、Chromium/We
 ## Android Maven の公開
 
 [独立した公開ビルド](../scripts/android-release/README.md)で Capacitor アプリと独立して Android SDK を準備・検証します。埋め込み CI は使い捨て鍵で署名したバンドルを確認し、その Maven リポジトリーから独立アプリをビルドします。実際の Central 公開には検証済み名前空間、リリース署名鍵、明示的な公開が必要です。
+
+## 公開済みnpmパッケージを検証する
+
+正確なレジストリバージョンを指定して、独立した利用側のテストスイートを実行します。
+
+```sh
+CONSUMER_PACKAGE=cf-workers-native@0.1.5 npm run test:package
+```
+
+チェックアウトをパッケージ化する代わりに、公開済みtarballをダウンロードします。同じ検証で、パッケージ内のファイル、TypeScriptインポート、Vite/esbuild、ブラウザー実行、共有ランタイム契約を扱います。`artifacts/package-results.json`には一時的な利用側ディレクトリーを記録します。その`node_modules/cf-workers-native`ディレクトリーは、ネイティブ埋め込みランナーへ`WORKERS_NPM_PACKAGE_DIR`として渡すこともできます。`CONSUMER_PACKAGE`がない場合は、従来どおりローカルのチェックアウトをビルドしてパッケージ化します。
+
+レジストリから新規インストールした状態でのネイティブ受け入れ検証には、一度準備を実行した後、起動済みの各シミュレーター・エミュレーターで通常のWorker導入フローを実行します。
+
+```sh
+CONSUMER_VERSION=0.1.5 npm run test:events:native:prepare --prefix demo
+node demo/tests/experiments/published-package/native.mjs ios <simulator-uuid>
+node demo/tests/experiments/published-package/native.mjs android <emulator-serial>
+```
+
+利用側は生成Webディレクトリーを共有するため、これらのコマンドは順番に実行してください。準備ではnpmのSHA-512 integrityを検証し、アーカイブのSHA-256を記録します。ネイティブビルドはインストール済みのViteプラグインとランタイムをインポートし、チェックアウトからのSDKモジュールを拒否します。検証用の構成は、ローカルHTTPS Workersバックエンドに対する初期描画、リンク遷移、ちょうど1回のフォーム送信、POST/303/GETフローを確認します。本番サービスには接続しません。
+
+検証結果は`artifacts/validation/published-<version>/onboarding/`へ書き込みます。`elapsedFlowMs`はネイティブ起動からフロー全体の完了までを測定するもので、起動性能のベンチマークではありません。`documentReadyMs`はドキュメントのperformance clockであり、`bundleBytes`はネイティブアプリのバイナリではなく生成Webアセットを対象とします。[公開済みパッケージの検証用構成](../demo/tests/experiments/published-package/README.md)に、手順と検証の限界を記載しています。

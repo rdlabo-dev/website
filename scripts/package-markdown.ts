@@ -231,7 +231,12 @@ export function rewriteRepositoryResourceLinks(
         } else if (/^test-execution-time(?:\.md)?$/.test(path)) {
           path = 'docs/test-execution-time.md';
         } else {
-          if (!/^(?:demo\/|scripts\/|CONTRIBUTING(?:\.md)?$|LICENSE(?:\.md)?$)/.test(path))
+          // Source READMEs are documentation resources; other source links may be package-relative.
+          if (
+            !/^(?:demo\/|scripts\/|src\/(?:.*\/)?README(?:\.md)?$|CONTRIBUTING(?:\.md)?$|LICENSE(?:\.md)?$)/.test(
+              path,
+            )
+          )
             return match;
           if (normalized) path += '.md';
         }

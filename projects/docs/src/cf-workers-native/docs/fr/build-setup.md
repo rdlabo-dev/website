@@ -1,6 +1,6 @@
 ---
 title: "Configuration du build"
-sourceRevision: "c8207e44e81bc309f7ec6f13387ef9b4f048d9a56d3bcaa0e35b952a2cf149a0"
+sourceRevision: "08294f510fa4d9d608db9bc8a9964cb5c51842fed830c5fe8cca31ff55592e0f"
 ---
 
 # Configuration du build
@@ -21,9 +21,13 @@ Le plugin du bundler reste `workersCapacitorPlugin` pour tous les hôtes. Seul l
 | Android | `workersAndroid` depuis `cf-workers-native/android` | [Application Android existante](native-embedding.md#android) |
 | Capacitor | `workersCapacitor` depuis `cf-workers-native/capacitor` | [Application Capacitor](integration.md) |
 
-Utilisez `cf-workers-native@0.1.2` avec les dépendances natives correspondantes ; consultez la [configuration des dépendances](native-embedding.md#dependency-setup). Compilez l’entrée correspondant à chaque cible, puis empaquetez tout le répertoire de sortie. Les exemples Capacitor ci-dessous utilisent `workersCapacitor` ; les mêmes options s’appliquent à `workersIOS` et `workersAndroid` dans leurs hôtes SDK.
+Utilisez `cf-workers-native@0.1.7` avec les dépendances natives correspondantes ; consultez la [configuration des dépendances](native-embedding.md#dependency-setup). Compilez l’entrée correspondant à chaque cible, puis empaquetez tout le répertoire de sortie. Les exemples Capacitor ci-dessous utilisent `workersCapacitor` ; les mêmes options s’appliquent à `workersIOS` et `workersAndroid` dans leurs hôtes SDK.
 
 ## Frameworks
+
+Pour la première compilation mobile, conservez l’exécution réseau par défaut et configurez l’URL HTTPS du Worker déployé. Les API serveur non prises en charge peuvent rester sur ce Worker ; elles n’ont pas besoin de polyfills locaux. Une bibliothèque côté client qui rejette l’origine de la WebView avant d’envoyer une requête nécessite néanmoins une modification de l’intégration. L’acheminement distant ne corrige pas cet échec d’initialisation du client.
+
+L’exécution réseau nécessite une connexion. Une mutation échouée est signalée à l’appelant sans réexécution automatique. La sélection des routes précède l’exécution d’un gestionnaire local ; une exception locale ne provoque jamais de nouvelle tentative distante. Si une route locale facultative ne peut pas être isolée en toute sécurité, conservez tout le Worker distant et inspectez le rapport de bindings généré. Le mode explicite `execution: "local"` exige son propre profil d’API pris en charge et n’active pas ce repli.
 
 Les intégrations suivantes disposent d’exemples et de résultats de vérification. La prise en charge se limite aux chemins d’exécution décrits ici ; consultez les [limites de compatibilité](compatibility.md) pour les restrictions d’API et d’application.
 

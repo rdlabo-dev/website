@@ -1,6 +1,6 @@
 ---
 title: "Eine bestehende Workers-Anwendung mit Capacitor integrieren"
-sourceRevision: "d9069246d07a30958643fd7296f5a4818302aca6fe484341d87d1209e8eac02b"
+sourceRevision: "1915798ff91011d23d9112d443021b39438de8d45ebbc9771d9c1ffc4423ea6c"
 ---
 
 # Eine bestehende Workers-Anwendung mit Capacitor integrieren
@@ -13,30 +13,25 @@ Folgen Sie selbst dem folgenden [Arbeitsablauf](#workflow) oder geben Sie den [I
 
 Das wichtigste Erfolgskriterium ist eine funktionierende native Anwendung mit minimalem Integrationsaufwand, keine neue Anwendungsarchitektur. Behalten Sie gewöhnliche HTML-Dokumente, Links und Formulare bei, wo die Anwendung sie nutzt. SPA-Umwandlung, ein neuer Client-Router, App-Shell-Neugestaltung, SSR-/API-Trennung und das Hinzufügen von Hydration sind keine Voraussetzungen.
 
-## Wie bestehende Worker-Seiten auf den Bildschirm gelangen
+## Bevor Sie beginnen
 
-Mit `render` liefert die Bibliothek die Worker-Antwort als Antwort auf eine WebView-Dokumentanfrage. Die WebView rendert dieses HTML als Seite, führt ihre Skripte aus und lädt ihre Ressourcen. Die Anwendung muss weder HTML in ein bestehendes DOM einfügen noch es in einem iframe anzeigen.
+Dieser Weg richtet sich an Entwickler, die eine Workers-Web-App um eine mobile Version ergänzen möchten. Capacitor liefert die nativen Projekte; cf-workers-native verbindet sie mit den bestehenden Worker-Seiten und -Anfragen.
 
-```text
-WebView opens /notes at the app's local origin
-  → the library receives the document request
-  → generated dispatch selects local or remote execution
-      local:  the existing Fetch handler runs on the device
-      remote: the request goes to the existing deployed Worker
-  → response status, headers and HTML body return through the document bridge
-  → WebView renders the page
-```
+Halten Sie Folgendes bereit:
 
-Beide Ausführungspfade verwenden denselben Dokumentantwortmechanismus. Eine D1-gestützte Seite kann Authentifizierung, Abfrage und SSR auf dem entfernten Worker behalten; eine kompatible unabhängige Seite kann lokal rendern. Der Build kann den gesamten Worker für entfernte Ausführung auswählen, wenn sichere Trennung nicht möglich ist. Dies ist Anfrage-Dispatch, kein einzelnes Verschieben von D1-Operationen zwischen Laufzeiten.
+- Den Quellcode Ihrer Anwendung und einen funktionierenden Web-Build. Verwenden Sie als erstes Beispiel [Hono-/Express-Seiten](../demo/rendering/README.md) oder [Void + D1](../demo/void/README.md).
+- Die URL eines bereitgestellten **Test**-Workers für cloudgestützte Seiten, Daten und Authentifizierung. Belassen Sie D1 und Serverzugangsdaten auf diesem Worker.
+- Node und die Entwicklungswerkzeuge der Plattform: macOS mit Xcode für iOS oder die Android-Werkzeugkette für Android. Beachten Sie die [Capacitor-Umgebungseinrichtung](https://capacitorjs.com/docs/getting-started/environment-setup) und die Versionsanforderungen Ihres Frameworks.
+- Einen Anwendungsnamen und eine ID für die mobilen Projekte. Für den ersten Start reicht ein Simulator oder Emulator.
 
-Das Folgen eines gewöhnlichen Links erzeugt die nächste Dokumentanfrage über denselben Mechanismus. Unterstützte Formularübermittlungen und gleichursprüngliche Weiterleitungen behalten ebenfalls die Dokumentnavigation bei. Vorhandene Client-Skripte können Interaktion oder Hydration bereitstellen, wo das Framework sie verwendet. Gebündelte Assets umgehen den Worker-Router; andere Anfragen folgen ihrem konfigurierten Routing. Bewahren Sie das vorhandene Seitenmodell der Anwendung, bevor Sie eine Neugestaltung erwägen.
+Das erste Ziel ist eine in der App angezeigte bestehende Seite, ein funktionierender Navigationslink und ein erfolgreiches Formular oder eine Datenaktion. Prüfen Sie anschließend den vollständigen Ablauf einschließlich Anmeldung und Sitzungsverwaltung anhand der [Abnahmecheckliste](#6-verify-the-existing-application-in-capacitor). Webauthentifizierung kann eine Konfiguration mobiler Callbacks erfordern; prüfen Sie dies in Ihrer App.
 
-Unter iOS verwendet die Bridge `WKURLSchemeHandler`, unter Android einen Service Worker. Die sichtbare Seite behält die app-lokale URL (normalerweise `capacitor://localhost` unter iOS und `https://localhost` unter Android), während der Worker seine logische HTTP(S)-URL erhält. Dies ist natives Dokumentrendering, kein entfernter Browsertab und kein lokaler HTTP-Server. Siehe die [Anleitung für natives Rendering](native-rendering-api.md) für Formular-, Weiterleitungs-, Asset- und Lebenszyklusgrenzen; dies garantiert nicht jede Browser- oder Framework-Funktion.
+Diese Anleitung erfordert eine mobile Buildkonfiguration und die Einrichtung nativer Projekte. Signierung, Storekonten, Einreichung und Prüfung folgen, wenn die Anwendung funktioniert.
 
 ## Prompt für Ihren KI-Assistenten
 
 ```text
-Follow https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/docs/integration.md
+Follow https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.8/docs/integration.md
 to bring this app to iOS and Android with cf-workers-native.
 Preserve its pages, routes and authentication; verify it on the target platforms.
 ```
@@ -86,10 +81,10 @@ npx cap init
 
 Installieren Sie für das folgende Vite-Beispiel `vite@7` als Entwicklungsabhängigkeit, falls es noch nicht vorhanden ist. Behalten Sie eine bestehende unterstützte esbuild-Einrichtung bei, statt Vite hinzuzufügen.
 
-Setzen Sie die eigene ID/den Namen der Anwendung sowie `webDir: "www"`. Verwenden Sie für iOS Swift Package Manager; diese Bibliothek enthält keine CocoaPods-Integration. Das umbenannte Paket wartet auf Veröffentlichung; verwenden Sie bis dahin den folgenden Quell-Tarball. Installieren Sie nach Veröffentlichung 0.1.2 Preview von npm:
+Setzen Sie die eigene ID/den Namen der Anwendung sowie `webDir: "www"`. Verwenden Sie für iOS Swift Package Manager; diese Bibliothek enthält keine CocoaPods-Integration. Installieren Sie die npm-Preview mit ihrer exakten Version. Der Tag `latest` umfasst 0.x-Preview-Releases:
 
 ```sh
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
 Erzeugen Sie für einen Quellbuild stattdessen einen Paket-Tarball aus einem Checkout dieses Repositorys:
@@ -100,20 +95,20 @@ npm install
 npm pack
 
 # Im Anwendungspaket:
-npm install /path/to/cf-workers-native/cf-workers-native-0.1.2.tgz
+npm install /path/to/cf-workers-native/cf-workers-native-0.1.7.tgz
 ```
 
 `npm pack` führt den SDK-Build über `prepack` aus. Installieren Sie den erzeugten Tarball statt des Checkout-Verzeichnisses: Verzeichnisinstallationen können einen Symlink zurück zum SDK-Baum erzeugen, einschließlich eines rekursiven Pfads, wenn die App innerhalb dieses Checkouts liegt. Der obige Tarball-Dateiname verwendet die aktuelle Quellversion.
 
-Das installierte Paket heißt `cf-workers-native`; das Checkout-Verzeichnis kann den Repositorynamen behalten. Die früher veröffentlichte `workers-capacitor@0.1.1` Preview verwendet den alten Paketnamen und stellt die hier gezeigten Importe nicht bereit. Halten Sie JavaScript- und native Abhängigkeiten auf derselben Quellrevision.
+Das installierte Paket heißt `cf-workers-native`; das Checkout-Verzeichnis kann den Repositorynamen behalten. Die früher veröffentlichte `workers-capacitor@0.1.1` Preview verwendet den alten Paketnamen und stellt die hier gezeigten Importe nicht bereit. Verwenden Sie die [dokumentierte Kombination von JS- und nativen Abhängigkeiten](native-embedding.md#dependency-setup), oder halten Sie Abhängigkeiten aus Quellbuilds auf derselben Revision.
 
 ### Vom alten npm-Paket migrieren
 
-Hängt Ihre Anwendung bereits von `workers-capacitor` ab, entfernen Sie es vor der Installation des umbenannten Pakets. Beide Abhängigkeiten zugleich können dazu führen, dass Capacitor dasselbe native Plugin doppelt erkennt und registriert. Im Anwendungspaket mit 0.1.2 Preview:
+Hängt Ihre Anwendung bereits von `workers-capacitor` ab, entfernen Sie es vor der Installation des umbenannten Pakets. Beide Abhängigkeiten zugleich können dazu führen, dass Capacitor dasselbe native Plugin doppelt erkennt und registriert. Im Anwendungspaket mit 0.1.7:
 
 ```sh
 npm uninstall workers-capacitor
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
 Ändern Sie Laufzeitimporte von `workers-capacitor` zu `cf-workers-native/capacitor` und andere Paket-Unterpfade zum Präfix `cf-workers-native`. Erstellen Sie die mobilen Web-Assets der Anwendung mit dem bestehenden Buildbefehl erneut und führen Sie dann `npx cap sync` aus, um native Plugin-Abhängigkeiten neu zu erzeugen. Neue Anwendungen verwenden direkt die obigen Installationsschritte.
@@ -347,3 +342,23 @@ Testen Sie die Zielplattformen iOS und Android mit einem tatsächlichen Benutzer
 - Führen Sie bestehende Cloud-Tests der Anwendung aus, um unverändertes Serververhalten durch die Integration zu prüfen. Browsertests ersetzen keine nativen Navigations-/Sitzungstests.
 
 Melden Sie hinzugefügte Integrationsdateien, jede nötige Anwendungsänderung mit Begründung, ausgeführte Befehle, getestete Plattformen, Ausführungsgrenzen und verbleibende Einschränkungen. Unterscheiden Sie Simulator-/Emulatorprüfungen von Prüfungen auf physischen Geräten und entfernte Ausführung von lokaler Kompatibilität. Fehlt ein bereitgestelltes Test-Backend oder natives SDK, geben Sie an, was verifiziert werden konnte und was nicht, statt Abschluss zu behaupten.
+
+## Wie bestehende Worker-Seiten auf den Bildschirm gelangen
+
+Mit `render` liefert die Bibliothek die Worker-Antwort als Antwort auf eine WebView-Dokumentanfrage. Die WebView rendert dieses HTML als Seite, führt ihre Skripte aus und lädt ihre Ressourcen. Die Anwendung muss weder HTML in ein bestehendes DOM einfügen noch es in einem iframe anzeigen.
+
+```text
+WebView opens /notes at the app's local origin
+  → the library receives the document request
+  → generated dispatch selects local or remote execution
+      local:  the existing Fetch handler runs on the device
+      remote: the request goes to the existing deployed Worker
+  → response status, headers and HTML body return through the document bridge
+  → WebView renders the page
+```
+
+Beide Ausführungspfade verwenden denselben Dokumentantwortmechanismus. Eine D1-gestützte Seite kann Authentifizierung, Abfrage und SSR auf dem entfernten Worker behalten; eine kompatible unabhängige Seite kann lokal rendern. Der Build kann den gesamten Worker für entfernte Ausführung auswählen, wenn sichere Trennung nicht möglich ist. Dies ist Anfrage-Dispatch, kein einzelnes Verschieben von D1-Operationen zwischen Laufzeiten.
+
+Das Folgen eines gewöhnlichen Links erzeugt die nächste Dokumentanfrage über denselben Mechanismus. Unterstützte Formularübermittlungen und gleichursprüngliche Weiterleitungen behalten ebenfalls die Dokumentnavigation bei. Vorhandene Client-Skripte können Interaktion oder Hydration bereitstellen, wo das Framework sie verwendet. Gebündelte Assets umgehen den Worker-Router; andere Anfragen folgen ihrem konfigurierten Routing. Bewahren Sie das vorhandene Seitenmodell der Anwendung, bevor Sie eine Neugestaltung erwägen.
+
+Unter iOS verwendet die Bridge `WKURLSchemeHandler`, unter Android einen Service Worker. Die sichtbare Seite behält die app-lokale URL (normalerweise `capacitor://localhost` unter iOS und `https://localhost` unter Android), während der Worker seine logische HTTP(S)-URL erhält. Dies ist natives Dokumentrendering, kein entfernter Browsertab und kein lokaler HTTP-Server. Siehe die [Anleitung für natives Rendering](native-rendering-api.md) für Formular-, Weiterleitungs-, Asset- und Lebenszyklusgrenzen; dies garantiert nicht jede Browser- oder Framework-Funktion.

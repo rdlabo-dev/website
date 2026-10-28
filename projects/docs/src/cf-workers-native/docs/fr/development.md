@@ -1,6 +1,6 @@
 ---
 title: "Développement et tests"
-sourceRevision: "bc6ebc0f71acf6b1daf4adccc489ac4f98835fcd3916b8a2c630bd220922c275"
+sourceRevision: "0d229ff9f33eaa4ab26c10cea182679b9e167470679371f6562c75cbbf2c8fce"
 ---
 
 # Développement et tests
@@ -115,3 +115,25 @@ La CI exécute en parallèle les vérifications de bibliothèque/types, les cont
 ## Publication Maven Android
 
 Utilisez la [compilation de publication autonome](../scripts/android-release/README.md) pour préparer et vérifier le SDK Android indépendamment d’une application Capacitor. La CI d’intégration native vérifie un bundle signé avec une clé jetable et compile un consommateur indépendant depuis ce dépôt Maven. La publication réelle sur Central nécessite un espace de noms vérifié, une clé de signature et une publication explicite.
+
+## Vérifier un package npm publié
+
+Exécutez la suite du consommateur indépendant avec une version exacte du registre :
+
+```sh
+CONSUMER_PACKAGE=cf-workers-native@0.1.5 npm run test:package
+```
+
+Cela télécharge l’archive publiée au lieu d’empaqueter le checkout. Les mêmes contrôles couvrent les fichiers empaquetés, les imports TypeScript, Vite/esbuild, l’exécution dans le navigateur et les contrats partagés du runtime. `artifacts/package-results.json` enregistre le répertoire temporaire du consommateur. Son répertoire `node_modules/cf-workers-native` peut aussi être passé comme `WORKERS_NPM_PACKAGE_DIR` aux exécuteurs d’intégration native. Sans `CONSUMER_PACKAGE`, la suite compile et empaquette le checkout local comme auparavant.
+
+Pour une validation native depuis une nouvelle installation du registre, préparez une fois le consommateur, puis exécutez le parcours habituel de prise en main du Worker sur chaque simulateur ou émulateur démarré :
+
+```sh
+CONSUMER_VERSION=0.1.5 npm run test:events:native:prepare --prefix demo
+node demo/tests/experiments/published-package/native.mjs ios <simulator-uuid>
+node demo/tests/experiments/published-package/native.mjs android <emulator-serial>
+```
+
+Exécutez ces commandes séquentiellement : le consommateur partage son répertoire Web généré. La préparation vérifie l’intégrité SHA-512 de npm et enregistre le SHA-256 de l’archive. La compilation native importe le plugin Vite et le runtime installés, et rejette les modules SDK provenant du checkout. La fixture vérifie le rendu initial, la navigation par liens, l’envoi du formulaire exactement une fois et le parcours POST/303/GET avec un backend Workers HTTPS local. Elle ne contacte aucun service de production.
+
+Les preuves sont enregistrées dans `artifacts/validation/published-<version>/onboarding/`. `elapsedFlowMs` mesure la durée du lancement natif à la fin du parcours complet ; ce n’est pas un benchmark de démarrage. `documentReadyMs` correspond à l’horloge de performance du document, et `bundleBytes` couvre les ressources Web générées, pas le binaire de l’application native. La [fixture du package publié](../demo/tests/experiments/published-package/README.md) décrit la procédure et les limites de vérification.

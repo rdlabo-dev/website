@@ -1,6 +1,6 @@
 ---
 title: "Entwicklung und Tests"
-sourceRevision: "bc6ebc0f71acf6b1daf4adccc489ac4f98835fcd3916b8a2c630bd220922c275"
+sourceRevision: "0d229ff9f33eaa4ab26c10cea182679b9e167470679371f6562c75cbbf2c8fce"
 ---
 
 # Entwicklung und Tests
@@ -115,3 +115,25 @@ CI führt Bibliotheks-/Typprüfungen, lokale workerd-Verträge, Chromium-/WebKit
 ## Android-Maven-Veröffentlichung
 
 Verwenden Sie den [eigenständigen Veröffentlichungsbuild](../scripts/android-release/README.md), um das Android-SDK unabhängig von einer Capacitor-Anwendung vorzubereiten und zu prüfen. Die CI der nativen Einbettung prüft ein mit temporärem Schlüssel signiertes Bundle und erstellt einen unabhängigen Verbraucher aus diesem Maven-Repository. Eine tatsächliche Central-Veröffentlichung benötigt einen verifizierten Namespace, Release-Signierschlüssel und ausdrückliche Veröffentlichung.
+
+## Ein veröffentlichtes npm-Paket prüfen
+
+Führen Sie die unabhängige Consumersuite mit einer exakten Registryversion aus:
+
+```sh
+CONSUMER_PACKAGE=cf-workers-native@0.1.5 npm run test:package
+```
+
+Dadurch wird der veröffentlichte Tarball heruntergeladen, statt den Checkout zu packen. Dieselben Prüfungen decken gepackte Dateien, TypeScript-Importe, Vite/esbuild, Browserausführung und gemeinsame Laufzeitverträge ab. `artifacts/package-results.json` hält das temporäre Consumerverzeichnis fest. Dessen Verzeichnis `node_modules/cf-workers-native` kann auch als `WORKERS_NPM_PACKAGE_DIR` an die Runner für native Einbettung übergeben werden. Ohne `CONSUMER_PACKAGE` baut und packt die Suite wie bisher den lokalen Checkout.
+
+Bereiten Sie für die native Abnahme aus einer frischen Registryinstallation den Consumer einmal vor und führen Sie anschließend den üblichen Worker-Einrichtungsablauf auf jedem gestarteten Simulator oder Emulator aus:
+
+```sh
+CONSUMER_VERSION=0.1.5 npm run test:events:native:prepare --prefix demo
+node demo/tests/experiments/published-package/native.mjs ios <simulator-uuid>
+node demo/tests/experiments/published-package/native.mjs android <emulator-serial>
+```
+
+Führen Sie diese Befehle nacheinander aus: Der Consumer teilt sein generiertes Webverzeichnis. Die Vorbereitung prüft die SHA-512-Integrität von npm und erfasst den SHA-256-Wert des Archivs. Der native Build importiert das installierte Vite-Plugin und die installierte Laufzeit und lehnt SDK-Module aus dem Checkout ab. Die Fixture prüft anfängliches Rendering, Linknavigation, genau einmaliges Absenden des Formulars und den POST/303/GET-Ablauf gegen ein lokales HTTPS-Workers-Backend. Sie kontaktiert keinen Produktionsdienst.
+
+Nachweise werden unter `artifacts/validation/published-<version>/onboarding/` gespeichert. `elapsedFlowMs` misst vom nativen Start bis zum Abschluss des gesamten Ablaufs; dies ist kein Startbenchmark. `documentReadyMs` ist die Performanceuhr des Dokuments, und `bundleBytes` erfasst generierte Web-Assets, nicht die Binärdatei der nativen App. Die [Fixture für veröffentlichte Pakete](../demo/tests/experiments/published-package/README.md) dokumentiert Verfahren und Verifikationsgrenzen.

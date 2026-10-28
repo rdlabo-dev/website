@@ -1,5 +1,6 @@
 ---
 title: ネイティブアプリへの埋め込み
+sourceRevision: "6a9d6426c879d890930515839872ba93b7af21a21e49f6f7798aa44b45619112"
 ---
 
 # 既存のネイティブアプリに Workers UI を埋め込む
@@ -10,7 +11,7 @@ title: ネイティブアプリへの埋め込み
 
 Web プロジェクトでアセットをビルドし、アプリにネイティブ SDK を追加して、ネイティブ API で Workers 画面を開閉します。Capacitor は SDK が内部解決するため、ネイティブアプリに Capacitor 設定や CLI は不要です。
 
-**0.1.2 Preview:** `cf-workers-native@0.1.2` と対応する[ネイティブ依存](#dependency-setup)を導入します。Android は WebView の `MULTI_PROFILE` とローカルビルドした SDK 成果物が必須で、公開 Maven リリースはまだありません。
+**0.1.7:** `cf-workers-native@0.1.7`と対応する[ネイティブ依存](#dependency-setup)を導入します。AndroidにはWebViewの`MULTI_PROFILE`対応が必要です。JavaScriptとネイティブSDKは同じリリースを使用してください。
 
 ## 共通の Web ビルド
 
@@ -63,13 +64,21 @@ Web プロジェクトで `npx vite build --config vite.mobile.config.ts` を実
 
 npm パッケージは `cf-workers-native` の 1 つです。`/ios`、`/android`、`/capacitor` は別パッケージでなくサブパス import です。パッケージルートのランタイムエントリーはありません。`WorkersIOS` は SwiftPM product、`io.github.rdlabo:cf-workers-native-android` は Android Maven アーティファクトです。
 
-改名後の npm パッケージは公開準備中です。公開後は Web プロジェクトに 0.1.2 Preview を導入します。
+WebプロジェクトにnpmのPreviewをインストールします。`latest`タグには0.xのPreviewリリースも含まれます。
 
 ```sh
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
-それまでは対応するチェックアウトから JavaScript パッケージの tarball を作成します。
+以下の依存セットを使用してください。npm 0.1.7とSwiftPMの`v0.1.7`は同じリリースコミットを使用します。Capacitorでは、対応するAndroidネイティブ実装をnpmに含みます。独立したAndroid SDKは、同じバージョンでMaven Centralへ別途公開します。
+
+| コンポーネント | 依存関係 |
+| --- | --- |
+| JavaScript | `cf-workers-native@0.1.7` |
+| iOS | SwiftPMタグ`v0.1.7`、product `WorkersIOS` |
+| Android | `io.github.rdlabo:cf-workers-native-android:0.1.7` |
+
+ローカルでSDKを開発する場合は、同じチェックアウトからJavaScriptパッケージのtarballを作成します。
 
 ```sh
 # SDK のチェックアウト内:
@@ -77,7 +86,7 @@ npm install
 npm pack
 
 # Web プロジェクト内:
-npm install /path/to/cf-workers-native/cf-workers-native-0.1.2.tgz
+npm install /path/to/cf-workers-native/cf-workers-native-0.1.7.tgz
 ```
 
 `npm pack` は `prepack` でビルドし、上のファイル名は現在のソース版を使います。SDK ツリーへのリンクを避けるため、チェックアウトではなく tarball を導入します。チェックアウト内のアプリでは再帰パスになる場合があります。iOS Swift パッケージと Android 公開物も同じ Git リビジョンを使います。公開済み `workers-capacitor@0.1.1` にはこれらのエントリーはありません。
@@ -88,7 +97,7 @@ npm install /path/to/cf-workers-native/cf-workers-native-0.1.2.tgz
 
 ## iOS
 
-`https://github.com/rdlabo-dev/cf-workers-native` を Swift パッケージに追加し、0.1.2 Preview npm に対応する `v0.1.2` タグ（ソースビルドなら一致するリビジョン）に固定して `WorkersIOS` product を選びます。ネイティブ依存ツールチェーンが要求する Xcode 26 / Swift 6.2 以降を使います。生成アセットを `WorkerWeb` などのフォルダーリソースとして追加し、メインアクターでそのディレクトリーからコントローラーを作ります。
+`https://github.com/rdlabo-dev/cf-workers-native`をSwiftパッケージに追加し、npm 0.1.7に対応する`v0.1.7`タグ（ソースビルドなら一致するリビジョン）に固定して`WorkersIOS` productを選びます。既存の`v0.1.2`タグはパッケージ名の変更前のものであり、このリリースには`v0.1.7`を使ってください。ネイティブ依存ツールチェーンが要求するXcode 26 / Swift 6.2以降を使用します。生成アセットを`WorkerWeb`などのフォルダーリソースとして追加し、メインアクターでそのディレクトリーからコントローラーを作ります。
 
 ```swift
 import WorkersIOS
@@ -115,11 +124,11 @@ Worker 起動が失敗すると埋め込みランタイムを解放し、`startu
 
 ## Android
 
-アプリの依存に SDK の Android Maven 公開物を追加し、生成 Web ディレクトリーを `src/main/assets/` 配下（例: `worker-web`）に含めます。公開物が Capacitor と他のネイティブ依存を解決します。新しい座標は `io.github.rdlabo:cf-workers-native-android:0.1.2` です。公開準備中のため、それまでは[独立した Android 利用側](../demo/tests/native-embedding/android/README.md)でローカル Maven をビルドします。公開後は Maven Central から取得します。Java 21 と Android SDK 36 を使い、`ANDROID_HOME` を導入済み SDK に設定します。アプリの依存リポジトリーに `google()` と `mavenCentral()` を含めます。Groovy の `build.gradle`:
+アプリの依存にSDKのAndroid Maven公開物を追加し、生成Webディレクトリーを`src/main/assets/`配下（例: `worker-web`）に含めます。公開物がCapacitorと他のネイティブ依存を解決します。npm 0.1.7には`io.github.rdlabo:cf-workers-native-android:0.1.7`を使います。古いMavenアーティファクトは、対応するネイティブブリッジの代わりにはなりません。ローカルでSDKを開発する場合は、同じソースリビジョンと[ローカル公開ワークフロー](development.md#android-maven-publication)を使用します。Java 21とAndroid SDK 36を使い、`ANDROID_HOME`を導入済みSDKに設定します。アプリの依存リポジトリーに`google()`と`mavenCentral()`を含めます。Groovyでの依存は次のとおりです。
 
 ```groovy
 dependencies {
-    implementation 'io.github.rdlabo:cf-workers-native-android:0.1.2'
+    implementation 'io.github.rdlabo:cf-workers-native-android:0.1.7'
 }
 android {
     compileOptions {
@@ -157,7 +166,7 @@ SDK は Cookie、ストレージ、Service Worker ルーティングに専用の
 
 ## 互換性
 
-JS とネイティブ SDK のリビジョンを揃えます。新ホストは既存の cf-workers-native ランタイム・ビルドツールを共有し、Cloudflare デプロイ入力の変更やリモート Worker の追加デプロイは行いません。
+上記の互換性のあるJS・ネイティブ依存セットを使います。ソースビルドではリビジョンを揃えます。新ホストは既存の cf-workers-native ランタイム・ビルドツールを共有し、Cloudflare デプロイ入力の変更やリモート Worker の追加デプロイは行いません。
 
 汎用ネイティブプラグインは既存の [Capacitor 連携](native-rendering-api.md)を使用します。埋め込みホストが提供するのは Workers UI とそのランタイム接続です。
 

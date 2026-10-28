@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "5ad5a6a30781a674ba7f71d3d357bc8ef98b93cf51f2c5e260b9528db462cfdc"
+sourceRevision: "ae63d20966a0317f4311f27fb1a17d946b93c2b341d0d31831fa8fb881ae0df8"
 ---
 
 # cf-workers-native
@@ -9,25 +9,32 @@ sourceRevision: "5ad5a6a30781a674ba7f71d3d357bc8ef98b93cf51f2c5e260b9528db462cfd
 
 Touchez aussi bien les personnes qui préfèrent le navigateur que celles qui cherchent leurs applications dans les stores. Proposez une application mobile en complément du Web pour laisser chacun choisir la plateforme qui lui convient.
 
-## Choisir comment porter votre application sur mobile
+## Votre application Web peut avoir une version mobile
 
-- **Intégrer dans une application iOS existante**
-  Ajoutez un écran basé sur Workers à votre application UIKit ou SwiftUI. [Guide iOS](/docs/native-embedding#ios).
-- **Intégrer dans une application Android existante**
-  Ajoutez un écran basé sur Workers à votre application Android existante. [Guide Android](/docs/native-embedding#android).
-- **Créer une nouvelle application mobile**
-  Utilisez Capacitor pour créer une application iOS et Android destinée à l’App Store et Google Play. [Guide Capacitor](/docs/integration).
+Si votre application Web s’exécute sur Cloudflare Workers, vous pouvez lui ajouter une application iOS et Android construite autour de ses pages et de son backend existants. Par exemple, une application Void avec des formulaires utilisant D1 peut conserver ses loaders, ses actions et sa base de données sur Workers, tandis que l’application mobile affiche ses pages et embarque ses fichiers JavaScript et CSS publics.
 
-[Documentation](/docs/README) · [Exemples](/docs/demo/README)
+cf-workers-native relie votre application Workers à une application mobile créée avec Capacitor. Capacitor fournit les projets iOS et Android et l’accès aux plugins natifs. Vous ajoutez une compilation mobile distincte et testez les parcours de votre application ; vous continuez à développer et à déployer votre application Web sur Cloudflare.
 
-## Continuez à développer l’application que vous connaissez
+**Commencez ici : [Ajouter une version mobile à votre application existante](/docs/integration).** Vous n’avez pas besoin d’une application native existante. Le guide vous accompagne du choix de l’entrée Worker à l’exécution de vos pages sur un simulateur ou un émulateur.
 
-- **Réutilisez vos pages et parcours.** Intégrez le HTML rendu par le Worker, les liens et les formulaires dans une WebView mobile. Conservez le modèle de rendu existant ; une réécriture en SPA n’est pas un préalable.
-- **Donnez une place à votre application sur mobile.** Créez une application iOS et Android avec Capacitor, ou intégrez vos pages Workers dans une application native existante.
-- **Conservez votre backend sur Workers.** D1, secrets serveur et logique dépendant du cloud restent sur le Worker déployé. La compilation mobile distincte laisse vos entrées de déploiement Cloudflare inchangées.
-- **Choisissez ce qui s’exécute sur l’appareil.** Commencez par l’exécution réseau par défaut. Lorsque c’est compatible, sélectionnez explicitement les routes publiques pour une exécution locale et embarquez les ressources client.
+## Voir un exemple proche de votre application
 
-L’exécution locale comporte des [limites de compatibilité](/docs/compatibility). Les pages dépendant du cloud nécessitent toujours une connexion ; embarquer leurs ressources client n’en fait pas des applications hors ligne.
+| Votre application | Exemple à essayer | Ce que l’exemple démontre |
+| --- | --- | --- |
+| Pages HTML servies par un Worker | [Pages Hono / Express](/docs/demo/rendering/README) | Navigation entre pages, formulaires et redirections dans une application mobile. |
+| Application Void React Pages utilisant D1 | [Exemple Void + D1](/docs/demo/void/README) | Pages rendues côté serveur, interaction React et formulaire écrivant dans D1. |
+| Application Next.js déployée via OpenNext | [Exemple OpenNext](/docs/demo/opennext/README) | Raccordement des pages et ressources générées à une compilation mobile ; consultez ses limites de versions et de fonctionnalités. |
+
+Il s’agit d’exemples et de fixtures de test, pas de témoignages de déploiements clients. Chaque guide précise ce qui a été vérifié. Commencez par le parcours le plus proche du vôtre, puis essayez-le avec votre application.
+
+## Ce que vous conservez, ce que vous ajoutez
+
+- **Conservez vos pages et votre backend.** Réutilisez le HTML, les liens, les formulaires et les interactions client pris en charge. D1, les secrets serveur et la logique dépendant du cloud restent sur Workers.
+- **Ajoutez une compilation mobile.** Reliez votre Worker et vos ressources publiques à une application Capacitor dotée de son propre nom et identifiant d’application.
+- **Vérifiez l’expérience mobile.** Testez la connexion, la navigation, les modifications de données, la réouverture et le rétablissement de la connexion dans votre application.
+- **Préparez la distribution.** Configurez la signature et les informations des stores selon le processus de l’application native. La soumission et l’examen par les stores restent des étapes distinctes.
+
+Commencez par exécuter les requêtes sur votre Worker déjà déployé. Les pages dépendant du cloud nécessitent une connexion. Embarquer les ressources client n’en fait pas des applications hors ligne. L’exécution locale facultative est décrite dans le [guide d’exécution](/docs/cloudflare-bindings#choosing-execution) et les [limites de compatibilité](/docs/compatibility).
 
 ## Partir de votre framework
 
@@ -40,46 +47,38 @@ L’exécution locale comporte des [limites de compatibilité](/docs/compatibili
 
 Chaque guide décrit les versions testées et ses limites. Vous avez déjà un frontend distinct appelant les API Worker ? Conservez-le et utilisez l’[intégration Fetch-only](/docs/runtime#fetch-only-integration).
 
-## Installez votre application sur votre téléphone
+## Essayer avec votre application
 
-Installez le package JavaScript partagé dans votre projet Web :
+Vous avez besoin du code source de l’application, de sa compilation Worker et d’une URL de Worker de test pour les parcours dépendant du cloud. iOS nécessite macOS et Xcode ; Android nécessite les outils de développement Android. Le [guide de configuration](/docs/integration#before-you-start) renvoie aux prérequis de chaque plateforme.
 
-Le package renommé est en préparation pour publication. En attendant sa disponibilité sur npm, suivez les [instructions d’archive source](/docs/native-embedding#dependency-setup). Après publication :
+Installez le package dans votre projet Web, puis suivez la [configuration mobile complète](/docs/integration#workflow) :
 
 ```sh
-npm install cf-workers-native@0.1.2
+npm install --save-exact cf-workers-native@0.1.7
 ```
 
-L’entrée mobile sélectionne l’hôte. Par exemple, une entrée Web iOS commence par :
+L’installation seule ne génère pas de projet mobile. Le guide couvre l’ajout de Capacitor, la configuration de la compilation mobile et l’exécution sur iOS ou Android. Votre premier objectif est une page existante, un lien vers une autre page et un formulaire ou une action sur les données fonctionnant sur un simulateur ou un émulateur.
 
-```ts
-import { workersIOS } from "cf-workers-native/ios";
-
-const app = workersIOS({
-  baseURL: "https://your-worker.example.com/",
-  render: "/",
-});
-await app.ready;
-```
-
-Utilisez `workersAndroid` depuis `cf-workers-native/android` ou `workersCapacitor` depuis `cf-workers-native/capacitor` pour les autres hôtes. Les trois partagent les mêmes options du runtime et les [outils Vite/esbuild](/docs/build-setup).
-
-Cette entrée est une partie de la configuration : raccordez le Worker existant à une **compilation mobile distincte**, puis empaquetez sa sortie avec l’hôte natif choisi. Le [guide d’intégration native](/docs/native-embedding) et le [guide Capacitor](/docs/integration) couvrent tout le parcours. Pour une application native existante, compilez les ressources Web dans le projet Web ou en CI ; le projet natif n’a besoin ni de commandes ni de configuration Capacitor CLI.
-
-**La version 0.1.2 est une préversion.** Les API peuvent changer. L’intégration Android nécessite actuellement WebView `MULTI_PROFILE` et un artefact SDK compilé localement ; aucune publication Maven publique n’est encore disponible. Consultez les [prérequis natifs](/docs/native-embedding#dependency-setup) avant l’intégration. Vous migrez depuis `workers-capacitor` ? Suivez les [étapes de migration](/docs/integration#migrating-from-the-old-npm-package).
+**Toutes les versions 0.x sont des préversions**, y compris celles du tag npm `latest`. Les API peuvent changer. Évaluez leur adéquation avec les parcours réels de votre application avant la distribution. Vous migrez depuis `workers-capacitor` ? Suivez les [étapes de migration](/docs/integration#migrating-from-the-old-npm-package).
 
 ## Développer avec votre assistant IA
 
-Ouvrez le dépôt de votre application et donnez ce prompt à votre assistant en remplaçant la cible par **iOS**, **Android** ou **Capacitor** :
+Ouvrez le dépôt de votre application et donnez ce prompt à votre assistant :
 
 ```text
-Read https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.2/README.md
-and the integration guide for our target: <iOS, Android or Capacitor>.
-Bring this Workers application to that target using cf-workers-native@0.1.2.
-Preserve its pages, routes, authentication and Cloudflare deployment configuration.
-For an existing native app, preserve its entry point and navigation.
-Verify the actual user flows on the target platform and report remaining limits.
+Read https://github.com/rdlabo-dev/cf-workers-native/blob/v0.1.8/docs/integration.md.
+Add an iOS and Android version of this Workers web app using cf-workers-native@0.1.7
+and Capacitor. Preserve the existing pages, backend and Cloudflare deployment configuration.
+Use an existing test Worker for cloud-backed requests; ask before any cloud deployment.
+Start by verifying one page, navigation and a form or data action on a simulator/emulator.
+Then verify the app's authentication and main user flow, and report remaining limits.
 ```
+
+Fournissez le nom de votre application, son identifiant et l’URL du Worker de test si vous les avez.
+
+## Vous avez déjà une application native ?
+
+Intégrez un écran basé sur Workers dans votre [application UIKit / SwiftUI](/docs/native-embedding#ios) ou votre [application Android](/docs/native-embedding#android) existante. Ces intégrations utilisent les SDK natifs et une compilation Web partagée. Suivez la [configuration des dépendances](/docs/native-embedding#dependency-setup) pour les versions npm, SwiftPM et Maven correspondantes et les exigences Android WebView.
 
 ## Préparer l’application pour vos utilisateurs
 

@@ -292,7 +292,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     category: 'developer-tools',
     icon: 'app',
     adapter: 'markdown',
-    englishDocsRef: 'e5092d3abc51c573d44999568db8c06d79e6227d',
     sourceHeadingAliases: ['ja'],
     entryGuideSlugs: ['native-embedding', 'integration', 'void'],
     description: text(
@@ -443,7 +442,16 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       ),
     ].map((guide) => ({
       ...guide,
-      updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+      updatedAt: [
+        'readme',
+        'native-embedding',
+        'integration',
+        'build-setup',
+        'compatibility',
+        'development',
+      ].includes(guide.slug)
+        ? { en: '2026-10-28', ja: '2026-10-28', fr: '2026-10-28', de: '2026-10-28' }
+        : { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
     })),
   },
   {

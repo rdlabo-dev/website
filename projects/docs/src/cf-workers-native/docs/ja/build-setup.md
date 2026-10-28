@@ -1,5 +1,6 @@
 ---
 title: "ビルド設定"
+sourceRevision: "08294f510fa4d9d608db9bc8a9964cb5c51842fed830c5fe8cca31ff55592e0f"
 ---
 
 # ビルド設定
@@ -20,9 +21,13 @@ title: "ビルド設定"
 | Android | `cf-workers-native/android` の `workersAndroid` | [既存の Android アプリ](native-embedding.md#android) |
 | Capacitor | `cf-workers-native/capacitor` の `workersCapacitor` | [Capacitor アプリ](integration.md) |
 
-`cf-workers-native@0.1.2` と対応するネイティブ依存関係を使います。[依存関係の設定](native-embedding.md#dependency-setup)を参照してください。各ターゲット用のエントリーをビルドし、出力ディレクトリー全体をパッケージに含めます。以下の既存の Capacitor 例は `workersCapacitor` を使いますが、SDK ホストの `workersIOS` と `workersAndroid` にも同じオプションが適用されます。
+`cf-workers-native@0.1.7` と対応するネイティブ依存関係を使います。[依存関係の設定](native-embedding.md#dependency-setup)を参照してください。各ターゲット用のエントリーをビルドし、出力ディレクトリー全体をパッケージに含めます。以下の既存の Capacitor 例は `workersCapacitor` を使いますが、SDK ホストの `workersIOS` と `workersAndroid` にも同じオプションが適用されます。
 
 ## フレームワーク
+
+最初のモバイルビルドでは、既定のネットワーク実行を維持し、デプロイ済みWorkerのHTTPS URLを設定してください。未対応のサーバーAPIはWorker側に残せるため、ローカルのpolyfillは不要です。リクエスト送信前にWebViewのオリジンを拒否するクライアントライブラリには、連携方法の変更が必要です。リモートへのディスパッチは、そのクライアント初期化の失敗を修復しません。
+
+ネットワーク実行には接続が必要です。失敗したmutationは自動再実行せず呼び出し側へ通知します。ルート選択はローカルハンドラーの実行前に行い、ローカルでの例外を理由にリモートでリクエストを再試行することはありません。任意のローカルルートを安全に分離できない場合はWorker全体をリモートに保ち、生成されたバインディングレポートを確認します。明示的な`execution: "local"`には専用の対応APIプロファイルが必要であり、このフォールバックは有効になりません。
 
 次の統合にはサンプルと検証結果があります。サポート対象はここに記載した実行経路に限られます。API とアプリケーションの制約は[互換性の制限](compatibility.md)を参照してください。
 

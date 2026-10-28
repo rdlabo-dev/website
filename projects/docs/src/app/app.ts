@@ -40,6 +40,7 @@ import { LibraryPicker } from './docs/library-picker';
 import { ProjectNavigation } from './docs/project-navigation';
 import { ProjectIconComponent } from './docs/project-icon';
 import { canonicalHomePath, localizedPublicPath } from './locale-path';
+import { FooterSponsors } from './footer-sponsors/footer-sponsors';
 import { LanguageMenu } from './language-menu';
 import { resolveDocsLocale } from '../../../../shared/docs-locales';
 
@@ -72,6 +73,7 @@ export const INITIAL_DOCS_URL = makeStateKey<string>('rdlabo-docs-initial-url');
     ProjectNavigation,
     ProjectIconComponent,
     LanguageMenu,
+    FooterSponsors,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -118,6 +120,7 @@ export class App {
     () => this.pendingNavigation()?.url ?? this.currentUrl(),
   );
   protected readonly navigationAnimationReady = signal(false);
+  protected readonly footerSupportUrl = localizedPublicPath(this.#locale, '/support');
   protected readonly canonicalHomePath = canonicalHomePath(this.#locale);
   protected readonly searchLanguage = resolveDocsLocale(this.#locale);
   protected readonly isIndex = computed(() => {

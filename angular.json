@@ -181,7 +181,8 @@
             },
             "ssr": {
               "entry": "projects/web-site/src/server.ts"
-            }
+            },
+            "localize": ["en"]
           },
           "configurations": {
             "production": {
@@ -237,6 +238,12 @@
           "options": {
             "lintFilePatterns": ["projects/web-site/**/*.ts", "projects/web-site/**/*.html"]
           }
+        }
+      },
+      "i18n": {
+        "sourceLocale": {
+          "code": "en",
+          "subPath": ""
         }
       }
     }

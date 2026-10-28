@@ -144,6 +144,9 @@
       <trans-unit id="nextPage"><source>Next</source><target>次へ</target></trans-unit>
       <trans-unit id="docsResources"><source>Resources</source><target>関連リンク</target></trans-unit>
       <trans-unit id="supportRail"><source>Sponsor</source><target>スポンサーになる</target></trans-unit>
+      <trans-unit id="footerSponsorsHeading" datatype="html"><source>Supported by our sponsors</source><target>スポンサーの皆さまに支えられています</target></trans-unit>
+      <trans-unit id="footerSponsorsThanks" datatype="html"><source>Thank you for helping keep these projects open and maintained.</source><target>プロジェクトの公開と継続的なメンテナンスへのご支援、ありがとうございます。</target></trans-unit>
+      <trans-unit id="footerBecomeSponsor" datatype="html"><source>Become a sponsor</source><target>スポンサーになる</target></trans-unit>
     </body>
   </file>
 </xliff>

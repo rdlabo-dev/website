@@ -1,0 +1,49 @@
+<section class="sponsors" aria-labelledby="footer-sponsors-heading" data-pagefind-ignore="all">
+  <div class="sponsors__intro">
+    <h2 id="footer-sponsors-heading" i18n="@@footerSponsorsHeading">Supported by our sponsors</h2>
+    <p i18n="@@footerSponsorsThanks">
+      Thank you for helping keep these projects open and maintained.
+    </p>
+  </div>
+  @if (sponsors.length > 0) {
+    <ul class="sponsors__list">
+      @for (sponsor of sponsors; track sponsor.login) {
+        <li>
+          <a
+            class="sponsors__person"
+            [href]="sponsor.profileUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              [src]="sponsor.avatarUrl"
+              alt=""
+              width="36"
+              height="36"
+              loading="lazy"
+              decoding="async"
+            />
+            <span>{{ sponsor.name }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+  <a class="sponsors__join" [href]="supportUrl()">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      aria-hidden="true"
+    >
+      <path
+        d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
+      />
+    </svg>
+    <span i18n="@@footerBecomeSponsor">Become a sponsor</span>
+    <span aria-hidden="true">→</span>
+  </a>
+</section>

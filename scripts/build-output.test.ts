@@ -470,7 +470,7 @@ test('builds bounded search indexes for every published language with the compon
   }
   const indexedStripePages = new Map<
     string,
-    { content: string; filters: Record<string, string[]> }
+    { content: string; filters: Record<string, string[]>; meta?: { image?: string } }
   >();
   for (const file of files.filter(
     (file) => file.startsWith('fragment/') && file.endsWith('.pf_fragment'),
@@ -502,6 +502,14 @@ test('builds bounded search indexes for every published language with the compon
       assert.ok(indexed, `${prefix}${page}: indexed canonical page`);
       assert.deepEqual(indexed.filters['project'], ['stripe']);
       assert.deepEqual(indexed.filters['category'], ['capacitor-plugins']);
+      const sponsorAvatars = Array.from(
+        dom.window.document.querySelectorAll('app-footer-sponsors img'),
+        (image) => image.getAttribute('src'),
+      );
+      assert.ok(
+        !sponsorAvatars.includes(indexed.meta?.image ?? ''),
+        `${prefix}${page}: sponsor avatars must not become document search thumbnails`,
+      );
       assert.doesNotMatch(
         indexed.content,
         /capacitor-plugins/,

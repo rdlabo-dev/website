@@ -640,5 +640,8 @@
         <source>Switch language</source>
       </segment>
     </unit>
+    <unit id="footerSponsorsHeading"><segment><source>Supported by our sponsors</source></segment></unit>
+    <unit id="footerSponsorsThanks"><segment><source>Thank you for helping keep these projects open and maintained.</source></segment></unit>
+    <unit id="footerBecomeSponsor"><segment><source>Become a sponsor</source></segment></unit>
   </file>
 </xliff>

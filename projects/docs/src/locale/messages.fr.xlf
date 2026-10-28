@@ -652,6 +652,9 @@
       </trans-unit>
       <trans-unit id="docsResources"><source>Resources</source><target>Ressources</target></trans-unit>
       <trans-unit id="supportRail"><source>Sponsor</source><target>Soutenir</target></trans-unit>
+      <trans-unit id="footerSponsorsHeading" datatype="html"><source>Supported by our sponsors</source><target>Avec le soutien de nos sponsors</target></trans-unit>
+      <trans-unit id="footerSponsorsThanks" datatype="html"><source>Thank you for helping keep these projects open and maintained.</source><target>Merci de nous aider à garder ces projets ouverts et à en assurer la maintenance.</target></trans-unit>
+      <trans-unit id="footerBecomeSponsor" datatype="html"><source>Become a sponsor</source><target>Devenir sponsor</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -8,6 +8,7 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
     'Coordonnez les contrôles natifs et le contenu Web lors du défilement, des transitions et des superpositions sur iOS et Android. Intégrez l’Engine à votre plugin en conservant son moteur de rendu et son API publique. L’API est encore en version pré-1.0.',
   'Capacitor plugin integration': 'Intégration dans un plugin Capacitor',
   'Cordova plugin integration': 'Intégration dans un plugin Cordova',
+  'Projection container support': 'Prise en charge des conteneurs de projection',
   'Projection behavior and advanced integration':
     'Comportement de projection et intégration avancée',
   'Development and releases': 'Développement et publications',

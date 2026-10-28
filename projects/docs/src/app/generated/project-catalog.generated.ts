@@ -35,7 +35,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -59,6 +59,13 @@ export const PROJECTS_EN = [
         "slug": "cordova-plugin",
         "section": "Guides",
         "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Projection container support",
+        "navTitle": "Projection container support",
+        "slug": "projection-containers",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
       },
       {
         "title": "Projection behavior and advanced integration",
@@ -1915,7 +1922,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -1939,6 +1946,13 @@ export const PROJECTS_JA = [
         "slug": "cordova-plugin",
         "section": "ガイド",
         "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "投影コンテナの対応状況",
+        "navTitle": "投影コンテナの対応状況",
+        "slug": "projection-containers",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
       },
       {
         "title": "投影の動作と高度な組み込み",
@@ -3795,7 +3809,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -3819,6 +3833,13 @@ export const PROJECTS_FR = [
         "slug": "cordova-plugin",
         "section": "Guides",
         "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Prise en charge des conteneurs de projection",
+        "navTitle": "Prise en charge des conteneurs de projection",
+        "slug": "projection-containers",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
       },
       {
         "title": "Comportement de projection et intégration avancée",
@@ -5675,7 +5696,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -5699,6 +5720,13 @@ export const PROJECTS_DE = [
         "slug": "cordova-plugin",
         "section": "Anleitungen",
         "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+      },
+      {
+        "title": "Unterstützte Projektionscontainer",
+        "navTitle": "Unterstützte Projektionscontainer",
+        "slug": "projection-containers",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
       },
       {
         "title": "Projektionsverhalten und erweiterte Integration",

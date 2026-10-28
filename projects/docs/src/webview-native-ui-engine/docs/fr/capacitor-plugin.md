@@ -1,6 +1,6 @@
 ---
 title: "Intégration dans un plugin Capacitor"
-sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
+sourceRevision: "29a853bd743ebc097648db337c854079bf03fecfa6669d14dfc2cf0eda593f64"
 ---
 # Intégration dans un plugin Capacitor
 
@@ -268,3 +268,7 @@ Lors d’une mise à jour de l’apparence native, les images de remplacement so
 Si votre contrôle continue de s’animer après sa notification de mise à jour, définissez `captureDelayMs` lors de l’enregistrement natif (Swift : `captureDelayMs: 600` ; Kotlin : `captureDelayMs = 600`).
 Ce réglage modifie la préparation des images en arrière-plan, et non le moment où l’overlay est présenté.
 Consultez le [délai de capture](projection.md#capture-timing) pour comprendre le comportement du cache et les recommandations issues des mesures.
+
+### DOM de projection
+
+L’Engine conserve une image réutilisable dans le conteneur de repli, en utilisant son ShadowRoot ouvert lorsqu’il est disponible. Aucune option de placement n’est nécessaire. Si le moteur de rendu inspecte les éléments enfants, excluez les nœuds marqués `data-native-ui-projection-node`. Consultez les [exigences DOM](projection.md#dom-and-native-surface-requirements).

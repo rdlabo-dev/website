@@ -1,6 +1,6 @@
 ---
 title: "Integration in ein Capacitor-Plugin"
-sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
+sourceRevision: "29a853bd743ebc097648db337c854079bf03fecfa6669d14dfc2cf0eda593f64"
 ---
 # Integration in ein Capacitor-Plugin
 
@@ -268,3 +268,7 @@ Nach Aktualisierungen des nativen Erscheinungsbilds werden Ersatzbilder standard
 Wenn die Animation Ihres Steuerelements nach der Aktualisierungsbenachrichtigung weiterläuft, setzen Sie `captureDelayMs` bei der nativen Registrierung (Swift: `captureDelayMs: 600`; Kotlin: `captureDelayMs = 600`).
 Diese Einstellung ändert die Bildvorbereitung im Hintergrund, nicht den Zeitpunkt der Overlay-Anzeige.
 Weitere Informationen zum Cache-Verhalten und zu den auf Messungen beruhenden Empfehlungen finden Sie unter [Aufnahmezeitpunkt](projection.md#capture-timing).
+
+### Projektions-DOM
+
+Die Engine hält ein wiederverwendbares Bild im Fallback-Container vor und nutzt dessen offenen ShadowRoot, sofern vorhanden. Eine Platzierungsoption ist nicht erforderlich. Wenn der Renderer Kindelemente untersucht, schließen Sie mit `data-native-ui-projection-node` markierte Knoten aus. Siehe [DOM-Anforderungen](projection.md#dom-and-native-surface-requirements).

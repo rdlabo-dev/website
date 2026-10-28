@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "1beee7f21abd1ba323db4e8094e646125b7e1ace27bc1e88330be0781e25c72b"
+sourceRevision: "c10edf558ec44d9e398f969293726ae7d5f6ae7e9c2af424b45a82fa9d2619cb"
 ---
 # WebView Native UI Engine
 
@@ -48,6 +48,7 @@ Die aktuelle API befindet sich vor Version 1.0. Verwenden Sie übereinstimmende,
 
 ## Weiterführende Informationen
 
+- [Unterstützte Projektionscontainer](/docs/projection-containers) — unterstützte HTML- und Ionic-Ziele, Größenbedingungen und Beispiele für umschließende Container.
 - [Projektionsverhalten und erweiterte Integration](/docs/projection) — DOM-Anforderungen, Lebenszyklus, Fallback-Richtlinien, optionale Ionic-Unterstützung und untergeordnete APIs.
 - [Entwicklung und Veröffentlichungen](/docs/maintenance) — Repositorystruktur, Validierung und Veröffentlichung.
 

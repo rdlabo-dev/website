@@ -1,6 +1,6 @@
 ---
 title: Capacitorプラグインへの組み込み
-sourceRevision: "fd18aee2bee4eca18fa3da8078debd30fe61c1887934fbe3d6b0c69b64f9130a"
+sourceRevision: "29a853bd743ebc097648db337c854079bf03fecfa6669d14dfc2cf0eda593f64"
 ---
 # Capacitorプラグインへの組み込み
 
@@ -268,3 +268,7 @@ DOMが動く前に`transitionStarted`、再びネイティブ投影を要求す�
 更新通知の後もコントロールのアニメーションが続く場合は、ネイティブ側の登録で`captureDelayMs`を設定してください（Swift: `captureDelayMs: 600`、Kotlin: `captureDelayMs = 600`）。
 この設定が変更するのはバックグラウンドでの画像準備であり、オーバーレイを表示するタイミングではありません。
 キャッシュの動作と計測に基づく指針については、[キャプチャのタイミング](projection.md#capture-timing)を参照してください。
+
+### 投影用DOM
+
+Engineはフォールバックコンテナー内に再利用可能な画像を保持し、open ShadowRootがあればその中に配置します。配置オプションは不要です。レンダラーが子要素を調べる場合は、`data-native-ui-projection-node`が付いたノードを除外してください。[DOM要件](projection.md#dom-and-native-surface-requirements)を参照してください。

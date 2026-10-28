@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "1beee7f21abd1ba323db4e8094e646125b7e1ace27bc1e88330be0781e25c72b"
+sourceRevision: "c10edf558ec44d9e398f969293726ae7d5f6ae7e9c2af424b45a82fa9d2619cb"
 ---
 # WebView Native UI Engine
 
@@ -48,6 +48,7 @@ L’API actuelle est antérieure à la version 1.0. Utilisez des versions Engine
 
 ## Pour aller plus loin
 
+- [Prise en charge des conteneurs de projection](/docs/projection-containers) — destinations HTML et Ionic prises en charge, conditions de dimensionnement et exemples de conteneurs englobants.
 - [Comportement de projection et intégration avancée](/docs/projection) — exigences DOM, cycle de vie, politiques de repli, prise en charge Ionic facultative et API de bas niveau.
 - [Développement et publications](/docs/maintenance) — structure du dépôt, validation et publication.
 

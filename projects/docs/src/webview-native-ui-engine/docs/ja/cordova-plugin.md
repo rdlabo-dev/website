@@ -1,6 +1,6 @@
 ---
 title: Cordovaプラグインへの組み込み
-sourceRevision: "edf70c254523bf21c11c70bb0da7a7701b5c0033ed1e62cb7f32233bfa18ed24"
+sourceRevision: "2f48ba0f8f232fccefb00c7659f8b97e00c0c38d996bacbfa64c3656cbd3fcbb"
 ---
 # Cordovaプラグインへの組み込み
 
@@ -58,7 +58,7 @@ CordovaのSwiftPMプラグインでは、プラグインターゲットの依存
 </platform>
 ```
 
-プラットフォームセクションを重複追加せず、既存セクションへこれらの設定を統合してください。[組み込み検証用の構成](https://github.com/webview-native-ui/engine/tree/v0.0.3/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
+プラットフォームセクションを重複追加せず、既存セクションへこれらの設定を統合してください。[組み込み検証用の構成](https://github.com/webview-native-ui/engine/tree/v0.0.5/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
 
 例では既存のレンダラーを拡張します。`nativeView`は接続・配置済みのビューであり、Engineが作成するビューではありません。
 
@@ -199,3 +199,7 @@ npm run test:cordova -- android emulator-5554
 更新通知の後もコントロールのアニメーションが続く場合は、ネイティブ側の登録で`captureDelayMs`を設定してください（Swift: `captureDelayMs: 600`、Kotlin: `captureDelayMs = 600`）。
 この設定が変更するのはバックグラウンドでの画像準備であり、オーバーレイを表示するタイミングではありません。
 キャッシュの動作と計測に基づく指針については、[キャプチャのタイミング](projection.md#capture-timing)を参照してください。
+
+### 投影用DOM
+
+Engineはフォールバックコンテナー内に再利用可能な画像を保持し、open ShadowRootがあればその中に配置します。配置オプションは不要です。レンダラーが子要素を調べる場合は、`data-native-ui-projection-node`が付いたノードを除外してください。[DOM要件](projection.md#dom-and-native-surface-requirements)を参照してください。

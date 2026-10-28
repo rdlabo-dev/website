@@ -1,6 +1,6 @@
 ---
 title: "Intégration dans un plugin Cordova"
-sourceRevision: "edf70c254523bf21c11c70bb0da7a7701b5c0033ed1e62cb7f32233bfa18ed24"
+sourceRevision: "2f48ba0f8f232fccefb00c7659f8b97e00c0c38d996bacbfa64c3656cbd3fcbb"
 ---
 # Intégration dans un plugin Cordova
 
@@ -58,7 +58,7 @@ Dans la section iOS de `plugin.xml`, enregistrez le plugin au démarrage si son 
 </platform>
 ```
 
-Fusionnez ces entrées dans les sections de plateforme existantes au lieu de créer des doublons. La [fixture d’intégration](https://github.com/webview-native-ui/engine/tree/v0.0.3/tests/cordova/plugin) contient la configuration complète de plugin.xml, SwiftPM et Gradle.
+Fusionnez ces entrées dans les sections de plateforme existantes au lieu de créer des doublons. La [fixture d’intégration](https://github.com/webview-native-ui/engine/tree/v0.0.5/tests/cordova/plugin) contient la configuration complète de plugin.xml, SwiftPM et Gradle.
 
 Les exemples étendent un moteur de rendu existant : `nativeView` est sa vue attachée et positionnée, pas une vue créée par l’Engine.
 
@@ -199,3 +199,7 @@ Lors d’une mise à jour de l’apparence native, les images de remplacement so
 Si votre contrôle continue de s’animer après sa notification de mise à jour, définissez `captureDelayMs` lors de l’enregistrement natif (Swift : `captureDelayMs: 600` ; Kotlin : `captureDelayMs = 600`).
 Ce réglage modifie la préparation des images en arrière-plan, et non le moment où l’overlay est présenté.
 Consultez le [délai de capture](projection.md#capture-timing) pour comprendre le comportement du cache et les recommandations issues des mesures.
+
+### DOM de projection
+
+L’Engine conserve une image réutilisable dans le conteneur de repli, en utilisant son ShadowRoot ouvert lorsqu’il est disponible. Aucune option de placement n’est nécessaire. Si le moteur de rendu inspecte les éléments enfants, excluez les nœuds marqués `data-native-ui-projection-node`. Consultez les [exigences DOM](projection.md#dom-and-native-surface-requirements).

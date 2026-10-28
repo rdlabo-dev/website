@@ -8,6 +8,7 @@ export const METADATA_DE: Readonly<Record<string, string>> = {
     'Koordinieren Sie native Bedienelemente und Web-Inhalte beim Scrollen, bei Übergängen und Overlays unter iOS und Android. Integrieren Sie die Engine in Ihr Plugin und behalten Sie dessen Renderer und öffentliche API bei. Die API befindet sich noch vor Version 1.0.',
   'Capacitor plugin integration': 'Integration in ein Capacitor-Plugin',
   'Cordova plugin integration': 'Integration in ein Cordova-Plugin',
+  'Projection container support': 'Unterstützte Projektionscontainer',
   'Projection behavior and advanced integration': 'Projektionsverhalten und erweiterte Integration',
   'Development and releases': 'Entwicklung und Veröffentlichungen',
   'Bring Cloudflare Workers apps to existing iOS and Android apps, or create a new mobile app with Capacitor.':

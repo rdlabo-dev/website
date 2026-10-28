@@ -1,6 +1,6 @@
 ---
 title: "Integration in ein Cordova-Plugin"
-sourceRevision: "edf70c254523bf21c11c70bb0da7a7701b5c0033ed1e62cb7f32233bfa18ed24"
+sourceRevision: "2f48ba0f8f232fccefb00c7659f8b97e00c0c38d996bacbfa64c3656cbd3fcbb"
 ---
 # Integration in ein Cordova-Plugin
 
@@ -58,7 +58,7 @@ Registrieren Sie das Plugin im iOS-Plattformabschnitt von `plugin.xml` für den 
 </platform>
 ```
 
-Integrieren Sie diese Einträge in die vorhandenen Plattformabschnitte, statt doppelte Abschnitte anzulegen. Das [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v0.0.3/tests/cordova/plugin) enthält die vollständige plugin.xml-, SwiftPM- und Gradle-Verdrahtung.
+Integrieren Sie diese Einträge in die vorhandenen Plattformabschnitte, statt doppelte Abschnitte anzulegen. Das [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v0.0.5/tests/cordova/plugin) enthält die vollständige plugin.xml-, SwiftPM- und Gradle-Verdrahtung.
 
 Die Beispiele erweitern einen bestehenden Renderer: `nativeView` ist seine angehängte, positionierte Ansicht, keine von der Engine erzeugte Ansicht.
 
@@ -199,3 +199,7 @@ Nach Aktualisierungen des nativen Erscheinungsbilds werden Ersatzbilder standard
 Wenn die Animation Ihres Steuerelements nach der Aktualisierungsbenachrichtigung weiterläuft, setzen Sie `captureDelayMs` bei der nativen Registrierung (Swift: `captureDelayMs: 600`; Kotlin: `captureDelayMs = 600`).
 Diese Einstellung ändert die Bildvorbereitung im Hintergrund, nicht den Zeitpunkt der Overlay-Anzeige.
 Weitere Informationen zum Cache-Verhalten und zu den auf Messungen beruhenden Empfehlungen finden Sie unter [Aufnahmezeitpunkt](projection.md#capture-timing).
+
+### Projektions-DOM
+
+Die Engine hält ein wiederverwendbares Bild im Fallback-Container vor und nutzt dessen offenen ShadowRoot, sofern vorhanden. Eine Platzierungsoption ist nicht erforderlich. Wenn der Renderer Kindelemente untersucht, schließen Sie mit `data-native-ui-projection-node` markierte Knoten aus. Siehe [DOM-Anforderungen](projection.md#dom-and-native-surface-requirements).

@@ -1,6 +1,6 @@
 ---
 title: はじめに
-sourceRevision: "1beee7f21abd1ba323db4e8094e646125b7e1ace27bc1e88330be0781e25c72b"
+sourceRevision: "c10edf558ec44d9e398f969293726ae7d5f6ae7e9c2af424b45a82fa9d2619cb"
 ---
 # WebView Native UI Engine
 
@@ -48,6 +48,7 @@ Engineはこの切り替えを連携させますが、ビューの作成と配�
 
 ## 関連資料
 
+- [投影コンテナの対応状況](docs/projection-containers.md) — HTML・Ionicの対応する投影先、サイズの条件、ラッパーの例。
 - [投影の動作と高度な組み込み](docs/projection.md) — DOM要件、ライフサイクル、フォールバック方針、任意のIonic対応、低レベルAPI。
 - [開発とリリース](docs/maintenance.md) — リポジトリ構成、検証、公開。
 

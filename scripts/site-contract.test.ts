@@ -1747,7 +1747,13 @@ test('Engine guides keep shared source images and localized navigation in every 
       dom.window.document.querySelector('img')?.getAttribute('src'),
       `https://raw.githubusercontent.com/webview-native-ui/engine/${sourceRef}/docs/assets/hero.png`,
     );
-    for (const slug of ['capacitor-plugin', 'cordova-plugin', 'projection', 'maintenance']) {
+    for (const slug of [
+      'capacitor-plugin',
+      'cordova-plugin',
+      'projection-containers',
+      'projection',
+      'maintenance',
+    ]) {
       assert.ok(
         dom.window.document.querySelector(
           `a[href="${prefix}/projects/webview-native-ui-engine/docs/${slug}"]`,

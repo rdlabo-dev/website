@@ -1394,6 +1394,17 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
         },
       ]),
     ),
+    ...['', '/ja', '/fr', '/de'].flatMap((prefix) =>
+      [
+        ['capacitor-plugin', 'getting-started/capacitor'],
+        ['cordova-plugin', 'getting-started/cordova'],
+        ['projection-containers', 'reference/containers'],
+        ['projection', 'reference/projection'],
+      ].map(([oldSlug, newSlug]) => ({
+        source: `${prefix}/projects/webview-native-ui-engine/docs/${oldSlug}`,
+        destination: `https://docs.rdlabo.dev${prefix}/projects/webview-native-ui-engine/docs/${newSlug}`,
+      })),
+    ),
   ]);
   const redirectSources = parsedRedirects.map(({ source }) => source);
   const docsIdentityIndex = redirectSources.indexOf('/docs/identity');
@@ -1734,6 +1745,16 @@ test('Engine guides keep shared source images and localized navigation in every 
     (project) => project.id === 'webview-native-ui-engine',
   );
   assert.ok(definition);
+  assert.equal(
+    new Set(definition.pages.map((page) => page.file.toLowerCase())).size,
+    definition.pages.length,
+    'Engine source paths must be distinct on case-insensitive filesystems',
+  );
+  assert.equal(
+    new Set(definition.pages.map((page) => page.slug.toLowerCase())).size,
+    definition.pages.length,
+    'Engine prerendered routes must be distinct on case-insensitive filesystems',
+  );
   const version = installedVersion(definition.packageName);
   const sourceRef = definition.englishDocsRef ?? `v${version}`;
   for (const locale of ['en', 'ja', 'fr', 'de']) {
@@ -1747,13 +1768,7 @@ test('Engine guides keep shared source images and localized navigation in every 
       dom.window.document.querySelector('img')?.getAttribute('src'),
       `https://raw.githubusercontent.com/webview-native-ui/engine/${sourceRef}/docs/assets/hero.png`,
     );
-    for (const slug of [
-      'capacitor-plugin',
-      'cordova-plugin',
-      'projection-containers',
-      'projection',
-      'maintenance',
-    ]) {
+    for (const slug of ['overview', 'concepts', 'getting-started/initialization', 'maintenance']) {
       assert.ok(
         dom.window.document.querySelector(
           `a[href="${prefix}/projects/webview-native-ui-engine/docs/${slug}"]`,
@@ -1762,5 +1777,48 @@ test('Engine guides keep shared source images and localized navigation in every 
       );
     }
     dom.window.close();
+    const documents = new Map<string, JSDOM>(
+      project.pages.map((entry: { slug: string; html: string }) => [
+        entry.slug,
+        new JSDOM(entry.html),
+      ]),
+    );
+    const routePrefix = `${prefix}/projects/webview-native-ui-engine/docs/`;
+    for (const [slug, document] of documents) {
+      for (const link of document.window.document.querySelectorAll('a[href]')) {
+        const href = link.getAttribute('href')!;
+        if (!href.startsWith(routePrefix)) continue;
+        const [target, fragment] = href.slice(routePrefix.length).split('#');
+        const destination = documents.get(target);
+        assert.ok(destination, `${locale}: ${slug} links to published ${target}`);
+        if (fragment) {
+          assert.ok(
+            destination.window.document.getElementById(decodeURIComponent(fragment)),
+            `${locale}: ${slug} has valid fragment ${href}`,
+          );
+        }
+      }
+    }
+    for (const document of documents.values()) document.window.close();
+  }
+});
+
+test('old Engine guide URLs permanently redirect to the reorganized guides in every language', async () => {
+  const redirects = await readFile(
+    new URL('../projects/docs/public/_redirects', import.meta.url),
+    'utf8',
+  );
+  for (const prefix of ['', '/ja', '/fr', '/de']) {
+    for (const [oldSlug, newSlug] of [
+      ['capacitor-plugin', 'getting-started/capacitor'],
+      ['cordova-plugin', 'getting-started/cordova'],
+      ['projection-containers', 'reference/containers'],
+      ['projection', 'reference/projection'],
+    ]) {
+      const base = `${prefix}/projects/webview-native-ui-engine/docs/`;
+      assert.ok(
+        redirects.includes(`${base}${oldSlug} https://docs.rdlabo.dev${base}${newSlug} 301`),
+      );
+    }
   }
 });

@@ -191,7 +191,11 @@ export function resolveRelativeDocSlug(path: string, pageFile?: string): string 
     .replace(/\.md$/i, '');
 }
 
-export function rewriteRelativeDocLinks(markdown: string, pageFile: string): string {
+export function rewriteRelativeDocLinks(
+  markdown: string,
+  pageFile: string,
+  pageSlugs: ReadonlyMap<string, string> = new Map(),
+): string {
   return rewriteThemeWorkspaceLinks(markdown).replace(
     /\]\((?!https?:|mailto:)([^)]+)\)/g,
     (match, target: string) => {
@@ -200,7 +204,7 @@ export function rewriteRelativeDocLinks(markdown: string, pageFile: string): str
       const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
       const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
       const slug = resolveRelativeDocSlug(path, pageFile);
-      return slug ? `](/docs/${slug}${hash})` : match;
+      return slug ? `](/docs/${pageSlugs.get(slug) ?? slug}${hash})` : match;
     },
   );
 }
@@ -252,6 +256,7 @@ export function rewritePackageDocLinks(
   apiAnchors: Map<string, string>,
   landingSlug = 'readme',
   pageFile?: string,
+  pageSlugs: ReadonlyMap<string, string> = new Map(),
 ): string {
   return rewriteThemeWorkspaceLinks(markdown).replace(
     /\]\((?!https?:|mailto:)([^)]+)\)/g,
@@ -260,6 +265,14 @@ export function rewritePackageDocLinks(
       const path = hashIndex < 0 ? target : target.slice(0, hashIndex);
       const hash = hashIndex < 0 ? '' : target.slice(hashIndex);
       const hashId = hash.slice(1).toLowerCase();
+
+      // A published docs index is distinct from the package landing README.
+      // Resolve declared source files before applying legacy README/API aliases.
+      const declaredSlug = path && resolveRelativeDocSlug(path, pageFile);
+      const publishedSlug = declaredSlug && pageSlugs.get(declaredSlug);
+      if (publishedSlug && publishedSlug !== landingSlug) {
+        return `](/docs/${publishedSlug}${hash})`;
+      }
 
       // A guide's fragment belongs to that guide, even when its name also occurs
       // in the README's extracted API. Only landing-page fragments are relocated.

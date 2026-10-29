@@ -425,6 +425,9 @@ async function generateProject(
   }
   const apiAnchors = apiAnchorFragments(api);
   const packageLandingSlug = landingPageSlug(project);
+  const pageSlugs = new Map(
+    project.pages.map((page) => [page.file.replace(/\.md$/i, ''), page.slug]),
+  );
   const pages = [];
   type SourcePage = {
     page: ProjectPageDefinition;
@@ -458,7 +461,7 @@ async function generateProject(
     const isPackageLanding = importedMarkdown && PACKAGE_LANDING_FILES.has(file);
     let preparedBody = parsed.body || resolved.content;
     if (!importedMarkdown) {
-      preparedBody = rewriteRelativeDocLinks(preparedBody, file);
+      preparedBody = rewriteRelativeDocLinks(preparedBody, file, pageSlugs);
     }
     if (!importedMarkdown && file === 'readme.md') {
       const extracted = extractRdlaboDocsPick(preparedBody);
@@ -472,11 +475,23 @@ async function generateProject(
         const extracted = extractPackageReadmeParts(parsed.body || resolved.content);
         if (extracted.overview) {
           overviewMarkdown = normalizePackageMarkdown(
-            rewritePackageDocLinks(extracted.overview, apiAnchors, packageLandingSlug),
+            rewritePackageDocLinks(
+              extracted.overview,
+              apiAnchors,
+              packageLandingSlug,
+              undefined,
+              pageSlugs,
+            ),
           );
         }
         preparedBody = normalizePackageMarkdown(
-          rewritePackageDocLinks(extracted.readme, apiAnchors, packageLandingSlug),
+          rewritePackageDocLinks(
+            extracted.readme,
+            apiAnchors,
+            packageLandingSlug,
+            undefined,
+            pageSlugs,
+          ),
         );
         if (extracted.api && !declaresApiPage) {
           splitReadme = { readme: preparedBody, api: extracted.api };
@@ -491,6 +506,7 @@ async function generateProject(
             apiAnchors,
             packageLandingSlug,
             file,
+            pageSlugs,
           ),
         );
       }

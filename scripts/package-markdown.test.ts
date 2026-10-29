@@ -397,6 +397,31 @@ test('keeps guide-local fragments while relocating explicit README API links', (
   );
 });
 
+test('published nested documentation indexes stay inside the portal and retain fragments', () => {
+  const pages = new Map([
+    ['getting-started', 'readme'],
+    ['README', 'overview'],
+    ['configuration/README', 'configuration'],
+    ['advanced/README', 'advanced'],
+    ['getting-started/capacitor', 'getting-started/capacitor'],
+  ]);
+  const source =
+    '[overview](../README.md) [settings](../configuration/README.md#defaults) [advanced](README.md) [integration](../getting-started/capacitor.md) [section](#local)';
+  const expected =
+    '[overview](/docs/overview) [settings](/docs/configuration#defaults) [advanced](/docs/advanced) [integration](/docs/getting-started/capacitor) [section](#local)';
+  const result = rewritePackageDocLinks(source, new Map(), 'readme', 'advanced/renderer.md', pages);
+  assert.equal(result, expected);
+  assert.equal(rewriteRelativeDocLinks(source, 'advanced/renderer.md', pages), expected);
+  assert.equal(
+    rewriteRepositoryResourceLinks(result, 'https://github.com/webview-native-ui/engine', 'v0.0.7'),
+    expected,
+  );
+  assert.equal(
+    rewritePackageDocLinks('[docs](docs/README.md)', new Map(), 'readme', undefined, pages),
+    '[docs](/docs/overview)',
+  );
+});
+
 test('expands bare and HTML-commented API placeholders', () => {
   const api = new Map([
     ['createPaymentSheet', '#### `method` createPaymentSheet(...)\n'],

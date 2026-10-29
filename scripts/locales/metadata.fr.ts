@@ -1,5 +1,23 @@
 /** Reviewed French translations keyed by the exact English manifest text. */
 export const METADATA_FR: Readonly<Record<string, string>> = {
+  'Documentation overview': 'Vue d’ensemble de la documentation',
+  'Concepts and limits': 'Concepts et limites',
+  'Basic initialization': 'Initialisation de base',
+  'Registration settings': 'Paramètres d’enregistrement',
+  Notifications: 'Notifications',
+  'Value bindings': 'Liaisons de valeurs',
+  'Capture timing': 'Timing de capture',
+  'Ionic overlays': 'Superpositions Ionic',
+  'Choose an advanced API': 'Choisir une API avancée',
+  'Advanced APIs': 'API avancées',
+  'Page and modal surfaces': 'Surfaces de pages et de modales',
+  'Web projection and batches': 'Projection Web et lots',
+  'Native handoff': 'Transfert natif',
+  'Deferred Android placement': 'Placement différé sur Android',
+  'Update serialization and recovery': 'Sérialisation des mises à jour et récupération',
+  'Projection contract and lifetime': 'Contrat de projection et durée de vie',
+  'Observable presentation intent': 'Intention de présentation observable',
+  'Capture and platform limits': 'Limites de capture et des plateformes',
   'WebView Native UI Engine': 'WebView Native UI Engine',
   'Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.':
     'Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.',

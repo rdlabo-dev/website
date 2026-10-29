@@ -72,3 +72,21 @@
 /de/projects/cf-workers-mobile https://docs.rdlabo.dev/de/projects/cf-workers-native 301
 /de/projects/cf-workers-mobile/ https://docs.rdlabo.dev/de/projects/cf-workers-native 301
 /de/projects/cf-workers-mobile/* https://docs.rdlabo.dev/de/projects/cf-workers-native/:splat 301
+
+# Engine 0.0.7 reorganized the integration and reference guides.
+/projects/webview-native-ui-engine/docs/capacitor-plugin https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/capacitor 301
+/projects/webview-native-ui-engine/docs/cordova-plugin https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/cordova 301
+/projects/webview-native-ui-engine/docs/projection-containers https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/containers 301
+/projects/webview-native-ui-engine/docs/projection https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/projection 301
+/ja/projects/webview-native-ui-engine/docs/capacitor-plugin https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/getting-started/capacitor 301
+/ja/projects/webview-native-ui-engine/docs/cordova-plugin https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/getting-started/cordova 301
+/ja/projects/webview-native-ui-engine/docs/projection-containers https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/containers 301
+/ja/projects/webview-native-ui-engine/docs/projection https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/projection 301
+/fr/projects/webview-native-ui-engine/docs/capacitor-plugin https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/getting-started/capacitor 301
+/fr/projects/webview-native-ui-engine/docs/cordova-plugin https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/getting-started/cordova 301
+/fr/projects/webview-native-ui-engine/docs/projection-containers https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/containers 301
+/fr/projects/webview-native-ui-engine/docs/projection https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/projection 301
+/de/projects/webview-native-ui-engine/docs/capacitor-plugin https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/getting-started/capacitor 301
+/de/projects/webview-native-ui-engine/docs/cordova-plugin https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/getting-started/cordova 301
+/de/projects/webview-native-ui-engine/docs/projection-containers https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/containers 301
+/de/projects/webview-native-ui-engine/docs/projection https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/projection 301

@@ -38,99 +38,355 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/capacitor-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/overview</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/capacitor-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/overview</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/capacitor-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/overview</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/capacitor-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/overview</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/cordova-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/concepts</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/cordova-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/concepts</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/cordova-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/concepts</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/cordova-plugin</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/concepts</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/projection-containers</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/initialization</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/projection-containers</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/getting-started/initialization</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/projection-containers</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/getting-started/initialization</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/projection-containers</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/getting-started/initialization</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/projection</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/capacitor</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/projection</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/getting-started/capacitor</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/projection</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/getting-started/capacitor</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
-    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/projection</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/getting-started/capacitor</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/cordova</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/getting-started/cordova</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/getting-started/cordova</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/getting-started/cordova</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/events</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration/events</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration/events</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration/events</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/values</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration/values</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration/values</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration/values</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/capture</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration/capture</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration/capture</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration/capture</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/ionic-overlays</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration/ionic-overlays</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration/ionic-overlays</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration/ionic-overlays</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/renderer</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/renderer</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/renderer</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/renderer</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/android-placement</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/android-placement</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/android-placement</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/android-placement</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/update-queue</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/update-queue</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/update-queue</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/update-queue</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/projection</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/containers</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/containers</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/containers</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/containers</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/state</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/state</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/state</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/state</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/reference/platforms</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/reference/platforms</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/reference/platforms</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/reference/platforms</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/maintenance</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/maintenance</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/maintenance</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/maintenance</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/cf-workers-native</loc>

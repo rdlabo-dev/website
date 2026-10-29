@@ -35,7 +35,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.5",
+    "version": "0.0.8",
     "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -47,32 +47,144 @@ export const PROJECTS_EN = [
         "path": "/projects/webview-native-ui-engine/docs/readme"
       },
       {
+        "title": "Documentation overview",
+        "navTitle": "Documentation overview",
+        "slug": "overview",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/overview"
+      },
+      {
+        "title": "Concepts and limits",
+        "navTitle": "Concepts and limits",
+        "slug": "concepts",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Basic initialization",
+        "navTitle": "Basic initialization",
+        "slug": "getting-started/initialization",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
+      },
+      {
         "title": "Capacitor plugin integration",
         "navTitle": "Capacitor plugin integration",
-        "slug": "capacitor-plugin",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+        "slug": "getting-started/capacitor",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
       },
       {
         "title": "Cordova plugin integration",
         "navTitle": "Cordova plugin integration",
-        "slug": "cordova-plugin",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+        "slug": "getting-started/cordova",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
+      },
+      {
+        "title": "Registration settings",
+        "navTitle": "Registration settings",
+        "slug": "configuration",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration"
+      },
+      {
+        "title": "Notifications",
+        "navTitle": "Notifications",
+        "slug": "configuration/events",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
+      },
+      {
+        "title": "Value bindings",
+        "navTitle": "Value bindings",
+        "slug": "configuration/values",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
+      },
+      {
+        "title": "Capture timing",
+        "navTitle": "Capture timing",
+        "slug": "configuration/capture",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
+      },
+      {
+        "title": "Ionic overlays",
+        "navTitle": "Ionic overlays",
+        "slug": "configuration/ionic-overlays",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Choose an advanced API",
+        "navTitle": "Choose an advanced API",
+        "slug": "advanced",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced"
+      },
+      {
+        "title": "Page and modal surfaces",
+        "navTitle": "Page and modal surfaces",
+        "slug": "advanced/renderer",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
+      },
+      {
+        "title": "Web projection and batches",
+        "navTitle": "Web projection and batches",
+        "slug": "advanced/web-projection",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
+      },
+      {
+        "title": "Native handoff",
+        "navTitle": "Native handoff",
+        "slug": "advanced/native-handoff",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
+      },
+      {
+        "title": "Deferred Android placement",
+        "navTitle": "Deferred Android placement",
+        "slug": "advanced/android-placement",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
+      },
+      {
+        "title": "Update serialization and recovery",
+        "navTitle": "Update serialization and recovery",
+        "slug": "advanced/update-queue",
+        "section": "Advanced APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
+      },
+      {
+        "title": "Projection contract and lifetime",
+        "navTitle": "Projection contract and lifetime",
+        "slug": "reference/projection",
+        "section": "Reference",
+        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
       },
       {
         "title": "Projection container support",
         "navTitle": "Projection container support",
-        "slug": "projection-containers",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
+        "slug": "reference/containers",
+        "section": "Reference",
+        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
       },
       {
-        "title": "Projection behavior and advanced integration",
-        "navTitle": "Projection behavior and advanced integration",
-        "slug": "projection",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/projection"
+        "title": "Observable presentation intent",
+        "navTitle": "Observable presentation intent",
+        "slug": "reference/state",
+        "section": "Reference",
+        "path": "/projects/webview-native-ui-engine/docs/reference/state"
+      },
+      {
+        "title": "Capture and platform limits",
+        "navTitle": "Capture and platform limits",
+        "slug": "reference/platforms",
+        "section": "Reference",
+        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
       },
       {
         "title": "Development and releases",
@@ -1922,7 +2034,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.5",
+    "version": "0.0.8",
     "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -1934,32 +2046,144 @@ export const PROJECTS_JA = [
         "path": "/projects/webview-native-ui-engine/docs/readme"
       },
       {
+        "title": "ドキュメント概要",
+        "navTitle": "ドキュメント概要",
+        "slug": "overview",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/overview"
+      },
+      {
+        "title": "概念と制約",
+        "navTitle": "概念と制約",
+        "slug": "concepts",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "基本的な初期化",
+        "navTitle": "基本的な初期化",
+        "slug": "getting-started/initialization",
+        "section": "組み込み",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
+      },
+      {
         "title": "Capacitorプラグインへの組み込み",
         "navTitle": "Capacitorプラグインへの組み込み",
-        "slug": "capacitor-plugin",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+        "slug": "getting-started/capacitor",
+        "section": "組み込み",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
       },
       {
         "title": "Cordovaプラグインへの組み込み",
         "navTitle": "Cordovaプラグインへの組み込み",
-        "slug": "cordova-plugin",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+        "slug": "getting-started/cordova",
+        "section": "組み込み",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
+      },
+      {
+        "title": "登録設定",
+        "navTitle": "登録設定",
+        "slug": "configuration",
+        "section": "設定",
+        "path": "/projects/webview-native-ui-engine/docs/configuration"
+      },
+      {
+        "title": "通知",
+        "navTitle": "通知",
+        "slug": "configuration/events",
+        "section": "設定",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
+      },
+      {
+        "title": "値のバインディング",
+        "navTitle": "値のバインディング",
+        "slug": "configuration/values",
+        "section": "設定",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
+      },
+      {
+        "title": "キャプチャのタイミング",
+        "navTitle": "キャプチャのタイミング",
+        "slug": "configuration/capture",
+        "section": "設定",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
+      },
+      {
+        "title": "Ionicオーバーレイ",
+        "navTitle": "Ionicオーバーレイ",
+        "slug": "configuration/ionic-overlays",
+        "section": "設定",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "高度なAPIの選択",
+        "navTitle": "高度なAPIの選択",
+        "slug": "advanced",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced"
+      },
+      {
+        "title": "ページとモーダルのサーフェス",
+        "navTitle": "ページとモーダルのサーフェス",
+        "slug": "advanced/renderer",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
+      },
+      {
+        "title": "Web投影とバッチ",
+        "navTitle": "Web投影とバッチ",
+        "slug": "advanced/web-projection",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
+      },
+      {
+        "title": "ネイティブのハンドオフ",
+        "navTitle": "ネイティブのハンドオフ",
+        "slug": "advanced/native-handoff",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
+      },
+      {
+        "title": "Androidの配置の遅延適用",
+        "navTitle": "Androidの配置の遅延適用",
+        "slug": "advanced/android-placement",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
+      },
+      {
+        "title": "更新の直列化と復旧",
+        "navTitle": "更新の直列化と復旧",
+        "slug": "advanced/update-queue",
+        "section": "高度なAPI",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
+      },
+      {
+        "title": "投影の契約とライフタイム",
+        "navTitle": "投影の契約とライフタイム",
+        "slug": "reference/projection",
+        "section": "リファレンス",
+        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
       },
       {
         "title": "投影コンテナの対応状況",
         "navTitle": "投影コンテナの対応状況",
-        "slug": "projection-containers",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
+        "slug": "reference/containers",
+        "section": "リファレンス",
+        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
       },
       {
-        "title": "投影の動作と高度な組み込み",
-        "navTitle": "投影の動作と高度な組み込み",
-        "slug": "projection",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/projection"
+        "title": "表示意図の観測",
+        "navTitle": "表示意図の観測",
+        "slug": "reference/state",
+        "section": "リファレンス",
+        "path": "/projects/webview-native-ui-engine/docs/reference/state"
+      },
+      {
+        "title": "キャプチャとプラットフォームの制約",
+        "navTitle": "キャプチャとプラットフォームの制約",
+        "slug": "reference/platforms",
+        "section": "リファレンス",
+        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
       },
       {
         "title": "開発とリリース",
@@ -3809,7 +4033,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.5",
+    "version": "0.0.8",
     "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -3821,32 +4045,144 @@ export const PROJECTS_FR = [
         "path": "/projects/webview-native-ui-engine/docs/readme"
       },
       {
+        "title": "Vue d’ensemble de la documentation",
+        "navTitle": "Vue d’ensemble de la documentation",
+        "slug": "overview",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/overview"
+      },
+      {
+        "title": "Concepts et limites",
+        "navTitle": "Concepts et limites",
+        "slug": "concepts",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Initialisation de base",
+        "navTitle": "Initialisation de base",
+        "slug": "getting-started/initialization",
+        "section": "Intégration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
+      },
+      {
         "title": "Intégration dans un plugin Capacitor",
         "navTitle": "Intégration dans un plugin Capacitor",
-        "slug": "capacitor-plugin",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+        "slug": "getting-started/capacitor",
+        "section": "Intégration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
       },
       {
         "title": "Intégration dans un plugin Cordova",
         "navTitle": "Intégration dans un plugin Cordova",
-        "slug": "cordova-plugin",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+        "slug": "getting-started/cordova",
+        "section": "Intégration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
+      },
+      {
+        "title": "Paramètres d’enregistrement",
+        "navTitle": "Paramètres d’enregistrement",
+        "slug": "configuration",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration"
+      },
+      {
+        "title": "Notifications",
+        "navTitle": "Notifications",
+        "slug": "configuration/events",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
+      },
+      {
+        "title": "Liaisons de valeurs",
+        "navTitle": "Liaisons de valeurs",
+        "slug": "configuration/values",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
+      },
+      {
+        "title": "Timing de capture",
+        "navTitle": "Timing de capture",
+        "slug": "configuration/capture",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
+      },
+      {
+        "title": "Superpositions Ionic",
+        "navTitle": "Superpositions Ionic",
+        "slug": "configuration/ionic-overlays",
+        "section": "Configuration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Choisir une API avancée",
+        "navTitle": "Choisir une API avancée",
+        "slug": "advanced",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced"
+      },
+      {
+        "title": "Surfaces de pages et de modales",
+        "navTitle": "Surfaces de pages et de modales",
+        "slug": "advanced/renderer",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
+      },
+      {
+        "title": "Projection Web et lots",
+        "navTitle": "Projection Web et lots",
+        "slug": "advanced/web-projection",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
+      },
+      {
+        "title": "Transfert natif",
+        "navTitle": "Transfert natif",
+        "slug": "advanced/native-handoff",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
+      },
+      {
+        "title": "Placement différé sur Android",
+        "navTitle": "Placement différé sur Android",
+        "slug": "advanced/android-placement",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
+      },
+      {
+        "title": "Sérialisation des mises à jour et récupération",
+        "navTitle": "Sérialisation des mises à jour et récupération",
+        "slug": "advanced/update-queue",
+        "section": "API avancées",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
+      },
+      {
+        "title": "Contrat de projection et durée de vie",
+        "navTitle": "Contrat de projection et durée de vie",
+        "slug": "reference/projection",
+        "section": "Référence",
+        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
       },
       {
         "title": "Prise en charge des conteneurs de projection",
         "navTitle": "Prise en charge des conteneurs de projection",
-        "slug": "projection-containers",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
+        "slug": "reference/containers",
+        "section": "Référence",
+        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
       },
       {
-        "title": "Comportement de projection et intégration avancée",
-        "navTitle": "Comportement de projection et intégration avancée",
-        "slug": "projection",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/projection"
+        "title": "Intention de présentation observable",
+        "navTitle": "Intention de présentation observable",
+        "slug": "reference/state",
+        "section": "Référence",
+        "path": "/projects/webview-native-ui-engine/docs/reference/state"
+      },
+      {
+        "title": "Limites de capture et des plateformes",
+        "navTitle": "Limites de capture et des plateformes",
+        "slug": "reference/platforms",
+        "section": "Référence",
+        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
       },
       {
         "title": "Développement et publications",
@@ -5696,7 +6032,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "0.0.5",
+    "version": "0.0.8",
     "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -5708,32 +6044,144 @@ export const PROJECTS_DE = [
         "path": "/projects/webview-native-ui-engine/docs/readme"
       },
       {
+        "title": "Dokumentationsübersicht",
+        "navTitle": "Dokumentationsübersicht",
+        "slug": "overview",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/overview"
+      },
+      {
+        "title": "Konzepte und Grenzen",
+        "navTitle": "Konzepte und Grenzen",
+        "slug": "concepts",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Grundlegende Initialisierung",
+        "navTitle": "Grundlegende Initialisierung",
+        "slug": "getting-started/initialization",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
+      },
+      {
         "title": "Integration in ein Capacitor-Plugin",
         "navTitle": "Integration in ein Capacitor-Plugin",
-        "slug": "capacitor-plugin",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/capacitor-plugin"
+        "slug": "getting-started/capacitor",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
       },
       {
         "title": "Integration in ein Cordova-Plugin",
         "navTitle": "Integration in ein Cordova-Plugin",
-        "slug": "cordova-plugin",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/cordova-plugin"
+        "slug": "getting-started/cordova",
+        "section": "Integration",
+        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
+      },
+      {
+        "title": "Registrierungseinstellungen",
+        "navTitle": "Registrierungseinstellungen",
+        "slug": "configuration",
+        "section": "Konfiguration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration"
+      },
+      {
+        "title": "Benachrichtigungen",
+        "navTitle": "Benachrichtigungen",
+        "slug": "configuration/events",
+        "section": "Konfiguration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
+      },
+      {
+        "title": "Wertbindungen",
+        "navTitle": "Wertbindungen",
+        "slug": "configuration/values",
+        "section": "Konfiguration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
+      },
+      {
+        "title": "Aufnahmezeitpunkt",
+        "navTitle": "Aufnahmezeitpunkt",
+        "slug": "configuration/capture",
+        "section": "Konfiguration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
+      },
+      {
+        "title": "Ionic-Overlays",
+        "navTitle": "Ionic-Overlays",
+        "slug": "configuration/ionic-overlays",
+        "section": "Konfiguration",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Eine erweiterte API auswählen",
+        "navTitle": "Eine erweiterte API auswählen",
+        "slug": "advanced",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced"
+      },
+      {
+        "title": "Seiten- und Modal-Oberflächen",
+        "navTitle": "Seiten- und Modal-Oberflächen",
+        "slug": "advanced/renderer",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
+      },
+      {
+        "title": "Web-Projektion und Batches",
+        "navTitle": "Web-Projektion und Batches",
+        "slug": "advanced/web-projection",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
+      },
+      {
+        "title": "Native Übergabe",
+        "navTitle": "Native Übergabe",
+        "slug": "advanced/native-handoff",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
+      },
+      {
+        "title": "Aufgeschobene Android-Positionierung",
+        "navTitle": "Aufgeschobene Android-Positionierung",
+        "slug": "advanced/android-placement",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
+      },
+      {
+        "title": "Aktualisierungen serialisieren und wiederherstellen",
+        "navTitle": "Aktualisierungen serialisieren und wiederherstellen",
+        "slug": "advanced/update-queue",
+        "section": "Erweiterte APIs",
+        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
+      },
+      {
+        "title": "Projektionsvertrag und Lebensdauer",
+        "navTitle": "Projektionsvertrag und Lebensdauer",
+        "slug": "reference/projection",
+        "section": "Referenz",
+        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
       },
       {
         "title": "Unterstützte Projektionscontainer",
         "navTitle": "Unterstützte Projektionscontainer",
-        "slug": "projection-containers",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/projection-containers"
+        "slug": "reference/containers",
+        "section": "Referenz",
+        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
       },
       {
-        "title": "Projektionsverhalten und erweiterte Integration",
-        "navTitle": "Projektionsverhalten und erweiterte Integration",
-        "slug": "projection",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/projection"
+        "title": "Beobachtbare Darstellungsabsicht",
+        "navTitle": "Beobachtbare Darstellungsabsicht",
+        "slug": "reference/state",
+        "section": "Referenz",
+        "path": "/projects/webview-native-ui-engine/docs/reference/state"
+      },
+      {
+        "title": "Aufnahme- und Plattformgrenzen",
+        "navTitle": "Aufnahme- und Plattformgrenzen",
+        "slug": "reference/platforms",
+        "section": "Referenz",
+        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
       },
       {
         "title": "Entwicklung und Veröffentlichungen",

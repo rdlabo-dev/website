@@ -1,6 +1,6 @@
 ---
 title: "no-reactive-forms"
-sourceRevision: "4ab596ad014bcc6cf0ec06ef6a798f995909df60a52f263dd3483fa11aee37b7"
+sourceRevision: "e73d066bf1195ba8807642d0250421327219473a241bbf2937ef868fe60301e3"
 ---
 # @rdlabo/rules/no-reactive-forms
 
@@ -26,7 +26,7 @@ Cette règle signale trois motifs :
    Les liaisons suivantes sont signalées dans les modèles Angular :
    `formControl`, `formControlName`, `formGroup`, `formGroupName`, `formArrayName`.
 
-`FormsModule` et `ngModel` restent volontairement hors du périmètre de cette règle. Utilisez [`@rdlabo/rules/no-template-driven-forms`](./no-template-driven-forms.md) pour les restreindre.
+`FormsModule` et `ngModel` restent volontairement hors du périmètre de cette règle. Utilisez [`@rdlabo/rules/no-template-driven-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms) pour les restreindre.
 
 ## Exemples
 
@@ -74,8 +74,8 @@ Activez cette règle dans les projets Angular qui ont adopté Signal Forms ou qu
 
 ## Voir aussi
 
-- [`@rdlabo/rules/no-template-driven-forms`](./no-template-driven-forms.md)
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
+- [`@rdlabo/rules/no-template-driven-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
 
 ## Implémentation
 

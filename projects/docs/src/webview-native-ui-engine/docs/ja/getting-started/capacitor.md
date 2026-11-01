@@ -1,10 +1,10 @@
 ---
 title: "Capacitorプラグインへの組み込み"
-sourceRevision: "2dede6099bb18549e5df650943c33a37b1519afe268c4896ab9e6a6caed254ce"
+sourceRevision: "106c311c58b74da4b2ae430f8b878cf656600bd8e69bffb85442c8198f946f64"
 ---
 # Capacitorプラグインへの組み込み
 
-公開している`registerPlugin()`のエクスポートを変えずに、既存のCapacitorプラグインへWeb投影と復元を追加します。プラグインはネイティブレンダラーとアプリケーションAPIを維持し、EngineがネイティブビューとDOMフォールバックを連携させます。
+既存のCapacitorプラグインの公開`registerPlugin()`エクスポートを変更せずに、ネイティブコンポーネントをWebのレイアウト、ナビゲーション、オーバーレイと共存させます。プラグインはネイティブレンダラーとアプリケーションAPIを維持します。登録は[共通の表示モデル](../concepts.md)を使って、各ネイティブビューをDOMコンテナへ接続します。
 
 このガイドでは、依存関係、登録、通知、終了処理を扱います。最小の呼び出し、必須入力、所有権は、[ネイティブ初期化](initialization.md)から確認してください。以下のプラグイン差分では、イベントの接続とライフタイムの処理を追加します。厳密な契約とプラットフォームの制約は、[投影リファレンス](../reference/projection.md)を参照してください。
 
@@ -38,9 +38,9 @@ npmアーカイブには、TypeScript宣言、ESM、Swiftソース、podspecが�
 .product(name: "WebViewNativeUIEngine", package: "engine")
 ```
 
-APIが1.0未満の間は、npm、SwiftPM、Gradle、CocoaPodsで同じEngineリリースを固定し、意図的に更新してください。アプリは再現可能なビルドのために、依存のロックファイルを保持します。
+npm、SwiftPM、Gradle、CocoaPodsで同じEngineリリースを使い、意図的に更新してください。アプリは再現可能なビルドのために、依存関係のロックファイルを保持してください。
 
-SwiftPMは、このリポジトリの`v0.0.1`などのバージョンタグを解決します。未リリース版の組み込みテストには、ローカルチェックアウトまたは検証済みの明示的なコミットを使います。
+SwiftPMは、このリポジトリの`v1.0.0`などのバージョンタグを解決します。未リリース版の組み込みテストには、ローカルチェックアウトまたは検証済みの明示的なコミットを使います。
 
 `import WebViewNativeUIEngine`にはCapacitorの登録は不要です。npm側はDOM計測とWeb画像のハンドオフを提供し、SwiftPMはnpmのhoistingとは独立してネイティブ依存を解決します。
 

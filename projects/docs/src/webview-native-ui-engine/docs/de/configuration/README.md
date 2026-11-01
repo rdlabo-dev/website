@@ -1,6 +1,6 @@
 ---
 title: "Registrierungseinstellungen"
-sourceRevision: "306aef1f74b9dd314d2883b647c9e28e4cd936a2c7290d9183eb97d8d1dcab21"
+sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
 ---
 # Eine native Registrierung konfigurieren
 
@@ -18,7 +18,7 @@ Optional bedeutet, dass ein Standardwert vorhanden ist, nicht dass eine verände
 | `captureDelayMs` | Bilder werden nach einem Debounce von 50 ms vorbereitet. | Eine Tab-Hervorhebung wird beim Eintreffen des Auswahlereignisses noch animiert: Warten Sie auf das abgeschlossene Erscheinungsbild. Siehe [Aufnahmezeitpunkt](capture.md); dies verzögert nicht das Öffnen des Overlays. |
 | `canCapture` | Gibt true zurück; Geometrie- und Plattformprüfungen der Engine gelten weiterhin. | Ein SDK wechselt von aufnehmbaren statischen Inhalten zu eingeschränktem Video: Verhindern Sie eine unzulässige Aufnahme. Geben Sie die Aufnahmefähigkeit des aktuellen Inhalts zurück. |
 | `failedFallback` | Der gewöhnliche Web-Fallback wird verwendet, wenn kein geeignetes Bild verfügbar ist. | Eine SDK-Ansicht hat keinen brauchbaren Web-Ersatz: Belassen Sie sie während automatischer Bewegung nur dann nativ, wenn der Renderer ihre Positionierung weiterführt. Explizite Web-Abdeckung und `none` haben weiterhin Vorrang. Siehe [Fehlerstrategie](../reference/projection.md#native-surface-requirements). |
-| `allowedOrigins` | iOS: `capacitor://localhost`, `app://localhost`, `https://localhost`, `http://localhost`. Android: `https://localhost`, `http://localhost`. | Eine App verändert ihren lokalen Hostnamen: Geben Sie genau diesen vertrauenswürdigen Origin an, damit sich der Kanal verbinden kann. Verwenden Sie unter Android dieselben Origins für `install` und jede Registrierung. |
+| `allowedOrigins` | Capacitor: gebündelte `server.url` oder lokaler Hostname/Scheme; localhost-Standardwerte ohne Serverkonfiguration der App. Cordova: localhost-Standardwerte. | Für programmatische Konfiguration oder einen enger gefassten vertrauenswürdigen Origin überschreiben. Unter Android vor der Navigation bei `install` festlegen; Registrierungen erben dies. Siehe [Origin-Abgleich](../reference/projection.md). |
 | `runtime` | Capacitor. | **Für Cordova-Integrationen erforderlich**: Wählen Sie Cordova, damit Benachrichtigungen und Ressourcen-URLs dessen Transport verwenden. |
 | `captureMode` (Android) | `COMPOSITED`, einschließlich des sichtbaren Hintergrunds. | Eine undurchsichtige Karte scrollt an benachbarten Inhalten vorbei: `VIEW` nimmt nur die Karte statt der umgebenden Fensterpixel auf. Verwenden Sie es nicht für durchscheinende Inhalte, Video oder SurfaceView. Siehe [Aufnahmefähigkeit](../reference/platforms.md#android-capture-modes). |
 

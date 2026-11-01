@@ -1,6 +1,6 @@
 ---
 title: "Migration"
-sourceRevision: "8e98c0a10a993fbb25c7afc392ed1497e17d9e4283a290ff8b449a2d5f6bce3a"
+sourceRevision: "71a4e692cc24f3ed5efe621a086bd0c001f9c48009ea753ad50dd6d60dd5297f"
 ---
 # Guide de migration
 
@@ -79,7 +79,7 @@ la limite de groupe voulue. Les modèles réutilisables ou ambigus sont signalé
 modifiés. Les composants enveloppes sont vérifiés via leurs propres modèles ; un
 élément personnalisé qui affiche une liste correctement groupée n’est donc pas considéré comme un
 `ion-item` nu chez son appelant. Consultez
-[`require-ion-item-group`](./rules/require-ion-item-group.md) pour les structures
+[`require-ion-item-group`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group) pour les structures
 prises en charge et les contraintes de correction.
 
 ### Correction automatique booléenne

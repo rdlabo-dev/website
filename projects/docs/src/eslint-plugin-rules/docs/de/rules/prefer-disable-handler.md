@@ -1,12 +1,12 @@
 ---
 title: "prefer-disable-handler"
-sourceRevision: "cd002937213025007ea36bfb2bfbf76bb70e4be4aa31c4e586a79779f98d1ad7"
+sourceRevision: "eb8ea26545312e9d3bd9bb36a436c63cb5005dd4c32a99cfe12daf4df9670bcd"
 ---
 # @rdlabo/rules/prefer-disable-handler
 
 > Verlangt eine Wrapper-Methode (Standard: disableHandler($event, work)) an konfigurierten Element-/Ereignisbindungen, um doppeltes Antippen während asynchroner Arbeit zu verhindern
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 
 Wenn ein Nutzer eine Schaltfläche antippt, die asynchrone Arbeit auslöst, sollte das Bedienelement bis zum Abschluss deaktiviert bleiben. Andernfalls kann ein zweites Antippen die Aktion erneut auslösen. Diese Regel erzwingt die Wrapper-Aufrufsyntax für konfigurierte `(event)`-Bindungen. Die Wrapper-Implementierung ist für das Deaktivieren der UI und die korrekte Verarbeitung des Arbeitswerts verantwortlich.
 
@@ -127,12 +127,12 @@ Ereignismethoden, die ohne Wrapper erlaubt sind. Beispielsweise ist `(click)="$e
 
 ## Wann die Regel aktiviert werden sollte
 
-Aktivieren Sie diese Regel in Ionic-/Angular-Projekten, in denen Nutzeraktionen asynchrone Operationen wie API-Aufrufe, Navigation oder Modal-Anzeige auslösen. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md) und [`@rdlabo/rules/deny-element`](./deny-element.md), um Overlay-Logik zentral zu halten.
+Aktivieren Sie diese Regel in Ionic-/Angular-Projekten, in denen Nutzeraktionen asynchrone Operationen wie API-Aufrufe, Navigation oder Modal-Anzeige auslösen. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher) und [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element), um Overlay-Logik zentral zu halten.
 
 ## Siehe auch
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
 
 ## Implementierung
 

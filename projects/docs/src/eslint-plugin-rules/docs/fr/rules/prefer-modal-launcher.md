@@ -1,12 +1,12 @@
 ---
 title: "prefer-modal-launcher"
-sourceRevision: "e1ac93804bfae85c000bb2db1f914ab4d49c9a2b331c77851a570a703ea2de55"
+sourceRevision: "f961b035f481323f2859b65d2a5815eb24f952d7b108cdb15d4cd53dea5bcd47"
 ---
 # @rdlabo/rules/prefer-modal-launcher
 
 > Exiger que les appels à `presentModal` se trouvent dans une fonction de lancement `launch*`.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Les modales et feuilles doivent être présentées via une fonction de lancement dédiée exportée depuis la page cible. Cela découple les sites d’appel des détails de construction et uniformise l’API des modales dans l’application. Cette règle garantit que `presentModal` (ou les autres méthodes de présentation configurées) n’est appelé que dans des fonctions dont le nom correspond au motif de lanceur.
 
@@ -123,12 +123,12 @@ export const openSheet = (overlay: Helper) => {
 
 ## Quand l’activer
 
-Activez cette règle dans les projets Ionic/Angular utilisant le modèle de lanceur pour les modales, feuilles et autres superpositions. Elle s’associe à [`@rdlabo/rules/deny-element`](./deny-element.md) et [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md).
+Activez cette règle dans les projets Ionic/Angular utilisant le modèle de lanceur pour les modales, feuilles et autres superpositions. Elle s’associe à [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element) et [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler).
 
 ## Voir aussi
 
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
-- [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
+- [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler)
 
 ## Implémentation
 

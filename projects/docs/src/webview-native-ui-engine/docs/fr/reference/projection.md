@@ -1,6 +1,6 @@
 ---
 title: "Contrat de projection et durée de vie"
-sourceRevision: "815c5dbcef229aa13eaf2e47d8bd643ca955bf96eddd26cf9dcbff7d1d8776be"
+sourceRevision: "d6e205890bb47cc1f699356a5bad18552de59a45acff1f2d38b356df21572027"
 ---
 # Référence de projection
 
@@ -74,7 +74,7 @@ L’observation du défilement suit les ancêtres de l’arbre composé, y compr
 
 Le défilement est interne : iOS utilise une liaison de défilement native correspondant sans ambiguïté lorsqu’elle est disponible ; sinon, y compris sur Android, le défilement utilise temporairement l’image préparée et restaure le contenu natif après stabilisation du mouvement. La gestion automatique du défilement ne remplace jamais `web` ou `none` explicites. Une capture ou une géométrie non prise en charge conserve le repli DOM normal ; elle n’attend pas de nouvelle capture sur le chemin de transition. La dernière destination explicite survit au rechargement de la WebView, et les réponses d’un ancien document ne peuvent pas terminer les demandes d’un nouveau document.
 
-Par défaut, le canal interne est limité à la frame principale sur les origines localhost de Capacitor. Passez les `allowedOrigins` exactes de l’application pour une origine configurée différente. Android exige les fonctionnalités WebView `WEB_MESSAGE_LISTENER` et `DOCUMENT_START_SCRIPT` ; l’enregistrement échoue explicitement sur les implémentations WebView non prises en charge. N’utilisez pas d’origines avec caractères génériques pour les WebViews pouvant naviguer vers des sites distants.
+Le canal interne est limité à la frame principale. Les origines Capacitor proviennent du fichier `capacitor.config.json` embarqué : `server.url` est prioritaire sur le nom d’hôte et le schéma locaux. Pour les remplacer, passez des `allowedOrigins` exactes (sur Android, à `install` avant la navigation ; les enregistrements en héritent). Ni `allowNavigation` ni l’URL actuelle de la WebView n’élargissent cet ensemble. Android exige les fonctionnalités WebView `WEB_MESSAGE_LISTENER` et `DOCUMENT_START_SCRIPT` ; l’enregistrement échoue explicitement sur les implémentations WebView non prises en charge. N’utilisez pas d’origines avec caractères génériques pour les WebViews pouvant naviguer vers des sites distants.
 
 Pour les modes de capture, les surfaces translucides, les couleurs d’image et le stockage privé, consultez les [limites de capture et des plateformes](platforms.md). Le pont personnalisé du moteur de rendu et les liaisons de défilement sont documentés dans le [transfert natif](../advanced/native-handoff.md).
 

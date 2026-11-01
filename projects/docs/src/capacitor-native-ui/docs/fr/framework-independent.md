@@ -1,6 +1,6 @@
 ---
 title: "Native UI sans Ionic"
-sourceRevision: 246f4a60f976d78a9ae9f2c649dd2b2ed103d69a691ff24f86e9777ae0375a40
+sourceRevision: "e3562ca2bb0d2fcaa0524ec21799eeec45ab27e3ae888bd04003f9f769bca102"
 ---
 # Native UI sans Ionic
 
@@ -70,6 +70,10 @@ const shell = await enableNativeUI({
 
 Appelez une seule fois après création de la racine source. Conservez le handle et appelez `await shell.destroy()` à la destruction de cette racine. Le plugin n’ajoute ni espacement de page ni règles de zone de sécurité ; conservez votre CSS. Pour Angular, React ou Vue, utilisez les [exemples de cycle de vie de la racine](setup.md#place-startup-in-your-frameworks-app-root) avec l’import `/core`. Pour la navigation animée, utilisez la [suspension jusqu’à la fin ou l’annulation](setup.md#navigation-without-the-theme).
 
+### Superpositions personnalisées
+
+Avant de présenter une modale personnalisée qui rend l’arrière-plan non interactif, appelez `await shell.suspend({ covered: true })`, puis reprenez le jeton retourné après sa fermeture. Les images natives préparées conservent l’apparence de l’arrière-plan sans imposer de dimensions natives à votre HTML. Les images du rail sont ancrées à leurs mandataires dans votre `webHost` ; faire défiler la source d’origine ne les déplace donc pas. Leur largeur et leur hauteur proviennent de Native, même si les boutons source et mandataire ont des tailles CSS différentes. Appelez `shell.suspend()` sans options lorsque les contrôles doivent rester interactifs sur le Web. Consultez la [suspension pour superpositions personnalisées](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui#custom-overlay-suspension) pour le cycle de vie et le comportement de repli.
+
 ### Harmoniser le thème HTML
 
 Pour un thème HTML personnalisé, déclarez `color-scheme: light` ou `color-scheme: dark` dans le CSS qui sélectionne la palette Web. Les seules couleurs de fond ne sélectionnent pas l’apparence native. Consultez [Apparence claire et sombre](appearance.md) pour un exemple de bascule manuelle, les priorités en présence des variables Ionic/thème et le comportement du rail partagé.
@@ -122,4 +126,4 @@ L’adaptateur HTML prend actuellement en charge les boutons et boutons de retou
 
 ## Exemple
 
-L’[exemple HTML simple](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.3/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.
+L’[exemple HTML simple](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.

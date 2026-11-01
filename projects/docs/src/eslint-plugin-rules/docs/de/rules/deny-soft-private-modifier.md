@@ -1,12 +1,12 @@
 ---
 title: "deny-soft-private-modifier"
-sourceRevision: "835c59f9ecaabd6fb32fbf47434caf6db6aa8481b4d2720d7f5407bf0bdf0c31"
+sourceRevision: "acc824d209e39ff3569da18e38e6726e2a778f9ce8aee9d66dc73f53138d18a0"
 ---
 # @rdlabo/rules/deny-soft-private-modifier
 
 > Dieses Plugin verbietet den nur zur Kompilierzeit wirksamen private-Modifikator.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 > - ✒️ Die Option `--fix` auf der [Befehlszeile](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) kann einige der von dieser Regel gemeldeten Probleme automatisch korrigieren.
 
 Der TypeScript-Modifikator `private` wird nur zur Kompilierzeit durchgesetzt. Zur Laufzeit kann weiterhin per Klammernotation oder durch einen Cast zu `any` darauf zugegriffen werden. Tatsächlich private JavaScript-Felder (`#`) werden zur Laufzeit durchgesetzt und lassen sich von außerhalb der Klasse nicht umgehen. Diese Regel ersetzt `private`-Properties und -Methoden durch `#`-Felder und passt Referenzen von `this.x` auf `this.#x` an.
@@ -63,7 +63,7 @@ Aktivieren Sie diese Regel, wenn ein Projekt zur Laufzeit durchgesetzte Kapselun
 
 ## Siehe auch
 
-- [`@rdlabo/rules/restrict-try-block`](./restrict-try-block.md)
+- [`@rdlabo/rules/restrict-try-block`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/restrict-try-block)
 
 ## Implementierung
 

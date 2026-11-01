@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "01f1a25a9d0bf34c72f510eb28a56198297bc330806e65021f6cf909ef52818b"
+sourceRevision: "3cdfb2c3fa3823c42cb4b8e91bf1b1d7e8f4e957be86a77b18ac0945cf17a03e"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,7 +41,7 @@ Erstellt mit [contributors-img](https://contrib.rocks).
 
 ## Demo
 
-[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.2.1/demo)
+[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.3.0/demo)
 
 ### Screenshots
 
@@ -194,7 +194,7 @@ Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit 
 - [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) — Datenschutzeinwilligung und iOS-Tracking-Berechtigung.
 - [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) — Demo-Anzeigenblöcke, Testgeräte und Einwilligungstests.
 - [Banner-Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/banner) — Banner-Optionen, Lebenszyklus und Ereignisse.
-- [Native Ads (Vorschau)](/docs/native-ads) — für Tests und den Produktivbetrieb verfügbar. Während der Vorschauphase kann sich die API auch mit einer Nebenversion ändern.
+- [Native Ads](/docs/native-ads) — Platzierung im Feed, Gestaltung, Lebenszyklus und Ereignisse.
 - Vollbildanzeigen:
   - [Interstitial-Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/interstitial) — Laden, Anzeigen und mehrere vorbereitete Anzeigen.
   - [Belohnte Anzeigen](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded) — belohnte Videos, belohnte Interstitials und serverseitige Verifizierung.

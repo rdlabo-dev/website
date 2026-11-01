@@ -1,16 +1,31 @@
 ---
 title: "Konzepte und Grenzen"
-sourceRevision: "9e76202b8e917a9bb839d02de72b3d4c9c9a0d4a742e2ee11139930e52da18df"
+sourceRevision: "d9212c9dd7d554bf845bbec3b2217bd32eb6850359e071c8051d35f39f3ef594"
 ---
 # Native UI in Web-gesteuerten Ansichten
 
-Verwenden Sie die Engine, wenn eine native Ansicht mit Web-Scrollen, Übergängen oder Overlays koexistieren muss. Beispielsweise kann eine native Tab-Leiste im normalen Gebrauch interaktiv bleiben und beim Öffnen eines Web-Modals dennoch visuell darunter liegen. Die Anwendung behält ihre Web-Navigation und ihr Layout bei, statt den gesamten Bildschirm nativ nachzubauen.
+Ziel ist es, die Flexibilität von Web-Layouts und Navigation mit nativen Steuerelementen und Funktionen in einer Ansicht zu verbinden. Anwendungen behalten ihre Web-gesteuerte UI; Plugins liefern native Komponenten. Die Engine koordiniert die Darstellung zwischen ihnen, damit jede Komponente bei Layoutänderungen, Interaktionen und Navigation mit der umgebenden Ansicht koexistieren kann.
 
 ## Warum ein Bridge-Aufruf nicht genügt
 
-Eine native Ansicht über einer WebView liegt außerhalb des DOM-Stapelbaums. Ein höherer `z-index` eines Web-Modals kann sie nicht überdecken. Das Ausblenden der nativen Ansicht legt frei, was die Webseite darunter zeichnet; dies kann anders aussehen. Ein erneutes Einblenden vor der Stabilisierung des Layouts kann die falsche Position sichtbar machen.
+Das Erstellen einer nativen Ansicht gibt ihr noch keinen Platz im DOM. Eine Ansicht über der WebView folgt nicht automatisch einem scrollenden Container und nimmt nicht an dessen Beschneidung oder Stapelreihenfolge teil. Ein höherer Web-`z-index` kann sie nicht überdecken. Einfaches Aus- und Einblenden kann ein anderes Erscheinungsbild sichtbar machen oder die Ansicht an einer veralteten Position wiederherstellen.
 
-Die Engine übernimmt die visuelle Übergabe zwischen diesen Ebenen. Sie bereitet ein Bild vor, während native Inhalte verfügbar sind, stellt dieses Bild bei Bedarf im DOM der Anwendung dar und behält es bis zur Bestätigung der nativen Wiederherstellung bei. Vorbereitung und Darstellung sind getrennt, damit das Öffnen eines Overlays nicht auf die Aufnahme wartet.
+Das gemeinsame Integrationsmodell verbindet eine native Ansicht mit einem DOM-Container. Der Container bestimmt, wohin die Komponente in der Web-Ansicht gehört. Das Plugin liefert native Inhalte und meldet Änderungen; die Engine koordiniert Messung, vorbereitetes Erscheinungsbild und Übergabe zwischen Darstellungsebenen.
+
+## Beispiele für das Zusammenspiel
+
+Diese Situationen nutzen dasselbe Darstellungsmodell. Jede Integration verbindet die benötigten Lebenszyklus- und Wertbenachrichtigungen:
+
+| Situation | Gewünschtes Erlebnis | Beitrag des gemeinsamen Modells |
+| --- | --- | --- |
+| Eine geeignete native Anzeige befindet sich in einem Web-Feed | Sie bleibt beim Scrollen am Inhalt ausgerichtet. | Der DOM-Container liefert die Geometrie; unterstützte native Verfolgung oder vorübergehende Web-Projektion folgt der Bewegung. |
+| Ein Web-Alert öffnet sich über nativen Navigationselementen | Der Alert überdeckt ihr Erscheinungsbild; nach dem Schließen kehrt die native Interaktion zurück. | Lebenszyklusbenachrichtigungen oder der Ionic-Adapter fordern Abdeckung an; die Engine koordiniert Bildübergabe und Wiederherstellung. |
+| Eine Seite oder ein Modal ändert das Layout | Die nativen Steuerelemente kehren an die aktuelle Position statt in ein altes Rechteck zurück. | Geometrie und Wiederherstellung werden mit der Lebensdauer des zugehörigen Containers abgestimmt. |
+| Ein nativer Schalter ändert sich, während sein Web-Fallback ausgeblendet ist | Die Rückkehr zu HTML zeigt nicht den alten Wert. | Optionale Wertbindungen spiegeln Komponentendaten unabhängig von der Darstellung wider. |
+
+Scrollen bedeutet nicht immer, eine aktive native Ansicht zu bewegen. Unterstützte iOS-Overflow-Layouts können native Scroll-Bindungen nutzen; Android verwendet eine vorübergehende Bilddarstellung, und nicht unterstützte Layouts folgen der konfigurierten Fallback-Strategie. Bilder bieten keine aktive SDK-Interaktion. Siehe [Plattformgrenzen](reference/platforms.md) und [Einschränkungen der Scroll-Bindung](advanced/native-handoff.md#native-scroll-tracking).
+
+Die Engine bereitet Bilder vor, während native Inhalte verfügbar sind, und behält sie während der Übergabe bis zur Bestätigung der nativen Wiederherstellung bei. Vorbereitung und Darstellung sind getrennt, damit das Öffnen eines Overlays nicht auf die Aufnahme wartet. Anwendungsspezifische Lebenszyklusentscheidungen benötigen weiterhin Benachrichtigungen; die Registrierung einer Ansicht erkennt nicht automatisch die Overlays jedes Frameworks.
 
 ## Drei Darstellungen mit unterschiedlichen Aufgaben
 
@@ -59,6 +74,6 @@ Native Registrierungen können auch [aktuelle Komponentenwerte](configuration/va
 
 Bilder frieren sowohl das Steuerelement als auch den aufgenommenen Hintergrund ein. Inhalte, die während einer Abdeckung weiter aktualisiert oder interaktiv bleiben müssen, benötigen eine andere Darstellungsstrategie. SDK-Aufnahmebeschränkungen gelten weiterhin, und manche Plattform-Compositor-Effekte, einschließlich Liquid Glass-Glanzlichtern, können von ihrem aufgenommenen Erscheinungsbild abweichen. Die Engine verspricht keine pixelidentische Aufnahme jeder nativen Ansicht.
 
-Prüfen Sie Ihre tatsächlichen Hintergründe, Overlay-Übergänge und Wiederherstellung auf unterstützten Geräten. Entscheiden Sie vor der Integration, was der Benutzer bei nicht verfügbarer Aufnahme im Web-Fallback sehen soll. Die [Aufnahme- und Plattformreferenz](reference/projection.md) beschreibt Eignung, Zeitpunkt, Speicherung und Fehlerstrategien.
+Prüfen Sie Ihre tatsächlichen Hintergründe, Overlay-Übergänge und Wiederherstellung auf unterstützten Geräten. Entscheiden Sie vor der Integration, was der Benutzer bei nicht verfügbarer Aufnahme im Web-Fallback sehen soll. Die [Aufnahme- und Plattformreferenz](reference/platforms.md) und der [Projektionsvertrag](reference/projection.md) beschreiben Eignung und Fehlerstrategien.
 
 [Dokumentationsübersicht](README.md)

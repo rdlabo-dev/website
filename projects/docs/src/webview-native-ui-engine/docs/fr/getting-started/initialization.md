@@ -1,10 +1,10 @@
 ---
 title: "Initialisation de base"
-sourceRevision: "55b35c15a1050e71982b5937734839562c86c9252cc3ac4451fad5da632c0f9c"
+sourceRevision: "b62111c3b49c28acbd9a19c15cde2762cf785e0f0d7bdbd6d29eb19584b33f44"
 ---
 # Initialiser l’enregistrement d’une vue native
 
-Commencez par `NativeUIProjection` lorsqu’un plugin possède une vue native et un conteneur Web correspondant. L’enregistrement démarre le runtime, lie ce conteneur et coordonne le transfert vers l’image et la restauration. Cette approche ne nécessite pas les API de moteur de rendu.
+Commencez par `NativeUIProjection` lorsqu’un plugin possède une vue native et un conteneur Web correspondant. L’enregistrement démarre le runtime, lie ce conteneur et coordonne la présentation entre la vue native et la mise en page Web. C’est le même point de départ pour un composant dans un flux défilant ou sous une superposition Web. Cette approche ne nécessite pas les API de moteur de rendu. Consultez [le modèle partagé](../concepts.md) pour comprendre le lien entre ces situations et les limites des plateformes.
 
 Utilisez le guide [Capacitor](capacitor.md) ou [Cordova](cordova.md) pour l’installation des dépendances, les points d’entrée du cycle de vie du plugin et la transmission des notifications. Les exemples ci-dessous montrent l’enregistrement minimal dans ces points d’entrée, puis les paramètres obligatoires. Après l’initialisation, le guide de configuration présente les comportements facultatifs ; les API avancées ont leur propre point d’entrée.
 
@@ -38,7 +38,20 @@ projection = NativeUIProjection(
 )
 ```
 
-Ces deux extraits doivent se trouver dans le périmètre de gestion des erreurs du guide d’intégration ; conservez le repli Web existant si l’initialisation échoue. `projection` et `nativeView` sont des propriétés de votre plugin. Libérez l’enregistrement avec `destroy()` sur iOS ou `close()` sur Android lorsque ce moteur de rendu est retiré. Tous les appels natifs de cycle de vie s’exécutent sur le thread UI.
+Java peut utiliser les mêmes valeurs par défaut sans fournir chaque argument facultatif :
+
+```java
+NativeUIProjection.install(getBridge().getWebView());
+projection = new NativeUIProjection(
+    getActivity().getWindow(),
+    getBridge().getWebView(),
+    getPluginHandle().getId(),
+    "#native-ui-fallback",
+    () -> nativeView
+);
+```
+
+Ces extraits doivent se trouver dans le périmètre de gestion des erreurs du guide d’intégration ; conservez le repli Web existant si l’initialisation échoue. `projection` et `nativeView` sont des propriétés de votre plugin. Libérez l’enregistrement avec `destroy()` sur iOS ou `close()` sur Android lorsque ce moteur de rendu est retiré. Tous les appels natifs de cycle de vie s’exécutent sur le thread UI.
 
 Cordova utilise le même enregistrement avec `runtime: .cordova` / `runtime = Runtime.CORDOVA`, ainsi que sa propre WebView et son identité de plugin. Suivez le [guide Cordova](cordova.md) pour ces points d’entrée et le gestionnaire de ressources Android.
 

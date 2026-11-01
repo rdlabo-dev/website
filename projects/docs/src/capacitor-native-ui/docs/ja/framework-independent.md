@@ -70,6 +70,10 @@ const shell = await enableNativeUI({
 
 ソースルートが存在してから一度呼びます。ハンドルを保持し、ルート破棄時に `await shell.destroy()` を呼んでください。プラグインはページ余白やセーフエリア規則を追加しないため、アプリの CSS を維持します。Angular・React・Vue は `/core` インポートで[アプリルートのライフサイクル例](setup.md#place-startup-in-your-frameworks-app-root)を使用します。アニメーション付き遷移は[完了・キャンセルまでの中断](setup.md#navigation-without-the-theme)を参照してください。
 
+### カスタムオーバーレイ
+
+背景を操作できなくするカスタムモーダルを表示する前に `await shell.suspend({ covered: true })` を呼び出し、閉じた後に返されたリースを再開します。準備済みのネイティブ画像は、HTML にネイティブの寸法を強制せず、背景の外観を維持します。レールの画像は `webHost` 内のプロキシに固定されるため、元のソースをスクロールしても移動しません。ソースとプロキシのボタンの CSS サイズが異なっても、画像の幅と高さは Native から取得します。Web 上でコントロールを操作可能に保つ必要がある場合は、オプションなしで `shell.suspend()` を呼び出してください。ライフサイクルとフォールバックの動作は[カスタムオーバーレイの中断](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui#custom-overlay-suspension)を参照してください。
+
 ### HTML テーマに合わせる
 
 独自 HTML テーマでは Web パレットを選ぶ同じ CSS に `color-scheme: light` または `color-scheme: dark` を宣言します。背景色だけではネイティブ外観は選択されません。手動切り替えの例、Ionic・テーマ変数の優先順位、共有レールの動作は[ライト・ダーク外観](appearance.md)を参照してください。
@@ -122,4 +126,4 @@ const shell = await enableNativeUI({
 
 ## 使用例
 
-[通常の HTML の例](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.3/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。
+[通常の HTML の例](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。

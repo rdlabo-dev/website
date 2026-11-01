@@ -1,12 +1,12 @@
 ---
 title: "ionic-attr-type-check"
-sourceRevision: "90a8effc697ddaaa67fa62c787a80cad8e9f0a17f3e6899d84dfdd16f25b52df"
+sourceRevision: "7e8bd64be68ca8a44a4f22f7e611f374dbb87efa926fefd5c9bc0c9a8ec3eacf"
 ---
 # @rdlabo/rules/ionic-attr-type-check
 
 > Verlangt Property-Bindings für unterstützte nicht als Zeichenfolge vorliegende Ionic-Attribute und validiert Zeichenfolgenliteral-Attribute.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 > - ✒️ Die Option `--fix` auf der [Befehlszeile](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) kann einige der von dieser Regel gemeldeten Probleme automatisch korrigieren.
 
 Ionic-Komponentenattribute können boolesch, numerisch, als Objekt oder als Zeichenfolge vorliegen. Eine Zeichenfolge wie `button="true"` an eine boolesche Property zu übergeben, ist ein häufiger Fehler und kann unerwartetes Verhalten verursachen. Diese Regel liest die Ionic-Typdefinitionen aus `@ionic/core` und meldet Abweichungen.

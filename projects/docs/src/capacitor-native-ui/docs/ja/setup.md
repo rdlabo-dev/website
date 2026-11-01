@@ -167,6 +167,24 @@ Angular の `provideIonicAngular`、React の `setupIonicReact`、Vue の `Ionic
 
 ## 4. ビルド・同期して実行する
 
+CocoaPods プロジェクトでは、まずインストール済みの Native UI パッケージと互換性のある Engine バージョンをインストールします：
+
+```sh
+npm install "@webview-native-ui/engine@$(node -p "require('./node_modules/@rdlabo/capacitor-native-ui/package.json').dependencies['@webview-native-ui/engine']")"
+```
+
+生成される `def capacitor_pods` ブロックの外側で、`ios/App/Podfile` の既存のアプリターゲットに Engine を追加します：
+
+```ruby
+target 'App' do
+  capacitor_pods
+  pod 'WebViewNativeUIEngine', :path => '../../node_modules/@webview-native-ui/engine'
+  # Keep your other application pods here.
+end
+```
+
+ネイティブプロジェクトや node_modules の配置が異なる場合は、パスを調整してください。Native UI のアップグレード時には、npm のバージョンを再び揃えてください。Engine は CocoaPods Trunk ではなく npm で配布されます。SwiftPM プロジェクトでは Git からネイティブライブラリを解決するため、この手順は不要です。
+
 アプリの Web ビルド後に同期します。
 
 ```sh

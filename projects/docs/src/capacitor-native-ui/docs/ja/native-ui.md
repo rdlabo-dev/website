@@ -410,6 +410,8 @@ try {
 }
 ```
 
+カスタムオーバーレイで覆われた操作不能な背景には、`shell.suspend({ covered: true })` を使って準備済みのネイティブ画像を再利用します。Ionic やテーマ CSS のない HTML ソースでも利用できます。画像はネイティブキャプチャの寸法とソース DOM からのオフセットを維持し、アプリのコントロールのサイズは変更しません。その後の平行移動や拡大縮小は、ブラウザがソースと一緒に適用します。オーバーレイを閉じた後に再開すると、ライブの Native UI が復元されます。表示経路で画像のキャプチャは行いません。画像がない場合やネイティブバイナリが未対応の場合は、既存の Web フォールバックを維持します。Android のアプリ内 Compose 拡張でも API 26 以上で同じハンドオフを利用でき、背景と一緒にキャプチャした半透明コンテンツも含まれます。API 24–25 では覆われたサーフェスの Web フォールバックを維持します。ナビゲーションなど、Web コントロールを操作可能に保つ必要がある場合は、通常の `suspend()` を使ってください。通常の中断は、その中にネストされた covered 指定の中断より優先されます。
+
 中断は入れ子にでき、`resume()` は冪等です。すべての中断を解放してから、古いスナップショットではなく現在の DOM を使ってネイティブ投影を再開します。
 
 ネイティブ素材とコントロールの外観は実行中の iOS バージョンに従います。テーマをインストールするだけで iOS 26 デバイスが iOS 27 の外観になるわけではありません。
@@ -438,7 +440,7 @@ Vertical Bars で固定ツールバーの `ion-button` を自動選択するに�
 - [`disableVerticalControlArea()`](#disableverticalcontrolarea)
 - [`markForCheck()`](#markforcheck)
 - [`getStatus()`](#getstatus)
-- [`suspend()`](#suspend)
+- [`suspend(...)`](#suspend)
 - [`destroy()`](#destroy)
 - [インターフェース](#interfaces)
 
@@ -491,13 +493,17 @@ getStatus() => NativeUIStatus
 
 ---
 
-### suspend()
+### suspend(...)
 
 ```typescript
-suspend() => Promise<NativeUISuspension>
+suspend(options?: { covered?: boolean | undefined; } | undefined) => Promise<NativeUISuspension>
 ```
 
-返されたリースを再開するまで、投影中のコントロールを Web に戻します。
+再開するまで Web コントロールを復元します。covered は背景が操作不能な間だけ使用してください。準備済みのネイティブ画像が外観を維持します。
+
+| 引数 | 型 |
+| --- | --- |
+| **`options`** | <code>{ covered?: boolean; }</code> |
 
 **戻り値:** <code>Promise&lt;<a href="#nativeuisuspension">NativeUISuspension</a>&gt;</code>
 

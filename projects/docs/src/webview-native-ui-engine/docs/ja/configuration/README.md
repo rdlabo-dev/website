@@ -1,6 +1,6 @@
 ---
 title: "登録設定"
-sourceRevision: "306aef1f74b9dd314d2883b647c9e28e4cd936a2c7290d9183eb97d8d1dcab21"
+sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
 ---
 # ネイティブ登録の設定
 
@@ -18,7 +18,7 @@ sourceRevision: "306aef1f74b9dd314d2883b647c9e28e4cd936a2c7290d9183eb97d8d1dcab2
 | `captureDelayMs` | 50 msのデバウンス後に画像を準備します。 | 選択イベントの時点でタブの強調表示がまだアニメーション中なら、ピクセルが安定するまで待ちます。[キャプチャのタイミング](capture.md)を参照してください。オーバーレイの表示開始は遅らせません。 |
 | `canCapture` | trueを返します。Engineによるジオメトリとプラットフォームの確認は引き続き適用されます。 | SDKがキャプチャ可能な静的コンテンツから制限付き動画へ切り替わる場合、不適切なキャプチャを防ぎます。現在のコンテンツの適格性を返してください。 |
 | `failedFallback` | 適切な画像がなければ通常のWebフォールバックを使います。 | SDKビューに利用可能なWebの代替がない場合、レンダラーが配置を維持しているときに限り、自動的な移動中もネイティブ表示を維持します。明示的なWebの被覆と`none`が優先されます。[失敗時の方針](../reference/projection.md#native-surface-requirements)を参照してください。 |
-| `allowedOrigins` | iOS: `capacitor://localhost`, `app://localhost`, `https://localhost`, `http://localhost`。Android: `https://localhost`, `http://localhost`。 | ローカルのホスト名を変更したアプリでは、チャネルを接続できるよう、信頼するオリジンを完全一致で指定します。Androidでは`install`とすべての登録に同じオリジンを使います。 |
+| `allowedOrigins` | Capacitor: 同梱の`server.url`またはローカルのホスト名とスキーム。アプリのserver設定がなければlocalhostのデフォルト。Cordova: localhostのデフォルト。 | プログラムによる設定や、信頼するオリジンを狭める場合に上書きします。Androidではナビゲーション前に`install`で設定し、登録がそれを継承します。[オリジンの照合](../reference/projection.md)を参照してください。 |
 | `runtime` | Capacitor。 | **Cordova連携では必須**です。通知とリソースURLでCordovaの転送方式を使うよう、Cordovaを選択します。 |
 | `captureMode` (Android) | 背景の表示も含む`COMPOSITED`。 | 不透明なカードが周囲のコンテンツを横切ってスクロールする場合、`VIEW`はウィンドウの周囲のピクセルを含めず、カードだけをキャプチャします。半透明コンテンツ、動画、SurfaceViewには使わないでください。[キャプチャの適格性](../reference/platforms.md#android-capture-modes)を参照してください。 |
 

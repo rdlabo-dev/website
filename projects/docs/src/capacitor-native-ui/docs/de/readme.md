@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: 4484dc8e981ab5849c82ee0b4400cbf6959e5a026bad2c478d18078ab1583ccc
+sourceRevision: "5e0e3b5a0b878fa28d48ce248b7b083a5d30aad735fb2b514f7ec7ef6bd6875c"
 ---
 # Capacitor Native UI
 
@@ -24,6 +24,8 @@ Das Originalelement **bleibt während der Projektion im DOM**. Bindungen und Han
 Beispielsweise aktiviert das Antippen einer projizierten Speichern-Schaltfläche die ursprüngliche Web-Schaltfläche. Ihr vorhandener Handler speichert und aktualisiert den Anwendungszustand; unterstützte DOM-Änderungen aktualisieren anschließend die Projektion. Auch Tabs und andere Bedienelemente leiten Aktionen über ihre Quelladapter weiter. Aktualisieren Sie weiterhin die Quelle, statt einen separaten nativen Zustand zu verwalten. Für Reader-Werte, die sich ohne DOM-Mutation ändern, verwenden Sie `markForCheck()`.
 
 Projektion ändert die Darstellung; sie übersetzt kein beliebiges HTML oder CSS in native Ansichten. Native Bedienelemente verwenden unterstützte Daten und Stile; eine eigene Web-Darstellung wird nicht garantiert nachgebildet. Entfernen oder Deaktivieren einer Quelle verhindert weitere gültige Aktionen. Ist Projektion nicht verfügbar oder wird sie beendet, hebt die Laufzeit ihre Ausblendung auf und die Quelle kehrt zur Web-Darstellung oder einer verfügbaren Web-Seitenleiste zurück. Der eigene Sichtbarkeits-/Deaktivierungszustand Ihrer Anwendung gilt weiterhin.
+
+Blockierende Web-Overlays können vorbereitete Bilder nativer Schaltflächen, Segmente, FABs und Tab-Leisten unter ihrem Hintergrund behalten. Die Bilder bewahren das erfasste native Erscheinungsbild und werden nach nativen Aktualisierungen und zusammengefassten visuellen Änderungen vorbereitet. Die Erfassung der Plattform kann vom Live-Compositing abweichen, etwa bei Liquid Glass-Kantenreflexen; eine pixelgenaue Reproduktion der Materialien ist nicht garantiert. Während einer Berührung pausiert die Vorbereitung; die Darstellung verwendet das letzte fertiggestellte Bild, ohne auf Erfassung oder Bridge-Bestätigung zu warten. Fehlt ein Bild, geht die Darstellungsverantwortung an die bestehende Web-Darstellung zurück. Native Popover, die ihre Bedienelemente behalten, bleiben auf dem nativen Pfad. Die [Übergaberegeln](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#temporary-images-beneath-web-overlays) beschreiben Bewegung, Wiederherstellung und Ausnahmen. Erstellen Sie die native App neu, um diese Funktion zu aktivieren; ältere native Binärdateien behalten ihren bisherigen Pfad.
 
 ## Wählen Sie Ihr Ziel
 
@@ -52,7 +54,7 @@ Wenn Sie auch das iOS-27-Theme verwenden, installieren oder aktualisieren Sie be
 npm install @rdlabo/capacitor-native-ui @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-Theme und Native UI haben dieselbe Releaseversion; Foldable wird unabhängig versioniert. Deklarieren Sie Native UI als direkte Abhängigkeit, damit Capacitor das Plugin erkennen kann. Die Einrichtungsbefehle installieren Foldable als separate Anwendungsabhängigkeit. Die Installation dieser Pakete aktiviert keine nativen Bedienelemente; beim Anwendungsstart werden Projektion gewählt und Gerätelayout verbunden.
+Native UI und das Theme haben dieselbe Releaseversion; Engine und Foldable werden unabhängig versioniert. Native UI enthält die npm-Abhängigkeit Engine und bindet deren native Bibliotheken über SwiftPM und Maven ein. CocoaPods-Anwender benötigen zusätzlich die [Einrichtung des lokalen Engine-Pods](https://github.com/webview-native-ui/engine/blob/v1.0.0/docs/getting-started/capacitor.md#cocoapods-compatibility-through-npm). Deklarieren Sie Native UI als direkte Abhängigkeit, damit Capacitor das Plugin erkennen kann. Die Einrichtungsbefehle installieren Foldable als separate Anwendungsabhängigkeit. Die Installation dieser Pakete aktiviert keine nativen Bedienelemente; beim Anwendungsstart werden Projektion gewählt und Gerätelayout verbunden.
 
 Fahren Sie mit [Ionic-Einrichtung](/docs/setup), [HTML-Einrichtung](/docs/framework-independent) oder [Erweiterungen](/docs/native-ui-extensions) fort. Erstellen Sie nach der Startkonfiguration die Web-Assets Ihrer Anwendung, führen Sie `npx cap sync` aus und erstellen Sie die native App erneut. Ein Repository-Checkout oder Archivdownload ist nicht erforderlich.
 
@@ -60,7 +62,7 @@ Sie migrieren von den in Theme 1.2.0 oder 1.2.1 enthaltenen nativen APIs? Die [M
 
 ## Anforderungen
 
-Der native Start erfordert Capacitor 8 und ein iOS- oder Android-Projekt. Android-Erweiterungen benötigen API 24+ und Kotlin/Compose. Gewöhnliches natives Rendering erfordert iOS 26+ und Xcode 26+. Der Ionic-Adapter unterstützt Ionic `>=8.8.1 <10`; der HTML-Adapter unter `/core` benötigt weder Ionic noch ein Theme-Paket. Für [Vertical Bars](/docs/vertical-bars) und [Erweiterungspositionierung](/docs/native-ui-extensions#content-and-placement-are-independent) gelten zusätzliche Geräteanforderungen.
+Der native Start erfordert Capacitor 8 und ein iOS- oder Android-Projekt. Android-Erweiterungen benötigen API 24+ und Kotlin/Compose. Gewöhnliches natives Rendering erfordert iOS 26+ und Xcode 26+. Der Ionic-Adapter deklariert Ionic `>=8.8.1 <10` als kompatibel; automatisierte E2E-Validierung erfolgt mit Ionic 9. Der HTML-Adapter unter `/core` benötigt weder Ionic noch ein Theme-Paket. Für [Vertical Bars](/docs/vertical-bars) und [Erweiterungspositionierung](/docs/native-ui-extensions#content-and-placement-are-independent) gelten zusätzliche Geräteanforderungen.
 
 Für Standardbedienelemente folgen Sie der Einrichtungsanleitung für Ihr Markup; Ionic- und HTML-Adapter verwenden unterschiedliche Importe. Für eigene native Inhalte beginnen Sie direkt mit der [Erweiterungsanleitung](/docs/native-ui-extensions).
 

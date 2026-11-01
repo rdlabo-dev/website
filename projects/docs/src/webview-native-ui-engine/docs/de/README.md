@@ -1,16 +1,19 @@
 ---
 title: "Dokumentationsübersicht"
-sourceRevision: "da6e36175a51a35ee67b5e46d9adedb897572425332283d5a042c7cc680901ec"
+sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bbb"
 ---
 # Dokumentation
 
-Beginnen Sie mit der kleinsten Integration, die Ihre Komponente benötigt. Für eine einzelne native Ansicht genügt die grundlegende Registrierung; optionale Einstellungen passen sie an wechselnde Inhalte und den Anwendungslebenszyklus an. Erweiterte APIs sind ein separater Weg für Renderer, die Batching oder Positionierung bereits selbst übernehmen.
+Entwickeln Sie Web-gesteuerte Ansichten mit nativen Steuerelementen und Funktionen. Diese Leitfäden erklären, wie Sie die Engine in ein Plugin integrieren, damit Web UI und Native UI koexistieren können. Beginnen Sie mit [dem gemeinsamen Modell](concepts.md): wie eine native Komponente in ein Web-Layout eingebunden ist, welche Ebene sie darstellt und wie die Interaktion zur aktiven Ansicht zurückkehrt. Scrollen und Overlays sind Beispiele dieser Koordination, keine getrennten Integrationsmodelle.
+
+Wählen Sie anschließend die kleinste Integration, die zu Ihren Zuständigkeiten passt. Registrieren Sie eine native Ansicht und ihren DOM-Container, verbinden Sie die benötigten Lebenszyklusbenachrichtigungen und ergänzen Sie erweiterte APIs nur dann, wenn Sie bereits die Bündelung oder Platzierung eines Renderers verwalten.
 
 ## Nach dem zu lösenden Problem auswählen
 
 | Fall | Einstieg | Grund |
 | --- | --- | --- |
-| Ein Web-Modal muss die native Tab-Leiste eines Plugins überdecken | [Grundlegende Registrierung](getting-started/initialization.md), dann der Framework-Integrationsleitfaden | Registrieren Sie Ansicht und DOM-Host einmal; die Engine übernimmt Aufnahme und Wiederherstellung. |
+| Eine geeignete native SDK-Ansicht gehört in einen scrollenden Web-Feed | [Grundlegende Registrierung](getting-started/initialization.md) und [Plattformgrenzen](reference/platforms.md) | Binden Sie sie an ihren DOM-Container; native Verfolgung oder vorübergehende Bilddarstellung hängen von Plattform und Layout ab. |
+| Ein Web-Modal muss die native Tab-Leiste eines Plugins überdecken | [Grundlegende Registrierung](getting-started/initialization.md), dann der Framework-Integrationsleitfaden | Registrieren Sie die Ansicht und ihren DOM-Host und verbinden Sie den Overlay-Lebenszyklus; die Engine koordiniert Übergabe und Wiederherstellung. |
 | Ein verborgener Fallback kehrt mit der alten Schalterauswahl zurück | [Wertbindungen](configuration/values.md) | Übertragen Sie aktuelle native Daten auf den Fallback-Host, unabhängig davon, wo er dargestellt wird. |
 | Toolbar-Schaltflächen im Hintergrund und Modal-Schaltflächen im Vordergrund benötigen unterschiedliche Übergabelebensdauern | [Renderer-Oberflächen](advanced/renderer.md) | Trennen Sie Besitzer, damit das Schließen einer Oberfläche nicht die Steuerelemente einer anderen wiederherstellt. |
 | Ein bestehender Renderer überlappt Aktualisierungen oder verliert eine native Bestätigung | [Aktualisierungswarteschlange](advanced/update-queue.md) | Serialisieren Sie Durchläufe mit aktuellem Zustand und gleichen Sie die Verbindung ab, ohne Benutzeraktionen erneut auszuführen. |

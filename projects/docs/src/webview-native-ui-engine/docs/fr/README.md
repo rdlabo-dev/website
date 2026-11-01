@@ -1,16 +1,19 @@
 ---
 title: "Vue d’ensemble de la documentation"
-sourceRevision: "da6e36175a51a35ee67b5e46d9adedb897572425332283d5a042c7cc680901ec"
+sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bbb"
 ---
 # Documentation
 
-Commencez par l’intégration minimale répondant aux besoins de votre composant. L’enregistrement de base suffit pour une vue native unique ; les paramètres facultatifs l’adaptent aux changements de contenu et au cycle de vie de l’application. Les API avancées constituent une approche distincte pour les moteurs de rendu qui gèrent déjà les lots ou le placement.
+Créez des écrans pilotés par le Web avec des contrôles et des capacités natives. Ces guides expliquent comment intégrer l’Engine dans un plugin pour faire coexister Web UI et Native UI. Commencez par [le modèle partagé](concepts.md) : comment un composant natif trouve sa place dans une mise en page Web, quelle couche le présente et comment les interactions reviennent à la vue active. Le défilement et les superpositions sont des exemples de cette coordination, pas des modèles d’intégration distincts.
+
+Choisissez ensuite l’intégration minimale adaptée à vos responsabilités. Enregistrez une vue native et son conteneur DOM, connectez les notifications de cycle de vie nécessaires à votre interface et n’ajoutez les API avancées que si vous gérez déjà les lots ou le placement d’un moteur de rendu.
 
 ## Choisir selon le problème à résoudre
 
 | Cas | Point de départ | Pourquoi |
 | --- | --- | --- |
-| Une modale Web doit couvrir la barre d’onglets native d’un plugin | [Enregistrement de base](getting-started/initialization.md), puis le guide d’intégration du framework | Enregistrez une fois la vue et son hôte DOM ; l’Engine gère la capture et la restauration. |
+| Une vue SDK native admissible appartient à un flux Web défilant | [Enregistrement de base](getting-started/initialization.md) et [limites des plateformes](reference/platforms.md) | Associez-la à son conteneur DOM ; le suivi natif ou la présentation temporaire d’une image dépend de la plateforme et de la mise en page. |
+| Une modale Web doit couvrir la barre d’onglets native d’un plugin | [Enregistrement de base](getting-started/initialization.md), puis le guide d’intégration du framework | Enregistrez la vue et son hôte DOM, puis connectez le cycle de vie des superpositions ; l’Engine coordonne le transfert et la restauration. |
 | Un repli masqué revient avec l’ancienne sélection d’un interrupteur | [Liaisons de valeurs](configuration/values.md) | Reflétez les données natives actuelles sur l’hôte de repli, indépendamment de son lieu d’affichage. |
 | Les boutons de barre d’outils d’arrière-plan et ceux de la modale de premier plan nécessitent des durées de transfert différentes | [Surfaces du moteur de rendu](advanced/renderer.md) | Séparez les propriétaires pour que fermer une surface ne puisse pas restaurer les contrôles d’une autre. |
 | Un moteur de rendu existant fait se chevaucher les mises à jour ou perd une confirmation native | [File de mises à jour](advanced/update-queue.md) | Sérialisez les passes de lecture de l’état actuel et réconciliez la connexion sans rejouer les actions utilisateur. |

@@ -1,10 +1,10 @@
 ---
 title: "Integration in ein Capacitor-Plugin"
-sourceRevision: "2dede6099bb18549e5df650943c33a37b1519afe268c4896ab9e6a6caed254ce"
+sourceRevision: "106c311c58b74da4b2ae430f8b878cf656600bd8e69bffb85442c8198f946f64"
 ---
 # Integration in ein Capacitor-Plugin
 
-Ergänzen Sie Web-Projektion und Wiederherstellung in einem bestehenden Capacitor-Plugin, ohne dessen öffentlichen `registerPlugin()`-Export zu ändern. Das Plugin behält seinen nativen Renderer und seine Anwendungs-API; die Engine koordiniert seine native Ansicht mit einem DOM-Fallback.
+Lassen Sie die nativen Komponenten eines bestehenden Capacitor-Plugins mit Web-Layouts, Navigation und Overlays koexistieren, ohne dessen öffentlichen `registerPlugin()`-Export zu ändern. Das Plugin behält seinen nativen Renderer und seine Anwendungs-API; die Registrierung verbindet jede native Ansicht nach dem [gemeinsamen Darstellungsmodell](../concepts.md) mit ihrem DOM-Container.
 
 Dieser Leitfaden behandelt Abhängigkeiten, Registrierung, Benachrichtigungen und Abbau. Beginnen Sie mit der [nativen Initialisierung](initialization.md) für den minimalen Aufruf, erforderliche Eingaben und Zuständigkeiten; die folgenden Plugin-Diffs ergänzen Ereignisverknüpfung und Lebenszyklusverwaltung. Die [Projektionsreferenz](../reference/projection.md) enthält genaue Verträge und Plattformgrenzen.
 
@@ -38,9 +38,9 @@ Der primäre native Vertriebsweg ist Swift Package Manager. Verweisen Sie von Ih
 .product(name: "WebViewNativeUIEngine", package: "engine")
 ```
 
-Solange die API vor Version 1.0 liegt, pinnen Sie dieselbe Engine-Version für npm, SwiftPM, Gradle und CocoaPods und aktualisieren Sie bewusst. Anwendungen sollten ihre Abhängigkeits-Lockfiles für reproduzierbare Builds beibehalten.
+Verwenden Sie dieselbe Engine-Version für npm, SwiftPM, Gradle und CocoaPods und aktualisieren Sie bewusst. Anwendungen sollten ihre Abhängigkeits-Lockdateien für reproduzierbare Builds beibehalten.
 
-SwiftPM löst Versionstags dieses Repositorys wie `v0.0.1` auf. Verwenden Sie für unveröffentlichte Integrationstests einen lokalen Checkout oder einen expliziten getesteten Commit.
+SwiftPM löst Versionstags dieses Repositorys wie `v1.0.0` auf. Verwenden Sie für unveröffentlichte Integrationstests einen lokalen Checkout oder einen expliziten getesteten Commit.
 
 `import WebViewNativeUIEngine` benötigt keine Capacitor-Registrierung. Das npm-Begleitpaket liefert DOM-Messung und Web-Bildübergabe; SwiftPM löst die native Abhängigkeit unabhängig von npm-Hoisting auf.
 

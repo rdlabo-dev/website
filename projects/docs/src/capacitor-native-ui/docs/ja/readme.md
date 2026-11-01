@@ -24,6 +24,8 @@ Native UIは明示的に有効化する機能で、2.0.0から正式にサポー
 
 投影が変更するのは表示です。任意のHTMLやCSSをネイティブビューに変換するものではありません。ネイティブコントロールは対応するデータとスタイルを使用するため、独自のWeb表示がそのまま再現されるとは限りません。投影元を削除または無効化すると、それ以降の有効な操作を防ぎます。投影が利用できない場合や停止した場合、ランタイムは非表示状態を解除し、投影元はWeb表示または利用可能なWebレールへ戻ります。アプリ自身の非表示・無効状態は引き続き適用されます。
 
+操作を遮断する Web オーバーレイでは、ネイティブのボタン、セグメント、FAB、タブバーの準備済み画像をバックドロップの下に残せます。画像はキャプチャしたネイティブの外観を保持し、ネイティブ更新とまとめられた視覚的変更の後に準備されます。Liquid Glass の縁のハイライトなど、プラットフォームのキャプチャ結果はライブの合成表示と異なる場合があり、マテリアルをピクセル単位で同一に再現する保証はありません。タッチ中は準備を停止し、表示時はキャプチャやブリッジの応答を待たず、最後に完成した画像を使います。画像がなければ表示の所有権を既存の Web 表示へ戻します。コントロールを保持するネイティブポップオーバーは、ネイティブ表示を維持します。移動、復元、適用除外については[ハンドオフの規則](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#temporary-images-beneath-web-overlays)を参照してください。この機能を有効にするにはネイティブアプリを再ビルドしてください。古いネイティブバイナリは従来の表示経路を維持します。
+
 ## 作りたいものから選ぶ
 
 | 目的 | はじめに読むガイド |
@@ -51,7 +53,7 @@ iOS 27テーマも使う場合は、両パッケージを一緒にインスト�
 npm install @rdlabo/capacitor-native-ui @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-テーマとNative UIは同じリリースバージョンを使い、Foldableは独立したバージョンを使います。Capacitorがプラグインを検出できるよう、Native UIを直接の依存関係として宣言してください。セットアップコマンドでは、Foldableもアプリの独立した依存関係としてインストールします。パッケージのインストールだけではネイティブコントロールは有効になりません。アプリの起動処理で投影を選択し、デバイスレイアウトを接続します。
+Native UI とテーマは同じリリースバージョンを使い、Engine と Foldable は独立したバージョンを使います。Native UI は Engine の npm 依存関係を含み、SwiftPM と Maven を通じてネイティブライブラリをリンクします。CocoaPods を使う場合は[ローカルの Engine pod の設定](https://github.com/webview-native-ui/engine/blob/v1.0.0/docs/getting-started/capacitor.md#cocoapods-compatibility-through-npm)も必要です。Capacitor がプラグインを検出できるよう、Native UI を直接の依存関係として宣言してください。セットアップコマンドでは、Foldable もアプリの独立した依存関係としてインストールします。パッケージのインストールだけではネイティブコントロールは有効になりません。アプリの起動処理で投影を選択し、デバイスレイアウトを接続します。
 
 続いて[Ionicの設定](/docs/setup)、[HTMLの設定](/docs/framework-independent)、または[拡張](/docs/native-ui-extensions)を参照してください。起動処理の設定後、Webアセットをビルドし、`npx cap sync` を実行してネイティブアプリを再ビルドします。リポジトリのチェックアウトやアーカイブのダウンロードは不要です。
 
@@ -59,7 +61,7 @@ npm install @rdlabo/capacitor-native-ui @rdlabo/ionic-theme-ios27 @erkamyaman/ca
 
 ## 要件
 
-ネイティブ起動にはCapacitor 8とiOSまたはAndroidプロジェクトが必要です。Android拡張にはAPI 24以上とKotlin／Composeが必要です。通常のネイティブ描画にはiOS 26以上とXcode 26以上が必要です。IonicアダプターはIonic `>=8.8.1 <10` に対応します。HTML向けの `/core` アダプターではIonicもテーマパッケージも不要です。[Vertical Bars](/docs/vertical-bars)と[拡張の配置](/docs/native-ui-extensions#content-and-placement-are-independent)には追加のデバイス要件があります。
+ネイティブ起動には Capacitor 8 と iOS または Android プロジェクトが必要です。Android 拡張には API 24 以上と Kotlin／Compose が必要です。通常のネイティブ描画には iOS 26 以上と Xcode 26 以上が必要です。Ionic アダプターが宣言する対応範囲は Ionic `>=8.8.1 <10` で、自動 E2E 検証は Ionic 9 を対象としています。HTML 向けの `/core` アダプターでは Ionic もテーマパッケージも不要です。[Vertical Bars](/docs/vertical-bars)と[拡張の配置](/docs/native-ui-extensions#content-and-placement-are-independent)には追加のデバイス要件があります。
 
 標準コントロールでは、使用するマークアップ向けのセットアップガイドに従ってください。IonicとHTMLのアダプターはimportが異なります。独自のネイティブコンテンツでは、[拡張ガイド](/docs/native-ui-extensions)から始めてください。
 

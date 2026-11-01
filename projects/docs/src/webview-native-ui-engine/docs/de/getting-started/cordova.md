@@ -1,8 +1,10 @@
 ---
 title: "Integration in ein Cordova-Plugin"
-sourceRevision: "c19dcb524732763438ff82a606cb2fe937763878fbcdf135f27d3818980e22eb"
+sourceRevision: "07ebbb7753dbf7130a57e2c1d4e6325386a4948879c9450bc5fea525da52c693"
 ---
 # Integration in ein Cordova-Plugin
+
+Lassen Sie die nativen Komponenten eines Cordova-Plugins mit Web-Layouts, Navigation und Overlays koexistieren, indem Sie dasselbe [Darstellungsmodell](../concepts.md) wie bei Capacitor verwenden.
 
 Dasselbe npm-Paket, dieselbe Swift-Bibliothek und dasselbe Android-AAR unterstützen Capacitor und Cordova. Die Engine ist eine Bibliothek für Plugin-Maintainer, kein separat registriertes Cordova-Plugin. Eine Cordova-Anwendung benötigt weder `@capacitor/core` noch ein natives Capacitor-SDK.
 
@@ -24,7 +26,7 @@ Stellen Sie einen Container mit Layout wie `native-ad` oder `#player` in der Ebe
 
 Ersetzen Sie `<engine-version>` in jeder folgenden Abhängigkeit durch dieselbe veröffentlichte Version. Lesen Sie die Dokumentation dieses Release-Tags, damit die Beispiele zu dessen APIs passen.
 
-Verwenden Sie dasselbe Engine-Release für das Web-Paket und die nativen Bibliotheken. Die API liegt vor Version 1.0; schreiben Sie Versionen fest und behalten Sie Abhängigkeits-Lockfiles.
+Verwenden Sie dasselbe Engine-Release für das Web-Paket und die nativen Bibliotheken. Schreiben Sie übereinstimmende Versionen fest und behalten Sie Abhängigkeits-Lockdateien für reproduzierbare Builds bei.
 
 ```sh
 npm install --save-exact '@webview-native-ui/engine@<engine-version>'
@@ -68,7 +70,7 @@ Registrieren Sie das Plugin im iOS-Plattformabschnitt von `plugin.xml` für den 
 </platform>
 ```
 
-Fügen Sie diese Einträge in die bestehenden Plattformabschnitte ein, statt doppelte Abschnitte anzulegen. Die [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v0.0.8/tests/cordova/plugin) enthält die vollständige Verknüpfung von plugin.xml, SwiftPM und Gradle.
+Fügen Sie diese Einträge in die bestehenden Plattformabschnitte ein, statt doppelte Abschnitte anzulegen. Die [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v1.0.1/tests/cordova/plugin) enthält die vollständige Verknüpfung von plugin.xml, SwiftPM und Gradle.
 
 Die Beispiele erweitern einen bestehenden Renderer: `nativeView` ist seine angehängte, positionierte Ansicht, keine von der Engine erzeugte Ansicht.
 

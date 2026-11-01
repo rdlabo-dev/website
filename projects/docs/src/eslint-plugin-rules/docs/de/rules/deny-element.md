@@ -1,12 +1,12 @@
 ---
 title: "deny-element"
-sourceRevision: "967ace55de77fe1ac285b0f45a9f8cdb5b8408a32a948c9f54af7cbb61afb1a3"
+sourceRevision: "24367f0cd736699c68ad9777826192af7bc455c174a2d0491f68eb40510b243e"
 ---
 # @rdlabo/rules/deny-element
 
 > Dieses Plugin verbietet die Verwendung bestimmter HTML-Tags.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 
 Diese Regel verhindert bestimmte Elemente in Angular-Templates. Häufig wird sie verwendet, um Inline-Overlay-Komponenten wie `<ion-modal>`, `<ion-popover>`, `<ion-toast>`, `<ion-alert>`, `<ion-loading>`, `<ion-picker>` und `<ion-action-sheet>` zu verbieten. Diese sollten über Launcher-Methoden oder dedizierte Dienste angezeigt werden, statt im Template deklariert zu werden.
 
@@ -74,12 +74,12 @@ Array der zu verbietenden Element-Tagnamen. Die Regel vergleicht diese Namen mit
 
 ## Wann die Regel aktiviert werden sollte
 
-Aktivieren Sie diese Regel in Projekten mit Launcher-Muster für Overlays. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md) und [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md), um Modal- und Overlay-Logik aus dem Template herauszuhalten.
+Aktivieren Sie diese Regel in Projekten mit Launcher-Muster für Overlays. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher) und [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler), um Modal- und Overlay-Logik aus dem Template herauszuhalten.
 
 ## Siehe auch
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler)
 
 ## Implementierung
 

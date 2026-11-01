@@ -1,12 +1,12 @@
 ---
 title: "prefer-ionic-standalone"
-sourceRevision: "bb3ad52630c861efd28f8792cef79c4a5548529b7db1b1f73a8cbd0997cadb58"
+sourceRevision: "6efbec86d270d4f487b8f11634d16d13ade5fb55d34ebb6da564ce7baa6420f1"
 ---
 # @rdlabo/rules/prefer-ionic-standalone
 
 > Préférer l’API standalone Ionic 9 et interdire IonicModule ainsi que les points d’entrée obsolètes ou fondés sur NgModule.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 > - ✒️ L’option `--fix` de la [ligne de commande](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) peut corriger automatiquement certains problèmes signalés par cette règle.
 
 Ionic 9 exporte les composants Angular standalone depuis `@ionic/angular`. Cette règle maintient les applications sur cette interface d’API en rejetant l’ancien point d’entrée `@ionic/angular/standalone`, celui fondé sur NgModule `@ionic/angular/lazy` et `IonicModule` lui-même.

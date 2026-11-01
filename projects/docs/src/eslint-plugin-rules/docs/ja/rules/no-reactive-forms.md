@@ -26,7 +26,7 @@ title: no-reactive-forms
    Angular templateで次のbindingを報告します。
    `formControl`, `formControlName`, `formGroup`, `formGroupName`, `formArrayName`.
 
-`FormsModule` と `ngModel` は意図的にこのルールの対象外です。これらを制限するには[`@rdlabo/rules/no-template-driven-forms`](./no-template-driven-forms.md)を使います。
+`FormsModule` と `ngModel` は意図的にこのルールの対象外です。これらを制限するには[`@rdlabo/rules/no-template-driven-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms)を使います。
 
 ## 例
 
@@ -74,8 +74,8 @@ Signal Formsを採用済み、またはReactive Formsから移行中のAngular�
 
 ## 関連項目
 
-- [`@rdlabo/rules/no-template-driven-forms`](./no-template-driven-forms.md)
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
+- [`@rdlabo/rules/no-template-driven-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-template-driven-forms)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
 
 ## 実装
 

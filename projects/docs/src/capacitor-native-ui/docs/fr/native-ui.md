@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: d83a47dda256a943a2c907b4684df2e0d793112642917e846fcb98901236d8a5
+sourceRevision: "b6eb27b3044ef47cd46d168a2b7ae3dca1904e49345773e4c10d507a22543eeb"
 ---
 # Native UI
 
@@ -410,6 +410,8 @@ try {
 }
 ```
 
+Pour un arrière-plan non interactif couvert par une superposition personnalisée, utilisez `shell.suspend({ covered: true })` afin de réutiliser les images natives préparées. Cela fonctionne avec des sources HTML sans Ionic ni CSS de thème. Les images conservent les dimensions de la capture native et leur décalage par rapport au DOM source ; elles ne redimensionnent pas les contrôles de l’application. Le navigateur applique ensuite les translations et changements d’échelle avec la source. Reprenez après la fermeture de la superposition pour restaurer Native UI en direct. Aucune image n’est capturée sur le chemin de présentation ; les images manquantes ou les binaires natifs non compatibles conservent le repli Web existant. Les extensions Compose locales à l’application sur Android utilisent le même transfert sur l’API 26+, y compris pour un contenu translucide capturé avec son arrière-plan ; les API 24–25 conservent le repli Web pour les surfaces couvertes. Utilisez `suspend()` sans options chaque fois que les contrôles Web doivent rester interactifs, y compris pendant la navigation. Une suspension simple prend priorité sur une suspension couverte imbriquée.
+
 Les suspensions peuvent être imbriquées et `resume()` est idempotent. La projection native ne reprend qu’après la libération de toutes les suspensions actives, à partir du DOM actuel et non d’un instantané périmé.
 
 Le matériau et l’apparence des contrôles natifs suivent la version d’iOS en cours d’exécution ; un appareil iOS 26 ne prend pas l’apparence d’iOS 27 simplement en installant ce thème.
@@ -438,7 +440,7 @@ La référence générée ci-dessous documente le handle retourné par `enableNa
 - [`disableVerticalControlArea()`](#disableverticalcontrolarea)
 - [`markForCheck()`](#markforcheck)
 - [`getStatus()`](#getstatus)
-- [`suspend()`](#suspend)
+- [`suspend(...)`](#suspend)
 - [`destroy()`](#destroy)
 - [Interfaces](#interfaces)
 
@@ -491,13 +493,17 @@ Renvoie l’état actuel de projection Web/native.
 
 ---
 
-### suspend()
+### suspend(...)
 
 ```typescript
-suspend() => Promise<NativeUISuspension>
+suspend(options?: { covered?: boolean | undefined; } | undefined) => Promise<NativeUISuspension>
 ```
 
-Rétablit les contrôles projetés sur le Web jusqu’à la reprise du bail renvoyé.
+Restaure les contrôles Web jusqu’à la reprise. Utilisez covered uniquement lorsque l’arrière-plan n’est pas interactif ; les images natives préparées préservent son apparence.
+
+| Paramètre | Type |
+| --- | --- |
+| **`options`** | <code>{ covered?: boolean; }</code> |
 
 **Retour :** <code>Promise&lt;<a href="#nativeuisuspension">NativeUISuspension</a>&gt;</code>
 

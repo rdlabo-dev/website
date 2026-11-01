@@ -1,12 +1,12 @@
 ---
 title: "deny-soft-private-modifier"
-sourceRevision: "835c59f9ecaabd6fb32fbf47434caf6db6aa8481b4d2720d7f5407bf0bdf0c31"
+sourceRevision: "acc824d209e39ff3569da18e38e6726e2a778f9ce8aee9d66dc73f53138d18a0"
 ---
 # @rdlabo/rules/deny-soft-private-modifier
 
 > Ce plugin interdit le modificateur privé de TypeScript.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 > - ✒️ L’option `--fix` de la [ligne de commande](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) peut corriger automatiquement certains problèmes signalés par cette règle.
 
 Le modificateur `private` de TypeScript est appliqué uniquement à la compilation. On peut encore accéder au membre à l’exécution par la notation entre crochets ou une conversion en `any`. Les champs privés stricts JavaScript (`#`) sont protégés à l’exécution et inaccessibles depuis l’extérieur de la classe. Cette règle remplace les propriétés et méthodes `private` par des champs `#` et transforme les références `this.x` en `this.#x`.
@@ -63,7 +63,7 @@ Activez cette règle lorsqu’un projet souhaite une encapsulation des membres i
 
 ## Voir aussi
 
-- [`@rdlabo/rules/restrict-try-block`](./restrict-try-block.md)
+- [`@rdlabo/rules/restrict-try-block`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/restrict-try-block)
 
 ## Implémentation
 

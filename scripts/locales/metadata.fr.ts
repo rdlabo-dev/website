@@ -21,9 +21,10 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
   'WebView Native UI Engine': 'WebView Native UI Engine',
   'Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.':
     'Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.',
-  'Bring Web UI above the native layer': 'Placez l’interface Web au-dessus de la couche native',
-  'Coordinate native controls and Web content across scrolling screens, transitions, and overlays on iOS and Android. Integrate the Engine into your plugin while retaining its renderer and public API. The API is pre-1.0.':
-    'Coordonnez les contrôles natifs et le contenu Web lors du défilement, des transitions et des superpositions sur iOS et Android. Intégrez l’Engine à votre plugin en conservant son moteur de rendu et son API publique. L’API est encore en version pré-1.0.',
+  'Bring Native UI seamlessly into Web apps':
+    'Intégrez Native UI sans rupture dans les applications Web',
+  'Coordinate native controls and Web content across scrolling screens, transitions, and overlays on iOS and Android. Integrate the Engine into your plugin while retaining its renderer and public API.':
+    'Coordonnez les contrôles natifs et le contenu Web lors du défilement, des transitions et des superpositions sur iOS et Android. Intégrez l’Engine à votre plugin en conservant son moteur de rendu et son API publique.',
   'Capacitor plugin integration': 'Intégration dans un plugin Capacitor',
   'Cordova plugin integration': 'Intégration dans un plugin Cordova',
   'Projection container support': 'Prise en charge des conteneurs de projection',
@@ -149,7 +150,7 @@ export const METADATA_FR: Readonly<Record<string, string>> = {
   'Await printFile until the OS no longer needs the source, then delete it safely.':
     'Attendez la fin de printFile, jusqu’à ce que le système n’ait plus besoin du fichier source, puis supprimez-le en toute sécurité.',
   'Banner Ads': 'Bannières publicitaires',
-  'Native Ads (Preview)': 'Native Ads (version préliminaire)',
+  'Native Ads': 'Native Ads',
   'Banner ads': 'Bannières publicitaires',
   'Barcode and QR scanning for Capacitor through a native modal.':
     'Lecture de codes-barres et de codes QR pour Capacitor dans une fenêtre modale native.',

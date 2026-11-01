@@ -1,14 +1,14 @@
 ---
 title: "Configuration"
-sourceRevision: "3575aa7b31f199be541926b0e72c37308ea436b648ac41e67c7b78c90f5020aa"
+sourceRevision: "f7f31f4747241ff36301410ddd81e4f795d39e75e78b699024278977d1e720cd"
 ---
 # Configuration
 
-Utilisez la racine du package pour Angular et Ionic, ou `/typescript` pour le code indépendant du framework. Commencez par la configuration de votre projet, puis activez seulement les politiques nécessaires. Consultez [le catalogue des règles](./rules.md) pour la couverture des presets et [le guide de migration](./migration.md) lors d’une mise à niveau.
+Utilisez la racine du package pour Angular et Ionic, ou `/typescript` pour le code indépendant du framework. Commencez par la configuration de votre projet, puis activez seulement les politiques nécessaires. Consultez [le catalogue des règles](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules) pour la couverture des presets et [le guide de migration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration) lors d’une mise à niveau.
 
 ## Angular et Ionic
 
-La version 22 du plugin prend en charge Angular et Angular ESLint 21–22 avec Ionic Framework 9. Lors d’une mise à niveau depuis la version 21, examinez [le guide de migration](./migration.md) avant d’activer le nouveau preset recommandé.
+La version 22 du plugin prend en charge Angular et Angular ESLint 21–22 avec Ionic Framework 9. Lors d’une mise à niveau depuis la version 21, examinez [le guide de migration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration) avant d’activer le nouveau preset recommandé.
 
 Enregistrez le plugin, développez ses configurations recommandées au niveau supérieur, puis ajoutez les configurations Angular et TypeScript standard de votre projet.
 
@@ -126,6 +126,6 @@ npm install --save-dev eslint @eslint/js typescript typescript-eslint @rdlabo/es
 
 `no-implicit-timezone` nécessite les informations de types. `initialize-timezone-at-module-scope` est syntaxique : un fichier peut omettre l’initialisation ; lorsqu’elle est présente, il ne peut y avoir qu’un emplacement autorisé dans ce fichier — pas un emplacement unique pour toute l’application, ni un appel obligatoire dans chaque module.
 
-Le preset de fuseaux horaires complète [`@rdlabo/workers-timezone`](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme) ; aucun package ne dépend de l’autre à l’exécution. Il signale les opérations identifiables statiquement, pas toutes les valeurs dynamiques de fuseau horaire. Consultez [no-implicit-timezone](./rules/no-implicit-timezone.md) et [initialize-timezone-at-module-scope](./rules/initialize-timezone-at-module-scope.md) pour la couverture et les limites exactes.
+Le preset de fuseaux horaires complète [`@rdlabo/workers-timezone`](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme) ; aucun package ne dépend de l’autre à l’exécution. Il signale les opérations identifiables statiquement, pas toutes les valeurs dynamiques de fuseau horaire. Consultez [no-implicit-timezone](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone) et [initialize-timezone-at-module-scope](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope) pour la couverture et les limites exactes.
 
 Le preset Workers n’inclut volontairement pas celui des fuseaux horaires ; les mises à jour de politique Workers générale n’activent donc pas implicitement les politiques de dates.

@@ -1,10 +1,10 @@
 ---
 title: "基本的な初期化"
-sourceRevision: "55b35c15a1050e71982b5937734839562c86c9252cc3ac4451fad5da632c0f9c"
+sourceRevision: "b62111c3b49c28acbd9a19c15cde2762cf785e0f0d7bdbd6d29eb19584b33f44"
 ---
 # ネイティブビューの登録を初期化する
 
-プラグインがネイティブビューと対応するWebコンテナを所有する場合は、`NativeUIProjection`から始めます。登録はランタイムを起動し、そのコンテナをバインドして、画像のハンドオフと復元を調整します。この方式にレンダラーAPIは不要です。
+プラグインがネイティブビューと対応するWebコンテナを所有する場合は、`NativeUIProjection`から始めます。登録はランタイムを起動し、コンテナをバインドして、ネイティブビューとWebレイアウトの間の表示を調整します。スクロールするフィード内のコンポーネントでも、Webオーバーレイの下のコンポーネントでも、同じ方法で始められます。この方式にレンダラーAPIは不要です。これらの場面の関係とプラットフォームの制約は、[共通のモデル](../concepts.md)を参照してください。
 
 依存のインストール、プラグインのライフサイクルフック、通知の転送は、[Capacitor](capacitor.md)または[Cordova](cordova.md)のガイドを参照してください。以下の例は、それらのフック内での最小の登録と、必須入力を示します。初期化後の任意の動作は設定ガイドにまとめています。高度なAPIには別の入口があります。
 
@@ -38,7 +38,20 @@ projection = NativeUIProjection(
 )
 ```
 
-どちらのコードも、組み込みガイドのエラー処理の範囲内に置きます。初期化に失敗した場合は既存のWebフォールバックを維持します。`projection`と`nativeView`はプラグインのプロパティです。レンダラーの終了時には、iOSの`destroy()`またはAndroidの`close()`で登録を破棄します。ネイティブのライフサイクル呼び出しはすべてUIスレッドで行います。
+Javaでも、すべての任意引数を指定せずに同じデフォルトを使えます。
+
+```java
+NativeUIProjection.install(getBridge().getWebView());
+projection = new NativeUIProjection(
+    getActivity().getWindow(),
+    getBridge().getWebView(),
+    getPluginHandle().getId(),
+    "#native-ui-fallback",
+    () -> nativeView
+);
+```
+
+これらのコードは、組み込みガイドのエラー処理の範囲内に置きます。初期化に失敗した場合は既存のWebフォールバックを維持します。`projection`と`nativeView`はプラグインのプロパティです。レンダラーの終了時には、iOSの`destroy()`またはAndroidの`close()`で登録を破棄します。ネイティブのライフサイクル呼び出しはすべてUIスレッドで行います。
 
 Cordovaも、`runtime: .cordova` / `runtime = Runtime.CORDOVA`と、独自のWebView・プラグイン識別情報を使う同じ登録方式です。フックとAndroidのリソースハンドラーは、[Cordovaガイド](cordova.md)に従ってください。
 

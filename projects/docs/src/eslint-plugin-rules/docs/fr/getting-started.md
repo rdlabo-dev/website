@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "5db1ec860d9abfb95cac70d42596928a725515dd0b1c36d183444b8b4db3fa97"
+sourceRevision: "873581b37a0345da8a33aa35b031a98e629bc64e119776eccbcec4499d46347c"
 ---
 # @rdlabo/eslint-plugin-rules
 
@@ -12,7 +12,7 @@ sourceRevision: "5db1ec860d9abfb95cac70d42596928a725515dd0b1c36d183444b8b4db3fa9
 
 Conventions de code partagées pour les applications Angular et Ionic, avec des presets TypeScript indépendants du framework pour Cloudflare Workers. Détectez au lint les incohérences de responsabilités des composants, d’usage des modèles et d’opérations implicites de fuseau horaire, avant la revue de code.
 
-[Essayez la détection et la correction automatique du lint](./docs/quickstart.md) dans un petit projet TypeScript, sans installer Angular ni Ionic.
+[Essayez la détection et la correction automatique du lint](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/quickstart) dans un petit projet TypeScript, sans installer Angular ni Ionic.
 
 ## Installer
 

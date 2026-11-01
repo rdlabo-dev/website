@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "01f1a25a9d0bf34c72f510eb28a56198297bc330806e65021f6cf909ef52818b"
+sourceRevision: "3cdfb2c3fa3823c42cb4b8e91bf1b1d7e8f4e957be86a77b18ac0945cf17a03e"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,7 +41,7 @@ Créé avec [contributors-img](https://contrib.rocks).
 
 ## Démonstration
 
-[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.2.1/demo)
+[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.3.0/demo)
 
 ### Captures d’écran
 
@@ -194,7 +194,7 @@ Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configu
 - [Consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) — consentement relatif à la confidentialité et autorisation de suivi iOS.
 - [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) — blocs d’annonces de démonstration, appareils de test et tests de consentement.
 - [Bannières](https://docs.rdlabo.dev/projects/capacitor-admob/docs/banner) — options, cycle de vie et événements des bannières.
-- [Native Ads (version préliminaire)](/docs/native-ads) — utilisable pour les tests et en production. Son API peut changer lors d’une version mineure tant que la fonctionnalité reste en version préliminaire.
+- [Native Ads](/docs/native-ads) — placement dans le flux, style, cycle de vie et événements.
 - Annonces plein écran :
   - [Annonces interstitielles](https://docs.rdlabo.dev/projects/capacitor-admob/docs/interstitial) — chargement, affichage et préparation de plusieurs annonces.
   - [Annonces récompensées](https://docs.rdlabo.dev/projects/capacitor-admob/docs/rewarded) — vidéo récompensée, interstitielle récompensée et vérification côté serveur.

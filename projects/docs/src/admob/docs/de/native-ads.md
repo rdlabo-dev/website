@@ -1,10 +1,8 @@
 ---
-title: "Native Ads (Vorschau)"
-sourceRevision: "ff974eb9b0368211c69399c59f5a8a634e9eb1750f98ced3d1cc8252543b5494"
+title: "Native Ads"
+sourceRevision: "69cae64fe37304c3329b45be3112e3dbb022935fff8dba0963666b6fc299f112"
 ---
-# Native Ads (Vorschau)
-
-**Native Ads ist eine Funktion in der Vorschauphase.** Sie können sie für Tests und im Produktivbetrieb verwenden. Während der Vorschauphase kann sich die API auch mit einer Nebenversion ändern.
+# Native Ads
 
 Native Anzeigen werden mit Ansichten des Google Mobile Ads SDK dargestellt, die dieses Plugin verwaltet. Ihre App reserviert einen HTML-Platz und gibt einen stabilen Schlüssel an. Sie implementiert weder eine `NativeAdView` in Kotlin oder Swift noch stellt sie Anzeigeninhalte in JavaScript dar.
 
@@ -36,7 +34,7 @@ const paidHandle = await nativeAds.addListener(NativeAdPluginEvents.AdPaid, (eve
 });
 ```
 
-Verwenden Sie das frameworkunabhängige Element in normalem oder virtualisiertem Markup. `slot-key` muss den logischen Anzeigeneintrag identifizieren, nicht seinen Array-Index oder den wiederverwendeten DOM-Knoten.
+Verwenden Sie das frameworkunabhängige Element im Markup Ihres Feeds. `slot-key` muss den logischen Anzeigeneintrag identifizieren, nicht seinen Array-Index oder den wiederverwendeten DOM-Knoten.
 
 ```html
 <capacitor-admob-native feed-id="home-feed" slot-key="sponsored-after-article-42"></capacitor-admob-native>
@@ -138,7 +136,7 @@ Rufen Sie beim Verlassen eines Bildschirms `destroy()` auf. Warten Sie vor dem A
 | `invalidateLayout(): Promise<void>` | Blendet nach einem anwendungsgesteuerten Reflow aus und misst erneut. |
 | `destroy()` | Entfernt Listener und alle nativen Ressourcen der Sitzung. |
 
-`NativeAdFeedOptions` enthält `feedId`, `adId`, `template`, `style`, `isTesting`, `npa` und das optionale iOS-`scrollElement`. Setzen Sie `isTesting: true`, um den plattformspezifischen Testanzeigenblock von Google zu verwenden. Geben Sie für produktive Anzeigen die plattformspezifische ID Ihres nativen Anzeigenblocks in `adId` an und lassen Sie `isTesting` weg oder setzen Sie es auf `false`. `adId` ist erforderlich, sofern `isTesting` nicht `true` ist. `feedId` und jeder `slotKey` müssen nicht leer und stabil sein. Verwenden Sie nach dem Neuladen der WebView dieselben Feed-IDs, damit veraltete native Sitzungen sicher ersetzt werden können.
+`NativeAdFeedOptions` enthält `feedId`, `adId`, `template`, `style`, `isTesting`, `npa`, das optionale iOS-`scrollElement` und Android-`androidScrollSnapshot`. Setzen Sie `isTesting: true`, um den plattformspezifischen Testanzeigenblock von Google zu verwenden. Geben Sie für produktive Anzeigen die plattformspezifische ID Ihres nativen Anzeigenblocks in `adId` an und lassen Sie `isTesting` weg oder setzen Sie es auf `false`. `adId` ist erforderlich, sofern `isTesting` nicht `true` ist. `feedId` und jeder `slotKey` müssen nicht leer und stabil sein. Verwenden Sie nach dem Neuladen der WebView dieselben Feed-IDs, damit veraltete native Sitzungen sicher ersetzt werden können.
 
 ## Darstellung und Richtlinien
 
@@ -160,6 +158,24 @@ const feed = await NativeAdFeed.create({
 });
 ```
 
-Unter iOS aktiviert `scrollElement` die experimentelle native Scrollverfolgung für diesen Container. Layoutänderungen erfordern weiterhin eine erneute Messung. Rufen Sie nach anwendungsgesteuerten Änderungen `invalidateLayout()` auf. Die Beschneidung innerhalb des Scrollcontainers und an seinen sichtbaren Grenzen bleibt erhalten. `pause()` und `destroy()` stoppen die Verfolgung. Andere Plattformen ignorieren diese Option und aktualisieren die Koordinaten weiterhin mit JavaScript.
+Unter iOS aktiviert `scrollElement` die native Scrollverfolgung für diesen Container. Layoutänderungen erfordern weiterhin eine erneute Messung. Rufen Sie nach anwendungsgesteuerten Änderungen `invalidateLayout()` auf. Die Beschneidung innerhalb des Scrollcontainers und an seinen sichtbaren Grenzen bleibt erhalten. `pause()` und `destroy()` stoppen die Verfolgung. Andere Plattformen ignorieren diese Option und aktualisieren die Koordinaten weiterhin mit JavaScript.
 
 Lässt sich der angegebene Container nicht eindeutig identifizieren, schlägt die Aktualisierung fehl und seine Anzeigen bleiben ausgeblendet. Verwenden Sie einen einzelnen Overflow-Scrollcontainer ohne Transformation oder Zoom. Verschachteltes Scrollen, Dokument-Scrollen über diese Option und Integrationen mit virtuellem Scrollen werden nicht unterstützt. Die Weiterleitung von Wischgesten, die auf einer Anzeige beginnen, ändert sich dadurch nicht.
+
+## Scroll-Snapshots unter Android
+
+Setzen Sie `androidScrollSnapshot: true`, um während des Scrollens ein zwischengespeichertes Bild im Web-Feed anzuzeigen und die native Anzeige wiederherzustellen, sobald das Scrollen endet. Die Demo aktiviert diese Option unter Android standardmäßig.
+
+```ts
+const feed = await NativeAdFeed.create({
+  feedId: 'articles',
+  adId: 'YOUR_ANDROID_NATIVE_AD_UNIT_ID',
+  androidScrollSnapshot: true,
+});
+```
+
+Verwenden Sie während der Entwicklung `isTesting: true`, um Testanzeigen von Google anzufordern. Geben Sie im Produktivbetrieb die ID Ihres nativen Anzeigenblocks in `adId` an und lassen Sie `isTesting` weg oder setzen Sie es auf `false`. Snapshots stehen in beiden Modi zur Verfügung. Die Option wird nur unter Android unterstützt.
+
+WebView Native UI Engine verwaltet die Snapshot-Aufnahme und den Wechsel zwischen Bild und nativer Ansicht. Jeder Anzeigenplatz hat eine eigene Projektion. Bilder werden aktualisiert, wenn die Anzeige neu geladen wird oder sich ihr Layout ändert. Beim Pausieren, Lösen der Zuordnung oder Zerstören des Feeds werden die zugehörigen Projektionen ausgeblendet oder entfernt.
+
+Video-Werbemittel und durchscheinende Hintergründe behalten die native Scrollverfolgung bei. Ist ein Snapshot nicht verfügbar, noch nicht bereit oder überschreitet er die unterstützten Abmessungen, folgt die native Ansicht weiterhin dem Scrollen. Native SDK-Ansichten verarbeiten Anzeigeninteraktionen; Snapshots leiten keine Klicks weiter und erzeugen keine künstlichen Impressionen.

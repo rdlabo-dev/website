@@ -1,12 +1,12 @@
 ---
 title: "signal-use-as-signal"
-sourceRevision: "9b4c670d908875b3b1a382c9dc114ffa223e39173d06f5cfe3d57fbfa9d1615e"
+sourceRevision: "764a2c64b850daa123e4655b51490a1ac6376bd16eafb9779a43824242176003"
 ---
 # @rdlabo/rules/signal-use-as-signal
 
 > Dieses Plugin prüft die korrekte Verwendung von Signals als Signals.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 > - ✒️ Die Option `--fix` auf der [Befehlszeile](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) kann einige der von dieser Regel gemeldeten Probleme automatisch korrigieren.
 
 Angular-Signals sind Getter-Funktionen. Das Lesen verlangt `()`, das Schreiben muss über `.set()` oder `.update()` erfolgen. Diese Regel erkennt Code, der eine Signal-Variable wie einen gewöhnlichen Wert verwendet, und kann viele häufige Fehler automatisch korrigieren.
@@ -139,12 +139,12 @@ Diese Regel besitzt keine Optionen.
 
 ## Wann die Regel aktiviert werden sollte
 
-Aktivieren Sie diese Regel in jedem Angular-Projekt mit Signals. Sie ergänzt [`@rdlabo/rules/signal-use-as-signal-template`](./signal-use-as-signal-template.md), das die Signal-Verwendung in Templates prüft.
+Aktivieren Sie diese Regel in jedem Angular-Projekt mit Signals. Sie ergänzt [`@rdlabo/rules/signal-use-as-signal-template`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template), das die Signal-Verwendung in Templates prüft.
 
 ## Siehe auch
 
-- [`@rdlabo/rules/signal-use-as-signal-template`](./signal-use-as-signal-template.md)
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
+- [`@rdlabo/rules/signal-use-as-signal-template`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
 
 ## Implementierung
 

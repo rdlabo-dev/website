@@ -15,7 +15,7 @@ headingAliases:
 
 > `ion-list` 内の `ion-item` を、対応するIonicの項目グループで囲むことを要求します。
 >
-> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](../configuration.md) に含まれます。
+> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) に含まれます。
 > - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、報告された問題の一部を自動修正できます。
 
 IonicのiOS 26とMaterial Design 3のリストスタイルでは、項目をその挙動に対応するグループコンポーネントで構成する必要があります。このルールは、グループで囲まれていない `ion-item` が `ion-list` 直下に描画されることを防ぎます。

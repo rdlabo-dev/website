@@ -1,6 +1,6 @@
 ---
 title: "投影の契約とライフタイム"
-sourceRevision: "815c5dbcef229aa13eaf2e47d8bd643ca955bf96eddd26cf9dcbff7d1d8776be"
+sourceRevision: "d6e205890bb47cc1f699356a5bad18552de59a45acff1f2d38b356df21572027"
 ---
 # 投影リファレンス
 
@@ -74,7 +74,7 @@ Androidで、非同期の非表示メソッドがすべてのピクセルの消�
 
 スクロールは内部で処理します。iOSでは利用可能なら一意に一致するネイティブスクロールバインディングを使います。それ以外はAndroidも含め、スクロール中は準備済み画像を一時的に使い、動きが落ち着いてからネイティブコンテンツを復元します。自動スクロール処理は明示的な`web`や`none`を上書きしません。キャプチャやジオメトリが未対応なら通常のDOMフォールバックを維持し、遷移経路で新しいキャプチャを待ちません。最新の明示的な投影先はWebViewの再読み込みをまたいで維持され、古いドキュメントへの応答が新しいドキュメントの要求を完了させることはありません。
 
-デフォルトでは、内部チャネルはCapacitorのlocalhostオリジン上のメインフレームに限定されます。別のオリジンを設定したアプリでは、完全一致する`allowedOrigins`を渡してください。AndroidではWebViewの`WEB_MESSAGE_LISTENER`と`DOCUMENT_START_SCRIPT`が必要で、未対応のWebView実装では登録が明示的に失敗します。リモートへ移動可能なWebViewでワイルドカードのオリジンを使わないでください。
+内部チャネルはメインフレームに限定されます。Capacitorのオリジンは同梱の`capacitor.config.json`から取得し、`server.url`がローカルのホスト名とスキームより優先されます。上書きする場合は完全一致の`allowedOrigins`を渡してください（Androidではナビゲーション前に`install`へ渡し、登録がそれを継承します）。`allowNavigation`も現在のWebView URLも、この集合を拡張しません。AndroidではWebViewの`WEB_MESSAGE_LISTENER`と`DOCUMENT_START_SCRIPT`が必要で、未対応のWebView実装では登録が明示的に失敗します。リモートへ移動可能なWebViewでワイルドカードのオリジンを使わないでください。
 
 キャプチャモード、半透明サーフェス、画像の色、プライベートストレージは、[キャプチャとプラットフォームの制約](platforms.md)を参照してください。カスタムレンダラーのブリッジとスクロールバインディングは、[ネイティブのハンドオフ](../advanced/native-handoff.md)で説明しています。
 

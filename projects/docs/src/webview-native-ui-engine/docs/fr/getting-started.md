@@ -1,55 +1,74 @@
 ---
 title: "Premiers pas"
-sourceRevision: "ea28b5c74bdb210658ad501762687d1202480f4895ec5d485047f4a696e3a670"
+sourceRevision: "dfd475f856cf46dbe7fc9ef6c3e06c738be50be82f351957468f73f3fee562aa"
 ---
-# WebView Native UI Engine
+# Au-delà de la WebView.
 
-**Placez l’interface Web au-dessus de la couche native.**
+**Intégrez Native UI de façon fluide aux applications Web.**
 
-_Visuellement, grâce à une projection fluide du natif vers le Web._
+Créez vos écrans avec la souplesse du Web et les contrôles et capacités des plateformes natives. WebView Native UI Engine les aide à fonctionner comme une seule expérience, tout en conservant vos mises en page et votre navigation Web.
+
+## Web UI. Native UI. Une seule expérience.
+
+Un composant natif devrait sembler faire partie de l’écran qui l’entoure. Par exemple :
+
+- **Défiler ensemble.** Une annonce native se déplace avec le contenu Web environnant lorsque le lecteur fait défiler un flux.
+- **Se superposer ensemble.** Une alerte Web apparaît au-dessus des contrôles de navigation natifs. Fermez-la : ces contrôles redeviennent disponibles pour les interactions natives.
+
+Le défilement et les superpositions illustrent un objectif plus large : faire coexister Web UI et Native UI pendant tout le cycle de vie de l’écran.
 
 ![Vue conceptuelle d’une superposition Web au-dessus d’une surface native et du contenu WebView](docs/assets/hero.png)
 
-_Vue conceptuelle. L’apparence native est projetée dans la couche Web pendant la présentation d’une superposition._
+_Vue conceptuelle de la présentation d’une superposition. L’Engine projette l’apparence native dans la couche Web ; il ne réordonne pas la vue native réelle dans le DOM._
 
-Créez des applications WebView dans lesquelles contrôles natifs et contenu Web partagent les mêmes écrans défilants, transitions et superpositions.
+https://github.com/user-attachments/assets/2768f014-7325-49c7-b848-25052756c36d
 
-## Au-delà de la frontière de la WebView
+Des contrôles natifs sous une alerte Web, puis une annonce native défilant avec le contenu Web. Enregistré sur iOS Simulator.
 
-Les applications WebView combinent la souplesse des mises en page Web avec l’accès aux capacités natives des plateformes. Mais l’interface native et la page Web vivent dans des couches de rendu distinctes. Un contrôle natif placé au-dessus de la WebView ne participe pas automatiquement au défilement, au découpage ou à l’ordre d’empilement du DOM. Une modale Web ne peut pas simplement le couvrir avec un `z-index` supérieur.
+## Conçu pour les développeurs de plugins
 
-Franchir cette frontière demande plus qu’un appel au pont. Il faut coordonner placement, apparence, saisie, rendu et restauration entre deux systèmes de rendu sur chaque plateforme. Reconstruire cette coordination pour chaque composant rend des conceptions pourtant utiles coûteuses à livrer et à maintenir.
+WebView Native UI Engine est une bibliothèque destinée aux **développeurs de plugins Capacitor et Cordova**. Intégrez-la à un plugin pour introduire des composants natifs dans des écrans pilotés par le Web, sans obliger chaque application à construire sa propre coordination entre couches de rendu.
 
-WebView Native UI Engine rend ce travail réutilisable. Il permet aux applications de combiner une interface native avec des écrans et interactions pilotés par le Web, tout en partageant les mécanismes qui déplacent la présentation entre les deux couches. L’objectif est d’élargir ce qu’une application WebView peut réaliser et de rendre sa livraison concrètement possible.
+Une vue native au-dessus d’une WebView ne participe pas automatiquement au défilement, au découpage ou à l’ordre d’empilement du DOM. Une modale Web ne peut pas simplement la couvrir avec un `z-index` supérieur. L’Engine coordonne la présentation à travers cette frontière, pour vous permettre de vous concentrer sur les contrôles et capacités natives de votre plugin.
 
-## Ce que cela permet
+Utilisez-le pour les barres d’outils, barres d’onglets, contrôles et vues SDK capturables. Conservez votre API de plugin et votre logique métier existantes ; les applications obtiennent ces capacités par les plugins qu’elles utilisent.
 
-- **Une interface native dans des écrans conçus pour le Web.** Combinez barres d’outils, barres d’onglets, commandes de lecteur et vues SDK admissibles avec la mise en page DOM et la navigation de l’application.
-- **Des superpositions Web qui coexistent avec le contenu natif.** Présentez des modales et autres superpositions au-dessus des surfaces natives, puis revenez à l’interface native interactive à leur fermeture.
-- **Un défilement et des transitions qui conservent l’apparence native.** Transportez l’apparence capturée de la surface native pendant les mouvements de la couche Web, sans recréer son style en CSS.
-- **Une infrastructure partagée entre composants et plateformes.** Réutilisez le même cycle de projection et de restauration sur iOS et Android au lieu de l’implémenter indépendamment dans chaque intégration.
+## Fonctionnement
 
-## L’approche
+Le plugin fournit une vue native et un conteneur DOM qui définit sa place dans la mise en page Web. L’Engine coordonne les mesures DOM, le suivi natif du défilement pris en charge et le transfert entre présentation native et Web.
 
-Utilisez la vue native active à sa place et une projection visuelle préparée dans le DOM lorsque la couche Web doit prendre en charge la présentation. Restaurez la vue native interactive lorsqu’elle peut reprendre le relais. Un conteneur DOM existant donne à la projection Web sa place dans la mise en page et les couches de l’application.
+Lorsque la couche Web doit prendre en charge la présentation, l’Engine affiche une image préparée du composant natif dans ce conteneur. Lorsque la présentation native peut reprendre, il coordonne le placement et la restauration de la vue interactive.
 
-L’Engine coordonne ce transfert ; le moteur de rendu qui l’intègre crée et positionne toujours ses vues. Une image projetée préserve l’apparence, pas les interactions actives ni la vidéo. La disponibilité de la capture et la prise en charge de la mise en page déterminent quand une projection peut être utilisée, avec un repli explicite dans le cas contraire. Consultez les [concepts et limites](docs/concepts.md) pour le contrat détaillé et les limites.
+L’image est une projection visuelle temporaire, pas un second contrôle interactif. Elle ne transmet pas les clics et ne lit pas de vidéo en direct. Les conditions d’éligibilité de capture et les limites de rendu des plateformes restent applicables, notamment les différences de reflets de Liquid Glass. Lorsqu’aucune image adaptée n’est disponible, l’intégration utilise son repli Web configuré. Consultez les [concepts et limites](docs/concepts.md) et la [prise en charge des plateformes](docs/reference/platforms.md) avant de choisir un composant.
 
-## Choisir votre point de départ
+## Commencer à développer
 
-Les applications obtiennent ces capacités grâce aux plugins qui intègrent l’Engine. Les auteurs de plugins conservent leurs contrôles natifs et API publiques existants ; l’Engine fournit la coordination entre présentation native et Web. Il prend en charge iOS et Android avec Capacitor ou Cordova. Ionic et Angular ne sont pas requis.
+L’Engine prend en charge **iOS et Android**. Ionic et Angular sont facultatifs. Commencez avec une vue native et son conteneur DOM, puis connectez les notifications de cycle de vie nécessaires à votre interface. Les guides d’intégration couvrent le démarrage du runtime et la prise en charge facultative des frameworks.
 
 | Point de départ | Objectif |
 | --- | --- |
-| [Documentation](docs/README.md) | Ordre de lecture : initialisation de base, comportements facultatifs, API avancées et référence. |
-| [Concepts et limites](docs/concepts.md) | Déterminer si la projection convient à votre composant. |
-| [Initialisation de base](docs/getting-started/initialization.md) | Configuration minimale et paramètres obligatoires, avant l’intégration propre au framework. |
+| [Initialisation de base](docs/getting-started/initialization.md) | Enregistrer une vue native et son conteneur DOM avec la configuration minimale requise. |
+| [Guide de plugin Capacitor](docs/getting-started/capacitor.md) | Connecter l’Engine à un plugin Capacitor existant. |
+| [Guide de plugin Cordova](docs/getting-started/cordova.md) | Utiliser le même cycle de vie via les points d’entrée natifs de Cordova. |
+| [Documentation](docs/README.md) | Trouver paramètres facultatifs, API de moteur de rendu et référence selon le problème à résoudre. |
 
-L’enregistrement natif démarre le runtime Web ; l’intégration de base ne nécessite pas d’initialiseur Engine distinct côté application. L’API est en version pré-1.0 : épinglez des versions correspondantes de l’Engine dans npm et les dépendances natives. Le placement Android nécessite l’API 23+, et les instantanés composites sont disponibles à partir de l’API 26.
+Utilisez des versions correspondantes de l’Engine dans npm et les dépendances natives, et conservez les fichiers de verrouillage des dépendances pour des builds reproductibles. Le placement Android nécessite l’API 23+, et les instantanés composites sont disponibles à partir de l’API 26.
 
-## Référence et contribution
+## Intégration Ionic facultative
 
-L’[index de la documentation](docs/README.md) renvoie à la configuration, aux API avancées, aux conteneurs pris en charge et aux contrats des plateformes. Pour le développement et la publication du dépôt, consultez [développement et publications](docs/maintenance.md).
+Pour les applications Ionic utilisant un plugin compatible avec l’Engine, le point d’entrée `@webview-native-ui/engine/ionic` connecte les événements de cycle de vie des superpositions Ionic à la projection native :
+
+```ts
+import { enableSupportIonicOverlays } from '@webview-native-ui/engine/ionic';
+
+enableSupportIonicOverlays();
+```
+
+Appelez-le une fois au démarrage de l’application, sauf si votre plugin l’active déjà. Les applications qui l’importent directement ont besoin de `@webview-native-ui/engine` comme dépendance directe. Cette intégration partagée du framework coordonne la couverture entre plugins ; chaque plugin garde le contrôle de sa propre API de présentation. Consultez la [prise en charge des superpositions Ionic](docs/configuration/ionic-overlays.md) pour la configuration, les superpositions prises en charge et les fonctions utilitaires des moteurs de rendu.
+
+## Contribution
+
+Pour le développement, la vérification et la publication du dépôt, consultez [développement et publications](docs/maintenance.md).
 
 ## Licence
 

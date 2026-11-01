@@ -1,6 +1,6 @@
 ---
 title: "キャプチャとプラットフォームの制約"
-sourceRevision: "51bea8d4a3b4cd13ce718f6c9cb171dee5bfa9af6be8d0c033e488854847b6da"
+sourceRevision: "8eb1f3724fb2d18a870996ca5d8d103ca56bbdf93f142d60d3ee1feb02c1a437"
 ---
 # キャプチャとプラットフォームの制約
 
@@ -56,7 +56,7 @@ android/gradlew -p android testDebugUnitTest assembleRelease connectedDebugAndro
 
 ![iPhoneとiPadでキャプチャ画像とライブのUIKitタブバーを比較した実機スクリーンショット](../assets/ios-native-capture-comparison.png)
 
-左は**iPhone 15 Pro Max、iOS 27.2**、右は**iPad mini（第6世代）、iPadOS 27.2**です。各実機のスクリーンショットでは、**上にWKWebView内のキャプチャ済み16-bit Display P3 PNG**、**下にライブのUIKitタブバー**を、その実機内で同じサイズで表示しています。スクリーンショットは拡縮せず、共通のカラープロファイルも変えずに横に並べています。シミュレーターのキャプチャではなく、実機の結果です。
+左は**iPhone 15 Pro Max、iOS 27.2**、右は**iPad mini（第6世代）、iPadOS 27.2**です。各実機のスクリーンショットでは、**上にWKWebView内のキャプチャ済み16-bit Display P3 PNG**、**下にライブのUIKitタブバー**を、その実機内で同じサイズで表示しています。この比較では、iPhoneのスクリーンショットをiPadのスクリーンショットの高さに合わせてリサイズしています。共通のカラープロファイルは維持しています。シミュレーターのキャプチャではなく、実機の結果です。
 
 システムのスクリーンショットはライブの外観を維持しますが、アプリケーションレベルのキャプチャでは完全には再現されません。検証したiPhoneでは、PNGエンコードやWebView表示の前に、エンコード前のキャプチャ画像をネイティブの`UIImageView`へ表示しても差がありました。`UIWindow`全体をウィンドウ全体のビットマップへ描画してから切り抜いても、Engineの切り抜きビットマップに比べて結果は改善しませんでした。
 

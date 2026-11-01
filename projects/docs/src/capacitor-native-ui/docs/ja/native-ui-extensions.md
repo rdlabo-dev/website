@@ -76,6 +76,31 @@ Shell が DOM 変更を監視し、新しい props をネイティブへ送信�
 | 操作対象 | ソース自身または子孫。存在しない・非表示・無効の対象は実行不可。 |
 | 操作数 | ソースごとに最大 30。 |
 
+### iOS のネイティブスクロール追従（実験的）
+
+単一の overflow スクロールコンテナ内の要素には `scrollElement` を指定します。Web 側がレイアウトを計測し、iOS は対応する `UIScrollView` を監視して、スクロール中はネイティブの位置とクリッピングだけを更新します。同じコンテナ内のソースは1つのオブザーバーを共有します。バインディングはスクロールが停止している間に DOM とネイティブの座標原点を補正し、コンテンツの更新後もその対応を保持します。一部が見えているコントロールはネイティブのままで、完全にクリッピングされたコントロールは入力を受け付けません。
+
+```ts
+const scrollElement = await ionContent.getScrollElement();
+const counter = defineNativeUI({
+  name: 'app.counter',
+  selector: '[data-counter]',
+  scrollElement: () => scrollElement,
+  read(element) {
+    return {
+      props: { count: Number(element.getAttribute('data-count') ?? 0) },
+      actions: { increment: element.querySelector<HTMLButtonElement>('button') },
+    };
+  },
+});
+```
+
+通常の HTML では `overflow: auto` または `scroll` を持つ要素を返します。準備ができるまでは `null` を返し、準備完了によって DOM が変更されなかった場合は `shell.markForCheck()` を呼び出します。ソースの寸法やコンテンツのレイアウト変更を監視可能な状態に保ち、Shell が監視できない変更には `markForCheck()` を使ってください。
+
+この機能は、非公開のクラス名を使わずに WebKit 内部の overflow ビュー階層を利用します。バインディングはちょうど1つのネイティブスクローラーに一致する必要があります。一致するものがない場合や曖昧な場合は、操作可能な Web ソースを維持します。このオプトイン機能は、入れ子のスクロール、角丸や任意形状のクリッピング、CSS の変形・ズーム、sticky／fixed の子孫要素、ドキュメントのスクロール、古いネイティブバイナリ、Android に対応していません。従来の JS ベースの配置経路を維持するには `scrollElement` を省略します。同じスクローラー内でも、バインディングされていない別の投影ソースには通常のレイアウト同期が必要です。各 `scrollend` では通常の更新・確認応答の経路で1回の整合処理を行い、バインディングが一時的に拒否された後の再試行も含みます。
+
+`NativeUIContext.sourceFrame` は最新のレイアウトサンプルであり、スクロールごとの通知ではありません。ネイティブ追従はスクロールオフセットの変化に対して SwiftUI のコンテンツを再構築しません。固定のタブアクセサリーはこのバインディングを使いません。Web Modal の変形は従来のハンドオフ経路を維持します。覆われて操作できないコンテンツには準備済み画像を使えますが、操作可能なスクロールコンテンツはネイティブのままです。
+
 ## 2a. iOS で SwiftUI View を登録する
 
 プラグインの導入後に `npx cap sync ios` を実行し、アプリの Xcode ターゲットに Swift ファイルを追加します。`@rdlabo/capacitor-native-ui` が提供する `NativeUIPlugin` モジュールをインポートします。既存の SPM または CocoaPods 連携は維持してください。
@@ -387,8 +412,8 @@ element 配置ではソースがビューポートと祖先の overflow クリ�
 
 ブリッジの確認応答は Capacitor の Promise メソッドです。
 
-[デモのリーダー](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/src/native-ui/counter.ts)と [SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/ios/App/App/NativeUICounter.swift)はアプリ内のファイルで両配置を示します。Native UI デモページでネイティブ投影と Web フォールバックを比較できます。
+[デモのリーダー](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/counter.ts)と [SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeUICounter.swift)はアプリ内のファイルで両配置を示します。Native UI デモページでネイティブ投影と Web フォールバックを比較できます。
 
 ## 例: ミニプレーヤー
 
-デモのミニプレーヤーは曲のメタデータと再生操作で同じ方式を示します。[DOM リーダーと Web フォールバック](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/src/native-ui/mini-player.ts)と[アプリ内 SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/ios/App/App/NativeMiniPlayer.swift)を組み合わせます。再生状態とモーダル表示は Web アプリが管理し、ネイティブの `open` と `toggle` は元のボタンを実行します。音声エンジンではなく UI の例です。上記の拡張設定を終えてからファイルを調整してください。
+デモのミニプレーヤーは曲のメタデータと再生操作で同じ方式を示します。[DOM リーダーと Web フォールバック](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/mini-player.ts)と[アプリ内 SwiftUI View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeMiniPlayer.swift)を組み合わせます。再生状態とモーダル表示は Web アプリが管理し、ネイティブの `open` と `toggle` は元のボタンを実行します。音声エンジンではなく UI の例です。上記の拡張設定を終えてからファイルを調整してください。

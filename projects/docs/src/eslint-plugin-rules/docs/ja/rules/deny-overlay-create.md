@@ -104,12 +104,12 @@ export class ExamplePage {
 
 ## 有効にする場面
 
-launcher patternと共有overlay helperを使うIonicプロジェクトで、このルールを有効にします。[`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)および[`@rdlabo/rules/deny-element`](./deny-element.md)と組み合わせて使います。
+launcher patternと共有overlay helperを使うIonicプロジェクトで、このルールを有効にします。[`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)および[`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)と組み合わせて使います。
 
 ## 関連項目
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
 
 ## 実装
 

@@ -1,12 +1,12 @@
 ---
 title: "component-property-use-readonly"
-sourceRevision: "9e3c07b99a897980fa45e930f1f2cea5efd1cd66f240845a07bf8fffd6d43431"
+sourceRevision: "336e94f76d27598bf111f6bf97b5d9994dfeda4833c122027a19a1045c6c8e75"
 ---
 # @rdlabo/rules/component-property-use-readonly
 
 > Warnt, wenn eine Property readonly sein sollte
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 > - ✒️ Die Option `--fix` auf der [Befehlszeile](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) kann einige der von dieser Regel gemeldeten Probleme automatisch korrigieren.
 
 Diese Regel verlangt den Modifikator `readonly` für von Angular-Komponenten deklarierte Properties, die keine Funktionen sind. Sie meldet initialisierte, nicht initialisierte, statische, berechnete, dekorierte, TypeScript-private und tatsächlich private Properties und kann `readonly` automatisch ergänzen.

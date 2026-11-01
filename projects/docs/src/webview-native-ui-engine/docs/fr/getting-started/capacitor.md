@@ -1,10 +1,10 @@
 ---
 title: "Intégration dans un plugin Capacitor"
-sourceRevision: "2dede6099bb18549e5df650943c33a37b1519afe268c4896ab9e6a6caed254ce"
+sourceRevision: "106c311c58b74da4b2ae430f8b878cf656600bd8e69bffb85442c8198f946f64"
 ---
 # Intégration dans un plugin Capacitor
 
-Ajoutez la projection Web et la restauration à un plugin Capacitor existant sans modifier son export public `registerPlugin()`. Le plugin conserve son moteur de rendu natif et son API applicative ; l’Engine coordonne sa vue native avec un repli DOM.
+Faites coexister les composants natifs d’un plugin Capacitor existant avec les mises en page, la navigation et les superpositions Web sans modifier son export public `registerPlugin()`. Le plugin conserve son moteur de rendu natif et son API applicative ; l’enregistrement connecte chaque vue native à son conteneur DOM selon le [modèle de présentation partagé](../concepts.md).
 
 Ce guide couvre les dépendances, l’enregistrement, les notifications et le démontage. Commencez par l’[initialisation native](initialization.md) pour l’appel minimal, les paramètres obligatoires et la propriété des ressources ; les diffs de plugin ci-dessous ajoutent le raccordement des événements et la gestion de la durée de vie. Utilisez la [référence de projection](../reference/projection.md) pour les contrats exacts et les limites des plateformes.
 
@@ -38,9 +38,9 @@ La distribution native principale utilise Swift Package Manager. Déclarez une d
 .product(name: "WebViewNativeUIEngine", package: "engine")
 ```
 
-Tant que l’API est en version pré-1.0, épinglez la même version de l’Engine dans npm, SwiftPM, Gradle et CocoaPods, et effectuez les mises à jour délibérément. Les applications doivent conserver leurs fichiers de verrouillage des dépendances pour des compilations reproductibles.
+Utilisez la même version de l’Engine dans npm, SwiftPM, Gradle et CocoaPods et effectuez les mises à jour délibérément. Les applications doivent conserver leurs fichiers de verrouillage des dépendances pour des builds reproductibles.
 
-SwiftPM résout les tags de version de ce dépôt, tels que `v0.0.1`. Pour des tests d’intégration non publiés, utilisez un checkout local ou un commit explicite testé.
+SwiftPM résout les tags de version de ce dépôt, tels que `v1.0.0`. Pour des tests d’intégration non publiés, utilisez un checkout local ou un commit explicite testé.
 
 `import WebViewNativeUIEngine` ne nécessite aucun enregistrement Capacitor. Le compagnon npm fournit la mesure du DOM et le transfert d’images Web ; SwiftPM résout la dépendance native indépendamment du hoisting npm.
 

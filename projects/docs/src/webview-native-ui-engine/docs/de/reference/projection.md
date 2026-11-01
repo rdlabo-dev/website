@@ -1,6 +1,6 @@
 ---
 title: "Projektionsvertrag und Lebensdauer"
-sourceRevision: "815c5dbcef229aa13eaf2e47d8bd643ca955bf96eddd26cf9dcbff7d1d8776be"
+sourceRevision: "d6e205890bb47cc1f699356a5bad18552de59a45acff1f2d38b356df21572027"
 ---
 # Projektionsreferenz
 
@@ -74,7 +74,7 @@ Scrollbeobachtung folgt den Vorfahren im zusammengesetzten Baum einschließlich 
 
 Scrollen wird intern behandelt: iOS verwendet eine eindeutig zugeordnete native Scrollbindung, wenn verfügbar; andernfalls, auch unter Android, nutzt Scrollen vorübergehend das vorbereitete Bild und stellt nativen Inhalt nach Ende der Bewegung wieder her. Automatische Scrollbehandlung überschreibt niemals explizites `web` oder `none`. Nicht unterstützte Aufnahme oder Geometrie erhält den normalen DOM-Fallback; auf dem Übergangspfad wird nicht auf eine neue Aufnahme gewartet. Das letzte explizite Ziel übersteht WebView-Neuladen, und Antworten alter Dokumente können keine Anfragen eines neuen Dokuments abschließen.
 
-Standardmäßig ist der interne Kanal auf den Hauptframe der localhost-Origins von Capacitor begrenzt. Übergeben Sie bei einem anderen konfigurierten Origin die exakten `allowedOrigins` der Anwendung. Android benötigt die WebView-Funktionen `WEB_MESSAGE_LISTENER` und `DOCUMENT_START_SCRIPT`; auf nicht unterstützten WebViews scheitert die Registrierung explizit. Verwenden Sie keine Wildcard-Origins für WebViews, die zu entfernten Seiten navigieren können.
+Der interne Kanal ist auf den Hauptframe begrenzt. Capacitor-Origins stammen aus der gebündelten `capacitor.config.json`: `server.url` hat Vorrang vor lokalem Hostnamen und Scheme. Übergeben Sie zum Überschreiben exakte `allowedOrigins` (unter Android vor der Navigation an `install`; Registrierungen erben diese). Weder `allowNavigation` noch die aktuelle WebView-URL erweitern diese Menge. Android benötigt die WebView-Funktionen `WEB_MESSAGE_LISTENER` und `DOCUMENT_START_SCRIPT`; auf nicht unterstützten WebView-Implementierungen scheitert die Registrierung explizit. Verwenden Sie keine Wildcard-Origins für WebViews, die zu entfernten Seiten navigieren können.
 
 Informationen zu Aufnahmemodi, durchscheinenden Oberflächen, Bildfarben und privatem Speicher finden Sie unter [Aufnahme- und Plattformgrenzen](platforms.md). Bridge- und Scroll-Bindungen für eigene Renderer sind unter [native Übergabe](../advanced/native-handoff.md) dokumentiert.
 

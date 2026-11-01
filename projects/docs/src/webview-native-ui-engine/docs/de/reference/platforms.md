@@ -1,6 +1,6 @@
 ---
 title: "Aufnahme- und Plattformgrenzen"
-sourceRevision: "51bea8d4a3b4cd13ce718f6c9cb171dee5bfa9af6be8d0c033e488854847b6da"
+sourceRevision: "8eb1f3724fb2d18a870996ca5d8d103ca56bbdf93f142d60d3ee1feb02c1a437"
 ---
 # Aufnahme- und Plattformgrenzen
 
@@ -56,7 +56,7 @@ Ein aufgenommenes Liquid Glass-Steuerelement kann bei der Projektion in die WebV
 
 ![Geräte-Screenshots zum Vergleich aufgenommener und aktiver UIKit-Tab-Leisten auf iPhone und iPad](../assets/ios-native-capture-comparison.png)
 
-Links: **iPhone 15 Pro Max, iOS 27.2**. Rechts: **iPad mini (6. Generation), iPadOS 27.2**. Jeder Geräte-Screenshot zeigt **oben das aufgenommene 16-Bit-Display-P3-PNG in WKWebView** und **unten die aktive UIKit-Tab-Leiste**, jeweils in derselben Größe innerhalb des Geräts. Die Screenshots wurden ohne Skalierung oder Änderung ihres gemeinsamen Farbprofils nebeneinander angeordnet. Dies sind Ergebnisse physischer Geräte, keine Simulator-Aufnahmen.
+Links: **iPhone 15 Pro Max, iOS 27.2**. Rechts: **iPad mini (6. Generation), iPadOS 27.2**. Jeder Geräte-Screenshot zeigt **oben das aufgenommene 16-Bit-Display-P3-PNG in WKWebView** und **unten die aktive UIKit-Tab-Leiste**, jeweils in derselben Größe innerhalb des Geräts. Für diesen Vergleich wurde der iPhone-Screenshot auf die Höhe des iPad-Screenshots skaliert; das gemeinsame Farbprofil blieb erhalten. Dies sind Ergebnisse physischer Geräte, keine Simulator-Aufnahmen.
 
 Der System-Screenshot bewahrt das aktuelle native Erscheinungsbild, die Aufnahme auf Anwendungsebene reproduziert es jedoch nicht vollständig. Auf dem getesteten iPhone bestand der Unterschied auch, wenn das unkodierte aufgenommene Bild vor PNG-Kodierung oder WebView-Darstellung in einer nativen `UIImageView` angezeigt wurde. Das Zeichnen des gesamten `UIWindow` in eine fenstergroße Bitmap mit anschließendem Zuschnitt verbesserte das Ergebnis gegenüber der zugeschnittenen Bitmap der Engine nicht.
 

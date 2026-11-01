@@ -1,6 +1,6 @@
 ---
 title: "no-component-writable-signal"
-sourceRevision: "ae1091ea7653a1a5fd1823852b31216d37ff802f78b5c13c1b8f668e0f92b2be"
+sourceRevision: "7fcfe14b310fc557698eda6b6799dcf5f799a77dc102a9dd0fd8a219a1afdcaa"
 ---
 # @rdlabo/rules/no-component-writable-signal
 
@@ -82,8 +82,8 @@ Activez cette règle lorsqu’un projet utilise le modèle ViewModel avec `@rdla
 
 ## Voir aussi
 
-- [`@rdlabo/rules/require-viewmodel`](./require-viewmodel.md)
-- [`@rdlabo/rules/no-reactive-forms`](./no-reactive-forms.md)
+- [`@rdlabo/rules/require-viewmodel`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-viewmodel)
+- [`@rdlabo/rules/no-reactive-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-reactive-forms)
 
 ## Implémentation
 

@@ -1,12 +1,12 @@
 ---
 title: "restrict-try-block"
-sourceRevision: "87bb0387c3fa7415c957b0dea84629388e92b076938e14a26b16dda881681dbb"
+sourceRevision: "6dd0e58f188f9a100332c3450a79065058445caecafacd71f64ca8a06c51838f"
 ---
 # @rdlabo/rules/restrict-try-block
 
 > Restreindre les contextes Promise, RxJS et Angular Signal, les échappatoires `Promise.resolve()` et les lignes physiques de code dans les blocs try.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 `try/catch` doit protéger une petite opération synchrone pouvant réellement lever une erreur. Placer du travail asynchrone, des blocs longs ou des callbacks réactifs dans `try` brouille les limites de gestion des erreurs et peut absorber ou mal aiguiller les erreurs. Cette règle impose ces contraintes.
 

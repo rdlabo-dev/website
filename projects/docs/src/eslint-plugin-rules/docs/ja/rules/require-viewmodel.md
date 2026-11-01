@@ -163,12 +163,12 @@ ViewModel内で許可しないAPIです。直接呼び出しと `.required(...)`
 
 ## 有効にする場合
 
-`@rdlabo/ionic-angular-kit` または同様のarchitectureでViewModel patternを採用するプロジェクトで有効にしてください。[`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md) と組み合わせると、Component stateをread-only、ViewModel stateをwritableに保てます。
+`@rdlabo/ionic-angular-kit` または同様のarchitectureでViewModel patternを採用するプロジェクトで有効にしてください。[`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal) と組み合わせると、Component stateをread-only、ViewModel stateをwritableに保てます。
 
 ## 関連項目
 
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
-- [`@rdlabo/rules/no-component-method-except-lifecycle`](./no-component-method-except-lifecycle.md)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
+- [`@rdlabo/rules/no-component-method-except-lifecycle`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-method-except-lifecycle)
 
 ## 実装
 

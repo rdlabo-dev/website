@@ -1,12 +1,12 @@
 ---
 title: "Eine Lint-Regel beim Erkennen und Korrigieren von Code beobachten"
-sourceRevision: "1bf99c55bfb6000d784ec3ebdb6176d49ff7e3a631cf08008d72e3299327ab5b"
+sourceRevision: "41b1275a9e1206c3c0eb017e15b8627acc0f4c471d3c0a4e186d79b095b03aa4"
 ---
 Machen Sie eine Konvention ausführbar: Prüfen Sie ein privates TypeScript-Member, sehen Sie sich die Diagnosemeldungen an und lassen Sie ESLint es in ein privates JavaScript-Feld umwandeln. Diese Übung verwendet eine frameworkunabhängige Regel und lässt sich daher ohne Angular- oder Ionic-Anwendung ausprobieren.
 
 ## 1. Ein kleines Lint-Projekt erstellen
 
-Verwenden Sie Node.js 24 und npm. Diese isolierte Übung verwendet ESLint 10. Prüfen Sie vor Änderungen an einer bestehenden Anwendung die [Anforderungen](../README.md).
+Verwenden Sie Node.js 24 und npm. Diese isolierte Übung verwendet ESLint 10. Prüfen Sie vor Änderungen an einer bestehenden Anwendung die [Anforderungen](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/getting-started).
 
 ```sh
 mkdir eslint-rules-demo
@@ -85,6 +85,6 @@ Dies demonstriert eine einzelne Regel, kein vollständiges Projekt-Preset. Nicht
 
 Die beiden Workers-Presets müssen unabhängig aktiviert werden. Beginnen Sie für Zeitzonen mit [der gemeinsamen Bibliotheks- und Lint-Übung](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart). Das Plugin meldet Codemuster; es implementiert keine Laufzeitkonvertierungen und ersetzt keine Anwendungstests.
 
-Öffnen Sie [Konfiguration](./configuration.md) für die Angular-/Ionic- oder Workers-Einrichtung. Erhalten Sie beim Verteilen des Angular-Presets die TypeScript- und HTML-Selektoren und aktivieren Sie typgestütztes Linting für Regeln, die Typen prüfen. Führen Sie den Lint-Befehl Ihres Projekts in CI aus und nehmen Sie ihn in die Anweisungen für Mitwirkende und KI-Codeagenten auf.
+Öffnen Sie [Konfiguration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) für die Angular-/Ionic- oder Workers-Einrichtung. Erhalten Sie beim Verteilen des Angular-Presets die TypeScript- und HTML-Selektoren und aktivieren Sie typgestütztes Linting für Regeln, die Typen prüfen. Führen Sie den Lint-Befehl Ihres Projekts in CI aus und nehmen Sie ihn in die Anweisungen für Mitwirkende und KI-Codeagenten auf.
 
-Verwenden Sie den [Regelkatalog](./rules.md), um jeweils eine Richtlinie hinzuzufügen. Prüfen Sie [Migration](./migration.md), bevor Sie in einer bestehenden Anwendung ein neueres empfohlenes Preset aktivieren.
+Verwenden Sie den [Regelkatalog](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules), um jeweils eine Richtlinie hinzuzufügen. Prüfen Sie [Migration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration), bevor Sie in einer bestehenden Anwendung ein neueres empfohlenes Preset aktivieren.

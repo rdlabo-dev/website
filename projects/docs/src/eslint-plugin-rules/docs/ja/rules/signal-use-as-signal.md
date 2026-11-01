@@ -139,12 +139,12 @@ export class SigninPage {
 
 ## 有効にする場合
 
-Signalを使用するすべてのAngularプロジェクトで有効にしてください。テンプレート内のSignal使用を検査する [`@rdlabo/rules/signal-use-as-signal-template`](./signal-use-as-signal-template.md) と相互補完します。
+Signalを使用するすべてのAngularプロジェクトで有効にしてください。テンプレート内のSignal使用を検査する [`@rdlabo/rules/signal-use-as-signal-template`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template) と相互補完します。
 
 ## 関連項目
 
-- [`@rdlabo/rules/signal-use-as-signal-template`](./signal-use-as-signal-template.md)
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
+- [`@rdlabo/rules/signal-use-as-signal-template`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
 
 ## 実装
 

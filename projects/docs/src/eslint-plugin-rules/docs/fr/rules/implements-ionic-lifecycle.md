@@ -1,12 +1,12 @@
 ---
 title: "implements-ionic-lifecycle"
-sourceRevision: "1dc4fcc77cc67a707fe8d64bea9ff83748bc0fd04d54e386cb809eab0f9f518d"
+sourceRevision: "decfc07061c4f0c63e0f35bb2a9d4b3f6458f9e36abefe850fc273f981437f5d"
 ---
 # @rdlabo/rules/implements-ionic-lifecycle
 
 > Ce plugin recommande d’implémenter les interfaces de cycle de vie Ionic.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 > - ✒️ L’option `--fix` de la [ligne de commande](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) peut corriger automatiquement certains problèmes signalés par cette règle.
 
 Ionic fournit des méthodes de cycle de vie de framework comme `ionViewWillEnter` et `ionViewDidLeave`. Lorsqu’un Component déclare ces méthodes, il doit aussi implémenter l’interface correspondante (`ViewWillEnter`, `ViewDidEnter`, `ViewWillLeave`, `ViewDidLeave`) pour que TypeScript vérifie le contrat de types. Cette règle impose cette association et peut corriger automatiquement la clause `implements`.

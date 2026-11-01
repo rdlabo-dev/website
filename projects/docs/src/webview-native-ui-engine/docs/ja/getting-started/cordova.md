@@ -1,8 +1,10 @@
 ---
 title: "Cordovaプラグインへの組み込み"
-sourceRevision: "c19dcb524732763438ff82a606cb2fe937763878fbcdf135f27d3818980e22eb"
+sourceRevision: "07ebbb7753dbf7130a57e2c1d4e6325386a4948879c9450bc5fea525da52c693"
 ---
 # Cordovaプラグインへの組み込み
+
+Capacitorと[同じ表示モデル](../concepts.md)を使い、CordovaプラグインのネイティブコンポーネントをWebのレイアウト、ナビゲーション、オーバーレイと共存させます。
 
 同じnpmパッケージ、Swiftライブラリ、Android AARでCapacitorとCordovaに対応します。Engineはプラグインのメンテナーが使うライブラリであり、別途登録するCordovaプラグインではありません。Cordovaアプリに`@capacitor/core`やCapacitorのネイティブSDKは不要です。
 
@@ -24,7 +26,7 @@ sourceRevision: "c19dcb524732763438ff82a606cb2fe937763878fbcdf135f27d3818980e22e
 
 以下のすべての依存にある`<engine-version>`を、同じ公開リリースのバージョンに置き換えます。例をAPIに一致させるため、そのリリースタグのドキュメントを読んでください。
 
-Webパッケージとネイティブライブラリで、同じEngineリリースを使います。APIは1.0未満なので、バージョンを固定し、依存のロックファイルを保持してください。
+Webパッケージとネイティブライブラリで同じEngineリリースを使ってください。再現可能なビルドのために、対応するバージョンを固定し、依存関係のロックファイルを保持してください。
 
 ```sh
 npm install --save-exact '@webview-native-ui/engine@<engine-version>'
@@ -68,7 +70,7 @@ CordovaのSwiftPMプラグインでは、プラグインターゲットの依存
 </platform>
 ```
 
-重複した節を追加せず、既存のプラットフォーム節にこれらの項目を統合します。[組み込みフィクスチャ](https://github.com/webview-native-ui/engine/tree/v0.0.8/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
+重複した節を追加せず、既存のプラットフォーム節にこれらの項目を統合します。[組み込みフィクスチャ](https://github.com/webview-native-ui/engine/tree/v1.0.1/tests/cordova/plugin)には、plugin.xml、SwiftPM、Gradleの完全な設定があります。
 
 例は既存レンダラーを拡張するものです。`nativeView`は取り付け・配置済みのビューであり、Engineが作成するビューではありません。
 

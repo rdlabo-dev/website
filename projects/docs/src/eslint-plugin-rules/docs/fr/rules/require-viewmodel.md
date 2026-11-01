@@ -1,12 +1,12 @@
 ---
 title: "require-viewmodel"
-sourceRevision: "36c2bbc7def3ddf2273a618f2d56cbce765360dc29de144ef56e7c1d0120b646"
+sourceRevision: "ce650d26665513e5dd21901a52a7a52a495ad2ca9a8ac3bd3743fdba44d8bf19"
 ---
 # @rdlabo/rules/require-viewmodel
 
 > Imposer `new ViewModel(this)` dans le Component, l’héritage `ViewModelStore<ComponentType, Keys>` et garder les API de vue hors du ViewModel.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Cette règle impose le modèle d’architecture ViewModel. Un Component Angular doit posséder un ViewModel initialisé avec `new ViewModel(this)`. Elle exige au moins une propriété correspondante ; elle ne rejette pas les instances ViewModel supplémentaires. Le ViewModel doit étendre `ViewModelStore<ComponentType>` et ne doit pas redéclarer `host` ni contenir d’API propres à la vue comme `viewChild`, `effect`, `computed` ou `afterNextRender`.
 
@@ -163,12 +163,12 @@ API interdites dans le ViewModel. La règle détecte les appels directs et l’u
 
 ## Quand l’activer
 
-Activez cette règle lorsqu’un projet adopte le modèle ViewModel avec `@rdlabo/ionic-angular-kit` ou une architecture similaire. Elle s’associe à [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md) pour garder l’état du Component en lecture seule et celui du ViewModel modifiable.
+Activez cette règle lorsqu’un projet adopte le modèle ViewModel avec `@rdlabo/ionic-angular-kit` ou une architecture similaire. Elle s’associe à [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal) pour garder l’état du Component en lecture seule et celui du ViewModel modifiable.
 
 ## Voir aussi
 
-- [`@rdlabo/rules/no-component-writable-signal`](./no-component-writable-signal.md)
-- [`@rdlabo/rules/no-component-method-except-lifecycle`](./no-component-method-except-lifecycle.md)
+- [`@rdlabo/rules/no-component-writable-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-writable-signal)
+- [`@rdlabo/rules/no-component-method-except-lifecycle`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-method-except-lifecycle)
 
 ## Implémentation
 

@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: 4484dc8e981ab5849c82ee0b4400cbf6959e5a026bad2c478d18078ab1583ccc
+sourceRevision: "5e0e3b5a0b878fa28d48ce248b7b083a5d30aad735fb2b514f7ec7ef6bd6875c"
 ---
 # Capacitor Native UI
 
@@ -24,6 +24,8 @@ L’élément d’origine **reste dans le DOM** pendant la projection. Ses liais
 Par exemple, toucher un bouton Enregistrer projeté active le bouton Web d’origine. Son gestionnaire existant enregistre les données et met à jour l’état ; les changements DOM pris en charge actualisent ensuite la projection. Les onglets et autres contrôles transmettent aussi les actions via leurs adaptateurs source. Continuez à mettre à jour la source sans gérer d’état natif distinct. Pour les valeurs du lecteur qui changent sans mutation DOM, utilisez `markForCheck()`.
 
 La projection change la présentation ; elle ne traduit pas du HTML ou CSS arbitraire en vues natives. Les contrôles natifs utilisent les données et styles pris en charge ; la reproduction d’une apparence Web personnalisée n’est pas garantie. Supprimer ou désactiver une source empêche toute nouvelle action valide. Si la projection est indisponible ou arrêtée, le runtime libère le masquage et la source retrouve sa présentation Web ou un rail Web disponible. Les états masqué/désactivé propres à votre application restent applicables.
+
+Les superpositions Web bloquantes peuvent conserver des images préparées des boutons, segments, FAB et barres d’onglets natifs sous leur arrière-plan. Ces images gardent l’apparence native capturée et sont préparées après les mises à jour natives et les changements visuels regroupés. La capture de la plateforme peut différer de la composition en direct, notamment pour les reflets des contours Liquid Glass ; une reproduction des matériaux identique au pixel près n’est pas garantie. La préparation s’interrompt pendant un toucher ; la présentation utilise la dernière image terminée sans attendre la capture ni un accusé de réception du pont. En l’absence d’image, la propriété de la présentation revient à la présentation Web existante. Les popovers natifs qui conservent leurs contrôles restent sur le chemin natif. Consultez [les règles de transfert](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#temporary-images-beneath-web-overlays) pour les déplacements, la restauration et les exclusions. Recompilez l’application native pour activer cette capacité ; les anciens binaires natifs conservent leur chemin existant.
 
 ## Choisir ce que vous voulez créer
 
@@ -52,7 +54,7 @@ Si vous utilisez aussi le thème iOS 27, installez ou mettez à jour les deux pa
 npm install @rdlabo/capacitor-native-ui @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable
 ```
 
-Le thème et Native UI partagent le même numéro de version ; Foldable suit son propre versionnement. Déclarez Native UI comme dépendance directe pour que Capacitor découvre le plugin. Les commandes d’installation ajoutent Foldable comme dépendance distincte de l’application. Installer ces packages n’active pas les contrôles natifs ; le démarrage de l’application choisit la projection et raccorde la disposition de l’appareil.
+Native UI et le thème partagent la même version de publication ; Engine et Foldable sont versionnés indépendamment. Native UI inclut la dépendance npm Engine et lie ses bibliothèques natives via SwiftPM et Maven. Les utilisateurs de CocoaPods doivent aussi effectuer la [configuration du pod Engine local](https://github.com/webview-native-ui/engine/blob/v1.0.0/docs/getting-started/capacitor.md#cocoapods-compatibility-through-npm). Déclarez Native UI comme dépendance directe pour que Capacitor puisse détecter le plugin. Les commandes d’installation ajoutent Foldable comme dépendance applicative distincte. Installer ces paquets n’active pas les contrôles natifs ; le démarrage de l’application choisit la projection et raccorde la disposition de l’appareil.
 
 Poursuivez avec la [configuration Ionic](/docs/setup), la [configuration HTML](/docs/framework-independent) ou les [extensions](/docs/native-ui-extensions). Après avoir configuré le démarrage, compilez les ressources Web, exécutez `npx cap sync` et recompilez l’application native. Aucun clonage du dépôt ni téléchargement d’archive n’est nécessaire.
 
@@ -60,7 +62,7 @@ Vous migrez les API natives intégrées au thème 1.2.0 ou 1.2.1 ? Suivez le [gu
 
 ## Prérequis
 
-Le démarrage natif nécessite Capacitor 8 et un projet iOS ou Android. Les extensions Android nécessitent l’API 24+ et Kotlin/Compose. Le rendu natif ordinaire nécessite iOS 26+ et Xcode 26+. L’adaptateur Ionic prend en charge Ionic `>=8.8.1 <10` ; l’adaptateur HTML `/core` ne nécessite ni Ionic ni thème. [Vertical Bars](/docs/vertical-bars) et le [placement des extensions](/docs/native-ui-extensions#content-and-placement-are-independent) ont des exigences matérielles supplémentaires.
+Le démarrage natif nécessite Capacitor 8 et un projet iOS ou Android. Les extensions Android nécessitent l’API 24+ et Kotlin/Compose. Le rendu natif ordinaire nécessite iOS 26+ et Xcode 26+. L’adaptateur Ionic déclare la compatibilité avec Ionic `>=8.8.1 <10`, avec une validation E2E automatisée sur Ionic 9 ; l’adaptateur HTML `/core` ne nécessite ni Ionic ni paquet de thème. [Vertical Bars](/docs/vertical-bars) et le [placement des extensions](/docs/native-ui-extensions#content-and-placement-are-independent) ont des exigences supplémentaires pour l’appareil.
 
 Pour les contrôles standard, suivez le guide correspondant à votre balisage ; les adaptateurs Ionic et HTML utilisent des imports différents. Pour du contenu natif personnalisé, commencez directement par le [guide des extensions](/docs/native-ui-extensions).
 

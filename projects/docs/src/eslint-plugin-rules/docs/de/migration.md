@@ -1,6 +1,6 @@
 ---
 title: "Migration"
-sourceRevision: "8e98c0a10a993fbb25c7afc392ed1497e17d9e4283a290ff8b449a2d5f6bce3a"
+sourceRevision: "71a4e692cc24f3ed5efe621a086bd0c001f9c48009ea753ad50dd6d60dd5297f"
 ---
 # Migrationsanleitung
 
@@ -71,7 +71,7 @@ Importieren Sie `provideIonicAngular` aus `@ionic/angular`. Schließen Sie die A
 
 Version 22 aktiviert außerdem `require-ion-item-group` im empfohlenen Preset. Bestehende Ionic-Templates können daher neue Fehler melden, wenn ein `ion-item` innerhalb einer `ion-list` nicht von `ion-item-group`, `ion-reorder-group`, `ion-radio-group` oder `ion-accordion` innerhalb einer `ion-accordion-group` umschlossen ist.
 
-Die Regel wendet sichere automatische Korrekturen nur an, wenn sie die beabsichtigte Gruppengrenze bestimmen kann. Wiederverwendbare oder mehrdeutige Templates werden gemeldet, ohne sie zu verändern. Wrapper-Komponenten werden anhand ihrer eigenen Templates geprüft. Ein benutzerdefiniertes Element, das eine gültige gruppierte Liste rendert, wird deshalb beim Aufrufer nicht als ungruppiertes `ion-item` behandelt. Unterstützte Strukturen und Einschränkungen der Korrektur beschreibt [`require-ion-item-group`](./rules/require-ion-item-group.md).
+Die Regel wendet sichere automatische Korrekturen nur an, wenn sie die beabsichtigte Gruppengrenze bestimmen kann. Wiederverwendbare oder mehrdeutige Templates werden gemeldet, ohne sie zu verändern. Wrapper-Komponenten werden anhand ihrer eigenen Templates geprüft. Ein benutzerdefiniertes Element, das eine gültige gruppierte Liste rendert, wird deshalb beim Aufrufer nicht als ungruppiertes `ion-item` behandelt. Unterstützte Strukturen und Einschränkungen der Korrektur beschreibt [`require-ion-item-group`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group).
 
 ### Boolesches autocorrect
 

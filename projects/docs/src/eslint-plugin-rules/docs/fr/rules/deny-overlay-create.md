@@ -1,12 +1,12 @@
 ---
 title: "deny-overlay-create"
-sourceRevision: "b4b4d4ca9e462bb1301bf836b30478ea8ea5050be62e8500fdd4360b3d64ebc5"
+sourceRevision: "0569ce7e261407d1b9dff03d7e11e0cd60bb16fb9f74f3c4e8dcdfc38790016e"
 ---
 # @rdlabo/rules/deny-overlay-create
 
 > Interdire `.create()` sur ModalController / PopoverController ; ouvrir les superpositions via des lanceurs.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Cette règle empêche la création directe de superpositions Ionic via les appels `.create()` des contrôleurs. Dans l’architecture rdlabo, les superpositions doivent être ouvertes via des fonctions de lancement et un utilitaire partagé `presentModal` / `presentPopover`. Cela centralise leur logique et découple le site d’appel de l’API du contrôleur.
 
@@ -104,12 +104,12 @@ export class ExamplePage {
 
 ## Quand l’activer
 
-Activez cette règle dans les projets Ionic qui suivent le modèle de lanceur et utilisent un utilitaire de superposition partagé. Elle s’associe à [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md) et [`@rdlabo/rules/deny-element`](./deny-element.md).
+Activez cette règle dans les projets Ionic qui suivent le modèle de lanceur et utilisent un utilitaire de superposition partagé. Elle s’associe à [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher) et [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element).
 
 ## Voir aussi
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
 
 ## Implémentation
 

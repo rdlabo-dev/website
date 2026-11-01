@@ -1,12 +1,12 @@
 ---
 title: "prefer-disable-handler"
-sourceRevision: "cd002937213025007ea36bfb2bfbf76bb70e4be4aa31c4e586a79779f98d1ad7"
+sourceRevision: "eb8ea26545312e9d3bd9bb36a436c63cb5005dd4c32a99cfe12daf4df9670bcd"
 ---
 # @rdlabo/rules/prefer-disable-handler
 
 > Exiger une méthode enveloppe (par défaut : disableHandler($event, work)) sur les liaisons élément/événement configurées pour empêcher les doubles appuis pendant un travail asynchrone
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Lorsqu’un utilisateur appuie sur un bouton qui déclenche un travail asynchrone, le contrôle doit être désactivé jusqu’à sa fin. Sinon, un second appui peut déclencher l’action à nouveau. Cette règle impose la syntaxe d’appel enveloppe pour les liaisons `(event)` configurées. L’implémentation de l’enveloppe doit désactiver l’interface et traiter correctement la valeur de travail.
 
@@ -127,12 +127,12 @@ Méthodes d’événement autorisées sans enveloppe. Par exemple, `(click)="$ev
 
 ## Quand l’activer
 
-Activez cette règle dans les projets Ionic/Angular où les actions utilisateur déclenchent des opérations asynchrones comme des appels API, une navigation ou la présentation de modales. Elle s’associe à [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md) et [`@rdlabo/rules/deny-element`](./deny-element.md) pour centraliser la logique des superpositions.
+Activez cette règle dans les projets Ionic/Angular où les actions utilisateur déclenchent des opérations asynchrones comme des appels API, une navigation ou la présentation de modales. Elle s’associe à [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher) et [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element) pour centraliser la logique des superpositions.
 
 ## Voir aussi
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
 
 ## Implémentation
 

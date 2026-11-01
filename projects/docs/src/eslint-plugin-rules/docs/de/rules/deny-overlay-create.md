@@ -1,12 +1,12 @@
 ---
 title: "deny-overlay-create"
-sourceRevision: "b4b4d4ca9e462bb1301bf836b30478ea8ea5050be62e8500fdd4360b3d64ebc5"
+sourceRevision: "0569ce7e261407d1b9dff03d7e11e0cd60bb16fb9f74f3c4e8dcdfc38790016e"
 ---
 # @rdlabo/rules/deny-overlay-create
 
 > Verbietet `.create()` an ModalController / PopoverController; Overlays werden stattdessen über Launcher geöffnet.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 
 Diese Regel verhindert die direkte Erstellung von Ionic-Overlays über Controller-Aufrufe `.create()`. In der rdlabo-Architektur sollten Overlays über Launcher-Funktionen und eine gemeinsame Hilfsfunktion `presentModal` / `presentPopover` geöffnet werden. Dadurch bleibt die Overlay-Logik zentralisiert und die Aufrufstelle von der Controller-API entkoppelt.
 
@@ -104,12 +104,12 @@ export class ExamplePage {
 
 ## Wann die Regel aktiviert werden sollte
 
-Aktivieren Sie diese Regel in Ionic-Projekten, die das Launcher-Muster und eine gemeinsame Overlay-Hilfsfunktion verwenden. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md) und [`@rdlabo/rules/deny-element`](./deny-element.md).
+Aktivieren Sie diese Regel in Ionic-Projekten, die das Launcher-Muster und eine gemeinsame Overlay-Hilfsfunktion verwenden. Sie ergänzt [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher) und [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element).
 
 ## Siehe auch
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
 
 ## Implementierung
 

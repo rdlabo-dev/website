@@ -226,7 +226,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'WebView Native UI Engine',
     packageName: '@webview-native-ui/engine',
     repositoryUrl: 'https://github.com/webview-native-ui/engine',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v0.0.8',
+    // Reviewed Ionic integration guidance published after v1.0.1.
+    englishDocsRef: 'b6823abc085b77211dd4c5e7464a5814ed76cda8',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.1',
     sourceHeadingAliases: ['ja'],
     category: 'developer-tools',
     icon: 'app',
@@ -240,10 +242,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       'Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.',
       'Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。',
     ),
-    headline: text('Bring Web UI above the native layer', 'Web UIをネイティブレイヤーの上へ'),
+    headline: text(
+      'Bring Native UI seamlessly into Web apps',
+      'Native UIをWebアプリへシームレスに',
+    ),
     overview: text(
-      'Coordinate native controls and Web content across scrolling screens, transitions, and overlays on iOS and Android. Integrate the Engine into your plugin while retaining its renderer and public API. The API is pre-1.0.',
-      'iOS・Androidのスクロール画面、画面遷移、オーバーレイでネイティブコントロールとWebコンテンツを連携させます。プラグインのレンダラーと公開APIを維持したままEngineを組み込めます。APIは1.0未満の段階です。',
+      'Coordinate native controls and Web content across scrolling screens, transitions, and overlays on iOS and Android. Integrate the Engine into your plugin while retaining its renderer and public API.',
+      'iOS・Androidのスクロール画面、画面遷移、オーバーレイでネイティブコントロールとWebコンテンツを連携させます。プラグインのレンダラーと公開APIを維持したままEngineを組み込めます。',
     ),
     featuresHeading: text('Features', '機能'),
     features: [],
@@ -255,49 +260,49 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'getting-started.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Documentation overview', 'ドキュメント概要'),
         section: text('Guides', 'ガイド'),
         slug: 'overview',
         file: 'README.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Concepts and limits', '概念と制約'),
         section: text('Guides', 'ガイド'),
         slug: 'concepts',
         file: 'concepts.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Basic initialization', '基本的な初期化'),
         section: text('Integration', '組み込み'),
         slug: 'getting-started/initialization',
         file: 'getting-started/initialization.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Capacitor plugin integration', 'Capacitorプラグインへの組み込み'),
         section: text('Integration', '組み込み'),
         slug: 'getting-started/capacitor',
         file: 'getting-started/capacitor.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Cordova plugin integration', 'Cordovaプラグインへの組み込み'),
         section: text('Integration', '組み込み'),
         slug: 'getting-started/cordova',
         file: 'getting-started/cordova.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Registration settings', '登録設定'),
         section: text('Configuration', '設定'),
         slug: 'configuration',
         file: 'configuration/README.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Notifications', '通知'),
@@ -325,7 +330,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Configuration', '設定'),
         slug: 'configuration/ionic-overlays',
         file: 'configuration/ionic-overlays.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Choose an advanced API', '高度なAPIの選択'),
@@ -378,7 +383,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Reference', 'リファレンス'),
         slug: 'reference/projection',
         file: 'reference/projection.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Projection container support', '投影コンテナの対応状況'),
@@ -399,7 +404,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Reference', 'リファレンス'),
         slug: 'reference/platforms',
         file: 'reference/platforms.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Development and releases', '開発とリリース'),
@@ -1131,8 +1136,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    // Reviewed guide corrections after the coordinated 2.1.0 release.
+    englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.3',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.1.0',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1154,7 +1161,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'readme.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Theme setup', 'テーマの設定'),
@@ -1237,10 +1244,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Capacitor Native UI',
     packageName: '@rdlabo/capacitor-native-ui',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    // Reviewed capture limitations and lifecycle guidance after 2.1.0.
+    englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
     repositoryBrowseUrl:
       'https://github.com/rdlabo-dev/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
     releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.0.3',
+    releaseNotesUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v2.1.0',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',
@@ -1262,7 +1271,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'readme.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Ionic setup', 'Ionicの設定'),
@@ -1273,7 +1282,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'place-startup-in-your-frameworks-app-root': "place-startup-in-your-framework's-app-root",
           '4-build-sync-and-run': '4.-build%2C-sync%2C-and-run',
         },
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Native UI without Ionic', 'Ionicを使わないNative UI'),
@@ -1281,7 +1290,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         slug: 'framework-independent',
         file: 'framework-independent.md',
         headingAliases: { '2-mark-source-controls': '2.-mark-source-controls' },
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text(
@@ -1303,7 +1312,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'native-ui',
         file: 'native-ui.md',
-        updatedAt: { en: '2026-10-24', ja: '2026-10-24', fr: '2026-10-24', de: '2026-10-24' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Configuration', '設定'),
@@ -1317,7 +1326,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'appearance',
         file: 'appearance.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Vertical Bars', 'Vertical Bars'),
@@ -1338,7 +1347,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           '2a-register-a-swiftui-view-on-ios': '2a.-register-a-swiftui-view-on-ios',
           '2b-register-compose-content-on-android': '2b.-register-compose-content-on-android',
         },
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
         title: text('Migration', '移行'),
@@ -2126,6 +2135,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
+    // Reviewed canonical guide links published after v22.1.1.
+    englishDocsRef: '40d8318e904dcdfa59c95db17b79f822e4969d36',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -2649,7 +2660,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@capacitor-community/admob',
     repositoryUrl: 'https://github.com/capacitor-community/admob',
     // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'a8f8ac48df11ac79805fef7059546e97f028be1b',
+    englishDocsRef: 'b64a7cd687095f32270c3b1c9903ed6a586fcd1d',
     category: 'capacitor-plugins',
     icon: 'ads',
     seoTitle: text(
@@ -2713,7 +2724,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Install and configure @capacitor-community/admob to initialize Google Mobile Ads and display native ads in Capacitor apps on iOS and Android.',
           '@capacitor-community/admobを導入し、iOS・AndroidのCapacitorアプリでGoogle Mobile Adsを初期化してネイティブ広告を表示します。',
         ),
-        updatedAt: { en: '2026-10-07', ja: '2026-10-07', fr: '2026-10-07', de: '2026-10-07' },
+        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       }),
       page(
         'Initialize',
@@ -2734,14 +2745,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: { ja: '2026-10-01' },
       }),
       page(
-        'Native Ads (Preview)',
-        'Native Ads（プレビュー）',
+        'Native Ads',
+        'Native Ads',
         'native-ads',
         'native-ads.md',
         'Ad formats',
         '広告フォーマット',
         {
-          updatedAt: { en: '2026-10-07', ja: '2026-10-07', fr: '2026-10-07', de: '2026-10-07' },
+          updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
         },
       ),
       page(

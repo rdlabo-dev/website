@@ -1,8 +1,6 @@
 ---
-title: 'Native Ads（プレビュー）'
+title: 'Native Ads'
 ---
-
-**Native Ads はプレビュー機能です。** テストにも本番環境にも利用できます。プレビュー期間中は、マイナーリリースで API が変更される場合があります。
 
 ネイティブ広告は、このプラグインが管理する Google Mobile Ads SDK のビューで描画されます。アプリ側では HTML のスロットを確保し、安定したキーを指定します。Kotlin や Swift で `NativeAdView` を実装したり、JavaScript で広告アセットを描画したりする必要はありません。
 
@@ -34,7 +32,7 @@ const paidHandle = await nativeAds.addListener(NativeAdPluginEvents.AdPaid, (eve
 });
 ```
 
-通常のマークアップでも仮想化されたマークアップでも、フレームワークに依存しない要素を使えます。`slot-key` には、配列のインデックスや再利用された DOM ノードではなく、論理的な広告項目を識別する値を指定してください。
+フィードのマークアップで、フレームワークに依存しない要素を使います。`slot-key` には、配列のインデックスや再利用された DOM ノードではなく、論理的な広告項目を識別する値を指定してください。
 
 ```html
 <capacitor-admob-native feed-id="home-feed" slot-key="sponsored-after-article-42"></capacitor-admob-native>
@@ -136,7 +134,7 @@ nativeAds.resume();
 | `invalidateLayout(): Promise<void>` | アプリ側のリフロー後に広告を非表示にし、再計測します。 |
 | `destroy()` | セッションのリスナーとすべてのネイティブリソースを解放します。 |
 
-`NativeAdFeedOptions` には `feedId`、`adId`、`template`、`style`、`isTesting`、`npa`、および iOS 用の任意の `scrollElement` が含まれます。Google のプラットフォーム別テスト広告ユニットを使うには `isTesting: true` を指定します。本番広告では、プラットフォームごとのネイティブ広告ユニット ID を `adId` に指定し、`isTesting` を省略するか `false` にします。`isTesting` が `true` でない限り、`adId` は必須です。`feedId` とすべての `slotKey` は空でない安定した値にしてください。古いネイティブセッションを安全に置き換えられるよう、WebView のリロード前後で同じフィード ID を再利用します。
+`NativeAdFeedOptions` には `feedId`、`adId`、`template`、`style`、`isTesting`、`npa`、iOS 用の任意の `scrollElement`、および Android 用の `androidScrollSnapshot` が含まれます。Google のプラットフォーム別テスト広告ユニットを使うには `isTesting: true` を指定します。本番広告では、プラットフォームごとのネイティブ広告ユニット ID を `adId` に指定し、`isTesting` を省略するか `false` にします。`isTesting` が `true` でない限り、`adId` は必須です。`feedId` とすべての `slotKey` は空でない安定した値にしてください。古いネイティブセッションを安全に置き換えられるよう、WebView のリロード前後で同じフィード ID を再利用します。
 
 ## 描画とポリシーの責任範囲
 
@@ -158,6 +156,24 @@ const feed = await NativeAdFeed.create({
 });
 ```
 
-iOS では、`scrollElement` を指定すると、そのコンテナの実験的なネイティブスクロール追従が有効になります。レイアウト変更時は引き続き再計測が必要です。アプリ側で変更したあとに `invalidateLayout()` を呼び出してください。スクロールコンテナ内と、その可視境界でのクリッピングは維持されます。`pause()` と `destroy()` は追従を停止します。他のプラットフォームはこのオプションを無視し、JavaScript による座標更新を続けます。
+iOS では、`scrollElement` を指定すると、そのコンテナのネイティブスクロール追従が有効になります。レイアウト変更時は引き続き再計測が必要です。アプリ側で変更したあとに `invalidateLayout()` を呼び出してください。スクロールコンテナ内と、その可視境界でのクリッピングは維持されます。`pause()` と `destroy()` は追従を停止します。他のプラットフォームはこのオプションを無視し、JavaScript による座標更新を続けます。
 
 指定したコンテナを一意に特定できない場合、更新は失敗し、広告は非表示のままになります。transform やズームを適用していない overflow スクロールコンテナを1つ使ってください。入れ子のスクロール、このオプションによるドキュメントのスクロール、仮想スクロールとの連携には対応していません。広告上から始まるスワイプのジェスチャーの振り分けも変わりません。
+
+## Android のスクロールスナップショット
+
+`androidScrollSnapshot: true` を設定すると、スクロール中は Web フィードにキャッシュ済みの画像を表示し、スクロールが止まるとネイティブ広告を復元します。デモでは Android でこのオプションを既定で有効にしています。
+
+```ts
+const feed = await NativeAdFeed.create({
+  feedId: 'articles',
+  adId: 'YOUR_ANDROID_NATIVE_AD_UNIT_ID',
+  androidScrollSnapshot: true,
+});
+```
+
+開発中は `isTesting: true` を指定して Google のテスト広告をリクエストします。本番環境ではネイティブ広告ユニット ID を `adId` に指定し、`isTesting` を省略するか `false` にします。スナップショットはどちらのモードでも利用できます。このオプションは Android のみ対応しています。
+
+WebView Native UI Engine がスナップショットのキャプチャと、画像・ネイティブビュー間の切り替えを管理します。広告スロットごとに独立した投影が用意されます。広告の再ロード時やレイアウト変更時に画像が更新され、フィードを一時停止、関連付け解除、破棄すると、対応する投影が非表示になるか削除されます。
+
+動画クリエイティブと半透明の背景では、ネイティブの追従を維持します。スナップショットを利用できない場合、準備ができていない場合、または対応する寸法を超えている場合は、ネイティブビューが追従を続けます。広告の操作はネイティブ SDK のビューが処理します。スナップショットはクリックを転送せず、インプレッションを疑似的に生成することもありません。

@@ -1,6 +1,6 @@
 ---
 title: "no-template-driven-forms"
-sourceRevision: "22b3df75b93e8693e53d4d90861f940b9545903c10318f0f1b586c44247d54f6"
+sourceRevision: "0395cc064d7f40c144ad3fa266037503560e2e2f4921684efc4baf6275b932be"
 ---
 # @rdlabo/rules/no-template-driven-forms
 
@@ -78,7 +78,7 @@ Aktivieren Sie diese Regel, wenn Ihr Projekt auf Angular Signal Forms migriert, 
 
 ## Siehe auch
 
-- [`@rdlabo/rules/no-reactive-forms`](./no-reactive-forms.md)
+- [`@rdlabo/rules/no-reactive-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-reactive-forms)
 
 ## Implementierung
 

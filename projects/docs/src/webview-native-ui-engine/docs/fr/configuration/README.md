@@ -1,6 +1,6 @@
 ---
 title: "Paramètres d’enregistrement"
-sourceRevision: "306aef1f74b9dd314d2883b647c9e28e4cd936a2c7290d9183eb97d8d1dcab21"
+sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
 ---
 # Configurer un enregistrement natif
 
@@ -18,7 +18,7 @@ Facultatif signifie qu’une valeur par défaut existe, pas qu’une interface �
 | `captureDelayMs` | Prépare les images après un délai de debounce de 50 ms. | La surbrillance d’un onglet est encore animée à l’arrivée de son événement de sélection : attendez des pixels stabilisés. Consultez le [timing de capture](capture.md) ; cela ne retarde pas l’ouverture d’une superposition. |
 | `canCapture` | Renvoie true ; les vérifications de géométrie et de plateforme de l’Engine restent applicables. | Un SDK passe d’un contenu statique capturable à une vidéo soumise à des restrictions : empêchez une capture non admissible. Renvoyez l’admissibilité du contenu actuel. |
 | `failedFallback` | Utilise le repli Web ordinaire lorsqu’aucune image adaptée n’est disponible. | Une vue SDK n’a pas de remplacement Web utilisable : conservez-la en natif pendant les mouvements automatiques uniquement si le moteur de rendu maintient son placement. La couverture Web explicite et `none` restent prioritaires. Consultez la [politique d’échec](../reference/projection.md#native-surface-requirements). |
-| `allowedOrigins` | iOS : `capacitor://localhost`, `app://localhost`, `https://localhost`, `http://localhost`. Android : `https://localhost`, `http://localhost`. | Une application change de nom d’hôte local : indiquez exactement cette origine de confiance pour permettre la connexion du canal. Sur Android, utilisez les mêmes origines pour `install` et chaque enregistrement. |
+| `allowedOrigins` | Capacitor : `server.url` embarquée ou nom d’hôte/schéma local ; valeurs localhost par défaut en l’absence de configuration serveur de l’application. Cordova : valeurs localhost par défaut. | Remplacez-les pour une configuration programmatique ou une origine de confiance plus restreinte. Sur Android, configurez `install` avant la navigation ; les enregistrements en héritent. Voir la [correspondance des origines](../reference/projection.md). |
 | `runtime` | Capacitor. | **Obligatoire pour les intégrations Cordova** : sélectionnez Cordova afin que les notifications et les URL de ressources utilisent son transport. |
 | `captureMode` (Android) | `COMPOSITED`, incluant l’arrière-plan visible. | Une carte opaque défile devant du contenu adjacent : `VIEW` capture uniquement la carte plutôt que les pixels de fenêtre environnants. Ne l’utilisez pas pour du contenu translucide, des vidéos ou SurfaceView. Consultez l’[admissibilité de la capture](../reference/platforms.md#android-capture-modes). |
 

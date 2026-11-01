@@ -1,20 +1,20 @@
 ---
 title: "Premiers pas"
-sourceRevision: 966b72e140b4b8b47c7465f939aa4429b3e5cf525f8eedf01874370585d7eedc
+sourceRevision: "e329b0d88f0ce3895843eecb598a0972d6ac6ef8f588b25c2c1e99834557b1d6"
 ---
 # Ionic Theme iOS27
 
 Installez avec `npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable`. Pour la version 1.x, consultez le [guide v1.2.1](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.1).
 Un thème pour les applications Ionic qui apporte Liquid Glass et les animations d’iOS 27 au Web. Les applications Capacitor iOS peuvent aussi activer Native UI pour les contrôles pris en charge, avec une prise en charge officielle depuis la version 2.0.0.
 
-**[Démo Ionic 9](https://ionic-theme-ios27.rdlabo.dev/) · [Démo Ionic 8](https://ionic8-theme-ios27.rdlabo.dev/) · [Guide d’installation](/docs/setup)**
+**[Démo Ionic 9](https://ionic-theme-ios27.rdlabo.dev/) · [Guide d’installation](/docs/setup)**
 
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.3/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : réglages en mode clair avec une barre de recherche Liquid Glass" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.3/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : réglages en mode sombre" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.3/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec boutons et barre d’onglets Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : réglages en mode clair avec une barre de recherche Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : réglages en mode sombre" />
+  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec boutons et barre d’onglets Liquid Glass" />
 </p>
 
 <!-- /rdlabo-docs-pick -->
@@ -33,7 +33,7 @@ Un thème pour les applications Ionic qui apporte Liquid Glass et les animations
 
 Nous utilisons [Capacitor Foldable](https://github.com/erkamyaman/capacitor-foldable), un excellent plugin communautaire d’Erkam Yaman, comme intégration standard pour la disposition de l’appareil. Il expose l’état de pliage, la géométrie de la charnière, le placement des barres et les événements de changement, ce qui vous permet de contrôler l’adaptation de la disposition. Foldable fournit les données de l’appareil ; le thème fournit les utilitaires de disposition Web et Native UI projette les contrôles. Installez-le avec le package utilisé, puis raccordez ses événements dans votre application.
 
-Suivez le [guide en quatre étapes](/docs/setup) pour installer le thème, charger les styles, configurer les animations et prévisualiser votre premier écran. Il prend en charge Ionic 8.8.1 ou ultérieur dans les versions 8 ou 9, avec Angular, React et Vue. Aucun projet Capacitor natif n’est nécessaire dans le navigateur.
+Suivez le [guide en quatre étapes](/docs/setup) pour installer le thème, charger les styles, configurer les animations et prévisualiser votre premier écran. La plage de compatibilité Ionic déclarée est `>=8.8.1 <10`, avec Angular, React et Vue ; la validation E2E automatisée cible Ionic 9. Aucun projet Capacitor natif n’est nécessaire dans le navigateur.
 
 Le thème habille les barres d’outils, onglets, listes, boutons, recherches et superpositions, en clair et en sombre. Il n’active pas les contrôles natifs. Une fois le thème Web opérationnel, vous pouvez [ajouter Native UI](/docs/add-native-ui).
 

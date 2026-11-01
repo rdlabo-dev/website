@@ -1,6 +1,6 @@
 ---
 title: "Limites de capture et des plateformes"
-sourceRevision: "51bea8d4a3b4cd13ce718f6c9cb171dee5bfa9af6be8d0c033e488854847b6da"
+sourceRevision: "8eb1f3724fb2d18a870996ca5d8d103ca56bbdf93f142d60d3ee1feb02c1a437"
 ---
 # Limites de capture et des plateformes
 
@@ -56,7 +56,7 @@ Un contrôle Liquid Glass capturé peut différer du contrôle natif actif lorsq
 
 ![Captures d’appareils comparant les barres d’onglets UIKit capturées et actives sur iPhone et iPad](../assets/ios-native-capture-comparison.png)
 
-À gauche : **iPhone 15 Pro Max, iOS 27.2**. À droite : **iPad mini (6e génération), iPadOS 27.2**. Chaque capture d’appareil montre le **PNG Display P3 16 bits capturé dans WKWebView en haut** et la **barre d’onglets UIKit active en bas**, à la même taille sur cet appareil. Les captures ont été placées côte à côte sans redimensionnement ni modification de leur profil colorimétrique commun. Ces résultats proviennent d’appareils physiques, pas de captures du simulateur.
+À gauche : **iPhone 15 Pro Max, iOS 27.2**. À droite : **iPad mini (6e génération), iPadOS 27.2**. Chaque capture d’appareil montre le **PNG Display P3 16 bits capturé dans WKWebView en haut** et la **barre d’onglets UIKit active en bas**, à la même taille sur cet appareil. Pour cette comparaison, la capture de l’iPhone a été redimensionnée pour correspondre à la hauteur de celle de l’iPad ; leur profil colorimétrique commun a été conservé. Ces résultats proviennent d’appareils physiques, pas de captures du simulateur.
 
 La capture d’écran système préserve l’apparence active, mais la capture au niveau de l’application ne la reproduit pas entièrement. Sur l’iPhone testé, la différence était également présente lorsque l’image capturée non encodée était affichée dans une `UIImageView` native, avant encodage PNG ou affichage WebView. Dessiner l’ensemble de la `UIWindow` dans un bitmap couvrant toute la fenêtre, puis le recadrer, n’a pas amélioré le résultat par rapport au bitmap recadré de l’Engine.
 

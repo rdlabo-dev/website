@@ -78,7 +78,7 @@ Angular Signal Formsへ移行しながら、特定のIonic Viewコンポーネ�
 
 ## 関連項目
 
-- [`@rdlabo/rules/no-reactive-forms`](./no-reactive-forms.md)
+- [`@rdlabo/rules/no-reactive-forms`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-reactive-forms)
 
 ## 実装
 

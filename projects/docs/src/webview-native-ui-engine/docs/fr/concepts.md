@@ -1,16 +1,31 @@
 ---
 title: "Concepts et limites"
-sourceRevision: "9e76202b8e917a9bb839d02de72b3d4c9c9a0d4a742e2ee11139930e52da18df"
+sourceRevision: "d9212c9dd7d554bf845bbec3b2217bd32eb6850359e071c8051d35f39f3ef594"
 ---
 # Des interfaces natives dans des écrans pilotés par le Web
 
-Utilisez l’Engine lorsqu’une vue native doit coexister avec le défilement, les transitions ou les superpositions Web. Une barre d’onglets native peut, par exemple, rester interactive en usage normal tout en apparaissant sous une modale Web lorsqu’elle s’ouvre. L’application conserve sa navigation et sa mise en page Web au lieu de recréer tout l’écran en natif.
+L’objectif est de combiner, dans un même écran, la souplesse des mises en page et de la navigation Web avec les contrôles et capacités natives. Les applications conservent leur interface pilotée par le Web ; les plugins fournissent les composants natifs. L’Engine coordonne leur présentation pour que chaque composant coexiste avec l’écran environnant au fil des changements de mise en page, des interactions et de la navigation.
 
 ## Pourquoi un appel au pont ne suffit pas
 
-Une vue native placée au-dessus d’une WebView est extérieure à l’arbre d’empilement du DOM. Augmenter le `z-index` d’une modale Web ne permet pas de la couvrir. Masquer la vue native révèle ce que la page Web dessine en dessous, avec une apparence potentiellement différente ; la réafficher avant la stabilisation de la mise en page peut exposer une position incorrecte.
+Créer une vue native ne lui donne pas de place dans le DOM. Une vue au-dessus de la WebView ne suit pas automatiquement un conteneur défilant et ne participe pas à son découpage ni à son ordre d’empilement. Un `z-index` Web plus élevé ne peut pas la couvrir. La masquer puis la réafficher peut révéler une apparence différente ou la restaurer à une position périmée.
 
-L’Engine gère le transfert visuel entre ces couches. Il prépare une image lorsque le contenu natif est disponible, l’affiche dans le DOM de l’application au besoin et la conserve jusqu’à la confirmation de la restauration native. La préparation est distincte de la présentation : l’ouverture d’une superposition n’attend donc pas la capture.
+Le modèle d’intégration partagé associe une vue native à un conteneur DOM. Ce conteneur identifie la place du composant dans l’écran Web. Le plugin fournit le contenu natif et signale les changements ; l’Engine coordonne les mesures, l’apparence préparée et le transfert entre couches de présentation.
+
+## Exemples de coexistence
+
+Ces situations partagent le même modèle de présentation. Chaque intégration connecte les notifications de cycle de vie et de valeurs dont elle a besoin :
+
+| Situation | Expérience souhaitée | Apport du modèle partagé |
+| --- | --- | --- |
+| Une annonce native admissible est placée dans un flux Web | Elle reste alignée sur le contenu pendant le défilement. | Le conteneur DOM fournit la géométrie ; le suivi natif pris en charge ou une projection Web temporaire accompagne le mouvement. |
+| Une alerte Web s’ouvre au-dessus des contrôles de navigation natifs | L’alerte couvre leur apparence, puis les interactions natives reprennent à sa fermeture. | Les notifications de cycle de vie ou l’adaptateur Ionic demandent la couverture ; l’Engine coordonne le transfert d’image et la restauration. |
+| Une page ou une modale change de mise en page | Ses contrôles natifs reviennent à leur position actuelle plutôt qu’à un ancien rectangle. | La géométrie et la restauration sont coordonnées avec la durée de vie du conteneur propriétaire. |
+| Un interrupteur natif change alors que son repli Web est masqué | Le retour au HTML ne révèle pas l’ancienne valeur. | Les liaisons de valeurs facultatives reflètent les données du composant indépendamment de la présentation. |
+
+Défiler ne signifie pas toujours déplacer une vue native active. Les mises en page iOS à débordement prises en charge peuvent utiliser des liaisons de défilement natives ; Android utilise une présentation temporaire d’image et les mises en page non prises en charge suivent la politique de repli configurée. Les images ne fournissent pas d’interaction SDK en direct. Consultez les [limites des plateformes](reference/platforms.md) et les [contraintes de liaison de défilement](advanced/native-handoff.md#native-scroll-tracking).
+
+L’Engine prépare les images pendant que le contenu natif est disponible et les conserve durant le transfert jusqu’à la confirmation de la restauration native. La préparation est distincte de la présentation afin que l’ouverture d’une superposition n’attende pas la capture. Les décisions de cycle de vie propres à l’application nécessitent toujours des notifications ; enregistrer une vue ne détecte pas automatiquement les superpositions de tous les frameworks.
 
 ## Trois présentations aux objectifs différents
 
@@ -59,6 +74,6 @@ Les enregistrements natifs peuvent aussi [refléter les valeurs actuelles du com
 
 Les images figent à la fois le contrôle et tout arrière-plan capturé. Un contenu qui doit rester actif ou interactif lorsqu’il est couvert nécessite une autre politique de présentation. Les restrictions de capture des SDK restent applicables, et certains effets du compositeur de la plateforme, notamment les reflets Liquid Glass, peuvent différer de leur apparence capturée. L’Engine ne garantit pas une capture identique au pixel près de chaque vue native.
 
-Validez vos arrière-plans réels, les transitions des superpositions et la restauration sur les appareils pris en charge. Si la capture est indisponible, décidez avant l’intégration de ce que l’utilisateur doit voir dans le repli Web. Consultez la [référence de capture et de plateforme](reference/projection.md) pour l’admissibilité, le timing, le stockage et les politiques d’échec.
+Validez vos arrière-plans réels, les transitions de superpositions et la restauration sur les appareils pris en charge. Si la capture est indisponible, décidez avant l’intégration ce que l’utilisateur doit voir dans le repli Web. Consultez la [référence de capture et des plateformes](reference/platforms.md) et le [contrat de projection](reference/projection.md) pour les conditions d’éligibilité et les politiques d’échec.
 
 [Vue d’ensemble de la documentation](README.md)

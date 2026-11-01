@@ -1,14 +1,14 @@
 ---
 title: "Konfiguration"
-sourceRevision: "3575aa7b31f199be541926b0e72c37308ea436b648ac41e67c7b78c90f5020aa"
+sourceRevision: "f7f31f4747241ff36301410ddd81e4f795d39e75e78b699024278977d1e720cd"
 ---
 # Konfiguration
 
-Verwenden Sie den Paketwurzelpfad für Angular und Ionic oder `/typescript` für frameworkunabhängigen Code. Beginnen Sie mit der Einrichtung für Ihr Projekt und aktivieren Sie anschließend nur die benötigten Richtlinien. Preset-Abdeckung beschreibt der [Regelkatalog](./rules.md); prüfen Sie bei Aktualisierungen die [Migrationsanleitung](./migration.md).
+Verwenden Sie den Paketwurzelpfad für Angular und Ionic oder `/typescript` für frameworkunabhängigen Code. Beginnen Sie mit der Einrichtung für Ihr Projekt und aktivieren Sie anschließend nur die benötigten Richtlinien. Preset-Abdeckung beschreibt der [Regelkatalog](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules); prüfen Sie bei Aktualisierungen die [Migrationsanleitung](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration).
 
 ## Angular und Ionic
 
-Plugin 22 unterstützt Angular und Angular ESLint 21–22 mit Ionic Framework 9. Prüfen Sie beim Wechsel von Plugin 21 die [Migrationsanleitung](./migration.md), bevor Sie das aktualisierte empfohlene Preset aktivieren.
+Plugin 22 unterstützt Angular und Angular ESLint 21–22 mit Ionic Framework 9. Prüfen Sie beim Wechsel von Plugin 21 die [Migrationsanleitung](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration), bevor Sie das aktualisierte empfohlene Preset aktivieren.
 
 Registrieren Sie das Plugin, verteilen Sie seine empfohlenen Konfigurationen auf der obersten Ebene und ergänzen Sie anschließend die normalen Angular- und TypeScript-Konfigurationen für Ihr Projekt.
 
@@ -126,6 +126,6 @@ npm install --save-dev eslint @eslint/js typescript typescript-eslint @rdlabo/es
 
 `no-implicit-timezone` benötigt typgestütztes Linting. `initialize-timezone-at-module-scope` ist syntaktisch: Eine Datei darf die Initialisierung weglassen. Ist sie vorhanden, darf sie in dieser Datei höchstens eine zulässige Stelle haben — keine einzige Stelle für die gesamte Anwendung und kein Pflichtaufruf in jedem Modul.
 
-Das Zeitzonen-Preset ergänzt [`@rdlabo/workers-timezone`](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme); keines der Pakete hängt zur Laufzeit vom anderen ab. Es meldet statisch erkennbare Operationen, nicht jeden dynamischen Zeitzonenwert. Exakte Abdeckung und Grenzen beschreiben [no-implicit-timezone](./rules/no-implicit-timezone.md) und [initialize-timezone-at-module-scope](./rules/initialize-timezone-at-module-scope.md).
+Das Zeitzonen-Preset ergänzt [`@rdlabo/workers-timezone`](https://docs.rdlabo.dev/projects/workers-timezone/docs/readme); keines der Pakete hängt zur Laufzeit vom anderen ab. Es meldet statisch erkennbare Operationen, nicht jeden dynamischen Zeitzonenwert. Exakte Abdeckung und Grenzen beschreiben [no-implicit-timezone](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-implicit-timezone) und [initialize-timezone-at-module-scope](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/initialize-timezone-at-module-scope).
 
 Das Workers-Preset enthält bewusst kein Zeitzonen-Preset, damit allgemeine Aktualisierungen der Workers-Richtlinien keine Datumsrichtlinien implizit aktivieren.

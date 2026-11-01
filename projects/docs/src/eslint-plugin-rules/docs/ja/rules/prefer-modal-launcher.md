@@ -123,12 +123,12 @@ export const openSheet = (overlay: Helper) => {
 
 ## 有効にする場合
 
-modal、sheet、その他のoverlayにlauncher patternを採用するIonic/Angularプロジェクトで有効にしてください。[`@rdlabo/rules/deny-element`](./deny-element.md) および [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md) と組み合わせて使用します。
+modal、sheet、その他のoverlayにlauncher patternを採用するIonic/Angularプロジェクトで有効にしてください。[`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element) および [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler) と組み合わせて使用します。
 
 ## 関連項目
 
-- [`@rdlabo/rules/deny-element`](./deny-element.md)
-- [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md)
+- [`@rdlabo/rules/deny-element`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/deny-element)
+- [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler)
 
 ## 実装
 

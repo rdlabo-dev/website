@@ -1,10 +1,10 @@
 ---
 title: "Grundlegende Initialisierung"
-sourceRevision: "55b35c15a1050e71982b5937734839562c86c9252cc3ac4451fad5da632c0f9c"
+sourceRevision: "b62111c3b49c28acbd9a19c15cde2762cf785e0f0d7bdbd6d29eb19584b33f44"
 ---
 # Eine native Ansichtsregistrierung initialisieren
 
-Beginnen Sie mit `NativeUIProjection`, wenn ein Plugin eine native Ansicht und einen zugehörigen Web-Container besitzt. Die Registrierung startet die Laufzeit, bindet diesen Container und koordiniert Bildübergabe und Wiederherstellung. Für diesen Weg benötigen Sie keine Renderer-APIs.
+Beginnen Sie mit `NativeUIProjection`, wenn ein Plugin eine native Ansicht und einen zugehörigen Web-Container besitzt. Die Registrierung startet die Laufzeit, bindet diesen Container und koordiniert die Darstellung zwischen nativer Ansicht und Web-Layout. Dies ist derselbe Einstiegspunkt für eine Komponente in einem scrollenden Feed oder unter einem Web-Overlay. Für diesen Weg benötigen Sie keine Renderer-APIs. Das [gemeinsame Modell](../concepts.md) erklärt den Zusammenhang dieser Situationen und die geltenden Plattformgrenzen.
 
 Verwenden Sie den [Capacitor](capacitor.md)- oder [Cordova](cordova.md)-Leitfaden für die Installation von Abhängigkeiten, Plugin-Lebenszyklus-Hooks und Benachrichtigungsweiterleitung. Die folgenden Beispiele zeigen die kleinste Registrierung innerhalb dieser Hooks, gefolgt von den erforderlichen Eingaben. Nach der Initialisierung beschreibt der Konfigurationsleitfaden optionales Verhalten; erweiterte APIs haben einen eigenen Einstiegspunkt.
 
@@ -38,7 +38,20 @@ projection = NativeUIProjection(
 )
 ```
 
-Beide Snippets gehören in die Fehlerbehandlung des Integrationsleitfadens; behalten Sie bei fehlgeschlagener Initialisierung den bestehenden Web-Fallback bei. `projection` und `nativeView` sind Eigenschaften Ihres Plugins. Geben Sie die Registrierung mit `destroy()` unter iOS oder `close()` unter Android frei, wenn dieser Renderer entfernt wird. Alle nativen Lebenszyklusaufrufe laufen im UI-Thread.
+Java kann dieselben Standardwerte nutzen, ohne jedes optionale Argument anzugeben:
+
+```java
+NativeUIProjection.install(getBridge().getWebView());
+projection = new NativeUIProjection(
+    getActivity().getWindow(),
+    getBridge().getWebView(),
+    getPluginHandle().getId(),
+    "#native-ui-fallback",
+    () -> nativeView
+);
+```
+
+Diese Snippets gehören in die Fehlerbehandlung des Integrationsleitfadens; behalten Sie bei fehlgeschlagener Initialisierung den bestehenden Web-Fallback bei. `projection` und `nativeView` sind Eigenschaften Ihres Plugins. Geben Sie die Registrierung mit `destroy()` unter iOS oder `close()` unter Android frei, wenn dieser Renderer entfernt wird. Alle nativen Lebenszyklusaufrufe laufen im UI-Thread.
 
 Cordova verwendet dieselbe Registrierung mit `runtime: .cordova` / `runtime = Runtime.CORDOVA` sowie seiner eigenen WebView und Plugin-Identität. Folgen Sie dem [Cordova-Leitfaden](cordova.md) für diese Hooks und den Ressourcenhandler unter Android.
 

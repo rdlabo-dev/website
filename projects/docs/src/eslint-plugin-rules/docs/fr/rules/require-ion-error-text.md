@@ -1,12 +1,12 @@
 ---
 title: "require-ion-error-text"
-sourceRevision: "b5655ad7d1a36b7b555213f3b06d3fc93738fe621982d15f2c7391098b7b286f"
+sourceRevision: "dc3bf02c91992393c87a76d89f76768e443e228f2c8fe55589ec5b725a56630d"
 ---
 # @rdlabo/rules/require-ion-error-text
 
 > Exiger une source errorText pour les contrôles de validation Ionic.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Exige une source pour `errorText` sur les contrôles Ionic participant à la validation Angular Signal Forms.
 
@@ -129,7 +129,7 @@ La règle signale uniquement ; elle ne corrige pas automatiquement la politique 
 
 ## Voir aussi
 
-- [Intégration Signal Forms de `@rdlabo/ionic-angular-kit`](https://github.com/rdlabo-dev/ionic-angular-library/blob/main/projects/kit/docs/forms.md)
+- [Intégration Signal Forms de `@rdlabo/ionic-angular-kit`](https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/forms)
 
 ## Implémentation
 

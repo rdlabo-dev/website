@@ -1,12 +1,12 @@
 ---
 title: "ionic-attr-type-check"
-sourceRevision: "90a8effc697ddaaa67fa62c787a80cad8e9f0a17f3e6899d84dfdd16f25b52df"
+sourceRevision: "7e8bd64be68ca8a44a4f22f7e611f374dbb87efa926fefd5c9bc0c9a8ec3eacf"
 ---
 # @rdlabo/rules/ionic-attr-type-check
 
 > Exiger des liaisons de propriété pour les attributs Ionic non textuels pris en charge et valider les attributs littéraux textuels.
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 > - ✒️ L’option `--fix` de la [ligne de commande](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) peut corriger automatiquement certains problèmes signalés par cette règle.
 
 Les attributs des composants Ionic peuvent être booléens, numériques, objets ou textuels. Passer une chaîne comme `button="true"` à une propriété booléenne est une erreur fréquente qui peut produire un comportement inattendu. Cette règle lit les définitions de types Ionic de `@ionic/core` et signale les incohérences.

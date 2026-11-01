@@ -1,6 +1,6 @@
 ---
 title: "Native UI in einer Ionic-App einrichten"
-sourceRevision: 3c32723db2b04648d1433ab6cb39619e8dab35055d6006dfd2a93e4ae53b1534
+sourceRevision: "54c567d2df126c34dfcf0fa38ed214cd12125bb927c2339ddd4f5e7ade6366b8"
 ---
 # Native UI in einer Ionic-App einrichten
 
@@ -166,6 +166,24 @@ const ionicConfig = {
 Für eine reine Plugin-App verwenden Sie unten [Navigation ohne Theme](#navigation-without-the-theme). Konfigurieren Sie vor dem Navigationstest einen der Ansätze.
 
 ## 4. Erstellen, synchronisieren und ausführen
+
+Installieren Sie bei CocoaPods-Projekten zunächst eine Engine-Version, die mit dem installierten Native UI-Paket kompatibel ist:
+
+```sh
+npm install "@webview-native-ui/engine@$(node -p "require('./node_modules/@rdlabo/capacitor-native-ui/package.json').dependencies['@webview-native-ui/engine']")"
+```
+
+Fügen Sie Engine im bestehenden App-Target in `ios/App/Podfile` außerhalb des generierten Blocks `def capacitor_pods` hinzu:
+
+```ruby
+target 'App' do
+  capacitor_pods
+  pod 'WebViewNativeUIEngine', :path => '../../node_modules/@webview-native-ui/engine'
+  # Keep your other application pods here.
+end
+```
+
+Passen Sie den Pfad an, falls Ihr natives Projekt oder node_modules anders angeordnet ist. Gleichen Sie die npm-Versionen bei einem Upgrade von Native UI erneut ab. Engine wird über npm und nicht über CocoaPods Trunk verteilt. SwiftPM-Projekte beziehen die native Bibliothek aus Git und benötigen diesen Schritt nicht.
 
 Führen Sie den Web-Build Ihrer Anwendung aus und synchronisieren Sie anschließend:
 

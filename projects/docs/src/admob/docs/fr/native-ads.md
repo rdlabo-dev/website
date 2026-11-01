@@ -1,10 +1,8 @@
 ---
-title: "Native Ads (version préliminaire)"
-sourceRevision: "ff974eb9b0368211c69399c59f5a8a634e9eb1750f98ced3d1cc8252543b5494"
+title: "Native Ads"
+sourceRevision: "69cae64fe37304c3329b45be3112e3dbb022935fff8dba0963666b6fc299f112"
 ---
-# Native Ads (version préliminaire)
-
-**Native Ads est une fonctionnalité en version préliminaire.** Vous pouvez l’utiliser pour les tests et en production. Tant qu’elle reste en version préliminaire, son API peut changer lors d’une version mineure.
+# Native Ads
 
 Les annonces natives sont affichées à l’aide de vues du SDK Google Mobile Ads gérées par ce plugin. Votre application réserve un emplacement HTML et fournit une clé stable ; elle n’implémente pas de `NativeAdView` en Kotlin ou Swift et n’affiche pas les éléments de l’annonce en JavaScript.
 
@@ -36,7 +34,7 @@ const paidHandle = await nativeAds.addListener(NativeAdPluginEvents.AdPaid, (eve
 });
 ```
 
-Utilisez l’élément indépendant du framework dans un balisage classique ou virtualisé. `slot-key` doit identifier l’élément publicitaire logique, et non son indice dans le tableau ni le nœud DOM recyclé.
+Utilisez l’élément indépendant du framework dans le balisage de votre flux. `slot-key` doit identifier l’élément publicitaire logique, et non son indice dans le tableau ni le nœud DOM recyclé.
 
 ```html
 <capacitor-admob-native feed-id="home-feed" slot-key="sponsored-after-article-42"></capacitor-admob-native>
@@ -138,7 +136,7 @@ Appelez `destroy()` lorsque vous quittez un écran. Attendez la résolution de `
 | `invalidateLayout(): Promise<void>`            | Masque et mesure à nouveau après un recalcul de la mise en page déclenché par l’application.       |
 | `destroy()`                                    | Supprime les écouteurs et toutes les ressources natives de la session.    |
 
-`NativeAdFeedOptions` contient `feedId`, `adId`, `template`, `style`, `isTesting`, `npa` et l’option iOS facultative `scrollElement`. Définissez `isTesting: true` pour utiliser le bloc d’annonces de test Google de la plateforme. Pour les annonces de production, définissez l’identifiant de votre bloc d’annonces natives propre à la plateforme dans `adId` et omettez `isTesting` ou définissez-le à `false`. `adId` est obligatoire sauf si `isTesting` vaut `true`. `feedId` et chaque `slotKey` doivent être non vides et stables ; réutilisez les mêmes identifiants de flux lors des rechargements de la WebView afin de remplacer les sessions natives obsolètes en toute sécurité.
+`NativeAdFeedOptions` contient `feedId`, `adId`, `template`, `style`, `isTesting`, `npa`, l’option iOS facultative `scrollElement` et l’option Android `androidScrollSnapshot`. Définissez `isTesting: true` pour utiliser le bloc d’annonces de test Google de la plateforme. Pour les annonces de production, définissez l’identifiant de votre bloc d’annonces natives propre à la plateforme dans `adId` et omettez `isTesting` ou définissez-le à `false`. `adId` est obligatoire sauf si `isTesting` vaut `true`. `feedId` et chaque `slotKey` doivent être non vides et stables ; réutilisez les mêmes identifiants de flux lors des rechargements de la WebView afin de remplacer les sessions natives obsolètes en toute sécurité.
 
 ## Périmètre du rendu et des règles publicitaires
 
@@ -160,6 +158,24 @@ const feed = await NativeAdFeed.create({
 });
 ```
 
-Sur iOS, la définition de `scrollElement` active le suivi natif expérimental du défilement pour ce conteneur. Les changements de mise en page nécessitent toujours une nouvelle mesure ; appelez `invalidateLayout()` après les changements déclenchés par l’application. Le découpage à l’intérieur du conteneur de défilement et à ses limites visibles est conservé. `pause()` et `destroy()` arrêtent le suivi. Les autres plateformes ignorent cette option et conservent les mises à jour des coordonnées en JavaScript.
+Sur iOS, la définition de `scrollElement` active le suivi natif du défilement pour ce conteneur. Les changements de mise en page nécessitent toujours une nouvelle mesure ; appelez `invalidateLayout()` après les changements déclenchés par l’application. Le découpage à l’intérieur du conteneur de défilement et à ses limites visibles est conservé. `pause()` et `destroy()` arrêtent le suivi. Les autres plateformes ignorent cette option et conservent les mises à jour des coordonnées en JavaScript.
 
 Si le conteneur indiqué ne peut pas être identifié sans ambiguïté, la mise à jour échoue et ses annonces restent masquées. Utilisez un seul conteneur de défilement avec débordement, sans transformation ni zoom ; le défilement imbriqué, le défilement du document par cette option et les intégrations de défilement virtuel ne sont pas pris en charge. Cela ne modifie pas l’acheminement des gestes de balayage commencés sur une annonce.
+
+## Instantanés de défilement Android
+
+Définissez `androidScrollSnapshot: true` pour afficher une image mise en cache dans le flux Web pendant le défilement et restaurer l’annonce native lorsque le défilement s’arrête. La démo active cette option par défaut sur Android.
+
+```ts
+const feed = await NativeAdFeed.create({
+  feedId: 'articles',
+  adId: 'YOUR_ANDROID_NATIVE_AD_UNIT_ID',
+  androidScrollSnapshot: true,
+});
+```
+
+Utilisez `isTesting: true` pendant le développement pour demander les annonces de test de Google. En production, indiquez l’identifiant de votre bloc d’annonces natives dans `adId` et omettez `isTesting` ou définissez-le à `false`. Les instantanés sont disponibles dans les deux modes. Cette option est prise en charge uniquement sur Android.
+
+WebView Native UI Engine gère la capture des instantanés et le basculement entre l’image et la vue native. Chaque emplacement publicitaire dispose de sa propre projection. Les images sont actualisées lorsque l’annonce est rechargée ou que sa mise en page change ; la mise en pause, le détachement ou la destruction du flux masque ou supprime les projections correspondantes.
+
+Les créations vidéo et les arrière-plans translucides conservent le suivi natif. Si un instantané est indisponible, n’est pas prêt ou dépasse les dimensions prises en charge, la vue native continue de suivre le défilement. Les vues du SDK natif traitent les interactions publicitaires ; les instantanés ne transmettent pas les clics et ne génèrent pas d’impressions artificielles.

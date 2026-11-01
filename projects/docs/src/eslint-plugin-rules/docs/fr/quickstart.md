@@ -1,12 +1,12 @@
 ---
 title: "Voir une règle de lint détecter et corriger du code"
-sourceRevision: "1bf99c55bfb6000d784ec3ebdb6176d49ff7e3a631cf08008d72e3299327ab5b"
+sourceRevision: "41b1275a9e1206c3c0eb017e15b8627acc0f4c471d3c0a4e186d79b095b03aa4"
 ---
 Rendez une convention exécutable : examinez un membre privé TypeScript, observez les diagnostics et laissez ESLint le convertir en champ privé JavaScript. Cet exercice utilise une règle indépendante du framework ; vous pouvez donc l’essayer sans créer d’application Angular ou Ionic.
 
 ## 1. Créer un petit projet de lint
 
-Utilisez Node.js 24 et npm. Cet exercice isolé utilise ESLint 10 ; consultez les [prérequis](../README.md) avant de modifier une application existante.
+Utilisez Node.js 24 et npm. Cet exercice isolé utilise ESLint 10 ; consultez les [prérequis](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/getting-started) avant de modifier une application existante.
 
 ```sh
 mkdir eslint-rules-demo
@@ -85,6 +85,6 @@ Il s’agit de la démonstration d’une règle, pas d’un preset complet de pr
 
 Les deux presets Workers s’activent séparément. Pour les fuseaux horaires, commencez par [l’exercice associant bibliothèque et lint](https://docs.rdlabo.dev/projects/workers-timezone/docs/quickstart). Le plugin signale des motifs de code ; il n’implémente pas les conversions à l’exécution et ne remplace pas les tests de l’application.
 
-Ouvrez [Configuration](./configuration.md) pour la configuration Angular/Ionic ou Workers. Conservez les sélecteurs TypeScript et HTML lors de l’expansion du preset Angular et activez le lint avec informations de types pour les règles qui inspectent les types. Exécutez la commande de lint de votre projet dans la CI et incluez-la dans les instructions aux contributeurs et aux assistants de développement IA.
+Ouvrez [Configuration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) pour la configuration Angular/Ionic ou Workers. Conservez les sélecteurs TypeScript et HTML lors de l’expansion du preset Angular et activez le lint avec informations de types pour les règles qui inspectent les types. Exécutez la commande de lint de votre projet dans la CI et incluez-la dans les instructions aux contributeurs et aux assistants de développement IA.
 
-Utilisez [le catalogue des règles](./rules.md) pour ajouter une politique à la fois. Consultez [Migration](./migration.md) avant d’activer un preset recommandé plus récent dans une application existante.
+Utilisez [le catalogue des règles](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules) pour ajouter une politique à la fois. Consultez [Migration](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration) avant d’activer un preset recommandé plus récent dans une application existante.

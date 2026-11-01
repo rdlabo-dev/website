@@ -1,12 +1,12 @@
 ---
 title: "signal-use-as-signal-template"
-sourceRevision: "064d351884f437973a73d276d26335a4dd330f97736e01db2ecb7f4a812312b9"
+sourceRevision: "f1d0d2638594bd9787308eb86e21264e4448833ffcad07784a87e8d5fa126064"
 ---
 # @rdlabo/rules/signal-use-as-signal-template
 
 > Exiger () lors de l’accès aux Signals Angular dans les modèles
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Les Signals Angular sont des fonctions. Dans un modèle, un Signal doit être appelé avec `()` pour lire sa valeur actuelle. Oublier les parenthèses est une erreur fréquente lors d’une migration depuis `BehaviorSubject` de RxJS ou depuis des entrées `model()`. Cette règle détecte les identifiants Signal dans les modèles Angular et signale les lectures directes comme `{{ count }}` ou `[hidden]="count"`.
 
@@ -92,7 +92,7 @@ Activez cette règle dans tout projet Angular utilisant des Signals. Elle est pa
 
 ## Voir aussi
 
-- [`@rdlabo/rules/signal-use-as-signal`](./signal-use-as-signal.md)
+- [`@rdlabo/rules/signal-use-as-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal)
 
 ## Implémentation
 

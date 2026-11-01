@@ -1,12 +1,12 @@
 ---
 title: "no-component-method-except-lifecycle"
-sourceRevision: "1fdb00ace80dd0ae5a80849b8edb30bc349e682c953813f8a7ca22b064ecb304"
+sourceRevision: "b72272e6280e624e1f1d0abd8893b1e1b19554569c76c80b08e655fa04b02cf4"
 ---
 # @rdlabo/rules/no-component-method-except-lifecycle
 
 > Interdire les méthodes hors cycle de vie sur `@Component`. Les méthodes de cycle de vie autorisées sont déduites de `implements` (les propriétés sont autorisées).
 >
-> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](../configuration.md).
+> - ⭐️ Cette règle figure dans le Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration).
 
 Cette règle impose des Components légers. Un Component doit contenir des hooks de cycle de vie, des gestionnaires d’événements délégués et des propriétés de vue en lecture seule. La logique métier arbitraire doit résider dans un ViewModel, accessible par la propriété `vm` du Component.
 
@@ -130,11 +130,11 @@ Noms des méthodes autorisées en plus des méthodes de cycle de vie. Utilisez c
 
 ## Quand l’activer
 
-Activez cette règle lorsqu’un projet veut garder des Components légers et déplacer la logique dans des ViewModels. Elle s’associe à [`@rdlabo/rules/require-viewmodel`](./require-viewmodel.md).
+Activez cette règle lorsqu’un projet veut garder des Components légers et déplacer la logique dans des ViewModels. Elle s’associe à [`@rdlabo/rules/require-viewmodel`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-viewmodel).
 
 ## Voir aussi
 
-- [`@rdlabo/rules/require-viewmodel`](./require-viewmodel.md)
+- [`@rdlabo/rules/require-viewmodel`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-viewmodel)
 
 ## Implémentation
 

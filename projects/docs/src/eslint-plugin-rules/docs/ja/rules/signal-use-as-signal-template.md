@@ -92,7 +92,7 @@ Signalを使用するすべてのAngularプロジェクトで有効にしてく�
 
 ## 関連項目
 
-- [`@rdlabo/rules/signal-use-as-signal`](./signal-use-as-signal.md)
+- [`@rdlabo/rules/signal-use-as-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal)
 
 ## 実装
 

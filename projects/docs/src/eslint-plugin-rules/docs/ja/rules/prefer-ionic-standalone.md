@@ -14,7 +14,7 @@ headingAliases:
 
 > Ionic 9のスタンドアロンAPIを優先し、IonicModuleおよび廃止済み・NgModuleベースのエントリポイントを禁止します。
 >
-> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](../configuration.md) に含まれます。
+> - ⭐️ このルールはFlat Configの [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) に含まれます。
 > - ✒️ [コマンドライン](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)の `--fix` オプションで、報告された問題の一部を自動修正できます。
 
 Ionic 9はスタンドアロンのAngularコンポーネントを `@ionic/angular` からエクスポートします。このルールは、廃止された `@ionic/angular/standalone` エントリポイント、NgModuleベースの `@ionic/angular/lazy` エントリポイント、`IonicModule` 自体を禁止し、アプリケーションでスタンドアロンAPIを使うようにします。

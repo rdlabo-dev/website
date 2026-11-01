@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: d83a47dda256a943a2c907b4684df2e0d793112642917e846fcb98901236d8a5
+sourceRevision: "b6eb27b3044ef47cd46d168a2b7ae3dca1904e49345773e4c10d507a22543eeb"
 ---
 
 # Native UI
@@ -403,6 +403,8 @@ try {
 }
 ```
 
+Verwenden Sie für einen nicht interaktiven Hintergrund unter einem benutzerdefinierten Overlay `shell.suspend({ covered: true })`, um vorbereitete native Bilder wiederzuverwenden. Dies funktioniert mit HTML-Quellen ohne Ionic oder Theme-CSS. Bilder behalten die Abmessungen der nativen Aufnahme und ihren Versatz zum Quell-DOM bei; sie ändern nicht die Größe der Bedienelemente der Anwendung. Nachfolgende Verschiebungen und Skalierungen wendet der Browser gemeinsam mit der Quelle an. Setzen Sie nach dem Schließen des Overlays fort, um die aktive Native UI wiederherzustellen. Im Darstellungspfad werden keine Bilder aufgenommen; bei fehlenden Bildern oder nicht unterstützten nativen Binärdateien bleibt der bestehende Web-Fallback erhalten. App-lokale Compose-Erweiterungen unter Android verwenden denselben Übergang ab API 26, einschließlich durchscheinender Inhalte, die mit ihrem Hintergrund aufgenommen werden; API 24–25 behalten den Web-Fallback für abgedeckte Flächen bei. Verwenden Sie einfaches `suspend()`, sobald Web-Bedienelemente interaktiv bleiben müssen, auch bei der Navigation. Eine einfache Aussetzung hat Vorrang vor einer verschachtelten Aussetzung mit Abdeckung.
+
 Unterbrechungen können verschachtelt werden, und `resume()` ist idempotent. Die native Projektion wird erst fortgesetzt, wenn sämtliche aktiven Unterbrechungen freigegeben sind. Dabei wird das aktuelle DOM anstelle eines veralteten Snapshots verwendet.
 
 Natives Material und Aussehen der Bedienelemente folgen der laufenden iOS-Version. Ein iOS-26-Gerät erhält nicht allein durch die Installation dieses Themes das Erscheinungsbild von iOS 27.
@@ -431,7 +433,7 @@ Die generierte Referenz unten dokumentiert das von `enableNativeUI()` zurückgeg
 - [`disableVerticalControlArea()`](#disableverticalcontrolarea)
 - [`markForCheck()`](#markforcheck)
 - [`getStatus()`](#getstatus)
-- [`suspend()`](#suspend)
+- [`suspend(...)`](#suspend)
 - [`destroy()`](#destroy)
 - [Schnittstellen](#interfaces)
 
@@ -484,13 +486,17 @@ Gibt den aktuellen Projektionszustand von Web und nativer Darstellung zurück.
 
 ---
 
-### suspend()
+### suspend(...)
 
 ```typescript
-suspend() => Promise<NativeUISuspension>
+suspend(options?: { covered?: boolean | undefined; } | undefined) => Promise<NativeUISuspension>
 ```
 
-Stellt projizierte Bedienelemente im Web wieder her, bis die zurückgegebene Freigabe fortgesetzt wird.
+Stellt Web-Bedienelemente bis zur Fortsetzung wieder her. Verwenden Sie covered nur, solange der Hintergrund nicht interaktiv ist; vorbereitete native Bilder bewahren sein Erscheinungsbild.
+
+| Parameter | Typ |
+| --- | --- |
+| **`options`** | <code>{ covered?: boolean; }</code> |
 
 **Rückgabe:** <code>Promise&lt;<a href="#nativeuisuspension">NativeUISuspension</a>&gt;</code>
 

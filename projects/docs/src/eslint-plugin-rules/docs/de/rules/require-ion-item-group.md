@@ -1,12 +1,12 @@
 ---
 title: "require-ion-item-group"
-sourceRevision: "11152c4831896aeb85194ce45ed330375ab83913ba654d3b1dba861aefade2da"
+sourceRevision: "38517150bc8d4c4b735069307e02940ad1cbb78343daf377f042f70124f61732"
 ---
 # @rdlabo/rules/require-ion-item-group
 
 > Verlangt, dass ion-item-Elemente in ion-list von einer unterstützten Ionic-Elementgruppe umschlossen werden.
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 > - ✒️ Die Option `--fix` auf der [Befehlszeile](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) kann einige der von dieser Regel gemeldeten Probleme automatisch korrigieren.
 
 Die Listengestaltung von Ionic für iOS 26 und Material Design 3 erwartet eine Organisation der Listenelemente über die zu ihrem Verhalten passende Gruppenkomponente. Diese Regel verhindert, dass ein ungruppiertes `ion-item` direkt unter `ion-list` gerendert wird.

@@ -1,6 +1,6 @@
 ---
 title: "App-lokale Native UI-Erweiterungen (experimentell)"
-sourceRevision: ea91d75a9eb39e1ae390243ae1850313b911364cdb7f8eb638f6c3f99664ffdd
+sourceRevision: "28c271ed247bcab5d60e90531fce06d9523a5b54fbffae8851977a1a6f3dec82"
 ---
 
 # App-lokale Native UI-Erweiterungen (experimentell)
@@ -76,6 +76,31 @@ Die Shell beobachtet DOM-Änderungen und sendet neue Props an den nativen Inhalt
 | `props` | JSON-Objekt mit endlichen Zahlen, Zeichenfolgen, booleschen Werten, null, Arrays und Objekten; begrenzt auf 64K Zeichen. |
 | Aktionsziele | Die Quelle selbst oder ihre Nachfahren. Fehlende, versteckte und deaktivierte Ziele lassen sich nicht aktivieren. |
 | Aktionsanzahl | Bis zu 30 pro Quelle. |
+
+### Natives Scroll-Tracking unter iOS (experimentell)
+
+Geben Sie für ein Element innerhalb eines einzelnen Overflow-Scrollcontainers `scrollElement` an. Die Web-Seite misst das Layout; iOS beobachtet die passende `UIScrollView` und aktualisiert beim Scrollen nur die native Position und Beschneidung. Quellen im selben Container teilen sich einen Beobachter. Die Bindung kalibriert die DOM- und nativen Koordinatenursprünge bei ruhendem Scrollcontainer und behält diese Zuordnung bei Inhaltsaktualisierungen bei. Teilweise sichtbare Bedienelemente bleiben nativ; vollständig abgeschnittene Bedienelemente können keine Eingaben empfangen.
+
+```ts
+const scrollElement = await ionContent.getScrollElement();
+const counter = defineNativeUI({
+  name: 'app.counter',
+  selector: '[data-counter]',
+  scrollElement: () => scrollElement,
+  read(element) {
+    return {
+      props: { count: Number(element.getAttribute('data-count') ?? 0) },
+      actions: { increment: element.querySelector<HTMLButtonElement>('button') },
+    };
+  },
+});
+```
+
+Geben Sie bei einfachem HTML das Element mit `overflow: auto` oder `scroll` zurück. Geben Sie bis zu seiner Bereitschaft `null` zurück und rufen Sie anschließend `shell.markForCheck()` auf, falls diese Bereitschaft das DOM nicht verändert hat. Halten Sie Quellabmessungen und Änderungen am Inhaltslayout beobachtbar; verwenden Sie `markForCheck()` für Änderungen, die die Shell nicht beobachten kann.
+
+Dies verwendet WebKits interne Overflow-View-Hierarchie ohne private Klassennamen. Eine Bindung muss genau einem nativen Scrollcontainer entsprechen; bei fehlender oder mehrdeutiger Zuordnung bleibt die interaktive Web-Quelle erhalten. Verschachteltes Scrollen, abgerundete oder geformte Beschneidung, CSS-Transformationen/Zoom, sticky/fixed-Nachfahren, Dokument-Scrolling, ältere native Binärdateien und Android werden von dieser optionalen Funktion nicht unterstützt. Lassen Sie `scrollElement` weg, um den bestehenden JS-basierten Positionierungspfad beizubehalten. Andere ungebundene Projektionsquellen im selben Scrollcontainer benötigen weiterhin die normale Layoutsynchronisierung. Jedes `scrollend` führt einen Abgleich über den normalen Aktualisierungs- und Bestätigungspfad aus, einschließlich erneuter Versuche nach einer vorübergehenden Bindungsablehnung.
+
+`NativeUIContext.sourceFrame` ist die neueste Layoutstichprobe und keine Benachrichtigung bei jedem Scrollvorgang. Natives Tracking baut SwiftUI-Inhalte nicht aufgrund von Scrollversätzen neu auf. Feste Tab-Zusatzelemente verwenden diese Bindung nicht. Web-Modal-Transformationen bleiben auf ihrem bestehenden Übergabepfad; nicht interaktive abgedeckte Inhalte können vorbereitete Bilder verwenden, während interaktive scrollende Inhalte nativ bleiben.
 
 ## 2a. Eine SwiftUI-View unter iOS registrieren
 
@@ -388,8 +413,8 @@ Elementpositionierung erfordert, dass die Quelle vollständig in den Viewport un
 
 Die Bridge-Bestätigung ist eine Capacitor-Promise-Methode.
 
-Der [Demo-Reader](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/src/native-ui/counter.ts) und die [Demo-SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/ios/App/App/NativeUICounter.swift) zeigen beide Positionen mit app-lokalen Dateien. Öffnen Sie die Native UI-Demoseite, um native Projektion mit ihrem Web-Fallback zu vergleichen.
+Der [Demo-Reader](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/counter.ts) und die [Demo-SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeUICounter.swift) zeigen beide Positionen mit app-lokalen Dateien. Öffnen Sie die Native UI-Demoseite, um native Projektion mit ihrem Web-Fallback zu vergleichen.
 
 ## Beispiel: Mini-Player
 
-Der Demo-Mini-Player zeigt dasselbe Muster mit Titelmetadaten und Wiedergabeaktionen: Ein [DOM-Reader mit Web-Fallback](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/src/native-ui/mini-player.ts) wird mit einer [app-lokalen SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/demo/ios/App/App/NativeMiniPlayer.swift) kombiniert. Die Web-App verwaltet Wiedergabezustand und Modal-Darstellung; native `open`- und `toggle`-Aktionen aktivieren ihre ursprünglichen Schaltflächen. Dies ist ein UI-Beispiel, keine Audio-Engine. Passen Sie die Dateien nach Abschluss der obigen Erweiterungseinrichtung an.
+Der Demo-Mini-Player zeigt dasselbe Muster mit Titelmetadaten und Wiedergabeaktionen: Ein [DOM-Reader mit Web-Fallback](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/mini-player.ts) wird mit einer [app-lokalen SwiftUI-View](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeMiniPlayer.swift) kombiniert. Die Web-App verwaltet Wiedergabezustand und Modal-Darstellung; native `open`- und `toggle`-Aktionen aktivieren ihre ursprünglichen Schaltflächen. Dies ist ein UI-Beispiel, keine Audio-Engine. Passen Sie die Dateien nach Abschluss der obigen Erweiterungseinrichtung an.

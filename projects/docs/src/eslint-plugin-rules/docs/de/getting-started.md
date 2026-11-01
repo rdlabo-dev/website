@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "5db1ec860d9abfb95cac70d42596928a725515dd0b1c36d183444b8b4db3fa97"
+sourceRevision: "873581b37a0345da8a33aa35b031a98e629bc64e119776eccbcec4499d46347c"
 ---
 # @rdlabo/eslint-plugin-rules
 
@@ -12,7 +12,7 @@ sourceRevision: "5db1ec860d9abfb95cac70d42596928a725515dd0b1c36d183444b8b4db3fa9
 
 Gemeinsame Codekonventionen für Angular- und Ionic-Anwendungen mit frameworkunabhängigen TypeScript-Presets für Cloudflare Workers. Erkennen Sie inkonsistente Komponentengrenzen, Template-Verwendung und implizite Zeitzonenoperationen beim Linting, bevor sie die Codeprüfung erreichen.
 
-[Lint-Erkennung und automatische Korrektur ausprobieren](./docs/quickstart.md), in einem kleinen TypeScript-Projekt ohne Installation von Angular oder Ionic.
+[Lint-Erkennung und automatische Korrektur ausprobieren](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/quickstart), in einem kleinen TypeScript-Projekt ohne Installation von Angular oder Ionic.
 
 ## Installation
 

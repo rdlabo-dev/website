@@ -1,6 +1,6 @@
 ---
 title: "Native UI ohne Ionic"
-sourceRevision: 246f4a60f976d78a9ae9f2c649dd2b2ed103d69a691ff24f86e9777ae0375a40
+sourceRevision: "e3562ca2bb0d2fcaa0524ec21799eeec45ab27e3ae888bd04003f9f769bca102"
 ---
 # Native UI ohne Ionic
 
@@ -70,6 +70,10 @@ const shell = await enableNativeUI({
 
 Rufen Sie die Funktion einmal auf, sobald der Quellstamm existiert. Behalten Sie das Handle und rufen Sie beim Auflösen dieses Stamms `await shell.destroy()` auf. Das Plugin ergänzt weder Seitenabstände noch Safe-Area-Regeln; behalten Sie Ihr Anwendungs-CSS. Für Angular, React oder Vue verwenden Sie die [App-Root-Lebenszyklusbeispiele](setup.md#place-startup-in-your-frameworks-app-root) mit dem `/core`-Import. Für animierte Navigation verwenden Sie [Aussetzung bis Abschluss und Abbruch](setup.md#navigation-without-the-theme).
 
+### Benutzerdefinierte Overlays
+
+Rufen Sie vor der Darstellung eines benutzerdefinierten Modals, das den Hintergrund nicht interaktiv macht, `await shell.suspend({ covered: true })` auf und setzen Sie die zurückgegebene Lease nach dem Schließen fort. Vorbereitete native Bilder bewahren das Erscheinungsbild des Hintergrunds, ohne Ihrem HTML native Abmessungen aufzuzwingen. Leistenbilder sind an ihren Proxys in Ihrem `webHost` verankert; das Scrollen der ursprünglichen Quelle bewegt sie daher nicht. Ihre Bildbreite und -höhe stammen von Native, auch wenn Quell- und Proxy-Schaltflächen unterschiedliche CSS-Größen haben. Rufen Sie `shell.suspend()` ohne Optionen auf, wenn Bedienelemente im Web interaktiv bleiben müssen. Die [Aussetzung für benutzerdefinierte Overlays](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui#custom-overlay-suspension) beschreibt Lebenszyklus und Fallback-Verhalten.
+
 ### An das HTML-Theme anpassen
 
 Deklarieren Sie für ein eigenes HTML-Theme `color-scheme: light` oder `color-scheme: dark` im selben CSS, das Ihre Web-Palette auswählt. Hintergrundfarben allein wählen keine native Darstellung. [Helle und dunkle Darstellung](appearance.md) zeigt einen manuellen Umschalter, die Priorität vorhandener Ionic-/Theme-Variablen und das gemeinsame Seitenleistenverhalten.
@@ -122,4 +126,4 @@ Der HTML-Adapter unterstützt derzeit Schaltflächen und Zurückschaltflächen. 
 
 ## Beispiel
 
-Das [reine HTML-Beispiel](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.0.3/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.
+Das [reine HTML-Beispiel](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.

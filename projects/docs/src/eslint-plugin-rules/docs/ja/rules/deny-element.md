@@ -74,12 +74,12 @@ title: deny-element
 
 ## 有効にする場面
 
-overlayにlauncher patternを使うプロジェクトで、このルールを有効にします。[`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)および[`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md)と組み合わせることで、modalとoverlayのlogicをtemplateから分離できます。
+overlayにlauncher patternを使うプロジェクトで、このルールを有効にします。[`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)および[`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler)と組み合わせることで、modalとoverlayのlogicをtemplateから分離できます。
 
 ## 関連項目
 
-- [`@rdlabo/rules/prefer-modal-launcher`](./prefer-modal-launcher.md)
-- [`@rdlabo/rules/prefer-disable-handler`](./prefer-disable-handler.md)
+- [`@rdlabo/rules/prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)
+- [`@rdlabo/rules/prefer-disable-handler`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-disable-handler)
 
 ## 実装
 

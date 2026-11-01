@@ -1,12 +1,12 @@
 ---
 title: "signal-use-as-signal-template"
-sourceRevision: "064d351884f437973a73d276d26335a4dd330f97736e01db2ecb7f4a812312b9"
+sourceRevision: "f1d0d2638594bd9787308eb86e21264e4448833ffcad07784a87e8d5fa126064"
 ---
 # @rdlabo/rules/signal-use-as-signal-template
 
 > Verlangt () beim Zugriff auf Angular-Signals in Templates
 >
-> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](../configuration.md) enthalten.
+> - ⭐️ Diese Regel ist in der Flat Config [`rdlabo.configs.recommended`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) enthalten.
 
 Angular-Signals sind Funktionen. In einem Template muss ein Signal mit `()` aufgerufen werden, um seinen aktuellen Wert zu lesen. Das Vergessen der Klammern ist ein häufiger Fehler bei der Migration von RxJS-`BehaviorSubject` oder von `model()`-Inputs. Diese Regel erkennt Signal-Bezeichner in Angular-Templates und meldet direkte Lesezugriffe wie `{{ count }}` oder `[hidden]="count"`.
 
@@ -92,7 +92,7 @@ Aktivieren Sie diese Regel in jedem Angular-Projekt mit Signals. Sie ist besonde
 
 ## Siehe auch
 
-- [`@rdlabo/rules/signal-use-as-signal`](./signal-use-as-signal.md)
+- [`@rdlabo/rules/signal-use-as-signal`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal)
 
 ## Implementierung
 

@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
+
 import {
   CANONICAL_DOCS_PORTAL_REPOSITORY_URL,
   DOCS_PORTAL_REPOSITORY_URL,
@@ -14,6 +16,10 @@ import {
   resolveEnglishSourceRef,
   repositorySourceLabel,
 } from './package-repository';
+
+const packagePins = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+  .devDependencies as Record<string, string>;
+const ios27Ref = `ios27-v${packagePins['@rdlabo/ionic-theme-ios27']}`;
 
 test('pins English docs to the installed package tag unless an immutable ref is explicit', async () => {
   assert.equal(
@@ -112,8 +118,7 @@ test('resolves README screenshot paths against the pinned package release', asyn
     '<img src="./screenshots/ios27-settings.png" />',
     '[![Comparison](./screenshots/native-ui-shell-drag/comparison.png)](./screenshots/native-ui-shell-drag/comparison.png)',
   ].join('\n');
-  const base =
-    'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.0.3/screenshots/';
+  const base = `https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/${ios27Ref}/screenshots/`;
 
   assert.equal(
     await pinPackageSourceLinks(project, markdown),
@@ -170,13 +175,13 @@ test('supports prefixed release tags for renamed theme packages', async () => {
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
   };
-  assert.equal(await resolveEnglishSourceRef(project), 'ios27-v2.0.3');
+  assert.equal(await resolveEnglishSourceRef(project), ios27Ref);
   assert.equal(
     await pinPackageSourceLinks(
       project,
       '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/main/src/index.ts)',
     ),
-    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.0.3/src/index.ts)',
+    `[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/${ios27Ref}/src/index.ts)`,
   );
 });
 
@@ -208,8 +213,8 @@ test('resolves split iOS 27 packages at the coordinated release without changing
     return new Response('# Guide');
   });
   for (const [name, directory, ref] of [
-    ['ionic-theme-ios27', 'packages/theme-ios27/', 'ios27-v2.0.3'],
-    ['capacitor-native-ui', 'packages/capacitor-native-ui/', 'ios27-v2.0.3'],
+    ['ionic-theme-ios27', 'packages/theme-ios27/', ios27Ref],
+    ['capacitor-native-ui', 'packages/capacitor-native-ui/', ios27Ref],
     ['ionic-theme-ios26', '', 'ios26-v9.4.2'],
   ]) {
     const project = {

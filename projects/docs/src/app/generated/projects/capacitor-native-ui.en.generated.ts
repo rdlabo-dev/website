@@ -5,8 +5,8 @@ export const PROJECT = {
   "name": "Capacitor Native UI",
   "shortName": "Capacitor Native UI",
   "packageName": "@rdlabo/capacitor-native-ui",
-  "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
-  "repositoryBrowseUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/tree/main/packages/capacitor-native-ui",
+  "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
+  "repositoryBrowseUrl": "https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui",
   "demoUrl": "https://ionic-theme-ios27.rdlabo.dev/",
   "releaseNotesUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v2.1.0",
   "category": "capacitor-plugins",
@@ -57,7 +57,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/README.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/README.md"
     },
     {
       "title": "Ionic setup",
@@ -112,7 +112,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/setup.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/setup.md"
     },
     {
       "title": "Native UI without Ionic",
@@ -172,7 +172,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/framework-independent.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/framework-independent.md"
     },
     {
       "title": "Add Vertical Bars while keeping your theme",
@@ -262,7 +262,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/ionic-vertical-bars.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/ionic-vertical-bars.md"
     },
     {
       "title": "Native UI",
@@ -462,7 +462,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/native-ui.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/native-ui.md"
     },
     {
       "title": "Configuration",
@@ -537,7 +537,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/configuration.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/configuration.md"
     },
     {
       "title": "Light and dark appearance",
@@ -572,7 +572,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/appearance.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/appearance.md"
     },
     {
       "title": "Vertical Bars",
@@ -707,7 +707,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/vertical-bars.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/vertical-bars.md"
     },
     {
       "title": "App-local Native UI extensions (experimental)",
@@ -807,7 +807,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/native-ui-extensions.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/native-ui-extensions.md"
     },
     {
       "title": "Migration",
@@ -882,7 +882,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/edit/main/packages/capacitor-native-ui/docs/migration.md"
+      "editUrl": "https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/docs/migration.md"
     }
   ]
 } as const;

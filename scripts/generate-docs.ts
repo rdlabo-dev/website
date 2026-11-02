@@ -515,7 +515,7 @@ async function generateProject(
       page: declaredPage,
       body: rewriteRepositoryResourceLinks(
         splitReadme ? splitReadme.readme : preparedBody,
-        project.repositoryUrl,
+        project.englishDocsRepositoryUrl ?? project.repositoryUrl,
         `${project.releaseTagPrefix ?? 'v'}${packageJson.version}`,
       ),
       useFrontMatterTitle: !resolved.fromPackage,
@@ -748,7 +748,7 @@ async function generateProject(
       scrollMap,
       editUrl: pageEditUrl(
         fromPackage,
-        repositoryUrl,
+        repositoryUrl === project.englishDocsRepositoryUrl ? project.repositoryUrl : repositoryUrl,
         packageJson.version,
         file,
         sourcePath,

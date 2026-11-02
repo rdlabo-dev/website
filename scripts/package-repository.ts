@@ -239,6 +239,12 @@ function packageScopedDirectory(project: {
 }): string | undefined {
   const { repositoryUrl, sourceDirectory } = project;
 
+  if (
+    repositoryUrl === 'https://github.com/webview-native-ui/capacitor-plugin' &&
+    sourceDirectory === 'capacitor-native-ui'
+  )
+    return 'packages/capacitor-native-ui';
+
   if (repositoryUrl === 'https://github.com/webview-native-ui/ionic-theme-ios27') {
     if (sourceDirectory === 'ionic-theme-ios27') return 'packages/theme-ios27';
     if (sourceDirectory === 'capacitor-native-ui') return 'packages/capacitor-native-ui';
@@ -281,6 +287,7 @@ export async function fetchEnglishProjectMarkdown(
   project: {
     repositoryUrl: string;
     englishDocsRef?: string;
+    englishDocsRepositoryUrl?: string;
     releaseTagPrefix?: string;
     packageName: string;
     sourceDirectory: string;
@@ -288,6 +295,10 @@ export async function fetchEnglishProjectMarkdown(
   file: string,
   cache = new Map<string, string>(),
 ): Promise<FetchedEnglishMarkdown> {
+  project = {
+    ...project,
+    repositoryUrl: project.englishDocsRepositoryUrl ?? project.repositoryUrl,
+  };
   const ref = await resolveEnglishSourceRef(project);
   const shouldFallbackToRepositoryReadme = file === 'readme.md' || file === 'getting-started.md';
   const fromPackage = await fetchFirstRepositoryPath(
@@ -359,12 +370,17 @@ export async function fetchEnglishProjectReadme(
   project: {
     repositoryUrl: string;
     englishDocsRef?: string;
+    englishDocsRepositoryUrl?: string;
     releaseTagPrefix?: string;
     packageName: string;
     sourceDirectory: string;
   },
   cache = new Map<string, string>(),
 ): Promise<FetchedEnglishMarkdown | undefined> {
+  project = {
+    ...project,
+    repositoryUrl: project.englishDocsRepositoryUrl ?? project.repositoryUrl,
+  };
   const ref = await resolveEnglishSourceRef(project);
   return (
     (await fetchFirstRepositoryPath(

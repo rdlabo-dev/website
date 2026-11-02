@@ -128,6 +128,8 @@ For `@capacitor-community/admob` and rdlabo Capacitor plugins, English lives in 
 
 English package guides default to the installed package's immutable `vX.Y.Z` tag. Optional `englishDocsRef` overrides that source only with an immutable 40-character commit SHA or version tag; use it when reviewed portal guides postdate a release or the release tag does not contain the guide tree. Portal-owned English falls back through the current portal commit SHA, not a floating branch. API signatures always follow the installed npm version, not the Git ref. Generated source content may be pinned, while “Edit this page on GitHub” intentionally targets the repository's editable `main` branch.
 
+For a repository split, optional `englishDocsRepositoryUrl` preserves the historical repository that contains the reviewed `englishDocsRef` and release-tagged assets. `repositoryUrl` and `repositoryBrowseUrl` identify the current repository; package-page edit links target that repository at the same source path. Keep historical release links where the release actually exists. Remove the historical override when reviewed guides are pinned in the new repository.
+
 ### API sources
 
 1. **`dist/docs.json`** — `!::Identifier::` placeholders expand an entry on its own line. In package `docs/*.md` that GitHub renders, wrap as `<!-- !::Identifier:: -->` so it is hidden on GitHub. The generator expands both forms.

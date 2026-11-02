@@ -230,3 +230,45 @@ test('resolves split iOS 27 packages at the coordinated release without changing
     assert.equal(readme?.repositoryPath, `${directory}README.md`);
   }
 });
+
+test('repository splits preserve reviewed historical guides and their versioned assets', async (t) => {
+  const requests: string[] = [];
+  t.mock.method(globalThis, 'fetch', async (input: string) => {
+    requests.push(String(input));
+    if (String(input).endsWith('/docs/readme.md')) return new Response('', { status: 404 });
+    return new Response('<img src="./screenshots/example.png" />');
+  });
+  const project = {
+    repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
+    englishDocsRepositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
+    englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
+    packageName: '@rdlabo/capacitor-native-ui',
+    sourceDirectory: 'capacitor-native-ui',
+    releaseTagPrefix: 'ios27-v',
+  };
+  const guide = await fetchEnglishProjectMarkdown(project, 'setup.md');
+  const readme = await fetchEnglishProjectReadme(project);
+  assert.equal(guide.repositoryUrl, project.englishDocsRepositoryUrl);
+  assert.equal(guide.repositoryRef, project.englishDocsRef);
+  assert.equal(readme?.repositoryPath, 'packages/capacitor-native-ui/README.md');
+  assert.ok(
+    requests.every((url) =>
+      url.startsWith(
+        `https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/${project.englishDocsRef}/packages/capacitor-native-ui/`,
+      ),
+    ),
+  );
+  assert.match(
+    guide.content,
+    new RegExp(`/ionic-theme-ios27/${ios27Ref}/screenshots/example\\.png`),
+  );
+  requests.length = 0;
+  await fetchEnglishProjectMarkdown(
+    { ...project, englishDocsRepositoryUrl: undefined },
+    'setup.md',
+  );
+  assert.equal(
+    requests[0],
+    `https://raw.githubusercontent.com/webview-native-ui/capacitor-plugin/${project.englishDocsRef}/packages/capacitor-native-ui/docs/setup.md`,
+  );
+});

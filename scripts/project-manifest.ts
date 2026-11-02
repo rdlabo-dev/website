@@ -76,6 +76,8 @@ export interface ProjectDefinition {
   adapter?: 'capacitor-docs-json' | 'markdown';
   /** Immutable Git ref override for English guides (default: installed package tag). */
   englishDocsRef?: string;
+  /** Historical source repository when reviewed guides predate a repository split. */
+  englishDocsRepositoryUrl?: string;
   releaseTagPrefix?: string;
   englishDocsEditBranch?: string;
   /** Additional locales whose reviewed heading structure matches the package source. */
@@ -1244,11 +1246,12 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     name: 'Capacitor Native UI',
     shortName: 'Capacitor Native UI',
     packageName: '@rdlabo/capacitor-native-ui',
-    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
+    englishDocsRepositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     // Reviewed capture limitations and lifecycle guidance after 2.1.0.
     englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
     repositoryBrowseUrl:
-      'https://github.com/webview-native-ui/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
+      'https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui',
     releaseTagPrefix: 'ios27-v',
     releaseNotesUrl:
       'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v2.1.0',

@@ -1675,6 +1675,16 @@ test('publishes separate theme and Native UI guides with current package APIs', 
     assert.equal(theme.version, installedVersion('@rdlabo/ionic-theme-ios27'));
     assert.equal(native.version, theme.version);
     assert.equal(native.packageName, '@rdlabo/capacitor-native-ui');
+    assert.equal(native.repositoryUrl, 'https://github.com/webview-native-ui/capacitor-plugin');
+    if (!prefix) {
+      assert.ok(
+        native.pages.every((page) =>
+          page.editUrl.startsWith(
+            'https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/',
+          ),
+        ),
+      );
+    }
     assert.equal(native.pages.find((page) => page.slug === 'native-ui')!.title, 'Native UI');
     assert.doesNotMatch(native.description, /Preview|プレビュー/);
     assert.ok(

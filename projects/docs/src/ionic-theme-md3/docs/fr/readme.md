@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "967fe0a84fc0efa0aa536056f83be42f3f140e1fdd0e5deb300b40e69f5fe500"
+sourceRevision: "f662e116f177576f4375abbaab6dec9f9dcea6fc248af81e8c6b38dee6ba268b"
 ---
 # Ionic Theme Material Design 3
 
@@ -8,7 +8,7 @@ Bibliothèque de thème CSS/JS qui applique le système de design Material Desig
 
 <!-- rdlabo-docs-pick -->
 
-![Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png)
+![Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v9.1.3/screenshots/md3.png)
 
 <!-- /rdlabo-docs-pick -->
 

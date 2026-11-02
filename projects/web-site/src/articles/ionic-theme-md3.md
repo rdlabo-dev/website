@@ -8,7 +8,7 @@ relatedLibraries:
 emoji: "🎨"
 ---
 
-I maintain [`@rdlabo/ionic-theme-md3`](https://github.com/rdlabo-dev/ionic-theme-md3), a theme that applies Material Design 3 styling to Ionic Framework. It originally began as a compatibility theme for sharing the same HTML with [`@rdlabo/ionic-theme-ios26`](https://github.com/rdlabo-dev/ionic-theme-ios26). Since then, it has grown to support more components, dark mode, page transitions, and visual regression testing—enough to stand on its own as a theme.
+I maintain [`@rdlabo/ionic-theme-md3`](https://github.com/webview-native-ui/ionic-theme-md3), a theme that applies Material Design 3 styling to Ionic Framework. It originally began as a compatibility theme for sharing the same HTML with [`@rdlabo/ionic-theme-ios26`](https://github.com/rdlabo-dev/ionic-theme-ios26). Since then, it has grown to support more components, dark mode, page transitions, and visual regression testing—enough to stand on its own as a theme.
 
 To start, here is the same demo using the same HTML in Ionic's standard `md` mode and with the theme applied. Standard Ionic is on the left; `ionic-theme-md3` is on the right.
 
@@ -58,7 +58,7 @@ provideIonicAngular({
 });
 ```
 
-For React, pass the same `navAnimation` option to `setupIonicReact`; for Vue, pass it to `IonicVue`. See the [README](https://github.com/rdlabo-dev/ionic-theme-md3#installation) for complete examples for each framework.
+For React, pass the same `navAnimation` option to `setupIonicReact`; for Vue, pass it to `IonicVue`. See the [README](https://github.com/webview-native-ui/ionic-theme-md3#installation) for complete examples for each framework.
 
 :::message
 At the time of writing, the latest release is `2.1.0`, supporting `@ionic/core >=8.8.0 <10`. For Ionic versions earlier than 8.8.0, use `@rdlabo/ionic-theme-md3@1.0.2`. Using it together with the latest iOS 26 theme requires Ionic 8.8.1 or later.
@@ -152,7 +152,7 @@ When using both themes, load Sass in the following order.
 @use '@rdlabo/ionic-theme-md3/dist/css/ionic-theme-md3.css';
 ```
 
-Page transitions and Popover animations can also switch according to Ionic's mode. The [README](https://github.com/rdlabo-dev/ionic-theme-md3#optional-use-the-md3-and-ios-26-themes-together) includes a configuration example.
+Page transitions and Popover animations can also switch according to Ionic's mode. The [README](https://github.com/webview-native-ui/ionic-theme-md3#optional-use-the-md3-and-ios-26-themes-together) includes a configuration example.
 
 Because both themes use the same HTML, some components require shared markup that each theme can interpret cleanly. For example, in an `ion-list` with `inset="true"`, wrap `ion-item` elements in `ion-item-group` and place `ion-list-header` outside the group.
 
@@ -168,7 +168,7 @@ Because both themes use the same HTML, some components require shared markup tha
 </ion-list>
 ```
 
-With this structure, iOS 26 can create the surface expected of an Inset list, while MD3 can style the same markup appropriately. Special cases are documented under [Special markup](https://github.com/rdlabo-dev/ionic-theme-md3/blob/main/docs/special-markup.md).
+With this structure, iOS 26 can create the surface expected of an Inset list, while MD3 can style the same markup appropriately. Special cases are documented under [Special markup](https://github.com/webview-native-ui/ionic-theme-md3/blob/main/docs/special-markup.md).
 
 ## Design goals and considerations before adoption
 
@@ -176,7 +176,7 @@ The theme's position and constraints are also important when deciding whether to
 
 - This theme prioritizes Ionic's design approach and compatibility with `ionic-theme-ios26`; it does not aim to reproduce every Material Design 3 specification exactly. If you need a more comprehensive implementation, [`md3-for-ionic`](https://github.com/danielkleebinder/md3-for-ionic) is another option.
 - Many Ionic components use Shadow DOM. Areas that do not expose CSS Custom Properties or `::part` cannot be freely changed by a theme and may require adjustments when Ionic itself is updated.
-- Existing applications with custom CSS may encounter conflicts. Check the relevant components in the demo, and consult the [Migration guide](https://github.com/rdlabo-dev/ionic-theme-md3/blob/main/docs/migration.md) for major-version upgrades.
+- Existing applications with custom CSS may encounter conflicts. Check the relevant components in the demo, and consult the [Migration guide](https://github.com/webview-native-ui/ionic-theme-md3/blob/main/docs/migration.md) for major-version upgrades.
 
 The project will continue to be transparent about these constraints while growing as a practical theme within the boundaries that preserve Ionic's APIs and markup.
 
@@ -187,6 +187,6 @@ The project will continue to be transparent about these constraints while growin
 - [Demo](https://ionic-theme-md3.rdlabo.dev/)
 - [npm](https://www.npmjs.com/package/@rdlabo/ionic-theme-md3)
 - [Documentation](https://docs.rdlabo.dev/projects/ionic-theme-md3)
-- [GitHub](https://github.com/rdlabo-dev/ionic-theme-md3)
+- [GitHub](https://github.com/webview-native-ui/ionic-theme-md3)
 
 If you try it in a real app, I would be glad to hear how it went or which components still need attention. GitHub Issues and Pull Requests are both welcome.

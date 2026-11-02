@@ -162,7 +162,11 @@ const LEGACY_GITHUB_OWNER = ['rdlabo', 'team'].join('-');
 export function normalizePackageMarkdown(markdown: string): string {
   return markdown
     .replaceAll(`https://github.com/${LEGACY_GITHUB_OWNER}/`, 'https://github.com/rdlabo-dev/')
-    .replaceAll(`${LEGACY_GITHUB_OWNER}/`, 'rdlabo-dev/');
+    .replaceAll(`${LEGACY_GITHUB_OWNER}/`, 'rdlabo-dev/')
+    .replace(
+      /((?:github\.com|raw\.githubusercontent\.com)\/)rdlabo-dev\/(ionic-theme-(?:ios27|md3|utils))(?=\/|[)#\s]|$)/g,
+      '$1webview-native-ui/$2',
+    );
 }
 
 const RELATIVE_DOC_FILE_PATTERN =
@@ -171,7 +175,7 @@ const RELATIVE_DOC_FILE_PATTERN =
 /** Keep links between the split theme and Native UI guides inside the portal. */
 export function rewriteThemeWorkspaceLinks(markdown: string): string {
   return markdown.replace(
-    /\]\((?:(?:\.\.\/)+(theme-ios27|capacitor-native-ui)\/|https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/blob\/(?:main|ios27-v\d+\.\d+\.\d+(?:-[\w.-]+)?)\/packages\/(theme-ios27|capacitor-native-ui)\/)(?:docs\/([a-z0-9-]+)\.md|README\.md)(#[^)]*)?\)/g,
+    /\]\((?:(?:\.\.\/)+(theme-ios27|capacitor-native-ui)\/|https:\/\/github\.com\/(?:rdlabo-dev|webview-native-ui)\/ionic-theme-ios27\/blob\/(?:main|ios27-v\d+\.\d+\.\d+(?:-[\w.-]+)?)\/packages\/(theme-ios27|capacitor-native-ui)\/)(?:docs\/([a-z0-9-]+)\.md|README\.md)(#[^)]*)?\)/g,
     (_, relative: string, absolute: string, slug: string | undefined, hash = '') => {
       const project =
         (relative ?? absolute) === 'theme-ios27' ? 'ionic-theme-ios27' : 'capacitor-native-ui';

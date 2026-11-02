@@ -4,7 +4,7 @@ title: はじめに
 
 # Ionic Theme iOS27
 
-`npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable` でインストールします。1.x を使用する場合は [v1.2.1 のガイド](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.1)を参照してください。
+`npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable` でインストールします。1.x を使用する場合は [v1.2.1 のガイド](https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios27-v1.2.1)を参照してください。
 Ionic アプリの Web UI に iOS 27 の Liquid Glass とアニメーションを適用するテーマです。Capacitor iOS アプリでは、対応するコントロールに Native UI を追加できます。2.0.0 から正式サポートされています。
 
 **[Ionic 9 デモ](https://ionic-theme-ios27.rdlabo.dev/) · [セットアップガイド](docs/setup.md)**
@@ -12,9 +12,9 @@ Ionic アプリの Web UI に iOS 27 の Liquid Glass とアニメーション�
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings.png" width="32%" alt="iOS 27 テーマ: Liquid Glass 検索バーを備えたライトモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27 テーマ: ダークモードの設定画面" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-library.png" width="32%" alt="iOS 27 テーマ: Liquid Glass ボタンとタブバーを備えたライブラリ画面" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings.png" width="32%" alt="iOS 27 テーマ: Liquid Glass 検索バーを備えたライトモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="iOS 27 テーマ: ダークモードの設定画面" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-library.png" width="32%" alt="iOS 27 テーマ: Liquid Glass ボタンとタブバーを備えたライブラリ画面" />
 </p>
 
 <!-- /rdlabo-docs-pick -->

@@ -61,12 +61,19 @@ export async function pinPackageSourceLinks(
 
   const tag = `${project.releaseTagPrefix ?? 'v'}${version}`;
   const { owner, repo } = parseRepositoryUrl(project.repositoryUrl);
-  const escapedOwner = owner.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedOwner =
+    owner === 'webview-native-ui'
+      ? '(?:webview-native-ui|rdlabo-dev)'
+      : owner.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const escapedRepo =
     project.packageName === '@rdlabo/ionic-theme-ios26'
       ? '(?:ionic-theme-ios26|ionic-theme-ios27)'
       : repo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return content
+    .replace(
+      /((?:github\.com|raw\.githubusercontent\.com)\/)rdlabo-dev\/(ionic-theme-(?:ios27|md3|utils))(?=\/|[)#\s]|$)/g,
+      '$1webview-native-ui/$2',
+    )
     .replace(
       /(src=["'])\.\/screenshots\//g,
       `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
@@ -76,11 +83,11 @@ export async function pinPackageSourceLinks(
       `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
     )
     .replace(
-      /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/tree\/ios26(?=[)#\s]|$)/g,
+      /https:\/\/github\.com\/(?:rdlabo-dev|webview-native-ui)\/ionic-theme-ios27\/tree\/ios26(?=[)#\s]|$)/g,
       '/ionic-theme-ios26/',
     )
     .replace(
-      /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios27\/blob\/ios26\/docs\/migration\.md/g,
+      /https:\/\/github\.com\/(?:rdlabo-dev|webview-native-ui)\/ionic-theme-ios27\/blob\/ios26\/docs\/migration\.md/g,
       '/ionic-theme-ios26/docs/migration',
     )
     .replace(/\(\.\.\/\.\.\/(src|tests)\//g, `(https://github.com/${owner}/${repo}/blob/${tag}/$1/`)
@@ -100,11 +107,11 @@ export async function pinPackageSourceLinks(
     )
     .replace(
       /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios26\/(?=(?:blob|tree)\/)/g,
-      'https://github.com/rdlabo-dev/ionic-theme-ios27/',
+      'https://github.com/webview-native-ui/ionic-theme-ios27/',
     )
     .replace(
       /https:\/\/raw\.githubusercontent\.com\/rdlabo-dev\/ionic-theme-ios26\//g,
-      'https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/',
+      'https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/',
     );
 }
 
@@ -232,7 +239,7 @@ function packageScopedDirectory(project: {
 }): string | undefined {
   const { repositoryUrl, sourceDirectory } = project;
 
-  if (repositoryUrl === 'https://github.com/rdlabo-dev/ionic-theme-ios27') {
+  if (repositoryUrl === 'https://github.com/webview-native-ui/ionic-theme-ios27') {
     if (sourceDirectory === 'ionic-theme-ios27') return 'packages/theme-ios27';
     if (sourceDirectory === 'capacitor-native-ui') return 'packages/capacitor-native-ui';
   }

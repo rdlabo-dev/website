@@ -1,6 +1,6 @@
 ---
 title: "Fonctionnalités"
-sourceRevision: "2ff3d79f68e4f4a5d0034ab2691c758def435f2c7fe87383a572143a9b1e3f09"
+sourceRevision: "6324ec631ef8a9b8ef7758fade47b06f43c5875a7451029c44ee482324c0e15b"
 ---
 # Fonctionnalités
 
@@ -9,7 +9,7 @@ Personnalisez le thème avec des variables CSS et des mixins Sass, ou adoptez-le
 ## Variables CSS
 
 Plusieurs variables CSS permettent d’adapter les styles par défaut de la bibliothèque à votre design. Consultez ce fichier pour en savoir plus :
-https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/src/styles/default-variables.scss
+https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios26-v9.4.2/src/styles/default-variables.scss
 
 ## Mixin Liquid Glass
 

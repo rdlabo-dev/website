@@ -699,12 +699,15 @@ test('lists ionic theme packages and pins localized README imports', async () =>
           assert.match(
             portalReadme,
             new RegExp(
-              `raw\\.githubusercontent\\.com/rdlabo-dev/${project.repositoryUrl.split('/').at(-1)}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
+              `raw\\.githubusercontent\\.com/webview-native-ui/${project.repositoryUrl.split('/').at(-1)}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
             ),
           );
         }
         for (const link of markdown.matchAll(
-          new RegExp(`https://github\\.com/rdlabo-dev/${projectId}/(?:blob|tree)/[^\\s)\\]]+`, 'g'),
+          new RegExp(
+            `https://github\\.com/webview-native-ui/${projectId}/(?:blob|tree)/[^\\s)\\]]+`,
+            'g',
+          ),
         )) {
           assert.ok(
             link[0].includes(`/${project.releaseTagPrefix ?? 'v'}${expected.version}/`) ||
@@ -1647,7 +1650,7 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
     assert.equal(
       project.releaseNotesUrl,
-      `https://github.com/rdlabo-dev/ionic-theme-ios27/releases/tag/ios27-v${project.version}`,
+      `https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v${project.version}`,
     );
     assert.ok((project.overviewHtml.match(/<img /g) ?? []).length > 0);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);

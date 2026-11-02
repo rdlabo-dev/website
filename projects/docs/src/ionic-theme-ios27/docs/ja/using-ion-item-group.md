@@ -26,7 +26,7 @@ title: ion-item-group の使い方
 
 通常 Ionic は `ion-list` に背景を適用するため、`ion-list-header` は項目と同じ面の中に表示されます。iOS 27 のレイアウトではヘッダーと項目の面を別々に扱います。
 
-![ion-item-group が必要な理由を示すインセットリストの背景比較](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/v3.0.0/screenshots/why-ion-list-inset.png)
+![ion-item-group が必要な理由を示すインセットリストの背景比較](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/v3.0.0/screenshots/why-ion-list-inset.png)
 
 このためテーマは次のように動作します。
 

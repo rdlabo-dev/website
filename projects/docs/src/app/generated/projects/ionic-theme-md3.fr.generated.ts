@@ -5,9 +5,9 @@ export const PROJECT = {
   "name": "rdlabo Ionic Theme Material Design 3",
   "shortName": "Ionic Theme MD3",
   "packageName": "@rdlabo/ionic-theme-md3",
-  "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
+  "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
   "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
-  "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.3",
+  "releaseNotesUrl": "https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.1.3",
   "category": "frontend-tools",
   "icon": "theme",
   "version": "9.1.3",
@@ -32,7 +32,7 @@ export const PROJECT = {
       "description": "Configurez les transitions de navigation MD3 pour les plateformes autres qu’iOS."
     }
   ],
-  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png\" alt=\"Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v9.1.3/screenshots/md3.png\" alt=\"Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {

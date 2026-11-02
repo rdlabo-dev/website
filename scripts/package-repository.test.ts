@@ -110,7 +110,7 @@ test('pins only source links that belong to the package repository', async () =>
 
 test('resolves README screenshot paths against the pinned package release', async () => {
   const project = {
-    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     packageName: '@rdlabo/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
   };
@@ -118,7 +118,7 @@ test('resolves README screenshot paths against the pinned package release', asyn
     '<img src="./screenshots/ios27-settings.png" />',
     '[![Comparison](./screenshots/native-ui-shell-drag/comparison.png)](./screenshots/native-ui-shell-drag/comparison.png)',
   ].join('\n');
-  const base = `https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/${ios27Ref}/screenshots/`;
+  const base = `https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/${ios27Ref}/screenshots/`;
 
   assert.equal(
     await pinPackageSourceLinks(project, markdown),
@@ -172,23 +172,23 @@ test('keeps fork-fetched portal pages editable in the canonical repository', () 
 test('supports prefixed release tags for renamed theme packages', async () => {
   const project = {
     packageName: '@rdlabo/ionic-theme-ios27',
-    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     releaseTagPrefix: 'ios27-v',
   };
   assert.equal(await resolveEnglishSourceRef(project), ios27Ref);
   assert.equal(
     await pinPackageSourceLinks(
       project,
-      '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/main/src/index.ts)',
+      '[source](https://github.com/webview-native-ui/ionic-theme-ios27/blob/main/src/index.ts)',
     ),
-    `[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/${ios27Ref}/src/index.ts)`,
+    `[source](https://github.com/webview-native-ui/ionic-theme-ios27/blob/${ios27Ref}/src/index.ts)`,
   );
 });
 
 test('canonicalizes renamed iOS 26 source and image links without losing its release', async () => {
   const project = {
     packageName: '@rdlabo/ionic-theme-ios26',
-    repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     releaseTagPrefix: 'ios26-v',
   };
   assert.equal(
@@ -196,14 +196,14 @@ test('canonicalizes renamed iOS 26 source and image links without losing its rel
       project,
       '[source](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/main/src/index.ts) ![image](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios26/ios26-v9.2.0/screenshots/ios26.png)',
     ),
-    '[source](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts) ![image](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)',
+    '[source](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts) ![image](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)',
   );
   assert.equal(
     await pinPackageSourceLinks(
       { ...project, packageName: '@rdlabo/ionic-theme-ios27', releaseTagPrefix: 'ios27-v' },
       '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/ios26-v9.4.2/src/index.ts)',
     ),
-    '[iOS 26](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts)',
+    '[iOS 26](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios26-v9.4.2/src/index.ts)',
   );
 });
 
@@ -218,7 +218,7 @@ test('resolves split iOS 27 packages at the coordinated release without changing
     ['ionic-theme-ios26', '', 'ios26-v9.4.2'],
   ]) {
     const project = {
-      repositoryUrl: 'https://github.com/rdlabo-dev/ionic-theme-ios27',
+      repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
       packageName: `@rdlabo/${name}`,
       sourceDirectory: name,
       releaseTagPrefix: name === 'ionic-theme-ios26' ? 'ios26-v' : 'ios27-v',

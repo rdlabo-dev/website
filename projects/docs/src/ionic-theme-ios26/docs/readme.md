@@ -7,7 +7,7 @@ scrollActiveLine: []
 A CSS/JS theme library that applies iOS26 design system to Ionic applications.
 
 <!-- rdlabo-docs-pick -->
-![iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)
+![iOS 26 themed Ionic screens with Liquid Glass tab bar, lists, and controls](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)
 <!-- /rdlabo-docs-pick -->
 
 DEMO is here: https://ionic-theme-ios26.rdlabo.dev/
@@ -18,7 +18,7 @@ This library provides CSS/JS files that bring the iOS26 design system to Ionic a
 
 I'm also working on the Android Design (Material Design 3) theme. Be sure to catch up!
 
-👉️[rdlabo-dev/ionic-theme-md3](https://github.com/rdlabo-dev/ionic-theme-md3)
+👉️[rdlabo-dev/ionic-theme-md3](https://github.com/webview-native-ui/ionic-theme-md3)
 
 
 ## Quick start
@@ -51,7 +51,7 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 
 /**
  * If you will use the design of ion-item-group with ion-list on Android as well, import it.
- * More info: https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios26-v9.4.2/docs/using-ion-item-group.md
+ * More info: https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios26-v9.4.2/docs/using-ion-item-group.md
  * Note: This is include `@rdlabo/ionic-theme-md3`
  * @import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css';
  */

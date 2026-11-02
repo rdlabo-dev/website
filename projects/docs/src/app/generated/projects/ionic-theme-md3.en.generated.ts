@@ -5,9 +5,9 @@ export const PROJECT = {
   "name": "rdlabo Ionic Theme Material Design 3",
   "shortName": "Ionic Theme MD3",
   "packageName": "@rdlabo/ionic-theme-md3",
-  "repositoryUrl": "https://github.com/rdlabo-dev/ionic-theme-md3",
+  "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
   "demoUrl": "https://ionic-theme-md3.rdlabo.dev/",
-  "releaseNotesUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.3",
+  "releaseNotesUrl": "https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.1.3",
   "category": "frontend-tools",
   "icon": "theme",
   "version": "9.1.3",
@@ -32,7 +32,7 @@ export const PROJECT = {
       "description": "Configure MD3 navigation transitions for non-iOS platforms."
     }
   ],
-  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-md3/v9.1.3/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
+  "overviewHtml": "<p data-line=\"0\" class=\"code-line\"><img src=\"https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v9.1.3/screenshots/md3.png\" alt=\"Material Design 3 themed Ionic screens with updated components and navigation\" class=\"md-img\" loading=\"eager\" fetchpriority=\"high\"></p>\n",
   "path": "/projects/ionic-theme-md3",
   "relatedArticles": [
     {
@@ -101,7 +101,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/README.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/README.md"
     },
     {
       "title": "Using ion-item-group",
@@ -121,7 +121,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/using-ion-item-group.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/docs/using-ion-item-group.md"
     },
     {
       "title": "Special markup",
@@ -155,7 +155,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/special-markup.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/docs/special-markup.md"
     },
     {
       "title": "Keep lists consistent with ESLint",
@@ -187,7 +187,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/eslint.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/docs/eslint.md"
     },
     {
       "title": "Migration",
@@ -216,7 +216,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/migration.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/docs/migration.md"
     },
     {
       "title": "E2E screenshot testing",
@@ -246,7 +246,7 @@ export const PROJECT = {
       ],
       "codes": [],
       "scrollMap": [],
-      "editUrl": "https://github.com/rdlabo-dev/ionic-theme-md3/edit/main/docs/e2e-testing.md"
+      "editUrl": "https://github.com/webview-native-ui/ionic-theme-md3/edit/main/docs/e2e-testing.md"
     },
     {
       "title": "API",

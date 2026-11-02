@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "808a165977d4d68a03f58b3e5bb4d6fc71eb784946a39bac808acaa628c208bc"
+sourceRevision: "cdcac516f43632a4e14060eb12638d49c2fc4ef51e066e006b655331becd1675"
 ---
 # Ionic Theme iOS26
 
@@ -8,7 +8,7 @@ Eine CSS-/JS-Theme-Bibliothek, die das iOS26-Designsystem auf Ionic-Anwendungen 
 
 <!-- rdlabo-docs-pick -->
 
-![Ionic-Oberflächen im iOS-26-Design mit Liquid-Glass-Tab-Leiste, Listen und Bedienelementen](https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)
+![Ionic-Oberflächen im iOS-26-Design mit Liquid-Glass-Tab-Leiste, Listen und Bedienelementen](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios26-v9.4.2/screenshots/ios26.png)
 
 <!-- /rdlabo-docs-pick -->
 

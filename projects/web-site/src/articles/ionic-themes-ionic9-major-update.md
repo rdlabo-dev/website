@@ -18,7 +18,7 @@ Although the themes look very different, they are designed around the same Ionic
 The iOS 26 design applies to Ionic's `ios` mode, while Material Design 3 applies to `md` mode. You can share the markup that carries data, events, and accessibility semantics without adding more `isPlatform('ios')` branches to your templates.
 
 - [`@rdlabo/ionic-theme-ios26`](https://github.com/rdlabo-dev/ionic-theme-ios26): `9.0.0`
-- [`@rdlabo/ionic-theme-md3`](https://github.com/rdlabo-dev/ionic-theme-md3): `9.0.0`
+- [`@rdlabo/ionic-theme-md3`](https://github.com/webview-native-ui/ionic-theme-md3): `9.0.0`
 
 The main goal of this release is to align each theme's major version with the supported Ionic 9 release. Ionic 8 remains supported, and the demos, tests, and documentation now cover both versions so their visual differences can be checked side by side.
 
@@ -61,7 +61,7 @@ This change was already introduced in `ios26@3.0.0` and `md3@2.0.0`. If you use 
 See each theme's migration guide for details.
 
 - [ionic-theme-ios26 migration guide](https://github.com/rdlabo-dev/ionic-theme-ios26/blob/main/docs/migration.md)
-- [ionic-theme-md3 migration guide](https://github.com/rdlabo-dev/ionic-theme-md3/blob/main/docs/migration.md)
+- [ionic-theme-md3 migration guide](https://github.com/webview-native-ui/ionic-theme-md3/blob/main/docs/migration.md)
 
 ## Four new features introduced in this update
 
@@ -227,7 +227,7 @@ Coverage includes Alert, Action Sheet, Modal, Popover, Toast, Tabs, and Range in
 The reference images are available on GitHub. Each component has both Light and Dark snapshots.
 
 - [iOS26 theme visual regression snapshots](https://github.com/rdlabo-dev/ionic-theme-ios26/tree/main/demo/e2e/screenshot.spec.ts-snapshots)
-- [MD3 theme visual regression snapshots](https://github.com/rdlabo-dev/ionic-theme-md3/tree/main/demo/e2e/screenshot.spec.ts-snapshots)
+- [MD3 theme visual regression snapshots](https://github.com/webview-native-ui/ionic-theme-md3/tree/main/demo/e2e/screenshot.spec.ts-snapshots)
 
 With an environment that compares the same components and states across Ionic 8 and 9, version support is backed by continuous visual verification rather than a declaration alone.
 

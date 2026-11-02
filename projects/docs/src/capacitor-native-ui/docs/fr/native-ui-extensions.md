@@ -1,6 +1,6 @@
 ---
 title: "Extensions Native UI locales à l’application (expérimentales)"
-sourceRevision: "28c271ed247bcab5d60e90531fce06d9523a5b54fbffae8851977a1a6f3dec82"
+sourceRevision: "f518386a94ae60aded9e2e9e49057752084cc50c813c6d2c9464b985e92dd948"
 ---
 # Extensions Native UI locales à l’application (expérimentales)
 
@@ -412,8 +412,8 @@ Le placement d’élément nécessite que la source tienne entièrement dans la 
 
 L’accusé de réception du pont est une méthode Promise de Capacitor.
 
-Le [lecteur de démonstration](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/counter.ts) et la [View SwiftUI de démonstration](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeUICounter.swift) présentent les deux placements avec des fichiers locaux à l’application. Ouvrez la page Native UI de la démo pour comparer projection native et repli Web.
+Le [lecteur de démonstration](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/counter.ts) et la [View SwiftUI de démonstration](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeUICounter.swift) présentent les deux placements avec des fichiers locaux à l’application. Ouvrez la page Native UI de la démo pour comparer projection native et repli Web.
 
 ## Exemple : mini-lecteur
 
-Le mini-lecteur de démonstration applique le même modèle aux métadonnées de piste et actions de lecture : un [lecteur DOM et repli Web](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/mini-player.ts) associé à une [View SwiftUI locale](https://github.com/rdlabo-dev/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeMiniPlayer.swift). L’application Web gère l’état de lecture et la modale ; les actions natives `open` et `toggle` activent ses boutons d’origine. C’est un exemple d’interface, pas un moteur audio. Adaptez ces fichiers après la configuration des extensions ci-dessus.
+Le mini-lecteur de démonstration applique le même modèle aux métadonnées de piste et actions de lecture : un [lecteur DOM et repli Web](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/demo/src/native-ui/mini-player.ts) associé à une [View SwiftUI locale](https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/demo/ios/App/App/NativeMiniPlayer.swift). L’application Web gère l’état de lecture et la modale ; les actions natives `open` et `toggle` activent ses boutons d’origine. C’est un exemple d’interface, pas un moteur audio. Adaptez ces fichiers après la configuration des extensions ci-dessus.

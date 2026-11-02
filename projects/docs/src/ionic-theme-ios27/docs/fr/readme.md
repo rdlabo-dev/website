@@ -1,10 +1,10 @@
 ---
 title: "Premiers pas"
-sourceRevision: "e329b0d88f0ce3895843eecb598a0972d6ac6ef8f588b25c2c1e99834557b1d6"
+sourceRevision: "70cae2f88712503266a7e3076201333f990b771c8b623dd9bbe7d9199f857b6e"
 ---
 # Ionic Theme iOS27
 
-Installez avec `npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable`. Pour la version 1.x, consultez le [guide v1.2.1](https://github.com/rdlabo-dev/ionic-theme-ios27/tree/ios27-v1.2.1).
+Installez avec `npm install @rdlabo/ionic-theme-ios27 @erkamyaman/capacitor-foldable`. Pour la version 1.x, consultez le [guide v1.2.1](https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios27-v1.2.1).
 Un thème pour les applications Ionic qui apporte Liquid Glass et les animations d’iOS 27 au Web. Les applications Capacitor iOS peuvent aussi activer Native UI pour les contrôles pris en charge, avec une prise en charge officielle depuis la version 2.0.0.
 
 **[Démo Ionic 9](https://ionic-theme-ios27.rdlabo.dev/) · [Guide d’installation](/docs/setup)**
@@ -12,9 +12,9 @@ Un thème pour les applications Ionic qui apporte Liquid Glass et les animations
 <!-- rdlabo-docs-pick -->
 
 <p>
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : réglages en mode clair avec une barre de recherche Liquid Glass" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : réglages en mode sombre" />
-  <img src="https://raw.githubusercontent.com/rdlabo-dev/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec boutons et barre d’onglets Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings.png" width="32%" alt="Thème iOS 27 : réglages en mode clair avec une barre de recherche Liquid Glass" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-settings-dark.png" width="32%" alt="Thème iOS 27 : réglages en mode sombre" />
+  <img src="https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27/ios27-v2.1.0/screenshots/ios27-library.png" width="32%" alt="Thème iOS 27 : bibliothèque avec boutons et barre d’onglets Liquid Glass" />
 </p>
 
 <!-- /rdlabo-docs-pick -->

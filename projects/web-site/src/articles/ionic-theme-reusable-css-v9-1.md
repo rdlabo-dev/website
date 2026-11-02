@@ -26,7 +26,7 @@ Users do not build their applications exactly like a theme demo. They combine st
 I have therefore released `v9.1.0` of both the iOS 26 and Material Design 3 themes.
 
 - [`@rdlabo/ionic-theme-ios26` v9.1.0](https://github.com/rdlabo-dev/ionic-theme-ios26/releases/tag/v9.1.0)
-- [`@rdlabo/ionic-theme-md3` v9.1.0](https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.0)
+- [`@rdlabo/ionic-theme-md3` v9.1.0](https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.1.0)
 
 This update brings the following changes for users:
 
@@ -211,12 +211,12 @@ npm install @rdlabo/ionic-theme-md3@^9.1.0
 The implementation diffs, verification details, and related Pull Requests are available in each release note.
 
 - [ionic-theme-ios26 v9.1.0 Release Notes](https://github.com/rdlabo-dev/ionic-theme-ios26/releases/tag/v9.1.0)
-- [ionic-theme-md3 v9.1.0 Release Notes](https://github.com/rdlabo-dev/ionic-theme-md3/releases/tag/v9.1.0)
+- [ionic-theme-md3 v9.1.0 Release Notes](https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.1.0)
 
 ## One display bug prompted a review of the themes' overall strength
 
 The Radio Group bug in Issue #129 could be fixed by changing a single selector. Without that minimal reproduction, however, I do not think I would have reviewed all the CSS that assumed the demo's DOM structure or obstructed application overrides at this point.
 
-I would once again like to thank the reporter of Issue #129 for providing a concrete reproduction. If you encounter a problematic combination of components or styles that are difficult to override, please let me know by opening an Issue for the [iOS 26 theme](https://github.com/rdlabo-dev/ionic-theme-ios26/issues) or [MD3 theme](https://github.com/rdlabo-dev/ionic-theme-md3/issues).
+I would once again like to thank the reporter of Issue #129 for providing a concrete reproduction. If you encounter a problematic combination of components or styles that are difficult to override, please let me know by opening an Issue for the [iOS 26 theme](https://github.com/rdlabo-dev/ionic-theme-ios26/issues) or [MD3 theme](https://github.com/webview-native-ui/ionic-theme-md3/issues).
 
 A theme should provide good defaults and no more. Returning control beyond those defaults to Ionic's public APIs and the CSS cascade is also an important measure of quality for an open source theme.

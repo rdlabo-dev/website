@@ -77,7 +77,7 @@ test('removed Ionic Framework feedback pages stay out of published docs', async 
 });
 
 test('split theme and Native UI guides resolve localized links and heading fragments', async () => {
-  const ids = ['ionic-theme-ios27', 'capacitor-native-ui'];
+  const ids = ['ionic-theme-ios27', 'capacitor-native-ui', 'ionic-theme-md3'];
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
     const prefix = subPath ? `/${subPath}` : '';
     const documents = new Map<string, Document>();
@@ -525,9 +525,10 @@ test('builds bounded search indexes for every published language with the compon
     }),
   );
   assert.ok(
-    // Aggregate of all four locales; Engine 0.0.8's 22 guides bring the index to about 5.600 MiB.
-    sizes.reduce((total, size) => total + size, 0) < 5.7 * 1024 * 1024,
-    'Search bundle must remain under 5.70 MiB across all published locales',
+    // Aggregate of all four locales: 1,040 canonical pages, including seven new
+    // Engine, Cordova, and color guides, currently produce about 6.009 MiB.
+    sizes.reduce((total, size) => total + size, 0) < 6.1 * 1024 * 1024,
+    'Search bundle must remain under 6.10 MiB across all published locales',
   );
 });
 

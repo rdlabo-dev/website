@@ -1,7 +1,8 @@
 ---
 title: "Disposition Vertical Bars"
-sourceRevision: 28dd1a470ba3540ff383b9b9a080f755664b36711e54561ddf3d8b75a812cfad
+sourceRevision: "916b926c605374fb20a296eb4c8d591f00f9d4857ed9cb8e4e686f61d41d4491"
 ---
+
 # Disposition Vertical Bars
 
 Cette feuille de style facultative du thème gère l’espacement et le positionnement Web autour d’un rail vertical. Elle peut accompagner votre thème existant sans charger toute l’apparence iOS 27. Le rendu natif et la synchronisation d’état sont fournis séparément par [Capacitor Native UI](/capacitor-native-ui/docs/vertical-bars).
@@ -38,27 +39,52 @@ Les classes sont physiques — `-left` désigne toujours le bord gauche physique
 
 ### Placement de la barre d’outils Web
 
-Le rail Web utilise la disposition de la barre d’outils d’iPhone Duo même sans géométrie native : un point de départ vertical situé à 170px du haut, des contrôles carrés de 48px, 4px entre les contrôles d’un groupe et 12px entre les groupes. Les contrôles se placent à au moins 24px du bord physique, ou au centre du rail réservé si cela exige un décalage plus grand. Ces valeurs par défaut s’appliquent aussi aux contrôles en arrière-plan derrière une modale de type sheet. Un bouton de retour occupe l’espace d’un contrôle, suivi de l’espacement entre groupes.
+Sans géométrie de l’appareil, le rail Web utilise par défaut la disposition mesurée de la barre d’outils de l’écran externe de l’iPhone Duo : origine supérieure à 174px, contrôles carrés de 48px, 4px entre contrôles d’un groupe et 12px entre groupes. Les contrôles restent à au moins 24px du bord physique, ou sont centrés dans le rail réservé si cela impose un décalage supérieur. Ces valeurs s’appliquent aussi aux contrôles d’arrière-plan derrière une feuille modale. Un bouton de retour occupe un contrôle suivi de l’espacement entre groupes.
 
 `--ios-theme-vertical-bars-toolbar-top` remplace l’origine supérieure. Le positionnement de la barre d’outils modale continue de tenir compte du décalage de la sheet. Lorsqu’elles sont disponibles, les mesures natives priment sur ces valeurs Web par défaut.
+
+### Appliquer les valeurs de disposition de l’appareil
+
+Résolvez les dimensions de l’appareil dans le traitement initial de disposition et le gestionnaire de changements Foldable existants de l’application :
+
+```ts
+import { Foldable } from '@erkamyaman/capacitor-foldable';
+import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+const metrics = await resolveVerticalBarsLayout(Foldable);
+setVerticalBarsLayout(metrics);
+```
+
+Le résolveur utilise le point d’entrée d’intégration Native UI sans SDK ; il ne démarre pas la projection native. Réutilisez les abonnements existants au placement, à la posture et au redimensionnement ; le résolveur ne s’abonne pas et ne démarre pas Native UI. Si les lectures peuvent se chevaucher, ignorez les résultats périmés dans ce gestionnaire existant.
+
+Le résolveur accepte un objet exposant `getBarPlacement()` et `getReservedRegions()`, sans dépendre de Foldable lui-même. Il renvoie les valeurs logiques `edge`, `inset` et `toolbarTop`. Une API non prise en charge ou un échec de lecture laisse ces champs indéfinis. Le viewport courant et le sens du document déterminent le côté physique du rail. Les rectangles des régions utilisent les pixels CSS du viewport et incluent déjà leurs marges.
+
+**Les valeurs par défaut restent dans `setVerticalBarsLayout` pour la compatibilité :** l’absence de placement désactive le rail Web, l’omission du retrait conserve la largeur définie par la feuille de style et l’omission de l’origine supérieure préserve les personnalisations CSS/en ligne existantes, avec 174px uniquement si aucune valeur n’est configurée. Effacer la géométrie ou désactiver le rail restaure l’ancienne configuration en ligne/CSS seulement si la valeur et la priorité en ligne correspondent toujours à l’écriture du helper. Les valeurs différentes écrites ensuite par l’application sont préservées ; une écriture identique ne peut pas être distinguée de celle du helper. Des régions réservées vides ou inutilisables laissent `toolbarTop` indéfini au lieu d’inventer une mesure. L’origine mesurée pour l’écran interne est de 124px ; transmettez le résultat du fournisseur pour l’utiliser. Sans géométrie, le repli fixe de l’écran externe ne reproduit pas le placement de l’écran interne.
+
+Le résolveur est une API de l’adaptateur Native UI, pas une API d’appareil du thème ou de l’Engine. Cet exemple nécessite une version de l’adaptateur exposant `resolveVerticalBarsLayout` ; elle n’est pas disponible dans Capacitor Native UI 2.1.0. Le thème accepte de simples valeurs de disposition sans importer de SDK d’appareil.
 
 ### Disposition du contenu et des superpositions
 
 | Surface | Disposition avec la feuille de style du rail |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Routeurs et arrière-plans des composants | Restent sur toute la fenêtre. |
-| `ion-content` | Met en retrait son premier plan défilant. |
-| `ion-toolbar` | Met en retrait le premier plan de son conteneur. |
-| `ion-fab` | S’ajuste uniquement à côté de l’interface système. |
-| `ion-modal` pleine largeur, y compris les feuilles | Applique le retrait au premier plan. Avec le runtime actif, la modale supérieure projette les contrôles admissibles de sa barre d’outils dans son propre rail ; les rails des feuilles suivent leurs limites visibles lorsque le palier change. |
-| Modale centrée | Conserve les boutons de barre d’outils sans retrait du rail de page. |
-| `ion-menu` / `ion-popover` | Les composants internes au premier plan conservent la gestion standard des zones de sécurité Ionic, sans conversion de la page principale. |
-| Menu à côté de l’interface système | Conserve son hôte d’animation sur toute la fenêtre ; seul le conteneur visible est décalé du retrait. |
+| --- | --- |
+| Routeurs et arrière-plans des composants | Occupent toujours tout le viewport. |
+| `ion-content` | Applique un retrait à son premier plan défilant. |
+| `ion-toolbar` | Applique un retrait au premier plan du conteneur. |
+| `ion-fab` | Ajusté uniquement à côté de l’interface système. |
+| `ion-modal` chevauchant la colonne du rail actif | Applique le retrait au premier plan. Avec le runtime actif, la modale supérieure projette les contrôles admissibles de sa barre d’outils dans son propre rail ; les rails de feuilles suivent les limites visibles lorsque le point d’arrêt change. |
+| Modale hors de la colonne du rail actif | Conserve ses boutons de barre d’outils, sans retrait de rail de page. |
+| `ion-menu` / `ion-popover` | Les composants internes de premier plan conservent la gestion standard des zones sûres d’Ionic, sans conversion de page principale. |
+| Menu du côté de l’interface système | Conserve son hôte d’animation couvrant tout le viewport ; seul le conteneur visible est décalé du retrait. |
 | Menu du côté opposé | Inchangé. |
 
 La variable de zone de sécurité Ionic correspondante est réinitialisée dans les composants de premier plan en retrait pour éviter que leurs descendants ajoutent à nouveau ce retrait.
 
-L’admissibilité d’une modale dépend de sa largeur visible, pas de la posture de la charnière ni du type de modale. Gauche et droite restent des coordonnées physiques en RTL ; `side="start"` et `side="end"` d’Ionic restent logiques.
+L’admissibilité d’une modale dépend de la position et de la largeur de sa disposition : les dialogues chevauchant la colonne du rail actif projettent les contrôles admissibles, y compris les feuilles flottantes de l’écran externe. Ceux qui restent hors de cette colonne conservent leurs contrôles de barre d’outils. Les transformations de présentation ne modifient pas cette décision. Les dialogues pleine largeur conservent leur comportement existant si aucune mesure de retrait n’est fournie. Gauche et droite restent des coordonnées physiques en RTL ; `side="start"` et `side="end"` d’Ionic restent logiques.
+
+Avec le thème iOS 27 chargé et `ios-theme-vertical-bars` ou `ios-theme-fold-expanded` activé sur `ion-app`, les cartes et feuilles modales flottantes laissent au moins 8px de chaque côté. Les viewports d’au moins 600px de haut limitent leur largeur à 653px ; les plus courts utilisent la largeur disponible moins 16px. Leur hauteur maximale réserve au-dessus de la modale au moins 8px ou la zone sûre supérieure. Les points d’arrêt des feuilles contrôlent toujours la hauteur visible. Les dialogues ordinaires dans les grandes vues de ces dispositions utilisent les mêmes largeur et dégagement supérieur. Les valeurs habituelles des téléphones et tablettes restent inchangées lorsqu’aucune de ces classes n’est activée.
+
+Utilisez les propriétés Ionic `--width`, `--max-width` et `--height` pour le dimensionnement propre à l’application. Une présentation explicitement plein écran peut définir `--width: 100%`, `--max-width: none` et `--height: 100%` ; son admissibilité au rail reste déterminée par la largeur obtenue du dialogue.
 
 Le mode est indépendant du mode des composants : une application peut garder `mode: 'md'` d’Ionic sur iOS tout en activant Vertical Bars. Aucun composant n’a besoin de `mode="ios"`.
 

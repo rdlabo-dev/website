@@ -1,11 +1,11 @@
 ---
 title: "Virtuelles Scrollen"
-sourceRevision: "860d9dd28cef8762485731fcadbf34d84ab58f4dd303ae551b873ad428481f88"
+sourceRevision: "5d3c4b55f1fc34dccc90d9213bfc90a5ee71c9a0aba5be97a972b8ceb22a4ebd"
 ---
 Erweitern Sie einen vorhandenen virtuellen CDK-Scroll-Viewport um scrollabhängige Header. Beginnen Sie mit [IonContent](/docs/ion-content) für das Header-/Safe-Area-Muster und ersetzen Sie anschließend den Scroll-Host durch einen Viewport. Verwenden Sie dies nach der [Installation](/docs/readme#installation).
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.7/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';

@@ -1,6 +1,6 @@
 ---
 title: "Web-Projektion und Batches"
-sourceRevision: "baa0ddcede13b0edcba2bd889f3f13d3f279f711197f63c5ef4d27b735842f0f"
+sourceRevision: "0131428ef645a9f2ff4db71fc35a790e7574fdcf6f1cec4bc5402b8defc8ae78"
 ---
 # Untergeordnete Web-Projektion
 
@@ -34,10 +34,23 @@ Container, Bridge und Aktualisierungscallbacks oben gehören zum konsumierenden 
 
 1. Rufen Sie nach einer akzeptierten nativen Aktualisierung `projection.consider(revision, sources)` auf. Quellen ordnen native IDs und Viewport-Rechtecke ihrem Quell-DOM zu; sie müssen nicht im Fallback-Element liegen. Bilder werden vorab aufgenommen und dekodiert.
 2. Rufen Sie bei Erscheinungsbildänderungen `projection.changed()` oder zur Invalidierung der Scrollgeometrie `projection.changed(scrollElement)` auf. Layoutaktualisierungen laufen über `consider`; verwenden Sie `invalidate()` für andere Geometrieänderungen.
-3. Rufen Sie vor dem Überdecken nativer Inhalte durch ein Web-Overlay `projection.begin()` auf. Es zeigt bereits vorbereitete Pixel am festen Fallback. Hier startet weder eine neue Aufnahme noch Dekodierung. Ist keine Aufnahme verfügbar, behält das Plugin seinen normalen Web-Fallback.
-4. Schließen Sie `projection.owners` aus normalen nativen Aktualisierungen aus, solange das Bild diese Quellen verwaltet. `visibleOwners` hält deren Rückkehrpixel während nativer Wiederherstellung; `preparedOwners` kennzeichnet Quellen mit vorbereiteten Bildern. Diese Arrays sind schreibgeschützte Momentaufnahmen.
+3. Rufen Sie vor dem Überdecken nativer Inhalte durch ein Web-Overlay `projection.begin()` auf. Es zeigt bereits vorbereitete Pixel am festen Fallback. Hier startet weder eine neue Aufnahme noch Dekodierung. Ist kein Bild bereit, wird keine Pixel-Lease erworben. Das Plugin behält seine bestehende Zuständigkeit und entscheidet über den Umgang mit nicht verfügbaren Bildern.
+4. Schließen Sie `projection.owners` aus normalen Native-Aktualisierungen aus, solange deren Pixel an das Bild delegiert sind. `visibleOwners` hält deren Rückkehrpixel während der Native-Wiederherstellung; `preparedOwners` kennzeichnet Quellen mit vorbereiteten Bildern. Diese Arrays sind schreibgeschützte Momentaufnahmen.
 5. Rufen Sie `projection.end()` auf, senden Sie die normale native Aktualisierung und rufen Sie dann `projection.updated(snapshotToken, acceptedIDs, revision)` auf. Eine neuere Bestätigung mit allen erfassten IDs entfernt das Bild.
 6. Rufen Sie bei Freigabe der Fläche `projection.destroy()` auf. Es gibt nur eigene Bilder und Listener frei; das Plugin verwaltet abschließenden nativen Reset und sein DOM.
+
+Bildanforderungen, Pixelübergaben und Renderer-Zuständigkeit sind voneinander getrennt. `begin()` fordert ein Bild an; es gibt die Native-Zuständigkeit nicht frei und bedeutet nicht, dass Pixel bereitstehen. Die Anforderung bleibt über verzögerte Initialisierung und Vorbereitung hinweg bestehen, bis `end()` sie abbricht. Eine Dokumentpause hält dieselbe Anforderung unabhängig davon aufrecht.
+
+| Bildzustand | `owners` | `visibleOwners` | Renderer-Aktion |
+| --- | --- | --- | --- |
+| Inaktiv / in Vorbereitung | Leer | Leer | Normales Native-Rendering beibehalten. Ein vorbereiteter Cache allein überträgt keine Pixel. |
+| Abdeckung ausstehend (vorbereitete Pixel) | Aufgenommene Quellen | Leer | Geordneten Abdeckungstransport nutzen; die native Eintrittskopie überbrückt die Zeit bis zur Bestätigung. |
+| Bild angezeigt | Aufgenommene Quellen | Aufgenommene Quellen | Diese Steuerelemente vorübergehend aus Native-Aktualisierungen auslassen, während der Renderer die Zuständigkeit für ihre Quellen behält. |
+| Native-Wiederherstellung | Leer | Zuvor sichtbare Quellen | Native-Steuerelemente erneut senden. Das Bild bis zu einer neueren, vollständigen Bestätigung behalten. |
+
+Der Bildzustand ist die einzige Quelle für diese schreibgeschützten Arrays. Bewegung, Cache-Fehlzugriffe und das Ende einer Bildübergabe geben eine Renderer-Quelle nicht von selbst an Web zurück. Der nutzende Renderer entscheidet dies bei entfernten oder ungeeigneten Quellen, abgelehnten Native-Steuerelementen oder der Freigabe. Die Benachrichtigung `painted` durchläuft eine Rendering-Gelegenheit, bevor sie die native Eintrittskopie entfernt; sie ist keine API für den Abschluss des Compositors.
+
+Bei zusammengesetzten Steuerelementen deklariert `sources` die exakten vom Bild dargestellten DOM-Elemente und ersetzt den Standardwert `[element]`. `element` bleibt der Steuerungs- und Layoutanker; nehmen Sie es nur ausdrücklich auf, wenn das Bild auch dieses gesamte Element darstellt. Listen Sie bei einer teilweisen Schaltflächengruppe nur die ausgewählten Kinder auf, damit nicht ausgewählte Geschwister ihre eigene Darstellung behalten. Nehmen Sie bei durchsuchbaren Tabs die dargestellten zugehörigen Auslöser- und Fußzeilenelemente auf. `options.current(sources)` erhält bei der Prüfung von Darstellung und Wiederherstellung dieselbe Menge aufgenommener Quellen. Wird ein zugehöriges Element in einen anderen Kontext verschoben, wird daher dessen altes Bild ungültig, auch wenn der Layoutanker verbunden bleibt.
 
 Die Engine bereitet ein nicht interaktives `img` innerhalb des Fallback-Containers vor (direkt in dessen offenem ShadowRoot, sofern vorhanden), während Native sichtbar ist. Sie verwendet das dekodierte Bild und den DOM-Knoten über Übergaben hinweg wieder und gibt sie frei, wenn der Gültigkeitsbereich stillgelegt oder zerstört wird. Das Bild ist `inert`, vor Hilfstechnologien verborgen und vom Hit-Testing ausgeschlossen. Der vorhandene Fallback und seine Kinder werden niemals geklont, ersetzt, entfernt oder mit `inert`/`aria-hidden` versehen; Listener, Werte und Anwendungsänderungen bleiben über die Projektion hinweg erhalten. Sowohl `::before` als auch `::after` bleiben für die Anwendung verfügbar.
 

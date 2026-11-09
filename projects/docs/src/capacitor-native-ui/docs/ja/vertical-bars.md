@@ -88,6 +88,16 @@ Web レイアウト更新とネイティブの利用可否を分離してくだ�
 
 対応 iOS では `.ios-theme-vertical-bars` が変えるのはシステムが物理的なサイドレールへ移すコントロールだけです。クラス適用後、対象のタブ、戻る操作、メニューボタン、ツールバー操作を SwiftUI の `TabView` とツールバーで表示します。OS がレール edge を報告する場合（iOS 27.1 以降にリンクした iPhone Duo）、適用済みの配置と一致する必要があります。不一致やデバイスからの edge がなければ Web フォールバックを維持します。配置の希望値で非対応のネイティブレールを有効にはできません。SwiftUI が適応配置と Liquid Glass の外観を管理し、ラベル、アイコン、選択・無効状態、ルーティング、フォーム送信、クリックハンドラーは Ionic を正とします。
 
+タブのバッジは、元の `ion-tab-button` 内の可視の `ion-badge` から取得します。テキストを更新するとネイティブバッジも更新され、非表示または削除するとバッジが消えます。ネイティブレールは SwiftUI のシステムのバッジ表示を使います。Web フォールバックは CSS の色も含め、元の Ionic タブとバッジを維持します。Ionic は空のバッジをデフォルトで隠すため、通知ドットを要求するには空のバッジを CSS で可視にする必要があります。
+
+```html
+<ion-tab-button tab="inbox">
+  <ion-icon name="mail-outline"></ion-icon>
+  <ion-label>Inbox</ion-label>
+  <ion-badge color="danger">3</ion-badge>
+</ion-tab-button>
+```
+
 SwiftUI の面はシステムレール内でクリップ・ヒットテストされます。その物理領域の外の Web 内容は表示・操作を維持します。ランタイムは元の `ion-tab-button` へ転送する前にタブ選択を先行更新し、他のネイティブコントロールと同じイベント・古いリビジョン対策を使います。オーバーレイは使用時に[任意のテーマレールレイアウト](/ionic-theme-ios27/docs/vertical-bars-layout#reserve-the-vertical-rail)に従い、独自レイアウトはアプリが管理します。
 
 ### ネイティブポップオーバー（Vertical Bars のみ）
@@ -129,7 +139,7 @@ const rail = await enableNativeUI({
 </ion-header>
 ```
 
-すべての fill（`default`、`clear`、`solid`、`outline`）と Ionic カラーに同じ配置規則を適用します。アクセシブルな名前と元のクリック・フォーム送信ハンドラーはソースボタンに維持します。`type="submit"` と `.button-submit` は別の配置を選択しません。
+すべての fill（`default`、`clear`、`solid`、`outline`）と Ionic カラーに同じ配置規則を適用します。アクセシブルな名前と元のクリック・フォーム送信ハンドラーはソースボタンに維持します。`type="submit"` と `.button-submit` は別の配置を選択しません。 `fill="solid"` と組み合わせると、テーマの送信強調表示に合わせて、解決済みのボタン背景色で着色した目立つガラスを使います。
 
 通常ページと最前面の全幅モーダルで、個別ボタンと `ion-buttons` 内のボタンに適用します。中央モーダル、メニュー、ポップオーバーは固有のツールバー配置を維持します。グループか個別ボタンに `.ios-theme-horizontal-only` を追加すると水平のままにできます。配置はルーティングされたページに入る時に決めるため、内容やアイコン slot を変更してもページを離れて入り直すまで移動しません。
 
@@ -247,7 +257,7 @@ Ionic の DOM コンテナーはナビゲーションの役割を変更しませ
 
 | 設定 | 値 | 責務 | 適用先 |
 | -------------------------- | ----------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `data-native-ui` | `button`、`back-button`、`disabled` | 明示的ソースの宣言、部分木の除外。 | [明示的ソース要素](framework-independent.md#2-mark-source-controls)。`disabled` は祖先にも適用。 |
+| `data-native-ui` | `button`、`back-button`、`button-submit`、`disabled` | 明示的ソースの宣言、部分木の除外。 | [明示的ソース要素](framework-independent.md#2-mark-source-controls)。`disabled` は祖先にも適用。 |
 | `data-native-ui-placement` | `element`、`rail` | 元の要素位置、またはレール要求を選択。 | 明示的ソース。`element` は自動 Ionic コントロールも元の位置に維持。 |
 | `data-vertical-bars` | `true`、`false` | レール選択・グループ化の既定値を上書き。 | 前述の Ionic 操作とグループ。 |
 | `data-horizontal-bars` | `true`、`false` | 通常配置の選択・グループ化の既定値を上書き。 | [通常の Ionic コントロール](native-ui.md#toolbar-selection-and-grouping)。 |
@@ -336,6 +346,10 @@ const rail = await enableNativeUI({ controls: 'verticalOnly', ionic: { verticalB
 | `null` | ソースのアイコン色とネイティブガラス |
 
 `ion-buttons` 内で背景を投影するには明示的に `fill="solid"` を設定します。`buttonDefaultFill: 'solid'` はグループの clear 既定値を上書きしません。Native Liquid Glass の色は特に半透明背景で CSS 色と異なる場合があります。iOS テーマでは通常の `ion-buttons` はグループ投影を維持し、`ion-buttons.ios-theme-disabled` は対象ボタンを個別投影します。ローカル投影設定はこの規則を変更しません。
+
+## Modal の移動
+
+Modal レールのコントロールは、表示、ドラッグ、スナップ、終了の間も Native のソース所有権を維持します。静止中はライブの Native コントロールを使います。予約済みツールバー境界より下の移動では Modal ダイアログと一緒に動く画像を使い、境界上かそれより上の移動ではライブの Native コントロールを固定します。表示と終了は遷移に準備済み画像を使います。この規則は、グループ化されたボタンと個別に投影されたボタンの両方に適用されます。表示の規則とクリッピング範囲は [Modal レールの移動とガラスの縁のクリッピング](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#modal-rail-movement)を参照してください。
 
 ## タブバー
 

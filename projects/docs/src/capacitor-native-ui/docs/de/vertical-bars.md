@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars"
-sourceRevision: 692105738a7f4a3877baed82ffe0c24438aff3645fe32403dcf1294b2d17e5ce
+sourceRevision: "133cf0f1f4727f2b669622ec9dce23935c01bd5b9f609b894c967aae909a0a5a"
 ---
 
 # Vertical Bars
@@ -89,6 +89,16 @@ Lesen Sie für scharnierabhängiges Inhaltslayout separat `getFoldState()` und a
 
 Unter unterstützten iOS-Versionen ändert `.ios-theme-vertical-bars` nur Bedienelemente, die das System in die physische Seitenleiste versetzt. Native UI stellt geeignete Tabs, Zurücknavigation, Menüschaltflächen und Werkzeugleistenaktionen nach dem Anwenden der Klasse über eine SwiftUI-`TabView` und Werkzeugleiste dar. Meldet das OS eine Seitenleistenkante — auf iPhone Duo mit Verknüpfung gegen iOS 27.1 oder neuer —, muss diese zur angewendeten Position passen; eine abweichende Meldung belässt die Seitenleiste im Web. Ohne vom Gerät gemeldete Kante bleibt der Web-Fallback. Eine Positionspräferenz aktiviert keine nicht unterstützte native Seitenleiste. SwiftUI bestimmt adaptive Position und Liquid Glass-Darstellung; Ionic bleibt Quelle für Beschriftungen, Symbole, Auswahl-/Deaktivierungszustand, Routing, Formularübermittlung und Klickhandler.
 
+Tab-Badges stammen von einem sichtbaren `ion-badge` im ursprünglichen `ion-tab-button`. Textänderungen aktualisieren das native Badge; Ausblenden oder Entfernen löscht es. Die native Leiste verwendet SwiftUIs Systemdarstellung für Badges. Der Web-Fallback behält den ursprünglichen Ionic-Tab und sein Badge einschließlich CSS-Farben bei. Ionic verbirgt leere Badges standardmäßig; für einen Benachrichtigungspunkt muss ein leeres Badge per CSS sichtbar gemacht werden.
+
+```html
+<ion-tab-button tab="inbox">
+  <ion-icon name="mail-outline"></ion-icon>
+  <ion-label>Inbox</ion-label>
+  <ion-badge color="danger">3</ion-badge>
+</ion-tab-button>
+```
+
 Die SwiftUI-Fläche wird auf die Systemseitenleiste zugeschnitten und nur dort auf Treffer geprüft. Web-Inhalt bleibt außerhalb dieses physischen Bereichs sichtbar und interaktiv. Die Laufzeit aktualisiert die Tab-Auswahl optimistisch, bevor sie die Aktion an das ursprüngliche `ion-tab-button` weiterleitet, mit demselben Ereignis- und Schutz vor veralteten Revisionen wie andere native Bedienelemente. Bei Verwendung des optionalen Stylesheets folgt das Overlay-Layout dem [Theme-Seitenleistenlayout](/ionic-theme-ios27/docs/vertical-bars-layout#reserve-the-vertical-rail); eigene Layouts bleiben Aufgabe der Anwendung.
 
 ### Native Popover (nur Vertical Bars)
@@ -130,7 +140,7 @@ Standardmäßig wechselt ein `ion-button` in die Seitenleiste, wenn es ein `ion-
 </ion-header>
 ```
 
-Alle Füllungen (`default`, `clear`, `solid` und `outline`) und Ionic-Farben folgen dieser Platzierungsregel. Behalten Sie zugängliche Namen und die ursprünglichen Klick- oder Formular-Submit-Handler an den Quellschaltflächen bei. `type="submit"` und `.button-submit` wählen keine andere Platzierung.
+Alle Füllungen (`default`, `clear`, `solid` und `outline`) und Ionic-Farben folgen dieser Platzierungsregel. Behalten Sie zugängliche Namen und die ursprünglichen Klick- oder Formular-Submit-Handler an den Quellschaltflächen bei. `type="submit"` und `.button-submit` wählen keine andere Platzierung. Zusammen mit `fill="solid"` verwenden sie hervorgehobenes Glas mit der aufgelösten Schaltflächenhintergrundfarbe, passend zur Sendehervorhebung des Themes.
 
 Die Regel gilt für einzelne Schaltflächen und Schaltflächen innerhalb von `ion-buttons`, sowohl auf normalen Seiten als auch im obersten Modal über die volle Breite. Zentrierte Modals, Menüs und Popovers behalten ihr eigenes Werkzeugleistenlayout. Fügen Sie `.ios-theme-horizontal-only` zu einer Gruppe oder einzelnen Schaltfläche hinzu, um sie horizontal zu belassen. Die Platzierung wird beim Eintritt einer gerouteten Seite gewählt. Das Ändern des Inhalts oder Symbol-Slots einer vorhandenen Schaltfläche verschiebt sie erst zwischen Werkzeugleiste und Leiste, wenn die Seite verlassen und erneut geöffnet wird.
 
@@ -227,7 +237,7 @@ Bestehende Eignungsregeln für Zurückschaltflächen gelten weiterhin, einschlie
 
 | Einstellung | Werte | Verantwortung | Gilt für |
 | --- | --- | --- | --- |
-| `data-native-ui` | `button`, `back-button`, `disabled` | Explizite Quelle deklarieren oder Teilbaum ausschließen. | [Explizite Quellelemente](framework-independent.md#2-mark-source-controls); `disabled` gilt auch für Vorfahren. |
+| `data-native-ui` | `button`, `back-button`, `button-submit`, `disabled` | Explizite Quelle deklarieren oder Teilbaum ausschließen. | [Explizite Quellelemente](framework-independent.md#2-mark-source-controls); `disabled` gilt auch für Vorfahren. |
 | `data-native-ui-placement` | `element`, `rail` | Ursprüngliche Elementposition wählen oder Seitenleiste anfordern. | Explizite Quellen; `element` hält auch automatische Ionic-Bedienelemente an ihrer ursprünglichen Position. |
 | `data-vertical-bars` | `true`, `false` | Standardwerte für Seitenleistenauswahl oder Gruppierung überschreiben. | Oben aufgeführte Ionic-Aktionen und Gruppen. |
 | `data-horizontal-bars` | `true`, `false` | Standardwerte für Auswahl oder Gruppierung an gewöhnlicher Position überschreiben. | [Gewöhnliche Ionic-Bedienelemente](native-ui.md#toolbar-selection-and-grouping). |
@@ -316,6 +326,10 @@ const rail = await enableNativeUI({ controls: 'verticalOnly', ionic: { verticalB
 | `null` | Natives Glas mit Quellsymbolfarben |
 
 Setzen Sie innerhalb von `ion-buttons` ausdrücklich `fill="solid"`, um einen Hintergrund zu projizieren. `buttonDefaultFill: 'solid'` überschreibt nicht den transparenten Standardhintergrund der Gruppe. Die Färbung nativen Liquid Glass kann von der CSS-Farbe abweichen, insbesondere bei durchscheinenden Hintergründen. Mit dem iOS-Theme behalten normale `ion-buttons` die Gruppenprojektion bei; `ion-buttons.ios-theme-disabled` projiziert geeignete Schaltflächen einzeln. Lokale Projektionseinstellungen ändern diese Gruppierungsregel nicht.
+
+## Modal-Bewegung
+
+Modal-Leistenbedienelemente behalten während Darstellung, Ziehen, Einrasten und Schließen die Native-Quellverantwortung. In Ruhe verwenden sie aktive Native-Bedienelemente. Bewegung unterhalb der reservierten Werkzeugleistengrenze verwendet vom Modal-Dialog mitgeführte Bilder; an oder oberhalb der Grenze bleiben aktive Native-Bedienelemente fixiert. Darstellung und Schließen verwenden vorbereitete Bilder für ihre Übergänge. Diese Regeln gelten für gruppierte und einzeln projizierte Schaltflächen. [Modal-Leistenbewegung und Beschneidung des Glasrandes](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#modal-rail-movement) beschreibt Darstellungsregeln und Beschneidungsumfang.
 
 ## Tab-Leiste
 

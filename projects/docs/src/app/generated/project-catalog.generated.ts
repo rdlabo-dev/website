@@ -35,7 +35,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -59,6 +59,13 @@ export const PROJECTS_EN = [
         "slug": "concepts",
         "section": "Guides",
         "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Shared controls for native adapters",
+        "navTitle": "Shared controls for native adapters",
+        "slug": "controls",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/controls"
       },
       {
         "title": "Basic initialization",
@@ -115,6 +122,13 @@ export const PROJECTS_EN = [
         "slug": "configuration/ionic-overlays",
         "section": "Configuration",
         "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Custom overlay pause and resume",
+        "navTitle": "Custom overlay pause and resume",
+        "slug": "configuration/pause-resume",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
       },
       {
         "title": "Choose an advanced API",
@@ -357,7 +371,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Shared application infrastructure for Ionic Angular projects.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -427,7 +441,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Photo editing and viewing flows for Ionic Angular and Capacitor applications.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -483,7 +497,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Scroll-aware header directives for Ionic and Angular CDK viewports.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -532,7 +546,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -588,7 +602,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "iOS 27 styling, motion, and Web layout for Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -605,6 +619,13 @@ export const PROJECTS_EN = [
         "slug": "setup",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Cordova setup",
+        "navTitle": "Cordova setup",
+        "slug": "cordova",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/cordova"
       },
       {
         "title": "Adaptive themes",
@@ -677,10 +698,9 @@ export const PROJECTS_EN = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
-    "repositoryBrowseUrl": "https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
+    "version": "2.1.4",
     "description": "Native controls for Ionic and HTML apps, with Web-owned state and events.",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -732,6 +752,13 @@ export const PROJECTS_EN = [
         "slug": "appearance",
         "section": "Guides",
         "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Android dynamic colors",
+        "navTitle": "Android dynamic colors",
+        "slug": "dynamic-colors",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
       },
       {
         "title": "Vertical Bars",
@@ -849,7 +876,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.3",
+    "version": "9.2.0",
     "description": "Material Design 3 styling for Ionic applications.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -859,6 +886,27 @@ export const PROJECTS_EN = [
         "slug": "readme",
         "section": "Documentation",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Android Settings appearance",
+        "navTitle": "Android Settings appearance",
+        "slug": "android-settings",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/android-settings"
+      },
+      {
+        "title": "Android dynamic colors",
+        "navTitle": "Android dynamic colors",
+        "slug": "dynamic-colors",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
+      },
+      {
+        "title": "Color system",
+        "navTitle": "Color system",
+        "slug": "color-system",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/color-system"
       },
       {
         "title": "Using ion-item-group",
@@ -2034,7 +2082,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -2058,6 +2106,13 @@ export const PROJECTS_JA = [
         "slug": "concepts",
         "section": "ガイド",
         "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "ネイティブアダプターの共有コントロール",
+        "navTitle": "ネイティブアダプターの共有コントロール",
+        "slug": "controls",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/controls"
       },
       {
         "title": "基本的な初期化",
@@ -2114,6 +2169,13 @@ export const PROJECTS_JA = [
         "slug": "configuration/ionic-overlays",
         "section": "設定",
         "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "カスタムオーバーレイの一時停止と再開",
+        "navTitle": "カスタムオーバーレイの一時停止と再開",
+        "slug": "configuration/pause-resume",
+        "section": "ガイド",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
       },
       {
         "title": "高度なAPIの選択",
@@ -2356,7 +2418,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Ionic Angularプロジェクト向けの共有アプリケーション基盤。",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -2426,7 +2488,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Ionic Angular・Capacitorアプリ向けの写真編集・閲覧フロー。",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -2482,7 +2544,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Ionic・Angular CDK viewport向けのScroll連動Header Directive。",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -2531,7 +2593,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Angular CDK Virtual Scrollで、項目ごとに異なる高さや動的に変化する高さに対応します。各項目の正確なサイズにより、リスト、チャットUI、逆方向のスクロールを安定させます。",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -2587,7 +2649,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Ionic向けのiOS 27スタイル、アニメーション、Webレイアウト。",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -2604,6 +2666,13 @@ export const PROJECTS_JA = [
         "slug": "setup",
         "section": "ガイド",
         "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Cordova のセットアップ",
+        "navTitle": "Cordova のセットアップ",
+        "slug": "cordova",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-ios27/docs/cordova"
       },
       {
         "title": "iOS 26、iOS 27、MD3 のテーマを使う",
@@ -2676,10 +2745,9 @@ export const PROJECTS_JA = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
-    "repositoryBrowseUrl": "https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
+    "version": "2.1.4",
     "description": "Web側の状態とイベントを維持する、Ionic／HTMLアプリ向けのNative UI。",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -2731,6 +2799,13 @@ export const PROJECTS_JA = [
         "slug": "appearance",
         "section": "ガイド",
         "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Androidの動的な配色",
+        "navTitle": "Androidの動的な配色",
+        "slug": "dynamic-colors",
+        "section": "ガイド",
+        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
       },
       {
         "title": "Vertical Bars",
@@ -2848,7 +2923,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.3",
+    "version": "9.2.0",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -2858,6 +2933,27 @@ export const PROJECTS_JA = [
         "slug": "readme",
         "section": "ドキュメント",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Android Settings の外観",
+        "navTitle": "Android Settings の外観",
+        "slug": "android-settings",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-md3/docs/android-settings"
+      },
+      {
+        "title": "Androidの動的な配色",
+        "navTitle": "Android の動的な色",
+        "slug": "dynamic-colors",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
+      },
+      {
+        "title": "カラーシステム",
+        "navTitle": "カラーシステム",
+        "slug": "color-system",
+        "section": "ガイド",
+        "path": "/projects/ionic-theme-md3/docs/color-system"
       },
       {
         "title": "ion-item-groupの使用方法",
@@ -4033,7 +4129,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -4057,6 +4153,13 @@ export const PROJECTS_FR = [
         "slug": "concepts",
         "section": "Guides",
         "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Contrôles partagés pour les adaptateurs natifs",
+        "navTitle": "Contrôles partagés pour les adaptateurs natifs",
+        "slug": "controls",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/controls"
       },
       {
         "title": "Initialisation de base",
@@ -4113,6 +4216,13 @@ export const PROJECTS_FR = [
         "slug": "configuration/ionic-overlays",
         "section": "Configuration",
         "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Pause et reprise pour les superpositions personnalisées",
+        "navTitle": "Pause et reprise pour les superpositions personnalisées",
+        "slug": "configuration/pause-resume",
+        "section": "Guides",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
       },
       {
         "title": "Choisir une API avancée",
@@ -4355,7 +4465,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Infrastructure applicative partagée pour les projets Ionic Angular.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -4425,7 +4535,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Parcours d’édition et d’affichage de photos pour les applications Ionic Angular et Capacitor.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -4481,7 +4591,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Directives d’en-tête sensibles au défilement pour Ionic et les viewports Angular CDK.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -4530,7 +4640,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Utilisez le défilement virtuel Angular CDK avec des hauteurs d’éléments variables ou dynamiques. Fournissez les tailles exactes de chaque élément pour des listes stables, des interfaces de chat et le défilement inversé.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -4586,7 +4696,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Styles, animations et disposition Web iOS 27 pour Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -4603,6 +4713,13 @@ export const PROJECTS_FR = [
         "slug": "setup",
         "section": "Guides",
         "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Configuration Cordova",
+        "navTitle": "Configuration Cordova",
+        "slug": "cordova",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-ios27/docs/cordova"
       },
       {
         "title": "Utiliser les thèmes iOS 26, iOS 27 et MD3",
@@ -4675,10 +4792,9 @@ export const PROJECTS_FR = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
-    "repositoryBrowseUrl": "https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
+    "version": "2.1.4",
     "description": "Contrôles natifs pour Ionic et HTML, avec état et événements gérés par le Web.",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -4730,6 +4846,13 @@ export const PROJECTS_FR = [
         "slug": "appearance",
         "section": "Guides",
         "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Couleurs dynamiques Android",
+        "navTitle": "Couleurs dynamiques Android",
+        "slug": "dynamic-colors",
+        "section": "Guides",
+        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
       },
       {
         "title": "Vertical Bars",
@@ -4847,7 +4970,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.3",
+    "version": "9.2.0",
     "description": "Styles Material Design 3 pour les applications Ionic.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -4857,6 +4980,27 @@ export const PROJECTS_FR = [
         "slug": "readme",
         "section": "Documentation",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Apparence Android Settings",
+        "navTitle": "Apparence Android Settings",
+        "slug": "android-settings",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/android-settings"
+      },
+      {
+        "title": "Couleurs dynamiques Android",
+        "navTitle": "Couleurs dynamiques Android",
+        "slug": "dynamic-colors",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
+      },
+      {
+        "title": "Système de couleurs",
+        "navTitle": "Système de couleurs",
+        "slug": "color-system",
+        "section": "Guides",
+        "path": "/projects/ionic-theme-md3/docs/color-system"
       },
       {
         "title": "Utiliser ion-item-group",
@@ -6032,7 +6176,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
     "path": "/projects/webview-native-ui-engine",
     "pages": [
@@ -6056,6 +6200,13 @@ export const PROJECTS_DE = [
         "slug": "concepts",
         "section": "Anleitungen",
         "path": "/projects/webview-native-ui-engine/docs/concepts"
+      },
+      {
+        "title": "Gemeinsame Steuerelemente für native Adapter",
+        "navTitle": "Gemeinsame Steuerelemente für native Adapter",
+        "slug": "controls",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/controls"
       },
       {
         "title": "Grundlegende Initialisierung",
@@ -6112,6 +6263,13 @@ export const PROJECTS_DE = [
         "slug": "configuration/ionic-overlays",
         "section": "Konfiguration",
         "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
+      },
+      {
+        "title": "Pause und Fortsetzung bei benutzerdefinierten Overlays",
+        "navTitle": "Pause und Fortsetzung bei benutzerdefinierten Overlays",
+        "slug": "configuration/pause-resume",
+        "section": "Anleitungen",
+        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
       },
       {
         "title": "Eine erweiterte API auswählen",
@@ -6354,7 +6512,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Gemeinsame Anwendungsinfrastruktur für Ionic-Angular-Projekte.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -6424,7 +6582,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Abläufe zur Fotobearbeitung und -anzeige für Ionic-Angular- und Capacitor-Anwendungen.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -6480,7 +6638,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Scrollabhängige Header-Direktiven für Ionic- und Angular-CDK-Viewports.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -6529,7 +6687,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.6",
+    "version": "22.0.7",
     "description": "Virtuelles Scrollen mit Angular CDK und variablen oder dynamischen Elementhöhen verwenden. Exakte Größen pro Element für stabile Listen, Chat-Oberflächen und umgekehrtes Scrollen angeben.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -6585,7 +6743,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "iOS-27-Stile, Animationen und Web-Layout für Ionic.",
     "path": "/projects/ionic-theme-ios27",
     "pages": [
@@ -6602,6 +6760,13 @@ export const PROJECTS_DE = [
         "slug": "setup",
         "section": "Anleitungen",
         "path": "/projects/ionic-theme-ios27/docs/setup"
+      },
+      {
+        "title": "Cordova einrichten",
+        "navTitle": "Cordova einrichten",
+        "slug": "cordova",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-ios27/docs/cordova"
       },
       {
         "title": "iOS-26-, iOS-27- und MD3-Themes verwenden",
@@ -6674,10 +6839,9 @@ export const PROJECTS_DE = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
-    "repositoryBrowseUrl": "https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.0",
+    "version": "2.1.4",
     "description": "Native Bedienelemente für Ionic und HTML mit Zustand und Ereignissen im Web.",
     "path": "/projects/capacitor-native-ui",
     "pages": [
@@ -6729,6 +6893,13 @@ export const PROJECTS_DE = [
         "slug": "appearance",
         "section": "Anleitungen",
         "path": "/projects/capacitor-native-ui/docs/appearance"
+      },
+      {
+        "title": "Dynamische Android-Farben",
+        "navTitle": "Dynamische Android-Farben",
+        "slug": "dynamic-colors",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
       },
       {
         "title": "Vertical Bars",
@@ -6846,7 +7017,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.1.3",
+    "version": "9.2.0",
     "description": "Material-Design-3-Gestaltung für Ionic-Anwendungen.",
     "path": "/projects/ionic-theme-md3",
     "pages": [
@@ -6856,6 +7027,27 @@ export const PROJECTS_DE = [
         "slug": "readme",
         "section": "Dokumentation",
         "path": "/projects/ionic-theme-md3/docs/readme"
+      },
+      {
+        "title": "Android Settings-Darstellung",
+        "navTitle": "Android Settings-Darstellung",
+        "slug": "android-settings",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/android-settings"
+      },
+      {
+        "title": "Dynamische Android-Farben",
+        "navTitle": "Dynamische Android-Farben",
+        "slug": "dynamic-colors",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
+      },
+      {
+        "title": "Farbsystem",
+        "navTitle": "Farbsystem",
+        "slug": "color-system",
+        "section": "Anleitungen",
+        "path": "/projects/ionic-theme-md3/docs/color-system"
       },
       {
         "title": "ion-item-group verwenden",

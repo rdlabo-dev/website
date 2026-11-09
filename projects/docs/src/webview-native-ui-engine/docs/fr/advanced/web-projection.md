@@ -1,6 +1,6 @@
 ---
 title: "Projection Web et lots"
-sourceRevision: "baa0ddcede13b0edcba2bd889f3f13d3f279f711197f63c5ef4d27b735842f0f"
+sourceRevision: "0131428ef645a9f2ff4db71fc35a790e7574fdcf6f1cec4bc5402b8defc8ae78"
 ---
 # Projection Web de bas niveau
 
@@ -34,10 +34,23 @@ Le conteneur, le pont et les callbacks de mise à jour ci-dessus appartiennent a
 
 1. Après une mise à jour native acceptée, appelez `projection.consider(revision, sources)`. Les sources associent les ID natifs et les cadres du viewport à leur DOM source ; elles n’ont pas besoin d’être dans l’élément de repli. Les images sont capturées et décodées à l’avance.
 2. Appelez `projection.changed()` pour les changements d’apparence, ou `projection.changed(scrollElement)` pour invalider la géométrie du défilement. Les mises à jour de mise en page passent par `consider` ; utilisez `invalidate()` pour les autres changements de géométrie.
-3. Avant de couvrir le natif avec une superposition Web, appelez `projection.begin()`. Il affiche les pixels déjà préparés dans le repli fixe. Aucune nouvelle capture ni aucun décodage ne commence ici. Si la capture est indisponible, le plugin conserve son repli Web ordinaire.
-4. Excluez `projection.owners` des mises à jour natives normales tant que l’image possède ces sources. `visibleOwners` conserve leurs pixels de retour pendant la restauration native ; `preparedOwners` identifie les sources disposant d’images préparées. Ces tableaux sont des instantanés en lecture seule.
+3. Avant de couvrir Native avec une superposition Web, appelez `projection.begin()`. Il affiche les pixels déjà préparés dans le repli fixe. Aucune nouvelle capture ni aucun décodage ne démarre ici. Si aucune image n’est prête, aucun bail sur les pixels n’est acquis. Le plugin conserve sa propriété existante et choisit comment traiter les images indisponibles.
+4. Excluez `projection.owners` des mises à jour Native normales tant que leurs pixels sont délégués à l’image. `visibleOwners` conserve leurs pixels de retour pendant la restauration de Native ; `preparedOwners` identifie les sources disposant d’images préparées. Ces tableaux sont des instantanés en lecture seule.
 5. Appelez `projection.end()`, envoyez la mise à jour native normale, puis appelez `projection.updated(snapshotToken, acceptedIDs, revision)`. Une confirmation plus récente contenant tous les ID capturés retire l’image.
 6. Appelez `projection.destroy()` lors de la libération de la surface. Il libère uniquement ses propres images et son écouteur ; le plugin gère la réinitialisation native finale et son DOM.
+
+Les demandes d’images, les transferts de pixels et la propriété du moteur de rendu sont distincts. `begin()` demande une image ; il ne libère pas la propriété Native et n’implique pas que les pixels soient prêts. La demande persiste pendant l’initialisation différée et la préparation jusqu’à son annulation par `end()`. Une pause du document maintient indépendamment la même demande.
+
+| État de l’image | `owners` | `visibleOwners` | Action du moteur de rendu |
+| --- | --- | --- | --- |
+| Inactif / en préparation | Vide | Vide | Conserver le rendu Native normal. Un cache préparé seul ne transfère pas les pixels. |
+| Couverture en attente (pixels préparés) | Sources capturées | Vide | Utiliser le transport de couverture ordonné ; la copie Native d’entrée assure la continuité jusqu’à sa confirmation. |
+| Image affichée | Sources capturées | Sources capturées | Omettre temporairement ces contrôles des mises à jour Native tout en conservant la propriété des sources par le moteur de rendu. |
+| Restauration de Native | Vide | Sources précédemment visibles | Envoyer à nouveau les contrôles Native. Conserver l’image jusqu’à une confirmation plus récente et complète. |
+
+L’état de l’image est l’unique source de ces tableaux en lecture seule. Le mouvement, les défauts de cache et la fin d’un transfert d’image ne rendent pas à eux seuls une source du moteur de rendu au Web. Le moteur de rendu consommateur prend cette décision pour les sources supprimées ou inadmissibles, les contrôles Native refusés ou la destruction. La notification `painted` passe par une occasion de rendu avant de retirer la copie Native d’entrée ; ce n’est pas une API de confirmation de fin du compositeur.
+
+Pour les contrôles composites, `sources` déclare exactement les éléments DOM représentés par l’image et remplace la valeur par défaut `[element]`. `element` reste l’ancre du contrôle et de la mise en page ; incluez-le explicitement uniquement si l’image représente aussi cet élément entier. Pour un groupe de boutons partiel, listez uniquement les enfants sélectionnés afin que les autres conservent leur propre présentation. Pour les onglets avec recherche, incluez les éléments associés de déclenchement et de pied de page représentés. `options.current(sources)` reçoit ce même ensemble de sources capturées lors de la validation de la présentation et de la restauration ; déplacer un élément associé dans un autre contexte invalide donc son ancienne image même si l’ancre de mise en page reste connectée.
 
 L’Engine prépare un `img` non interactif dans le conteneur de repli (directement dans son ShadowRoot ouvert, s’il existe) pendant que le natif est visible. Il réutilise l’image décodée et le nœud DOM entre les transferts, et les libère lorsque le scope est retiré ou détruit. L’image est `inert`, masquée pour l’accessibilité et exclue des tests de pointage. Le repli existant et ses enfants ne sont jamais clonés, remplacés, supprimés ou marqués `inert`/`aria-hidden` ; leurs écouteurs, valeurs et modifications applicatives survivent à la projection. `::before` et `::after` restent disponibles pour l’application.
 

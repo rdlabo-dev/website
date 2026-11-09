@@ -695,13 +695,18 @@ test('lists ionic theme packages and pins localized README imports', async () =>
         assert.doesNotMatch(markdown, new RegExp(['rdlabo', 'team'].join('-')));
         assert.doesNotMatch(markdown, new RegExp(`${projectId}/(?:blob|tree)/main`));
         if (pageFile === 'readme.md' && projectId !== 'ionic-theme-ios27') {
-          const portalReadme = await readFile(new URL(pageFile, docsRoot), 'utf8');
-          assert.match(
-            portalReadme,
-            new RegExp(
-              `raw\\.githubusercontent\\.com/webview-native-ui/${project.repositoryUrl.split('/').at(-1)}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
-            ),
-          );
+          const generated =
+            projectId === 'ionic-theme-ios26'
+              ? [ionicThemeIos26En, ionicThemeIos26Ja]
+              : [ionicThemeMd3En, ionicThemeMd3Ja];
+          for (const localized of generated) {
+            assert.match(
+              localized.overviewHtml,
+              new RegExp(
+                `raw\\.githubusercontent\\.com/webview-native-ui/${project.repositoryUrl.split('/').at(-1)}/${project.releaseTagPrefix ?? 'v'}${expected.version}/screenshots/`,
+              ),
+            );
+          }
         }
         for (const link of markdown.matchAll(
           new RegExp(
@@ -1650,20 +1655,25 @@ test('separates iOS 26 and iOS 27 documentation, source branches, and screenshot
     assert.equal(project.demoUrl, 'https://ionic-theme-ios27.rdlabo.dev/');
     assert.equal(
       project.releaseNotesUrl,
-      `https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v${project.version}`,
+      `https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/v${project.version}`,
     );
     assert.ok((project.overviewHtml.match(/<img /g) ?? []).length > 0);
     assert.doesNotMatch(project.overviewHtml, /&lt;img|src="\.\//);
     const images = new JSDOM(project.overviewHtml).window.document.querySelectorAll('img');
     for (const image of images) {
-      assert.ok(image.src.includes(`/ios27-v${project.version}/screenshots/`));
+      const definition = projectDefinitions.find(({ id }) => id === project.id)!;
+      assert.ok(
+        image.src.includes(
+          `/${definition.englishDocsAssetsRef ?? `v${project.version}`}/screenshots/`,
+        ),
+      );
     }
     assert.ok(!project.pages.some((page) => page.slug === 'ios-adaptive'));
   }
   const oldGuide = ionicThemeIos26En.pages.find((page) => page.slug === 'migration');
   const newGuide = ionicThemeIos27En.pages.find((page) => page.slug === 'migration');
   assert.match(oldGuide!.editUrl, /\/edit\/ios26\/docs\/migration\.md$/);
-  assert.match(newGuide!.editUrl, /\/edit\/main\/packages\/theme-ios27\/docs\/migration\.md$/);
+  assert.match(newGuide!.editUrl, /\/edit\/main\/docs\/migration\.md$/);
   assert.match(newGuide!.html, /href="\/projects\/ionic-theme-ios26\/docs\/migration"/);
 });
 
@@ -1673,14 +1683,14 @@ test('publishes separate theme and Native UI guides with current package APIs', 
     [ionicThemeIos27Ja, nativeUiJa, '/ja'],
   ] as const) {
     assert.equal(theme.version, installedVersion('@rdlabo/ionic-theme-ios27'));
-    assert.equal(native.version, theme.version);
+    assert.equal(native.version, installedVersion('@rdlabo/capacitor-native-ui'));
     assert.equal(native.packageName, '@rdlabo/capacitor-native-ui');
     assert.equal(native.repositoryUrl, 'https://github.com/webview-native-ui/capacitor-plugin');
     if (!prefix) {
       assert.ok(
         native.pages.every((page) =>
           page.editUrl.startsWith(
-            'https://github.com/webview-native-ui/capacitor-plugin/edit/main/packages/capacitor-native-ui/',
+            'https://github.com/webview-native-ui/capacitor-plugin/edit/main/',
           ),
         ),
       );

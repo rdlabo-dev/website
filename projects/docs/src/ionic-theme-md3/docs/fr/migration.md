@@ -1,12 +1,33 @@
 ---
 title: "Migration"
-sourceRevision: "9f0427ecfff5a3db13e75a3c31fd6f20e6ed7bf04614497e5cd9b32392071207"
+sourceRevision: "c9a566bbe8c8f7d9e82e979376ca021c8fb262697714a6ac30a9f932c31f19fa"
 ---
+
 # Migration
 
 Examinez chaque section plus récente que la version installée, dans l’ordre croissant. Par exemple, pour passer de 1.x à 9.0.0, effectuez les étapes de migration 2.0.0 avant d’examiner 9.0.0.
 
 Chaque section répertorie uniquement les changements nécessitant une mise à jour du code ou de la configuration de l’application.
+
+## Migration vers 9.2.0 : alignement sur Android Settings
+
+Aucune migration de modèle n’est nécessaire. Avant d’adopter cette mise à jour, examinez le CSS applicatif qui compense les anciennes dimensions du thème :
+
+| Composant | Ancien thème | Thème mis à jour |
+| --- | --- | --- |
+| Interrupteur standard | Piste 52×32px, curseur 24px | Piste 52×28px, curseur 20px |
+| Titre de barre d’outils ordinaire | 20px ; remplissage initial de 4px près des contrôles de début | 22px / ligne 28px ; remplissage initial 12px |
+| Titre d’élément en retrait sur deux lignes | 18.4px, graisse 500 | 16px, graisse 400 ; note 14px |
+| Hauteur minimale d’un élément groupé | 48px | 56px ; lignes avec bouton radio 72px |
+| Listes en retrait avec en-tête | Marge/remplissage supplémentaire de liste | En-tête 56px ; sans marge/remplissage de bloc supplémentaire |
+
+Ce sont des valeurs par défaut, pas des hauteurs de contenu fixes. Le retour à la ligne et les personnalisations de dimensions restent disponibles. Consultez les [dimensions des listes](using-ion-item-group.md#sizing-and-overrides) et [Apparence Android Settings](android-settings.md) pour des exemples.
+
+La démo n’ajoute plus automatiquement les icônes croix/coche. Les applications appelant explicitement `applyToggleStateIcons` conservent ce comportement ; pour supprimer les icônes, retirez l’appel et exécutez son nettoyage. `enableOnOffLabels` d’Ionic reste pris en charge.
+
+Le thème principal inclut désormais sa police MD par défaut en CSS. Chargez-le après les styles de base d’Ionic. Les personnalisations `--ion-font-family` existantes restent prioritaires ; sans police applicative, le navigateur utilise Google Sans Flex local si disponible, puis la pile de repli habituelle. Aucun helper TypeScript ni feuille de style supplémentaire n’est requis. Vérifiez les retours à la ligne sur les appareils et langues pris en charge ; les polices ne sont pas fournies.
+
+Les icônes de retour restent gérées par Ionic. Les couleurs nommées, la correspondance Material You et les icônes personnalisées par bouton conservent leur sens.
 
 ## Migrer vers 9.0.0
 

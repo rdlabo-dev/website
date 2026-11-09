@@ -119,13 +119,15 @@ fill/color、Shell の適用除外条件は引き続き適用されます。水�
 
 | Ionic コンポーネント | 対応する外観と配置 | ネイティブ描画 |
 | --------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ion-button` | 固定ヘッダー・フッターのツールバー内で `fill="default"`、またはグループ化しない `ion-buttons` 内の clear | ガラスの `UIButton` |
+| `ion-button` | 固定ツールバー：default、グループ化されていない `ion-buttons` 内の clear、または solid の `type="submit"`／`.button-submit` | ガラスの `UIButton`。solid の送信操作は目立つ表示 |
 | `ion-buttons` | 固定ツールバー内で、テーマのガラスを共有する直接の clear の `ion-button` / `ion-menu-button` が 2 個以上 | 1 つの `UIGlassEffect` 面と独立したネイティブボタン |
 | `ion-back-button` | 固定ヘッダー・フッターのツールバー内で標準のアイコンと色 | 解決済みの Ionic ラベル・アイコンを使うガラスの `UIButton` |
 | `ion-menu-button` | 固定ツールバー内でテーマのガラスを使う `ion-buttons` の内側 | ガラスの `UIButton`。元の Ionic メニュー切り替え |
 | `ion-tab-bar` | 固定タブ、アイコンのみ・ラベルのみ、項目ごとにアイコン 1 個、ドット・文字のバッジ、選択・無効状態 | `UITabBar` と `UITabBarItem` |
 | `ion-segment` | 固定ツールバー内、スクロール不可、項目ごとに文字**または**アイコン 1 個 | `UISegmentedControl` |
 | `ion-fab` / `ion-fab-button` / `ion-fab-list` | `ion-content` の fixed slot 内のガラス FAB。主ボタン 1 個と任意の方向別リスト | 各ボタンに永続するガラスの `UIButton`、FAB 全体で 1 つの同期グループ |
+
+solid の送信操作（`fill="solid"` と `type="submit"` または `.button-submit` の組み合わせ）は、`color="primary"` など Ionic の `color` にも対応します。目立つガラスの色調は、解決済みの Web 背景色から決まります。混在した `ion-buttons` コンテナ内では、共有のガラスサーフェスに加わらず個別に投影されます。他の個別投影される横方向の `ion-button` 操作に対する既存の色の制限は変わりません。
 
 通常の Native UI では、対応する iOS モードのコンポーネントだけが対象です。テーマ変数は不要で、`enableNativeUI()` の呼び出しでネイティブ投影を有効にします。明示的に有効にした Vertical Bars は後述のとおりモードから独立しています。要素または祖先の `ios-theme-disabled` と旧 `ios26-disabled` は常に除外条件です。タブ・セグメントの 1 項目でテーマを無効にするとグループ全体が Web 表示になります。
 

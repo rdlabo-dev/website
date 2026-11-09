@@ -1,14 +1,15 @@
 ---
 title: "Das iOS-27-Theme einrichten"
-sourceRevision: 8a9782df49bd648a7aeb643c58ad6f10e3caaca346f8eacbd902375ff18215bb
+sourceRevision: "da970c21a6e8788ac68f14296e9463afe29e20162f74f08868f44a0ef303b4e8"
 ---
+
 # Das iOS-27-Theme einrichten
 
 Geben Sie einer bestehenden Ionic-App in vier Schritten die iOS-27-Darstellung. Diese Anleitung verwendet ausschließlich das iOS-27-Theme und den systemgesteuerten Dunkelmodus. Für browserabhängige iOS-26/27-Stile oder MD3 verwenden Sie stattdessen [adaptive Themes](adaptive-themes.md).
 
 ## Vorbereitungen
 
-Verwenden Sie eine bestehende Ionic-Angular-, React- oder Vue-Anwendung mit Ionic `>=8.8.1 <10`. Behalten Sie Ionics grundlegende CSS-Importe. Reine Browser-Apps benötigen kein natives Capacitor-Projekt.
+Verwenden Sie eine bestehende Ionic-Angular-, React- oder Vue-Anwendung mit Ionic `>=8.8.1 <10`. Behalten Sie Ionics CSS-Basisimporte bei. Reine Browser-Apps benötigen kein natives Capacitor-Projekt. Dies ist die Standardeinrichtung für das eigenständige Theme-Paket; Cordova-Anwendungen verwenden die optionale [Cordova-Einrichtung](cordova.md).
 
 ## 1. Theme und Foldable installieren
 

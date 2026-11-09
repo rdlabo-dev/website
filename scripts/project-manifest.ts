@@ -76,6 +76,8 @@ export interface ProjectDefinition {
   adapter?: 'capacitor-docs-json' | 'markdown';
   /** Immutable Git ref override for English guides (default: installed package tag). */
   englishDocsRef?: string;
+  /** Immutable screenshot source when the npm release tag omits documentation assets. */
+  englishDocsAssetsRef?: string;
   /** Historical source repository when reviewed guides predate a repository split. */
   englishDocsRepositoryUrl?: string;
   releaseTagPrefix?: string;
@@ -228,9 +230,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'WebView Native UI Engine',
     packageName: '@webview-native-ui/engine',
     repositoryUrl: 'https://github.com/webview-native-ui/engine',
-    // Reviewed Ionic integration guidance published after v1.0.1.
-    englishDocsRef: 'b6823abc085b77211dd4c5e7464a5814ed76cda8',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.1',
+    englishDocsRef: 'f4ad403a98536fb3f35269cb74326b880145540d',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.4',
     sourceHeadingAliases: ['ja'],
     category: 'developer-tools',
     icon: 'app',
@@ -262,14 +263,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'getting-started.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Documentation overview', 'ドキュメント概要'),
         section: text('Guides', 'ガイド'),
         slug: 'overview',
         file: 'README.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Concepts and limits', '概念と制約'),
@@ -277,6 +278,18 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         slug: 'concepts',
         file: 'concepts.md',
         updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+      },
+      {
+        title: {
+          en: 'Shared controls for native adapters',
+          ja: 'ネイティブアダプターの共有コントロール',
+          fr: 'Contrôles partagés pour les adaptateurs natifs',
+          de: 'Gemeinsame Steuerelemente für native Adapter',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'controls',
+        file: 'controls.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Basic initialization', '基本的な初期化'),
@@ -304,7 +317,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Configuration', '設定'),
         slug: 'configuration',
         file: 'configuration/README.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Notifications', '通知'),
@@ -335,6 +348,18 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
       },
       {
+        title: {
+          en: 'Custom overlay pause and resume',
+          ja: 'カスタムオーバーレイの一時停止と再開',
+          fr: 'Pause et reprise pour les superpositions personnalisées',
+          de: 'Pause und Fortsetzung bei benutzerdefinierten Overlays',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'configuration/pause-resume',
+        file: 'configuration/pause-resume.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
+      {
         title: text('Choose an advanced API', '高度なAPIの選択'),
         section: text('Advanced APIs', '高度なAPI'),
         slug: 'advanced',
@@ -353,14 +378,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Advanced APIs', '高度なAPI'),
         slug: 'advanced/web-projection',
         file: 'advanced/web-projection.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Native handoff', 'ネイティブのハンドオフ'),
         section: text('Advanced APIs', '高度なAPI'),
         slug: 'advanced/native-handoff',
         file: 'advanced/native-handoff.md',
-        updatedAt: { en: '2026-10-29', ja: '2026-10-29', fr: '2026-10-29', de: '2026-10-29' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Deferred Android placement', 'Androidの配置の遅延適用'),
@@ -706,6 +731,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -811,7 +837,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'auth-http.md',
         'Guide',
         'ガイド',
-        { updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' } },
+        { updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' } },
       ),
       page(
         'Offline and Realtime',
@@ -833,7 +859,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       }),
     ],
   },
@@ -845,6 +871,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Photo Editor',
     packageName: '@rdlabo/ionic-angular-photo-editor',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
     category: 'frontend-tools',
     icon: 'app',
@@ -929,6 +956,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Scroll Header',
     packageName: '@rdlabo/ionic-angular-scroll-header',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
     category: 'frontend-tools',
     icon: 'app',
@@ -1025,6 +1053,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Angular CDK Scroll Strategies',
     packageName: '@rdlabo/ngx-cdk-scroll-strategies',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
+    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies',
     category: 'frontend-tools',
     icon: 'app',
@@ -1138,11 +1167,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Theme iOS27',
     packageName: '@rdlabo/ionic-theme-ios27',
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
-    // Reviewed guide corrections after the coordinated 2.1.0 release.
-    englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
-    releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl:
-      'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v2.1.0',
+    englishDocsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
+    englishDocsAssetsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/v2.1.1',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1164,14 +1191,27 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'readme.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Theme setup', 'テーマの設定'),
         section: text('Guides', 'ガイド'),
         slug: 'setup',
         file: 'setup.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        headingAliases: { '3-configure-ionic-animations': '3.-configure-ionic-animations' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
+      {
+        title: {
+          en: 'Cordova setup',
+          ja: 'Cordova のセットアップ',
+          fr: 'Configuration Cordova',
+          de: 'Cordova einrichten',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'cordova',
+        file: 'cordova.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Adaptive themes', 'テーマの自動切り替え'),
@@ -1185,14 +1225,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'add-native-ui',
         file: 'add-native-ui.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Using ion-item-group', 'ion-item-groupの使用方法'),
         section: text('Guides', 'ガイド'),
         slug: 'using-ion-item-group',
         file: 'using-ion-item-group.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Special markup and classes', '特別なマークアップとクラス'),
@@ -1227,14 +1267,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'vertical-bars-layout',
         file: 'vertical-bars-layout.md',
-        updatedAt: { en: '2026-10-24', ja: '2026-10-24', fr: '2026-10-24', de: '2026-10-24' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Theme migration', 'テーマの移行'),
         section: text('Guides', 'ガイド'),
         slug: 'migration',
         file: 'migration.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
     ],
   },
@@ -1247,14 +1287,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Capacitor Native UI',
     packageName: '@rdlabo/capacitor-native-ui',
     repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
-    englishDocsRepositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
-    // Reviewed capture limitations and lifecycle guidance after 2.1.0.
-    englishDocsRef: '503a6fa7bfe77f0dbe556367948de95a8169b2f7',
-    repositoryBrowseUrl:
-      'https://github.com/webview-native-ui/capacitor-plugin/tree/main/packages/capacitor-native-ui',
-    releaseTagPrefix: 'ios27-v',
-    releaseNotesUrl:
-      'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v2.1.0',
+    englishDocsRef: '8588512d51324d9c6aab672da45a6598edf71927',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/capacitor-plugin/releases/tag/v2.1.4',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',
@@ -1276,7 +1310,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'readme',
         file: 'readme.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Ionic setup', 'Ionicの設定'),
@@ -1287,7 +1321,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'place-startup-in-your-frameworks-app-root': "place-startup-in-your-framework's-app-root",
           '4-build-sync-and-run': '4.-build%2C-sync%2C-and-run',
         },
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Native UI without Ionic', 'Ionicを使わないNative UI'),
@@ -1295,7 +1329,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         slug: 'framework-independent',
         file: 'framework-independent.md',
         headingAliases: { '2-mark-source-controls': '2.-mark-source-controls' },
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text(
@@ -1310,14 +1344,14 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'keep-ionics-default-animation': "keep-ionic's-default-animation",
           'use-the-themes-ios-animation': "use-the-theme's-ios-animation",
         },
-        updatedAt: { en: '2026-10-23', ja: '2026-10-23', fr: '2026-10-23', de: '2026-10-23' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Native UI', 'Native UI'),
         section: text('Guides', 'ガイド'),
         slug: 'native-ui',
         file: 'native-ui.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Configuration', '設定'),
@@ -1331,14 +1365,26 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         section: text('Guides', 'ガイド'),
         slug: 'appearance',
         file: 'appearance.md',
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
+      {
+        title: {
+          en: 'Android dynamic colors',
+          ja: 'Androidの動的な配色',
+          fr: 'Couleurs dynamiques Android',
+          de: 'Dynamische Android-Farben',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'dynamic-colors',
+        file: 'dynamic-colors.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Vertical Bars', 'Vertical Bars'),
         section: text('Guides', 'ガイド'),
         slug: 'vertical-bars',
         file: 'vertical-bars.md',
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text(
@@ -1352,7 +1398,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           '2a-register-a-swiftui-view-on-ios': '2a.-register-a-swiftui-view-on-ios',
           '2b-register-compose-content-on-android': '2b.-register-compose-content-on-android',
         },
-        updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
       {
         title: text('Migration', '移行'),
@@ -1363,7 +1409,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           '2-replace-native-imports': '2.-replace-native-imports',
           '3-sync-the-native-project': '3.-sync-the-native-project',
         },
-        updatedAt: { en: '2026-10-22', ja: '2026-10-22', fr: '2026-10-22', de: '2026-10-22' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       },
     ],
   },
@@ -1492,6 +1538,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
   },
   {
     id: 'ionic-theme-md3',
+    sourceHeadingAliases: ['ja'],
     slug: 'ionic-theme-md3',
     sourceDirectory: 'ionic-theme-md3',
     name: 'rdlabo Ionic Theme Material Design 3',
@@ -1499,9 +1546,9 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/ionic-theme-md3',
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-md3',
     // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: '0e4d72f6fdcf2cd1ed2c8760ebdf99967e7dbc58',
+    englishDocsRef: 'e2ccd2ed99fdca724cbc10e3a9468b8536e1d827',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.1.3',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.2.0',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -1546,8 +1593,45 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
     pages: [
       page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Documentation', 'ドキュメント', {
-        updatedAt: text('2026-09-30', '2026-09-30'),
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       }),
+      {
+        title: {
+          en: 'Android Settings appearance',
+          ja: 'Android Settings の外観',
+          fr: 'Apparence Android Settings',
+          de: 'Android Settings-Darstellung',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'android-settings',
+        file: 'android-settings.md',
+        headingAliases: { 'default-font-css-only': 'default-font%2C-css-only' },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
+      {
+        title: {
+          en: 'Android dynamic colors',
+          ja: 'Android の動的な色',
+          fr: 'Couleurs dynamiques Android',
+          de: 'Dynamische Android-Farben',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'dynamic-colors',
+        file: 'dynamic-colors.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
+      {
+        title: {
+          en: 'Color system',
+          ja: 'カラーシステム',
+          fr: 'Système de couleurs',
+          de: 'Farbsystem',
+        },
+        section: text('Guides', 'ガイド'),
+        slug: 'color-system',
+        file: 'color-system.md',
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
+      },
       page(
         'Using ion-item-group',
         'ion-item-groupの使用方法',
@@ -1555,7 +1639,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'using-ion-item-group.md',
         'Guides',
         'ガイド',
-        { updatedAt: text('2026-09-06', '2026-09-06') },
+        { updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' } },
       ),
       page(
         'Special markup',
@@ -1564,6 +1648,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'special-markup.md',
         'Guides',
         'ガイド',
+        { updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' } },
       ),
       page(
         'Keep lists consistent with ESLint',
@@ -1585,7 +1670,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         },
       ),
       page('Migration', '移行', 'migration', 'migration.md', 'Guides', 'ガイド', {
-        updatedAt: { ja: '2026-10-01' },
+        headingAliases: {
+          'unreleased-android-settings-alignment':
+            'migrating-to-9.2.0%3A-android-settings-alignment',
+          'migrating-to-920-android-settings-alignment':
+            'migrating-to-9.2.0%3A-android-settings-alignment',
+        },
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       }),
       page(
         'E2E screenshot testing',
@@ -1594,10 +1685,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'e2e-testing.md',
         'Development',
         '開発',
-        { updatedAt: text('2026-09-30', '2026-09-30') },
+        { updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' } },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
+        updatedAt: { en: '2026-11-09', ja: '2026-11-09', fr: '2026-11-09', de: '2026-11-09' },
       }),
     ],
   },

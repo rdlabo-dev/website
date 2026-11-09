@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "b6eb27b3044ef47cd46d168a2b7ae3dca1904e49345773e4c10d507a22543eeb"
+sourceRevision: "e7a0981b12c0fdec689e3569b89a0486a3d9d7ba5085a5f502692dda09472203"
 ---
 # Native UI
 
@@ -119,13 +119,15 @@ Le tableau ci-dessous décrit Native UI ordinaire. Vertical Bars utilise des [r�
 
 | Composant Ionic                               | Apparence et position prises en charge                                                                        | Rendu natif                                                      |
 | --------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ion-button` | `fill="default"`, ou transparent dans un `ion-buttons` non groupé, dans une barre fixe d’en-tête/pied de page | `UIButton` de verre |
+| `ion-button` | Barre d’outils fixe : default, clear dans des `ion-buttons` non groupés, ou solid avec `type="submit"` ou `.button-submit` | `UIButton` en verre, mis en valeur pour les actions d’envoi solid |
 | `ion-buttons`                                 | Barre d’outils fixe, avec au moins deux enfants directs `ion-button` / `ion-menu-button` à remplissage clear partageant le verre du thème | Une surface `UIGlassEffect` avec des boutons natifs indépendants           |
 | `ion-back-button`                             | Icône et couleur standard dans une barre d’outils d’en-tête ou de pied de page fixe                                                  | `UIButton` en verre utilisant le libellé et l’icône Ionic résolus                 |
 | `ion-menu-button`                             | Barre d’outils fixe, dans le `ion-buttons` en verre du thème                                                       | `UIButton` en verre ; bascule du menu Ionic d’origine                          |
 | `ion-tab-bar`                                 | Onglets fixes, éléments avec icône seule ou libellé seul, une icône par élément, badges point ou texte, sélection et état désactivé  | `UITabBar` et `UITabBarItem`                                         |
 | `ion-segment`                                 | Barre d’outils fixe, non défilante, avec du texte **ou** une icône par élément                                              | `UISegmentedControl`                                                  |
 | `ion-fab` / `ion-fab-button` / `ion-fab-list` | FAB en verre dans un emplacement fixe d’`ion-content` ; un bouton principal et des listes directionnelles facultatives                  | Un `UIButton` en verre persistant par bouton ; un groupe de synchronisation FAB |
+
+Les actions d’envoi solid (`fill="solid"` avec `type="submit"` ou `.button-submit`) prennent aussi en charge `color` d’Ionic, par exemple `color="primary"`. Leur teinte de verre accentuée provient de la couleur d’arrière-plan Web résolue. Dans un conteneur `ion-buttons` mixte, elles sont projetées individuellement plutôt que sur une surface de verre partagée. La restriction de couleur existante pour les autres actions `ion-button` horizontales projetées individuellement reste inchangée.
 
 Pour Native UI ordinaire, seuls les composants compatibles en mode iOS sont admissibles. Les variables du thème ne sont pas requises ; appeler `enableNativeUI()` active la projection. Vertical Bars explicitement activé est indépendant du mode, comme décrit ci-dessous. `ios-theme-disabled` et son ancien alias `ios26-disabled` sur un élément ou ancêtre l’excluent toujours. Désactiver le thème sur un item d’onglet/segment laisse tout son groupe Web.
 

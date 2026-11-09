@@ -4,7 +4,7 @@ title: テーマに Native UI を追加する
 
 # テーマに Native UI を追加する
 
-`@rdlabo/ionic-theme-ios27` を利用しているアプリに、テーマのスタイル、Web コンテンツ、ルーティングを維持したまま iOS のネイティブコントロールを追加できます。非対応のコントロール、ブラウザー、Android では Web の外観を維持します。
+Capacitor アプリで `@rdlabo/ionic-theme-ios27` を使用していますか。テーマのスタイル、Web コンテンツ、ルーティングを維持したまま、iOS にネイティブコントロールを追加できます。未対応のコントロール、ブラウザー、Android では Web の外観を維持します。
 
 テーマをまだ設定していない場合は[テーマのセットアップ](setup.md)から始めてください。別の Web 外観を使用する場合は [Native UI のセットアップ](../../capacitor-native-ui/docs/setup.md)に進んでください。
 
@@ -12,9 +12,9 @@ title: テーマに Native UI を追加する
 
 ## 1. ネイティブプラグインをインストールする
 
-このガイドは iOS プロジェクトを持つ Capacitor 8 アプリを想定します。Web のみのテーマ利用には Capacitor は不要ですが、iOS のネイティブコントロールを追加するには先にネイティブプロジェクトが必要です。対応する Ionic、iOS、Xcode のバージョンは [Native UI の要件](../../capacitor-native-ui/README.md#requirements)を参照してください。
+このガイドは iOS プロジェクトを備えた Capacitor 8 アプリを前提としています。Cordova では別の [Cordova のセットアップ](cordova.md)に従ってください。Web テーマだけを使う場合は Capacitor なしで利用できます。iOS のネイティブコントロールを追加する場合は、先にネイティブプロジェクトをセットアップします。対応する Ionic、iOS、Xcode のバージョンは [Native UI の要件](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/readme#requirements)を参照してください。
 
-テーマと Native UI は同時に更新してバージョンを揃え、Foldable はアプリの独立した依存関係としてインストールします。
+テーマと Native UI は独立してバージョン管理されます。テーマが宣言する peer dependency と互換性のある Native UI をインストールし、Foldable をアプリの別の依存関係としてインストールします。
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @rdlabo/capacitor-native-ui @erkamyaman/capacitor-foldable
@@ -40,7 +40,7 @@ const shell = await enableNativeUI();
 
 ## 3. iOS を同期して実行する
 
-Web アセットをビルドしてから実行します。
+CocoaPods プロジェクトでは、先に [Engine の Podfile 設定](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run)を完了してください。SwiftPM は Engine を自動で解決します。Web アセットをビルドしてから、次を実行します。
 
 ```sh
 npx cap sync ios

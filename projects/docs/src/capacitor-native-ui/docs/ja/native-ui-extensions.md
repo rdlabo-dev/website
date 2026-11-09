@@ -103,6 +103,8 @@ const counter = defineNativeUI({
 
 ## 2a. iOS で SwiftUI View を登録する
 
+CocoaPods プロジェクトでは、まず [Engine の Podfile 設定](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run)を完了してください。SwiftPM は Engine を自動で解決します。
+
 プラグインの導入後に `npx cap sync ios` を実行し、アプリの Xcode ターゲットに Swift ファイルを追加します。`@rdlabo/capacitor-native-ui` が提供する `NativeUIPlugin` モジュールをインポートします。既存の SPM または CocoaPods 連携は維持してください。
 
 ```swift

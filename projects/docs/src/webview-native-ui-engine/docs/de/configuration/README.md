@@ -1,6 +1,6 @@
 ---
 title: "Registrierungseinstellungen"
-sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
+sourceRevision: "5a4a235c962fd595c64e6772b34dcffc282cd14995b0d32f51eb6436fa812c6f"
 ---
 # Eine native Registrierung konfigurieren
 
@@ -22,6 +22,6 @@ Optional bedeutet, dass ein Standardwert vorhanden ist, nicht dass eine verände
 | `runtime` | Capacitor. | **Für Cordova-Integrationen erforderlich**: Wählen Sie Cordova, damit Benachrichtigungen und Ressourcen-URLs dessen Transport verwenden. |
 | `captureMode` (Android) | `COMPOSITED`, einschließlich des sichtbaren Hintergrunds. | Eine undurchsichtige Karte scrollt an benachbarten Inhalten vorbei: `VIEW` nimmt nur die Karte statt der umgebenden Fensterpixel auf. Verwenden Sie es nicht für durchscheinende Inhalte, Video oder SurfaceView. Siehe [Aufnahmefähigkeit](../reference/platforms.md#android-capture-modes). |
 
-Die Engine stellt die [Darstellungsabsicht](../reference/state.md) getrennt von Komponentenwerten bereit. Für beides ist kein anwendungsseitiger Engine-Wrapper erforderlich. Die Erkennung von Ionic-Overlays ist ein separater, optionaler [gemeinsamer Initialisierer](ionic-overlays.md), kein Registrierungsargument; andere Frameworks melden ihren Lebenszyklus explizit.
+Die Engine stellt die [Darstellungsabsicht](../reference/state.md) getrennt von Komponentenwerten bereit. Für beides ist kein anwendungsseitiger Engine-Wrapper erforderlich. Die Erkennung von Ionic-Overlays ist ein separater, optionaler [gemeinsamer Initialisierer](ionic-overlays.md), kein Registrierungsargument. Für anwendungseigene Overlays können Plugins [pause/resume erneut exportieren](pause-resume.md), damit Anwendungen ihre Overlays explizit damit einrahmen.
 
 [Dokumentationsübersicht](../README.md)

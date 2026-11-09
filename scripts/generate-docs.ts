@@ -15,6 +15,7 @@ import {
 import { localizedPublicPath } from '../projects/docs/src/app/locale-path';
 import { SITE_CONFIG } from '../projects/docs/src/app/site-config';
 import { enforceGeneratedHtmlPolicy } from './html-policy';
+import { compactDocsHtml } from './compact-docs-html';
 import {
   addHeadingAliases,
   normalizeImportedReadmeHeadings,
@@ -708,6 +709,7 @@ async function generateProject(
     }
     formatApiEntries(htmlDocument);
     if (slug === 'api') formatApiReference(htmlDocument);
+    compactDocsHtml(htmlDocument);
     html = enforceGeneratedHtmlPolicy(htmlDocument.body.innerHTML, context);
     const headings = Array.from(htmlDocument.querySelectorAll<HTMLElement>('h2, h3, h4')).map(
       (heading) => ({

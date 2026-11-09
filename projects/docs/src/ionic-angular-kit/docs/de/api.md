@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "d12e7c4b43f75e518017c960d8b0f01d27802ddb6c78853d057e2559b03d8992"
+sourceRevision: "ef7160add83aeb3e3dd80313197d550a16c829ca3e41ba9af0ec7528bac7a06d"
 ---
-Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.6. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
+Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.7. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
 
 ## Kern
 
@@ -13,7 +13,7 @@ sourceRevision: "d12e7c4b43f75e518017c960d8b0f01d27802ddb6c78853d057e2559b03d899
 | Speicher        | `KitStorageService`, `kitClearStoragePreservingKeys`                | [Speicher und Overlays](/docs/storage-overlays) |
 | Overlay        | `provideKitOverlay`, `KitOverlayController`, `KitLoadingController` | [Speicher und Overlays](/docs/storage-overlays) |
 | Authentifizierung | `provideKitAuth`, Guard-Funktionen, `KitAuthAccessService`           | [Authentifizierung und HTTP](/docs/auth-http)     |
-| HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [Authentifizierung und HTTP](/docs/auth-http)     |
+| HTTP           | `provideKitHttp`, `kitAuthInterceptor`, `KIT_SKIP_ERROR_NOTIFICATIONS`                              | [Authentifizierung und HTTP](/docs/auth-http)     |
 | Echtzeit       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Offline und Echtzeit](/docs/offline-realtime) |
 
 `KitAuthLoginExchange` und `kitPreloadAuthLoginForNavigation` teilen Anmeldeanfragen beim Start. Siehe [Authentifizierung und HTTP](/docs/auth-http).

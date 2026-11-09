@@ -40,6 +40,7 @@ npm install @rdlabo/capacitor-native-ui @erkamyaman/capacitor-foldable
 | -------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `data-native-ui` | `button` | 標準の操作ボタンを投影。 |
 | `data-native-ui` | `back-button` | 標準の戻るボタンを投影。ナビゲーションはソースのクリックハンドラーが管理し、プラグインは `history.back()` を呼ばない。 |
+| `data-native-ui` | `button-submit` | 目立つガラスの強調表示でボタンを投影します。色調は解決済みの前景色から決まります。 |
 | `data-native-ui` | `disabled` | 要素と部分木を投影から除外。 |
 | `data-native-ui-placement` | `element`（既定値） | ソース要素の矩形を使用。 |
 | `data-native-ui-placement` | `rail` | Vertical Bars を要求。ネイティブレールが利用不可なら任意の Web レールホストを使用。 |
@@ -79,6 +80,8 @@ const shell = await enableNativeUI({
 独自 HTML テーマでは Web パレットを選ぶ同じ CSS に `color-scheme: light` または `color-scheme: dark` を宣言します。背景色だけではネイティブ外観は選択されません。手動切り替えの例、Ionic・テーマ変数の優先順位、共有レールの動作は[ライト・ダーク外観](appearance.md)を参照してください。
 
 ## 4. iOS でビルドして実行する
+
+CocoaPods プロジェクトでは、まず [Engine の Podfile 設定](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run)を完了してください。SwiftPM は Engine を自動で解決します。
 
 Web アプリをビルドして `npx cap sync ios` を実行し、Xcode から iOS プロジェクトを起動します。手順 3 の設定では Add はソース位置に描画され、元のクリックハンドラーを実行します。Back は利用可能ならデバイスが報告するネイティブレールを要求します。Web の余白を同期するため後述のデバイス配置を接続してください。ブラウザーでは同じボタンが通常の Web ボタンのままです。マーカーのない HTML は変わりません。
 
@@ -126,4 +129,4 @@ const shell = await enableNativeUI({
 
 ## 使用例
 
-[通常の HTML の例](https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。
+[通常の HTML の例](https://github.com/webview-native-ui/capacitor-plugin/tree/v2.1.4/examples/native-ui-html)は Add、ルーターなしの Home/Details/Back 遷移、任意の Web レール投影、クリーンアップを示します。Ionic・テーマ CSS は使いません。

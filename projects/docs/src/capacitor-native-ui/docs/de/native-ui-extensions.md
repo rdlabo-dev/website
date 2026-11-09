@@ -1,6 +1,6 @@
 ---
 title: "App-lokale Native UI-Erweiterungen (experimentell)"
-sourceRevision: "f518386a94ae60aded9e2e9e49057752084cc50c813c6d2c9464b985e92dd948"
+sourceRevision: "3a104278397b3ce6d2f0a9beff67f3e84051778d89a2f30dc7872e6ecd6e965d"
 ---
 
 # App-lokale Native UI-Erweiterungen (experimentell)
@@ -103,6 +103,8 @@ Dies verwendet WebKits interne Overflow-View-Hierarchie ohne private Klassenname
 `NativeUIContext.sourceFrame` ist die neueste Layoutstichprobe und keine Benachrichtigung bei jedem Scrollvorgang. Natives Tracking baut SwiftUI-Inhalte nicht aufgrund von Scrollversätzen neu auf. Feste Tab-Zusatzelemente verwenden diese Bindung nicht. Web-Modal-Transformationen bleiben auf ihrem bestehenden Übergabepfad; nicht interaktive abgedeckte Inhalte können vorbereitete Bilder verwenden, während interaktive scrollende Inhalte nativ bleiben.
 
 ## 2a. Eine SwiftUI-View unter iOS registrieren
+
+Führen Sie bei CocoaPods-Projekten zunächst die [Engine-Podfile-Einrichtung](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run) durch. SwiftPM löst Engine automatisch auf.
 
 Führen Sie nach der Plugin-Installation `npx cap sync ios` aus und fügen Sie eine Swift-Datei zum Xcode-Target der Anwendung hinzu. Importieren Sie `NativeUIPlugin`, das von `@rdlabo/capacitor-native-ui` bereitgestellte Modul. Behalten Sie Ihre bestehende SPM- oder CocoaPods-Integration.
 

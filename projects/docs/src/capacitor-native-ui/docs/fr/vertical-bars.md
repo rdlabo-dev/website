@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars"
-sourceRevision: 692105738a7f4a3877baed82ffe0c24438aff3645fe32403dcf1294b2d17e5ce
+sourceRevision: "133cf0f1f4727f2b669622ec9dce23935c01bd5b9f609b894c967aae909a0a5a"
 ---
 # Vertical Bars
 
@@ -88,6 +88,16 @@ Pour une disposition guidée par la charnière, lisez `getFoldState()` et abonne
 
 Sur iOS compatible, ajouter `.ios-theme-vertical-bars` ne change que les contrôles déplacés par le système dans le rail latéral physique. Native UI présente onglets admissibles, retour, boutons de menu et actions via un `TabView` et une barre SwiftUI dès application de la classe. Lorsque l’OS signale un bord — sur iPhone Duo lié à iOS 27.1 ou ultérieur — il doit correspondre au placement appliqué ; sinon le rail reste Web. Sans bord signalé, la projection conserve son repli Web. Une préférence ne peut pas activer un rail natif incompatible. SwiftUI gère placement adaptatif et Liquid Glass ; Ionic reste la source des libellés, icônes, états sélectionné/désactivé, routage, envoi de formulaires et clics.
 
+Les badges d’onglets proviennent d’un `ion-badge` visible dans le `ion-tab-button` d’origine. Modifier son texte met à jour le badge natif ; le masquer ou le supprimer efface le badge. Le rail natif utilise l’apparence système des badges SwiftUI. Le repli Web conserve l’onglet et le badge Ionic d’origine, y compris leurs couleurs CSS. Ionic masque par défaut les badges vides ; rendez donc un badge vide visible en CSS pour demander un point de notification.
+
+```html
+<ion-tab-button tab="inbox">
+  <ion-icon name="mail-outline"></ion-icon>
+  <ion-label>Inbox</ion-label>
+  <ion-badge color="danger">3</ion-badge>
+</ion-tab-button>
+```
+
 La surface SwiftUI est découpée et ses interactions limitées au rail système. Le contenu Web reste visible et interactif hors de cette région physique. Le runtime actualise de façon optimiste la sélection avant de transmettre l’action à `ion-tab-button`, avec les mêmes protections d’événements et de révisions périmées que les autres contrôles. Les superpositions suivent la [disposition facultative du rail du thème](/ionic-theme-ios27/docs/vertical-bars-layout#reserve-the-vertical-rail) si cette feuille est utilisée ; les dispositions personnalisées relèvent de l’application.
 
 ### Popovers natifs (Vertical Bars uniquement)
@@ -129,7 +139,7 @@ Par défaut, un `ion-button` rejoint le rail s’il contient un `ion-icon` ou SV
 </ion-header>
 ```
 
-Tous les remplissages (`default`, `clear`, `solid` et `outline`) et couleurs Ionic suivent cette règle de placement. Gardez les noms accessibles et les gestionnaires de clic ou de soumission de formulaire d’origine sur les boutons sources. `type="submit"` et `.button-submit` ne sélectionnent pas un placement différent.
+Tous les remplissages (`default`, `clear`, `solid` et `outline`) et couleurs Ionic suivent cette règle de placement. Gardez les noms accessibles et les gestionnaires de clic ou de soumission de formulaire d’origine sur les boutons sources. `type="submit"` et `.button-submit` ne sélectionnent pas un placement différent. Combinées à `fill="solid"`, elles utilisent un verre accentué teinté à partir de la couleur d’arrière-plan résolue du bouton, conformément à la mise en valeur des envois du thème.
 
 La règle s’applique aux boutons individuels et à ceux contenus dans `ion-buttons`, sur les pages ordinaires et dans la modale pleine largeur la plus haute. Les modales centrées, menus et popovers gardent leur propre disposition de barre d’outils. Ajoutez `.ios-theme-horizontal-only` à un groupe ou un bouton individuel pour le garder horizontal. Le placement est choisi lorsqu’une page routée entre ; changer le contenu ou le slot d’icône d’un bouton existant ne le déplace pas entre barre d’outils et rail avant que la page sorte puis entre de nouveau.
 
@@ -247,7 +257,7 @@ restent des exclusions, distinctes du réglage de groupement.
 
 | Réglage | Valeurs | Responsabilité | S’applique à |
 | -------------------------- | ----------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `data-native-ui` | `button`, `back-button`, `disabled` | Déclarer une source explicite ou exclure un sous-arbre. | [Sources explicites](framework-independent.md#2-mark-source-controls) ; `disabled` s’applique aussi aux ancêtres. |
+| `data-native-ui` | `button`, `back-button`, `button-submit`, `disabled` | Déclarer une source explicite ou exclure un sous-arbre. | [Sources explicites](framework-independent.md#2-mark-source-controls) ; `disabled` s’applique aussi aux ancêtres. |
 | `data-native-ui-placement` | `element`, `rail` | Choisir la position originale ou demander le rail. | Sources explicites ; `element` maintient aussi les contrôles Ionic automatiques à leur position originale. |
 | `data-vertical-bars` | `true`, `false` | Remplacer les défauts de sélection ou de groupement du rail. | Actions et groupes Ionic ci-dessus. |
 | `data-horizontal-bars` | `true`, `false` | Remplacer les défauts de sélection ou groupement ordinaires. | [Contrôles Ionic ordinaires](native-ui.md#toolbar-selection-and-grouping). |
@@ -336,6 +346,10 @@ const rail = await enableNativeUI({ controls: 'verticalOnly', ionic: { verticalB
 | `null` | Verre natif avec les couleurs d’icône source |
 
 Dans `ion-buttons`, définissez explicitement `fill="solid"` pour projeter un arrière-plan ; `buttonDefaultFill: 'solid'` ne remplace pas le remplissage clear par défaut du groupe. La teinte du Liquid Glass natif peut différer de la couleur CSS, surtout pour les fonds translucides. Avec le thème iOS, les `ion-buttons` ordinaires conservent la projection de groupe ; `ion-buttons.ios-theme-disabled` projette individuellement les boutons admissibles. Les réglages locaux de projection ne changent pas cette règle de regroupement.
+
+## Mouvement des Modal
+
+Les contrôles du rail d’une Modal conservent la propriété Native des sources pendant la présentation, le glissement, l’ajustement et la fermeture. Au repos, ils utilisent les contrôles Native actifs. Sous la limite réservée à la barre d’outils, le mouvement utilise des images portées par le dialogue Modal ; sur cette limite ou au-dessus, les contrôles Native actifs restent fixes. La présentation et la fermeture utilisent des images préparées pour leurs transitions. Ces règles s’appliquent aux boutons groupés comme à ceux projetés individuellement. Consultez le [déplacement du rail d’une Modal et le découpage du bord du verre](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance#modal-rail-movement) pour les règles de présentation et la portée du découpage.
 
 ## Barre d’onglets
 

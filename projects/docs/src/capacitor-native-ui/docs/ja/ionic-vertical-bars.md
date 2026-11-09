@@ -190,3 +190,22 @@ Web レールのタブはアイコンを表示し、押してドラッグする�
 ## 共通レイアウト規則と API
 
 セーフエリア、オーバーレイ、RTL、対象条件、Web シミュレーション、ハンドル API は [Vertical Bars](vertical-bars.md)に記載しています。カスタマイズ時の参照で、追加のインストール手順ではありません。
+
+## デバイスのレイアウトを解決する
+
+```ts
+import { Foldable } from '@erkamyaman/capacitor-foldable';
+import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+const applyLayout = async () => setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
+
+await applyLayout();
+await Foldable.addListener('layoutChange', applyLayout);
+```
+
+アプリの既存の初期処理・デバイス変更ハンドラーから呼び出します。`layoutChange` には Foldable 8.5 以降が必要です。ディスプレイが変わっても edge と inset は変わらない場合があるため、`barPlacementChange` だけでは折りたたみを検出できません。
+
+SDK に依存しないこのリゾルバーは `edge`、`inset`、`toolbarTop` だけを返します。Native UI の起動、イベント購読、CSS の適用は行いません。読み取りが存在しない場合や失敗した場合は undefined のままとし、デフォルト値の責任を `setVerticalBarsLayout` に残します。`toolbarTop` を適用するには、対応するテーマ入力の拡張が必要です。
+
+プロバイダーのフレームと inset は、ブラウザーのビューポートの CSS ピクセルで指定しなければなりません。Foldable のポイントは通常の device-width、initial-scale=1 のビューポートと一致します。他の倍率では正規化したプロバイダーが必要です。テーマと同じく、`ion-app` または祖先にある最も近い `dir` が物理的なレールの側を決めます。`ion-app` がなければ、ドキュメントの方向を使います。

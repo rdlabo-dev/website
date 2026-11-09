@@ -1,6 +1,6 @@
 ---
 title: "ドキュメント概要"
-sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bbb"
+sourceRevision: "89d93b28716c579e0f214dd6295f82a48c0db142e66d1fbcb768d8accb6ac73f"
 ---
 # ドキュメント
 
@@ -41,6 +41,7 @@ sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bb
 - [値のバインディング](configuration/values.md)：フォールバックホストのコンポーネントデータを、ネイティブの状態に合わせます。
 - [キャプチャのタイミング](configuration/capture.md)：ネイティブの外観が安定してからピクセルを準備します。
 - [Ionicオーバーレイ](configuration/ionic-overlays.md)：共有のアプリ初期化関数を1つ使い、Ionicの被覆を連携させます。
+- [カスタムWebオーバーレイ](configuration/pause-resume.md)：プラグインからpause/resumeを再エクスポートし、アプリが独自のオーバーレイの前後で呼び出せるようにします。
 
 ## 4. レンダラーを所有する場合に高度なAPIを使う
 

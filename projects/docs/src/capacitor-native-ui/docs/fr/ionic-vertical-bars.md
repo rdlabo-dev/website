@@ -1,6 +1,6 @@
 ---
 title: "Ajouter Vertical Bars en conservant votre thème"
-sourceRevision: 50766d325ac41dedc16a00c2f38f848fdb7a517c96b6873cceae558d21835a85
+sourceRevision: "d055ca5078865c9269fb89a43fa1b4a29c2adde2c65277a981232a8feb7699cd"
 ---
 # Ajouter Vertical Bars en conservant votre thème
 
@@ -190,3 +190,22 @@ Consultez [Lire la disposition de l’appareil](../../theme-ios27/docs/vertical-
 ## Règles de disposition partagées et API
 
 La gestion des zones de sécurité, superpositions, RTL, admissibilité, simulation Web et API du handle est décrite dans [Vertical Bars](vertical-bars.md). Consultez cette référence pour personnaliser la configuration ; ce n’est pas une étape d’installation supplémentaire.
+
+## Résoudre la disposition de l’appareil
+
+```ts
+import { Foldable } from '@erkamyaman/capacitor-foldable';
+import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+const applyLayout = async () => setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
+
+await applyLayout();
+await Foldable.addListener('layoutChange', applyLayout);
+```
+
+Appelez ceci depuis le gestionnaire existant d’initialisation ou de changement d’appareil de l’application. `layoutChange` nécessite Foldable 8.5 ou ultérieur. Le bord et le retrait peuvent rester identiques lorsque l’écran change ; `barPlacementChange` seul manque donc les pliages.
+
+Le résolveur indépendant du SDK renvoie uniquement `edge`, `inset` et `toolbarTop` ; il ne démarre pas Native UI, ne s’abonne pas aux événements et n’applique pas de CSS. Les lectures absentes ou en échec restent undefined, laissant à `setVerticalBarsLayout` la responsabilité des valeurs par défaut. Appliquer `toolbarTop` nécessite l’extension correspondante des paramètres d’entrée du thème.
+
+Les rectangles et retraits du fournisseur doivent utiliser les pixels CSS du viewport du navigateur. Les points de Foldable correspondent au viewport habituel device-width, initial-scale=1 ; les autres échelles nécessitent un fournisseur normalisé. Le `dir` le plus proche sur `ion-app` ou ses ancêtres détermine le côté physique du rail, comme dans le thème ; sans `ion-app`, la direction du document est utilisée.

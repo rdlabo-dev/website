@@ -38,35 +38,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/overview</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/overview</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/overview</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/overview</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/concepts</loc>
@@ -83,6 +83,22 @@
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/concepts</loc>
     <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/controls</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/controls</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/controls</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/controls</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/getting-started/initialization</loc>
@@ -134,19 +150,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/events</loc>
@@ -213,6 +229,22 @@
     <lastmod>2026-11-01</lastmod>
   </url>
   <url>
+    <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/configuration/pause-resume</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/configuration/pause-resume</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/configuration/pause-resume</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/configuration/pause-resume</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced</loc>
     <lastmod>2026-10-29</lastmod>
   </url>
@@ -246,35 +278,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/web-projection</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/webview-native-ui-engine/docs/advanced/native-handoff</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/webview-native-ui-engine/docs/advanced/android-placement</loc>
@@ -726,19 +758,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/auth-http</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-kit/docs/auth-http</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-angular-kit/docs/auth-http</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-angular-kit/docs/auth-http</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/offline-realtime</loc>
@@ -774,19 +806,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-kit/docs/api</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-angular-kit/docs/api</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-angular-kit/docs/api</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-angular-kit/docs/api</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-photo-editor</loc>
@@ -1080,35 +1112,51 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/setup</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/setup</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/setup</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/setup</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/cordova</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/cordova</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/cordova</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/cordova</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/adaptive-themes</loc>
@@ -1128,35 +1176,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/add-native-ui</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/add-native-ui</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/add-native-ui</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/add-native-ui</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/using-ion-item-group</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/special-markup</loc>
@@ -1224,35 +1272,35 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars-layout</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/vertical-bars-layout</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/vertical-bars-layout</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/vertical-bars-layout</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-ios27/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-ios27/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-ios27/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui</loc>
@@ -1268,83 +1316,83 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/readme</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/setup</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/setup</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/setup</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/framework-independent</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/framework-independent</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/framework-independent</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/framework-independent</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/ionic-vertical-bars</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/ionic-vertical-bars</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/ionic-vertical-bars</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/ionic-vertical-bars</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/native-ui</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/native-ui</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/native-ui</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/configuration</loc>
@@ -1364,67 +1412,83 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/appearance</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/appearance</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/appearance</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/appearance</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/vertical-bars</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/vertical-bars</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/vertical-bars</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/vertical-bars</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/native-ui-extensions</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/native-ui-extensions</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/native-ui-extensions</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/native-ui-extensions</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/capacitor-native-ui/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/capacitor-native-ui/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/capacitor-native-ui/docs/migration</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-ios26</loc>
@@ -1583,43 +1647,99 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/readme</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/readme</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/readme</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/readme</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/android-settings</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/android-settings</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/android-settings</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/android-settings</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/dynamic-colors</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/color-system</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/color-system</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/color-system</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/color-system</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/using-ion-item-group</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/using-ion-item-group</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/using-ion-item-group</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/using-ion-item-group</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/special-markup</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/special-markup</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/special-markup</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/special-markup</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/eslint</loc>
@@ -1637,42 +1757,51 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/migration</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/migration</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/migration</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/migration</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/e2e-testing</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/e2e-testing</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/e2e-testing</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/e2e-testing</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/api</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/ionic-theme-md3/docs/api</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/ionic-theme-md3/docs/api</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/ionic-theme-md3/docs/api</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/ionic-angular-collect-icons</loc>

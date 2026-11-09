@@ -1,9 +1,72 @@
 ---
 title: "Theme-Migration"
-sourceRevision: a043e7a43698a1134aa8fd842f9b3be4dbe35513ffa17332e669b1133ac64b76
+sourceRevision: "8bafa4e67f3794af95d07aa55318d81efaf5ccb7b0d396e639d20d3fb32f7f0a"
 ---
 
 # Theme-Migration
+
+Diese Anleitung aktualisiert das eigenständige Theme und dessen Capacitor-Integration. Für das mit Cordova gebündelte Theme lesen Sie [Eine bestehende Theme-App nach Cordova migrieren](cordova.md#moving-an-existing-theme-app-to-this-integration).
+
+## Upgrade von 2.1.0
+
+Dieser Abschnitt beschreibt in der Theme- und der Native UI-Anleitung dasselbe Upgrade; eine der beiden Anleitungen genügt. Behalten Sie bestehende Theme-Importe, Stylesheets und Animationseinstellungen bei. Native UI bleibt optional. Falls aktiviert, behalten Sie den vorhandenen Aufruf von `enableNativeUI()`, die Steuerelementauswahl und die Laufzeit an der Anwendungswurzel bei. Die ältere Pakettrennungsmigration weiter unten muss nicht wiederholt werden.
+
+### Abhängigkeiten aktualisieren
+
+Aktualisieren Sie bei reinen Theme-Anwendungen das Theme:
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest
+```
+
+Aktualisieren Sie bei Anwendungen mit Gerätegeometrie für die Seitenleiste oder Native UI alle drei Pakete einschließlich Foldable. Sie werden unabhängig versioniert; verwenden Sie gemäß der Peer-Abhängigkeit des Themes kompatible Versionen:
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest @rdlabo/capacitor-native-ui@latest @erkamyaman/capacitor-foldable@latest
+```
+
+Der folgende Resolver-Import liefert Layoutwerte, ohne die native Projektion zu aktivieren. Reine Theme-Anwendungen ohne geräteseitige Leiste können den Schritt zur Gerätegeometrie überspringen.
+
+### Gerätegeometrie aktualisieren
+
+Wenn Ihre App `getBarPlacement()` direkt auf `setVerticalBarsLayout({ edge, inset })` abbildet, verwenden Sie den Resolver, um den Ursprung der Werkzeugleiste aus den reservierten Bereichen einzubeziehen:
+
+```diff
+- import { Foldable, type BarPlacement } from '@erkamyaman/capacitor-foldable';
++ import { Foldable } from '@erkamyaman/capacitor-foldable';
++ import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+ import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+- const applyPlacement = ({ verticalBarEdge, inset }: BarPlacement) =>
+-   setVerticalBarsLayout({ edge: verticalBarEdge, inset });
+- const listener = await Foldable.addListener('barPlacementChange', applyPlacement);
+- applyPlacement(await Foldable.getBarPlacement());
++ const updateLayout = async () => {
++   setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
++ };
++ const listener = await Foldable.addListener('layoutChange', () => void updateLayout());
++ await updateLayout();
+```
+
+Ersetzen Sie den alten Platzierungslistener, statt einen zweiten Aktualisierungspfad hinzuzufügen. Behalten Sie `await listener.remove()` im bestehenden Aufräumcode der Anwendung bei. Falls bereits ein `layoutChange`-Handler vorhanden ist, rufen Sie den Resolver dort auf. Die bestehende Anbindung von `foldStateChange` / `applyFoldStateClasses` für die Faltstellung bleibt erhalten; der Resolver liefert nur die Geometrie der Leiste.
+
+Verwenden Sie das gemeldete Leistenlayout direkt, ohne es von `isDeviceFoldable()`, einem Gerätenamen oder heuristischen Viewport-Größen abhängig zu machen. Entfernen Sie feste Toolbar-Top-Workarounds, die Gerätegeometrie nachbilden sollten. Beabsichtigte CSS-Anpassungen der Anwendung bleiben unterstützt. Standardwerte verbleiben in `setVerticalBarsLayout` des Themes, nicht im Resolver. Der Standard für das Außendisplay beträgt 174px; gemeldete Gerätegeometrie kann den Ursprung des Innendisplays von 124px liefern. Siehe [Layoutwerte und Rückfallverhalten](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars-layout#apply-device-layout-values).
+
+### Modal-Korrekturen und Aussehen von Absendeaktionen
+
+Schwebende Karten und Sheets verwenden jetzt gemessene Grenzen, um die Duo-Leiste nicht zu überlappen, und Native UI erkennt schwebende Dialoge, die die Leiste überlappen, korrekt. Dies korrigiert das Modal-Layout und die Behandlung nativer Steuerelemente ohne Änderungen am Anwendungscode. CSS, das allein als Workaround für diesen Fehler volle Breite erzwungen hat, können Sie entfernen. Behalten Sie explizite Vollbildgrößen bei, wenn sie eine Produktanforderung sind. Mit `ios-theme-vertical-bars` oder `ios-theme-fold-expanded` auf `ion-app` lassen schwebende Karten und Sheets auf jeder Seite mindestens 8px frei. Bei mindestens 600px hohen Viewports ist ihre Breite auf 653px begrenzt; niedrigere Viewports nutzen die verfügbare Breite minus 16px. Der obere Abstand folgt der Safe Area und beträgt mindestens 8px. Sheet-Breakpoints steuern weiterhin die sichtbare Höhe. Anwendungsspezifische Größen über `--width`, `--max-width` und `--height` bleiben unterstützt. Übliche Telefon- und Tablet-Standardwerte ändern sich nicht, wenn keine der Layoutklassen aktiv ist.
+
+Ausgefüllte Ionic-Absende-Schaltflächen verwenden automatisch eine hervorgehobene native Glasdarstellung:
+
+```html
+<ion-button type="submit" fill="solid">Save</ion-button>
+```
+
+Dasselbe Aussehen gilt für vorhandene `.button-submit`-Aktionen mit solider Füllung. Diese Klasse gestaltet nur die Darstellung und sendet kein Formular ab. Clear- und Outline-Füllungen erhalten keine Absendehervorhebung. Bestehende explizite Deklarationen von `data-native-ui="button-submit"` bleiben unterstützt.
+
+Native Steuerelemente behalten während Navigation, Modal-Animationen und Bildübergaben die Zuständigkeit. Ein in der WebView angezeigtes Bild ist weiterhin die Darstellung der nativen Projektion und keine Rückkehr zum ursprünglichen Web-Button. Testen und entfernen Sie transitionsspezifische Workarounds, die diese Steuerelemente ins Web zurückzwingen. Behalten Sie beabsichtigte Ausnahmen sowie die Behandlung nicht unterstützter Steuerelemente und nativer Fehler bei; zusätzliche Animationsflags oder eine zweite Laufzeit sind nicht nötig.
+
+Prüfen Sie beide Leistenseiten, das Verschwinden der Leiste, Falten und Drehen, Karten-, Sheet- und Vollbilddarstellungen sowie solide Absendeaktionen. Prüfen Sie auch ein gewöhnliches iPhone und den Browser-Fallback. Verwenden Sie für Cordova die [gebündelte Integration](https://github.com/webview-native-ui/cordova-plugin); das festgelegte Theme und native Änderungen werden durch ein Cordova-Plugin-Release bereitgestellt, nicht über diese Capacitor-Installationsbefehle.
 
 ## Aufteilung in ein eigenes Native UI-Paket
 

@@ -4,6 +4,69 @@ title: テーマの移行
 
 # テーマの移行
 
+このガイドは独立したテーマと Capacitor 連携を更新するためのものです。Cordova 同梱のテーマを採用する場合は、[既存のテーマアプリを Cordova へ移行する](cordova.md#moving-an-existing-theme-app-to-this-integration)を参照してください。
+
+## 2.1.0 からの更新
+
+この節はテーマと Native UI の両ガイドで同じ更新を説明しています。どちらか一方に従えば十分です。既存のテーマのインポート、スタイルシート、アニメーション設定を維持してください。Native UI は引き続き任意です。有効にしている場合は、既存の `enableNativeUI()` 呼び出し、コントロールの選択、アプリルートのランタイムを維持します。以下にある以前のパッケージ分離の移行を繰り返す必要はありません。
+
+### 依存関係の更新
+
+テーマだけを使うアプリでは、テーマを更新します。
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest
+```
+
+デバイスのレール寸法や Native UI を使うアプリでは、Foldable を含む3つのパッケージをすべて更新します。これらは独立してバージョン管理されています。テーマの peer dependency に従って互換性のあるバージョンを使ってください。
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest @rdlabo/capacitor-native-ui@latest @erkamyaman/capacitor-foldable@latest
+```
+
+以下のリゾルバーのインポートは、ネイティブ投影を有効にせずレイアウト値を取得します。デバイスのレールを使わないテーマ専用アプリでは、デバイス寸法の手順を省略できます。
+
+### デバイス寸法の更新
+
+アプリで `getBarPlacement()` を直接 `setVerticalBarsLayout({ edge, inset })` に対応付けている場合は、リゾルバーを使い、予約領域から取得したツールバーの起点も含めます。
+
+```diff
+- import { Foldable, type BarPlacement } from '@erkamyaman/capacitor-foldable';
++ import { Foldable } from '@erkamyaman/capacitor-foldable';
++ import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+ import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+- const applyPlacement = ({ verticalBarEdge, inset }: BarPlacement) =>
+-   setVerticalBarsLayout({ edge: verticalBarEdge, inset });
+- const listener = await Foldable.addListener('barPlacementChange', applyPlacement);
+- applyPlacement(await Foldable.getBarPlacement());
++ const updateLayout = async () => {
++   setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
++ };
++ const listener = await Foldable.addListener('layoutChange', () => void updateLayout());
++ await updateLayout();
+```
+
+2つ目の更新経路を追加せず、古い配置リスナーを置き換えます。既存のアプリ終了処理にある `await listener.remove()` は維持します。すでに `layoutChange` ハンドラーがある場合は、そこでリゾルバーを呼び出してください。姿勢に対応する既存の `foldStateChange` / `applyFoldStateClasses` の配線は維持します。リゾルバーが提供するのはレールの寸法だけです。
+
+報告されたレールのレイアウトをそのまま使い、`isDeviceFoldable()`、デバイス名、ビューポートサイズの推測で適用を制限しないでください。デバイス寸法を模倣するための固定ツールバー起点の回避策は削除します。意図したアプリの CSS オーバーライドは引き続き対応しています。既定値はリゾルバーではなく、テーマの `setVerticalBarsLayout` にあります。テーマの外側ディスプレイ向け既定値は 174px で、デバイスが報告する寸法から内側ディスプレイの起点 124px を取得できます。[レイアウト値とフォールバックの動作](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars-layout#apply-device-layout-values)を参照してください。
+
+### モーダルの修正と送信ボタンの外観
+
+フローティングカードとシートは計測した境界を使って Duo のレールとの重なりを避けるようになり、Native UI もレールに重なるフローティングダイアログを正しく認識します。モーダルのレイアウトとネイティブコントロールの処理を修正するもので、アプリのコード変更は不要です。この不具合を回避するためだけに全幅を強制する CSS を追加していた場合、その回避策を削除できます。製品の要件として全画面が必要な場合は、明示したサイズを維持してください。`ion-app` に `ios-theme-vertical-bars` または `ios-theme-fold-expanded` があると、フローティングカードとシートは左右に最低 8px の余白を残します。高さ 600px 以上のビューポートでは幅の上限が 653px、それより低いビューポートでは利用可能な幅から 16px を引いた幅になります。上部余白はセーフエリアに従い、最低 8px を確保します。シートのブレークポイントは引き続き表示の高さを制御します。`--width`、`--max-width`、`--height` によるアプリ側のサイズ設定も維持されます。どちらのレイアウトクラスも有効でない場合、通常のスマートフォンとタブレットの既定値は変わりません。
+
+塗りつぶしの Ionic 送信ボタンは、自動で目立つネイティブのガラス表現を使います。
+
+```html
+<ion-button type="submit" fill="solid">Save</ion-button>
+```
+
+同じ外観は、塗りつぶしを使う既存の `.button-submit` アクションにも適用されます。このクラスはスタイルを提供するだけで、フォームを送信しません。clear と outline の fill には送信の強調を適用しません。既存の明示的な `data-native-ui="button-submit"` 宣言も引き続き対応しています。
+
+ネイティブコントロールは、ナビゲーション、モーダルのアニメーション、画像へのハンドオフ中も所有権を維持します。WebView に表示される画像もネイティブ投影の表示であり、元の Web ボタンへ戻ったわけではありません。これらのコントロールを強制的に Web へ戻す、遷移専用の回避策は再検証して削除してください。意図した適用除外や、未対応のコントロール・ネイティブエラーへの対処は維持します。追加のアニメーションフラグや2つ目のランタイムは不要です。
+
+左右両側のレール、レールの消失、折りたたみと回転、カード・シート・全画面の表示、塗りつぶしの送信アクションを確認してください。通常の iPhone とブラウザーのフォールバックも確認します。Cordova では[同梱の連携](https://github.com/webview-native-ui/cordova-plugin)を使用します。固定されたテーマとネイティブの変更は、これらの Capacitor のインストールコマンドではなく、Cordova プラグインのリリースで提供されます。
+
 ## Native UI パッケージの分離
 
 テーマのスタイルと通常のテーマ API のインポートは引き続き利用できます。このパッケージ経由でネイティブコントロールを使用していた場合、`/native` と `/vertical-bars` エントリーは削除されています。

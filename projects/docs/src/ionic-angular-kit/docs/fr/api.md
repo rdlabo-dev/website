@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "d12e7c4b43f75e518017c960d8b0f01d27802ddb6c78853d057e2559b03d8992"
+sourceRevision: "ef7160add83aeb3e3dd80313197d550a16c829ca3e41ba9af0ec7528bac7a06d"
 ---
-Cartographie des points d’entrée publics de `@rdlabo/ionic-angular-kit` v22.0.6. Les guides ciblés décrivent les exigences de cycle de vie et d’intégration ; cette page précise quel chemin de package contient chaque famille d’API.
+Cartographie des points d’entrée publics de `@rdlabo/ionic-angular-kit` v22.0.7. Les guides ciblés décrivent les exigences de cycle de vie et d’intégration ; cette page précise quel chemin de package contient chaque famille d’API.
 
 ## Principal
 
@@ -13,7 +13,7 @@ Cartographie des points d’entrée publics de `@rdlabo/ionic-angular-kit` v22.0
 | Stockage        | `KitStorageService`, `kitClearStoragePreservingKeys`                | [Stockage et overlays](/docs/storage-overlays) |
 | Overlay        | `provideKitOverlay`, `KitOverlayController`, `KitLoadingController` | [Stockage et overlays](/docs/storage-overlays) |
 | Authentification | `provideKitAuth`, fonctions de garde, `KitAuthAccessService`           | [Authentification et HTTP](/docs/auth-http)     |
-| HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [Authentification et HTTP](/docs/auth-http)     |
+| HTTP           | `provideKitHttp`, `kitAuthInterceptor`, `KIT_SKIP_ERROR_NOTIFICATIONS`                              | [Authentification et HTTP](/docs/auth-http)     |
 | Temps réel       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Hors ligne et temps réel](/docs/offline-realtime) |
 
 `KitAuthLoginExchange` et `kitPreloadAuthLoginForNavigation` partagent les requêtes de connexion au démarrage. Consultez [Authentification et HTTP](/docs/auth-http).

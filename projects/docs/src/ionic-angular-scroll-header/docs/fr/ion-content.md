@@ -1,11 +1,11 @@
 ---
 title: "IonContent"
-sourceRevision: "1cbdf6ba2a8d0c2c126ea7dba3a0d820d21e7a38ee1c5fec543288cd0e675282"
+sourceRevision: "29d912b2d2c50dc437f249ab7de0520181d75437d58d8050a9fb86d66f4bab63"
 ---
 Associez des en-têtes sensibles au défilement au contenu Ionic. Faites-le après l’[installation](/docs/readme#installation). Importez d’abord globalement le CSS du package. Les en-têtes masqués préservant la zone de sécurité et les en-têtes natifs toujours visibles sont décrits dans [Zone de sécurité](/docs/safe-area).
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.7/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';

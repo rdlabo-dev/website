@@ -1,11 +1,11 @@
 ---
 title: "IonContent"
-sourceRevision: "1cbdf6ba2a8d0c2c126ea7dba3a0d820d21e7a38ee1c5fec543288cd0e675282"
+sourceRevision: "29d912b2d2c50dc437f249ab7de0520181d75437d58d8050a9fb86d66f4bab63"
 ---
 Binden Sie scrollabhängige Header an Ionic-Inhalte an. Verwenden Sie dies nach der [Installation](/docs/readme#installation) und importieren Sie zuvor das Paket-CSS global. Verborgene Safe-Area-Header und dauerhaft sichtbare native Header werden unter [Safe Area](/docs/safe-area) beschrieben.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.6/projects/demo/src/app/scroll-header/scroll-header.page.html
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.7/projects/demo/src/app/scroll-header/scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';

@@ -1,13 +1,13 @@
 ---
 title: "Utilisation avancée"
-sourceRevision: "d2202dd9c6af530bca6649701c69cc811c7761c86a35d1339f0115f01cc1aa35"
+sourceRevision: "7499a6c6f40c9ba9760de5a5bf7beeeae40b1b282eeaada39567fd105ec74d2c"
 ---
 Faites-le après l’[installation](/docs/readme#installation). Réutilisez le viewport, les importations CDK, `trackBy` et les règles du modèle de tailles de [Utilisation simple](/docs/simple). Remplacez les valeurs `itemSize` connues par les hauteurs mesurées.
 
 > Mesurez chaque élément de défilement dans un composant distinct, puis écrivez le résultat dans le modèle de tailles qui alimente `[itemDynamicSizes]`.
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.6/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.7/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
 
 Conservez un cache de mesures indexé par `trackId`. Après le rendu de l’élément, lisez sa hauteur et mettez le cache à jour. Un `computed` parent transforme les éléments en `itemDynamicSize[]`, en utilisant le cache lorsqu’il est disponible et une estimation temporaire jusqu’à la première mesure :
 

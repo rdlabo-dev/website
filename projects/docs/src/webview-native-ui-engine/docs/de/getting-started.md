@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "dfd475f856cf46dbe7fc9ef6c3e06c738be50be82f351957468f73f3fee562aa"
+sourceRevision: "e0cb1e5d66f43833d78bf2f23945d89821bba9fbfe7e62a451fb632edbe114b2"
 ---
 # Über die WebView hinaus.
 
@@ -73,3 +73,5 @@ Entwicklung, Prüfung und Veröffentlichung des Repositorys beschreibt [Entwickl
 ## Lizenz
 
 [MIT](LICENSE). Kommerzielle Nutzung, Änderungen und Weiterverbreitung sind unter Einhaltung der Hinweis- und Namensnennungspflichten der Lizenz erlaubt. Die Lizenz der Engine ändert nicht die Lizenzen der Anwendungen oder Plugins, die von ihr abhängen.
+
+Die optionale gemeinsame Steuerelement-Laufzeit und die Zuständigkeitsgrenzen der Adapter beschreibt [Gemeinsame Steuerelemente](docs/controls.md).

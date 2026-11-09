@@ -207,21 +207,21 @@ test('canonicalizes renamed iOS 26 source and image links without losing its rel
   );
 });
 
-test('resolves split iOS 27 packages at the coordinated release without changing iOS 26', async (t) => {
+test('resolves independently released packages at repository roots without changing iOS 26', async (t) => {
   t.mock.method(globalThis, 'fetch', async (input: string) => {
     if (String(input).endsWith('/docs/readme.md')) return new Response('', { status: 404 });
     return new Response('# Guide');
   });
   for (const [name, directory, ref] of [
-    ['ionic-theme-ios27', 'packages/theme-ios27/', ios27Ref],
-    ['capacitor-native-ui', 'packages/capacitor-native-ui/', ios27Ref],
+    ['ionic-theme-ios27', '', `v${packagePins['@rdlabo/ionic-theme-ios27']}`],
+    ['capacitor-native-ui', '', `v${packagePins['@rdlabo/capacitor-native-ui']}`],
     ['ionic-theme-ios26', '', 'ios26-v9.4.2'],
   ]) {
     const project = {
-      repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
+      repositoryUrl: `https://github.com/webview-native-ui/${name === 'capacitor-native-ui' ? 'capacitor-plugin' : 'ionic-theme-ios27'}`,
       packageName: `@rdlabo/${name}`,
       sourceDirectory: name,
-      releaseTagPrefix: name === 'ionic-theme-ios26' ? 'ios26-v' : 'ios27-v',
+      releaseTagPrefix: name === 'ionic-theme-ios26' ? 'ios26-v' : 'v',
     };
     const guide = await fetchEnglishProjectMarkdown(project, 'setup.md');
     assert.equal(guide.repositoryPath, `${directory}docs/setup.md`);
@@ -260,7 +260,9 @@ test('repository splits preserve reviewed historical guides and their versioned 
   );
   assert.match(
     guide.content,
-    new RegExp(`/ionic-theme-ios27/${ios27Ref}/screenshots/example\\.png`),
+    new RegExp(
+      `/ionic-theme-ios27/ios27-v${packagePins['@rdlabo/capacitor-native-ui']}/screenshots/example\\.png`,
+    ),
   );
   requests.length = 0;
   await fetchEnglishProjectMarkdown(
@@ -269,6 +271,104 @@ test('repository splits preserve reviewed historical guides and their versioned 
   );
   assert.equal(
     requests[0],
-    `https://raw.githubusercontent.com/webview-native-ui/capacitor-plugin/${project.englishDocsRef}/packages/capacitor-native-ui/docs/setup.md`,
+    `https://raw.githubusercontent.com/webview-native-ui/capacitor-plugin/${project.englishDocsRef}/docs/setup.md`,
+  );
+});
+
+test('keeps Native UI extension examples at their historical release and links to current MD3 docs', async () => {
+  const project = {
+    repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
+    packageName: '@rdlabo/capacitor-native-ui',
+  };
+  const examples = [
+    'demo/ios/App/App/NativeMiniPlayer.swift',
+    'demo/ios/App/App/NativeUICounter.swift',
+    'demo/src/native-ui/counter.ts',
+    'demo/src/native-ui/mini-player.ts',
+  ];
+  for (const path of examples) {
+    assert.equal(
+      await pinPackageSourceLinks(
+        project,
+        `https://github.com/webview-native-ui/ionic-theme-ios27/blob/main/${path}`,
+      ),
+      `https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/${path}`,
+    );
+  }
+  assert.equal(
+    await pinPackageSourceLinks(
+      project,
+      'https://github.com/webview-native-ui/ionic-theme-md3/blob/main/docs/dynamic-colors.md',
+    ),
+    '/ionic-theme-md3/docs/dynamic-colors',
+  );
+});
+
+test('links the MD3 dynamic-color guide back to the portal Native UI guide', async () => {
+  assert.equal(
+    await pinPackageSourceLinks(
+      {
+        repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-md3',
+        packageName: '@rdlabo/ionic-theme-md3',
+      },
+      'https://github.com/webview-native-ui/capacitor-plugin/blob/main/docs/dynamic-colors.md',
+    ),
+    '/capacitor-native-ui/docs/dynamic-colors',
+  );
+});
+
+test('pins bare README screenshot paths as well as dot-relative paths', async () => {
+  const project = {
+    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-md3',
+    packageName: '@rdlabo/ionic-theme-md3',
+  };
+  const url = `https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v${packagePins['@rdlabo/ionic-theme-md3']}/screenshots/md3.png`;
+  for (const path of ['screenshots/md3.png', './screenshots/md3.png']) {
+    assert.equal(await pinPackageSourceLinks(project, `![Theme](${path})`), `![Theme](${url})`);
+    assert.equal(
+      await pinPackageSourceLinks(project, `<img src="${path}" />`),
+      `<img src="${url}" />`,
+    );
+  }
+});
+
+test('keeps MD3 measurement reports in the versioned package repository', async () => {
+  assert.equal(
+    await pinPackageSourceLinks(
+      {
+        repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-md3',
+        packageName: '@rdlabo/ionic-theme-md3',
+      },
+      '[Report](validation/android17-tablet-2026-11-07.md#results)',
+    ),
+    `[Report](https://github.com/webview-native-ui/ionic-theme-md3/blob/v${packagePins['@rdlabo/ionic-theme-md3']}/docs/validation/android17-tablet-2026-11-07.md#results)`,
+  );
+});
+
+test('pins reviewed screenshot assets independently of package code links', async () => {
+  const ref = 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe';
+  const project = {
+    repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
+    packageName: '@rdlabo/ionic-theme-ios27',
+    englishDocsAssetsRef: ref,
+  };
+  const raw = 'https://raw.githubusercontent.com/webview-native-ui/ionic-theme-ios27';
+  assert.equal(
+    await pinPackageSourceLinks(
+      project,
+      `![Theme](./screenshots/ios27-settings.png) ![Dark](${raw}/main/screenshots/ios27-settings-dark.png)`,
+    ),
+    `![Theme](${raw}/${ref}/screenshots/ios27-settings.png) ![Dark](${raw}/${ref}/screenshots/ios27-settings-dark.png)`,
+  );
+  assert.equal(
+    await pinPackageSourceLinks(project, `${project.repositoryUrl}/blob/main/src/index.ts`),
+    `${project.repositoryUrl}/blob/v${packagePins[project.packageName]}/src/index.ts`,
+  );
+  await assert.rejects(
+    pinPackageSourceLinks(
+      { ...project, englishDocsAssetsRef: 'main' },
+      '![Theme](./screenshots/ios27-settings.png)',
+    ),
+    /must be immutable/,
   );
 });

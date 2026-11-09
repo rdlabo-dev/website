@@ -1,6 +1,6 @@
 ---
 title: "Native UI"
-sourceRevision: "b6eb27b3044ef47cd46d168a2b7ae3dca1904e49345773e4c10d507a22543eeb"
+sourceRevision: "e7a0981b12c0fdec689e3569b89a0486a3d9d7ba5085a5f502692dda09472203"
 ---
 
 # Native UI
@@ -112,13 +112,15 @@ Die folgende Tabelle beschreibt gewöhnliche Native UI. Vertical Bars verwendet 
 
 | Ionic-Komponente | Unterstützte Darstellung und Position | Natives Rendering |
 | --- | --- | --- |
-| `ion-button` | `fill="default"` oder transparent innerhalb ungruppierter `ion-buttons`, in einer festen Kopf-/Fußwerkzeugleiste | Glas-`UIButton` |
+| `ion-button` | Feste Werkzeugleiste: default, clear in ungruppierten `ion-buttons` oder solid mit `type="submit"` oder `.button-submit` | Glas-`UIButton`, hervorgehoben für solid-Sendeaktionen |
 | `ion-buttons` | Feste Werkzeugleiste, mindestens zwei direkte transparente `ion-button`-/`ion-menu-button`-Kinder mit gemeinsamer Theme-Glasfläche | Eine `UIGlassEffect`-Fläche mit unabhängigen nativen Schaltflächen |
 | `ion-back-button` | Standardsymbol und -farbe in einer festen Kopf-/Fußwerkzeugleiste | Glas-`UIButton` mit aufgelöster Ionic-Beschriftung/-Symbol |
 | `ion-menu-button` | Feste Werkzeugleiste innerhalb der Theme-Glas-`ion-buttons` | Glas-`UIButton`; ursprüngliches Ionic-Menüumschalten |
 | `ion-tab-bar` | Feste Tabs, reine Symbol-/Texteinträge, ein Symbol pro Eintrag, Punkt-/Text-Badges, Auswahl- und Deaktivierungszustand | `UITabBar` und `UITabBarItem` |
 | `ion-segment` | Feste Werkzeugleiste, nicht scrollbar, Text **oder** ein Symbol pro Eintrag | `UISegmentedControl` |
 | `ion-fab` / `ion-fab-button` / `ion-fab-list` | Glas-FAB im festen Slot von `ion-content`; eine Hauptschaltfläche und optionale gerichtete Listen | Permanenter Glas-`UIButton` pro Schaltfläche; eine FAB-Synchronisierungsgruppe |
+
+Solid-Sendeaktionen (`fill="solid"` mit `type="submit"` oder `.button-submit`) unterstützen auch Ionics `color`, etwa `color="primary"`. Ihre hervorgehobene Glastönung stammt von der aufgelösten Web-Hintergrundfarbe. In einem gemischten `ion-buttons`-Container werden sie einzeln projiziert, statt an einer gemeinsamen Glasfläche teilzunehmen. Die bestehende Farbeinschränkung für andere einzeln projizierte horizontale `ion-button`-Aktionen bleibt unverändert.
 
 Für gewöhnliche Native UI sind nur unterstützte Komponenten im iOS-Modus geeignet. Theme-Variablen sind nicht erforderlich; `enableNativeUI()` aktiviert native Projektion. Explizit aktivierte Vertical Bars sind wie unten beschrieben modusunabhängig. `ios-theme-disabled` und das ältere `ios26-disabled` auf einem Element oder Vorfahren schließen es immer aus. Ein deaktiviertes Theme auf einem Tab-/Segmenteintrag belässt die gesamte Gruppe im Web.
 

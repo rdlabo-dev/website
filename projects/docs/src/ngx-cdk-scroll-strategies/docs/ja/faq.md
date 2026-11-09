@@ -6,7 +6,7 @@ scrollActiveLine: []
 
 ### Angular CDK Virtual Scrollは可変・動的なItem Heightに対応していますか？
 
-標準の`[itemSize]`は、すべてのItemが同じ固定Sizeであることを前提にしています。`@rdlabo/ngx-cdk-scroll-strategies`の`[itemDynamicSizes]`を使うと、Itemごとに異なる既知または計測済みの高さを指定できます。
+標準の`[itemSize]`は、すべてのItemが同じ固定Sizeであることを前提にしています。このライブラリの`[itemDynamicSizes]`を使うと、Itemごとに異なる既知または計測済みの高さを指定できます。
 
 ### `autosize`との違いは何ですか？
 
@@ -16,6 +16,6 @@ https://github.com/angular/components/blob/main/src/cdk-experimental/scrolling/a
 
 各Itemの高さが既知、または描画後に計測できる場合は、平均値による推定を避けて正確なScroll Geometryを維持できます。
 
-### Dynamic HeightのViewport自体にも使えますか？
+### `cdk-virtual-scroll-viewport`自体の高さを動的に設定できますか？
 
-いいえ。このライブラリが扱うのはViewport Containerの高さではなく、Viewport内にある各Itemの可変Heightです。`cdk-virtual-scroll-viewport`自体の高さや`max-height`をContent量に合わせる問題とは別です。
+いいえ。このライブラリが扱うのはViewport内にある各Itemの可変Heightです。Viewport Container自体の高さや`max-height`をContent量に合わせる問題とは別です。

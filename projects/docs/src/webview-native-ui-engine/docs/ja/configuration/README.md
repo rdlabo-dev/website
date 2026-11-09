@@ -1,6 +1,6 @@
 ---
 title: "登録設定"
-sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
+sourceRevision: "5a4a235c962fd595c64e6772b34dcffc282cd14995b0d32f51eb6436fa812c6f"
 ---
 # ネイティブ登録の設定
 
@@ -22,6 +22,6 @@ sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f8
 | `runtime` | Capacitor。 | **Cordova連携では必須**です。通知とリソースURLでCordovaの転送方式を使うよう、Cordovaを選択します。 |
 | `captureMode` (Android) | 背景の表示も含む`COMPOSITED`。 | 不透明なカードが周囲のコンテンツを横切ってスクロールする場合、`VIEW`はウィンドウの周囲のピクセルを含めず、カードだけをキャプチャします。半透明コンテンツ、動画、SurfaceViewには使わないでください。[キャプチャの適格性](../reference/platforms.md#android-capture-modes)を参照してください。 |
 
-Engineは[表示意図](../reference/state.md)とコンポーネントの値を別々に公開します。いずれもアプリ側のEngineラッパーは不要です。Ionicオーバーレイの検出は登録引数ではなく、個別に有効化する[共有初期化関数](ionic-overlays.md)です。他のフレームワークはライフサイクルを明示的に通知します。
+Engineは[表示意図](../reference/state.md)とコンポーネントの値を別々に公開します。いずれもアプリ側のEngineラッパーは不要です。Ionicオーバーレイの検出は登録引数ではなく、個別に有効化する[共有初期化関数](ionic-overlays.md)です。アプリが管理するオーバーレイでは、プラグインから[pause/resumeを再エクスポート](pause-resume.md)し、アプリがオーバーレイの前後で明示的に呼び出せるようにします。
 
 [ドキュメント概要](../README.md)

@@ -1,20 +1,21 @@
 ---
 title: "Premiers pas"
-sourceRevision: "f662e116f177576f4375abbaab6dec9f9dcea6fc248af81e8c6b38dee6ba268b"
+sourceRevision: "32d9efd42dbd30ea717a525ef4eaeb764d6f607c15b697769b5a95866928716c"
 ---
+
 # Ionic Theme Material Design 3
 
-Bibliothèque de thème CSS/JS qui applique le système de design Material Design 3 aux applications Ionic.
+Thème CSS/JS pour les applications Ionic, qui prend Android Settings comme référence visuelle tout en préservant les API des composants et la sémantique des couleurs Ionic.
 
 <!-- rdlabo-docs-pick -->
 
-![Écrans Ionic au thème Material Design 3 avec composants et navigation mis à jour](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v9.1.3/screenshots/md3.png)
+![Thème Ionic MD3 avec la palette Ionic par défaut sur Android 17](https://raw.githubusercontent.com/webview-native-ui/ionic-theme-md3/v9.2.0/screenshots/md3.png)
 
 <!-- /rdlabo-docs-pick -->
 
 Démonstration : https://ionic-theme-md3.rdlabo.dev/
 
-Conçu pour être compatible avec `@rdlabo/ionic-theme-ios26`, afin qu’un même arbre de balisage permette de styliser les deux modes Ionic.
+Conçu pour être compatible avec `@rdlabo/ionic-theme-ios27`, afin qu’un même arbre de balisage permette de styliser les deux modes Ionic.
 
 ## Installation
 
@@ -26,7 +27,7 @@ npm install @rdlabo/ionic-theme-md3
 
 Remarque : **si vous utilisez @ionic/core@ < 8.8.0**, utilisez @rdlabo/ionic-theme-md3@1.0.2.
 
-Importez ensuite le thème dans le fichier CSS principal de votre projet, par exemple `src/styles.scss`.
+Importez le thème dans le fichier CSS principal du projet (par exemple `src/styles.scss`) **après les styles de base d’Ionic**. Cet ordre permet d’appliquer la police MD par défaut tout en préservant la personnalisation `--ion-font-family` de l’application.
 
 ```css
 @import '@rdlabo/ionic-theme-md3/dist/css/default-variables.css';
@@ -76,34 +77,40 @@ Utilisez ce balisage pour prévisualiser l’apparence d’une liste groupée en
 </ion-list>
 ```
 
-### Facultatif : associer les thèmes MD3 et iOS 26
+### Apparence Android Settings
 
-Installez le thème iOS 26 pour appliquer les styles aux deux modes Ionic dans la même application.
+Le thème conserve la sémantique des couleurs Ionic et les polices définies par l’application. Les interrupteurs standard sont sans icônes. La police MD par défaut utilise Google Sans Flex local sur l’appareil lorsqu’il est disponible, avec les polices de repli standard ; elle est incluse dans le CSS du thème. Aucun code d’initialisation de police ni plugin Capacitor n’est requis. Les icônes de retour restent gérées par Ionic.
+
+Consultez [Apparence Android Settings](/docs/android-settings) pour l’installation, les polices de repli et les personnalisations des composants. Les utilisateurs existants doivent lire les [notes de migration 9.2.0](/docs/migration#migrating-to-9.2.0%3A-android-settings-alignment) concernant les dimensions des barres d’outils, listes et interrupteurs.
+
+### Facultatif : utiliser ensemble les thèmes MD3 et iOS 27
+
+Installez le thème iOS 27 pour styliser les deux modes Ionic dans la même application.
 
 Les versions actuelles des deux thèmes nécessitent `@ionic/core` 8.8.1 ou une version ultérieure. Mettez Ionic à niveau avant cette configuration si votre application utilise 8.8.0 ou une version antérieure.
 
 ```bash
-npm install @rdlabo/ionic-theme-ios26
+npm install @rdlabo/ionic-theme-ios27
 ```
 
 Si votre feuille de style globale utilise Sass, initialisez les thèmes dans cet ordre :
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/default-variables.scss' as ios26-vars;
-@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26.scss';
-@use '@rdlabo/ionic-theme-ios26/src/styles/ionic-theme-ios26-dark-class.scss';
-@use '@rdlabo/ionic-theme-ios26/src/styles/md-remove-ios-class-effect.scss';
+@use '@rdlabo/ionic-theme-ios27/src/styles/default-variables.scss' as ios27-vars;
+@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27.scss';
+@use '@rdlabo/ionic-theme-ios27/src/styles/ionic-theme-ios27-dark-class.scss';
+@use '@rdlabo/ionic-theme-ios27/src/styles/md-remove-ios-class-effect.scss';
 @use '@rdlabo/ionic-theme-md3/dist/css/default-variables.css' as md3-vars;
 @use '@rdlabo/ionic-theme-md3/dist/css/ionic-theme-md3.css';
 ```
 
-L’exemple utilise le mode sombre Ionic activé par classe. Votre feuille de style globale doit également charger la palette sombre Ionic correspondante, par exemple `@ionic/angular/css/palettes/dark.class.css` pour Angular. Avec `dark-system` ou `dark-always`, choisissez la même variante pour la palette Ionic et le thème iOS 26. Consultez la [documentation du mode sombre](https://ionicframework.com/docs/theming/dark-mode) d’Ionic. Les espaces de noms explicites `ios26-vars` et `md3-vars` empêchent les deux modules de variables d’utiliser le même espace de noms par défaut.
+Cet exemple utilise le mode sombre par classe d’Ionic. Votre feuille de style globale doit également charger la palette sombre correspondante, comme `@ionic/angular/css/palettes/dark.class.css` pour Angular. Avec `dark-system` ou `dark-always`, sélectionnez la même variante pour la palette Ionic et le thème iOS 27. Consultez la [documentation du mode sombre d’Ionic](https://ionicframework.com/docs/theming/dark-mode). Les espaces de noms explicites `ios27-vars` et `md3-vars` empêchent les deux modules de variables d’utiliser le même espace de noms par défaut.
 
 Configurez les deux implémentations de transition lorsque les deux thèmes sont installés :
 
 ```ts
 import { isPlatform } from '@ionic/core'; // ou @ionic/angular (Ionic 9), @ionic/angular/standalone (Ionic 8), @ionic/react, @ionic/vue
-import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
+import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios27';
 import { mdTransitionAnimation } from '@rdlabo/ionic-theme-md3';
 
 // Angular
@@ -134,10 +141,13 @@ createApp(App)
 
 ## Documentation
 
-- [Utiliser ion-item-group](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/using-ion-item-group) — balisage commun des listes en retrait pour iOS 26 et MD3.
-- [Balisage particulier](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/special-markup) — combinaisons de composants à activer explicitement utilisées dans la démonstration.
+- [Couleurs dynamiques Android](/docs/dynamic-colors) — configuration facultative Material You, apparence claire/sombre, cycle de vie et correspondance des rôles.
+- [Système de couleurs](/docs/color-system) — palette Ionic par défaut, rôles Material facultatifs et attribution des couleurs aux composants.
+- [Apparence Android Settings](/docs/android-settings) — géométrie et polices CSS par défaut, personnalisation Ionic.
+- [Utiliser ion-item-group](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/using-ion-item-group) — balisage commun des listes en retrait pour iOS 27 et MD3.
+- [Balisage particulier](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/special-markup) — combinaisons facultatives de composants utilisées par la démo.
 - [ESLint](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/eslint) — vérifier la structure des listes avec les règles ESLint.
-- [Migration](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/migration) — changements requis lors de la mise à jour du balisage du thème.
+- [Migration](https://docs.rdlabo.dev/projects/ionic-theme-md3/docs/migration) — changements nécessaires lors de la mise à jour du balisage.
 
 ## Projets connexes
 
@@ -145,7 +155,7 @@ Si vous avez besoin d’une implémentation plus complète de Material Design 3,
 
 - **[md3-for-ionic](https://github.com/danielkleebinder/md3-for-ionic)** de danielkleebinder
 
-> **Remarque :** ce thème est conçu spécialement pour être compatible avec l’approche de design d’Ionic et `@rdlabo/ionic-theme-ios26` ; il ne vise pas à reproduire strictement et intégralement MD3.
+> **Remarque :** ce thème vise la compatibilité avec l’approche de conception d’Ionic et `@rdlabo/ionic-theme-ios27` ; il ne cherche pas à reproduire MD3 intégralement et strictement.
 
 <!-- rdlabo-docs-omit -->
 
@@ -198,8 +208,8 @@ npm run test:e2e:ui
 # Déboguer les tests
 npm run test:e2e:debug
 
-# Mettre à jour les captures de référence (modification volontaire de l’interface)
-npm run test:e2e:update
+# Pour une PR, demandez la mise à jour des références avec un commentaire /update-screenshots.
+# Examinez les changements générés par la CI avant de les accepter.
 ```
 
 ### Canaux de préversion

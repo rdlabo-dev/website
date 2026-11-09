@@ -1,6 +1,6 @@
 ---
 title: "Configurer Native UI dans une application Ionic"
-sourceRevision: "54c567d2df126c34dfcf0fa38ed214cd12125bb927c2339ddd4f5e7ade6366b8"
+sourceRevision: "f23c1a5c98248f6d5b8ad565ba8ecc78e5086b89bf3d839eb175b6dd83de0146"
 ---
 # Configurer Native UI dans une application Ionic
 
@@ -143,7 +143,7 @@ Ces hooks gèrent la durée de vie de l’application, pas les transitions de pa
 
 ## 3. Coordonner la navigation
 
-Pour la coordination facultative des animations Ionic, installez `@rdlabo/ionic-theme-ios27` et mettez à jour Native UI ensemble pour aligner leurs versions. Configurez la navigation avant initialisation d’Ionic. Son adaptateur conserve les transitions Ionic par défaut sans charger le CSS du thème :
+Pour la coordination facultative des animations Ionic, installez `@rdlabo/ionic-theme-ios27` avec une version compatible de Native UI. Les paquets sont versionnés indépendamment ; utilisez la plage de dépendance pair Native UI déclarée par le thème. Configurez la navigation avant l’initialisation d’Ionic. Son adaptateur peut conserver les transitions par défaut d’Ionic sans charger le CSS du thème :
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @rdlabo/capacitor-native-ui @erkamyaman/capacitor-foldable

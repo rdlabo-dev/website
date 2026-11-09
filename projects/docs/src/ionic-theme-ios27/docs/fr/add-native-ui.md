@@ -1,10 +1,11 @@
 ---
 title: "Ajouter Native UI à votre thème"
-sourceRevision: 8e6c0dea9827316d87519226cd6ce439b7156f5411c429a78ba814a14754a5cd
+sourceRevision: "2280747684716604f50619fee77d98136870f0edabc1cba847dca631789453ee"
 ---
+
 # Ajouter Native UI à votre thème
 
-Vous utilisez déjà `@rdlabo/ionic-theme-ios27` ? Ajoutez des contrôles natifs sur iOS tout en conservant vos styles, votre contenu Web et votre routage. Les contrôles non pris en charge, les navigateurs et Android conservent leur apparence Web.
+Vous utilisez déjà `@rdlabo/ionic-theme-ios27` dans une application Capacitor ? Ajoutez des contrôles natifs sur iOS en conservant les styles du thème, le contenu Web et le routage. Les contrôles non pris en charge, les navigateurs et Android conservent leur apparence Web.
 
 Commencez par la [configuration du thème](setup.md) si vous ne l’avez pas encore configuré. Si vous utilisez une autre apparence Web, suivez la [configuration de Native UI](../../capacitor-native-ui/docs/setup.md).
 
@@ -12,9 +13,9 @@ Consultez le [fonctionnement de la projection](../../capacitor-native-ui/README.
 
 ## 1. Installer le plugin natif
 
-Ce guide suppose une application Capacitor 8 avec un projet iOS. Les utilisateurs du thème uniquement sur le Web peuvent continuer sans Capacitor ; l’ajout de contrôles iOS natifs nécessite d’abord ce projet natif. Consultez les [prérequis de Native UI](../../capacitor-native-ui/README.md#requirements) pour les versions d’Ionic, iOS et Xcode prises en charge.
+Ce guide suppose une application Capacitor 8 avec un projet iOS. Pour Cordova, suivez la [configuration Cordova](cordova.md) distincte. Le thème Web seul peut être utilisé sans Capacitor ; l’ajout de contrôles iOS natifs nécessite d’abord la création de ce projet natif. Consultez les [prérequis de Native UI](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/readme#requirements) pour les versions d’Ionic, d’iOS et de Xcode prises en charge.
 
-Mettez à jour le thème et Native UI ensemble pour aligner leurs versions, et installez Foldable comme dépendance distincte de l’application :
+Le thème et Native UI sont versionnés indépendamment. Installez une version de Native UI compatible avec la dépendance pair déclarée par le thème, ainsi que Foldable comme dépendance distincte de l’application :
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @rdlabo/capacitor-native-ui @erkamyaman/capacitor-foldable
@@ -40,7 +41,7 @@ Installer le plugin ou configurer les animations du thème n’active pas les co
 
 ## 3. Synchroniser et exécuter sur iOS
 
-Compilez vos ressources Web, puis exécutez :
+Pour les projets CocoaPods, effectuez d’abord la [configuration Podfile de l’Engine](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run). SwiftPM résout l’Engine automatiquement. Compilez vos ressources Web, puis exécutez :
 
 ```sh
 npx cap sync ios

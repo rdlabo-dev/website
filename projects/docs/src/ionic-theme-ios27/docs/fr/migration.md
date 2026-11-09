@@ -1,8 +1,72 @@
 ---
 title: "Migration du thème"
-sourceRevision: a043e7a43698a1134aa8fd842f9b3be4dbe35513ffa17332e669b1133ac64b76
+sourceRevision: "8bafa4e67f3794af95d07aa55318d81efaf5ccb7b0d396e639d20d3fb32f7f0a"
 ---
+
 # Migration du thème
+
+Ce guide met à niveau le thème autonome et son intégration Capacitor. Pour adopter le thème fourni avec Cordova, consultez [Migrer une application existante vers Cordova](cordova.md#moving-an-existing-theme-app-to-this-integration).
+
+## Mise à niveau depuis 2.1.0
+
+Cette section décrit la même mise à niveau dans les guides du thème et de Native UI ; il suffit de suivre l’un des deux. Conservez les imports du thème, les feuilles de style et la configuration des animations existants. Native UI reste facultatif. S’il est activé, conservez votre appel à `enableNativeUI()`, la sélection des contrôles et le runtime à la racine de l’application. Il n’est pas nécessaire de répéter l’ancienne migration de séparation des packages décrite ci-dessous.
+
+### Mettre à jour les dépendances
+
+Pour les applications utilisant seulement le thème, mettez celui-ci à jour :
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest
+```
+
+Pour les applications utilisant la géométrie du rail de l’appareil ou Native UI, mettez à jour les trois packages, y compris Foldable. Leurs versions sont indépendantes ; utilisez des versions compatibles selon la dépendance pair du thème :
+
+```sh
+npm install @rdlabo/ionic-theme-ios27@latest @rdlabo/capacitor-native-ui@latest @erkamyaman/capacitor-foldable@latest
+```
+
+L’import du résolveur ci-dessous fournit les valeurs de disposition sans activer la projection native. Les applications utilisant seulement le thème, sans rail de l’appareil, peuvent ignorer l’étape de géométrie.
+
+### Mettre à jour la géométrie de l’appareil
+
+Si votre application traduit directement `getBarPlacement()` en `setVerticalBarsLayout({ edge, inset })`, utilisez le résolveur pour inclure l’origine de la barre d’outils issue des régions réservées :
+
+```diff
+- import { Foldable, type BarPlacement } from '@erkamyaman/capacitor-foldable';
++ import { Foldable } from '@erkamyaman/capacitor-foldable';
++ import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+ import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+- const applyPlacement = ({ verticalBarEdge, inset }: BarPlacement) =>
+-   setVerticalBarsLayout({ edge: verticalBarEdge, inset });
+- const listener = await Foldable.addListener('barPlacementChange', applyPlacement);
+- applyPlacement(await Foldable.getBarPlacement());
++ const updateLayout = async () => {
++   setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
++ };
++ const listener = await Foldable.addListener('layoutChange', () => void updateLayout());
++ await updateLayout();
+```
+
+Remplacez l’ancien écouteur de placement au lieu d’ajouter un second chemin de mise à jour. Conservez `await listener.remove()` dans le nettoyage existant de l’application. Si vous avez déjà un gestionnaire `layoutChange`, appelez le résolveur à cet endroit. Conservez le raccordement `foldStateChange` / `applyFoldStateClasses` pour la posture ; le résolveur fournit uniquement la géométrie du rail.
+
+Utilisez directement la disposition de rail indiquée, sans la conditionner à `isDeviceFoldable()`, à un nom d’appareil ou à des heuristiques de taille de viewport. Supprimez les contournements qui fixaient le haut de la barre d’outils pour imiter la géométrie de l’appareil. Les personnalisations CSS intentionnelles restent prises en charge. Les valeurs par défaut restent dans `setVerticalBarsLayout` du thème, pas dans le résolveur. La valeur par défaut pour l’écran externe est de 174px ; la géométrie fournie par l’appareil peut donner l’origine de l’écran interne, 124px. Consultez les [valeurs de disposition et le comportement de repli](https://docs.rdlabo.dev/projects/ionic-theme-ios27/docs/vertical-bars-layout#apply-device-layout-values).
+
+### Corrections des modales et apparence des boutons d’envoi
+
+Les cartes et feuilles flottantes utilisent désormais leurs limites mesurées pour éviter le rail du Duo, et Native UI reconnaît correctement les dialogues flottants qui chevauchent ce rail. Cela corrige la disposition des modales et la gestion des contrôles natifs sans changement de code applicatif. Si vous aviez ajouté du CSS forçant la pleine largeur uniquement pour contourner ce bug, vous pouvez le supprimer. Conservez un dimensionnement plein écran explicite lorsqu’il répond à un besoin produit. Avec `ios-theme-vertical-bars` ou `ios-theme-fold-expanded` sur `ion-app`, les cartes et feuilles flottantes laissent au moins 8px de chaque côté. Les viewports d’au moins 600px de haut limitent leur largeur à 653px ; les plus courts utilisent la largeur disponible moins 16px. L’espace supérieur suit la zone sûre, avec un minimum de 8px. Les points d’arrêt des feuilles contrôlent toujours la hauteur visible. Le dimensionnement applicatif via `--width`, `--max-width` et `--height` reste pris en charge. Les valeurs habituelles pour téléphones et tablettes ne changent pas lorsqu’aucune classe de disposition n’est active.
+
+Les boutons d’envoi Ionic à remplissage plein utilisent automatiquement un verre natif accentué :
+
+```html
+<ion-button type="submit" fill="solid">Save</ion-button>
+```
+
+La même apparence s’applique aux actions `.button-submit` existantes avec remplissage plein. Cette classe fournit le style, pas l’envoi du formulaire. Les remplissages clear et outline ne reçoivent pas l’accentuation d’envoi. Les déclarations explicites `data-native-ui="button-submit"` existantes restent prises en charge.
+
+Les contrôles natifs conservent la responsabilité de leur présentation pendant la navigation, les animations de modales et les transferts d’images. Une image affichée dans la WebView reste la présentation de la projection native, et non un retour au bouton Web d’origine. Retestez puis supprimez les contournements propres aux transitions qui forcent ces contrôles à revenir au Web. Conservez les exclusions intentionnelles et la gestion des contrôles non pris en charge ou des échecs natifs ; aucun indicateur d’animation supplémentaire ni second runtime n’est nécessaire.
+
+Vérifiez les deux côtés du rail, sa disparition, le pliage et la rotation, les présentations carte, feuille et plein écran, ainsi que les actions d’envoi pleines. Vérifiez aussi un iPhone ordinaire et le repli navigateur. Pour Cordova, utilisez l’[intégration fournie](https://github.com/webview-native-ui/cordova-plugin) ; son thème épinglé et les changements natifs arrivent par une publication du plugin Cordova, pas par ces commandes d’installation Capacitor.
 
 ## Séparation du package Native UI
 

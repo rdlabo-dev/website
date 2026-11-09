@@ -1,6 +1,6 @@
 ---
 title: "Native UI ohne Ionic"
-sourceRevision: "06dbfeaf06a2b1442b3431861b4a3161ac881163916f21ccf6a55b3fe6c87d9e"
+sourceRevision: "03aae2abcdd809acacd73e43f15114762ed59cd2ea5ce743d238d694c354f6e4"
 ---
 # Native UI ohne Ionic
 
@@ -40,6 +40,7 @@ Der Einstiegspunkt `/core` benötigt `@capacitor/core`, aber keine Ionic-Abhäng
 | --- | --- | --- |
 | `data-native-ui` | `button` | Eine Standardaktionsschaltfläche projizieren. |
 | `data-native-ui` | `back-button` | Eine Standard-Zurückschaltfläche projizieren. Der Quell-Klickhandler übernimmt die Navigation; das Plugin ruft niemals `history.back()` auf. |
+| `data-native-ui` | `button-submit` | Eine Schaltfläche mit hervorgehobener Glasdarstellung projizieren; die Tönung folgt der aufgelösten Vordergrundfarbe. |
 | `data-native-ui` | `disabled` | Das Element und seinen Teilbaum von der Projektion ausschließen. |
 | `data-native-ui-placement` | `element` (Standard) | Das Rechteck des Quellelements verwenden. |
 | `data-native-ui-placement` | `rail` | Vertical Bars anfordern; den optionalen Web-Seitenleistenhost verwenden, wenn keine native Darstellung verfügbar ist. |
@@ -79,6 +80,8 @@ Rufen Sie vor der Darstellung eines benutzerdefinierten Modals, das den Hintergr
 Deklarieren Sie für ein eigenes HTML-Theme `color-scheme: light` oder `color-scheme: dark` im selben CSS, das Ihre Web-Palette auswählt. Hintergrundfarben allein wählen keine native Darstellung. [Helle und dunkle Darstellung](appearance.md) zeigt einen manuellen Umschalter, die Priorität vorhandener Ionic-/Theme-Variablen und das gemeinsame Seitenleistenverhalten.
 
 ## 4. Erstellen und unter iOS ausführen
+
+Führen Sie bei CocoaPods-Projekten zunächst die [Engine-Podfile-Einrichtung](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run) durch. SwiftPM löst Engine automatisch auf.
 
 Erstellen Sie Ihre Web-App, führen Sie `npx cap sync ios` aus und starten Sie das iOS-Projekt in Xcode. Mit der Konfiguration aus Schritt 3 erscheint Add an seiner Quellposition und ruft seinen ursprünglichen Klickhandler auf. Back fordert die vom Gerät gemeldete native Seitenleiste an, sofern verfügbar; verbinden Sie die folgende Gerätepositionierung, um Web-Abstände synchron zu halten. Im Browser bleibt dieselbe Schaltfläche eine gewöhnliche Web-Schaltfläche. Unmarkiertes HTML bleibt unverändert.
 
@@ -126,4 +129,4 @@ Der HTML-Adapter unterstützt derzeit Schaltflächen und Zurückschaltflächen. 
 
 ## Beispiel
 
-Das [reine HTML-Beispiel](https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.
+Das [reine HTML-Beispiel](https://github.com/webview-native-ui/capacitor-plugin/tree/v2.1.4/examples/native-ui-html) zeigt Add, routerlose Home-/Details-/Back-Navigation, optionale Web-Seitenleistenprojektion und Bereinigung. Es verwendet weder Ionic noch Theme-CSS.

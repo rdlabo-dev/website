@@ -1,6 +1,6 @@
 ---
 title: "Vertical Bars hinzufügen und das Theme behalten"
-sourceRevision: 50766d325ac41dedc16a00c2f38f848fdb7a517c96b6873cceae558d21835a85
+sourceRevision: "d055ca5078865c9269fb89a43fa1b4a29c2adde2c65277a981232a8feb7699cd"
 ---
 
 # Vertical Bars hinzufügen und das Theme behalten
@@ -191,3 +191,22 @@ Ein Abonnementbeispiel, null-Werte und die Lebensdauer der Überwachung beschrei
 ## Gemeinsame Layoutregeln und API
 
 Safe-Area-Behandlung, Overlays, RTL, Eignung von Bedienelementen, Web-Simulation und Handle-API sind unter [Vertical Bars](vertical-bars.md) dokumentiert. Lesen Sie diese Referenz für Anpassungen; sie ist kein zusätzlicher Installationsschritt.
+
+## Gerätelayout auflösen
+
+```ts
+import { Foldable } from '@erkamyaman/capacitor-foldable';
+import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+const applyLayout = async () => setVerticalBarsLayout(await resolveVerticalBarsLayout(Foldable));
+
+await applyLayout();
+await Foldable.addListener('layoutChange', applyLayout);
+```
+
+Rufen Sie dies vom bestehenden Initialisierungs- beziehungsweise Geräteänderungshandler der Anwendung auf. `layoutChange` erfordert Foldable 8.5 oder neuer. Kante und Einzug können beim Displaywechsel unverändert bleiben, sodass `barPlacementChange` allein Faltvorgänge übersieht.
+
+Der SDK-unabhängige Resolver liefert nur `edge`, `inset` und `toolbarTop`; er startet Native UI nicht, abonniert keine Ereignisse und wendet kein CSS an. Fehlende oder fehlgeschlagene Lesevorgänge bleiben undefined, damit `setVerticalBarsLayout` für Standardwerte zuständig bleibt. Das Anwenden von `toolbarTop` erfordert die entsprechende Erweiterung der Theme-Eingaben.
+
+Provider-Rahmen und Einzüge müssen CSS-Pixel des Browser-Viewports verwenden. Foldable-Punkte entsprechen dem üblichen Viewport mit device-width und initial-scale=1; andere Skalierungen erfordern einen normalisierten Provider. Das nächste `dir` an `ion-app` oder seinen Vorfahren bestimmt wie im Theme die physische Leistenseite; ohne `ion-app` wird die Dokumentrichtung verwendet.

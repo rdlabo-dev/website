@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/ionic-angular-kit` v22.0.6 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
+`@rdlabo/ionic-angular-kit` v22.0.7 のpublic entry point一覧です。Lifecycleと統合要件は各Guideで説明し、このページではAPI familyを所有するpackage pathを定義します。
 
 ## Core
 
@@ -13,7 +13,7 @@ title: API
 | Storage        | `KitStorageService`, `kitClearStoragePreservingKeys`                | [Storage・Overlay](/docs/storage-overlays)  |
 | Overlay        | `provideKitOverlay`, `KitOverlayController`, `KitLoadingController` | [Storage・Overlay](/docs/storage-overlays)  |
 | Authentication | `provideKitAuth`、Guard function、`KitAuthAccessService`            | [認証・HTTP](/docs/auth-http)               |
-| HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [認証・HTTP](/docs/auth-http)               |
+| HTTP           | `provideKitHttp`, `kitAuthInterceptor`, `KIT_SKIP_ERROR_NOTIFICATIONS`                              | [認証・HTTP](/docs/auth-http)               |
 | Realtime       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Offline・Realtime](/docs/offline-realtime) |
 
 起動時のログインリクエストを共有する `KitAuthLoginExchange` と `kitPreloadAuthLoginForNavigation` です。[認証・HTTP](/docs/auth-http)を参照してください。

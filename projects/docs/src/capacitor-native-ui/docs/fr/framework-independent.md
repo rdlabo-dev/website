@@ -1,6 +1,6 @@
 ---
 title: "Native UI sans Ionic"
-sourceRevision: "06dbfeaf06a2b1442b3431861b4a3161ac881163916f21ccf6a55b3fe6c87d9e"
+sourceRevision: "03aae2abcdd809acacd73e43f15114762ed59cd2ea5ce743d238d694c354f6e4"
 ---
 # Native UI sans Ionic
 
@@ -40,6 +40,7 @@ Le point d’entrée `/core` nécessite `@capacitor/core`, sans dépendance Ioni
 | -------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `data-native-ui` | `button` | Projeter un bouton d’action standard. |
 | `data-native-ui` | `back-button` | Projeter un bouton de retour standard. Le gestionnaire de clic source gère la navigation ; le plugin n’appelle jamais `history.back()`. |
+| `data-native-ui` | `button-submit` | Projeter un bouton avec une mise en valeur prononcée du verre ; la teinte provient de la couleur de premier plan résolue. |
 | `data-native-ui` | `disabled` | Exclure l’élément et son sous-arbre de la projection. |
 | `data-native-ui-placement` | `element` (par défaut) | Utiliser le rectangle de l’élément source. |
 | `data-native-ui-placement` | `rail` | Demander Vertical Bars ; utiliser l’hôte Web facultatif lorsque le rail natif est indisponible. |
@@ -79,6 +80,8 @@ Avant de présenter une modale personnalisée qui rend l’arrière-plan non int
 Pour un thème HTML personnalisé, déclarez `color-scheme: light` ou `color-scheme: dark` dans le CSS qui sélectionne la palette Web. Les seules couleurs de fond ne sélectionnent pas l’apparence native. Consultez [Apparence claire et sombre](appearance.md) pour un exemple de bascule manuelle, les priorités en présence des variables Ionic/thème et le comportement du rail partagé.
 
 ## 4. Compiler et exécuter sur iOS
+
+Pour les projets CocoaPods, effectuez d’abord la [configuration du Podfile pour Engine](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run). SwiftPM résout Engine automatiquement.
 
 Compilez l’application Web, exécutez `npx cap sync ios` et lancez le projet iOS depuis Xcode. Avec la configuration de l’étape 3, Add apparaît à sa position source et invoque son gestionnaire de clic original. Back demande le rail natif signalé par l’appareil lorsqu’il est disponible ; raccordez le placement ci-dessous pour synchroniser l’espacement Web. Dans le navigateur, ce même bouton reste Web. Le HTML non marqué reste inchangé.
 
@@ -126,4 +129,4 @@ L’adaptateur HTML prend actuellement en charge les boutons et boutons de retou
 
 ## Exemple
 
-L’[exemple HTML simple](https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios27-v2.1.0/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.
+L’[exemple HTML simple](https://github.com/webview-native-ui/capacitor-plugin/tree/v2.1.4/examples/native-ui-html) présente Add, une navigation Home/Details/Back sans routeur, la projection facultative dans un rail Web et le nettoyage. Il n’utilise ni Ionic ni CSS du thème.

@@ -1,6 +1,6 @@
 ---
 title: "Integration in ein Cordova-Plugin"
-sourceRevision: "07ebbb7753dbf7130a57e2c1d4e6325386a4948879c9450bc5fea525da52c693"
+sourceRevision: "88bbea3806ac254d4f116eaf8bded68b8e292fd463d392ea118a34145159e6d3"
 ---
 # Integration in ein Cordova-Plugin
 
@@ -70,7 +70,7 @@ Registrieren Sie das Plugin im iOS-Plattformabschnitt von `plugin.xml` für den 
 </platform>
 ```
 
-Fügen Sie diese Einträge in die bestehenden Plattformabschnitte ein, statt doppelte Abschnitte anzulegen. Die [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v1.0.1/tests/cordova/plugin) enthält die vollständige Verknüpfung von plugin.xml, SwiftPM und Gradle.
+Fügen Sie diese Einträge in die bestehenden Plattformabschnitte ein, statt doppelte Abschnitte anzulegen. Die [Integrations-Fixture](https://github.com/webview-native-ui/engine/tree/v1.0.4/tests/cordova/plugin) enthält die vollständige Verknüpfung von plugin.xml, SwiftPM und Gradle.
 
 Die Beispiele erweitern einen bestehenden Renderer: `nativeView` ist seine angehängte, positionierte Ansicht, keine von der Engine erzeugte Ansicht.
 

@@ -1,6 +1,6 @@
 ---
 title: "Authentifizierung und HTTP"
-sourceRevision: "1851fbaaf3fc89785e9d73f853569dbfa63ae0ecfa57e95fa3401f831d8ca85f"
+sourceRevision: "a31df991bbcec0a93dc5c46e8686130a85b7d4665aa2915ccac65dcbdfe4f58b"
 ---
 ## Zugriffsberechtigungen
 
@@ -97,3 +97,18 @@ export const appConfig: ApplicationConfig = {
 Automatische Wiederholungsversuche sind auf `GET`, `HEAD`, `OPTIONS` oder Anfragen mit einem `Idempotency-Key` beschränkt. Gewöhnliche Schreibanfragen werden niemals automatisch wiederholt. Wiederholungsversuche betreffen die vorübergehenden Statuswerte `0`, `408`, `429`, `502`, `503` und `504` und berücksichtigen `Retry-After`.
 
 Wenn Offline-Unterstützung aktiviert ist, registrieren Sie `offlineInterceptor` vor `kitAuthInterceptor`. Der lokale Modus verhindert dann die Erzeugung von Zugangsdaten und den Netzwerktransport, während eine passende Leserichtlinie das bereichsgebundene Replikat bereitstellen darf.
+
+### Vom Aufrufer verwaltete Fehlermeldungen
+
+`onServerError` erhält die Meldung aus dem Antworttext für HTTP 400, 409, 422 und 500. Wenn der Aufrufer einer Anfrage eine eigene Fehleroberfläche anzeigt, setzen Sie das öffentliche boolesche Kontext-Token `KIT_SKIP_ERROR_NOTIFICATIONS` (Standardwert: `false`):
+
+```ts
+import { HttpContext } from '@angular/common/http';
+import { KIT_SKIP_ERROR_NOTIFICATIONS } from '@rdlabo/ionic-angular-kit';
+
+http.post('/applications', payload, {
+  context: new HttpContext().set(KIT_SKIP_ERROR_NOTIFICATIONS, true),
+});
+```
+
+Dies unterdrückt ausschließlich die Benachrichtigungs-Hooks für Antwortfehler: `onUnauthorized`, `onForbidden`, `onNetworkError`, `onRateLimited`, `onMaintenance`, `onServerBusy` und `onServerError`. Der ursprüngliche Fehler wird weiterhin als Ablehnung an den Aufrufer weitergegeben. Dadurch wird weder die Authentifizierung umgangen noch die Wiederherstellung und Wiederholung bei 401 gestoppt. Wiederholungen und das Offline-Fallback bleiben unverändert; weder der Entzug des Zugriffs (`onAuthAccessDenial`) noch Fehler bei Authentifizierungs-Headern (`onAuthError`) werden unterdrückt.

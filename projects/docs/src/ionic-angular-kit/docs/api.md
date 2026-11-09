@@ -2,7 +2,7 @@
 title: API
 ---
 
-Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.6. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
+Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.7. The focused guide pages describe lifecycle and integration requirements; this page defines which package path owns each API family.
 
 ## Core
 
@@ -13,7 +13,7 @@ Public entry-point map for `@rdlabo/ionic-angular-kit` v22.0.6. The focused guid
 | Storage        | `KitStorageService`, `kitClearStoragePreservingKeys`                | [Storage and Overlays](/docs/storage-overlays) |
 | Overlay        | `provideKitOverlay`, `KitOverlayController`, `KitLoadingController` | [Storage and Overlays](/docs/storage-overlays) |
 | Authentication | `provideKitAuth`, guard functions, `KitAuthAccessService`           | [Authentication and HTTP](/docs/auth-http)     |
-| HTTP           | `provideKitHttp`, `kitAuthInterceptor`                              | [Authentication and HTTP](/docs/auth-http)     |
+| HTTP           | `provideKitHttp`, `kitAuthInterceptor`, `KIT_SKIP_ERROR_NOTIFICATIONS`                              | [Authentication and HTTP](/docs/auth-http)     |
 | Realtime       | `KitRealtimeConnection`, `KitRealtimeLivenessWatchdog`              | [Offline and Realtime](/docs/offline-realtime) |
 
 `KitAuthLoginExchange` and `kitPreloadAuthLoginForNavigation` share startup login requests. See [Authentication and HTTP](/docs/auth-http).

@@ -1,7 +1,8 @@
 ---
 title: "Vertical Bars-Layout"
-sourceRevision: 28dd1a470ba3540ff383b9b9a080f755664b36711e54561ddf3d8b75a812cfad
+sourceRevision: "916b926c605374fb20a296eb4c8d591f00f9d4857ed9cb8e4e686f61d41d4491"
 ---
+
 # Vertical Bars-Layout
 
 Dieses optionale Theme-Stylesheet übernimmt Web-Abstände und Positionierung um eine vertikale Seitenleiste. Es lässt sich mit Ihrem bestehenden Theme verwenden, ohne die vollständige iOS-27-Darstellung zu laden. Natives Rendering und Zustandssynchronisierung stellt separat [Capacitor Native UI](/capacitor-native-ui/docs/vertical-bars) bereit.
@@ -38,27 +39,52 @@ Die Klassen sind physisch — `-left` bezeichnet immer den physischen linken Ran
 
 ### Platzierung der Web-Werkzeugleiste
 
-Die Web-Seitenleiste verwendet auch ohne native Geometrie das Werkzeugleistenlayout des iPhone Duo: einen oberen Ursprung bei 170px, quadratische Bedienelemente mit 48px Seitenlänge, 4px zwischen Bedienelementen einer Gruppe und 12px zwischen Gruppen. Bedienelemente liegen mindestens 24px vom physischen Rand entfernt oder mittig in der reservierten Seitenleiste, wenn dies einen größeren Versatz erfordert. Diese Vorgaben gelten auch für Bedienelemente im Hintergrund hinter einem Sheet-Modal. Eine Zurück-Schaltfläche belegt den Platz eines Bedienelements, gefolgt vom Gruppenabstand.
+Ohne Gerätegeometrie verwendet die Web-Leiste standardmäßig das gemessene Toolbar-Layout des iPhone-Duo-Außendisplays: einen oberen Ursprung von 174px, quadratische Steuerelemente mit 48px, 4px Abstand innerhalb einer Gruppe und 12px zwischen Gruppen. Die Steuerelemente liegen mindestens 24px vom physischen Rand entfernt oder zentriert im reservierten Bereich, wenn dies einen größeren Abstand erfordert. Diese Standardwerte gelten auch für Hintergrundelemente hinter einem Sheet-Modal. Ein Zurück-Button belegt einen Platz, gefolgt vom Gruppenabstand.
 
 `--ios-theme-vertical-bars-toolbar-top` überschreibt den oberen Ursprung. Die Positionierung modaler Werkzeugleisten berücksichtigt weiterhin den Sheet-Versatz. Verfügbare native Messwerte haben Vorrang vor diesen Web-Vorgaben.
 
+### Gerätelayoutwerte anwenden
+
+Ermitteln Sie die Gerätewerte in der vorhandenen initialen Layoutbehandlung und im Foldable-Änderungshandler der Anwendung:
+
+```ts
+import { Foldable } from '@erkamyaman/capacitor-foldable';
+import { resolveVerticalBarsLayout } from '@rdlabo/capacitor-native-ui/integration';
+import { setVerticalBarsLayout } from '@rdlabo/ionic-theme-ios27';
+
+const metrics = await resolveVerticalBarsLayout(Foldable);
+setVerticalBarsLayout(metrics);
+```
+
+Der Resolver verwendet den SDK-freien Integrationseinstieg von Native UI und startet keine native Projektion. Nutzen Sie vorhandene Abonnements für Platzierung, Faltstellung und Größenänderungen; der Resolver abonniert nichts und startet Native UI nicht. Falls sich Lesevorgänge überlappen können, verwerfen Sie veraltete Ergebnisse im vorhandenen Handler.
+
+Der Resolver akzeptiert ein Objekt mit `getBarPlacement()` und `getReservedRegions()`, ohne von Foldable selbst abzuhängen. Er liefert die logischen Werte `edge`, `inset` und `toolbarTop`. Nicht unterstützte APIs und fehlgeschlagene Abfragen lassen diese Felder undefiniert. Der aktuelle Viewport und die Dokumentrichtung bestimmen die physische Leistenseite. Bereichsrechtecke verwenden CSS-Pixel des Viewports und enthalten ihre Ränder bereits.
+
+**Aus Kompatibilitätsgründen verbleiben Standardwerte in `setVerticalBarsLayout`:** Fehlende Platzierung deaktiviert die Web-Leiste, ein ausgelassener Einzug behält die Leistenbreite des Stylesheets bei und ein ausgelassener Toolbar-Ursprung bewahrt bestehende CSS-/Inline-Anpassungen; nur ohne konfigurierten Wert gelten 174px. Beim Löschen der Geometrie oder Deaktivieren der Leiste wird die vorherige Inline-/CSS-Konfiguration nur wiederhergestellt, solange Inline-Wert und Priorität noch mit dem Schreibvorgang des Helfers übereinstimmen. Abweichende spätere Anwendungswerte bleiben erhalten; identische Anwendungsschreibvorgänge sind nicht von denen des Helfers unterscheidbar. Leere oder unbrauchbare reservierte Bereiche lassen `toolbarTop` undefiniert, statt eine Gerätemessung zu erfinden. Der gemessene Toolbar-Ursprung des Innendisplays beträgt 124px; übergeben Sie das Provider-Ergebnis, um ihn zu nutzen. Der feste Außendisplay-Fallback bildet die Innendisplay-Platzierung ohne Geometrie nicht nach.
+
+Der Resolver ist eine API des Native UI-Adapters, keine Geräte-API des Themes oder der Engine. Dieses Beispiel benötigt eine Adapterversion, die `resolveVerticalBarsLayout` bereitstellt; in Capacitor Native UI 2.1.0 ist sie nicht verfügbar. Das Theme akzeptiert einfache Layoutwerte ohne Import eines Geräte-SDKs.
+
 ### Inhalts- und Overlay-Layout
 
-| Fläche | Layout mit dem Seitenleisten-Stylesheet |
+| Fläche | Layout mit dem Leisten-Stylesheet |
 | --- | --- |
-| Router und Komponentenhintergründe | Füllen weiterhin den Viewport. |
+| Router und Komponentenhintergründe | Belegen weiterhin den gesamten Viewport. |
 | `ion-content` | Rückt seinen scrollenden Vordergrund ein. |
-| `ion-toolbar` | Rückt den Vordergrund seines Containers ein. |
-| `ion-fab` | Wird nur neben der Systemoberfläche angepasst. |
-| `ion-modal` in voller Breite, einschließlich Sheets | Rückt den Vordergrund ein. Bei aktiver Laufzeit projiziert das oberste Modal geeignete Werkzeugleisten-Bedienelemente in seine eigene Seitenleiste; Sheet-Leisten folgen beim Breakpointwechsel den sichtbaren Grenzen. |
-| Zentriertes Modal | Behält Werkzeugleistenschaltflächen und erhält keinen Abstand für die Seitenleiste der Seite. |
-| `ion-menu` / `ion-popover` | Interne Vordergrundkomponenten behalten Ionics standardmäßige Safe-Area-Behandlung ohne die Umrechnung der Hauptseite. |
-| Menü neben der Systemoberfläche | Behält seinen viewportfüllenden Animations-Host; nur der sichtbare Container wird um den Abstand versetzt. |
-| Menü auf der Gegenseite | Unverändert. |
+| `ion-toolbar` | Rückt den Containervordergrund ein. |
+| `ion-fab` | Wird nur neben der System-UI angepasst. |
+| `ion-modal`, das die aktive Leistenspalte überlappt | Wendet den Vordergrundeinzug an. Bei aktiver Laufzeit projiziert das oberste Modal geeignete Toolbar-Steuerelemente in seine eigene Leiste; Sheet-Leisten folgen beim Wechsel des Breakpoints den sichtbaren Grenzen. |
+| Modal außerhalb der aktiven Leistenspalte | Behält seine Toolbar-Buttons und erhält keinen Seitenleisteneinzug. |
+| `ion-menu` / `ion-popover` | Interne Vordergrundkomponenten behalten Ionics normale Safe-Area-Behandlung ohne die Konvertierung der Hauptseite. |
+| Menü auf der Seite der System-UI | Behält seinen viewportfüllenden Animationshost; nur der sichtbare Container wird um den Einzug versetzt. |
+| Menü auf der gegenüberliegenden Seite | Unverändert. |
 
 Die entsprechende Ionic-Safe-Area-Variable wird innerhalb eingerückter Vordergrundkomponenten zurückgesetzt, damit Nachfahren den Abstand nicht erneut hinzufügen.
 
-Die Eignung eines Modals richtet sich nach seiner sichtbaren Dialogbreite, nicht nach Scharnierstellung oder Modaltyp. Links und rechts bleiben bei RTL physische Koordinaten; Ionics `side="start"` und `side="end"` bleiben logisch.
+Die Eignung eines Modals richtet sich nach Layoutposition und Breite des Dialogs: Dialoge über der aktiven Leistenspalte projizieren geeignete Steuerelemente, einschließlich schwebender Sheets auf dem Außendisplay. Dialoge außerhalb dieser Spalte behalten ihre Toolbar-Steuerelemente. Präsentationstransformationen ändern diese Entscheidung nicht. Dialoge mit voller Breite behalten ihr bisheriges Verhalten, wenn kein Einzugswert angegeben ist. Links und rechts bleiben in RTL physische Koordinaten; Ionics `side="start"` und `side="end"` bleiben logisch.
+
+Wenn das iOS-27-Theme geladen und `ios-theme-vertical-bars` oder `ios-theme-fold-expanded` auf `ion-app` aktiviert ist, lassen schwebende Karten- und Sheet-Modals auf jeder Seite mindestens 8px frei. Viewports ab 600px Höhe begrenzen ihre Breite auf 653px; niedrigere nutzen die verfügbare Breite minus 16px. Die maximale Höhe lässt über dem Modal mindestens 8px oder die obere Safe Area frei. Sheet-Breakpoints steuern weiterhin die sichtbare Höhe. Normale Dialoge großer Ansichten verwenden in diesen Layouts dieselbe Breite und denselben oberen Abstand. Übliche Telefon- und Tablet-Standardwerte bleiben unverändert, wenn keine der Layoutklassen aktiv ist.
+
+Verwenden Sie Ionics Eigenschaften `--width`, `--max-width` und `--height` für anwendungsspezifische Größen. Eine explizite Vollbilddarstellung kann `--width: 100%`, `--max-width: none` und `--height: 100%` setzen; die Eignung für die Leiste richtet sich weiterhin nach der resultierenden Dialogbreite.
 
 Der Modus ist unabhängig vom Komponentenmodus. Eine Anwendung kann unter iOS den Ionic-Modus `mode: 'md'` beibehalten und trotzdem Vertical Bars aktivieren. Keine Komponente benötigt `mode="ios"`.
 

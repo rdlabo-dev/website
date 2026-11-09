@@ -1,6 +1,6 @@
 ---
 title: "はじめに"
-sourceRevision: "dfd475f856cf46dbe7fc9ef6c3e06c738be50be82f351957468f73f3fee562aa"
+sourceRevision: "e0cb1e5d66f43833d78bf2f23945d89821bba9fbfe7e62a451fb632edbe114b2"
 ---
 # WebViewのその先へ。
 
@@ -73,3 +73,5 @@ enableSupportIonicOverlays();
 ## ライセンス
 
 [MIT](LICENSE)です。ライセンスの通知と帰属表示の要件を満たせば、商用利用、変更、再配布が可能です。Engineのライセンスは、依存するアプリケーションやプラグインのライセンスを変更しません。
+
+任意の共有コントロールランタイムとアダプター間の責任範囲は、[共有コントロール](docs/controls.md)を参照してください。

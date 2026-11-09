@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "dfd475f856cf46dbe7fc9ef6c3e06c738be50be82f351957468f73f3fee562aa"
+sourceRevision: "e0cb1e5d66f43833d78bf2f23945d89821bba9fbfe7e62a451fb632edbe114b2"
 ---
 # Au-delà de la WebView.
 
@@ -73,3 +73,5 @@ Pour le développement, la vérification et la publication du dépôt, consultez
 ## Licence
 
 [MIT](LICENSE). L’utilisation commerciale, la modification et la redistribution sont autorisées sous réserve de respecter les exigences de mention et d’attribution de la licence. La licence de l’Engine ne modifie pas celles des applications ou plugins qui en dépendent.
+
+Pour le runtime facultatif des contrôles partagés et les frontières des adaptateurs, consultez les [contrôles partagés](docs/controls.md).

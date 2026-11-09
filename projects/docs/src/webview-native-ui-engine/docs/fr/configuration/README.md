@@ -1,6 +1,6 @@
 ---
 title: "Paramètres d’enregistrement"
-sourceRevision: "186f4275817b1d1bd296e7aa4cb5a26faec6a1216c3ab3caaeb08eabb25f4f86"
+sourceRevision: "5a4a235c962fd595c64e6772b34dcffc282cd14995b0d32f51eb6436fa812c6f"
 ---
 # Configurer un enregistrement natif
 
@@ -22,6 +22,6 @@ Facultatif signifie qu’une valeur par défaut existe, pas qu’une interface �
 | `runtime` | Capacitor. | **Obligatoire pour les intégrations Cordova** : sélectionnez Cordova afin que les notifications et les URL de ressources utilisent son transport. |
 | `captureMode` (Android) | `COMPOSITED`, incluant l’arrière-plan visible. | Une carte opaque défile devant du contenu adjacent : `VIEW` capture uniquement la carte plutôt que les pixels de fenêtre environnants. Ne l’utilisez pas pour du contenu translucide, des vidéos ou SurfaceView. Consultez l’[admissibilité de la capture](../reference/platforms.md#android-capture-modes). |
 
-L’Engine expose l’[intention de présentation](../reference/state.md) séparément des valeurs du composant. Ni l’une ni les autres ne nécessitent d’enveloppe Engine côté application. La détection des superpositions Ionic utilise un [initialiseur partagé](ionic-overlays.md) distinct et facultatif, pas un argument d’enregistrement ; les autres frameworks signalent explicitement leur cycle de vie.
+L’Engine expose l’[intention de présentation](../reference/state.md) séparément des valeurs du composant. Ni l’une ni les autres ne nécessitent d’enveloppe Engine côté application. La détection des superpositions Ionic utilise un [initialiseur partagé](ionic-overlays.md) distinct et facultatif, pas un argument d’enregistrement. Pour les superpositions gérées par l’application, les plugins peuvent [réexporter pause/resume](pause-resume.md) afin que les applications encadrent explicitement leurs superpositions.
 
 [Vue d’ensemble de la documentation](../README.md)

@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
 
 ## 3. ナビゲーションを調整する
 
-任意の Ionic アニメーション連携には `@rdlabo/ionic-theme-ios27` を導入し、Native UI と同時更新して版を揃えます。Ionic の初期化前にナビゲーションを設定します。アダプターはテーマ CSS を読み込まず Ionic 標準の遷移を維持できます。
+任意の Ionic アニメーション連携を使う場合は、互換性のある Native UI バージョンとともに `@rdlabo/ionic-theme-ios27` をインストールします。両パッケージは独立してバージョン管理されるため、テーマが宣言する Native UI の peer dependency の範囲に従ってください。Ionic の初期化前にナビゲーションを設定します。アダプターはテーマ CSS を読み込まずに Ionic のデフォルト遷移を維持できます：
 
 ```sh
 npm install @rdlabo/ionic-theme-ios27 @rdlabo/capacitor-native-ui @erkamyaman/capacitor-foldable

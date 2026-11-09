@@ -53,13 +53,21 @@ export async function resolveEnglishSourceRef(project: {
 }
 
 export async function pinPackageSourceLinks(
-  project: { repositoryUrl: string; packageName: string; releaseTagPrefix?: string },
+  project: {
+    repositoryUrl: string;
+    packageName: string;
+    releaseTagPrefix?: string;
+    englishDocsAssetsRef?: string;
+  },
   content: string,
 ): Promise<string> {
   const version = await pinnedVersionFor(project.packageName);
   if (!version) return content;
 
   const tag = `${project.releaseTagPrefix ?? 'v'}${version}`;
+  const assetTag = project.englishDocsAssetsRef
+    ? await resolveEnglishSourceRef({ ...project, englishDocsRef: project.englishDocsAssetsRef })
+    : tag;
   const { owner, repo } = parseRepositoryUrl(project.repositoryUrl);
   const escapedOwner =
     owner === 'webview-native-ui'
@@ -69,18 +77,42 @@ export async function pinPackageSourceLinks(
     project.packageName === '@rdlabo/ionic-theme-ios26'
       ? '(?:ionic-theme-ios26|ionic-theme-ios27)'
       : repo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // These app-local extension examples remain in the last monorepo release.
+  // The current theme repository no longer contains these extension example files.
+  if (project.packageName === '@rdlabo/capacitor-native-ui') {
+    content = content
+      .replace(
+        /https:\/\/github\.com\/webview-native-ui\/ionic-theme-ios27\/blob\/main\/(demo\/(?:ios\/App\/App\/(?:NativeMiniPlayer|NativeUICounter)\.swift|src\/native-ui\/(?:counter|mini-player)\.ts))/g,
+        'https://github.com/webview-native-ui/ionic-theme-ios27/blob/ios27-v2.1.0/$1',
+      )
+      .replace(
+        'https://github.com/webview-native-ui/ionic-theme-md3/blob/main/docs/dynamic-colors.md',
+        '/ionic-theme-md3/docs/dynamic-colors',
+      );
+  }
+  if (project.packageName === '@rdlabo/ionic-theme-md3') {
+    content = content
+      .replace(
+        'https://github.com/webview-native-ui/capacitor-plugin/blob/main/docs/dynamic-colors.md',
+        '/capacitor-native-ui/docs/dynamic-colors',
+      )
+      .replace(
+        /\]\(validation\/([^\s)]+\.md(?:#[^\s)]*)?)\)/g,
+        `](https://github.com/${owner}/${repo}/blob/${tag}/docs/validation/$1)`,
+      );
+  }
   return content
     .replace(
       /((?:github\.com|raw\.githubusercontent\.com)\/)rdlabo-dev\/(ionic-theme-(?:ios27|md3|utils))(?=\/|[)#\s]|$)/g,
       '$1webview-native-ui/$2',
     )
     .replace(
-      /(src=["'])\.\/screenshots\//g,
-      `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
+      /(src=["'])(?:\.\/)?screenshots\//g,
+      `$1https://raw.githubusercontent.com/${owner}/${repo}/${assetTag}/screenshots/`,
     )
     .replace(
-      /(\]\()\.\/screenshots\//g,
-      `$1https://raw.githubusercontent.com/${owner}/${repo}/${tag}/screenshots/`,
+      /(\]\()(?:\.\/)?screenshots\//g,
+      `$1https://raw.githubusercontent.com/${owner}/${repo}/${assetTag}/screenshots/`,
     )
     .replace(
       /https:\/\/github\.com\/(?:rdlabo-dev|webview-native-ui)\/ionic-theme-ios27\/tree\/ios26(?=[)#\s]|$)/g,
@@ -100,10 +132,11 @@ export async function pinPackageSourceLinks(
     )
     .replace(
       new RegExp(
-        `(https://raw\\.githubusercontent\\.com/${escapedOwner}/${escapedRepo}/)[A-Za-z0-9._-]+/`,
+        `(https://raw\\.githubusercontent\\.com/${escapedOwner}/${escapedRepo}/)[A-Za-z0-9._-]+/(screenshots/)?`,
         'g',
       ),
-      `$1${tag}/`,
+      (_match, prefix: string, screenshots: string | undefined) =>
+        `${prefix}${screenshots ? assetTag : tag}/${screenshots ?? ''}`,
     )
     .replace(
       /https:\/\/github\.com\/rdlabo-dev\/ionic-theme-ios26\/(?=(?:blob|tree)\/)/g,
@@ -239,14 +272,7 @@ function packageScopedDirectory(project: {
 }): string | undefined {
   const { repositoryUrl, sourceDirectory } = project;
 
-  if (
-    repositoryUrl === 'https://github.com/webview-native-ui/capacitor-plugin' &&
-    sourceDirectory === 'capacitor-native-ui'
-  )
-    return 'packages/capacitor-native-ui';
-
   if (repositoryUrl === 'https://github.com/webview-native-ui/ionic-theme-ios27') {
-    if (sourceDirectory === 'ionic-theme-ios27') return 'packages/theme-ios27';
     if (sourceDirectory === 'capacitor-native-ui') return 'packages/capacitor-native-ui';
   }
 

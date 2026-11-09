@@ -97,3 +97,18 @@ export const appConfig: ApplicationConfig = {
 自動retryは `GET`、`HEAD`、`OPTIONS` または `Idempotency-Key` を持つrequestだけです。通常のwriteは自動retryしません。一時status `0`、`408`、`429`、`502`、`503`、`504` を対象にし、`Retry-After` を尊重します。
 
 Offline対応時は `offlineInterceptor` を `kitAuthInterceptor` より前に登録します。Local modeではcredential生成とnetwork transportを止めながら、一致するread policyがスコープ付きReplicaを返せます。
+
+### リクエストの呼び出し元で管理するエラー通知
+
+`onServerError` は HTTP 400、409、422、500 のレスポンス本文のメッセージを受け取ります。呼び出し元が独自のエラー UI を表示するリクエストでは、公開された boolean 型のコンテキストトークン `KIT_SKIP_ERROR_NOTIFICATIONS`（既定値 `false`）を設定します。
+
+```ts
+import { HttpContext } from '@angular/common/http';
+import { KIT_SKIP_ERROR_NOTIFICATIONS } from '@rdlabo/ionic-angular-kit';
+
+http.post('/applications', payload, {
+  context: new HttpContext().set(KIT_SKIP_ERROR_NOTIFICATIONS, true),
+});
+```
+
+抑制されるのはレスポンスエラーの通知フック `onUnauthorized`、`onForbidden`、`onNetworkError`、`onRateLimited`、`onMaintenance`、`onServerBusy`、`onServerError` だけです。元のエラーは引き続き呼び出し元へ返されます。認証の迂回、401 の回復・再実行の停止、再試行やオフラインフォールバック動作の変更、アクセス権の取り消し（`onAuthAccessDenial`）の阻止、認証ヘッダーのエラー（`onAuthError`）の抑制は行いません。

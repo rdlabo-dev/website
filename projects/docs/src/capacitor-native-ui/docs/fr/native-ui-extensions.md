@@ -1,6 +1,6 @@
 ---
 title: "Extensions Native UI locales à l’application (expérimentales)"
-sourceRevision: "f518386a94ae60aded9e2e9e49057752084cc50c813c6d2c9464b985e92dd948"
+sourceRevision: "3a104278397b3ce6d2f0a9beff67f3e84051778d89a2f30dc7872e6ecd6e965d"
 ---
 # Extensions Native UI locales à l’application (expérimentales)
 
@@ -102,6 +102,8 @@ Cette fonction utilise la hiérarchie interne des vues overflow de WebKit sans n
 `NativeUIContext.sourceFrame` est le dernier échantillon de disposition, pas une notification à chaque défilement. Le suivi natif ne reconstruit pas le contenu SwiftUI pour les décalages de défilement. Les accessoires d’onglets fixes n’utilisent pas cette liaison. Les transformations des Web Modal restent sur leur chemin de transfert existant ; le contenu couvert non interactif peut utiliser des images préparées, tandis que le contenu défilant interactif reste natif.
 
 ## 2a. Enregistrer une View SwiftUI sur iOS
+
+Pour les projets CocoaPods, effectuez d’abord la [configuration du Podfile pour Engine](https://docs.rdlabo.dev/projects/capacitor-native-ui/docs/setup#4-build-sync-and-run). SwiftPM résout Engine automatiquement.
 
 Exécutez `npx cap sync ios` après installation du plugin, puis ajoutez un fichier Swift à la cible Xcode de l’application. Importez `NativeUIPlugin`, fourni par `@rdlabo/capacitor-native-ui`. Conservez votre intégration SPM ou CocoaPods.
 

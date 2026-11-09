@@ -1,6 +1,6 @@
 ---
 title: "Dokumentationsübersicht"
-sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bbb"
+sourceRevision: "89d93b28716c579e0f214dd6295f82a48c0db142e66d1fbcb768d8accb6ac73f"
 ---
 # Dokumentation
 
@@ -41,6 +41,7 @@ Keiner der beiden Wege benötigt einen zweiten anwendungsseitigen Engine-Wrapper
 - [Wertbindungen](configuration/values.md): Komponentendaten des Fallback-Hosts mit dem nativen Zustand abgleichen.
 - [Aufnahmezeitpunkt](configuration/capture.md): Bildpunkte vorbereiten, nachdem sich das native Erscheinungsbild stabilisiert hat.
 - [Ionic-Overlays](configuration/ionic-overlays.md): Ionic-Abdeckung mit einem gemeinsamen Anwendungsinitialisierer verbinden.
+- [Benutzerdefinierte Web-Overlays](configuration/pause-resume.md): pause/resume aus einem Plugin erneut exportieren, damit Anwendungen ihre eigenen Overlays damit einrahmen können.
 
 ## 4. Erweiterte APIs bei eigenem Renderer verwenden
 

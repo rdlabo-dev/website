@@ -1,6 +1,6 @@
 ---
 title: "Vue d’ensemble de la documentation"
-sourceRevision: "3f1541f0509edf414320f221a47e765d8f25c126b948a573cb3fb72a07e49bbb"
+sourceRevision: "89d93b28716c579e0f214dd6295f82a48c0db142e66d1fbcb768d8accb6ac73f"
 ---
 # Documentation
 
@@ -41,6 +41,7 @@ Les [paramètres d’enregistrement](configuration/README.md) présentent les va
 - [Liaisons de valeurs](configuration/values.md) : maintenir les données du composant de l’hôte de repli en accord avec l’état natif.
 - [Timing de capture](configuration/capture.md) : préparer les pixels après stabilisation de l’apparence native.
 - [Superpositions Ionic](configuration/ionic-overlays.md) : raccorder la couverture Ionic avec un initialiseur applicatif partagé.
+- [Superpositions Web personnalisées](configuration/pause-resume.md) : réexporter pause/resume depuis un plugin pour que les applications encadrent leurs propres superpositions.
 
 ## 4. Utiliser les API avancées lorsque vous possédez un moteur de rendu
 

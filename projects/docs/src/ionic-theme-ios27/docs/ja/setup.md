@@ -8,7 +8,7 @@ title: iOS 27 テーマをセットアップする
 
 ## 始める前に
 
-Ionic `>=8.8.1 <10` の既存の Ionic Angular、React、Vue アプリを使用します。Ionic の基本 CSS のインポートは維持してください。ブラウザー専用アプリにネイティブの Capacitor プロジェクトは不要です。
+Ionic `>=8.8.1 <10` の既存の Ionic Angular、React、Vue アプリを使用します。Ionic の基本 CSS インポートは維持します。ブラウザー専用アプリに、ネイティブの Capacitor プロジェクトは不要です。これは独立したテーマパッケージの標準セットアップです。Cordova アプリでは任意の [Cordova のセットアップ](cordova.md)を使用します。
 
 ## 1. テーマと Foldable をインストールする
 

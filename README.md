@@ -170,10 +170,14 @@ Documentation-source packages are inspected at generation time and are never imp
 bundle. `.npmrc` enables legacy peer resolution because those packages may document a different
 Angular major than the portal itself; every source version remains exact in `package-lock.json`.
 
-Production `anyScript` budgets in `angular.json` warn at 550kB and fail at 600kB.
-This leaves room above the current main bundle (about 485kB) for catalog growth and
-build-environment differences. Documentation bodies remain lazy-loaded. Initial bundles
-warn at 600kB and fail at 650kB; component styles warn at 6kB and fail at 8kB.
+Production `anyScript` budgets in `angular.json` warn at 550kB and fail at 650kB.
+Documentation bodies remain lazy-loaded. Initial bundles warn at 600kB and fail at 650kB;
+component styles warn at 6kB and fail at 8kB. The generator removes unused editor annotations
+and redundant syntax-highlighting wrappers while preserving code text, colors, and heading anchors.
+
+The build-output tests also bound the combined search index for all four languages at 6.10 MiB.
+That aggregate includes the new Engine, Cordova, and color guides; individual script and initial
+bundle limits remain separate checks.
 
 ## Top site (`projects/web-site`)
 

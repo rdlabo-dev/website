@@ -1,6 +1,6 @@
 ---
 title: "Authentification et HTTP"
-sourceRevision: "1851fbaaf3fc89785e9d73f853569dbfa63ae0ecfa57e95fa3401f831d8ca85f"
+sourceRevision: "a31df991bbcec0a93dc5c46e8686130a85b7d4665aa2915ccac65dcbdfe4f58b"
 ---
 ## Capacité d’accès
 
@@ -97,3 +97,18 @@ export const appConfig: ApplicationConfig = {
 Les nouvelles tentatives automatiques sont limitées à `GET`, `HEAD`, `OPTIONS` ou aux requêtes portant un `Idempotency-Key`. Les écritures ordinaires ne sont jamais retentées automatiquement. Les nouvelles tentatives couvrent les états transitoires `0`, `408`, `429`, `502`, `503` et `504`, et respectent `Retry-After`.
 
 Lorsque la prise en charge hors ligne est activée, enregistrez `offlineInterceptor` avant `kitAuthInterceptor`. Le mode local empêche alors la génération d’identifiants et le transport réseau tout en permettant à une règle de lecture correspondante de servir la réplique à portée limitée.
+
+### Notifications d’erreur gérées par l’appelant
+
+`onServerError` reçoit le message du corps de la réponse pour les erreurs HTTP 400, 409, 422 et 500. Pour les requêtes dont l’appelant affiche sa propre interface d’erreur, définissez le jeton de contexte booléen public `KIT_SKIP_ERROR_NOTIFICATIONS` (valeur par défaut : `false`) :
+
+```ts
+import { HttpContext } from '@angular/common/http';
+import { KIT_SKIP_ERROR_NOTIFICATIONS } from '@rdlabo/ionic-angular-kit';
+
+http.post('/applications', payload, {
+  context: new HttpContext().set(KIT_SKIP_ERROR_NOTIFICATIONS, true),
+});
+```
+
+Seuls les hooks de notification des erreurs de réponse sont désactivés : `onUnauthorized`, `onForbidden`, `onNetworkError`, `onRateLimited`, `onMaintenance`, `onServerBusy` et `onServerError`. L’erreur d’origine est toujours transmise à l’appelant par rejet. Cela ne contourne pas l’authentification, n’arrête pas la récupération et la réexécution après une erreur 401, ne modifie ni les nouvelles tentatives ni le repli hors ligne, n’empêche pas la révocation de l’accès (`onAuthAccessDenial`) et ne masque pas les échecs des en-têtes d’authentification (`onAuthError`).

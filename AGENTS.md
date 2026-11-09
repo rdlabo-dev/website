@@ -130,6 +130,8 @@ English package guides default to the installed package's immutable `vX.Y.Z` tag
 
 For a repository split, optional `englishDocsRepositoryUrl` preserves the historical repository that contains the reviewed `englishDocsRef` and release-tagged assets. `repositoryUrl` and `repositoryBrowseUrl` identify the current repository; package-page edit links target that repository at the same source path. Keep historical release links where the release actually exists. Remove the historical override when reviewed guides are pinned in the new repository.
 
+When a release tag omits README screenshots, `englishDocsAssetsRef` may pin those screenshots to a reviewed immutable commit or version tag. Verify the image URLs before updating translated links; package source-code links still follow the installed release.
+
 ### API sources
 
 1. **`dist/docs.json`** — `!::Identifier::` placeholders expand an entry on its own line. In package `docs/*.md` that GitHub renders, wrap as `<!-- !::Identifier:: -->` so it is hidden on GitHub. The generator expands both forms.

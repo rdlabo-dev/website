@@ -84,3 +84,26 @@ test('all migrated routes invoke the source Worker before static asset fallback'
     }
   }
 });
+
+test('static redirects stay within Cloudflare rule limits in evaluation order', async () => {
+  const text = await readFile('projects/docs/public/_redirects', 'utf8');
+  const rules = text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+  let dynamic = false;
+  let staticCount = 0;
+  let dynamicCount = 0;
+  for (const line of rules) {
+    const [source] = line.split(/\s+/);
+    dynamic ||= /\*|:[A-Za-z]/.test(source);
+    if (dynamic) dynamicCount++;
+    else staticCount++;
+    assert.ok(
+      !WEBVIEW_PROJECT_IDS.some((id) => source.includes(`/${id}/*`)),
+      'migration wildcards belong to the Worker',
+    );
+  }
+  assert.ok(staticCount <= 2000, `static redirects: ${staticCount}`);
+  assert.ok(dynamicCount <= 100, `dynamic redirects: ${dynamicCount}`);
+});

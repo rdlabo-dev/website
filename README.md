@@ -230,4 +230,4 @@ Cloudflare drops trailing slashes (`html_handling: drop-trailing-slash`) so URLs
 
 - [rdlabo](https://rdlabo.dev/)
 
-WebView Native UI documentation is maintained in [webview-native-ui/docs](https://github.com/webview-native-ui/docs) and served at https://webview-native-ui.rdlabo.dev. This site keeps external project cards and permanent redirects. See [WEBVIEW-DOCS-MIGRATION.md](WEBVIEW-DOCS-MIGRATION.md) for the ordered cutover.
+WebView Native UI documentation is maintained in [webview-native-ui/docs](https://github.com/webview-native-ui/docs) and served at https://webview-native-ui.com. This site keeps external project cards and permanent redirects. See [WEBVIEW-DOCS-MIGRATION.md](WEBVIEW-DOCS-MIGRATION.md) for the ordered cutover.

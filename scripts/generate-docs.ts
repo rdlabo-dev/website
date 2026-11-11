@@ -228,10 +228,10 @@ function localizeProject(project: ProjectDefinition, locale: Locale, version: st
     demoUrl: project.demoUrl,
     ...(project.releaseNotesUrl ? { releaseNotesUrl: project.releaseNotesUrl } : {}),
     ...(project.entryGuideSlugs ? { entryGuideSlugs: project.entryGuideSlugs } : {}),
-    hostedUrl: project.hostedUrl?.startsWith('https://webview-native-ui.rdlabo.dev/')
+    hostedUrl: project.hostedUrl?.startsWith('https://webview-native-ui.com/')
       ? project.hostedUrl.replace(
-          'https://webview-native-ui.rdlabo.dev/',
-          `https://webview-native-ui.rdlabo.dev${docsLocalePrefix(locale)}/`,
+          'https://webview-native-ui.com/',
+          `https://webview-native-ui.com${docsLocalePrefix(locale)}/`,
         )
       : project.hostedUrl,
     category: project.category,

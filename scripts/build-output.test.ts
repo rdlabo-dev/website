@@ -122,11 +122,11 @@ test('ships permanent edge redirects for canonical documentation paths', async (
   );
   assert.match(
     redirects,
-    /^\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.rdlabo\.dev\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+    /^\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.com\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
   );
   assert.match(
     redirects,
-    /^\/ja\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.rdlabo\.dev\/ja\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+    /^\/ja\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.com\/ja\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
   );
 });
 

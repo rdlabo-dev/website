@@ -281,8 +281,8 @@ That is why opening the same component demo in both themes communicates the diff
 
 - [iOS26 theme demo](https://ionic-theme-ios26.rdlabo.dev/)
 - [Material Design 3 theme demo](https://ionic-theme-md3.rdlabo.dev/)
-- [iOS26 theme documentation](https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios26)
-- [Material Design 3 theme documentation](https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3)
+- [iOS26 theme documentation](https://webview-native-ui.com/projects/ionic-theme-ios26)
+- [Material Design 3 theme documentation](https://webview-native-ui.com/projects/ionic-theme-md3)
 
 For an existing app, you can begin by loading the CSS and checking a single screen. The `.ios26-disabled` and `.md3-disabled` classes disable a theme for an individual DOM subtree, so adoption can be incremental.
 

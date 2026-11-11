@@ -1121,7 +1121,7 @@ test('keeps documentation redirects permanent and legacy Stripe hosting isolated
     assert.ok(source);
     assert.ok(destination);
     assert.equal(status, '301');
-    assert.ok(/^https:\/\/(?:docs|webview-native-ui)\.rdlabo\.dev\//.test(destination));
+    assert.ok(/^https:\/\/(?:docs\.rdlabo\.dev|webview-native-ui\.com)\//.test(destination));
     return { source, destination };
   });
   assert.deepEqual(

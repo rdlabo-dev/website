@@ -284,7 +284,7 @@ The `Deploy to Cloudflare` workflow deploys both after CI succeeds on `main` (`n
 ## WebView Native UI split
 
 Engine, Capacitor Native UI, and iOS27/iOS26/MD3 themes are external documentation cards. Their
-content and translations belong to webview-native-ui/docs at https://webview-native-ui.rdlabo.dev.
+content and translations belong to webview-native-ui/docs at https://webview-native-ui.com.
 Keep their IDs for article relations, but do not restore local pages or npm dependencies.
 `workers/webview-docs-redirect.mjs` is shared by the static Worker and the agent router.
 Deploy both after the destination site is healthy; see WEBVIEW-DOCS-MIGRATION.md.

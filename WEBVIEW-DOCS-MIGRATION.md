@@ -2,7 +2,7 @@
 
 Source: rdlabo-dev/website@7bd562b441ee69d29a6400230229cd7711f6dfa5. Source history remains in that repository.
 Destination: https://github.com/webview-native-ui/docs
-Origin: https://webview-native-ui.rdlabo.dev
+Origin: https://webview-native-ui.com
 
 ## Content
 
@@ -59,3 +59,14 @@ No package releases, npm names, theme demos, or library repositories change in t
   warning threshold, below the 650 kB error threshold). Production behavior remains unverified
   until the approved custom-domain deployment.
 - No remote branches, pull requests, secrets, DNS records, or production services were changed.
+
+## Canonical domain and launch alias
+
+The approved canonical origin is now https://webview-native-ui.com. The temporary launch origin
+https://webview-native-ui.rdlabo.dev was published first and remains attached to the static service.
+After the canonical domain is verified, deploy `wrangler.legacy-domain.jsonc` to put a dedicated
+301-only Worker Route in front of that temporary hostname. The canonical site stays assets-only.
+The source portal redirects directly to .com, avoiding a redirect chain through the launch alias.
+
+The .com zone is active in the same rdlabo-dev Cloudflare account. A local authenticated Wrangler
+session can deploy now; GitHub Actions deployment still requires its Cloudflare API token secret.

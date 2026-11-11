@@ -223,7 +223,7 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
 
 export const projectDefinitions: readonly ProjectDefinition[] = [
   {
-    hostedUrl: 'https://webview-native-ui.rdlabo.dev/projects/webview-native-ui-engine',
+    hostedUrl: 'https://webview-native-ui.com/projects/webview-native-ui-engine',
     id: 'webview-native-ui-engine',
     slug: 'webview-native-ui-engine',
     sourceDirectory: 'webview-native-ui-engine',
@@ -971,7 +971,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
   },
   {
-    hostedUrl: 'https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios27',
+    hostedUrl: 'https://webview-native-ui.com/projects/ionic-theme-ios27',
     id: 'ionic-theme-ios27',
     sourceHeadingAliases: ['ja'],
     slug: 'ionic-theme-ios27',
@@ -1001,7 +1001,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     pages: [],
   },
   {
-    hostedUrl: 'https://webview-native-ui.rdlabo.dev/projects/capacitor-native-ui',
+    hostedUrl: 'https://webview-native-ui.com/projects/capacitor-native-ui',
     id: 'capacitor-native-ui',
     sourceHeadingAliases: ['ja'],
     slug: 'capacitor-native-ui',
@@ -1030,7 +1030,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     pages: [],
   },
   {
-    hostedUrl: 'https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios26',
+    hostedUrl: 'https://webview-native-ui.com/projects/ionic-theme-ios26',
     id: 'ionic-theme-ios26',
     slug: 'ionic-theme-ios26',
     sourceDirectory: 'ionic-theme-ios26',
@@ -1088,7 +1088,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     pages: [],
   },
   {
-    hostedUrl: 'https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3',
+    hostedUrl: 'https://webview-native-ui.com/projects/ionic-theme-md3',
     id: 'ionic-theme-md3',
     sourceHeadingAliases: ['ja'],
     slug: 'ionic-theme-md3',

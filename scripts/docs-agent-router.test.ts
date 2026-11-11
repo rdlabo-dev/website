@@ -360,7 +360,7 @@ test('redirects moved project Markdown before classification, origin access, or 
       assert.equal(response.status, 301);
       assert.equal(
         response.headers.get('Location'),
-        `https://webview-native-ui.rdlabo.dev${locale}/projects/${id}/docs/readme?source=legacy`,
+        `https://webview-native-ui.com${locale}/projects/${id}/docs/readme?source=legacy`,
       );
     }
   }

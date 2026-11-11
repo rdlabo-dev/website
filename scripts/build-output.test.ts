@@ -60,58 +60,17 @@ test('removed Ionic Framework feedback pages stay out of published docs', async 
   const sitemap = await readFile('dist/docs/browser/sitemap.xml', 'utf8');
   for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
     const locale = subPath ? `${subPath}/` : '';
-    for (const project of ['ionic-theme-ios26', 'ionic-theme-ios27']) {
+    for (const project of ['ionic-angular-kit']) {
       const route = `${locale}projects/${project}`;
       assert.ok(!sitemap.includes(`/${route}/docs/feedback`));
       await assert.rejects(() => access(`dist/docs/browser/${route}/docs/feedback/index.html`));
-      for (const page of ['', '/docs/readme']) {
+      for (const page of ['', '/docs/getting-started']) {
         const html = await readFile(`dist/docs/browser/${route}${page}/index.html`, 'utf8');
         assert.doesNotMatch(html, /\/docs\/feedback/);
         assert.doesNotMatch(
           html,
           /Ionic Frameworkへの機能要望|Feature requests for Ionic Framework/,
         );
-      }
-    }
-  }
-});
-
-test('split theme and Native UI guides resolve localized links and heading fragments', async () => {
-  const ids = ['ionic-theme-ios27', 'capacitor-native-ui', 'ionic-theme-md3'];
-  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
-    const prefix = subPath ? `/${subPath}` : '';
-    const documents = new Map<string, Document>();
-    for (const id of ids) {
-      const project = projectDefinitions.find((entry) => entry.id === id)!;
-      for (const page of project.pages) {
-        const route = `${prefix}/projects/${id}/docs/${page.slug}`;
-        documents.set(
-          route,
-          new JSDOM(await readFile(`dist/docs/browser${route}/index.html`, 'utf8')).window.document,
-        );
-      }
-    }
-    for (const [route, document] of documents) {
-      for (const link of document.querySelectorAll<HTMLAnchorElement>('main a[href]')) {
-        const url = new URL(link.getAttribute('href')!, `https://docs.rdlabo.dev${route}`);
-        if (
-          url.origin !== 'https://docs.rdlabo.dev' ||
-          !ids.some((id) => url.pathname.includes(`/projects/${id}/docs/`))
-        )
-          continue;
-        assert.ok(
-          url.pathname.startsWith(`${prefix}/projects/`),
-          `${route}: wrong locale ${url.href}`,
-        );
-        const target = documents.get(url.pathname.replace(/\/$/, ''));
-        assert.ok(target, `${route}: missing guide ${url.href}`);
-        if (url.hash) {
-          const id = url.hash.slice(1);
-          assert.ok(
-            target.getElementById(id) || target.getElementById(decodeURIComponent(id)),
-            `${route}: missing heading ${url.href}`,
-          );
-        }
       }
     }
   }
@@ -163,11 +122,11 @@ test('ships permanent edge redirects for canonical documentation paths', async (
   );
   assert.match(
     redirects,
-    /^\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+    /^\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.com\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
   );
   assert.match(
     redirects,
-    /^\/ja\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/docs\.rdlabo\.dev\/ja\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
+    /^\/ja\/projects\/ionic-theme-ios27\/docs\/ios-adaptive https:\/\/webview-native-ui\.com\/ja\/projects\/ionic-theme-ios27\/docs\/readme 301$/m,
   );
 });
 
@@ -280,22 +239,22 @@ test('Japanese home prerender uses slashless canonical SEO URLs and clear site n
 });
 
 test('prerendered docs mark current location and hide empty search hosts', async () => {
-  const [home, support, landing, docPage, japaneseLanding] = await Promise.all([
+  const [home, support, landing, docPage, _japaneseLanding] = await Promise.all([
     readFile(new URL('../dist/docs/browser/index.html', import.meta.url), 'utf8'),
     readFile(new URL('../dist/docs/browser/support/index.html', import.meta.url), 'utf8'),
     readFile(
-      new URL('../dist/docs/browser/projects/ionic-theme-md3/index.html', import.meta.url),
+      new URL('../dist/docs/browser/projects/ionic-angular-kit/index.html', import.meta.url),
       'utf8',
     ),
     readFile(
       new URL(
-        '../dist/docs/browser/projects/ionic-theme-md3/docs/migration/index.html',
+        '../dist/docs/browser/projects/ionic-angular-kit/docs/forms/index.html',
         import.meta.url,
       ),
       'utf8',
     ),
     readFile(
-      new URL('../dist/docs/browser/ja/projects/ionic-theme-md3/index.html', import.meta.url),
+      new URL('../dist/docs/browser/ja/projects/ionic-angular-kit/index.html', import.meta.url),
       'utf8',
     ),
   ]);
@@ -307,24 +266,16 @@ test('prerendered docs mark current location and hide empty search hosts', async
   );
   assert.match(
     landing,
-    /(?:href="\/projects\/ionic-theme-md3"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3")/,
+    /(?:href="\/projects\/ionic-angular-kit"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-angular-kit")/,
   );
   assert.match(
     docPage,
-    /(?:href="\/projects\/ionic-theme-md3\/docs\/migration"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3\/docs\/migration")/,
+    /(?:href="\/projects\/ionic-angular-kit\/docs\/forms"[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-angular-kit\/docs\/forms")/,
   );
   assert.doesNotMatch(
     docPage,
-    /href="\/projects\/ionic-theme-md3"(?![^>]*\/docs\/)[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-theme-md3"(?![^>]*\/docs\/)/,
+    /href="\/projects\/ionic-angular-kit"(?![^>]*\/docs\/)[^>]*aria-current="page"|aria-current="page"[^>]*href="\/projects\/ionic-angular-kit"(?![^>]*\/docs\/)/,
   );
-  assert.match(japaneseLanding, /関連記事（英語）/);
-  assert.match(japaneseLanding, /related-article-lang[^>]*>英語</);
-  assert.match(japaneseLanding, /lang="en"/);
-  assert.doesNotMatch(landing, /関連記事（英語）/);
-  const landingDom = new JSDOM(landing);
-  assert.equal(landingDom.window.document.querySelector('.related-article-lang'), null);
-  landingDom.window.close();
-
   const [docsStyles, siteStyles] = await Promise.all([
     readFile(new URL('../projects/docs/src/styles.css', import.meta.url), 'utf8'),
     readFile(new URL('../projects/web-site/src/styles.css', import.meta.url), 'utf8'),
@@ -387,14 +338,14 @@ test('visible docs breadcrumbs use canonical locale home paths', async () => {
   const [english, japanese] = await Promise.all([
     readFile(
       new URL(
-        '../dist/docs/browser/projects/ionic-theme-md3/docs/migration/index.html',
+        '../dist/docs/browser/projects/ionic-angular-kit/docs/forms/index.html',
         import.meta.url,
       ),
       'utf8',
     ),
     readFile(
       new URL(
-        '../dist/docs/browser/ja/projects/ionic-theme-md3/docs/migration/index.html',
+        '../dist/docs/browser/ja/projects/ionic-angular-kit/docs/forms/index.html',
         import.meta.url,
       ),
       'utf8',
@@ -607,8 +558,6 @@ test('ESLint companion guides are reachable from each project entry and introduc
     const locale = subPath ? `${subPath}/` : '';
     for (const [slug, intro] of [
       ['workers-timezone', 'readme'],
-      ['ionic-theme-ios26', 'readme'],
-      ['ionic-theme-md3', 'readme'],
       ['ionic-angular-kit', 'getting-started'],
     ]) {
       const path = `/${locale}projects/${slug}`;

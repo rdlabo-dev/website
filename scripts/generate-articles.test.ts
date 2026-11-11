@@ -204,7 +204,7 @@ Translated body.
     assert.match(catalog, /"publishedAt": "2026-08-24T08:20:00\.000Z"/);
     assert.match(catalog, /"publishedDate": "2026-08-24"/);
     assert.match(catalog, /"id": "ionic-theme-md3"/);
-    assert.match(catalog, /https:\/\/docs\.rdlabo\.dev\/projects\/ionic-theme-md3/);
+    assert.match(catalog, /https:\/\/webview-native-ui\.com\/projects\/ionic-theme-md3/);
     assert.match(catalog, /"id": "ionic-docs"/);
     assert.match(catalog, /"url": "https:\/\/ionicframework\.jp\/docs\/"/);
   } finally {

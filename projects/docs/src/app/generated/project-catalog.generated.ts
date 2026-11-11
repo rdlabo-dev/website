@@ -33,181 +33,13 @@ export const PROJECTS_EN = [
     "shortName": "WebView Native UI Engine",
     "packageName": "@webview-native-ui/engine",
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "hostedUrl": "https://webview-native-ui.com/projects/webview-native-ui-engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.4",
+    "version": "",
     "description": "Native UI placement, scroll tracking, and Web projection for Capacitor and Cordova plugin authors.",
     "path": "/projects/webview-native-ui-engine",
-    "pages": [
-      {
-        "title": "Getting Started",
-        "navTitle": "Getting Started",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/readme"
-      },
-      {
-        "title": "Documentation overview",
-        "navTitle": "Documentation overview",
-        "slug": "overview",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/overview"
-      },
-      {
-        "title": "Concepts and limits",
-        "navTitle": "Concepts and limits",
-        "slug": "concepts",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/concepts"
-      },
-      {
-        "title": "Shared controls for native adapters",
-        "navTitle": "Shared controls for native adapters",
-        "slug": "controls",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/controls"
-      },
-      {
-        "title": "Basic initialization",
-        "navTitle": "Basic initialization",
-        "slug": "getting-started/initialization",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
-      },
-      {
-        "title": "Capacitor plugin integration",
-        "navTitle": "Capacitor plugin integration",
-        "slug": "getting-started/capacitor",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
-      },
-      {
-        "title": "Cordova plugin integration",
-        "navTitle": "Cordova plugin integration",
-        "slug": "getting-started/cordova",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
-      },
-      {
-        "title": "Registration settings",
-        "navTitle": "Registration settings",
-        "slug": "configuration",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration"
-      },
-      {
-        "title": "Notifications",
-        "navTitle": "Notifications",
-        "slug": "configuration/events",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
-      },
-      {
-        "title": "Value bindings",
-        "navTitle": "Value bindings",
-        "slug": "configuration/values",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
-      },
-      {
-        "title": "Capture timing",
-        "navTitle": "Capture timing",
-        "slug": "configuration/capture",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
-      },
-      {
-        "title": "Ionic overlays",
-        "navTitle": "Ionic overlays",
-        "slug": "configuration/ionic-overlays",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
-      },
-      {
-        "title": "Custom overlay pause and resume",
-        "navTitle": "Custom overlay pause and resume",
-        "slug": "configuration/pause-resume",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
-      },
-      {
-        "title": "Choose an advanced API",
-        "navTitle": "Choose an advanced API",
-        "slug": "advanced",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced"
-      },
-      {
-        "title": "Page and modal surfaces",
-        "navTitle": "Page and modal surfaces",
-        "slug": "advanced/renderer",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
-      },
-      {
-        "title": "Web projection and batches",
-        "navTitle": "Web projection and batches",
-        "slug": "advanced/web-projection",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
-      },
-      {
-        "title": "Native handoff",
-        "navTitle": "Native handoff",
-        "slug": "advanced/native-handoff",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
-      },
-      {
-        "title": "Deferred Android placement",
-        "navTitle": "Deferred Android placement",
-        "slug": "advanced/android-placement",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
-      },
-      {
-        "title": "Update serialization and recovery",
-        "navTitle": "Update serialization and recovery",
-        "slug": "advanced/update-queue",
-        "section": "Advanced APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
-      },
-      {
-        "title": "Projection contract and lifetime",
-        "navTitle": "Projection contract and lifetime",
-        "slug": "reference/projection",
-        "section": "Reference",
-        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
-      },
-      {
-        "title": "Projection container support",
-        "navTitle": "Projection container support",
-        "slug": "reference/containers",
-        "section": "Reference",
-        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
-      },
-      {
-        "title": "Observable presentation intent",
-        "navTitle": "Observable presentation intent",
-        "slug": "reference/state",
-        "section": "Reference",
-        "path": "/projects/webview-native-ui-engine/docs/reference/state"
-      },
-      {
-        "title": "Capture and platform limits",
-        "navTitle": "Capture and platform limits",
-        "slug": "reference/platforms",
-        "section": "Reference",
-        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
-      },
-      {
-        "title": "Development and releases",
-        "navTitle": "Development and releases",
-        "slug": "maintenance",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/maintenance"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "cf-workers-native",
@@ -600,97 +432,13 @@ export const PROJECTS_EN = [
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
+    "hostedUrl": "https://webview-native-ui.com/projects/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.1",
+    "version": "",
     "description": "iOS 27 styling, motion, and Web layout for Ionic.",
     "path": "/projects/ionic-theme-ios27",
-    "pages": [
-      {
-        "title": "Getting Started",
-        "navTitle": "Getting Started",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/readme"
-      },
-      {
-        "title": "Theme setup",
-        "navTitle": "Theme setup",
-        "slug": "setup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/setup"
-      },
-      {
-        "title": "Cordova setup",
-        "navTitle": "Cordova setup",
-        "slug": "cordova",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/cordova"
-      },
-      {
-        "title": "Adaptive themes",
-        "navTitle": "Adaptive themes",
-        "slug": "adaptive-themes",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
-      },
-      {
-        "title": "Add Native UI",
-        "navTitle": "Add Native UI",
-        "slug": "add-native-ui",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
-      },
-      {
-        "title": "Using ion-item-group",
-        "navTitle": "Using ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
-      },
-      {
-        "title": "Special markup and classes",
-        "navTitle": "Special markup and classes",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/special-markup"
-      },
-      {
-        "title": "Keep lists consistent with ESLint",
-        "navTitle": "Keep lists consistent with ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Features",
-        "navTitle": "Features",
-        "slug": "features",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/features"
-      },
-      {
-        "title": "Animation",
-        "navTitle": "Animation",
-        "slug": "animation",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/animation"
-      },
-      {
-        "title": "Vertical Bars layout",
-        "navTitle": "Vertical Bars layout",
-        "slug": "vertical-bars-layout",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
-      },
-      {
-        "title": "Theme migration",
-        "navTitle": "Theme migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "capacitor-native-ui",
@@ -698,90 +446,13 @@ export const PROJECTS_EN = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
+    "hostedUrl": "https://webview-native-ui.com/projects/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.4",
+    "version": "",
     "description": "Native controls for Ionic and HTML apps, with Web-owned state and events.",
     "path": "/projects/capacitor-native-ui",
-    "pages": [
-      {
-        "title": "Getting Started",
-        "navTitle": "Getting Started",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/readme"
-      },
-      {
-        "title": "Ionic setup",
-        "navTitle": "Ionic setup",
-        "slug": "setup",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/setup"
-      },
-      {
-        "title": "Native UI without Ionic",
-        "navTitle": "Native UI without Ionic",
-        "slug": "framework-independent",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/framework-independent"
-      },
-      {
-        "title": "Add Vertical Bars while keeping your theme",
-        "navTitle": "Add Vertical Bars while keeping your theme",
-        "slug": "ionic-vertical-bars",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
-      },
-      {
-        "title": "Native UI",
-        "navTitle": "Native UI",
-        "slug": "native-ui",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/native-ui"
-      },
-      {
-        "title": "Configuration",
-        "navTitle": "Configuration",
-        "slug": "configuration",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/configuration"
-      },
-      {
-        "title": "Light and dark appearance",
-        "navTitle": "Light and dark appearance",
-        "slug": "appearance",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/appearance"
-      },
-      {
-        "title": "Android dynamic colors",
-        "navTitle": "Android dynamic colors",
-        "slug": "dynamic-colors",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
-      },
-      {
-        "title": "Vertical Bars",
-        "navTitle": "Vertical Bars",
-        "slug": "vertical-bars",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
-      },
-      {
-        "title": "App-local Native UI extensions (experimental)",
-        "navTitle": "App-local Native UI extensions (experimental)",
-        "slug": "native-ui-extensions",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-ios26",
@@ -790,83 +461,13 @@ export const PROJECTS_EN = [
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios26",
+    "hostedUrl": "https://webview-native-ui.com/projects/ionic-theme-ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.2",
+    "version": "",
     "description": "iOS 26 design styling for Ionic applications.",
     "path": "/projects/ionic-theme-ios26",
-    "pages": [
-      {
-        "title": "Getting Started",
-        "navTitle": "Getting Started",
-        "slug": "readme",
-        "section": "Quickstart",
-        "path": "/projects/ionic-theme-ios26/docs/readme"
-      },
-      {
-        "title": "Using ion-item-group",
-        "navTitle": "Using ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
-      },
-      {
-        "title": "Special markup and classes",
-        "navTitle": "Special markup and classes",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/special-markup"
-      },
-      {
-        "title": "Keep lists consistent with ESLint",
-        "navTitle": "Keep lists consistent with ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
-        "title": "Features",
-        "navTitle": "Features",
-        "slug": "features",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
-        "title": "Experimental Animation",
-        "navTitle": "Experimental Animation",
-        "slug": "experimental-animation",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
-      },
-      {
-        "title": "iOS 18",
-        "navTitle": "iOS 18",
-        "slug": "ios-18",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/ios-18"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/migration"
-      },
-      {
-        "title": "E2E screenshot testing",
-        "navTitle": "E2E screenshot testing",
-        "slug": "e2e-testing",
-        "section": "Development",
-        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Reference",
-        "path": "/projects/ionic-theme-ios26/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-md3",
@@ -874,83 +475,13 @@ export const PROJECTS_EN = [
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
+    "hostedUrl": "https://webview-native-ui.com/projects/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "",
     "description": "Material Design 3 styling for Ionic applications.",
     "path": "/projects/ionic-theme-md3",
-    "pages": [
-      {
-        "title": "Getting Started",
-        "navTitle": "Getting Started",
-        "slug": "readme",
-        "section": "Documentation",
-        "path": "/projects/ionic-theme-md3/docs/readme"
-      },
-      {
-        "title": "Android Settings appearance",
-        "navTitle": "Android Settings appearance",
-        "slug": "android-settings",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/android-settings"
-      },
-      {
-        "title": "Android dynamic colors",
-        "navTitle": "Android dynamic colors",
-        "slug": "dynamic-colors",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
-      },
-      {
-        "title": "Color system",
-        "navTitle": "Color system",
-        "slug": "color-system",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/color-system"
-      },
-      {
-        "title": "Using ion-item-group",
-        "navTitle": "Using ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
-      },
-      {
-        "title": "Special markup",
-        "navTitle": "Special markup",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/special-markup"
-      },
-      {
-        "title": "Keep lists consistent with ESLint",
-        "navTitle": "Keep lists consistent with ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/migration"
-      },
-      {
-        "title": "E2E screenshot testing",
-        "navTitle": "E2E screenshot testing",
-        "slug": "e2e-testing",
-        "section": "Development",
-        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Reference",
-        "path": "/projects/ionic-theme-md3/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-angular-collect-icons",
@@ -2080,181 +1611,13 @@ export const PROJECTS_JA = [
     "shortName": "WebView Native UI Engine",
     "packageName": "@webview-native-ui/engine",
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "hostedUrl": "https://webview-native-ui.com/ja/projects/webview-native-ui-engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.4",
+    "version": "",
     "description": "Capacitor・Cordovaプラグイン開発者向けの、ネイティブUI配置・スクロール追従・Web投影ライブラリ。",
     "path": "/projects/webview-native-ui-engine",
-    "pages": [
-      {
-        "title": "はじめに",
-        "navTitle": "はじめに",
-        "slug": "readme",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/readme"
-      },
-      {
-        "title": "ドキュメント概要",
-        "navTitle": "ドキュメント概要",
-        "slug": "overview",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/overview"
-      },
-      {
-        "title": "概念と制約",
-        "navTitle": "概念と制約",
-        "slug": "concepts",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/concepts"
-      },
-      {
-        "title": "ネイティブアダプターの共有コントロール",
-        "navTitle": "ネイティブアダプターの共有コントロール",
-        "slug": "controls",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/controls"
-      },
-      {
-        "title": "基本的な初期化",
-        "navTitle": "基本的な初期化",
-        "slug": "getting-started/initialization",
-        "section": "組み込み",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
-      },
-      {
-        "title": "Capacitorプラグインへの組み込み",
-        "navTitle": "Capacitorプラグインへの組み込み",
-        "slug": "getting-started/capacitor",
-        "section": "組み込み",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
-      },
-      {
-        "title": "Cordovaプラグインへの組み込み",
-        "navTitle": "Cordovaプラグインへの組み込み",
-        "slug": "getting-started/cordova",
-        "section": "組み込み",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
-      },
-      {
-        "title": "登録設定",
-        "navTitle": "登録設定",
-        "slug": "configuration",
-        "section": "設定",
-        "path": "/projects/webview-native-ui-engine/docs/configuration"
-      },
-      {
-        "title": "通知",
-        "navTitle": "通知",
-        "slug": "configuration/events",
-        "section": "設定",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
-      },
-      {
-        "title": "値のバインディング",
-        "navTitle": "値のバインディング",
-        "slug": "configuration/values",
-        "section": "設定",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
-      },
-      {
-        "title": "キャプチャのタイミング",
-        "navTitle": "キャプチャのタイミング",
-        "slug": "configuration/capture",
-        "section": "設定",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
-      },
-      {
-        "title": "Ionicオーバーレイ",
-        "navTitle": "Ionicオーバーレイ",
-        "slug": "configuration/ionic-overlays",
-        "section": "設定",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
-      },
-      {
-        "title": "カスタムオーバーレイの一時停止と再開",
-        "navTitle": "カスタムオーバーレイの一時停止と再開",
-        "slug": "configuration/pause-resume",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
-      },
-      {
-        "title": "高度なAPIの選択",
-        "navTitle": "高度なAPIの選択",
-        "slug": "advanced",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced"
-      },
-      {
-        "title": "ページとモーダルのサーフェス",
-        "navTitle": "ページとモーダルのサーフェス",
-        "slug": "advanced/renderer",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
-      },
-      {
-        "title": "Web投影とバッチ",
-        "navTitle": "Web投影とバッチ",
-        "slug": "advanced/web-projection",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
-      },
-      {
-        "title": "ネイティブのハンドオフ",
-        "navTitle": "ネイティブのハンドオフ",
-        "slug": "advanced/native-handoff",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
-      },
-      {
-        "title": "Androidの配置の遅延適用",
-        "navTitle": "Androidの配置の遅延適用",
-        "slug": "advanced/android-placement",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
-      },
-      {
-        "title": "更新の直列化と復旧",
-        "navTitle": "更新の直列化と復旧",
-        "slug": "advanced/update-queue",
-        "section": "高度なAPI",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
-      },
-      {
-        "title": "投影の契約とライフタイム",
-        "navTitle": "投影の契約とライフタイム",
-        "slug": "reference/projection",
-        "section": "リファレンス",
-        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
-      },
-      {
-        "title": "投影コンテナの対応状況",
-        "navTitle": "投影コンテナの対応状況",
-        "slug": "reference/containers",
-        "section": "リファレンス",
-        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
-      },
-      {
-        "title": "表示意図の観測",
-        "navTitle": "表示意図の観測",
-        "slug": "reference/state",
-        "section": "リファレンス",
-        "path": "/projects/webview-native-ui-engine/docs/reference/state"
-      },
-      {
-        "title": "キャプチャとプラットフォームの制約",
-        "navTitle": "キャプチャとプラットフォームの制約",
-        "slug": "reference/platforms",
-        "section": "リファレンス",
-        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
-      },
-      {
-        "title": "開発とリリース",
-        "navTitle": "開発とリリース",
-        "slug": "maintenance",
-        "section": "ガイド",
-        "path": "/projects/webview-native-ui-engine/docs/maintenance"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "cf-workers-native",
@@ -2647,97 +2010,13 @@ export const PROJECTS_JA = [
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
+    "hostedUrl": "https://webview-native-ui.com/ja/projects/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.1",
+    "version": "",
     "description": "Ionic向けのiOS 27スタイル、アニメーション、Webレイアウト。",
     "path": "/projects/ionic-theme-ios27",
-    "pages": [
-      {
-        "title": "はじめに",
-        "navTitle": "はじめに",
-        "slug": "readme",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/readme"
-      },
-      {
-        "title": "iOS 27 テーマをセットアップする",
-        "navTitle": "テーマの設定",
-        "slug": "setup",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/setup"
-      },
-      {
-        "title": "Cordova のセットアップ",
-        "navTitle": "Cordova のセットアップ",
-        "slug": "cordova",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/cordova"
-      },
-      {
-        "title": "iOS 26、iOS 27、MD3 のテーマを使う",
-        "navTitle": "テーマの自動切り替え",
-        "slug": "adaptive-themes",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
-      },
-      {
-        "title": "テーマに Native UI を追加する",
-        "navTitle": "Native UIの追加",
-        "slug": "add-native-ui",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
-      },
-      {
-        "title": "ion-item-group の使い方",
-        "navTitle": "ion-item-groupの使用方法",
-        "slug": "using-ion-item-group",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
-      },
-      {
-        "title": "特別なマークアップとクラス",
-        "navTitle": "特別なマークアップとクラス",
-        "slug": "special-markup",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/special-markup"
-      },
-      {
-        "title": "ESLint でリストの一貫性を保つ",
-        "navTitle": "ESLintでリストの構造を整える",
-        "slug": "eslint",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "機能",
-        "navTitle": "機能",
-        "slug": "features",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/features"
-      },
-      {
-        "title": "アニメーション",
-        "navTitle": "アニメーション",
-        "slug": "animation",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/animation"
-      },
-      {
-        "title": "Vertical Bars のレイアウト",
-        "navTitle": "Vertical Barsのレイアウト",
-        "slug": "vertical-bars-layout",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
-      },
-      {
-        "title": "テーマの移行",
-        "navTitle": "テーマの移行",
-        "slug": "migration",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "capacitor-native-ui",
@@ -2745,90 +2024,13 @@ export const PROJECTS_JA = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
+    "hostedUrl": "https://webview-native-ui.com/ja/projects/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.4",
+    "version": "",
     "description": "Web側の状態とイベントを維持する、Ionic／HTMLアプリ向けのNative UI。",
     "path": "/projects/capacitor-native-ui",
-    "pages": [
-      {
-        "title": "はじめに",
-        "navTitle": "はじめに",
-        "slug": "readme",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/readme"
-      },
-      {
-        "title": "Ionic アプリで Native UI をセットアップする",
-        "navTitle": "Ionicの設定",
-        "slug": "setup",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/setup"
-      },
-      {
-        "title": "Ionic なしで Native UI を使う",
-        "navTitle": "Ionicを使わないNative UI",
-        "slug": "framework-independent",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/framework-independent"
-      },
-      {
-        "title": "既存テーマを維持して Vertical Bars を追加する",
-        "navTitle": "既存テーマへのVertical Barsの追加",
-        "slug": "ionic-vertical-bars",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
-      },
-      {
-        "title": "Native UI",
-        "navTitle": "Native UI",
-        "slug": "native-ui",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/native-ui"
-      },
-      {
-        "title": "設定",
-        "navTitle": "設定",
-        "slug": "configuration",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/configuration"
-      },
-      {
-        "title": "ライト／ダーク表示",
-        "navTitle": "ライト／ダーク表示",
-        "slug": "appearance",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/appearance"
-      },
-      {
-        "title": "Androidの動的な配色",
-        "navTitle": "Androidの動的な配色",
-        "slug": "dynamic-colors",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
-      },
-      {
-        "title": "Vertical Bars",
-        "navTitle": "Vertical Bars",
-        "slug": "vertical-bars",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
-      },
-      {
-        "title": "アプリ内の Native UI 拡張（実験的）",
-        "navTitle": "アプリ内のNative UI拡張（実験的）",
-        "slug": "native-ui-extensions",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
-      },
-      {
-        "title": "移行",
-        "navTitle": "移行",
-        "slug": "migration",
-        "section": "ガイド",
-        "path": "/projects/capacitor-native-ui/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-ios26",
@@ -2837,83 +2039,13 @@ export const PROJECTS_JA = [
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios26",
+    "hostedUrl": "https://webview-native-ui.com/ja/projects/ionic-theme-ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.2",
+    "version": "",
     "description": "Ionicアプリ向けのiOS 26デザインスタイル。",
     "path": "/projects/ionic-theme-ios26",
-    "pages": [
-      {
-        "title": "はじめに",
-        "navTitle": "はじめに",
-        "slug": "readme",
-        "section": "クイックスタート",
-        "path": "/projects/ionic-theme-ios26/docs/readme"
-      },
-      {
-        "title": "ion-item-groupの使用方法",
-        "navTitle": "ion-item-groupの使用方法",
-        "slug": "using-ion-item-group",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
-      },
-      {
-        "title": "特別なマークアップとクラス",
-        "navTitle": "特別なマークアップとクラス",
-        "slug": "special-markup",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/special-markup"
-      },
-      {
-        "title": "ESLintでリストの構造を整える",
-        "navTitle": "ESLintでリストの構造を整える",
-        "slug": "eslint",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
-        "title": "機能",
-        "navTitle": "機能",
-        "slug": "features",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
-        "title": "実験的なアニメーション",
-        "navTitle": "実験的なアニメーション",
-        "slug": "experimental-animation",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
-      },
-      {
-        "title": "iOS 18",
-        "navTitle": "iOS 18",
-        "slug": "ios-18",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/ios-18"
-      },
-      {
-        "title": "移行",
-        "navTitle": "移行",
-        "slug": "migration",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-ios26/docs/migration"
-      },
-      {
-        "title": "E2Eスクリーンショットテスト",
-        "navTitle": "E2Eスクリーンショットテスト",
-        "slug": "e2e-testing",
-        "section": "開発",
-        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "リファレンス",
-        "path": "/projects/ionic-theme-ios26/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-md3",
@@ -2921,83 +2053,13 @@ export const PROJECTS_JA = [
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
+    "hostedUrl": "https://webview-native-ui.com/ja/projects/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "",
     "description": "Ionicアプリ向けのMaterial Design 3スタイル。",
     "path": "/projects/ionic-theme-md3",
-    "pages": [
-      {
-        "title": "はじめに",
-        "navTitle": "はじめに",
-        "slug": "readme",
-        "section": "ドキュメント",
-        "path": "/projects/ionic-theme-md3/docs/readme"
-      },
-      {
-        "title": "Android Settings の外観",
-        "navTitle": "Android Settings の外観",
-        "slug": "android-settings",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/android-settings"
-      },
-      {
-        "title": "Androidの動的な配色",
-        "navTitle": "Android の動的な色",
-        "slug": "dynamic-colors",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
-      },
-      {
-        "title": "カラーシステム",
-        "navTitle": "カラーシステム",
-        "slug": "color-system",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/color-system"
-      },
-      {
-        "title": "ion-item-groupの使用方法",
-        "navTitle": "ion-item-groupの使用方法",
-        "slug": "using-ion-item-group",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
-      },
-      {
-        "title": "特別なマークアップ",
-        "navTitle": "特別なマークアップ",
-        "slug": "special-markup",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/special-markup"
-      },
-      {
-        "title": "ESLintでリストの構造を整える",
-        "navTitle": "ESLintでリストの構造を整える",
-        "slug": "eslint",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
-      },
-      {
-        "title": "移行",
-        "navTitle": "移行",
-        "slug": "migration",
-        "section": "ガイド",
-        "path": "/projects/ionic-theme-md3/docs/migration"
-      },
-      {
-        "title": "E2Eスクリーンショットテスト",
-        "navTitle": "E2Eスクリーンショットテスト",
-        "slug": "e2e-testing",
-        "section": "開発",
-        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "リファレンス",
-        "path": "/projects/ionic-theme-md3/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-angular-collect-icons",
@@ -4127,181 +3189,13 @@ export const PROJECTS_FR = [
     "shortName": "WebView Native UI Engine",
     "packageName": "@webview-native-ui/engine",
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "hostedUrl": "https://webview-native-ui.com/fr/projects/webview-native-ui-engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.4",
+    "version": "",
     "description": "Placement natif, suivi du défilement et projection Web pour les auteurs de plugins Capacitor et Cordova.",
     "path": "/projects/webview-native-ui-engine",
-    "pages": [
-      {
-        "title": "Premiers pas",
-        "navTitle": "Premiers pas",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/readme"
-      },
-      {
-        "title": "Vue d’ensemble de la documentation",
-        "navTitle": "Vue d’ensemble de la documentation",
-        "slug": "overview",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/overview"
-      },
-      {
-        "title": "Concepts et limites",
-        "navTitle": "Concepts et limites",
-        "slug": "concepts",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/concepts"
-      },
-      {
-        "title": "Contrôles partagés pour les adaptateurs natifs",
-        "navTitle": "Contrôles partagés pour les adaptateurs natifs",
-        "slug": "controls",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/controls"
-      },
-      {
-        "title": "Initialisation de base",
-        "navTitle": "Initialisation de base",
-        "slug": "getting-started/initialization",
-        "section": "Intégration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
-      },
-      {
-        "title": "Intégration dans un plugin Capacitor",
-        "navTitle": "Intégration dans un plugin Capacitor",
-        "slug": "getting-started/capacitor",
-        "section": "Intégration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
-      },
-      {
-        "title": "Intégration dans un plugin Cordova",
-        "navTitle": "Intégration dans un plugin Cordova",
-        "slug": "getting-started/cordova",
-        "section": "Intégration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
-      },
-      {
-        "title": "Paramètres d’enregistrement",
-        "navTitle": "Paramètres d’enregistrement",
-        "slug": "configuration",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration"
-      },
-      {
-        "title": "Notifications",
-        "navTitle": "Notifications",
-        "slug": "configuration/events",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
-      },
-      {
-        "title": "Liaisons de valeurs",
-        "navTitle": "Liaisons de valeurs",
-        "slug": "configuration/values",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
-      },
-      {
-        "title": "Timing de capture",
-        "navTitle": "Timing de capture",
-        "slug": "configuration/capture",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
-      },
-      {
-        "title": "Superpositions Ionic",
-        "navTitle": "Superpositions Ionic",
-        "slug": "configuration/ionic-overlays",
-        "section": "Configuration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
-      },
-      {
-        "title": "Pause et reprise pour les superpositions personnalisées",
-        "navTitle": "Pause et reprise pour les superpositions personnalisées",
-        "slug": "configuration/pause-resume",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
-      },
-      {
-        "title": "Choisir une API avancée",
-        "navTitle": "Choisir une API avancée",
-        "slug": "advanced",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced"
-      },
-      {
-        "title": "Surfaces de pages et de modales",
-        "navTitle": "Surfaces de pages et de modales",
-        "slug": "advanced/renderer",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
-      },
-      {
-        "title": "Projection Web et lots",
-        "navTitle": "Projection Web et lots",
-        "slug": "advanced/web-projection",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
-      },
-      {
-        "title": "Transfert natif",
-        "navTitle": "Transfert natif",
-        "slug": "advanced/native-handoff",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
-      },
-      {
-        "title": "Placement différé sur Android",
-        "navTitle": "Placement différé sur Android",
-        "slug": "advanced/android-placement",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
-      },
-      {
-        "title": "Sérialisation des mises à jour et récupération",
-        "navTitle": "Sérialisation des mises à jour et récupération",
-        "slug": "advanced/update-queue",
-        "section": "API avancées",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
-      },
-      {
-        "title": "Contrat de projection et durée de vie",
-        "navTitle": "Contrat de projection et durée de vie",
-        "slug": "reference/projection",
-        "section": "Référence",
-        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
-      },
-      {
-        "title": "Prise en charge des conteneurs de projection",
-        "navTitle": "Prise en charge des conteneurs de projection",
-        "slug": "reference/containers",
-        "section": "Référence",
-        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
-      },
-      {
-        "title": "Intention de présentation observable",
-        "navTitle": "Intention de présentation observable",
-        "slug": "reference/state",
-        "section": "Référence",
-        "path": "/projects/webview-native-ui-engine/docs/reference/state"
-      },
-      {
-        "title": "Limites de capture et des plateformes",
-        "navTitle": "Limites de capture et des plateformes",
-        "slug": "reference/platforms",
-        "section": "Référence",
-        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
-      },
-      {
-        "title": "Développement et publications",
-        "navTitle": "Développement et publications",
-        "slug": "maintenance",
-        "section": "Guides",
-        "path": "/projects/webview-native-ui-engine/docs/maintenance"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "cf-workers-native",
@@ -4694,97 +3588,13 @@ export const PROJECTS_FR = [
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
+    "hostedUrl": "https://webview-native-ui.com/fr/projects/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.1",
+    "version": "",
     "description": "Styles, animations et disposition Web iOS 27 pour Ionic.",
     "path": "/projects/ionic-theme-ios27",
-    "pages": [
-      {
-        "title": "Premiers pas",
-        "navTitle": "Premiers pas",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/readme"
-      },
-      {
-        "title": "Configurer le thème iOS 27",
-        "navTitle": "Configurer le thème",
-        "slug": "setup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/setup"
-      },
-      {
-        "title": "Configuration Cordova",
-        "navTitle": "Configuration Cordova",
-        "slug": "cordova",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/cordova"
-      },
-      {
-        "title": "Utiliser les thèmes iOS 26, iOS 27 et MD3",
-        "navTitle": "Thèmes adaptatifs",
-        "slug": "adaptive-themes",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
-      },
-      {
-        "title": "Ajouter Native UI à votre thème",
-        "navTitle": "Ajouter Native UI",
-        "slug": "add-native-ui",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
-      },
-      {
-        "title": "Utiliser ion-item-group",
-        "navTitle": "Utiliser ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
-      },
-      {
-        "title": "Balisage et classes spécifiques",
-        "navTitle": "Balisage et classes particuliers",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/special-markup"
-      },
-      {
-        "title": "Garder des listes cohérentes avec ESLint",
-        "navTitle": "Assurer la cohérence des listes avec ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Fonctionnalités",
-        "navTitle": "Fonctionnalités",
-        "slug": "features",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/features"
-      },
-      {
-        "title": "Animation",
-        "navTitle": "Animation",
-        "slug": "animation",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/animation"
-      },
-      {
-        "title": "Disposition Vertical Bars",
-        "navTitle": "Disposition de Vertical Bars",
-        "slug": "vertical-bars-layout",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
-      },
-      {
-        "title": "Migration du thème",
-        "navTitle": "Migration du thème",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "capacitor-native-ui",
@@ -4792,90 +3602,13 @@ export const PROJECTS_FR = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
+    "hostedUrl": "https://webview-native-ui.com/fr/projects/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.4",
+    "version": "",
     "description": "Contrôles natifs pour Ionic et HTML, avec état et événements gérés par le Web.",
     "path": "/projects/capacitor-native-ui",
-    "pages": [
-      {
-        "title": "Premiers pas",
-        "navTitle": "Premiers pas",
-        "slug": "readme",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/readme"
-      },
-      {
-        "title": "Configurer Native UI dans une application Ionic",
-        "navTitle": "Configuration Ionic",
-        "slug": "setup",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/setup"
-      },
-      {
-        "title": "Native UI sans Ionic",
-        "navTitle": "Native UI sans Ionic",
-        "slug": "framework-independent",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/framework-independent"
-      },
-      {
-        "title": "Ajouter Vertical Bars en conservant votre thème",
-        "navTitle": "Ajouter Vertical Bars en conservant votre thème",
-        "slug": "ionic-vertical-bars",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
-      },
-      {
-        "title": "Native UI",
-        "navTitle": "Native UI",
-        "slug": "native-ui",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/native-ui"
-      },
-      {
-        "title": "Configurer Native UI",
-        "navTitle": "Configuration",
-        "slug": "configuration",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/configuration"
-      },
-      {
-        "title": "Apparence claire et sombre",
-        "navTitle": "Apparence claire et sombre",
-        "slug": "appearance",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/appearance"
-      },
-      {
-        "title": "Couleurs dynamiques Android",
-        "navTitle": "Couleurs dynamiques Android",
-        "slug": "dynamic-colors",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
-      },
-      {
-        "title": "Vertical Bars",
-        "navTitle": "Vertical Bars",
-        "slug": "vertical-bars",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
-      },
-      {
-        "title": "Extensions Native UI locales à l’application (expérimentales)",
-        "navTitle": "Extensions Native UI locales à l’application (expérimentales)",
-        "slug": "native-ui-extensions",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/capacitor-native-ui/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-ios26",
@@ -4884,83 +3617,13 @@ export const PROJECTS_FR = [
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios26",
+    "hostedUrl": "https://webview-native-ui.com/fr/projects/ionic-theme-ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.2",
+    "version": "",
     "description": "Styles de design iOS 26 pour les applications Ionic.",
     "path": "/projects/ionic-theme-ios26",
-    "pages": [
-      {
-        "title": "Premiers pas",
-        "navTitle": "Premiers pas",
-        "slug": "readme",
-        "section": "Démarrage rapide",
-        "path": "/projects/ionic-theme-ios26/docs/readme"
-      },
-      {
-        "title": "Utiliser ion-item-group",
-        "navTitle": "Utiliser ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
-      },
-      {
-        "title": "Balisage et classes particuliers",
-        "navTitle": "Balisage et classes particuliers",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/special-markup"
-      },
-      {
-        "title": "Assurer la cohérence des listes avec ESLint",
-        "navTitle": "Assurer la cohérence des listes avec ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
-        "title": "Fonctionnalités",
-        "navTitle": "Fonctionnalités",
-        "slug": "features",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
-        "title": "Animation expérimentale",
-        "navTitle": "Animation expérimentale",
-        "slug": "experimental-animation",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
-      },
-      {
-        "title": "Prendre en charge iOS 18",
-        "navTitle": "iOS 18",
-        "slug": "ios-18",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/ios-18"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-ios26/docs/migration"
-      },
-      {
-        "title": "Tests E2E par captures d’écran",
-        "navTitle": "Tests E2E par captures d’écran",
-        "slug": "e2e-testing",
-        "section": "Développement",
-        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Référence",
-        "path": "/projects/ionic-theme-ios26/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-md3",
@@ -4968,83 +3631,13 @@ export const PROJECTS_FR = [
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
+    "hostedUrl": "https://webview-native-ui.com/fr/projects/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "",
     "description": "Styles Material Design 3 pour les applications Ionic.",
     "path": "/projects/ionic-theme-md3",
-    "pages": [
-      {
-        "title": "Premiers pas",
-        "navTitle": "Premiers pas",
-        "slug": "readme",
-        "section": "Documentation",
-        "path": "/projects/ionic-theme-md3/docs/readme"
-      },
-      {
-        "title": "Apparence Android Settings",
-        "navTitle": "Apparence Android Settings",
-        "slug": "android-settings",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/android-settings"
-      },
-      {
-        "title": "Couleurs dynamiques Android",
-        "navTitle": "Couleurs dynamiques Android",
-        "slug": "dynamic-colors",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
-      },
-      {
-        "title": "Système de couleurs",
-        "navTitle": "Système de couleurs",
-        "slug": "color-system",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/color-system"
-      },
-      {
-        "title": "Utiliser ion-item-group",
-        "navTitle": "Utiliser ion-item-group",
-        "slug": "using-ion-item-group",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
-      },
-      {
-        "title": "Balisage particulier",
-        "navTitle": "Balisage particulier",
-        "slug": "special-markup",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/special-markup"
-      },
-      {
-        "title": "Assurer la cohérence des listes avec ESLint",
-        "navTitle": "Assurer la cohérence des listes avec ESLint",
-        "slug": "eslint",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Guides",
-        "path": "/projects/ionic-theme-md3/docs/migration"
-      },
-      {
-        "title": "Tests E2E par captures d’écran",
-        "navTitle": "Tests E2E par captures d’écran",
-        "slug": "e2e-testing",
-        "section": "Développement",
-        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Référence",
-        "path": "/projects/ionic-theme-md3/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-angular-collect-icons",
@@ -6174,181 +4767,13 @@ export const PROJECTS_DE = [
     "shortName": "WebView Native UI Engine",
     "packageName": "@webview-native-ui/engine",
     "repositoryUrl": "https://github.com/webview-native-ui/engine",
+    "hostedUrl": "https://webview-native-ui.com/de/projects/webview-native-ui-engine",
     "category": "developer-tools",
     "icon": "app",
-    "version": "1.0.4",
+    "version": "",
     "description": "Native UI-Platzierung, Scroll-Verfolgung und Web-Projektion für Autoren von Capacitor- und Cordova-Plugins.",
     "path": "/projects/webview-native-ui-engine",
-    "pages": [
-      {
-        "title": "Erste Schritte",
-        "navTitle": "Erste Schritte",
-        "slug": "readme",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/readme"
-      },
-      {
-        "title": "Dokumentationsübersicht",
-        "navTitle": "Dokumentationsübersicht",
-        "slug": "overview",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/overview"
-      },
-      {
-        "title": "Konzepte und Grenzen",
-        "navTitle": "Konzepte und Grenzen",
-        "slug": "concepts",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/concepts"
-      },
-      {
-        "title": "Gemeinsame Steuerelemente für native Adapter",
-        "navTitle": "Gemeinsame Steuerelemente für native Adapter",
-        "slug": "controls",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/controls"
-      },
-      {
-        "title": "Grundlegende Initialisierung",
-        "navTitle": "Grundlegende Initialisierung",
-        "slug": "getting-started/initialization",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/initialization"
-      },
-      {
-        "title": "Integration in ein Capacitor-Plugin",
-        "navTitle": "Integration in ein Capacitor-Plugin",
-        "slug": "getting-started/capacitor",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/capacitor"
-      },
-      {
-        "title": "Integration in ein Cordova-Plugin",
-        "navTitle": "Integration in ein Cordova-Plugin",
-        "slug": "getting-started/cordova",
-        "section": "Integration",
-        "path": "/projects/webview-native-ui-engine/docs/getting-started/cordova"
-      },
-      {
-        "title": "Registrierungseinstellungen",
-        "navTitle": "Registrierungseinstellungen",
-        "slug": "configuration",
-        "section": "Konfiguration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration"
-      },
-      {
-        "title": "Benachrichtigungen",
-        "navTitle": "Benachrichtigungen",
-        "slug": "configuration/events",
-        "section": "Konfiguration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/events"
-      },
-      {
-        "title": "Wertbindungen",
-        "navTitle": "Wertbindungen",
-        "slug": "configuration/values",
-        "section": "Konfiguration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/values"
-      },
-      {
-        "title": "Aufnahmezeitpunkt",
-        "navTitle": "Aufnahmezeitpunkt",
-        "slug": "configuration/capture",
-        "section": "Konfiguration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/capture"
-      },
-      {
-        "title": "Ionic-Overlays",
-        "navTitle": "Ionic-Overlays",
-        "slug": "configuration/ionic-overlays",
-        "section": "Konfiguration",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/ionic-overlays"
-      },
-      {
-        "title": "Pause und Fortsetzung bei benutzerdefinierten Overlays",
-        "navTitle": "Pause und Fortsetzung bei benutzerdefinierten Overlays",
-        "slug": "configuration/pause-resume",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/configuration/pause-resume"
-      },
-      {
-        "title": "Eine erweiterte API auswählen",
-        "navTitle": "Eine erweiterte API auswählen",
-        "slug": "advanced",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced"
-      },
-      {
-        "title": "Seiten- und Modal-Oberflächen",
-        "navTitle": "Seiten- und Modal-Oberflächen",
-        "slug": "advanced/renderer",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/renderer"
-      },
-      {
-        "title": "Web-Projektion und Batches",
-        "navTitle": "Web-Projektion und Batches",
-        "slug": "advanced/web-projection",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/web-projection"
-      },
-      {
-        "title": "Native Übergabe",
-        "navTitle": "Native Übergabe",
-        "slug": "advanced/native-handoff",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/native-handoff"
-      },
-      {
-        "title": "Aufgeschobene Android-Positionierung",
-        "navTitle": "Aufgeschobene Android-Positionierung",
-        "slug": "advanced/android-placement",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/android-placement"
-      },
-      {
-        "title": "Aktualisierungen serialisieren und wiederherstellen",
-        "navTitle": "Aktualisierungen serialisieren und wiederherstellen",
-        "slug": "advanced/update-queue",
-        "section": "Erweiterte APIs",
-        "path": "/projects/webview-native-ui-engine/docs/advanced/update-queue"
-      },
-      {
-        "title": "Projektionsvertrag und Lebensdauer",
-        "navTitle": "Projektionsvertrag und Lebensdauer",
-        "slug": "reference/projection",
-        "section": "Referenz",
-        "path": "/projects/webview-native-ui-engine/docs/reference/projection"
-      },
-      {
-        "title": "Unterstützte Projektionscontainer",
-        "navTitle": "Unterstützte Projektionscontainer",
-        "slug": "reference/containers",
-        "section": "Referenz",
-        "path": "/projects/webview-native-ui-engine/docs/reference/containers"
-      },
-      {
-        "title": "Beobachtbare Darstellungsabsicht",
-        "navTitle": "Beobachtbare Darstellungsabsicht",
-        "slug": "reference/state",
-        "section": "Referenz",
-        "path": "/projects/webview-native-ui-engine/docs/reference/state"
-      },
-      {
-        "title": "Aufnahme- und Plattformgrenzen",
-        "navTitle": "Aufnahme- und Plattformgrenzen",
-        "slug": "reference/platforms",
-        "section": "Referenz",
-        "path": "/projects/webview-native-ui-engine/docs/reference/platforms"
-      },
-      {
-        "title": "Entwicklung und Veröffentlichungen",
-        "navTitle": "Entwicklung und Veröffentlichungen",
-        "slug": "maintenance",
-        "section": "Anleitungen",
-        "path": "/projects/webview-native-ui-engine/docs/maintenance"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "cf-workers-native",
@@ -6741,97 +5166,13 @@ export const PROJECTS_DE = [
     "shortName": "Ionic Theme iOS27",
     "packageName": "@rdlabo/ionic-theme-ios27",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
+    "hostedUrl": "https://webview-native-ui.com/de/projects/ionic-theme-ios27",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "2.1.1",
+    "version": "",
     "description": "iOS-27-Stile, Animationen und Web-Layout für Ionic.",
     "path": "/projects/ionic-theme-ios27",
-    "pages": [
-      {
-        "title": "Erste Schritte",
-        "navTitle": "Erste Schritte",
-        "slug": "readme",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/readme"
-      },
-      {
-        "title": "Das iOS-27-Theme einrichten",
-        "navTitle": "Theme einrichten",
-        "slug": "setup",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/setup"
-      },
-      {
-        "title": "Cordova einrichten",
-        "navTitle": "Cordova einrichten",
-        "slug": "cordova",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/cordova"
-      },
-      {
-        "title": "iOS-26-, iOS-27- und MD3-Themes verwenden",
-        "navTitle": "Adaptive Themes",
-        "slug": "adaptive-themes",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/adaptive-themes"
-      },
-      {
-        "title": "Native UI zum Theme hinzufügen",
-        "navTitle": "Native UI hinzufügen",
-        "slug": "add-native-ui",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/add-native-ui"
-      },
-      {
-        "title": "ion-item-group in eingerückten Listen verwenden",
-        "navTitle": "ion-item-group verwenden",
-        "slug": "using-ion-item-group",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/using-ion-item-group"
-      },
-      {
-        "title": "Spezielles Markup und Klassen",
-        "navTitle": "Besonderes Markup und Klassen",
-        "slug": "special-markup",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/special-markup"
-      },
-      {
-        "title": "Listen mit ESLint konsistent halten",
-        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
-        "slug": "eslint",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/eslint"
-      },
-      {
-        "title": "Funktionen",
-        "navTitle": "Funktionen",
-        "slug": "features",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/features"
-      },
-      {
-        "title": "Animation",
-        "navTitle": "Animation",
-        "slug": "animation",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/animation"
-      },
-      {
-        "title": "Vertical Bars-Layout",
-        "navTitle": "Layout von Vertical Bars",
-        "slug": "vertical-bars-layout",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/vertical-bars-layout"
-      },
-      {
-        "title": "Theme-Migration",
-        "navTitle": "Theme migrieren",
-        "slug": "migration",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios27/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "capacitor-native-ui",
@@ -6839,90 +5180,13 @@ export const PROJECTS_DE = [
     "shortName": "Capacitor Native UI",
     "packageName": "@rdlabo/capacitor-native-ui",
     "repositoryUrl": "https://github.com/webview-native-ui/capacitor-plugin",
+    "hostedUrl": "https://webview-native-ui.com/de/projects/capacitor-native-ui",
     "category": "capacitor-plugins",
     "icon": "app",
-    "version": "2.1.4",
+    "version": "",
     "description": "Native Bedienelemente für Ionic und HTML mit Zustand und Ereignissen im Web.",
     "path": "/projects/capacitor-native-ui",
-    "pages": [
-      {
-        "title": "Erste Schritte",
-        "navTitle": "Erste Schritte",
-        "slug": "readme",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/readme"
-      },
-      {
-        "title": "Native UI in einer Ionic-App einrichten",
-        "navTitle": "Ionic einrichten",
-        "slug": "setup",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/setup"
-      },
-      {
-        "title": "Native UI ohne Ionic",
-        "navTitle": "Native UI ohne Ionic",
-        "slug": "framework-independent",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/framework-independent"
-      },
-      {
-        "title": "Vertical Bars hinzufügen und das Theme behalten",
-        "navTitle": "Vertical Bars mit eigenem Theme hinzufügen",
-        "slug": "ionic-vertical-bars",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/ionic-vertical-bars"
-      },
-      {
-        "title": "Native UI",
-        "navTitle": "Native UI",
-        "slug": "native-ui",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/native-ui"
-      },
-      {
-        "title": "Native UI konfigurieren",
-        "navTitle": "Konfiguration",
-        "slug": "configuration",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/configuration"
-      },
-      {
-        "title": "Helle und dunkle Darstellung",
-        "navTitle": "Helle und dunkle Darstellung",
-        "slug": "appearance",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/appearance"
-      },
-      {
-        "title": "Dynamische Android-Farben",
-        "navTitle": "Dynamische Android-Farben",
-        "slug": "dynamic-colors",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/dynamic-colors"
-      },
-      {
-        "title": "Vertical Bars",
-        "navTitle": "Vertical Bars",
-        "slug": "vertical-bars",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/vertical-bars"
-      },
-      {
-        "title": "App-lokale Native UI-Erweiterungen (experimentell)",
-        "navTitle": "App-lokale Native UI-Erweiterungen (experimentell)",
-        "slug": "native-ui-extensions",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/native-ui-extensions"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Anleitungen",
-        "path": "/projects/capacitor-native-ui/docs/migration"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-ios26",
@@ -6931,83 +5195,13 @@ export const PROJECTS_DE = [
     "packageName": "@rdlabo/ionic-theme-ios26",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-ios27",
     "repositoryBrowseUrl": "https://github.com/webview-native-ui/ionic-theme-ios27/tree/ios26",
+    "hostedUrl": "https://webview-native-ui.com/de/projects/ionic-theme-ios26",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.4.2",
+    "version": "",
     "description": "iOS-26-Design für Ionic-Anwendungen.",
     "path": "/projects/ionic-theme-ios26",
-    "pages": [
-      {
-        "title": "Erste Schritte",
-        "navTitle": "Erste Schritte",
-        "slug": "readme",
-        "section": "Schnellstart",
-        "path": "/projects/ionic-theme-ios26/docs/readme"
-      },
-      {
-        "title": "ion-item-group verwenden",
-        "navTitle": "ion-item-group verwenden",
-        "slug": "using-ion-item-group",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/using-ion-item-group"
-      },
-      {
-        "title": "Besonderes Markup und Klassen",
-        "navTitle": "Besonderes Markup und Klassen",
-        "slug": "special-markup",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/special-markup"
-      },
-      {
-        "title": "Einheitliche Listen mit ESLint sicherstellen",
-        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
-        "slug": "eslint",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/eslint"
-      },
-      {
-        "title": "Funktionen",
-        "navTitle": "Funktionen",
-        "slug": "features",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/features"
-      },
-      {
-        "title": "Experimentelle Animation",
-        "navTitle": "Experimentelle Animation",
-        "slug": "experimental-animation",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/experimental-animation"
-      },
-      {
-        "title": "iOS 18 unterstützen",
-        "navTitle": "iOS 18",
-        "slug": "ios-18",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/ios-18"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-ios26/docs/migration"
-      },
-      {
-        "title": "E2E-Tests mit Screenshots",
-        "navTitle": "E2E-Tests mit Screenshots",
-        "slug": "e2e-testing",
-        "section": "Entwicklung",
-        "path": "/projects/ionic-theme-ios26/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Referenz",
-        "path": "/projects/ionic-theme-ios26/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-theme-md3",
@@ -7015,83 +5209,13 @@ export const PROJECTS_DE = [
     "shortName": "Ionic Theme MD3",
     "packageName": "@rdlabo/ionic-theme-md3",
     "repositoryUrl": "https://github.com/webview-native-ui/ionic-theme-md3",
+    "hostedUrl": "https://webview-native-ui.com/de/projects/ionic-theme-md3",
     "category": "frontend-tools",
     "icon": "theme",
-    "version": "9.2.0",
+    "version": "",
     "description": "Material-Design-3-Gestaltung für Ionic-Anwendungen.",
     "path": "/projects/ionic-theme-md3",
-    "pages": [
-      {
-        "title": "Erste Schritte",
-        "navTitle": "Erste Schritte",
-        "slug": "readme",
-        "section": "Dokumentation",
-        "path": "/projects/ionic-theme-md3/docs/readme"
-      },
-      {
-        "title": "Android Settings-Darstellung",
-        "navTitle": "Android Settings-Darstellung",
-        "slug": "android-settings",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/android-settings"
-      },
-      {
-        "title": "Dynamische Android-Farben",
-        "navTitle": "Dynamische Android-Farben",
-        "slug": "dynamic-colors",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/dynamic-colors"
-      },
-      {
-        "title": "Farbsystem",
-        "navTitle": "Farbsystem",
-        "slug": "color-system",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/color-system"
-      },
-      {
-        "title": "ion-item-group verwenden",
-        "navTitle": "ion-item-group verwenden",
-        "slug": "using-ion-item-group",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/using-ion-item-group"
-      },
-      {
-        "title": "Besonderes Markup",
-        "navTitle": "Besonderes Markup",
-        "slug": "special-markup",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/special-markup"
-      },
-      {
-        "title": "Einheitliche Listen mit ESLint sicherstellen",
-        "navTitle": "Einheitliche Listen mit ESLint sicherstellen",
-        "slug": "eslint",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/eslint"
-      },
-      {
-        "title": "Migration",
-        "navTitle": "Migration",
-        "slug": "migration",
-        "section": "Anleitungen",
-        "path": "/projects/ionic-theme-md3/docs/migration"
-      },
-      {
-        "title": "E2E-Tests mit Screenshots",
-        "navTitle": "E2E-Tests mit Screenshots",
-        "slug": "e2e-testing",
-        "section": "Entwicklung",
-        "path": "/projects/ionic-theme-md3/docs/e2e-testing"
-      },
-      {
-        "title": "API",
-        "navTitle": "API",
-        "slug": "api",
-        "section": "Referenz",
-        "path": "/projects/ionic-theme-md3/docs/api"
-      }
-    ]
+    "pages": []
   },
   {
     "id": "ionic-angular-collect-icons",

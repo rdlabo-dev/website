@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import { LOCALE_ID } from '@angular/core';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { loadProject } from './docs-data';
@@ -53,23 +52,6 @@ describe('LandingPageComponent', () => {
     expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
   });
 
-  it('lists every documentation page once in the full index', async () => {
-    const element = await setup('ionic-theme-ios27');
-    const project = (await loadProject('ionic-theme-ios27'))!;
-    const links = Array.from(element.querySelectorAll('#documentation a')).map((link) =>
-      link.getAttribute('href'),
-    );
-    expect(element.querySelector('.entry-guide')).toBeNull();
-    const sections = Array.from(
-      element.querySelectorAll('.project-hero, #documentation, .project-media, .project-section'),
-    );
-    expect(sections.indexOf(element.querySelector('.project-media')!)).toBeLessThan(
-      sections.indexOf(element.querySelector('#documentation')!),
-    );
-    expect(links).toHaveLength(project.pages.length);
-    expect(new Set(links)).toEqual(new Set(project.pages.map((page) => page.path)));
-  });
-
   it('renders AdMob from the same project presentation model', async () => {
     const compiled = await setup('admob');
     expect(compiled.querySelector('h1')?.textContent).toContain(
@@ -82,99 +64,4 @@ describe('LandingPageComponent', () => {
     ).not.toBeNull();
   });
 
-  it('opens the iOS 26 branch while counting stars on the shared repository', async () => {
-    const element = await setup('ionic-theme-ios26');
-    const repository = 'https://github.com/webview-native-ui/ionic-theme-ios27';
-    expect(element.querySelector('.project-resources a')?.getAttribute('href')).toBe(
-      `${repository}/tree/ios26`,
-    );
-    expect(element.querySelector('.project-stars')?.getAttribute('href')).toBe(repository);
-    expect(TestBed.inject(GitHubStarsService).count).toHaveBeenCalledWith(repository);
-    const project = (await loadProject('ionic-theme-ios26'))!;
-    expect(element.querySelector(`a[href="${project.releaseNotesUrl}"]`)).not.toBeNull();
-  });
-
-  it('links library documentation to related articles', async () => {
-    const compiled = await setup('ionic-theme-md3');
-    const actionLabels = Array.from(
-      compiled.querySelectorAll<HTMLAnchorElement>('.project-actions > a'),
-    ).map((link) => link.textContent?.trim());
-    expect(actionLabels).toEqual(['Get started', 'Demo']);
-    expect(
-      compiled.querySelector<HTMLAnchorElement>('a[href="https://ionic-theme-md3.rdlabo.dev/"]')
-        ?.textContent,
-    ).toContain('Demo');
-    const links = Array.from(
-      compiled.querySelectorAll<HTMLAnchorElement>('a[href^="https://rdlabo.dev/articles/"]'),
-    );
-    const project = (await loadProject('ionic-theme-md3'))!;
-    expect(links.map((link) => link.href)).toEqual(
-      project.relatedArticles!.map((article) => article.url),
-    );
-    expect(compiled.textContent).toContain('Related articles');
-    expect(compiled.querySelector('.related-article-lang')).toBeNull();
-    expect(
-      Array.from(compiled.querySelectorAll('.related-article-link h3')).every(
-        (title) => title.getAttribute('lang') === 'en',
-      ),
-    ).toBe(true);
-    expect(
-      Array.from(compiled.querySelectorAll('.related-article-link p')).every(
-        (description) => description.getAttribute('lang') === 'en',
-      ),
-    ).toBe(true);
-    const dates = Array.from(compiled.querySelectorAll<HTMLTimeElement>('time'));
-    expect(dates.map((date) => date.dateTime)).toEqual(
-      project.relatedArticles!.map((article) => article.publishedDate),
-    );
-    const dateFormat = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'Asia/Tokyo',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-    expect(dates.map((date) => date.textContent?.trim())).toEqual(
-      project.relatedArticles!.map((article) =>
-        dateFormat.format(new Date(`${article.publishedDate}T00:00:00+09:00`)),
-      ),
-    );
-    expect(compiled.querySelectorAll('.project-feature')).toHaveLength(project.features.length);
-    expect(compiled.querySelectorAll('.project-feature a')).toHaveLength(0);
-    expect(compiled.querySelectorAll('a.related-article-link')).toHaveLength(
-      project.relatedArticles!.length,
-    );
-  });
-
-  it('labels related English articles on the Japanese landing page', async () => {
-    const project = await loadProject('ionic-theme-md3', 'ja');
-    TestBed.resetTestingModule();
-    await TestBed.configureTestingModule({
-      imports: [LandingPageComponent],
-      providers: [
-        provideRouter([]),
-        { provide: LOCALE_ID, useValue: 'ja' },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: { project } } } },
-        { provide: GitHubStarsService, useValue: { count: vi.fn().mockResolvedValue(1234) } },
-      ],
-    }).compileComponents();
-    fixture = TestBed.createComponent(LandingPageComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    expect(compiled.querySelector('.project-support a')?.getAttribute('href')).toBe('/support');
-    expect(compiled.textContent).toContain('Related articles');
-    expect(compiled.querySelectorAll('.related-article-lang')).toHaveLength(
-      project!.relatedArticles!.length,
-    );
-    expect(
-      Array.from(compiled.querySelectorAll('.related-article-lang')).every(
-        (badge) => badge.textContent?.trim() === 'English',
-      ),
-    ).toBe(true);
-    expect(
-      Array.from(compiled.querySelectorAll('.related-article-link h3')).every(
-        (title) => title.getAttribute('lang') === 'en',
-      ),
-    ).toBe(true);
-  });
 });

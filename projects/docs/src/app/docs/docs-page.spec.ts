@@ -10,7 +10,7 @@ describe('documentation pagination', () => {
   for (const { code: locale } of PUBLISHED_DOCS_LOCALES) {
     for (const position of ['first', 'middle', 'last'] as const) {
       it(`links adjacent ${locale} pages at the ${position} position`, async () => {
-        const project = (await loadProject('ionic-theme-ios27', locale))!;
+        const project = (await loadProject('ionic-angular-kit', locale))!;
         const index = position === 'first' ? 0 : position === 'last' ? project.pages.length - 1 : 1;
         await TestBed.configureTestingModule({
           imports: [DocsPageComponent],

@@ -1,5 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 
+import { webviewDocsRedirect } from './webview-docs-redirect.mjs';
+
 import { HTTPFacilitatorClient } from '@x402/core/server';
 import type { Network } from '@x402/core/types';
 import { ExactEvmScheme } from '@x402/evm/exact/server';
@@ -207,6 +209,8 @@ export function createAgentRouter(dependencies: AgentRouterDependencies = {}) {
 
   return {
     async fetch(request: Request, env: AgentRouterBindings, ctx?: ExecutionContext) {
+      const migrated = webviewDocsRedirect(request);
+      if (migrated) return migrated;
       if (!isExperimentRequest(request) || routingMode(env) === 'off') return fallback(request);
       try {
         if (

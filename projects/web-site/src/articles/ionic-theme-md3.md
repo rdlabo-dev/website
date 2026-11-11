@@ -186,7 +186,7 @@ The project will continue to be transparent about these constraints while growin
 
 - [Demo](https://ionic-theme-md3.rdlabo.dev/)
 - [npm](https://www.npmjs.com/package/@rdlabo/ionic-theme-md3)
-- [Documentation](https://docs.rdlabo.dev/projects/ionic-theme-md3)
+- [Documentation](https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3)
 - [GitHub](https://github.com/webview-native-ui/ionic-theme-md3)
 
 If you try it in a real app, I would be glad to hear how it went or which components still need attention. GitHub Issues and Pull Requests are both welcome.

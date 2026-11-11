@@ -66,12 +66,12 @@ export const ARTICLE_SUMMARIES = [
       {
         "id": "ionic-theme-ios26",
         "name": "Ionic Theme iOS26",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-ios26"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios26"
       },
       {
         "id": "ionic-theme-md3",
         "name": "Ionic Theme MD3",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-md3"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3"
       }
     ],
     "sourceName": "Zenn",
@@ -146,12 +146,12 @@ export const ARTICLE_SUMMARIES = [
       {
         "id": "ionic-theme-ios26",
         "name": "Ionic Theme iOS26",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-ios26"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios26"
       },
       {
         "id": "ionic-theme-md3",
         "name": "Ionic Theme MD3",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-md3"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3"
       }
     ],
     "sourceName": "Zenn",
@@ -171,7 +171,7 @@ export const ARTICLE_SUMMARIES = [
       {
         "id": "ionic-theme-md3",
         "name": "Ionic Theme MD3",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-md3"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3"
       }
     ],
     "sourceName": "Zenn",
@@ -604,7 +604,7 @@ export const ARTICLE_SUMMARIES = [
       {
         "id": "ionic-theme-ios26",
         "name": "Ionic Theme iOS26",
-        "url": "https://docs.rdlabo.dev/projects/ionic-theme-ios26"
+        "url": "https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios26"
       }
     ],
     "sourceName": "Zenn",

@@ -56,7 +56,7 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
     packageName: '@rdlabo/ionic-theme-ios27',
     description: 'iOS 27 styling, motion, Liquid Glass, and device-driven Web layouts for Ionic.',
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
-    docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-ios27',
+    docsUrl: 'https://webview-native-ui.rdlabo.dev/projects/ionic-theme-ios27',
   },
   {
     name: 'Capacitor Native UI',
@@ -65,7 +65,7 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
       'Native iOS controls for Ionic and HTML apps, with Web-owned state, routing, and handlers. Use it with your existing theme.',
     repositoryUrl:
       'https://github.com/webview-native-ui/ionic-theme-ios27/tree/main/packages/capacitor-native-ui',
-    docsUrl: 'https://docs.rdlabo.dev/projects/capacitor-native-ui',
+    docsUrl: 'https://webview-native-ui.rdlabo.dev/projects/capacitor-native-ui',
   },
   {
     name: 'Ionic Theme MD3',
@@ -73,7 +73,7 @@ export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
     description:
       'Material Design 3 styling for Ionic applications, compatible with the iOS26 theme from a single HTML structure.',
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-md3',
-    docsUrl: 'https://docs.rdlabo.dev/projects/ionic-theme-md3',
+    docsUrl: 'https://webview-native-ui.rdlabo.dev/projects/ionic-theme-md3',
   },
   {
     name: 'Angular CDK Scroll Strategies',

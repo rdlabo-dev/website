@@ -17,7 +17,7 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | --- | --- |
 | Ionic Framework Japanese Documentation | `ionic-jp/ionic-docs` |
 | Capacitor Japanese Documentation | `ionic-jp/capacitor-docs` |
-| WebView Native UI Engine | `projects/docs/src/webview-native-ui-engine/docs` |
+| WebView Native UI Engine | `webview-native-ui/engine` |
 | cf-workers-native | `projects/docs/src/cf-workers-native/docs` |
 | Capacitor Community Stripe | `projects/docs/src/stripe/docs` |
 | Capacitor Community Stripe Identity | `projects/docs/src/stripe-identity/docs` |
@@ -33,10 +33,10 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | rdlabo Ionic Angular Photo Editor | `projects/docs/src/ionic-angular-photo-editor/docs` |
 | rdlabo Ionic Angular Scroll Header | `projects/docs/src/ionic-angular-scroll-header/docs` |
 | rdlabo Angular CDK Scroll Strategies | `projects/docs/src/ngx-cdk-scroll-strategies/docs` |
-| Capacitor Native UI | `projects/docs/src/capacitor-native-ui/docs` |
-| rdlabo Ionic Theme iOS27 | `projects/docs/src/ionic-theme-ios27/docs` |
-| rdlabo Ionic Theme iOS26 | `projects/docs/src/ionic-theme-ios26/docs` |
-| rdlabo Ionic Theme Material Design 3 | `projects/docs/src/ionic-theme-md3/docs` |
+| Capacitor Native UI | `webview-native-ui/capacitor-plugin` |
+| rdlabo Ionic Theme iOS27 | `webview-native-ui/ionic-theme-ios27` |
+| rdlabo Ionic Theme iOS26 | `webview-native-ui/ionic-theme-ios27` |
+| rdlabo Ionic Theme Material Design 3 | `webview-native-ui/ionic-theme-md3` |
 | rdlabo Ionic Angular Collect Icons | `projects/docs/src/ionic-angular-collect-icons/docs` |
 | rdlabo Workers Hono Kit | `projects/docs/src/workers-hono-kit/docs` |
 | rdlabo Workers Timezone | `projects/docs/src/workers-timezone/docs` |
@@ -229,3 +229,5 @@ Cloudflare drops trailing slashes (`html_handling: drop-trailing-slash`) so URLs
 ## Maintainers
 
 - [rdlabo](https://rdlabo.dev/)
+
+WebView Native UI documentation is maintained in [webview-native-ui/docs](https://github.com/webview-native-ui/docs) and served at https://webview-native-ui.rdlabo.dev. This site keeps external project cards and permanent redirects. See [WEBVIEW-DOCS-MIGRATION.md](WEBVIEW-DOCS-MIGRATION.md) for the ordered cutover.

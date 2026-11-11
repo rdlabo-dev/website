@@ -343,3 +343,27 @@ test('does not forward payment credentials to the static origin', async () => {
   assert.equal(forwarded.headers.has('payment-signature'), false);
   assert.equal(forwarded.headers.has('x-payment'), false);
 });
+
+test('redirects moved project Markdown before classification, origin access, or payment', async () => {
+  const { WEBVIEW_PROJECT_IDS } = await import('../workers/webview-docs-redirect.mjs');
+  const originFetch = vi.fn(async () => new Response('unexpected origin'));
+  const paidMarkdown = vi.fn(async () => new Response('unexpected payment'));
+  const router = createAgentRouter({ originFetch, paidMarkdown });
+  for (const locale of ['', '/ja', '/fr', '/de']) {
+    for (const id of WEBVIEW_PROJECT_IDS) {
+      const response = await router.fetch(
+        new Request(`https://docs.rdlabo.dev${locale}/projects/${id}/docs/readme?source=legacy`, {
+          headers: { Accept: 'text/markdown' },
+        }),
+        env('enforce'),
+      );
+      assert.equal(response.status, 301);
+      assert.equal(
+        response.headers.get('Location'),
+        `https://webview-native-ui.rdlabo.dev${locale}/projects/${id}/docs/readme?source=legacy`,
+      );
+    }
+  }
+  assert.equal(originFetch.mock.calls.length, 0);
+  assert.equal(paidMarkdown.mock.calls.length, 0);
+});

@@ -736,7 +736,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.1.1",
+    "version": "22.1.2",
     "description": "Opinionated Angular, Ionic, TypeScript, and Cloudflare Workers rules for maintainable applications.",
     "path": "/projects/eslint-plugin-rules",
     "pages": [
@@ -837,6 +837,13 @@ export const PROJECTS_EN = [
         "slug": "rules/ionic-attr-type-check",
         "section": "Rules",
         "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "ionic-list-structure",
+        "navTitle": "ionic-list-structure",
+        "slug": "rules/ionic-list-structure",
+        "section": "Rules",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-list-structure"
       },
       {
         "title": "no-component-method-except-lifecycle",
@@ -1163,7 +1170,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.3.0",
+    "version": "8.4.1",
     "description": "Native Google AdMob ads for Capacitor applications.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -2314,7 +2321,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.1.1",
+    "version": "22.1.2",
     "description": "保守しやすいアプリケーションのためのAngular・Ionic・TypeScript・Cloudflare Workers向けESLintルール集。",
     "path": "/projects/eslint-plugin-rules",
     "pages": [
@@ -2415,6 +2422,13 @@ export const PROJECTS_JA = [
         "slug": "rules/ionic-attr-type-check",
         "section": "ルール",
         "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "ionic-list-structure",
+        "navTitle": "ionic-list-structure",
+        "slug": "rules/ionic-list-structure",
+        "section": "ルール",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-list-structure"
       },
       {
         "title": "no-component-method-except-lifecycle",
@@ -2741,7 +2755,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.3.0",
+    "version": "8.4.1",
     "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -3892,7 +3906,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.1.1",
+    "version": "22.1.2",
     "description": "Règles prescriptives pour Angular, Ionic, TypeScript et Cloudflare Workers afin de créer des applications maintenables.",
     "path": "/projects/eslint-plugin-rules",
     "pages": [
@@ -3993,6 +4007,13 @@ export const PROJECTS_FR = [
         "slug": "rules/ionic-attr-type-check",
         "section": "Règles",
         "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "ionic-list-structure",
+        "navTitle": "ionic-list-structure",
+        "slug": "rules/ionic-list-structure",
+        "section": "Règles",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-list-structure"
       },
       {
         "title": "no-component-method-except-lifecycle",
@@ -4319,7 +4340,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.3.0",
+    "version": "8.4.1",
     "description": "Annonces Google AdMob natives pour les applications Capacitor.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -5470,7 +5491,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/eslint-plugin-rules",
     "category": "developer-tools",
     "icon": "lint",
-    "version": "22.1.1",
+    "version": "22.1.2",
     "description": "Regeln mit klaren Konventionen für Angular, Ionic, TypeScript und Cloudflare Workers für wartbare Anwendungen.",
     "path": "/projects/eslint-plugin-rules",
     "pages": [
@@ -5571,6 +5592,13 @@ export const PROJECTS_DE = [
         "slug": "rules/ionic-attr-type-check",
         "section": "Regeln",
         "path": "/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check"
+      },
+      {
+        "title": "ionic-list-structure",
+        "navTitle": "ionic-list-structure",
+        "slug": "rules/ionic-list-structure",
+        "section": "Regeln",
+        "path": "/projects/eslint-plugin-rules/docs/rules/ionic-list-structure"
       },
       {
         "title": "no-component-method-except-lifecycle",
@@ -5897,7 +5925,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.3.0",
+    "version": "8.4.1",
     "description": "Native Google-AdMob-Anzeigen für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-admob",
     "pages": [

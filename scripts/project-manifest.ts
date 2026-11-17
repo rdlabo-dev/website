@@ -188,6 +188,7 @@ const eslintRuleNames = [
   'implements-ionic-lifecycle',
   'initialize-timezone-at-module-scope',
   'ionic-attr-type-check',
+  'ionic-list-structure',
   'no-component-method-except-lifecycle',
   'no-component-writable-signal',
   'no-implicit-timezone',
@@ -213,6 +214,9 @@ const eslintRulePages = eslintRuleNames.map((ruleName) =>
     ].includes(ruleName)
       ? { updatedAt: text('2026-09-06', '2026-10-01') }
       : { updatedAt: { ja: '2026-10-01' } }),
+    ...(ruleName === 'ionic-list-structure'
+      ? { updatedAt: { en: '2026-11-17', ja: '2026-11-17', fr: '2026-11-17', de: '2026-11-17' } }
+      : {}),
     ...(ruleName === 'require-ion-item-group'
       ? {
           updatedAt: { en: '2026-10-19', ja: '2026-10-19', fr: '2026-10-19', de: '2026-10-19' },
@@ -232,7 +236,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@webview-native-ui/engine',
     repositoryUrl: 'https://github.com/webview-native-ui/engine',
     englishDocsRef: 'f4ad403a98536fb3f35269cb74326b880145540d',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.4',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.10',
     sourceHeadingAliases: ['ja'],
     category: 'developer-tools',
     icon: 'app',
@@ -982,7 +986,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     englishDocsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
     englishDocsAssetsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/v2.1.1',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/v2.2.0',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1011,7 +1015,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-native-ui',
     repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
     englishDocsRef: '8588512d51324d9c6aab672da45a6598edf71927',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/capacitor-plugin/releases/tag/v2.1.4',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/capacitor-plugin/releases/tag/v2.1.10',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',
@@ -1044,7 +1048,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     englishDocsEditBranch: 'ios26',
     demoUrl: 'https://ionic-theme-ios26.rdlabo.dev/',
     releaseNotesUrl:
-      'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios26-v9.4.2',
+      'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios26-v9.5.0',
     releaseTagPrefix: 'ios26-v',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1100,7 +1104,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     // Reviewed documentation from main, independently of the npm release.
     englishDocsRef: 'e2ccd2ed99fdca724cbc10e3a9468b8536e1d827',
     demoUrl: 'https://ionic-theme-md3.rdlabo.dev/',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.2.0',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-md3/releases/tag/v9.3.0',
     category: 'frontend-tools',
     icon: 'theme',
     adapter: 'markdown',
@@ -1685,8 +1689,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'ESLint Plugin Rules',
     packageName: '@rdlabo/eslint-plugin-rules',
     repositoryUrl: 'https://github.com/rdlabo-dev/eslint-plugin-rules',
-    // Reviewed canonical guide links published after v22.1.1.
-    englishDocsRef: '40d8318e904dcdfa59c95db17b79f822e4969d36',
+    // Reviewed release includes ionic-list-structure and canonical guide links.
+    englishDocsRef: 'v22.1.2',
     category: 'developer-tools',
     icon: 'lint',
     adapter: 'markdown',
@@ -1778,7 +1782,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Browse every @rdlabo/eslint-plugin-rules rule for Angular Signals, Ionic components, component boundaries, forms, and safe asynchronous code.',
           'Angular Signal、Ionic Component、Component境界、フォーム、安全な非同期処理を検査する@rdlabo/eslint-plugin-rulesのルール一覧です。',
         ),
-        updatedAt: text('2026-09-06', '2026-09-06'),
+        updatedAt: { en: '2026-11-17', ja: '2026-11-17', fr: '2026-11-17', de: '2026-11-17' },
       }),
       page('Migration', '移行', 'migration', 'migration.md', 'Guide', 'ガイド', {
         updatedAt: text('2026-09-06', '2026-10-01'),

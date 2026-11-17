@@ -2,7 +2,7 @@
 title: ルール一覧
 ---
 
-パッケージは22個のルールを公開します。「推奨」のYesはIonic・Angular向け `rdlabo.configs.recommended`、Wは汎用TypeScriptの `workers/recommended`、TZは汎用TypeScriptの `workers-timezone/recommended` で有効になるルールです。
+パッケージは23個のルールを公開します。「推奨」のYesはIonic・Angular向け `rdlabo.configs.recommended`、Wは汎用TypeScriptの `workers/recommended`、TZは汎用TypeScriptの `workers-timezone/recommended` で有効になるルールです。
 
 | ルール                                                                                                         | 目的                                                                  | Fix | 推奨 |
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | :-: | :--: |
@@ -24,6 +24,7 @@ title: ルール一覧
 | [`prefer-modal-launcher`](/eslint-plugin-rules/docs/rules/prefer-modal-launcher)                               | `presentModal` 呼び出しを `launch*` 関数に限定する。                  | No  | Yes  |
 | [`require-ion-error-text`](/eslint-plugin-rules/docs/rules/require-ion-error-text) | Signal FormsのIonic検証コントロールにerrorTextの供給元を要求する。 | No | Yes |
 | [`require-ion-item-group`](/eslint-plugin-rules/docs/rules/require-ion-item-group)                             | iOS 26・MD3向けにIonic list itemのgroup化を要求する。                 | Yes | Yes  |
+| [`ionic-list-structure`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-list-structure) | 注記だけの行と、項目の後に置かれたリストヘッダーを防ぐ。 | No | Yes |
 | [`require-viewmodel`](/eslint-plugin-rules/docs/rules/require-viewmodel)                                       | Component所有と `ViewModelStore` 境界を検査する。                     | No  | Yes  |
 | [`restrict-try-block`](/eslint-plugin-rules/docs/rules/restrict-try-block)                                     | `try` を短く保ち、Promise・RxJS・Signal contextをポリシーで制限する。 | No  | Yes, W |
 | [`signal-use-as-signal-template`](/eslint-plugin-rules/docs/rules/signal-use-as-signal-template)               | テンプレートでSignalを読むときに `()` を要求する。                    | No  | Yes  |

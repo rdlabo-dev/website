@@ -1,6 +1,6 @@
 ---
 title: "require-ion-error-text"
-sourceRevision: "dc3bf02c91992393c87a76d89f76768e443e228f2c8fe55589ec5b725a56630d"
+sourceRevision: "d2ec141ec0ea6921ec7f21f54f463ad29d2564658baf246850fb874925685051"
 ---
 # @rdlabo/rules/require-ion-error-text
 
@@ -133,5 +133,5 @@ La règle signale uniquement ; elle ne corrige pas automatiquement la politique 
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-error-text.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-error-text.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/require-ion-error-text.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/require-ion-error-text.ts)

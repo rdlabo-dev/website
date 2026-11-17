@@ -1,5 +1,6 @@
 /** Reviewed French translations keyed by the exact English manifest text. */
 export const METADATA_FR: Readonly<Record<string, string>> = {
+  'ionic-list-structure': 'ionic-list-structure',
   'Documentation overview': 'Vue d’ensemble de la documentation',
   'Concepts and limits': 'Concepts et limites',
   'Basic initialization': 'Initialisation de base',

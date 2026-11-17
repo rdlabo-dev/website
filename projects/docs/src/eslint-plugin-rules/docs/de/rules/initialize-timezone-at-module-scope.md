@@ -1,6 +1,6 @@
 ---
 title: "initialize-timezone-at-module-scope"
-sourceRevision: "3b9c0e2623e87a6e14be59382f7eaaf333d9acb63fc70906a437f4319cbe26e4"
+sourceRevision: "b33ea72210b779dcc522c975bf0339ca4724f3452e5b925298c75f3fa8ef4404"
 ---
 # @rdlabo/rules/initialize-timezone-at-module-scope
 
@@ -42,5 +42,5 @@ export const timezone = initializeTimezone({ timeZone: 'Asia/Tokyo' });
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/initialize-timezone-at-module-scope.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/initialize-timezone-at-module-scope.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/initialize-timezone-at-module-scope.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/initialize-timezone-at-module-scope.ts)

@@ -1,12 +1,12 @@
 ---
 title: "Regeln"
-sourceRevision: "8f305c99ed253ab51272e68d95e0de9d892480b6bb926f51be545cc5a99bce70"
+sourceRevision: "e8df09a9540897b1f2bbcf1723aaff57c7ba0b748c7be636bb990c88c2ab54e5"
 ---
 # Regeln
 
 Wählen Sie ein Preset als zusammenhängende Ausgangsrichtlinie oder aktivieren Sie einzelne Regeln. Die [Konfigurationsanleitung](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/configuration) liefert vollständige Einrichtungsbeispiele für jeden Einstiegspunkt.
 
-Das Paket stellt 22 Regeln bereit. „Ja“ kennzeichnet das Ionic-/Angular-Preset `rdlabo.configs.recommended`. „W“ kennzeichnet das frameworkunabhängige Preset `workers/recommended`. „TZ“ kennzeichnet das frameworkunabhängige Preset `workers-timezone/recommended`.
+Das Paket stellt 23 Regeln bereit. „Ja“ kennzeichnet das Ionic-/Angular-Preset `rdlabo.configs.recommended`. „W“ kennzeichnet das frameworkunabhängige Preset `workers/recommended`. „TZ“ kennzeichnet das frameworkunabhängige Preset `workers-timezone/recommended`.
 
 | Regel                                                                                      | Zweck                                                                            | Korrektur | Voreinstellung |
 | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | :-: | :----: |
@@ -28,6 +28,7 @@ Das Paket stellt 22 Regeln bereit. „Ja“ kennzeichnet das Ionic-/Angular-Pres
 | [`prefer-modal-launcher`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/prefer-modal-launcher)                               | Beschränkt `presentModal`-Aufrufe auf `launch*`-Funktionen.                              | Nein  |  Ja   |
 | [`require-ion-error-text`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-error-text)                             | Verlangt Ionic-Fehlertext an Validierungsbedienelementen.                                   | Nein  |  Ja   |
 | [`require-ion-item-group`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-ion-item-group)                             | Verlangt gruppierte Ionic-Listenelemente für iOS 26 und Material Design 3.                 | Ja |  Ja   |
+| [`ionic-list-structure`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-list-structure) | Zeilen mit ausschließlich einer Notiz und Listenüberschriften nach Elementen verhindern. | Nein | Ja |
 | [`require-viewmodel`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/require-viewmodel)                                       | Erzwingt die Zuständigkeit von Komponenten und die Grenze des `ViewModelStore`.                     | Nein  |  Ja   |
 | [`restrict-try-block`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/restrict-try-block)                                     | Hält `try`-Blöcke klein und schließt Promise-, RxJS- und Signal-Kontexte entsprechend der Richtlinie aus.  | Nein  | Ja, W |
 | [`signal-use-as-signal-template`](https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/signal-use-as-signal-template)               | Verlangt `()` beim Lesen von Angular-Signals in Templates.                            | Nein  |  Ja   |

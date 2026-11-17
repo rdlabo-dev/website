@@ -1,6 +1,6 @@
 ---
 title: "deny-constructor-di"
-sourceRevision: "82cda33dcc5fd6aee752d426fba6906be7510bdf5dfdc3c010dd9cf11304aa36"
+sourceRevision: "3db08264732b6b6f7a67fca04efadb35644ae11b7bce434bb820c92d466c20af"
 ---
 # @rdlabo/rules/deny-constructor-di
 
@@ -66,5 +66,5 @@ Activez cette règle facultative lorsqu’un projet exige d’obtenir les dépen
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-constructor-di.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-constructor-di.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/deny-constructor-di.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/deny-constructor-di.ts)

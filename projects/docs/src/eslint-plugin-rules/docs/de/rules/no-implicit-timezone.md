@@ -1,6 +1,6 @@
 ---
 title: "no-implicit-timezone"
-sourceRevision: "f9b8d00d8f49d8d9f1c9c580842db1de991c56c9eddcf79a907f935dae05e0e8"
+sourceRevision: "189b0a9b9a800d20239c75d63a7d48697dd9bb6310ff32df867340e66d49bc4e"
 ---
 # @rdlabo/rules/no-implicit-timezone
 
@@ -52,5 +52,5 @@ Bevorzugen Sie bei `@rdlabo/workers-timezone` an Geschäftskalendergrenzen `toLo
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-implicit-timezone.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-implicit-timezone.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/no-implicit-timezone.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/no-implicit-timezone.ts)

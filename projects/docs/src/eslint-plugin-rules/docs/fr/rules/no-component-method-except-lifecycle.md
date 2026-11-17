@@ -1,6 +1,6 @@
 ---
 title: "no-component-method-except-lifecycle"
-sourceRevision: "b72272e6280e624e1f1d0abd8893b1e1b19554569c76c80b08e655fa04b02cf4"
+sourceRevision: "91dfbf9d247faa8bc6876225074b25038093474901c019dac8012a7a7c7001cb"
 ---
 # @rdlabo/rules/no-component-method-except-lifecycle
 
@@ -138,5 +138,5 @@ Activez cette règle lorsqu’un projet veut garder des Components légers et d�
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-component-method-except-lifecycle.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-component-method-except-lifecycle.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/no-component-method-except-lifecycle.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/no-component-method-except-lifecycle.ts)

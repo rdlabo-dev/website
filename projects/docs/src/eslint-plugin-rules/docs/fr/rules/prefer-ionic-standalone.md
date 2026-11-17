@@ -1,6 +1,6 @@
 ---
 title: "prefer-ionic-standalone"
-sourceRevision: "6efbec86d270d4f487b8f11634d16d13ade5fb55d34ebb6da564ce7baa6420f1"
+sourceRevision: "8b3b82fe714e620b65d64a5fdcdaf20773d4b8ba55aee5e2f50e037fc23005ff"
 ---
 # @rdlabo/rules/prefer-ionic-standalone
 
@@ -43,5 +43,5 @@ Activez cette règle dans les applications Ionic 9 Angular après l’adoption d
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/prefer-ionic-standalone.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/prefer-ionic-standalone.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/prefer-ionic-standalone.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/prefer-ionic-standalone.ts)

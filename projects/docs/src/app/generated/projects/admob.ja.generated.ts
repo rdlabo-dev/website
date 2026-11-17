@@ -8,7 +8,7 @@ export const PROJECT = {
   "repositoryUrl": "https://github.com/capacitor-community/admob",
   "category": "capacitor-plugins",
   "icon": "ads",
-  "version": "8.3.0",
+  "version": "8.4.1",
   "seoTitle": "Capacitor AdMob プラグイン ドキュメント | rdlabo",
   "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
   "headline": "Google AdMobでCapacitorアプリを収益化する",

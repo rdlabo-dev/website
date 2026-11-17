@@ -1,6 +1,6 @@
 ---
 title: "prefer-disable-handler"
-sourceRevision: "eb8ea26545312e9d3bd9bb36a436c63cb5005dd4c32a99cfe12daf4df9670bcd"
+sourceRevision: "110a1351c225fb78a521e4d92a58877b800abc4a56f5a417c204369e3f96dfa7"
 ---
 # @rdlabo/rules/prefer-disable-handler
 
@@ -136,5 +136,5 @@ Activez cette règle dans les projets Ionic/Angular où les actions utilisateur 
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/prefer-disable-handler.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/prefer-disable-handler.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/prefer-disable-handler.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/prefer-disable-handler.ts)

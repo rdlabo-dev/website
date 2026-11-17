@@ -1,6 +1,6 @@
 ---
 title: "require-viewmodel"
-sourceRevision: "ce650d26665513e5dd21901a52a7a52a495ad2ca9a8ac3bd3743fdba44d8bf19"
+sourceRevision: "b3f3ff36f90d424011ed70385a6400a325d335fbc8bf42f72cdd44c49941b6f6"
 ---
 # @rdlabo/rules/require-viewmodel
 
@@ -172,5 +172,5 @@ Activez cette règle lorsqu’un projet adopte le modèle ViewModel avec `@rdlab
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-viewmodel.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-viewmodel.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/require-viewmodel.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/require-viewmodel.ts)

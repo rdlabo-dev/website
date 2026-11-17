@@ -1,6 +1,6 @@
 ---
 title: "no-template-driven-forms"
-sourceRevision: "0395cc064d7f40c144ad3fa266037503560e2e2f4921684efc4baf6275b932be"
+sourceRevision: "abb77ebca3a1286919d1ef732c5d8ad5ad9dc11a5cbaf77813448cf0be0354c2"
 ---
 # @rdlabo/rules/no-template-driven-forms
 
@@ -82,5 +82,5 @@ Activez cette règle lorsqu’un projet migre vers Angular Signal Forms mais né
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/no-template-driven-forms.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/no-template-driven-forms.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/no-template-driven-forms.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/no-template-driven-forms.ts)

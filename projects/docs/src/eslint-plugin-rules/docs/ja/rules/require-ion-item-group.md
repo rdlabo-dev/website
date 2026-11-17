@@ -92,5 +92,5 @@ iOS 26とMaterial Design 3のリストデザインを対象とするIonic Angula
 
 ## 実装
 
-- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-item-group.ts)
-- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-item-group.ts)
+- [ルールの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/require-ion-item-group.ts)
+- [テストの実装](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/require-ion-item-group.ts)

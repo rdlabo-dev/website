@@ -1,6 +1,6 @@
 ---
 title: "require-ion-item-group"
-sourceRevision: "38517150bc8d4c4b735069307e02940ad1cbb78343daf377f042f70124f61732"
+sourceRevision: "18a3bb6bc91a7ae9b021dbc841cfef9a1b670d7a548f4ef1b679e0b829688ddd"
 ---
 # @rdlabo/rules/require-ion-item-group
 
@@ -83,5 +83,5 @@ Activez cette règle dans les applications Ionic Angular qui ciblent les designs
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/require-ion-item-group.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/require-ion-item-group.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/require-ion-item-group.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/require-ion-item-group.ts)

@@ -1,6 +1,6 @@
 ---
 title: "deny-overlay-create"
-sourceRevision: "0569ce7e261407d1b9dff03d7e11e0cd60bb16fb9f74f3c4e8dcdfc38790016e"
+sourceRevision: "01a7e4e54c7be8dccd3c476e7d60d06d23fc0c84b07f196421479f9821e7fe5a"
 ---
 # @rdlabo/rules/deny-overlay-create
 
@@ -113,5 +113,5 @@ Aktivieren Sie diese Regel in Ionic-Projekten, die das Launcher-Muster und eine 
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-overlay-create.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-overlay-create.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/deny-overlay-create.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/deny-overlay-create.ts)

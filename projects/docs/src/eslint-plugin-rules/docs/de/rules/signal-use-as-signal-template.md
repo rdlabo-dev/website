@@ -1,6 +1,6 @@
 ---
 title: "signal-use-as-signal-template"
-sourceRevision: "f1d0d2638594bd9787308eb86e21264e4448833ffcad07784a87e8d5fa126064"
+sourceRevision: "ffaf0feb66ec1a4c08453cdd3ae11e185d8864fe62d661f0267739fca7c4b252"
 ---
 # @rdlabo/rules/signal-use-as-signal-template
 
@@ -96,5 +96,5 @@ Aktivieren Sie diese Regel in jedem Angular-Projekt mit Signals. Sie ist besonde
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/signal-use-as-signal-template.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/signal-use-as-signal-template.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/signal-use-as-signal-template.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/signal-use-as-signal-template.ts)

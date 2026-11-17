@@ -1180,17 +1180,19 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/fr/projects/eslint-plugin-rules/docs/rules</loc>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/eslint-plugin-rules/docs/rules</loc>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/migration</loc>
@@ -1324,6 +1326,22 @@
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/de/projects/eslint-plugin-rules/docs/rules/ionic-attr-type-check</loc>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/ionic-list-structure</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/ja/projects/eslint-plugin-rules/docs/rules/ionic-list-structure</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/fr/projects/eslint-plugin-rules/docs/rules/ionic-list-structure</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.rdlabo.dev/de/projects/eslint-plugin-rules/docs/rules/ionic-list-structure</loc>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://docs.rdlabo.dev/projects/eslint-plugin-rules/docs/rules/no-component-method-except-lifecycle</loc>

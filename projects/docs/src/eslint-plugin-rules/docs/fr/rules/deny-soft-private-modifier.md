@@ -1,6 +1,6 @@
 ---
 title: "deny-soft-private-modifier"
-sourceRevision: "acc824d209e39ff3569da18e38e6726e2a778f9ce8aee9d66dc73f53138d18a0"
+sourceRevision: "7157fca56da588fc0c845a939d3aa524d4a027d2db0cb9c75ec95cae819a128e"
 ---
 # @rdlabo/rules/deny-soft-private-modifier
 
@@ -67,5 +67,5 @@ Activez cette règle lorsqu’un projet souhaite une encapsulation des membres i
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/deny-soft-private-modifier.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/deny-soft-private-modifier.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/deny-soft-private-modifier.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/deny-soft-private-modifier.ts)

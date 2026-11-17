@@ -1,6 +1,6 @@
 ---
 title: "implements-ionic-lifecycle"
-sourceRevision: "decfc07061c4f0c63e0f35bb2a9d4b3f6458f9e36abefe850fc273f981437f5d"
+sourceRevision: "4c1fb062c585d8c159cda16294cfe2ae245bcfa09ac55cc7bc30841ad42f6d2f"
 ---
 # @rdlabo/rules/implements-ionic-lifecycle
 
@@ -88,5 +88,5 @@ Activez cette règle dans tout projet Ionic Angular. Elle maintient la précisio
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/implements-ionic-lifecycle.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/implements-ionic-lifecycle.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/implements-ionic-lifecycle.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/implements-ionic-lifecycle.ts)

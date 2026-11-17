@@ -1,6 +1,6 @@
 ---
 title: "ionic-attr-type-check"
-sourceRevision: "7e8bd64be68ca8a44a4f22f7e611f374dbb87efa926fefd5c9bc0c9a8ec3eacf"
+sourceRevision: "0a73d73e966fd70ce8bcb54735698b8809c69eee70519df10d9f0b4a6587645d"
 ---
 # @rdlabo/rules/ionic-attr-type-check
 
@@ -80,5 +80,5 @@ La règle exige que `@ionic/core` soit installé dans le même projet pour lire 
 
 ## Implémentation
 
-- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/ionic-attr-type-check.ts)
-- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/ionic-attr-type-check.ts)
+- [Source de la règle](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/ionic-attr-type-check.ts)
+- [Source des tests](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/ionic-attr-type-check.ts)

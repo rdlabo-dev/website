@@ -1,6 +1,6 @@
 ---
 title: "prefer-modal-launcher"
-sourceRevision: "f961b035f481323f2859b65d2a5815eb24f952d7b108cdb15d4cd53dea5bcd47"
+sourceRevision: "45b82441f56f83eac4ac2ab1424b2b591d51448727383b87d51c2f851fa5c0e1"
 ---
 # @rdlabo/rules/prefer-modal-launcher
 
@@ -132,5 +132,5 @@ Aktivieren Sie diese Regel in Ionic-/Angular-Projekten mit Launcher-Muster für 
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/prefer-modal-launcher.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/prefer-modal-launcher.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/prefer-modal-launcher.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/prefer-modal-launcher.ts)

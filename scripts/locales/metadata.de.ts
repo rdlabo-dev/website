@@ -1,5 +1,6 @@
 /** Reviewed German translations keyed by the exact English manifest text. */
 export const METADATA_DE: Readonly<Record<string, string>> = {
+  'ionic-list-structure': 'ionic-list-structure',
   'Advanced APIs': 'Erweiterte APIs',
   'Capture and platform limits': 'Aufnahme- und Plattformgrenzen',
   'Observable presentation intent': 'Beobachtbare Darstellungsabsicht',

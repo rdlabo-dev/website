@@ -476,8 +476,7 @@ test('builds bounded search indexes for every published language with the compon
     }),
   );
   assert.ok(
-    // Aggregate of all four locales: 1,040 canonical pages, including seven new
-    // Engine, Cordova, and color guides, currently produce about 6.009 MiB.
+    // Aggregate budget across all published locales; external documentation is not indexed.
     sizes.reduce((total, size) => total + size, 0) < 6.1 * 1024 * 1024,
     'Search bundle must remain under 6.10 MiB across all published locales',
   );

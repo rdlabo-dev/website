@@ -1,6 +1,6 @@
 ---
 title: "restrict-try-block"
-sourceRevision: "6dd0e58f188f9a100332c3450a79065058445caecafacd71f64ca8a06c51838f"
+sourceRevision: "339ae73450814e78b105cc6ba4b355848f17ee387c72fa34b74a53529388989f"
 ---
 # @rdlabo/rules/restrict-try-block
 
@@ -185,5 +185,5 @@ Die Prüfung von `Promise.resolve()` erkennt das nicht überschattene globale `P
 
 ## Implementierung
 
-- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/src/rules/restrict-try-block.ts)
-- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.1/tests/rules/restrict-try-block.ts)
+- [Regelquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/src/rules/restrict-try-block.ts)
+- [Testquellcode](https://github.com/rdlabo-dev/eslint-plugin-rules/blob/v22.1.2/tests/rules/restrict-try-block.ts)

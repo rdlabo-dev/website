@@ -6,6 +6,7 @@ import { gunzipSync } from 'node:zlib';
 import { JSDOM } from 'jsdom';
 import { DOCS_LOCALES, PUBLISHED_DOCS_LOCALES } from '../shared/docs-locales';
 import { projectDefinitions } from './project-manifest';
+import { parseSitemap } from './seo-audit';
 import { PROJECTS_EN } from '../projects/docs/src/app/generated/project-catalog.generated';
 import {
   CURRENT_SPONSORS,
@@ -53,6 +54,18 @@ test('cf-workers-native publishes independent native guides and resolves localiz
         }
       }
     }
+  }
+});
+
+test('the AdMob docgen API has its own reviewed modification date in each locale', async () => {
+  const project = projectDefinitions.find((entry) => entry.id === 'admob');
+  assert.ok(project?.docgenApiUpdatedAt);
+  const entries = parseSitemap(await readFile('dist/docs/browser/sitemap.xml', 'utf8'));
+  for (const { code, subPath } of PUBLISHED_DOCS_LOCALES) {
+    const path = `${subPath ? `/${subPath}` : ''}/projects/${project.slug}/docs/api`;
+    const entry = entries.find(({ loc }) => loc === `https://docs.rdlabo.dev${path}`);
+    assert.ok(entry, path);
+    assert.equal(entry.lastmod, project.docgenApiUpdatedAt[code], path);
   }
 });
 

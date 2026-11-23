@@ -2,7 +2,7 @@
 title: "Configuration"
 code: []
 scrollActiveLine: []
-sourceRevision: "c0b0b9e6e9ce81a4be85e1ab435da311c46b60173fbf267dd3812f5105591533"
+sourceRevision: "729fb7404abc9329e7d47525d08466c4906b223fb426275d34a3b719f927b852"
 ---
 Installez Stripe Terminal et synchronisez les projets Capacitor natifs.
 
@@ -11,10 +11,10 @@ npm install @capacitor-community/stripe-terminal
 npx cap sync
 ```
 
-Le plugin est `@capacitor-community/stripe-terminal` **v8.3.0**. Démos officielles :
+Ce guide utilise la version 8 du plugin avec Capacitor 8. Consultez les démonstrations officielles ci-dessous.
 
-- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular)
-- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/app-on-devices)
+- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular)
+- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/app-on-devices)
 
 | Prérequis             | Minimum |
 | ----------------------- | ------- |
@@ -70,30 +70,37 @@ Aucune étape supplémentaire n’est nécessaire. Seuls les lecteurs Internet s
 
 ## Configuration iOS
 
-Le plugin ne nécessite aucune étape supplémentaire. USB, HandOff et `setTapToPayUxConfiguration` ne sont pas implémentés sur iOS.
+Configurez l’application hôte selon les exigences du [SDK Stripe Terminal pour iOS](https://github.com/stripe/stripe-terminal-ios/tree/5.8.0#configure-your-app).
+
+- Ajoutez `NSLocationWhenInUseUsageDescription` à `Info.plist` et activez l’accès à la localisation pour permettre le traitement des paiements.
+- Ajoutez `NSBluetoothAlwaysUsageDescription` et expliquez pourquoi la connexion au lecteur nécessite le Bluetooth.
+- Si l’application doit maintenir la connexion au lecteur Bluetooth en arrière-plan, ajoutez `bluetooth-central` au tableau `UIBackgroundModes`.
+
+Tap to Pay nécessite également une autorisation d’Apple, un appareil physique et un système compatibles, un pays pris en charge et un compte Stripe éligible. Le minimum requis par le plugin, iOS 15, ne garantit pas la disponibilité de Tap to Pay. Consultez le [guide Tap to Pay](/docs/tap-to-pay) avant d’utiliser un appareil physique.
+
+USB, HandOff et `setTapToPayUxConfiguration` ne sont pas implémentés sur iOS.
 
 ## Configuration Android
 
 Ajoutez les autorisations à votre fichier `android/app/src/main/AndroidManifest.xml` :
 
-```diff
-+ <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-+ <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
 `discoverReaders` est rejeté si `ACCESS_FINE_LOCATION` n’a pas été accordée à l’exécution.
 
 Mettez également `minSdkVersion` à `26` dans votre fichier `android/variables.gradle` :
 
-```diff
-  ext {
--    minSdkVersion = 24
-+    minSdkVersion = 26
-  }
+```groovy
+ext {
+    minSdkVersion = 26
+}
 ```
 
 Si vous développez des applications pour des appareils Android Stripe (par exemple Stripe Reader S700) avec `TerminalConnectTypes.HandOff`, suivez le [guide de configuration côté client de Stripe](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app).

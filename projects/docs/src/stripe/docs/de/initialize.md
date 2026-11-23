@@ -2,7 +2,7 @@
 title: "In Ihrem Projekt initialisieren"
 code: []
 scrollActiveLine: []
-sourceRevision: "3a05c3a93e2d5aac330defd4c5123fcba5e95b01d54d307bb7c28dfb072ff8ce"
+sourceRevision: "d7ca26ea71b09df6d4005393881d2305fc4ffb08b792fe7f35edc44086ea8aa5"
 ---
 Importieren Sie `Stripe` und rufen Sie `initialize` mit einem [veröffentlichbaren Schlüssel](https://dashboard.stripe.com/apikeys) auf. Führen Sie dies einmal pro JavaScript-Laufzeit aus, bevor Sie eine Zahlungs-UI erstellen oder anzeigen.
 
@@ -93,25 +93,7 @@ Die Methode ist unter Android und im Web nicht implementiert. Übergeben Sie aus
 
 ### Angular
 
-Initialisieren Sie aus der Root-Komponente. Siehe [Angular](/docs/angular).
-
-```ts:src/app/app.component.ts
-import { Component } from '@angular/core';
-import { Stripe } from '@capacitor-community/stripe';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
-export class AppComponent {
-  constructor() {
-    void Stripe.initialize({
-      publishableKey: 'Your Publishable Key',
-    });
-  }
-}
-```
+Warten Sie beim Anwendungsstart mit `provideAppInitializer` auf den Abschluss der Initialisierung. Siehe das [vollständige Angular-Startbeispiel](/docs/angular). Wenn Sie die Initialisierung mit `void` im Konstruktor einer Komponente anstoßen, können Zahlungsaktionen beginnen, bevor das Plugin bereit ist.
 
 ### React
 

@@ -2,7 +2,7 @@
 title: API
 ---
 
-Public entry-point map for `@rdlabo/workers-hono-kit` v0.13.0 and the standalone MySQL and timezone packages.
+Public entry-point map for `@rdlabo/workers-hono-kit` v0.13.1 and the standalone MySQL and timezone packages.
 
 #### `module` @rdlabo/workers-hono-kit
 

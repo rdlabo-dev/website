@@ -1,6 +1,6 @@
 ---
 title: "Erste Schritte"
-sourceRevision: "457983532f3bb09229379a8c07603a7c941a0c3e6dff6038f309a572a8f8bf9a"
+sourceRevision: "2ace82b941c10feb5c2f8f034b8f56a1881792ab172bf19264d9e024586b31cf"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,14 +41,25 @@ Erstellt mit [contributors-img](https://contrib.rocks).
 
 ## Demo
 
-[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.4.1/demo)
+[Den Demo-Quellcode finden Sie hier.](https://github.com/capacitor-community/admob/tree/v8.4.2/demo)
 
 ### Screenshots
 
-|             |                Banner                |                Interstitial                |                Belohnung                |              App Open               |
-| :---------- | :----------------------------------: | :----------------------------------------: | :----------------------------------: | :---------------------------------: |
-| **iOS**     | ![](demo/screenshots/ios_banner.png) | ![](demo/screenshots/ios_interstitial.png) | ![](demo/screenshots/ios_reward.png) | ![](demo/screenshots/ios_open.png)  |
-| **Android** | ![](demo/screenshots/md_banner.png)  | ![](demo/screenshots/md_interstitial.png)  | ![](demo/screenshots/md_reward.png)  | ![](demo/screenshots/md_open.png)   |
+#### iOS
+
+| Banner | Interstitial | Anzeige mit Prämie |
+| :----: | :----------: | :----: |
+| <img src="demo/screenshots/ios_banner.webp" alt="Testanzeige (Banner) unter iOS" width="240" /> | <img src="demo/screenshots/ios_interstitial.webp" alt="Testanzeige (Interstitial) unter iOS" width="240" /> | <img src="demo/screenshots/ios_reward.webp" alt="Testanzeige (mit Prämie) unter iOS" width="240" /> |
+| **App Open** | **Native Anzeigen** | |
+| <img src="demo/screenshots/ios_open.webp" alt="Testanzeige (App Open) unter iOS" width="240" /> | <img src="demo/screenshots/ios_native.webp" alt="Native Testanzeige im Demo-Feed unter iOS" width="240" /> | |
+
+#### Android
+
+| Banner | Interstitial | Anzeige mit Prämie |
+| :----: | :----------: | :----: |
+| <img src="demo/screenshots/md_banner.webp" alt="Testanzeige (Banner) unter Android" width="240" /> | <img src="demo/screenshots/md_interstitial.webp" alt="Testanzeige (Interstitial) unter Android" width="240" /> | <img src="demo/screenshots/md_reward.webp" alt="Testanzeige (mit Prämie) unter Android" width="240" /> |
+| **App Open** | **Native Anzeigen** | |
+| <img src="demo/screenshots/md_open.webp" alt="Testanzeige (App Open) unter Android" width="240" /> | <img src="demo/screenshots/md_native.webp" alt="Native Testanzeige im Demo-Feed unter Android" width="240" /> | |
 
 <!-- /rdlabo-docs-omit -->
 
@@ -225,6 +236,9 @@ Beginnen Sie mit der obigen [Installation](/docs/readme#installation), dann mit 
 * [`hideBanner()`](/docs/readme#hidebanner)
 * [`resumeBanner()`](/docs/readme#resumebanner)
 * [`removeBanner()`](/docs/readme#removebanner)
+* [`prepareBanner(...)`](/docs/readme#preparebanner)
+* [`getAdaptiveBannerSize(...)`](/docs/readme#getadaptivebannersize)
+* [`getBannerSize()`](/docs/readme#getbannersize)
 * [`addListener(BannerAdPluginEvents.SizeChanged, ...)`](/docs/readme#addlistenerbanneradplugineventssizechanged-)
 * [`addListener(BannerAdPluginEvents.Loaded, ...)`](/docs/readme#addlistenerbanneradplugineventsloaded-)
 * [`addListener(BannerAdPluginEvents.FailedToLoad, ...)`](/docs/readme#addlistenerbanneradplugineventsfailedtoload-)
@@ -564,6 +578,51 @@ removeBanner() => Promise<void>
 Zerstört das aktuelle Banner und entfernt es vom Bildschirm.
 
 **Seit:** 1.1.2
+
+--------------------
+
+
+### prepareBanner(...)
+
+```typescript
+prepareBanner(options: BannerAdOptions) => Promise<void>
+```
+
+Lädt das nächste Banner vor. Das aktuelle Banner bleibt dabei sichtbar. Das Promise wird nach dem Laden erfüllt. Rufen Sie showBanner() mit passenden Optionen auf, um das vorbereitete Banner anzuzeigen. Eine neue Vorbereitung ersetzt die vorherige. removeBanner() bricht die Vorbereitung ab.
+
+| Parameter     | Typ                                                         |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#banneradoptions">BannerAdOptions</a></code> |
+
+--------------------
+
+
+### getAdaptiveBannerSize(...)
+
+```typescript
+getAdaptiveBannerSize(options?: { width?: number | undefined; } | undefined) => Promise<AdMobBannerSize>
+```
+
+Berechnet die Größe eines verankerten adaptiven Banners, ohne eine Anzeige zu erstellen oder zu laden. Ohne Breitenangabe gilt die verfügbare Breite unter Berücksichtigung der sicheren Bereiche. Die Maße sind dp unter Android und Punkte unter iOS. Berechnen Sie die Größe nach einer Drehung oder Änderung der verfügbaren Breite neu. Eine explizite Breitenangabe wirkt sich nicht auf showBanner() aus.
+
+| Parameter     | Typ                              |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ width?: number; }</code> |
+
+**Rückgabe:** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
+
+--------------------
+
+
+### getBannerSize()
+
+```typescript
+getBannerSize() => Promise<AdMobBannerSize>
+```
+
+Gibt die angezeigte Bannergröße in dp (Android) oder Punkten (iOS) zurück. Vor dem Laden, bei ausgeblendetem oder entferntem Banner sowie nach einem Fehler sind beide Maße null. Der Aufruf erstellt, lädt und zeigt keine Anzeige.
+
+**Rückgabe:** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
 
 --------------------
 

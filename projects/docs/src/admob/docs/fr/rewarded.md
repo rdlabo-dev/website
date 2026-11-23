@@ -1,12 +1,14 @@
 ---
 title: "Annonces récompensées"
-sourceRevision: "0c51c35e63037c85b947672eebb189fea8d4a2684f282cdf4f5c392eed834d3f"
+sourceRevision: "75b07af03f55314dc39c157e67ce1d9da91a5a6d455a0f80796e0e15bf6f81d1"
 ---
 # Annonces récompensées
 
 Les annonces récompensées permettent d’attribuer des éléments dans l’application en échange d’interactions avec des vidéos publicitaires, des annonces jouables ou des sondages. Les guides Google sur les annonces récompensées pour [Android](https://developers.google.com/admob/android/rewarded) et [iOS](https://developers.google.com/admob/ios/rewarded) expliquent ce format.
 
 Traitez les annonces récompensées comme un parcours de récompense, pas comme une autre interstitielle sans récompense. Appelez cette méthode après [l’initialisation](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) et [le consentement](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent). Attribuez la récompense uniquement à partir du résultat renvoyé ou de l’événement `Rewarded`, pas de `Dismissed`.
+
+Lorsque l’utilisateur obtient sa récompense, `showRewardVideoAd()` et `showRewardInterstitialAd()` renvoient tous deux cette récompense. Si l’annonce est fermée avant, la promesse est rejetée avec le code `REWARDED_AD_CANCELLED`. Les échecs de présentation entraînent aussi un rejet, avec un code d’erreur propre au SDK natif de chaque plateforme. Traitez le rejet pour rétablir les boutons et l’état de chargement de l’application en cas d’annulation. Les événements `Rewarded`, `Dismissed` et `FailedToShow` continuent d’être émis. Après une fermeture ou un échec, préparez une nouvelle annonce avant de l’afficher.
 
 ## Vidéo récompensée
 
@@ -150,3 +152,5 @@ await AdMob.addListener(RewardAdPluginEvents.Rewarded, async () => {
   }
 });
 ```
+
+Sur Android, passez `immersiveMode: true` à `prepareRewardVideoAd()` pour masquer les barres système pendant l’annonce. Passez cette option lors de la préparation, avant l’affichage. L’activité publicitaire du SDK est distincte de l’application hôte et ne reprend pas le réglage de ses barres.

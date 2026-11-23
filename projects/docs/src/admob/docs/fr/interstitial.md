@@ -1,6 +1,6 @@
 ---
 title: "Annonces interstitielles"
-sourceRevision: "344f442aae5c577ca74368af17ff8b2bf4960848bcbe95108e1761efcac35261"
+sourceRevision: "d253aee1b5385f45627b88da3a943947028df5bf356333e74ae92abe4240e79d"
 ---
 # Annonces interstitielles
 
@@ -49,3 +49,16 @@ await AdMob.showInterstitial({ adId: 'ca-app-pub-xxx/interstitial-1' });
 Consultez [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing) pour `isTesting`.
 
 Les événements de chargement, d’affichage, de fermeture et d’échec figurent dans [Événements publicitaires](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events).
+
+Les annonces interstitielles préparées expirent au bout d’une heure. Si l’annonce a expiré, `showInterstitial()` échoue avec le code `AD_EXPIRED`. Préparez une nouvelle annonce avant de réessayer.
+
+## Mode immersif sur Android
+
+Pour masquer les barres système d’Android pendant l’annonce, passez `immersiveMode: true` à `prepareInterstitial()`. Le SDK Google Mobile Ads affiche l’annonce dans une activité distincte, qui ne reprend pas ce réglage de l’activité de l’application.
+
+```ts
+await AdMob.prepareInterstitial({ adId: 'YOUR_AD_UNIT_ID', immersiveMode: true });
+await AdMob.showInterstitial();
+```
+
+Ce réglage s’applique aussi à `prepareRewardVideoAd()`. Le mode immersif contrôle les barres système. Le SDK et la création publicitaire déterminent le format de l’annonce et la présence de bandes noires. Un balayage permet de faire réapparaître temporairement les barres système.

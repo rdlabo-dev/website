@@ -2,9 +2,9 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "8ba1cd15c0a520cd2889df144b154a54860f48e7639f0271ddd538c693a9ec24"
+sourceRevision: "22bc9f975e3af0fb66880b451030f8ae7a781f2f8c024ba2b0e9d0657dd91115"
 ---
-Référence de `@capacitor-community/stripe-terminal` v8.3.0. Les plateformes compatibles avec les types de connexion et les API Tap to Pay sont décrites dans [Configuration](/docs/configuration).
+Référence de `@capacitor-community/stripe-terminal` v8.4.0. Les plateformes compatibles avec les types de connexion et les API Tap to Pay sont décrites dans [Configuration](/docs/configuration).
 
 ## Méthodes
 
@@ -54,7 +54,29 @@ Chaque surcharge de `addListener` possède sa propre signature. Le tableau `Term
 
 ## Interfaces
 
+!::StripeTerminalInitializationOptions::
+
 !::DiscoverReadersOptions::
+
+!::SetConnectionTokenOptions::
+
+!::SimulatorConfigurationOptions::
+
+!::ConnectReaderOptions::
+
+!::CollectPaymentMethodOptions::
+
+!::ReaderInterface::
+
+!::ReaderSoftwareUpdateInterface::
+
+!::LocationInterface::
+
+!::LocationAddress::
+
+!::Cart::
+
+!::CartLineItem::
 
 !::TapToPayUxConfiguration::
 
@@ -65,16 +87,6 @@ Chaque surcharge de `addListener` possède sa propre signature. Le tableau `Term
 !::PluginListenerHandle::
 
 ## Alias de types
-
-!::ReaderInterface::
-
-!::ReaderSoftwareUpdateInterface::
-
-!::LocationInterface::
-
-!::Cart::
-
-!::CartLineItem::
 
 !::TapToPayColor::
 

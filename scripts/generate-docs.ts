@@ -597,6 +597,7 @@ async function generateProject(
     }
   }
   if (docgenApiPage) {
+    docgenApiPage.page.updatedAt = project.docgenApiUpdatedAt;
     sourcePages.push(docgenApiPage);
   }
 
@@ -921,38 +922,22 @@ async function main(): Promise<void> {
       .filter((project) => !project.hostedUrl)
       .flatMap((project) => [project.path, ...project.pages.map((page: any) => page.path)]),
   ];
-  const updatedAtByPublicPath = new Map<string, Partial<Record<Locale, string>>>();
-  for (const project of projectDefinitions) {
-    if (project.hostedUrl) continue;
-    for (const declaredPage of project.pages) {
-      if (!declaredPage.updatedAt) continue;
-      const publicPath = `/projects/${project.slug}/docs/${declaredPage.slug}`;
-      updatedAtByPublicPath.set(
-        publicPath,
-        Object.fromEntries(
-          locales.map((locale) => [
-            locale,
-            declaredPage.updatedAt?.[locale]
-              ? assertValidContentUpdatedAt(
-                  declaredPage.updatedAt[locale]!,
-                  `${project.id}/${declaredPage.slug} (${locale})`,
-                )
-              : undefined,
-          ]),
-        ),
-      );
+  const updatedAtByPublicPath = new Map<string, string>();
+  for (const locale of locales) {
+    for (const project of projectsByLocale[locale]) {
+      for (const page of project.pages) {
+        if (page.updatedAt)
+          updatedAtByPublicPath.set(localizedPublicPath(locale, page.path), page.updatedAt);
+      }
     }
   }
   const sitemapEntries = canonicalPaths
-    .map((path) => {
-      const updatedAt = updatedAtByPublicPath.get(path);
-      return locales
-        .map(
-          (locale) =>
-            `  <url>\n    <loc>${SITE_CONFIG.origin}${localizedPublicPath(locale, path)}</loc>${formatSitemapLastmod(updatedAt?.[locale])}\n  </url>`,
-        )
-        .join('\n');
-    })
+    .flatMap((path) =>
+      locales.map((locale) => {
+        const publicPath = localizedPublicPath(locale, path);
+        return `  <url>\n    <loc>${SITE_CONFIG.origin}${publicPath}</loc>${formatSitemapLastmod(updatedAtByPublicPath.get(publicPath))}\n  </url>`;
+      }),
+    )
     .join('\n');
   await writeFile(
     join(root, 'projects/docs/public/sitemap.xml'),

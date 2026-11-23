@@ -34,13 +34,15 @@ Stripe Identity は、Capacitor のアプリケーションコードを保った
 
 バックエンドで Stripe のシークレットキーを使って VerificationSession と、そのセッション用の一時キーを作成し、クライアントへ安全に渡せるフィールドだけを返します。
 
-公式デモサーバー（`POST /identify`）は `document` の VerificationSession を作成し、`{ verification_session: session.id }` と Stripe API バージョン `2022-11-15` で一時キーを作成して、次のフィールドを返します。
+公式デモサーバー（`POST /identify`）は `document` 型の VerificationSession を作成し、`{ verification_session: session.id }` と Stripe API バージョン `2022-11-15` を指定して一時キーを発行します。レスポンスには旧来の綴り `verficationSessionId` が使われているため、プラグインの `verificationId` に割り当てます。
 
 | レスポンス | 取得元 | `create` オプション |
 | --- | --- | --- |
-| `verificationId` | `VerificationSession.id` | `verificationId` |
+| `verficationSessionId` | `VerificationSession.id` | `verificationId` |
 | `ephemeralKeySecret` | `EphemeralKey.secret` | `ephemeralKeySecret` |
 | `clientSecret` | `VerificationSession.client_secret` | `clientSecret` |
+
+自分のバックエンドでは、次の例のようにレスポンスのフィールド名を `verificationId` にします。
 
 ```ts
 const session = await stripe.identity.verificationSessions.create({

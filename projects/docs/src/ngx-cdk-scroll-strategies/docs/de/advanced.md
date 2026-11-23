@@ -1,13 +1,13 @@
 ---
 title: "Erweiterte Verwendung"
-sourceRevision: "7499a6c6f40c9ba9760de5a5bf7beeeae40b1b282eeaada39567fd105ec74d2c"
+sourceRevision: "de98eb1868a000ad2cff5584c3bb1ffc9bd699a211759130fe7d6af1f0fea6be"
 ---
 Rufen Sie dies nach der [Installation](/docs/readme#installation) auf. Übernehmen Sie den Viewport, die CDK-Imports, `trackBy` und die Regeln für das Größenmodell aus der [einfachen Verwendung](/docs/simple). Ersetzen Sie die bekannten `itemSize`-Werte durch gemessene Höhen.
 
 > Messen Sie jedes Scrollelement als eigene Komponente und schreiben Sie das Ergebnis in das Größenmodell für `[itemDynamicSizes]`.
 
 - Demo: https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies/advanced
-- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.7/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
+- Quellcode: https://github.com/rdlabo-dev/ionic-angular-library/tree/v22.0.8/projects/demo/src/app/scroll-strategies/pages/scroll-advanced
 
 Verwenden Sie einen Messwert-Cache mit `trackId` als Schlüssel. Lesen Sie nach dem Rendern eines Elements seine Höhe aus und aktualisieren Sie den Cache. Ein übergeordnetes `computed` bildet die Elemente auf `itemDynamicSize[]` ab. Es verwendet vorhandene Cache-Werte und bis zur ersten Messung einen vorläufigen Schätzwert:
 

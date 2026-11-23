@@ -2,7 +2,7 @@
 title: "ApplePay"
 code: ["/docs/stripe/apple-pay/apple-pay.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{}},{"id":"1.-isapplepayavailable","activeLine":{"apple-pay.ts":[4,10]}},{"id":"2.-createapplepay","activeLine":{"apple-pay.ts":[15,31]}},{"id":"3.-presentapplepay","activeLine":{"apple-pay.ts":[31,37]}},{"id":"4.-addlistener","activeLine":{"apple-pay.ts":[11,14]}}]
-sourceRevision: "83fd2e8448aa83a7c3d7fe03f5b0a3c286ecfb013a3b1384a671065df4805f1a"
+sourceRevision: "c92b0ff8010840d7cc2ec6d6000bdb2d51aaa25b6fca4bef53ca857f27c1fa75"
 ---
 Apple Pay bestätigt einen PaymentIntent in einer einzigen Darstellung.
 
@@ -48,6 +48,8 @@ try {
 
 ## 2. createApplePay
 
+`paymentSummaryItems.amount` wird in der Hauptwährungseinheit angegeben. Für 10,99 US-Dollar geben Sie `10.99` an. Serverseitig erwartet Stripe den PaymentIntent-Betrag in der kleinsten Währungseinheit, also `1099` Cent für denselben Kauf. Der angezeigte Gesamtbetrag muss mit dem Intent-Betrag im Backend übereinstimmen.
+
 Rufen Sie ein PaymentIntent-Client-Secret von Ihrem Backend ab. Siehe [Serverintegration](/docs/server-integration). Übergeben Sie anschließend `paymentIntentClientSecret`, `paymentSummaryItems`, `merchantIdentifier`, `countryCode` und `currency`.
 
 ```ts
@@ -61,10 +63,12 @@ const { paymentIntent } = await firstValueFrom(
 
 await Stripe.createApplePay({
   paymentIntentClientSecret: paymentIntent,
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',
@@ -108,6 +112,8 @@ Stripe.addListener(ApplePayEventsEnum.Completed, () => {
 
 Unter iOS enthält `DidSelectShippingContact` `contact` und `updateId`. Berechnen Sie Gesamtbeträge neu und rufen Sie `updateApplePaySheet` mit dieser `updateId` auf. Antwortet JavaScript nicht, greift das native Sheet nach 25 Sekunden auf die zuletzt akzeptierten Zusammenfassungspositionen zurück. Aktualisierungen behalten die aktuellen Versandmethoden bei.
 
+Im Versandbeispiel muss das Backend auch den Gesamtbetrag des Intents auf 15,99 US-Dollar aktualisieren. `updateApplePaySheet` ändert nur die angezeigte Übersicht. Den PaymentIntent aktualisieren Sie im Backend.
+
 `paymentSummaryItems` muss ein Array sein. Ein leeres Array (`[]`) bestätigt die aktuelle Auswahl, ohne die vorhandenen Zusammenfassungspositionen zu ändern. Bei einem nicht leeren Array muss jede Position eine nicht leere Zeichenfolge als Bezeichnung und einen endlichen numerischen Betrag haben. Negative Rabatte sind erlaubt, die abschließende Summe muss jedoch mindestens null betragen. Ungültige Eingaben werden zurückgewiesen, ohne die ausstehende Aktualisierung zu verbrauchen. Sie können deshalb vor dem Zeitlimit korrigiert und erneut gesendet werden. Nur die `updateId` der letzten Kontaktauswahl wird akzeptiert; doppelte oder veraltete Aktualisierungen werden zurückgewiesen.
 
 ```ts
@@ -115,9 +121,9 @@ Stripe.addListener(ApplePayEventsEnum.DidSelectShippingContact, async (data) => 
   await Stripe.updateApplePaySheet({
     updateId: data.updateId,
     paymentSummaryItems: [
-      { label: 'Product Name', amount: 1099.00 },
-      { label: 'Shipping', amount: 500.00 },
-      { label: 'Total', amount: 1599.00 },
+      { label: 'Product Name', amount: 10.99 },
+      { label: 'Shipping', amount: 5.0 },
+      { label: 'Total', amount: 15.99 },
     ],
   });
 });

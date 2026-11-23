@@ -2,7 +2,7 @@
 title: "Encaisser un paiement"
 code: ["collect-a-payment/collect-payment.ts.md","collect-a-payment/connection-token.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"collect-payment.ts":[1,1]}},{"id":"enregistrer-les-écouteurs-au-niveau-de-l’application","activeLine":{"collect-payment.ts":[6,19]}},{"id":"initialiser","activeLine":{"connection-token.ts":[0,34]}},{"id":"fournir-un-jeton-de-connexion-de-manière-sécurisée","activeLine":{"connection-token.ts":[0,34]}},{"id":"créer-un-paymentintent-sur-votre-backend","activeLine":{"collect-payment.ts":[34,42]}},{"id":"rechercher-des-lecteurs","activeLine":{"collect-payment.ts":[22,30]}},{"id":"connecter-un-lecteur","activeLine":{"collect-payment.ts":[27,34]}},{"id":"recueillir-un-moyen-de-paiement","activeLine":{"collect-payment.ts":[42,44]}},{"id":"confirmer-le-paymentintent","activeLine":{"collect-payment.ts":[43,45]}},{"id":"gérer-l’annulation-et-les-erreurs","activeLine":{"collect-payment.ts":[14,19]}},{"id":"déconnecter-le-lecteur","activeLine":{"collect-payment.ts":[44,48]}}]
-sourceRevision: "36dc5901fcd3e6e542d3400bee7d9dae42b0d865603cba3fa5b2f345acec2377"
+sourceRevision: "9ab09599a02e175a08f43b0b0f370d0ba94569b831b730de3976892b328d2c82"
 ---
 Encaissez un paiement en personne avec Stripe Terminal : enregistrez les écouteurs dès le démarrage, initialisez le plugin, connectez un lecteur et confirmez un PaymentIntent.
 
@@ -22,7 +22,7 @@ Privilégiez une requête authentifiée côté application via `RequestedConnect
 
 ### Mode de compatibilité `tokenProviderEndpoint`
 
-`tokenProviderEndpoint` convient aux déploiements simples, mais les clients natifs v8.3.0 envoient un **POST** HTTP minimal : l’appelant ne peut ajouter ni en-tête d’autorisation ni corps de requête. Utilisez-le uniquement si votre serveur peut authentifier et protéger cette requête par d’autres moyens. N’exposez jamais un point de terminaison public de création de jetons sans restriction.
+`tokenProviderEndpoint` convient aux déploiements simples, mais les clients natifs actuels envoient un **POST** HTTP minimal : l’appelant ne peut ajouter ni en-tête d’autorisation ni corps de requête. Utilisez-le uniquement si votre serveur peut authentifier et protéger cette requête par d’autres moyens. N’exposez jamais un point de terminaison public de création de jetons sans restriction.
 
 Lorsque `tokenProviderEndpoint` est défini, le plugin envoie un **POST** HTTP avec un corps vide. La réponse **doit** être un objet JSON contenant une chaîne `secret` :
 
@@ -35,7 +35,7 @@ Cette valeur est un [jeton de connexion](https://docs.stripe.com/terminal/fleet/
 La démo officielle expose `POST /connection/token` et renvoie `{ secret }` ; adaptez son authentification et son autorisation à votre application.
 
 :::message
-Dans la version v8.3.0, Android journalise le `secret` renvoyé via `tokenProviderEndpoint`, et le Web journalise les options transmises à `setConnectionToken`. Évitez le mode par point de terminaison sur Android tant que cette journalisation n’est pas supprimée en amont, évitez la conservation des journaux de console Web en production et passez à une version corrigée du plugin dès qu’elle est disponible.
+L’implémentation Android actuelle journalise le `secret` renvoyé via `tokenProviderEndpoint`, et le Web journalise les options transmises à `setConnectionToken`. Évitez le mode par point de terminaison sur Android tant que cette journalisation n’est pas supprimée en amont, évitez la conservation des journaux de console Web en production et passez à une version corrigée du plugin dès qu’elle est disponible.
 :::
 
 
@@ -46,6 +46,31 @@ Sur le Web, `initialize` nécessite une nouvelle instance du plugin : un nouvel 
 Omettez `tokenProviderEndpoint` et enregistrez `RequestedConnectionToken` **avant** `initialize`. Lorsque le SDK a besoin d’un jeton, le plugin émet cet événement et attend `setConnectionToken({ token })`.
 
 Effectuez la requête avec votre mécanisme d’autorisation habituel, exigez une réponse réussie, validez `secret`, puis transmettez-le comme `token`. Appelez `setConnectionToken` uniquement pendant qu’une demande de jeton est en attente ; Android et iOS rejettent les appels supplémentaires avec `Stripe Terminal do not pending fetchConnectionToken`. Ne journalisez jamais la réponse ni le jeton.
+
+```ts
+import { StripeTerminal, TerminalEventsEnum } from '@capacitor-community/stripe-terminal';
+
+const tokenListener = await StripeTerminal.addListener(TerminalEventsEnum.RequestedConnectionToken, async () => {
+  try {
+    const response = await fetch('https://your-backend.example.com/terminal/token', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${await getAuthToken()}` },
+    });
+    if (!response.ok) throw new Error('Connection token request failed');
+    const { secret } = await response.json();
+    if (typeof secret !== 'string' || secret.length === 0) {
+      throw new Error('Missing connection token');
+    }
+    await StripeTerminal.setConnectionToken({ token: secret });
+  } catch (error) {
+    showConnectionError(error);
+    // Ne transmettez pas de jeton en cache et ne réessayez pas sans authentification.
+  }
+});
+await StripeTerminal.initialize({ isTest: true });
+```
+
+Implémentez `getAuthToken` et `showConnectionError` dans votre application. Conservez `tokenListener` jusqu’à la destruction du composant applicatif qui en est responsable. Intercepter une erreur réseau laisse la demande de jeton du SDK en attente. Affichez l’échec et permettez de réessayer cette demande avec authentification, sans présumer que le plugin fournit un délai d’expiration automatique ou une API d’annulation.
 
 !::setConnectionToken::
 

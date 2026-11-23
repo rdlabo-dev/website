@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "ef7160add83aeb3e3dd80313197d550a16c829ca3e41ba9af0ec7528bac7a06d"
+sourceRevision: "d179539904ee32dc277d263f4f01a6f54bd3a81ba0b386d6f2fbb05f61b11add"
 ---
-Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.7. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
+Übersicht der öffentlichen Einstiegspunkte für `@rdlabo/ionic-angular-kit` v22.0.8. Die gezielten Anleitungsseiten beschreiben die Anforderungen an Lebenszyklus und Integration; diese Seite legt fest, welcher Paketpfad für welche API-Familie zuständig ist.
 
 ## Kern
 

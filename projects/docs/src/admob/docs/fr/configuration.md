@@ -1,12 +1,33 @@
 ---
 title: "Initialisation"
-sourceRevision: "9c72bafeff538bac37cb3c866cceb076853ab461250b028fde68b3f9762b29ab"
+sourceRevision: "bedb1cae3506931afd9854faa8837721aa430ce0058d061cb74f981cac6c98cf"
 ---
 # Configuration
 
 Après avoir recueilli le consentement et vérifié `canRequestAds`, appelez `initialize` du plugin une seule fois avant de demander des annonces. Vous n’avez pas à démarrer vous-même le SDK natif.
 
 Les identifiants d’application natifs doivent figurer dans AndroidManifest / Info.plist ; consultez [Installation](https://docs.rdlabo.dev/projects/capacitor-admob/docs/readme#installation).
+
+## CocoaPods
+
+Swift Package Manager résout automatiquement WebView Native UI Engine. Avec CocoaPods, enregistrez le pod local fourni par npm. Installez directement Engine 1.0.10 ou une version 1.x ultérieure compatible.
+
+```sh
+npm install '@webview-native-ui/engine@^1.0.10'
+```
+
+Dans `ios/App/Podfile`, ajoutez le pod à la cible de l’application, en dehors du bloc `def capacitor_pods` généré.
+
+```ruby
+target 'App' do
+  capacitor_pods
+  pod 'WebViewNativeUIEngine', :path => '../../node_modules/@webview-native-ui/engine'
+end
+```
+
+Exécutez ensuite `npx cap sync ios`. Adaptez le chemin si votre projet natif ou votre répertoire node_modules se trouve ailleurs.
+
+## Initialisation
 
 ```ts
 import { AdMob } from '@capacitor-community/admob';

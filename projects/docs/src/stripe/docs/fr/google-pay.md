@@ -2,7 +2,7 @@
 title: "Google Pay"
 code: ["/docs/stripe/google-pay/strings.xml.md","/docs/stripe/google-pay/android-manifest.xml.md","/docs/stripe/google-pay/google-pay.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{}},{"id":"strings.xml","activeLine":{"strings.xml":[7,14]}},{"id":"androidmanifest.xml","activeLine":{"AndroidManifest.xml":[36,60]}},{"id":"1.-isgooglepayavailable","activeLine":{"google-pay.ts":[4,10]}},{"id":"2.-creategooglepay","activeLine":{"google-pay.ts":[15,33]}},{"id":"3.-presentgooglepay","activeLine":{"google-pay.ts":[33,39]}},{"id":"4.-addlistener","activeLine":{"google-pay.ts":[11,14]}}]
-sourceRevision: "68c857f2439433f5d6f6f6e2d798fd4744b4ccb0b04e1f67c0421aa43197b094"
+sourceRevision: "c090076843b1adc41331160d733299227a6c2ca81c53fe259d98a4c092ee1f76"
 ---
 Google Pay confirme un PaymentIntent en une seule présentation. L’implémentation Android accepte également un SetupIntent ; l’implémentation Web ne l’accepte pas.
 
@@ -145,6 +145,8 @@ try {
 
 ## 2. createGooglePay
 
+`paymentSummaryItems.amount` s’exprime dans l’unité principale de la devise. Pour un montant de 10,99 dollars américains, indiquez `10.99`. Côté serveur, Stripe attend le montant du PaymentIntent dans la plus petite unité de la devise, soit `1099` cents pour le même achat. Le total affiché doit correspondre au montant de l’Intent sur le serveur.
+
 Récupérez un secret client de PaymentIntent depuis votre backend. Sur Android, vous pouvez passer à la place un secret client de SetupIntent. Consultez [Intégration serveur](/docs/server-integration). L’option s’appelle `paymentIntentClientSecret` pour les deux types d’Intent. Le Web nécessite également `paymentSummaryItems`, `merchantIdentifier`, `countryCode` et `currency`.
 
 ```ts
@@ -160,10 +162,12 @@ await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
 
   // Web uniquement. Google Pay dans une application Android ne le nécessite pas.
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',

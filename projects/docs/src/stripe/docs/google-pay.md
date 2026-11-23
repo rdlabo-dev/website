@@ -149,6 +149,8 @@ try {
 
 ## 2. createGooglePay
 
+`paymentSummaryItems.amount` uses major currency units: `10.99` means USD $10.99. Stripe server-side PaymentIntent amounts use the smallest currency unit (`1099` for the same USD amount). Keep the displayed total and the backend Intent amount consistent.
+
 Fetch a PaymentIntent client secret from your backend. On Android, you may instead pass a SetupIntent client secret. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration). The option is named `paymentIntentClientSecret` for both Intent types. Web also needs `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
 
 ```ts
@@ -167,10 +169,12 @@ await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
 
   // Web only. Google Pay on Android App doesn't need
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',

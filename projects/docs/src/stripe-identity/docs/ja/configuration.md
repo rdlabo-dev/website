@@ -11,7 +11,7 @@ npm install @capacitor-community/stripe-identity
 npx cap sync
 ```
 
-`@capacitor-community/stripe-identity` v8.3.0 は、iOS、Android、Web で Stripe Identity Verification Sheet を表示します。
+`@capacitor-community/stripe-identity` v8 は、iOS、Android、Web で Stripe Identity Verification Sheet を表示します。
 
 | 要件 | 最小バージョン |
 | --- | --- |
@@ -35,9 +35,10 @@ Xcode が `CFBundleIconFiles` を書き込めるよう、iOS のアセットカ�
 
 `android/app/src/main/res/values/styles.xml` で Material Components テーマを使用します。
 
-```diff xml:android/app/src/main/res/values/styles.xml
-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-+ <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+```xml:android/app/src/main/res/values/styles.xml
+<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+  <!-- 既存のテーマ項目 -->
+</style>
 ```
 
 Material Components の任意の親テーマを利用できます。[Material Components のテーマ設定](https://m2.material.io/develop/android/theming/dark/)と [Stripe の Android Material テーマガイド](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme)を参照してください。

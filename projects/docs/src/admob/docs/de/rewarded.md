@@ -1,12 +1,14 @@
 ---
 title: "Rewarded-Anzeigen"
-sourceRevision: "0c51c35e63037c85b947672eebb189fea8d4a2684f282cdf4f5c392eed834d3f"
+sourceRevision: "75b07af03f55314dc39c157e67ce1d9da91a5a6d455a0f80796e0e15bf6f81d1"
 ---
 # Rewarded-Anzeigen
 
 Belohnte Anzeigen ermöglichen die Vergabe von Gegenständen innerhalb der Anwendung für die Interaktion mit Videoanzeigen, spielbaren Anzeigen oder Umfragen. Googles Anleitungen für belohnte Anzeigen unter [Android](https://developers.google.com/admob/android/rewarded) und [iOS](https://developers.google.com/admob/ios/rewarded) erklären das Format.
 
 Behandeln Sie belohnte Anzeigen als Belohnungsablauf, nicht als weiteres unbelohntes Interstitial. Führen Sie dies nach [Initialisierung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/configuration) und [Einwilligung](https://docs.rdlabo.dev/projects/capacitor-admob/docs/consent) aus. Gewähren Sie die Belohnung ausschließlich anhand des zurückgegebenen Ergebnisses oder des Ereignisses `Rewarded`, nicht anhand von `Dismissed`.
+
+Sobald die Belohnung verdient wurde, liefern sowohl `showRewardVideoAd()` als auch `showRewardInterstitialAd()` die Belohnung zurück. Wird die Anzeige vorher geschlossen, wird das Promise mit `REWARDED_AD_CANCELLED` abgelehnt. Schlägt die Präsentation fehl, wird das Promise ebenfalls abgelehnt. Die Fehlercodes der nativen SDKs sind plattformspezifisch. Behandeln Sie die Ablehnung, damit die App nach einem Abbruch ihre Schaltflächen und ihren Ladezustand zurücksetzen kann. Die Ereignisse `Rewarded`, `Dismissed` und `FailedToShow` werden weiterhin ausgelöst. Bereiten Sie nach dem Schließen oder einem Fehler die nächste Anzeige vor, bevor Sie sie anzeigen.
 
 ## Belohntes Video
 
@@ -150,3 +152,5 @@ await AdMob.addListener(RewardAdPluginEvents.Rewarded, async () => {
   }
 });
 ```
+
+Übergeben Sie unter Android beim Vorbereiten der Anzeige `immersiveMode: true` an `prepareRewardVideoAd()`, um während der Anzeige die Systemleisten auszublenden. Die Option gehört zum Aufruf für die Vorbereitung. Das Ausblenden in der Host-App allein wirkt sich nicht auf die Anzeigen-Activity des SDK aus.

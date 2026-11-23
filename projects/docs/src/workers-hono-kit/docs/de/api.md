@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "a02fb5de505073672651cead4a364845bc5bccaaecd53b108c95dda0b2e8da7a"
+sourceRevision: "4a34d16b06a8bbf30748b57cf908d6f0167c55c183257849dad0cbb9fbc35c6d"
 ---
-Öffentliche Einstiegspunkte von `@rdlabo/workers-hono-kit` v0.13.0 und den eigenständigen Paketen für MySQL und Zeitzonen.
+Öffentliche Einstiegspunkte von `@rdlabo/workers-hono-kit` v0.13.1 und den eigenständigen Paketen für MySQL und Zeitzonen.
 
 #### `module` @rdlabo/workers-hono-kit
 

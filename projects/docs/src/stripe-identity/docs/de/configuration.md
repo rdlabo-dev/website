@@ -2,7 +2,7 @@
 title: "Konfiguration"
 code: []
 scrollActiveLine: []
-sourceRevision: "fd2e7bfe95b5aef53bcd0951eeb1de5f4c605a25020e1c3b9b9204c37e77b947"
+sourceRevision: "8fac0886d3e943adf1624e14a570235fadea7c8f532dfc2023f691b844bc0b70"
 ---
 Installieren Sie Stripe Identity und synchronisieren Sie die nativen Capacitor-Projekte.
 
@@ -11,7 +11,7 @@ npm install @capacitor-community/stripe-identity
 npx cap sync
 ```
 
-`@capacitor-community/stripe-identity` v8.3.0 zeigt das Stripe Identity Verification Sheet unter iOS, Android und im Web an.
+`@capacitor-community/stripe-identity` v8 zeigt das Stripe Identity Verification Sheet unter iOS, Android und im Web an.
 
 | Anforderung | Mindestwert |
 | --- | --- |
@@ -35,9 +35,10 @@ Behalten Sie ein primäres App Icon im iOS-Asset-Katalog bei, damit Xcode `CFBun
 
 Verwenden Sie in `android/app/src/main/res/values/styles.xml` ein Material-Components-Theme:
 
-```diff xml:android/app/src/main/res/values/styles.xml
-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-+ <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+```xml:android/app/src/main/res/values/styles.xml
+<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+  <!-- Vorhandene Einträge Ihres Designs -->
+</style>
 ```
 
 Jedes übergeordnete Material-Components-Theme ist zulässig. Siehe [Material-Components-Theming](https://m2.material.io/develop/android/theming/dark/) und die [Stripe-Anleitung für Android-Material-Themes](https://stripe.com/docs/identity/verify-identity-documents?platform=android&type=new-integration#set-up-material-theme).

@@ -141,6 +141,8 @@ try {
 
 ## 2. createGooglePay
 
+`paymentSummaryItems.amount` は通貨の基本単位で指定します。米ドルなら `10.99` は10.99ドルです。サーバー側で Stripe の PaymentIntent に指定する金額は最小通貨単位なので、同じ金額をセントで `1099` と指定します。表示する合計額とバックエンドの Intent の金額を一致させてください。
+
 バックエンドから PaymentIntent のクライアントシークレットを取得します。Android では SetupIntent も渡せます。[サーバー連携](/docs/server-integration)を参照してください。どちらもオプション名は `paymentIntentClientSecret` です。Web では `paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` も必要です。
 
 ```ts
@@ -156,10 +158,12 @@ await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
 
   // Webのみで必要です。AndroidアプリのGoogle Payでは不要です。
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',

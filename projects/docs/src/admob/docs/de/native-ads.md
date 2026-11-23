@@ -1,6 +1,6 @@
 ---
 title: "Native Ads"
-sourceRevision: "69cae64fe37304c3329b45be3112e3dbb022935fff8dba0963666b6fc299f112"
+sourceRevision: "3e8af95a4eb81da66ce9b7f9c76fb695ddfb566cb3ec15f9ce7b4389779a4e8f"
 ---
 # Native Ads
 
@@ -158,11 +158,13 @@ const feed = await NativeAdFeed.create({
 });
 ```
 
-Unter iOS aktiviert `scrollElement` die native Scrollverfolgung für diesen Container. Layoutänderungen erfordern weiterhin eine erneute Messung. Rufen Sie nach anwendungsgesteuerten Änderungen `invalidateLayout()` auf. Die Beschneidung innerhalb des Scrollcontainers und an seinen sichtbaren Grenzen bleibt erhalten. `pause()` und `destroy()` stoppen die Verfolgung. Andere Plattformen ignorieren diese Option und aktualisieren die Koordinaten weiterhin mit JavaScript.
+Unter iOS aktiviert `scrollElement` die native Scrollverfolgung für diesen Container. Das schließt Ziehbewegungen ein, die auf der nativen Anzeige beginnen. Taps verarbeiten weiterhin die nativen Ansichten des Google SDK. Layoutänderungen erfordern weiterhin eine erneute Messung. Rufen Sie nach anwendungsgesteuerten Änderungen `invalidateLayout()` auf. Die Beschneidung innerhalb des Scrollcontainers und an seinen sichtbaren Grenzen bleibt erhalten. `pause()` und `destroy()` stoppen die Verfolgung. Andere Plattformen ignorieren diese Option und aktualisieren die Koordinaten weiterhin mit JavaScript.
 
-Lässt sich der angegebene Container nicht eindeutig identifizieren, schlägt die Aktualisierung fehl und seine Anzeigen bleiben ausgeblendet. Verwenden Sie einen einzelnen Overflow-Scrollcontainer ohne Transformation oder Zoom. Verschachteltes Scrollen, Dokument-Scrollen über diese Option und Integrationen mit virtuellem Scrollen werden nicht unterstützt. Die Weiterleitung von Wischgesten, die auf einer Anzeige beginnen, ändert sich dadurch nicht.
+Lässt sich der angegebene Container nicht eindeutig identifizieren, schlägt die Aktualisierung fehl und seine Anzeigen bleiben ausgeblendet. Verwenden Sie einen einzelnen Overflow-Scrollcontainer ohne Transformation oder Zoom. Verschachteltes Scrollen, Dokument-Scrollen über diese Option und Integrationen mit virtuellem Scrollen werden nicht unterstützt.
 
 ## Scroll-Snapshots unter Android
+
+Ziehbewegungen, die auf einer nativen Anzeige beginnen, werden über den Scroll-Host der Engine an die WebView weitergegeben. Taps verarbeitet weiterhin das Google SDK.
 
 Setzen Sie `androidScrollSnapshot: true`, um während des Scrollens ein zwischengespeichertes Bild im Web-Feed anzuzeigen und die native Anzeige wiederherzustellen, sobald das Scrollen endet. Die Demo aktiviert diese Option unter Android standardmäßig.
 

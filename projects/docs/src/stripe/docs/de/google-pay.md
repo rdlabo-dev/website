@@ -2,7 +2,7 @@
 title: "Google Pay"
 code: ["/docs/stripe/google-pay/strings.xml.md", "/docs/stripe/google-pay/android-manifest.xml.md", "/docs/stripe/google-pay/google-pay.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{}},{"id":"strings.xml","activeLine":{"strings.xml":[7,14]}},{"id":"androidmanifest.xml","activeLine":{"AndroidManifest.xml":[36,60]}},{"id":"1.-isgooglepayavailable","activeLine":{"google-pay.ts":[4,10]}},{"id":"2.-creategooglepay","activeLine":{"google-pay.ts":[15,33]}},{"id":"3.-presentgooglepay","activeLine":{"google-pay.ts":[33,39]}},{"id":"4.-addlistener","activeLine":{"google-pay.ts":[11,14]}}]
-sourceRevision: "68c857f2439433f5d6f6f6e2d798fd4744b4ccb0b04e1f67c0421aa43197b094"
+sourceRevision: "c090076843b1adc41331160d733299227a6c2ca81c53fe259d98a4c092ee1f76"
 ---
 Google Pay bestätigt einen PaymentIntent in einer einzigen Darstellung. Die Android-Implementierung akzeptiert zusätzlich einen SetupIntent, die Web-Implementierung nicht.
 
@@ -145,6 +145,8 @@ try {
 
 ## 2. createGooglePay
 
+`paymentSummaryItems.amount` wird in der Hauptwährungseinheit angegeben. Für 10,99 US-Dollar geben Sie `10.99` an. Serverseitig erwartet Stripe den PaymentIntent-Betrag in der kleinsten Währungseinheit, also `1099` Cent für denselben Kauf. Der angezeigte Gesamtbetrag muss mit dem Intent-Betrag im Backend übereinstimmen.
+
 Rufen Sie ein PaymentIntent-Client-Secret von Ihrem Backend ab. Unter Android können Sie stattdessen ein SetupIntent-Client-Secret übergeben. Siehe [Serverintegration](/docs/server-integration). Die Option heißt für beide Intent-Typen `paymentIntentClientSecret`. Im Web sind außerdem `paymentSummaryItems`, `merchantIdentifier`, `countryCode` und `currency` erforderlich.
 
 ```ts
@@ -160,10 +162,12 @@ await Stripe.createGooglePay({
   paymentIntentClientSecret: paymentIntent,
 
   // Nur im Web. Google Pay in einer Android-App benötigt dies nicht
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',

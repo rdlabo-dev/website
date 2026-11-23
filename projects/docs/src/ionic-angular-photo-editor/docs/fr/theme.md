@@ -1,6 +1,6 @@
 ---
 title: "Thème"
-sourceRevision: "75b7ddb0a72e74cbe5f4f56b9827ff5151c2bbec2f5468cc3db9fb1adc8482a2"
+sourceRevision: "812043f96f85e0dea36c36f3869fc1935f3e9da8025662c959ed2a13bf315d98"
 ---
 Personnalisez les couleurs de l’éditeur après l’[installation](/docs/readme#installation).
 
@@ -23,7 +23,7 @@ Les couleurs par défaut sont définies dans la feuille de style de la biblioth�
 }
 ```
 
-Référence du code source : [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.7/projects/photo-editor/src/lib/pages/core.scss).
+Référence du code source : [`core.scss`](https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.8/projects/photo-editor/src/lib/pages/core.scss).
 
 ## Palette de couleurs de la barre d’outils
 

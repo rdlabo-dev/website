@@ -10,6 +10,12 @@ scrollActiveLine: []
 
 `sk_live_...` と `sk_test_...` はサーバーだけで管理します。アプリへ渡すのは、`Stripe.initialize` または Android Google Pay のメタデータで使用する公開可能キーだけです。Capacitor の設定、ソース管理、クライアントログへシークレットキーを含めないでください。
 
+## リクエストの認証と注文の検証
+
+サーバーでアプリの利用者を認証し、対応する Customer を特定します。クライアントから送られた金額や Customer ID をそのまま使わず、サーバーが管理する商品・注文データから金額と通貨を決定します。決済作成の再試行は冪等にし、注文状態を変更する前に Webhook の署名を検証してください。
+
+デモのエンドポイントは以下の形式で応答します。公開テストルートには本番用の認証や注文に対するアクセス権の検証がないため、レスポンス形式を利用しつつ、本番側でこれらの検証を実装してください。
+
 ## クライアントシークレット
 
 すぐに課金する場合は [PaymentIntent](https://stripe.com/docs/payments/payment-intents)、支払い方法を後で使うために保存する場合は [SetupIntent](https://stripe.com/docs/payments/save-and-reuse) を作成します。アプリへ返すのは Intent の**クライアントシークレット**です。シークレットキーや未加工の Charge を返してはいけません。
@@ -63,4 +69,4 @@ Apple Pay は PaymentIntent のクライアントシークレットを使用し�
 
 `Canceled` は利用者がシートを閉じた状態です。`Failed` と `FailedToLoad` はエラーとして扱います。以前の Intent を確認できなくなった場合は、新しい Intent を作成してから再試行してください。
 
-上記のレスポンスを返す公式デモサーバーは [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/server) にあります。
+上記のレスポンスを返す公式デモサーバーは [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/server) にあります。

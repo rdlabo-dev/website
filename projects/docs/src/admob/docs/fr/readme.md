@@ -1,6 +1,6 @@
 ---
 title: "Premiers pas"
-sourceRevision: "457983532f3bb09229379a8c07603a7c941a0c3e6dff6038f309a572a8f8bf9a"
+sourceRevision: "2ace82b941c10feb5c2f8f034b8f56a1881792ab172bf19264d9e024586b31cf"
 ---
 <!-- rdlabo-docs-omit -->
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
@@ -41,14 +41,25 @@ Créé avec [contributors-img](https://contrib.rocks).
 
 ## Démonstration
 
-[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.4.1/demo)
+[Code de la démonstration.](https://github.com/capacitor-community/admob/tree/v8.4.2/demo)
 
 ### Captures d’écran
 
-|             |                Bannière                |                Interstitielle                |                Récompense                |              À l’ouverture de l’application               |
-| :---------- | :----------------------------------: | :----------------------------------------: | :----------------------------------: | :---------------------------------: |
-| **iOS**     | ![](demo/screenshots/ios_banner.png) | ![](demo/screenshots/ios_interstitial.png) | ![](demo/screenshots/ios_reward.png) | ![](demo/screenshots/ios_open.png)  |
-| **Android** | ![](demo/screenshots/md_banner.png)  | ![](demo/screenshots/md_interstitial.png)  | ![](demo/screenshots/md_reward.png)  | ![](demo/screenshots/md_open.png)   |
+#### iOS
+
+| Bannière | Annonce interstitielle | Annonce avec récompense |
+| :----: | :----------: | :----: |
+| <img src="demo/screenshots/ios_banner.webp" alt="Annonce de test (bannière) sur iOS" width="240" /> | <img src="demo/screenshots/ios_interstitial.webp" alt="Annonce de test (interstitielle) sur iOS" width="240" /> | <img src="demo/screenshots/ios_reward.webp" alt="Annonce de test (avec récompense) sur iOS" width="240" /> |
+| **Annonce à l’ouverture** | **Annonces natives** | |
+| <img src="demo/screenshots/ios_open.webp" alt="Annonce de test (à l’ouverture) sur iOS" width="240" /> | <img src="demo/screenshots/ios_native.webp" alt="Annonce native de test dans le flux de démonstration sur iOS" width="240" /> | |
+
+#### Android
+
+| Bannière | Annonce interstitielle | Annonce avec récompense |
+| :----: | :----------: | :----: |
+| <img src="demo/screenshots/md_banner.webp" alt="Annonce de test (bannière) sur Android" width="240" /> | <img src="demo/screenshots/md_interstitial.webp" alt="Annonce de test (interstitielle) sur Android" width="240" /> | <img src="demo/screenshots/md_reward.webp" alt="Annonce de test (avec récompense) sur Android" width="240" /> |
+| **Annonce à l’ouverture** | **Annonces natives** | |
+| <img src="demo/screenshots/md_open.webp" alt="Annonce de test (à l’ouverture) sur Android" width="240" /> | <img src="demo/screenshots/md_native.webp" alt="Annonce native de test dans le flux de démonstration sur Android" width="240" /> | |
 
 <!-- /rdlabo-docs-omit -->
 
@@ -225,6 +236,9 @@ Commencez par [Installation](/docs/readme#installation) ci-dessus, puis [Configu
 * [`hideBanner()`](/docs/readme#hidebanner)
 * [`resumeBanner()`](/docs/readme#resumebanner)
 * [`removeBanner()`](/docs/readme#removebanner)
+* [`prepareBanner(...)`](/docs/readme#preparebanner)
+* [`getAdaptiveBannerSize(...)`](/docs/readme#getadaptivebannersize)
+* [`getBannerSize()`](/docs/readme#getbannersize)
 * [`addListener(BannerAdPluginEvents.SizeChanged, ...)`](/docs/readme#addlistenerbanneradplugineventssizechanged-)
 * [`addListener(BannerAdPluginEvents.Loaded, ...)`](/docs/readme#addlistenerbanneradplugineventsloaded-)
 * [`addListener(BannerAdPluginEvents.FailedToLoad, ...)`](/docs/readme#addlistenerbanneradplugineventsfailedtoload-)
@@ -564,6 +578,51 @@ removeBanner() => Promise<void>
 Détruit la bannière actuelle et la retire de l’écran.
 
 **Depuis :** 1.1.2
+
+--------------------
+
+
+### prepareBanner(...)
+
+```typescript
+prepareBanner(options: BannerAdOptions) => Promise<void>
+```
+
+Précharge la bannière suivante en laissant la bannière actuelle à l’écran. La promesse se résout à la fin du chargement. Appelez showBanner() avec les mêmes options pour afficher la bannière préparée. Une nouvelle préparation remplace la précédente. removeBanner() annule la préparation.
+
+| Paramètre     | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#banneradoptions">BannerAdOptions</a></code> |
+
+--------------------
+
+
+### getAdaptiveBannerSize(...)
+
+```typescript
+getAdaptiveBannerSize(options?: { width?: number | undefined; } | undefined) => Promise<AdMobBannerSize>
+```
+
+Calcule les dimensions d’une bannière adaptative ancrée sans créer ni charger d’annonce. Par défaut, le calcul utilise la largeur disponible en tenant compte des zones sûres. Les dimensions sont exprimées en dp sur Android et en points sur iOS. Refaites le calcul après une rotation ou un changement de largeur disponible. La largeur fournie pour ce calcul ne change pas celle de showBanner().
+
+| Paramètre     | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ width?: number; }</code> |
+
+**Renvoie :** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
+
+--------------------
+
+
+### getBannerSize()
+
+```typescript
+getBannerSize() => Promise<AdMobBannerSize>
+```
+
+Renvoie les dimensions affichées de la bannière en dp sur Android ou en points sur iOS. Les deux dimensions valent zéro avant le chargement et lorsque la bannière est masquée, supprimée ou en échec. Cet appel ne crée, ne charge et n’affiche aucune annonce.
+
+**Renvoie :** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
 
 --------------------
 

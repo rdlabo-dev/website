@@ -1,6 +1,6 @@
 ---
 title: "Native Ads"
-sourceRevision: "69cae64fe37304c3329b45be3112e3dbb022935fff8dba0963666b6fc299f112"
+sourceRevision: "3e8af95a4eb81da66ce9b7f9c76fb695ddfb566cb3ec15f9ce7b4389779a4e8f"
 ---
 # Native Ads
 
@@ -158,11 +158,13 @@ const feed = await NativeAdFeed.create({
 });
 ```
 
-Sur iOS, la définition de `scrollElement` active le suivi natif du défilement pour ce conteneur. Les changements de mise en page nécessitent toujours une nouvelle mesure ; appelez `invalidateLayout()` après les changements déclenchés par l’application. Le découpage à l’intérieur du conteneur de défilement et à ses limites visibles est conservé. `pause()` et `destroy()` arrêtent le suivi. Les autres plateformes ignorent cette option et conservent les mises à jour des coordonnées en JavaScript.
+Sur iOS, la définition de `scrollElement` active le suivi natif du défilement pour ce conteneur. Ce suivi couvre aussi les glissements amorcés sur l’annonce native. Les vues du SDK Google continuent à traiter les pressions. Les changements de mise en page nécessitent toujours une nouvelle mesure ; appelez `invalidateLayout()` après les changements déclenchés par l’application. Le découpage à l’intérieur du conteneur de défilement et à ses limites visibles est conservé. `pause()` et `destroy()` arrêtent le suivi. Les autres plateformes ignorent cette option et conservent les mises à jour des coordonnées en JavaScript.
 
-Si le conteneur indiqué ne peut pas être identifié sans ambiguïté, la mise à jour échoue et ses annonces restent masquées. Utilisez un seul conteneur de défilement avec débordement, sans transformation ni zoom ; le défilement imbriqué, le défilement du document par cette option et les intégrations de défilement virtuel ne sont pas pris en charge. Cela ne modifie pas l’acheminement des gestes de balayage commencés sur une annonce.
+Si le conteneur indiqué ne peut pas être identifié sans ambiguïté, la mise à jour échoue et ses annonces restent masquées. Utilisez un seul conteneur de défilement avec débordement, sans transformation ni zoom ; le défilement imbriqué, le défilement du document par cette option et les intégrations de défilement virtuel ne sont pas pris en charge.
 
 ## Instantanés de défilement Android
+
+Les glissements amorcés sur une annonce native sont transmis à la WebView par l’hôte de défilement d’Engine. Le SDK Google continue de gérer les pressions.
 
 Définissez `androidScrollSnapshot: true` pour afficher une image mise en cache dans le flux Web pendant le défilement et restaurer l’annonce native lorsque le défilement s’arrête. La démo active cette option par défaut sur Android.
 

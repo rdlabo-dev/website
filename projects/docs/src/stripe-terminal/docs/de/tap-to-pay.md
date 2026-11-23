@@ -2,11 +2,11 @@
 title: "Tap to Pay"
 code: ["tap-to-pay/tap-to-pay.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"tap-to-pay.ts":[1,1]}},{"id":"plattformvoraussetzungen","activeLine":{"tap-to-pay.ts":[1,1]}},{"id":"einrichtungsreihenfolge","activeLine":{"tap-to-pay.ts":[8,11]}},{"id":"die-kontoverknüpfung-prüfen","activeLine":{"tap-to-pay.ts":[11,16]}},{"id":"oberflächenkonfiguration","activeLine":{"tap-to-pay.ts":[16,23]}},{"id":"suchen-und-verbinden","activeLine":{"tap-to-pay.ts":[23,36]}},{"id":"einschränkungen","activeLine":{"tap-to-pay.ts":[1,1]}}]
-sourceRevision: "d93c458f26d654c92f3a91c892bd49deb092be0427f07e8ce6ca9d560ff67c47"
+sourceRevision: "c87d502d99713c3cbf5ba3b691e1b1d4d84d7021303acf3e3155dd29e794a1f7"
 ---
 Tap to Pay erfasst kontaktlose Zahlungen auf einem kompatiblen Telefon oder Tablet ohne separates Kartenlesegerät. Verwenden Sie `TerminalConnectTypes.TapToPay` nach der [Konfiguration](/docs/configuration) und der Einrichtung eines funktionierenden [Verbindungstokens](/docs/collect-a-payment).
 
-Die offizielle Demo zeigt Tap to Pay, Internet und Bluetooth in [demo/angular](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular).
+Die offizielle Demo zeigt Tap to Pay, Internet und Bluetooth in [demo/angular](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular).
 
 ## Plattformvoraussetzungen
 
@@ -15,6 +15,8 @@ Die offizielle Demo zeigt Tap to Pay, Internet und Bluetooth in [demo/angular](h
 | Android  | Ja       | NFC-fähiges Gerät, Standortberechtigung und Erfüllung der Voraussetzungen für Stripe Tap to Pay on Android. `minSdkVersion` 26.     |
 | iOS      | Ja       | Tap to Pay on iPhone; iOS 16.4+ für die Prüfung der Kontoverknüpfung. `setTapToPayUxConfiguration` ist nicht implementiert. |
 | Web      | Nein        | `discoverReaders({ type: TapToPay })` ist nicht verfügbar.                                                      |
+
+Die Mindestversion des Betriebssystems garantiert nicht, dass ein Gerät Tap to Pay unterstützt. Prüfen Sie für die verwendete SDK-Version die [iPhone-Anforderungen und die Einrichtung der Apple-Berechtigung](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=ios) oder die [Geräteanforderungen für Android](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=android). Für echte Zahlungen benötigen Sie ein geeignetes physisches Gerät. Mit einem simulierten Lesegerät lassen sich weder NFC-Zahlungen noch die Berechtigung des Kontos prüfen.
 
 Schließen Sie die Terminal-Einrichtung im Stripe-Dashboard ab und erstellen Sie einen [Standort](https://docs.stripe.com/terminal/fleet/locations). Übergeben Sie dessen `locationId` an `discoverReaders`; das Plugin verwendet sie beim Verbinden des Lesegeräts für Tap to Pay.
 
@@ -48,7 +50,7 @@ Android und Web weisen den Aufruf ab (`unimplemented` / `unavailable`). Sichern 
 
 `setTapToPayUxConfiguration` ist **nur unter Android** verfügbar. Rufen Sie es nach `initialize()` und vor `connectReader()` auf. iOS meldet, dass die Methode nicht implementiert ist; im Web wird der Aufruf protokolliert und beendet.
 
-Die installierte Android-Implementierung wendet `colors` (`primary`, `success`, `error` jeweils als `'default'` oder Hex-Zeichenfolge wie `'#FF5733'`) und `darkMode` (`SYSTEM`, `DARK`, `LIGHT`) an. Das TypeScript-Feld `tapZone` ist deklariert, wird aber im aktuellen Android Terminal SDK von v8.3.0 nicht angewendet.
+Die installierte Android-Implementierung wendet `colors` (`primary`, `success`, `error` jeweils als `'default'` oder Hex-Zeichenfolge wie `'#FF5733'`) und `darkMode` (`SYSTEM`, `DARK`, `LIGHT`) an. Das TypeScript-Feld `tapZone` ist deklariert, wird aber im aktuellen Android Terminal SDK dieses Plugins nicht angewendet.
 
 !::setTapToPayUxConfiguration::
 

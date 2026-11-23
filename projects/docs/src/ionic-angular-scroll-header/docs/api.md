@@ -2,7 +2,7 @@
 title: API
 ---
 
-Reference for the public standalone directives exported by `@rdlabo/ionic-angular-scroll-header` v22.0.7.
+Reference for the public standalone directives exported by `@rdlabo/ionic-angular-scroll-header` v22.0.8.
 
 ## Directives
 

@@ -533,7 +533,7 @@
   "Value": "Valeur",
   "Warms model resources. Web creates and destroys a temporary text session; `promptPrefix` is iOS-only.": "Préchauffe les ressources du modèle. Le Web crée puis détruit une session textuelle temporaire ; `promptPrefix` est réservé à iOS.",
   "Warmup options. Android performs global model warmup; iOS can prewarm a chat.\nWeb creates and releases a temporary session, optionally using a chat's context.": "Options de préchauffage. Android effectue un préchauffage global du modèle ; iOS peut préchauffer un chat.\nLe Web crée puis libère une session temporaire, éventuellement avec le contexte d’un chat.",
-  "Web only. Requires stripe-pwa-elements ^3.0.0.": "Web uniquement. Nécessite stripe-pwa-elements ^3.0.0.",
+  "Web only. Requires stripe-pwa-elements ^4.1.0.": "Web uniquement. Nécessite stripe-pwa-elements ^4.1.0.",
   "When using this feature,\na Tag For Users under the Age of Consent in Europe (TFUA) parameter will be included in all future ad requests.": "Lorsque cette fonction est utilisée, un paramètre Tag For Users under the Age of Consent in Europe (TFUA), destiné aux utilisateurs n’ayant pas atteint l’âge du consentement en Europe, est inclus dans toutes les demandes d’annonces suivantes.",
   "Whether the Web SDK automatically logs App Events.": "Indique si le SDK Web enregistre automatiquement les App Events.",
   "Whether the Web SDK parses XFBML social plugins.": "Indique si le SDK Web analyse les plugins sociaux XFBML.",

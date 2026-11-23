@@ -34,7 +34,7 @@ import { GooglePayEventsEnum, Stripe } from '@capacitor-community/stripe';
     // Web only. Google Pay on Android App doesn't need
     paymentSummaryItems: [{
       label: 'Product Name',
-      amount: 1099.00
+      amount: 10.99
     }],
     merchantIdentifier: 'merchant.com.getcapacitor.stripe',
     countryCode: 'US',

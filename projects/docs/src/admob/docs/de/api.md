@@ -1,6 +1,6 @@
 ---
 title: "API"
-sourceRevision: "7e90a95b7a919d884d2ef93af779840d36b410b18fe36a4fdbbca74a47f5eb54"
+sourceRevision: "cc36c0a2164800571e55f2d938a2b49214bb4f4e80f2ddb3efc5f224d845a124"
 ---
 * [`initialize(...)`](#initialize)
 * [`trackingAuthorizationStatus()`](#trackingauthorizationstatus)
@@ -20,6 +20,9 @@ sourceRevision: "7e90a95b7a919d884d2ef93af779840d36b410b18fe36a4fdbbca74a47f5eb5
 * [`hideBanner()`](#hidebanner)
 * [`resumeBanner()`](#resumebanner)
 * [`removeBanner()`](#removebanner)
+* [`prepareBanner(...)`](#preparebanner)
+* [`getAdaptiveBannerSize(...)`](#getadaptivebannersize)
+* [`getBannerSize()`](#getbannersize)
 * [`addListener(BannerAdPluginEvents.SizeChanged, ...)`](#addlistenerbanneradplugineventssizechanged-)
 * [`addListener(BannerAdPluginEvents.Loaded, ...)`](#addlistenerbanneradplugineventsloaded-)
 * [`addListener(BannerAdPluginEvents.FailedToLoad, ...)`](#addlistenerbanneradplugineventsfailedtoload-)
@@ -354,6 +357,51 @@ removeBanner() => Promise<void>
 Zerstört das aktuelle Banner und entfernt es vom Bildschirm.
 
 **Seit:** 1.1.2
+
+--------------------
+
+
+### prepareBanner(...)
+
+```typescript
+prepareBanner(options: BannerAdOptions) => Promise<void>
+```
+
+Lädt das nächste Banner vor. Das aktuelle Banner bleibt dabei sichtbar. Das Promise wird nach dem Laden erfüllt. Rufen Sie showBanner() mit passenden Optionen auf, um das vorbereitete Banner anzuzeigen. Eine neue Vorbereitung ersetzt die vorherige. removeBanner() bricht die Vorbereitung ab.
+
+| Parameter     | Typ                                                         |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#banneradoptions">BannerAdOptions</a></code> |
+
+--------------------
+
+
+### getAdaptiveBannerSize(...)
+
+```typescript
+getAdaptiveBannerSize(options?: { width?: number | undefined; } | undefined) => Promise<AdMobBannerSize>
+```
+
+Berechnet die Größe eines verankerten adaptiven Banners, ohne eine Anzeige zu erstellen oder zu laden. Ohne Breitenangabe gilt die verfügbare Breite unter Berücksichtigung der sicheren Bereiche. Die Maße sind dp unter Android und Punkte unter iOS. Berechnen Sie die Größe nach einer Drehung oder Änderung der verfügbaren Breite neu. Eine explizite Breitenangabe wirkt sich nicht auf showBanner() aus.
+
+| Parameter     | Typ                              |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ width?: number; }</code> |
+
+**Rückgabe:** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
+
+--------------------
+
+
+### getBannerSize()
+
+```typescript
+getBannerSize() => Promise<AdMobBannerSize>
+```
+
+Gibt die angezeigte Bannergröße in dp (Android) oder Punkten (iOS) zurück. Vor dem Laden, bei ausgeblendetem oder entferntem Banner sowie nach einem Fehler sind beide Maße null. Der Aufruf erstellt, lädt und zeigt keine Anzeige.
+
+**Rückgabe:** <code>Promise&lt;<a href="#admobbannersize">AdMobBannerSize</a>&gt;</code>
 
 --------------------
 

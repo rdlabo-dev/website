@@ -2,7 +2,7 @@
 title: "Konfiguration"
 code: []
 scrollActiveLine: []
-sourceRevision: "c0b0b9e6e9ce81a4be85e1ab435da311c46b60173fbf267dd3812f5105591533"
+sourceRevision: "729fb7404abc9329e7d47525d08466c4906b223fb426275d34a3b719f927b852"
 ---
 Installieren Sie Stripe Terminal und synchronisieren Sie die nativen Capacitor-Projekte.
 
@@ -11,10 +11,10 @@ npm install @capacitor-community/stripe-terminal
 npx cap sync
 ```
 
-Das Plugin ist `@capacitor-community/stripe-terminal` **v8.3.0**. Offizielle Demos:
+Diese Anleitung gilt für Version 8 des Plugins mit Capacitor 8. Die folgenden offiziellen Demos zeigen die Integration.
 
-- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular)
-- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/app-on-devices)
+- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular)
+- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/app-on-devices)
 
 | Voraussetzung             | Minimum |
 | ----------------------- | ------- |
@@ -70,30 +70,37 @@ Es sind keine weiteren Schritte erforderlich. Nur Internet-Lesegeräte sind verf
 
 ## iOS-Konfiguration
 
-Für das Plugin sind keine weiteren Schritte erforderlich. USB, HandOff und `setTapToPayUxConfiguration` sind unter iOS nicht implementiert.
+Richten Sie die App gemäß den Anforderungen des [Stripe Terminal iOS SDK](https://github.com/stripe/stripe-terminal-ios/tree/5.8.0#configure-your-app) ein.
+
+- Fügen Sie `NSLocationWhenInUseUsageDescription` zu `Info.plist` hinzu und aktivieren Sie den Standortzugriff für die Zahlungsabwicklung.
+- Erklären Sie mit `NSBluetoothAlwaysUsageDescription`, warum die App Bluetooth für die Verbindung zum Lesegerät benötigt.
+- Soll die Verbindung zu einem Bluetooth-Lesegerät im Hintergrund bestehen bleiben, ergänzen Sie das Array `UIBackgroundModes` um `bluetooth-central`.
+
+Tap to Pay erfordert zusätzlich eine Berechtigung von Apple, ein unterstütztes physisches Gerät und Betriebssystem sowie ein unterstütztes Land und ein berechtigtes Stripe-Konto. Die Mindestversion iOS 15 allein gewährleistet die Verfügbarkeit von Tap to Pay nicht. Beachten Sie die [Anleitung zu Tap to Pay](/docs/tap-to-pay), bevor Sie ein physisches Gerät verwenden.
+
+USB, HandOff und `setTapToPayUxConfiguration` sind unter iOS nicht implementiert.
 
 ## Android-Konfiguration
 
 Fügen Sie Ihrem Dokument `android/app/src/main/AndroidManifest.xml` die Berechtigungen hinzu:
 
-```diff
-+ <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-+ <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
 `discoverReaders` wird abgewiesen, wenn `ACCESS_FINE_LOCATION` nicht zur Laufzeit erteilt wurde.
 
 Setzen Sie außerdem `minSdkVersion` in Ihrer Datei `android/variables.gradle` auf `26`:
 
-```diff
-  ext {
--    minSdkVersion = 24
-+    minSdkVersion = 26
-  }
+```groovy
+ext {
+    minSdkVersion = 26
+}
 ```
 
 Wenn Sie Apps für Stripe-Android-Geräte (etwa Stripe Reader S700) entwickeln und `TerminalConnectTypes.HandOff` verwenden, folgen Sie der [Anleitung von Stripe zur clientseitigen Einrichtung](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app).

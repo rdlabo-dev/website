@@ -92,25 +92,7 @@ await Stripe.createPaymentSheet({
 
 ### Angular
 
-ルートコンポーネントから初期化します。[Angular](/docs/angular)を参照してください。
-
-```ts:src/app/app.component.ts
-import { Component } from '@angular/core';
-import { Stripe } from '@capacitor-community/stripe';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
-export class AppComponent {
-  constructor() {
-    void Stripe.initialize({
-      publishableKey: 'Your Publishable Key',
-    });
-  }
-}
-```
+アプリ起動時に `provideAppInitializer` で初期化の完了を待ちます。[Angular の起動例](/docs/angular)を参照してください。コンポーネントのコンストラクターで `void` を使って初期化を開始すると、プラグインの準備が整う前に決済操作が実行されることがあります。
 
 ### React
 

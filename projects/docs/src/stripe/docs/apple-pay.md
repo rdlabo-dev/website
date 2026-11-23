@@ -48,6 +48,8 @@ try {
 
 ## 2. createApplePay
 
+`paymentSummaryItems.amount` uses major currency units: `10.99` means USD $10.99. Stripe server-side PaymentIntent amounts use the smallest currency unit (`1099` for the same USD amount). Keep the displayed total and the backend Intent amount consistent.
+
 Fetch a PaymentIntent client secret from your backend. Replace `/your-intent-endpoint` in the example with the backend URL from [Server Integration](/docs/server-integration). Then pass `paymentIntentClientSecret`, `paymentSummaryItems`, `merchantIdentifier`, `countryCode`, and `currency`.
 
 ```ts
@@ -64,10 +66,12 @@ const { paymentIntent } = (await response.json()) as {
 
 await Stripe.createApplePay({
   paymentIntentClientSecret: paymentIntent,
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',
@@ -111,14 +115,16 @@ Stripe.addListener(ApplePayEventsEnum.Completed, () => {
 
 On iOS, `DidSelectShippingContact` includes `contact` and `updateId`. Recalculate totals and call `updateApplePaySheet` with that `updateId`. If JavaScript does not respond, the native sheet falls back to the original summary items after 25 seconds.
 
+The shipping example assumes the backend also updates the Intent total to USD $15.99. `updateApplePaySheet` changes the displayed summary only; it does not update your backend PaymentIntent.
+
 ```ts
 Stripe.addListener(ApplePayEventsEnum.DidSelectShippingContact, async (data) => {
   await Stripe.updateApplePaySheet({
     updateId: data.updateId,
     paymentSummaryItems: [
-      { label: 'Product Name', amount: 1099.00 },
-      { label: 'Shipping', amount: 500.00 },
-      { label: 'Total', amount: 1599.00 },
+      { label: 'Product Name', amount: 10.99 },
+      { label: 'Shipping', amount: 5.0 },
+      { label: 'Total', amount: 15.99 },
     ],
   });
 });

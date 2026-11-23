@@ -2,16 +2,18 @@
 title: "Démarrage rapide avec Angular"
 code: []
 scrollActiveLine: []
-sourceRevision: "6fe60ce57814cbfc0ba73c86398a43fbd493582369cf58aff1b04aa9fd602080"
+sourceRevision: "a37044f2e08051cbf34bbb3d463daf12e54e1a59446e0fa7f75157ad306a79ae"
 ---
-Initialisez le plugin une seule fois au démarrage de l’application. Les applications Angular 22 doivent utiliser `provideAppInitializer` pour exécuter l’initialisation avant de présenter l’interface Stripe.
+Initialisez le plugin une seule fois au démarrage. Dans une application Angular standalone, vous pouvez utiliser `provideAppInitializer` pour terminer l’initialisation avant d’afficher l’interface Stripe.
 
 ```ts:src/app/app.config.ts
 import { ApplicationConfig, provideAppInitializer } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 import { Stripe } from '@capacitor-community/stripe';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideAppInitializer(() =>
       Stripe.initialize({
         publishableKey: 'Your Publishable Key',
@@ -25,10 +27,10 @@ Enregistrez les écouteurs de résultat dans ce même parcours de démarrage. Co
 
 ## Web
 
-Installez `stripe-pwa-elements` et appelez `defineCustomElements()` une seule fois après le démarrage d’Angular.
+Installez `@stripe/stripe-js@^9.17.0` et `stripe-pwa-elements@^4.1.0`, puis appelez `defineCustomElements()` une seule fois après le démarrage d’Angular.
 
 ```bash
-npm install stripe-pwa-elements
+npm install @stripe/stripe-js@^9.17.0 stripe-pwa-elements@^4.1.0
 ```
 
 ```ts:src/main.ts
@@ -42,7 +44,7 @@ bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.log(err));
 ```
 
-Lorsque vous récupérez les secrets de PaymentIntent ou SetupIntent avec `HttpClient` d’Angular, utilisez `firstValueFrom`. N’utilisez pas l’ancien utilitaire `toPromise()`, qui a été supprimé.
+Injectez `HttpClient` sous le nom `http` dans votre service ou composant. L’appel à `provideHttpClient()` ci-dessus l’enregistre. Pour récupérer les secrets clients d’un PaymentIntent ou d’un SetupIntent avec `HttpClient` d’Angular, utilisez `firstValueFrom`. Ajoutez les informations d’authentification de l’application via un intercepteur ou les options de requête. L’URL `environment.api` ci-dessous suppose le format de réponse de la démo. En production, utilisez votre propre backend avec authentification. La méthode `toPromise()` a été supprimée.
 
 ```ts
 import { firstValueFrom } from 'rxjs';

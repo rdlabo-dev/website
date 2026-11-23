@@ -55,3 +55,5 @@ if (isLoaded) {
 `Closed` イベントでアプリのフローを再開し、次の広告をロードします。
 
 `showAppOpen()` や `isAppOpenLoaded()` に `adId` を渡さないと、最後にロードした広告が対象になります。イベント一覧は [広告イベント](/docs/events) を見てください。
+
+アプリ起動時広告の有効期限はロードから4時間です。期限を過ぎると `isAppOpenLoaded()` は `{ value: false }` を返します。表示する前に `loadAppOpen()` をもう一度呼び出し、新しい広告をロードしてください。

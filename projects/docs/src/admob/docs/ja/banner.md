@@ -102,3 +102,43 @@ await AdMob.removeBanner();
 ```
 
 バナーのインプレッション単位の売上は `BannerAdPluginEvents.AdPaid` で通知されます。フルスクリーン形式は同じ `AdMobRevenueData` を `AdImpression` で出します。[広告イベント](/docs/events) を参照してください。
+
+Android で表示中のバナーを移動するには、同じ広告ユニットとリクエストオプションで `showBanner()` を再度呼び出し、`position` または `margin` を変更します。`adSize` を省略してもサイズは維持されます。レイアウトだけが変わる場合は、新しい広告をリクエストせず、表示中の広告を移動して処理を完了します。移動時には `npa` などのリクエストオプションを維持してください。レイアウトを変えずに `showBanner()` を呼び出した場合やリクエストオプションを変えた場合は、従来どおり再ロードします。バナーが2つ表示されることはありません。別のサイズや広告ユニットに切り替える際に、対応するバナーを `prepareBanner()` で準備していない場合は、先に `removeBanner()` を呼び出します。
+
+## アダプティブバナーの配置領域を事前に確保する
+
+バナーの作成や広告リクエストを行わずに、想定サイズを計算できます。
+
+```ts
+const { height } = await AdMob.getAdaptiveBannerSize();
+content.style.paddingBottom = `${height}px`;
+await AdMob.showBanner(options);
+```
+
+既定では、セーフエリアを考慮した現在の利用可能幅を使い、アダプティブバナーの `showBanner()` と同じ SDK の計算方法でサイズを求めます。単位は論理ピクセル（Android は dp、iOS はポイント）です。画面回転や利用可能幅の変更後は再計算し、実際の表示サイズは引き続き `SizeChanged` で取得します。
+
+任意の `{ width: 300 }` を渡すと、指定した論理ピクセル幅で計算します。`showBanner()` が使う幅は変わりません。不正な幅を渡すと拒否されます。この計算は Android と iOS で利用できます。Web では未対応のため拒否されます。
+
+## 表示中のバナーサイズを取得する
+
+`getBannerSize()` は、最初のサイズ変更イベントを取り逃した場合でも、表示中の幅と高さを論理ピクセルで返します。広告のリクエストや表示は行いません。ロード前、非表示時、削除後、失敗時はいずれの寸法もゼロです。
+
+```ts
+const { width, height } = await AdMob.getBannerSize();
+```
+
+以降のサイズ変更は `BannerAdPluginEvents.SizeChanged` を引き続き監視してください。
+
+## 表示せずに事前ロードする
+
+```ts
+await AdMob.prepareBanner(options);
+// 画面の準備ができたら表示します。
+await AdMob.showBanner(options);
+```
+
+`prepareBanner()` は、表示中のバナーを維持したまま次のバナーのロードが完了すると解決します。再ロードせずに表示するには、`showBanner()` に同じ広告ユニット、サイズ、リクエストオプションを渡します。位置と余白は変えられます。再利用できるバナーがない場合、`showBanner()` は通常どおり動作します。
+
+再び準備を開始すると、前回の準備は置き換えられます。`removeBanner()` は表示中と準備済みの両方のバナーを削除します。進行中の準備が置き換えられたり削除されたりすると、その Promise は拒否されます。
+
+準備完了時には `Loaded` が発生し、`SizeChanged` は発生しません。準備済みバナーの表示時には、表示寸法が変わった場合にだけ `SizeChanged` が発生し、`Loaded` は再発生しません。

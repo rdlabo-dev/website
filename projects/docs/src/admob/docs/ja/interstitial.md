@@ -49,3 +49,16 @@ await AdMob.showInterstitial({ adId: 'ca-app-pub-xxx/interstitial-1' });
 `isTesting` は [テスト](/docs/testing) を参照してください。
 
 ロード、表示、閉じる操作、失敗のイベントは [広告イベント](/docs/events) にあります。
+
+準備したインタースティシャル広告は1時間で期限切れになります。期限切れの広告を `showInterstitial()` で表示しようとすると `AD_EXPIRED` で拒否されます。新しい広告を準備してから再試行してください。
+
+## Android の没入モード
+
+広告の表示中に Android のシステムバーを隠すには、`prepareInterstitial()` に `immersiveMode: true` を指定します。Google Mobile Ads SDK は広告用の Activity を別に開くため、アプリの Activity でバーを隠しても広告には反映されません。
+
+```ts
+await AdMob.prepareInterstitial({ adId: 'YOUR_AD_UNIT_ID', immersiveMode: true });
+await AdMob.showInterstitial();
+```
+
+この設定は `prepareRewardVideoAd()` でも使えます。システムバーの表示は没入モードで制御します。広告の縦横比と黒帯の有無は SDK と広告素材で決まります。ユーザーはスワイプでシステムバーを一時表示できます。

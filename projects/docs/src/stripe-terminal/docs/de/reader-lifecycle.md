@@ -2,7 +2,7 @@
 title: "Lebenszyklus des Lesegeräts"
 code: ["reader-lifecycle/reader-lifecycle.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"reader-lifecycle.ts":[1,1]}},{"id":"auf-softwareupdates-hören","activeLine":{"reader-lifecycle.ts":[2,35]}},{"id":"auf-status-und-eingabeaufforderungen-hören","activeLine":{"reader-lifecycle.ts":[35,63]}},{"id":"die-anzeige-des-lesegeräts-festlegen","activeLine":{"reader-lifecycle.ts":[63,78]}},{"id":"die-suche-abbrechen","activeLine":{"reader-lifecycle.ts":[78,80]}},{"id":"trennen-und-wiederverbinden","activeLine":{"reader-lifecycle.ts":[80,112]}},{"id":"fehlerbehandlung","activeLine":{"reader-lifecycle.ts":[112,119]}}]
-sourceRevision: "67def22ef4b54e45a30ebe4508ca2565211ebff654bf739a74a93dade4599b3b"
+sourceRevision: "c0445e582e658702f633046abd82122b3502fad7909f9f90e9125a4537ad1fd7"
 ---
 Behalten Sie Softwareupdates, Status und Anzeigemeldungen des Lesegeräts unter Kontrolle, damit Terminal-Operationen den Bezahlvorgang nicht unterbrechen.
 
@@ -33,7 +33,7 @@ Rufen Sie bei Lesegeräten ohne eigenes Display den Akkustand, Ereignisse des Le
 
 ## Die Anzeige des Lesegeräts festlegen
 
-Zeigen Sie auf Geräten mit eigenem Display den Warenkorbinhalt vor `collectPaymentMethod` an. Leeren Sie die Anzeige anschließend. Internet-Lesegeräte im Web unterstützen diese Aufrufe.
+Zeigen Sie auf Lesegeräten mit eigenem Display den Warenkorbinhalt vor `collectPaymentMethod` an. Leeren Sie die Anzeige anschließend. Internet-Lesegeräte im Web unterstützen diese Aufrufe.
 
 !::setReaderDisplay::
 

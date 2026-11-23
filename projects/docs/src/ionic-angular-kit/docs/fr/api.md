@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "ef7160add83aeb3e3dd80313197d550a16c829ca3e41ba9af0ec7528bac7a06d"
+sourceRevision: "d179539904ee32dc277d263f4f01a6f54bd3a81ba0b386d6f2fbb05f61b11add"
 ---
-Cartographie des points d’entrée publics de `@rdlabo/ionic-angular-kit` v22.0.7. Les guides ciblés décrivent les exigences de cycle de vie et d’intégration ; cette page précise quel chemin de package contient chaque famille d’API.
+Cartographie des points d’entrée publics de `@rdlabo/ionic-angular-kit` v22.0.8. Les guides ciblés décrivent les exigences de cycle de vie et d’intégration ; cette page précise quel chemin de package contient chaque famille d’API.
 
 ## Principal
 

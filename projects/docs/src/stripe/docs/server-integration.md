@@ -10,6 +10,12 @@ scrollActiveLine: []
 
 Keep `sk_live_...` and `sk_test_...` on the server. Ship only the publishable key to the app, through `Stripe.initialize` or Android Google Pay metadata. Do not embed the secret key in Capacitor config, source control, or client logs.
 
+## Authenticated request boundary
+
+Authenticate the app user and select their Customer on the server. Calculate the order amount and currency from server-owned product/order data; do not trust arbitrary client amounts or Customer IDs. Apply idempotency to retried payment creation and verify webhook signatures before changing order state.
+
+The demo endpoints return the response shapes below, but their public test routes do not implement production authentication or order authorization. Adapt the contract, not the demo's trust model.
+
 ## Client secrets
 
 Create a [PaymentIntent](https://stripe.com/docs/payments/payment-intents) to charge now, or a [SetupIntent](https://stripe.com/docs/payments/save-and-reuse) to save a method for later. Return the Intent **client secret** to the app, not the secret key and not a raw charge.
@@ -63,4 +69,4 @@ Apple Pay uses a PaymentIntent client secret. Google Pay uses a PaymentIntent cl
 
 Treat `Canceled` as the customer dismissing the sheet. Treat `Failed` and `FailedToLoad` as errors. Retry only after you create a new Intent when the previous one can no longer be confirmed.
 
-The official demo server that returns the shapes above is [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/main/demo/server).
+The official demo server that returns the shapes above is [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/server).

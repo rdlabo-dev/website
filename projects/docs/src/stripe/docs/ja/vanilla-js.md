@@ -4,10 +4,10 @@ code: []
 scrollActiveLine: []
 ---
 
-Web では `stripe-pwa-elements` のカスタム要素を使用します。peer dependency をインストールし、Stripe の UI を表示する前に、起動処理で一度だけ要素を登録してください。
+Web では `stripe-pwa-elements` のカスタム要素を使用します。互換性のある peer dependency をインストールし、起動時に要素を一度だけ登録してから Stripe の UI を表示します。
 
 ```bash
-npm install stripe-pwa-elements
+npm install @stripe/stripe-js@^9.17.0 stripe-pwa-elements@^4.1.0
 ```
 
 ```ts

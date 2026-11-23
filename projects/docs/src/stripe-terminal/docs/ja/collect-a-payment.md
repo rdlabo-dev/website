@@ -42,7 +42,7 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 
 ### `tokenProviderEndpoint` 互換モード
 
-単純な構成では利用できますが、v8.3.0 のネイティブクライアントは認証ヘッダーも本文も付けられない空の HTTP **POST** を送信します。別の方法で認証・保護できる場合だけ使用し、無制限に公開されたトークン作成エンドポイントを用意しないでください。
+単純な構成では利用できますが、現在のネイティブクライアントは認証ヘッダーも本文も付けられない空の HTTP **POST** を送信します。別の方法で認証・保護できる場合だけ使用し、無制限に公開されたトークン作成エンドポイントを用意しないでください。
 
 レスポンスは `secret` 文字列を持つ JSON でなければなりません。
 
@@ -55,7 +55,7 @@ Terminal のイベントリスナーは JavaScript アプリケーションの�
 公式デモは `POST /connection/token` で `{ secret }` を返します。認証と認可はアプリケーションに合わせて調整してください。
 
 :::message
-v8.3.0 では Android が `tokenProviderEndpoint` の `secret` を、Web が `setConnectionToken` のオプションをログへ出力します。修正版へ更新できるまで Android の endpoint モードと本番 Web のコンソール保持を避けてください。
+現在、Android は `tokenProviderEndpoint` の `secret` を、Web が `setConnectionToken` のオプションをログへ出力します。修正版へ更新できるまで Android の endpoint モードと本番 Web のコンソール保持を避けてください。
 :::
 
 
@@ -64,6 +64,31 @@ Web の `initialize` は新しいプラグインインスタンスを必要と�
 ## 接続トークンを安全に渡す
 
 `tokenProviderEndpoint` を省略し、`initialize` より前に `RequestedConnectionToken` を登録します。通常の認証方式で取得し、成功レスポンスと `secret` を検証して `setConnectionToken({ token })` へ渡します。SDK がトークンを要求するとイベントが通知され、プラグインは `setConnectionToken({ token })` を待ちます。取得要求中だけ呼び出してください。Android と iOS は余分な呼び出しを `Stripe Terminal do not pending fetchConnectionToken` で拒否します。レスポンスやトークンをログへ出さないでください。
+
+```ts
+import { StripeTerminal, TerminalEventsEnum } from '@capacitor-community/stripe-terminal';
+
+const tokenListener = await StripeTerminal.addListener(TerminalEventsEnum.RequestedConnectionToken, async () => {
+  try {
+    const response = await fetch('https://your-backend.example.com/terminal/token', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${await getAuthToken()}` },
+    });
+    if (!response.ok) throw new Error('Connection token request failed');
+    const { secret } = await response.json();
+    if (typeof secret !== 'string' || secret.length === 0) {
+      throw new Error('Missing connection token');
+    }
+    await StripeTerminal.setConnectionToken({ token: secret });
+  } catch (error) {
+    showConnectionError(error);
+    // キャッシュしたトークンを渡したり、認証なしで再試行したりしないでください。
+  }
+});
+await StripeTerminal.initialize({ isTest: true });
+```
+
+`getAuthToken` と `showConnectionError` はアプリ側で実装します。`tokenListener` は、アプリ内でリスナーを所有するオブジェクトが破棄されるまで保持します。取得エラーを捕捉しても、SDK のトークン要求は保留のままです。失敗を表示し、同じ要求を認証付きで再試行できるようにします。プラグインが自動的にタイムアウトすることや、キャンセル API を提供することは前提にできません。
 
 !::setConnectionToken::
 

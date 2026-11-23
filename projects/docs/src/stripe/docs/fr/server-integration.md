@@ -2,13 +2,19 @@
 title: "Intégration serveur"
 code: []
 scrollActiveLine: []
-sourceRevision: "bba92695282e511bc9aac70dfba99187028a92ad912d8c823638b8cc21603952"
+sourceRevision: "50400ae0ad477d20468b9736bdbb1e770ca166c808888eae6526010133441402"
 ---
 `@capacitor-community/stripe` accepte uniquement des valeurs pouvant être utilisées côté client. Votre backend crée les PaymentIntents, SetupIntents, Customers et clés éphémères avec la clé secrète Stripe. Le plugin n’appelle jamais l’API secrète.
 
 ## Garder la clé secrète côté serveur
 
 Conservez `sk_live_...` et `sk_test_...` sur le serveur. Ne transmettez à l’application que la clé publique, via `Stripe.initialize` ou les métadonnées Google Pay d’Android. N’intégrez pas la clé secrète dans la configuration Capacitor, le contrôle de version ou les journaux client.
+
+## Authentifier les requêtes et vérifier les commandes
+
+Authentifiez l’utilisateur et sélectionnez le Customer correspondant sur le serveur. Déterminez le montant et la devise à partir du catalogue ou des commandes gérés par le serveur. Ne vous fiez pas aux montants ni aux identifiants Customer fournis par le client. Assurez l’idempotence des nouvelles tentatives de création de paiement et vérifiez la signature du webhook avant de modifier l’état d’une commande.
+
+Les endpoints de démonstration renvoient les réponses décrites ci-dessous. Leurs routes de test publiques ne vérifient ni l’identité de l’utilisateur ni ses droits sur la commande. Reprenez le format des réponses et ajoutez ces contrôles dans votre backend de production.
 
 ## Secrets clients
 
@@ -63,4 +69,4 @@ Apple Pay utilise un secret client de PaymentIntent. Sur le Web, Google Pay util
 
 Traitez `Canceled` comme la fermeture de la feuille par le client. Traitez `Failed` et `FailedToLoad` comme des erreurs. Lorsque l’Intent précédent ne peut plus être confirmé, ne réessayez qu’après avoir créé un nouvel Intent.
 
-Le serveur de démonstration officiel qui renvoie les structures ci-dessus se trouve dans [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/server).
+Le serveur de démonstration officiel qui renvoie les structures ci-dessus se trouve dans [capacitor-community/stripe/demo/server](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/server).

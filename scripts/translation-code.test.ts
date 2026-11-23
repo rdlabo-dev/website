@@ -96,6 +96,27 @@ test('preserves executable code, literals, whitespace, and behavior-affecting co
   }
 });
 
+test('allows translated XML comments inside Android values resource styles', () => {
+  const style =
+    '<style name="AppTheme">\n  <!-- Existing items -->\n  <item name="colorPrimary">@color/brand</item>\n</style>';
+  const translated = style.replace('Existing items', '既存の項目');
+  for (const directory of ['values', 'values-night-v31']) {
+    const language = `xml:android/app/src/main/res/${directory}/styles.xml`;
+    const normalized = normalizeTranslationCode(block(language, style));
+    assert.equal(normalized, normalizeTranslationCode(block(language, translated)));
+    assert.notEqual(
+      normalized,
+      normalizeTranslationCode(block(language, translated.replace('@color/brand', '@color/text'))),
+    );
+    const script = block(language, '<script>const text = "<!-- literal -->";</script>');
+    assert.equal(normalizeTranslationCode(script), script);
+  }
+  for (const language of ['xml', 'xml:res/layout/view.xml', 'html:res/values/styles.xml']) {
+    const original = block(language, style);
+    assert.equal(normalizeTranslationCode(original), original);
+  }
+});
+
 test('complex shell syntax retains comments and literal comment markers exactly', () => {
   for (const code of [
     'cat <<EOF\n# literal data\nEOF',

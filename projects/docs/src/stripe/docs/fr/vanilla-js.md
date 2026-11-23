@@ -2,12 +2,12 @@
 title: "Démarrage rapide en JavaScript natif"
 code: []
 scrollActiveLine: []
-sourceRevision: "5e2e959c9cdfa8f833f6c8ca68d7aac9083ae3adc0a77b653737e1c677cc0290"
+sourceRevision: "6b30155da6fe717905352f80435598c640bbb547d7cacc517779cdb9d57a3448"
 ---
-Sur le Web, le plugin utilise les éléments personnalisés de `stripe-pwa-elements`. Installez la dépendance pair et enregistrez les éléments une seule fois au démarrage, avant de présenter l’interface Stripe.
+Sur le Web, le plugin utilise les éléments personnalisés de `stripe-pwa-elements`. Installez des versions compatibles des dépendances paires et enregistrez les éléments une seule fois au démarrage, avant d’afficher l’interface Stripe.
 
 ```bash
-npm install stripe-pwa-elements
+npm install @stripe/stripe-js@^9.17.0 stripe-pwa-elements@^4.1.0
 ```
 
 ```ts

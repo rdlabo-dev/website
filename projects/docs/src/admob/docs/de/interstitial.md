@@ -1,6 +1,6 @@
 ---
 title: "Interstitial-Anzeigen"
-sourceRevision: "344f442aae5c577ca74368af17ff8b2bf4960848bcbe95108e1761efcac35261"
+sourceRevision: "d253aee1b5385f45627b88da3a943947028df5bf356333e74ae92abe4240e79d"
 ---
 # Interstitial-Anzeigen
 
@@ -49,3 +49,16 @@ await AdMob.showInterstitial({ adId: 'ca-app-pub-xxx/interstitial-1' });
 Informationen zu `isTesting` finden Sie unter [Tests](https://docs.rdlabo.dev/projects/capacitor-admob/docs/testing).
 
 Ereignisse für Laden, Anzeigen, Schließen und Fehlschlag stehen unter [Anzeigenereignisse](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events).
+
+Vorbereitete Interstitial-Anzeigen laufen nach einer Stunde ab. Für eine abgelaufene Anzeige schlägt `showInterstitial()` mit `AD_EXPIRED` fehl. Bereiten Sie vor einem erneuten Versuch eine neue Anzeige vor.
+
+## Immersiver Modus unter Android
+
+Übergeben Sie `immersiveMode: true` an `prepareInterstitial()`, um während der Anzeige die Android-Systemleisten auszublenden. Das Google Mobile Ads SDK verwendet für die Anzeige eine eigene Activity. Das Ausblenden der Leisten in der App-Activity hat darauf keinen Einfluss.
+
+```ts
+await AdMob.prepareInterstitial({ adId: 'YOUR_AD_UNIT_ID', immersiveMode: true });
+await AdMob.showInterstitial();
+```
+
+Dies gilt auch für `prepareRewardVideoAd()`. Der immersive Modus steuert die Systemleisten. Seitenverhältnis und eventuelle schwarze Balken hängen vom SDK und vom Werbemittel ab. Die Systemleisten lassen sich durch Wischen vorübergehend einblenden.

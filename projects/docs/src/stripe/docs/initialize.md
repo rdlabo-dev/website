@@ -94,5 +94,5 @@ The method is not implemented on Android or web. Only pass matching Stripe retur
 Call `initialize` from your chosen framework bootstrap. Prefer the canonical startup path on each guide:
 
 - [Vanilla JS](/docs/vanilla-js) — call `initialize` after `defineCustomElements()`
-- [Angular](/docs/angular) — `provideAppInitializer` at application startup
+- [Angular](/docs/angular) — wait for initialization with `provideAppInitializer` at application startup
 - [React](/docs/react) — `CapacitorStripeProvider` initializes the plugin for you

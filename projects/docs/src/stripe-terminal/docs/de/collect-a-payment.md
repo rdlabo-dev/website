@@ -2,7 +2,7 @@
 title: "Eine Zahlung abwickeln"
 code: ["collect-a-payment/collect-payment.ts.md","collect-a-payment/connection-token.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"collect-payment.ts":[1,1]}},{"id":"listener-auf-anwendungsebene-registrieren","activeLine":{"collect-payment.ts":[6,19]}},{"id":"initialisieren","activeLine":{"connection-token.ts":[0,34]}},{"id":"ein-verbindungstoken-sicher-bereitstellen","activeLine":{"connection-token.ts":[0,34]}},{"id":"einen-paymentintent-im-backend-erstellen","activeLine":{"collect-payment.ts":[34,42]}},{"id":"lesegeräte-suchen","activeLine":{"collect-payment.ts":[22,30]}},{"id":"ein-lesegerät-verbinden","activeLine":{"collect-payment.ts":[27,34]}},{"id":"eine-zahlungsmethode-erfassen","activeLine":{"collect-payment.ts":[42,44]}},{"id":"den-paymentintent-bestätigen","activeLine":{"collect-payment.ts":[43,45]}},{"id":"abbruch-und-fehler-behandeln","activeLine":{"collect-payment.ts":[14,19]}},{"id":"das-lesegerät-trennen","activeLine":{"collect-payment.ts":[44,48]}}]
-sourceRevision: "36dc5901fcd3e6e542d3400bee7d9dae42b0d865603cba3fa5b2f345acec2377"
+sourceRevision: "9ab09599a02e175a08f43b0b0f370d0ba94569b831b730de3976892b328d2c82"
 ---
 Wickeln Sie eine Zahlung vor Ort mit Stripe Terminal ab: Registrieren Sie die Listener frühzeitig, initialisieren Sie das Plugin, verbinden Sie ein Lesegerät und bestätigen Sie einen PaymentIntent.
 
@@ -22,7 +22,7 @@ Bevorzugen Sie eine authentifizierte Anfrage aus der App über `RequestedConnect
 
 ### Kompatibilitätsmodus `tokenProviderEndpoint`
 
-`tokenProviderEndpoint` steht für einfache Bereitstellungen zur Verfügung. Die nativen Clients der Version v8.3.0 senden jedoch einen einfachen HTTP-**POST**: Aufrufer können weder einen Autorisierungsheader noch einen Anfragekörper hinzufügen. Verwenden Sie ihn nur, wenn Ihr Server die Anfrage auf anderem Weg authentifizieren und absichern kann. Stellen Sie niemals einen uneingeschränkt öffentlichen Endpunkt zur Tokenerstellung bereit.
+`tokenProviderEndpoint` steht für einfache Bereitstellungen zur Verfügung. Die aktuellen nativen Clients senden jedoch einen einfachen HTTP-**POST**: Aufrufer können weder einen Autorisierungsheader noch einen Anfragekörper hinzufügen. Verwenden Sie ihn nur, wenn Ihr Server die Anfrage auf anderem Weg authentifizieren und absichern kann. Stellen Sie niemals einen uneingeschränkt öffentlichen Endpunkt zur Tokenerstellung bereit.
 
 Ist `tokenProviderEndpoint` gesetzt, sendet das Plugin einen HTTP-**POST** mit leerem Anfragekörper. Die Antwort **muss** JSON mit einer Zeichenfolge `secret` sein:
 
@@ -35,7 +35,7 @@ Dieser Wert ist ein Stripe-Terminal-[Verbindungstoken](https://docs.stripe.com/t
 Die offizielle Demo stellt `POST /connection/token` bereit und gibt `{ secret }` zurück; passen Sie deren Authentifizierung und Autorisierung an Ihre Anwendung an.
 
 :::message
-In v8.3.0 protokolliert Android das über `tokenProviderEndpoint` zurückgegebene `secret`; im Web werden die an `setConnectionToken` übergebenen Optionen protokolliert. Vermeiden Sie den Endpunktmodus unter Android, bis diese Protokollierung im Ursprungsprojekt entfernt wurde, vermeiden Sie die Speicherung von Web-Konsolenprotokollen in der Produktion und aktualisieren Sie auf eine korrigierte Plugin-Version, sobald sie verfügbar ist.
+Die aktuelle Android-Implementierung protokolliert das über `tokenProviderEndpoint` zurückgegebene `secret`; im Web werden die an `setConnectionToken` übergebenen Optionen protokolliert. Vermeiden Sie den Endpunktmodus unter Android, bis diese Protokollierung im Ursprungsprojekt entfernt wurde, vermeiden Sie die Speicherung von Web-Konsolenprotokollen in der Produktion und aktualisieren Sie auf eine korrigierte Plugin-Version, sobald sie verfügbar ist.
 :::
 
 
@@ -46,6 +46,31 @@ Im Web erfordert `initialize` eine neue Plugin-Instanz: Ein erneuter Aufruf nach
 Lassen Sie `tokenProviderEndpoint` weg und registrieren Sie `RequestedConnectionToken` **vor** `initialize`. Benötigt das SDK ein Token, löst das Plugin dieses Ereignis aus und wartet auf `setConnectionToken({ token })`.
 
 Rufen Sie das Token mit Ihrem üblichen Autorisierungsmechanismus ab, verlangen Sie eine erfolgreiche Antwort, prüfen Sie `secret` und übergeben Sie es als `token`. Rufen Sie `setConnectionToken` nur auf, während ein Tokenabruf aussteht; Android und iOS weisen zusätzliche Aufrufe mit `Stripe Terminal do not pending fetchConnectionToken` zurück. Protokollieren Sie niemals die Antwort oder das Token.
+
+```ts
+import { StripeTerminal, TerminalEventsEnum } from '@capacitor-community/stripe-terminal';
+
+const tokenListener = await StripeTerminal.addListener(TerminalEventsEnum.RequestedConnectionToken, async () => {
+  try {
+    const response = await fetch('https://your-backend.example.com/terminal/token', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${await getAuthToken()}` },
+    });
+    if (!response.ok) throw new Error('Connection token request failed');
+    const { secret } = await response.json();
+    if (typeof secret !== 'string' || secret.length === 0) {
+      throw new Error('Missing connection token');
+    }
+    await StripeTerminal.setConnectionToken({ token: secret });
+  } catch (error) {
+    showConnectionError(error);
+    // Verwenden Sie kein zwischengespeichertes Token und wiederholen Sie die Anfrage nur mit Authentifizierung.
+  }
+});
+await StripeTerminal.initialize({ isTest: true });
+```
+
+Implementieren Sie `getAuthToken` und `showConnectionError` in Ihrer Anwendung. Behalten Sie `tokenListener` bei, bis die zuständige Instanz auf Anwendungsebene freigegeben wird. Nach dem Abfangen eines Abruffehlers wartet das SDK weiterhin auf das Token. Zeigen Sie den Fehler an und ermöglichen Sie einen erneuten authentifizierten Versuch für dieselbe Anfrage. Verlassen Sie sich weder auf einen automatischen Timeout noch auf eine Abbruch-API des Plugins.
 
 !::setConnectionToken::
 

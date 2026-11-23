@@ -23,12 +23,12 @@ jobs:
       - name: Fail if tree verification failed
         if: needs.ci-reuse.result != 'success'
         run: exit 1
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - run: npm ci
       - run: npm run fmt:check
@@ -57,7 +57,7 @@ jobs:
         run: node --test .github/scripts/ci-tree-reuse.test.mjs
       - name: Record the actual complete checkout
         id: tree
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const { execFileSync } = await import('node:child_process');
@@ -70,7 +70,7 @@ jobs:
             writeFileSync(`${process.env.RUNNER_TEMP}/ci-tree.txt`, `${commit}\n${tree}\n`);
       - name: Reuse only the latest successful PR CI for this tree
         id: lookup
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           TREE: ${{ steps.tree.outputs.tree }}
         with:
@@ -99,7 +99,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Require executed tests or verified reuse
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           NEEDS: ${{ toJSON(needs) }}
           REUSE: ${{ needs.ci-reuse.outputs.reuse }}
@@ -109,7 +109,7 @@ jobs:
             requireResults(process.env.REUSE === 'true', JSON.parse(process.env.NEEDS), ["build"], []);
       - name: Record the actual complete checkout
         id: tree
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const { execFileSync } = await import('node:child_process');

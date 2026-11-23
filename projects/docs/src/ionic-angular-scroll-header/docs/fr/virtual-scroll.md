@@ -1,11 +1,11 @@
 ---
 title: "Défilement virtuel"
-sourceRevision: "5d3c4b55f1fc34dccc90d9213bfc90a5ee71c9a0aba5be97a972b8ceb22a4ebd"
+sourceRevision: "1e1ce356aa8493ea86422b4277256885fddce87d5fad87ecc98c54e5895046fd"
 ---
 Ajoutez des en-têtes sensibles au défilement à un viewport de défilement virtuel CDK existant. Partez de [IonContent](/docs/ion-content) pour le modèle d’en-tête et de zone de sécurité, puis remplacez l’hôte du défilement par un viewport. Faites-le après l’[installation](/docs/readme#installation).
 
 - Démonstration : https://rdlabo-ionic-angular-library.netlify.app/main/virtual-scroll-header
-- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.7/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
+- Code source : https://github.com/rdlabo-dev/ionic-angular-library/blob/v22.0.8/projects/demo/src/app/virtual-scroll-header/virtual-scroll-header.page.html
 
 ```ts
 import { Component } from '@angular/core';

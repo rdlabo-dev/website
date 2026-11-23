@@ -48,6 +48,8 @@ try {
 
 ## 2. createApplePay
 
+`paymentSummaryItems.amount` は通貨の基本単位で指定します。米ドルなら `10.99` は10.99ドルです。サーバー側で Stripe の PaymentIntent に指定する金額は最小通貨単位なので、同じ金額をセントで `1099` と指定します。表示する合計額とバックエンドの Intent の金額を一致させてください。
+
 バックエンドから PaymentIntent のクライアントシークレットを取得します。[サーバー連携](/docs/server-integration)を参照してください。その後 `paymentIntentClientSecret`、`paymentSummaryItems`、`merchantIdentifier`、`countryCode`、`currency` を渡します。
 
 ```ts
@@ -61,10 +63,12 @@ const { paymentIntent } = await firstValueFrom(
 
 await Stripe.createApplePay({
   paymentIntentClientSecret: paymentIntent,
-  paymentSummaryItems: [{
-    label: 'Product Name',
-    amount: 1099.00
-  }],
+  paymentSummaryItems: [
+    {
+      label: 'Product Name',
+      amount: 10.99,
+    },
+  ],
   merchantIdentifier: 'merchant.com.getcapacitor.stripe',
   countryCode: 'US',
   currency: 'USD',
@@ -106,6 +110,8 @@ Stripe.addListener(ApplePayEventsEnum.Completed, () => {
 
 iOS の `DidSelectShippingContact` には `contact` と `updateId` が含まれます。合計を再計算し、その `updateId` で `updateApplePaySheet` を呼びます。JavaScript が応答しない場合、ネイティブシートは 25 秒後に最後に受理した明細へ戻ります。更新時も現在の配送方法は維持されます。
 
+この配送料の例では、バックエンドで Intent の合計額も15.99米ドルに更新します。`updateApplePaySheet` が変更するのは表示上の明細だけなので、サーバー側で PaymentIntent の金額を更新してください。
+
 `paymentSummaryItems` は配列である必要があります。空配列（`[]`）は既存の明細を変更せずに現在の選択を受理します。空でない配列では、各項目に空でない文字列のラベルと有限の数値の金額が必要です。割引の負数は許可されますが、最終合計は 0 以上でなければなりません。不正な入力は保留中の更新を消費せずに拒否されるため、タイムアウト前に修正して再試行できます。受理されるのは最後に選択された配送先の `updateId` のみで、重複した更新や古い更新は拒否されます。
 
 ```ts
@@ -113,9 +119,9 @@ Stripe.addListener(ApplePayEventsEnum.DidSelectShippingContact, async (data) => 
   await Stripe.updateApplePaySheet({
     updateId: data.updateId,
     paymentSummaryItems: [
-      { label: 'Product Name', amount: 1099.00 },
-      { label: 'Shipping', amount: 500.00 },
-      { label: 'Total', amount: 1599.00 },
+      { label: 'Product Name', amount: 10.99 },
+      { label: 'Shipping', amount: 5.0 },
+      { label: 'Total', amount: 15.99 },
     ],
   });
 });

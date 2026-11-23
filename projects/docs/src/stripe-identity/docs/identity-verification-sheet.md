@@ -18,17 +18,6 @@ Stripe Identity verifies identity documents in a native sheet on iOS and Android
 
 The plugin supports iOS, Android, and Web. Native platforms present Stripe's Identity Verification Sheet with `verificationId` and `ephemeralKeySecret`. Web calls `verifyIdentity` with `clientSecret` after `initialize`.
 
-## First verification path
-
-Use this order for the first successful submission:
-
-1. Create a VerificationSession on your backend and return the client-safe fields below.
-2. Register the `VerificationResult` listener once at application startup (before `present()`).
-3. On web, call `initialize` with the publishable key.
-4. Call `create`, then `present()`.
-
-First success on device: the sheet opens and you receive `Completed` after the user finishes the test document upload. `Completed` means submission finished, not that review finished—confirm the official outcome with Identity webhooks on your server. The code panel follows the same path.
-
 ## Listen for the result
 
 Register the result listener once during application startup and before calling `present()`. Android can recreate the Activity and JavaScript runtime while the native sheet is open, so early registration prevents a delivered result from being missed.
@@ -45,13 +34,15 @@ The native result handoff is kept in memory. It does not guarantee recovery afte
 
 Create a VerificationSession on your backend with the Stripe secret key. Then create an ephemeral key for that session and return only client-safe fields.
 
-The official demo server (`POST /identify`) creates a `document` VerificationSession, creates an ephemeral key with `{ verification_session: session.id }` and Stripe API version `2022-11-15`, and responds with:
+The official demo server (`POST /identify`) creates a `document` VerificationSession, creates an ephemeral key with `{ verification_session: session.id }` and Stripe API version `2022-11-15`, and responds with the following fields. The demo preserves the legacy misspelling `verficationSessionId`; map it to the plugin option `verificationId`:
 
 | Response field         | Source                              | Plugin `create` option |
 | ---------------------- | ----------------------------------- | ---------------------- |
-| `verificationId`      | `VerificationSession.id`            | `verificationId`       |
+| `verficationSessionId` | `VerificationSession.id`            | `verificationId`       |
 | `ephemeralKeySecret`   | `EphemeralKey.secret`               | `ephemeralKeySecret`   |
 | `clientSecret`         | `VerificationSession.client_secret` | `clientSecret`         |
+
+For your own backend, use a clearly named `verificationId` response field, for example:
 
 ```ts
 const session = await stripe.identity.verificationSessions.create({

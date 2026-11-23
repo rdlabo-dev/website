@@ -2,9 +2,9 @@
 title: "API"
 code: []
 scrollActiveLine: []
-sourceRevision: "ab3be995a23f412d0b6981704309a7f168c6c8338d3909fd3b69579c3ed44a58"
+sourceRevision: "f35f7343343d9142b5aef790bd3175bc5a90bab32ed785b86a87f28f3315a831"
 ---
-Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.3.0 erzeugte Referenz. Plattformgrenzen, geerbte Optionsfelder, Lebenszyklus der Ergebnis-Listener und Serverzuständigkeiten sind auf den Methodenseiten dokumentiert.
+Aus den öffentlichen API-Metadaten von `@capacitor-community/stripe` v8.4.0 erzeugte Referenz. Plattformgrenzen, geerbte Optionsfelder, Lebenszyklus der Ergebnis-Listener und Serverzuständigkeiten sind auf den Methodenseiten dokumentiert.
 
 ## Methoden
 

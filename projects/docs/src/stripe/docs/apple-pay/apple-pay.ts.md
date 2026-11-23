@@ -32,7 +32,7 @@ import { ApplePayEventsEnum, Stripe } from '@capacitor-community/stripe';
     paymentIntentClientSecret: paymentIntent,
     paymentSummaryItems: [{
       label: 'Product Name',
-      amount: 1099.00
+      amount: 10.99
     }],
     merchantIdentifier: 'merchant.com.getcapacitor.stripe',
     countryCode: 'US',

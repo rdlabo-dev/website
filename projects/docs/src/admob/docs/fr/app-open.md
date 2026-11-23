@@ -1,6 +1,6 @@
 ---
 title: "Annonces à l’ouverture de l’application"
-sourceRevision: "f77685b462e8df80fb5471195fd6f72c237c64c8f5992fa95e6ccfec337d5060"
+sourceRevision: "f51fbbaeae898550f5341aa74b1a943b2691f175f965fad7c99a774dd439de04"
 ---
 # Annonces à l’ouverture de l’application
 
@@ -55,3 +55,5 @@ Il n’existe pas d’indicateur `isTesting` ; pendant le développement, défin
 Utilisez l’événement `Closed` pour reprendre le parcours de votre application et commencer à charger l’annonce suivante.
 
 Sans `adId` passé à `showAppOpen()` ou `isAppOpenLoaded()`, l’opération vise l’annonce chargée le plus récemment. Consultez [Événements publicitaires](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events) pour la liste des événements.
+
+Les annonces à l’ouverture expirent quatre heures après leur chargement. À l’expiration, `isAppOpenLoaded()` renvoie `{ value: false }`. Rappelez `loadAppOpen()` pour charger une nouvelle annonce avant de l’afficher.

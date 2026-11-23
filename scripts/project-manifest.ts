@@ -67,6 +67,8 @@ export interface ProjectDefinition {
   demoUrl?: string;
   /** Optional link to a specific project release. */
   releaseNotesUrl?: string;
+  /** Last substantive update to the API page extracted from the package README. */
+  docgenApiUpdatedAt?: ProjectPageDefinition['updatedAt'];
   /** Optional landing-page guide priorities; sidebar order remains unchanged. */
   entryGuideSlugs?: readonly string[];
   /** Hosted documentation URL for catalog-only projects that are not rendered by this portal. */
@@ -236,7 +238,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@webview-native-ui/engine',
     repositoryUrl: 'https://github.com/webview-native-ui/engine',
     englishDocsRef: 'f4ad403a98536fb3f35269cb74326b880145540d',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.10',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/engine/releases/tag/v1.0.11',
     sourceHeadingAliases: ['ja'],
     category: 'developer-tools',
     icon: 'app',
@@ -547,7 +549,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Kit',
     packageName: '@rdlabo/ionic-angular-kit',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     category: 'frontend-tools',
     icon: 'app',
     adapter: 'markdown',
@@ -687,7 +688,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Photo Editor',
     packageName: '@rdlabo/ionic-angular-photo-editor',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/photo-editor',
     category: 'frontend-tools',
     icon: 'app',
@@ -772,7 +772,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Ionic Angular Scroll Header',
     packageName: '@rdlabo/ionic-angular-scroll-header',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-header',
     category: 'frontend-tools',
     icon: 'app',
@@ -869,7 +868,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Angular CDK Scroll Strategies',
     packageName: '@rdlabo/ngx-cdk-scroll-strategies',
     repositoryUrl: 'https://github.com/rdlabo-dev/ionic-angular-library',
-    englishDocsRef: 'df1ded0a103568f3e38a24070d701dd02ff44ba7',
     demoUrl: 'https://rdlabo-ionic-angular-library.netlify.app/main/scroll-strategies',
     category: 'frontend-tools',
     icon: 'app',
@@ -986,7 +984,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     repositoryUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27',
     englishDocsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
     englishDocsAssetsRef: 'c70beb9d1e5b39de696b2b2c47a3d9bc5ffcdfbe',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/v2.2.0',
+    releaseNotesUrl:
+      'https://github.com/webview-native-ui/ionic-theme-ios27/releases/tag/ios27-v2.2.0',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'frontend-tools',
     icon: 'theme',
@@ -1015,7 +1014,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     packageName: '@rdlabo/capacitor-native-ui',
     repositoryUrl: 'https://github.com/webview-native-ui/capacitor-plugin',
     englishDocsRef: '8588512d51324d9c6aab672da45a6598edf71927',
-    releaseNotesUrl: 'https://github.com/webview-native-ui/capacitor-plugin/releases/tag/v2.1.10',
+    releaseNotesUrl: 'https://github.com/webview-native-ui/capacitor-plugin/releases/tag/v2.1.13',
     demoUrl: 'https://ionic-theme-ios27.rdlabo.dev/',
     category: 'capacitor-plugins',
     icon: 'app',
@@ -1868,8 +1867,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Stripe',
     packageName: '@capacitor-community/stripe',
     repositoryUrl: 'https://github.com/capacitor-community/stripe',
-    // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'fbc2f4cbb81e76fa1f0f7d5b54d6d99c80294f3a',
     category: 'capacitor-plugins',
     icon: 'payments',
     seoTitle: text(
@@ -1948,7 +1945,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Configure @capacitor-community/stripe with a publishable key and platform settings before presenting PaymentSheet, Apple Pay, or Google Pay.',
             '@capacitor-community/stripeに公開可能キーと各Platformの設定を追加し、PaymentSheet、Apple Pay、Google Payを利用する準備をします。',
           ),
-          updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+          updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
         },
       ),
       page(
@@ -1958,13 +1955,13 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'vanilla-js.md',
         'Quickstart',
         'クイックスタート',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page('Angular', 'Angular', 'angular', 'angular.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page('React', 'React', 'react', 'react.md', 'Quickstart', 'クイックスタート', {
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page(
         'Event Listeners',
@@ -1982,10 +1979,10 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'server-integration.md',
         'Learn',
         '学ぶ',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page('Initialize', 'initialize', 'initialize', 'initialize.md', 'Methods', 'メソッド', {
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page(
         'PaymentSheet',
@@ -2014,7 +2011,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Apple Pay payments in a Capacitor app with @capacitor-community/stripe on supported Apple devices.',
           '@capacitor-community/stripeを使い、対応するApple端末のCapacitorアプリでApple Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page('Google Pay', 'Google Pay', 'google-pay', 'google-pay.md', 'Methods', 'メソッド', {
         seoTitle: text(
@@ -2025,7 +2022,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
           'Create, present, and confirm Google Pay payments in a Capacitor app with @capacitor-community/stripe on supported Android devices.',
           '@capacitor-community/stripeを使い、対応するAndroid端末のCapacitorアプリでGoogle Pay決済を作成・表示・確定します。',
         ),
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
@@ -2041,8 +2038,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Stripe Identity',
     packageName: '@capacitor-community/stripe-identity',
     repositoryUrl: 'https://github.com/capacitor-community/stripe',
-    // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'fbc2f4cbb81e76fa1f0f7d5b54d6d99c80294f3a',
     category: 'capacitor-plugins',
     icon: 'identity',
     description: text(
@@ -2092,7 +2087,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page(
         'Identity Verification Sheet',
@@ -2101,7 +2096,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'identity-verification-sheet.md',
         'Guide',
         'ガイド',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
@@ -2117,8 +2112,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     shortName: 'Stripe Terminal',
     packageName: '@capacitor-community/stripe-terminal',
     repositoryUrl: 'https://github.com/capacitor-community/stripe',
-    // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'fbc2f4cbb81e76fa1f0f7d5b54d6d99c80294f3a',
     category: 'capacitor-plugins',
     icon: 'terminal',
     description: text(
@@ -2176,7 +2169,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page(
         'Collect a Payment',
@@ -2185,7 +2178,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'collect-a-payment.md',
         'Guides',
         'ガイド',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page(
         'Reader Lifecycle',
@@ -2197,11 +2190,11 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
       ),
       page('Tap to Pay', 'Tap to Pay', 'tap-to-pay', 'tap-to-pay.md', 'Guides', 'ガイド', {
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page('API', 'API', 'api', 'api.md', 'Reference', 'リファレンス', {
         localEnglishSource: true,
-        updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
     ],
   },
@@ -2212,9 +2205,8 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     name: 'Capacitor Community AdMob',
     shortName: 'AdMob',
     packageName: '@capacitor-community/admob',
+    docgenApiUpdatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
     repositoryUrl: 'https://github.com/capacitor-community/admob',
-    // Reviewed documentation from main, independently of the npm release.
-    englishDocsRef: 'b64a7cd687095f32270c3b1c9903ed6a586fcd1d',
     category: 'capacitor-plugins',
     icon: 'ads',
     seoTitle: text(
@@ -2287,7 +2279,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'configuration.md',
         'Quickstart',
         'クイックスタート',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page('Consent', '同意管理', 'consent', 'consent.md', 'Guides', 'ガイド', {
         updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },
@@ -2296,7 +2288,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         updatedAt: text('2026-09-06', '2026-09-06'),
       }),
       page('Banner Ads', 'バナー広告', 'banner', 'banner.md', 'Ad formats', '広告フォーマット', {
-        updatedAt: { ja: '2026-10-01' },
+        updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
       }),
       page(
         'Native Ads',
@@ -2306,7 +2298,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'Ad formats',
         '広告フォーマット',
         {
-          updatedAt: { en: '2026-11-01', ja: '2026-11-01', fr: '2026-11-01', de: '2026-11-01' },
+          updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
         },
       ),
       page(
@@ -2325,7 +2317,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
             'Prepare, show, and handle interstitial ad events in Capacitor apps with @capacitor-community/admob on iOS and Android.',
             '@capacitor-community/admobを使い、iOS・AndroidのCapacitorアプリでインタースティシャル広告の準備・表示・Event処理を実装します。',
           ),
-          updatedAt: text('2026-08-31', '2026-10-01'),
+          updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' },
         },
       ),
       page(
@@ -2335,7 +2327,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'rewarded.md',
         'Ad formats',
         '広告フォーマット',
-        { updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page(
         'App Open Ads',
@@ -2344,7 +2336,7 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
         'app-open.md',
         'Ad formats',
         '広告フォーマット',
-        { updatedAt: { ja: '2026-10-01' } },
+        { updatedAt: { en: '2026-11-22', ja: '2026-11-22', fr: '2026-11-22', de: '2026-11-22' } },
       ),
       page('Ad Events', '広告イベント', 'events', 'events.md', 'Guides', 'ガイド', {
         updatedAt: { en: '2026-10-05', ja: '2026-10-05', fr: '2026-10-05', de: '2026-10-05' },

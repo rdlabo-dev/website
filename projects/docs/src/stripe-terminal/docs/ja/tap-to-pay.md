@@ -15,7 +15,7 @@ scrollActiveLine:
 
 Tap to Pay は、対応するスマートフォンやタブレットだけで非接触決済を受け付けます。別のカードリーダーは不要です。[設定](/docs/configuration)と[接続トークン](/docs/collect-a-payment)を準備し、`TerminalConnectTypes.TapToPay` を使用します。
 
-公式デモは [demo/angular](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular) で Tap to Pay、Internet、Bluetooth を扱います。
+公式デモは [demo/angular](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular) で Tap to Pay、Internet、Bluetooth を扱います。
 
 ## プラットフォーム要件
 
@@ -24,6 +24,8 @@ Tap to Pay は、対応するスマートフォンやタブレットだけで非
 | Android          | 対応   | NFC対応端末、位置情報権限、Stripeの利用資格。`minSdkVersion` 26 |
 | iOS              | 対応   | Tap to Pay on iPhone。アカウント確認は iOS 16.4以降             |
 | Web              | 非対応 | TapToPay の探索は利用不可                                       |
+
+OS の最低要件を満たす端末でも Tap to Pay を使えるとは限りません。使用する SDK バージョンについて、Stripe の [iPhone の要件と Apple のエンタイトルメント設定](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=ios)または [Android 端末の要件](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=android)を確認してください。実際の決済には対応する実機が必要です。シミュレートしたリーダーでは NFC 決済やアカウントの利用資格を確認できません。
 
 Stripe Dashboard で Terminal を設定し、[Location](https://docs.stripe.com/terminal/fleet/locations) を作成します。その `locationId` を `discoverReaders` に渡してください。プラグインは Tap to Pay リーダーの接続時にこれを使用します。
 
@@ -54,7 +56,7 @@ Android と Web ではそれぞれ `unimplemented` と `unavailable` で拒否�
 
 `setTapToPayUxConfiguration` は Android 専用です。`initialize()` 後、`connectReader()` 前に呼びます。iOS は未実装、Web はログを出して終了します。
 
-Android では `colors`（`primary`、`success`、`error`。値は `'default'` または `'#FF5733'` のような16進カラー文字列）と `darkMode`（`SYSTEM`、`DARK`、`LIGHT`）を反映します。TypeScript の `tapZone` は宣言されていますが、v8.3.0 の Android Terminal SDK には渡されません。
+Android では `colors`（`primary`、`success`、`error`。値は `'default'` または `'#FF5733'` のような16進カラー文字列）と `darkMode`（`SYSTEM`、`DARK`、`LIGHT`）を反映します。TypeScript の `tapZone` は宣言されていますが、このプラグインが使用する Android Terminal SDK には渡されません。
 
 !::setTapToPayUxConfiguration::
 !::TapToPayUxConfiguration::

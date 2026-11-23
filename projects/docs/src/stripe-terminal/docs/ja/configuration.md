@@ -11,10 +11,10 @@ npm install @capacitor-community/stripe-terminal
 npx cap sync
 ```
 
-対象プラグインは `@capacitor-community/stripe-terminal` **v8.3.0** です。公式デモ:
+このガイドでは Capacitor 8 とプラグイン v8 を使用します。以下の公式デモで動作を確認できます。
 
-- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/angular)
-- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.3.0/demo/app-on-devices)
+- [Tap to Pay / Internet / Bluetooth](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular)
+- [Apps on Devices](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/app-on-devices)
 
 | 要件                    | 最小バージョン |
 | ----------------------- | -------------- |
@@ -70,30 +70,37 @@ Web の Internet リーダーでは、`initialize`、`discoverReaders`、`connec
 
 ## iOS の設定
 
-プラグインの追加設定は不要です。iOS では USB、HandOff、`setTapToPayUxConfiguration` は未実装です。
+[Stripe Terminal iOS SDK](https://github.com/stripe/stripe-terminal-ios/tree/5.8.0#configure-your-app) の要件に従ってアプリを設定します。
+
+- `Info.plist` に `NSLocationWhenInUseUsageDescription` を追加し、決済に必要な位置情報へのアクセスを有効にします。
+- `NSBluetoothAlwaysUsageDescription` に、リーダーとの接続に Bluetooth を使う理由を記載します。
+- アプリがバックグラウンドでも Bluetooth リーダーとの接続を維持する場合は、`UIBackgroundModes` 配列に `bluetooth-central` を追加します。
+
+Tap to Pay には、Apple のエンタイトルメントに加え、対応する実機、OS、国、Stripe アカウントが必要です。プラグインの最低要件である iOS 15 を満たしていても、Tap to Pay が利用できるとは限りません。実機で試す前に [Tap to Pay ガイド](/docs/tap-to-pay)を確認してください。
+
+iOS では USB、HandOff、`setTapToPayUxConfiguration` は未実装です。
 
 ## Android の設定
 
 `android/app/src/main/AndroidManifest.xml` に権限を追加します。
 
-```diff
-+ <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-+ <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-+ <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
 実行時に `ACCESS_FINE_LOCATION` が許可されていない場合、`discoverReaders` は拒否されます。
 
 さらに `android/variables.gradle` の `minSdkVersion` を `26` に更新します。
 
-```diff
-  ext {
--    minSdkVersion = 24
-+    minSdkVersion = 26
-  }
+```groovy
+ext {
+    minSdkVersion = 26
+}
 ```
 
 Stripe Reader S700 などの Stripe Android 端末向けアプリを開発し、`TerminalConnectTypes.HandOff` を使う場合は、[Stripe のクライアント側セットアップガイド](https://docs.stripe.com/terminal/features/apps-on-devices/build?terminal-sdk-platform=android&lang-android=java#setup-app)に従ってください。

@@ -2,7 +2,7 @@
 title: "Identity Verification Sheet"
 code: ["identity-verification-sheet/example.ts.md"]
 scrollActiveLine: [{"id":"","activeLine":{"example.ts":[1,1]}},{"id":"auf-das-ergebnis-h%C3%B6ren","activeLine":{"example.ts":[5,18]}},{"id":"sitzungszugangsdaten-beziehen","activeLine":{"example.ts":[31,34]}},{"id":"die-web-plattform-initialisieren","activeLine":{"example.ts":[27,31]}},{"id":"das-sheet-erstellen-und-anzeigen","activeLine":{"example.ts":[34,42]}},{"id":"failedtoload-verarbeiten","activeLine":{"example.ts":[18,27]}},{"id":"verificationresult-verarbeiten","activeLine":{"example.ts":[5,18]}},{"id":"fehler-und-abbruch","activeLine":{"example.ts":[5,18]}}]
-sourceRevision: "0bb119687660873953841768d1e3100fbb0f9557b9472a3aaa7eeac40e922078"
+sourceRevision: "b9dbc38cece1aeb06ec6edc39a25ef22c92933931471124f8a9b809f6bddc9c8"
 ---
 Stripe Identity prüft Identitätsdokumente unter iOS und Android in einem nativen Sheet und im Web über Stripe.js. Der Anwendungscode bleibt dabei in Capacitor.
 
@@ -24,13 +24,15 @@ Die native Ergebnisübergabe bleibt im Arbeitsspeicher. Sie garantiert keine Wie
 
 Erstellen Sie auf Ihrem Backend mit dem geheimen Stripe-Schlüssel eine VerificationSession. Erstellen Sie anschließend einen temporären Schlüssel für diese Sitzung und geben Sie ausschließlich für den Client sichere Felder zurück.
 
-Der offizielle Demo-Server (`POST /identify`) erstellt eine VerificationSession vom Typ `document`, erstellt einen temporären Schlüssel mit `{ verification_session: session.id }` und der Stripe-API-Version `2022-11-15` und antwortet mit:
+Der offizielle Demo-Server (`POST /identify`) erstellt eine VerificationSession vom Typ `document` und anschließend einen temporären Schlüssel mit `{ verification_session: session.id }` und der Stripe-API-Version `2022-11-15`. Das Antwortfeld behält den früheren Tippfehler `verficationSessionId` bei. Ordnen Sie es der Plugin-Option `verificationId` zu.
 
 | Antwortfeld         | Quelle                              | Plugin-Option von `create` |
 | ---------------------- | ----------------------------------- | ---------------------- |
-| `verificationId`      | `VerificationSession.id`            | `verificationId`       |
+| `verficationSessionId`      | `VerificationSession.id`            | `verificationId`       |
 | `ephemeralKeySecret`   | `EphemeralKey.secret`               | `ephemeralKeySecret`   |
 | `clientSecret`         | `VerificationSession.client_secret` | `clientSecret`         |
+
+Verwenden Sie in Ihrem eigenen Backend den eindeutigen Feldnamen `verificationId`, wie im folgenden Beispiel.
 
 ```ts
 const session = await stripe.identity.verificationSessions.create({

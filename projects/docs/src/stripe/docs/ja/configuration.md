@@ -11,7 +11,7 @@ npm install @capacitor-community/stripe
 npx cap sync
 ```
 
-このプラグインには Capacitor 8 以降が必要です。Web では peer dependency の `stripe-pwa-elements` も必要です。Stripe のシークレットキーは必ずサーバーだけで管理してください。詳しくは[サーバー連携](/docs/server-integration)を参照してください。
+このガイドはプラグイン v8 と Capacitor 8 を対象とします。Web では互換性のある `@stripe/stripe-js` と `stripe-pwa-elements` を peer dependency としてインストールします。Stripe のシークレットキーはサーバーだけで管理してください。[サーバー連携](/docs/server-integration)を参照してください。
 
 | 要件 | 最小バージョン |
 | --- | --- |
@@ -29,15 +29,11 @@ Stripe Connect を利用する場合は任意で、Android Google Pay を連結�
 
 ## iOS の設定
 
-PaymentSheet でカードをスキャンできるよう、`NSCameraUsageDescription` を追加します。
+PaymentSheet でカードをスキャンできるように、`Info.plist` のルートの `dict` に次の項目を追加します。
 
-```diff plist:ios/App/App/Info.plist
-  	<key>UIViewControllerBasedStatusBarAppearance</key>
-	  <true/>
-
-+   <key>NSCameraUsageDescription</key>
-+   <string>Need camera access for read credit card.</string>
-  </dict>
+```xml plist:ios/App/App/Info.plist
+<key>NSCameraUsageDescription</key>
+<string>Camera access lets you scan your payment card.</string>
 ```
 
 iOS ではプラグインが自動的に読み込まれます。Apple Pay には Apple Merchant ID と証明書も必要です。[Apple Pay](/docs/apple-pay)を参照してください。
@@ -46,7 +42,7 @@ PayPal、3D Secure などのリダイレクト型の支払い方法には、カ�
 
 ## Web の設定
 
-`stripe-pwa-elements` をインストールし、起動時に一度だけ `defineCustomElements()` を呼び出します。開発環境と本番環境の両方を HTTPS で配信してください。
+`@stripe/stripe-js@^9.17.0` と `stripe-pwa-elements@^4.1.0` をインストールし、起動時に `defineCustomElements()` を一度だけ呼び出します。開発環境・本番環境ともに HTTPS で配信してください。
 
 - [Vanilla JS クイックスタート](/docs/vanilla-js)
 - [Angular クイックスタート](/docs/angular)

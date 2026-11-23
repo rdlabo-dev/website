@@ -2,7 +2,7 @@
 title: API
 ---
 
-`@rdlabo/workers-hono-kit` v0.13.0 と独立MySQL・タイムゾーンパッケージのエントリポイントです。
+`@rdlabo/workers-hono-kit` v0.13.1 と独立MySQL・タイムゾーンパッケージのエントリポイントです。
 
 #### `module` @rdlabo/workers-hono-kit
 

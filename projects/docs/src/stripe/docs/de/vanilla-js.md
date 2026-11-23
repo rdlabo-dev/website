@@ -2,12 +2,12 @@
 title: "Vanilla-JS-Schnellstart"
 code: []
 scrollActiveLine: []
-sourceRevision: "5e2e959c9cdfa8f833f6c8ca68d7aac9083ae3adc0a77b653737e1c677cc0290"
+sourceRevision: "6b30155da6fe717905352f80435598c640bbb547d7cacc517779cdb9d57a3448"
 ---
-Die Web-Version verwendet Custom Elements aus `stripe-pwa-elements`. Installieren Sie die Peer-Abhängigkeit und registrieren Sie die Elemente beim Bootstrap einmal, bevor Sie die Stripe-UI anzeigen.
+Im Web verwendet das Plugin die Custom Elements von `stripe-pwa-elements`. Installieren Sie die kompatiblen Peer-Abhängigkeiten und registrieren Sie die Elemente einmal beim Start, bevor Sie die Stripe-Oberfläche anzeigen.
 
 ```bash
-npm install stripe-pwa-elements
+npm install @stripe/stripe-js@^9.17.0 stripe-pwa-elements@^4.1.0
 ```
 
 ```ts

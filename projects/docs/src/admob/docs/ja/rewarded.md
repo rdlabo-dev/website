@@ -8,6 +8,8 @@ scrollActiveLine: []
 
 リワード広告は報酬フローとして扱い、報酬なしのインタースティシャルの代わりにはしません。[initialize](/docs/configuration) と [同意](/docs/consent) のあとで呼び出します。報酬は戻り値または `Rewarded` イベントからのみ付与し、`Dismissed` では付与しません。
 
+`showRewardVideoAd()` と `showRewardInterstitialAd()` は、ユーザーが報酬を獲得するとその報酬を返します。獲得前に広告を閉じると、Promise は `REWARDED_AD_CANCELLED` で拒否されます。表示に失敗した場合も拒否され、ネイティブ SDK のエラーコードはプラットフォームによって異なります。キャンセル時にボタンやロード状態を元に戻せるよう、拒否を処理してください。`Rewarded`、`Dismissed`、`FailedToShow` イベントは引き続き発生します。広告を閉じたあとや表示に失敗したあとには、次の広告を準備してから表示します。
+
 ## リワード動画
 
 専用の報酬フローではリワード広告を使います。
@@ -150,3 +152,5 @@ await AdMob.addListener(RewardAdPluginEvents.Rewarded, async () => {
   }
 });
 ```
+
+Android では `prepareRewardVideoAd()` に `immersiveMode: true` を指定すると、広告表示中にシステムバーを隠せます。オプションは広告の準備時に渡してください。ホストアプリでバーを隠しても SDK の広告用 Activity には反映されません。

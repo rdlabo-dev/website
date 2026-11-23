@@ -147,8 +147,11 @@ export function normalizeTranslationCode(block: string): string {
       } else if (code[pos] === '/') return block;
     }
   } else if (['xml', 'html'].includes(language)) {
-    // Embedded JavaScript/CSS needs its own parser; comment-like literals stay exact.
-    if (/<(?:script|style)\b/i.test(code)) return block;
+    // A style in an Android values resource contains XML items, not CSS.
+    const androidValuesXml = /^xml:(?:[\w.-]+\/)*res\/values(?:-[\w+-]+)?\/[\w.-]+\.xml$/i.test(
+      opening[2].trim(),
+    );
+    if (/<script\b/i.test(code) || (!androidValuesXml && /<style\b/i.test(code))) return block;
     // Consume complete tags first so comment delimiters in attributes stay intact.
     const tokens =
       /<!--[\s\S]*?-->|<!\[CDATA\[[\s\S]*?\]\]>|<[^>"']*(?:(?:"[^"]*"|'[^']*')[^>"']*)*>/g;

@@ -1,8 +1,8 @@
 ---
 title: "API"
-sourceRevision: "bcb5e78364e5373302f8c588f01f58ee67de5725fd8a0ac41b94b1f91520838e"
+sourceRevision: "5f74cb85b9aa62aaadfda42ab457b47ea4b26ca639d9f6798715bf267cc14f5c"
 ---
-Referenz für die von `@rdlabo/ionic-angular-photo-editor` v22.0.7 exportierten öffentlichen Einstiegspunkte. Importieren Sie Komponenten, Services und optionale Implementierungen über ihre jeweiligen sekundären Einstiegspunkte.
+Referenz für die von `@rdlabo/ionic-angular-photo-editor` v22.0.8 exportierten öffentlichen Einstiegspunkte. Importieren Sie Komponenten, Services und optionale Implementierungen über ihre jeweiligen sekundären Einstiegspunkte.
 
 ## Einstiegspunkte
 

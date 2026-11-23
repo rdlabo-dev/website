@@ -2,7 +2,7 @@
 title: "Configuration des plateformes"
 code: []
 scrollActiveLine: []
-sourceRevision: "16c407461762d3f385d87599d7fc4f12baa27b55ff5da98922b14095635ac9fe"
+sourceRevision: "0a886c42b3baeaba6577ffc9f3040c7e9a39f6e91d6b4677730c2f8f780e3d4a"
 ---
 Installez `@capacitor-community/stripe` et synchronisez les projets natifs. Capacitor 8 enregistre automatiquement le plugin : vous n’avez pas à modifier `MainActivity` ni à ajouter un appel manuel à `registerPlugin`.
 
@@ -11,7 +11,7 @@ npm install @capacitor-community/stripe
 npx cap sync
 ```
 
-Le plugin nécessite Capacitor 8 ou une version ultérieure. Sur le Web, la dépendance pair `stripe-pwa-elements` est également nécessaire. Conservez la clé secrète Stripe uniquement sur votre serveur. Consultez [Intégration serveur](/docs/server-integration).
+Ce guide concerne la version 8 du plugin avec Capacitor 8. Sur le Web, installez aussi des versions compatibles des dépendances paires `@stripe/stripe-js` et `stripe-pwa-elements`. Conservez la clé secrète Stripe uniquement sur le serveur. Consultez le guide [Intégration serveur](/docs/server-integration).
 
 | Prérequis | Minimum |
 | --- | --- |
@@ -29,15 +29,11 @@ Stripe Connect facultatif : si Google Pay sur Android doit utiliser un compte co
 
 ## Configuration iOS
 
-Ajoutez `NSCameraUsageDescription` pour permettre à PaymentSheet de scanner les cartes :
+Pour permettre à PaymentSheet de scanner les cartes, ajoutez les entrées suivantes au `dict` racine de `Info.plist`.
 
-```diff plist:ios/App/App/Info.plist
-  	<key>UIViewControllerBasedStatusBarAppearance</key>
-	  <true/>
-
-+   <key>NSCameraUsageDescription</key>
-+   <string>Need camera access for read credit card.</string>
-  </dict>
+```xml plist:ios/App/App/Info.plist
+<key>NSCameraUsageDescription</key>
+<string>Camera access lets you scan your payment card.</string>
 ```
 
 Le plugin se charge automatiquement sur iOS. Apple Pay nécessite également un Apple Merchant ID et un certificat. Suivez le guide [Apple Pay](/docs/apple-pay).
@@ -46,7 +42,7 @@ Pour PayPal, 3D Secure et les autres moyens de paiement avec redirection, enregi
 
 ## Configuration Web
 
-Installez `stripe-pwa-elements` et appelez `defineCustomElements()` une seule fois au démarrage. Servez l’application en HTTPS en développement comme en production.
+Installez `@stripe/stripe-js@^9.17.0` et `stripe-pwa-elements@^4.1.0`, puis appelez `defineCustomElements()` une seule fois au démarrage. Servez l’application en HTTPS en développement et en production.
 
 - [Démarrage rapide en JavaScript natif](/docs/vanilla-js)
 - [Démarrage rapide avec Angular](/docs/angular)

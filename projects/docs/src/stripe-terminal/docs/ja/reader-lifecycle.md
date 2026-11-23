@@ -36,7 +36,7 @@ Terminal の操作が会計を妨げないよう、リーダーのソフトウ�
 
 ## リーダーの画面を設定する
 
-画面を持つ端末では `collectPaymentMethod` より前にカート内容を表示し、完了後に消去します。Web の Internet リーダーも対応します。
+画面を備えたリーダーでは `collectPaymentMethod` より前にカート内容を表示し、完了後に消去します。Web の Internet リーダーも対応します。
 
 !::setReaderDisplay::
 !::clearReaderDisplay::

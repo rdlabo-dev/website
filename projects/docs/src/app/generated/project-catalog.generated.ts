@@ -203,7 +203,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Shared application infrastructure for Ionic Angular projects.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -273,7 +273,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Photo editing and viewing flows for Ionic Angular and Capacitor applications.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -329,7 +329,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Scroll-aware header directives for Ionic and Angular CDK viewports.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -378,7 +378,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Use Angular CDK virtual scroll with variable or dynamic item heights. Supply exact per-item sizes for stable lists, chat UIs, and reverse scrolling.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -554,7 +554,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "IANA timezone conversion and calendar helpers for Cloudflare Workers, paired with ESLint checks for implicit Date and Intl timezone usage.",
     "path": "/projects/workers-timezone",
     "pages": [
@@ -610,7 +610,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "MySQL access for Cloudflare Workers with Hyperdrive, primary/replica routing, deadlock retries, and Drizzle integration.",
     "path": "/projects/workers-mysql",
     "pages": [
@@ -673,7 +673,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Build Hono APIs on Cloudflare Workers with validation, Firebase authentication, JSON errors, queues, and testing helpers.",
     "path": "/projects/workers-hono-kit",
     "pages": [
@@ -988,7 +988,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Integrate Stripe PaymentSheet, Apple Pay, and Google Pay in Capacitor apps with @capacitor-community/stripe for iOS, Android, and web.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -1086,7 +1086,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Stripe Identity SDK bindings for Capacitor applications.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -1121,7 +1121,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Stripe Terminal SDK bindings for Capacitor applications.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -1170,7 +1170,7 @@ export const PROJECTS_EN = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.4.1",
+    "version": "8.4.2",
     "description": "Native Google AdMob ads for Capacitor applications.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -1788,7 +1788,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Ionic Angularプロジェクト向けの共有アプリケーション基盤。",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -1858,7 +1858,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Ionic Angular・Capacitorアプリ向けの写真編集・閲覧フロー。",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -1914,7 +1914,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Ionic・Angular CDK viewport向けのScroll連動Header Directive。",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -1963,7 +1963,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Angular CDK Virtual Scrollで、項目ごとに異なる高さや動的に変化する高さに対応します。各項目の正確なサイズにより、リスト、チャットUI、逆方向のスクロールを安定させます。",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -2139,7 +2139,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Cloudflare WorkersのIANAタイムゾーン変換と日付計算。ESLintと組み合わせ、Date・Intlの暗黙のタイムゾーン依存を検出します。",
     "path": "/projects/workers-timezone",
     "pages": [
@@ -2195,7 +2195,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Cloudflare WorkersのMySQL接続基盤。Hyperdrive、primary/replicaの使い分け、デッドロック発生時の処理の再試行、Drizzle連携を提供します。",
     "path": "/projects/workers-mysql",
     "pages": [
@@ -2258,7 +2258,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Cloudflare WorkersのHono API向けに、バリデーション、Firebase認証、JSONエラー、Queue、テストヘルパーを提供します。",
     "path": "/projects/workers-hono-kit",
     "pages": [
@@ -2573,7 +2573,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Capacitorアプリに@capacitor-community/stripeを導入し、iOS・Android・WebでPaymentSheet、Apple Pay、Google Payを実装するためのドキュメント。",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -2671,7 +2671,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Capacitor アプリで Stripe Identity の本人確認を表示するプラグイン。",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -2706,7 +2706,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Capacitor アプリで Stripe Terminal の対面決済を利用するプラグイン。",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -2755,7 +2755,7 @@ export const PROJECTS_JA = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.4.1",
+    "version": "8.4.2",
     "description": "Capacitor アプリで Google AdMob のネイティブ広告を表示するプラグイン。",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -3373,7 +3373,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Infrastructure applicative partagée pour les projets Ionic Angular.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -3443,7 +3443,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Parcours d’édition et d’affichage de photos pour les applications Ionic Angular et Capacitor.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -3499,7 +3499,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Directives d’en-tête sensibles au défilement pour Ionic et les viewports Angular CDK.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -3548,7 +3548,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Utilisez le défilement virtuel Angular CDK avec des hauteurs d’éléments variables ou dynamiques. Fournissez les tailles exactes de chaque élément pour des listes stables, des interfaces de chat et le défilement inversé.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -3724,7 +3724,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Conversion des fuseaux horaires IANA et utilitaires de calendrier pour Cloudflare Workers, associés à des contrôles ESLint de l’utilisation implicite du fuseau horaire dans Date et Intl.",
     "path": "/projects/workers-timezone",
     "pages": [
@@ -3780,7 +3780,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Accès à MySQL pour Cloudflare Workers avec Hyperdrive, routage primaire/réplique, nouvelles tentatives après interblocage et intégration de Drizzle.",
     "path": "/projects/workers-mysql",
     "pages": [
@@ -3843,7 +3843,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Créez des API Hono sur Cloudflare Workers avec validation, authentification Firebase, erreurs JSON, files d’attente et outils de test.",
     "path": "/projects/workers-hono-kit",
     "pages": [
@@ -4158,7 +4158,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Intégrez Stripe PaymentSheet, Apple Pay et Google Pay aux applications Capacitor avec @capacitor-community/stripe pour iOS, Android et le Web.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -4256,7 +4256,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Liaisons du SDK Stripe Identity pour les applications Capacitor.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -4291,7 +4291,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Liaisons du SDK Stripe Terminal pour les applications Capacitor.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -4340,7 +4340,7 @@ export const PROJECTS_FR = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.4.1",
+    "version": "8.4.2",
     "description": "Annonces Google AdMob natives pour les applications Capacitor.",
     "path": "/projects/capacitor-admob",
     "pages": [
@@ -4958,7 +4958,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Gemeinsame Anwendungsinfrastruktur für Ionic-Angular-Projekte.",
     "path": "/projects/ionic-angular-kit",
     "pages": [
@@ -5028,7 +5028,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Abläufe zur Fotobearbeitung und -anzeige für Ionic-Angular- und Capacitor-Anwendungen.",
     "path": "/projects/ionic-angular-photo-editor",
     "pages": [
@@ -5084,7 +5084,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Scrollabhängige Header-Direktiven für Ionic- und Angular-CDK-Viewports.",
     "path": "/projects/ionic-angular-scroll-header",
     "pages": [
@@ -5133,7 +5133,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/ionic-angular-library",
     "category": "frontend-tools",
     "icon": "app",
-    "version": "22.0.7",
+    "version": "22.0.8",
     "description": "Virtuelles Scrollen mit Angular CDK und variablen oder dynamischen Elementhöhen verwenden. Exakte Größen pro Element für stabile Listen, Chat-Oberflächen und umgekehrtes Scrollen angeben.",
     "path": "/projects/ngx-cdk-scroll-strategies",
     "pages": [
@@ -5309,7 +5309,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "IANA-Zeitzonenumrechnung und Kalenderhilfen für Cloudflare Workers, ergänzt durch ESLint-Prüfungen für implizite Zeitzonenverwendung in Date und Intl.",
     "path": "/projects/workers-timezone",
     "pages": [
@@ -5365,7 +5365,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "MySQL-Zugriff für Cloudflare Workers mit Hyperdrive, Primary-/Replica-Routing, Wiederholungsversuchen bei Deadlocks und Drizzle-Integration.",
     "path": "/projects/workers-mysql",
     "pages": [
@@ -5428,7 +5428,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/rdlabo-dev/workers-hono-kit",
     "category": "developer-tools",
     "icon": "server",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "description": "Hono-APIs auf Cloudflare Workers mit Validierung, Firebase-Authentifizierung, JSON-Fehlern, Queues und Testhilfen erstellen.",
     "path": "/projects/workers-hono-kit",
     "pages": [
@@ -5743,7 +5743,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "payments",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Stripe PaymentSheet, Apple Pay und Google Pay mit @capacitor-community/stripe in Capacitor-Apps für iOS, Android und Web integrieren.",
     "path": "/projects/capacitor-stripe",
     "pages": [
@@ -5841,7 +5841,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "identity",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Anbindung des Stripe Identity SDK für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-stripe-identity",
     "pages": [
@@ -5876,7 +5876,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/stripe",
     "category": "capacitor-plugins",
     "icon": "terminal",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Anbindung des Stripe Terminal SDK für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-stripe-terminal",
     "pages": [
@@ -5925,7 +5925,7 @@ export const PROJECTS_DE = [
     "repositoryUrl": "https://github.com/capacitor-community/admob",
     "category": "capacitor-plugins",
     "icon": "ads",
-    "version": "8.4.1",
+    "version": "8.4.2",
     "description": "Native Google-AdMob-Anzeigen für Capacitor-Anwendungen.",
     "path": "/projects/capacitor-admob",
     "pages": [

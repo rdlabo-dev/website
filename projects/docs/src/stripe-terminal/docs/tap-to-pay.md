@@ -15,7 +15,7 @@ scrollActiveLine:
 
 Tap to Pay collects contactless payments on a compatible phone or tablet without a separate card reader. Use `TerminalConnectTypes.TapToPay` after [configuration](/docs/configuration) and a working [connection token](/docs/collect-a-payment).
 
-The official demo exercises Tap to Pay, Internet, and Bluetooth in [demo/angular](https://github.com/capacitor-community/stripe/tree/main/demo/angular).
+The official demo exercises Tap to Pay, Internet, and Bluetooth in [demo/angular](https://github.com/capacitor-community/stripe/tree/v8.4.0/demo/angular).
 
 ## Platform prerequisites
 
@@ -24,6 +24,8 @@ The official demo exercises Tap to Pay, Internet, and Bluetooth in [demo/angular
 | Android  | Yes       | NFC-capable device, location permission, Stripe Tap to Pay on Android eligibility. `minSdkVersion` 26.     |
 | iOS      | Yes       | Tap to Pay on iPhone, iOS 16.4+ for the account-link check. `setTapToPayUxConfiguration` is unimplemented. |
 | Web      | No        | `discoverReaders({ type: TapToPay })` is unavailable.                                                      |
+
+The platform minimum is not a guarantee that a device can accept Tap to Pay. Check Stripe's current [iPhone requirements and Apple entitlement setup](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=ios) or [Android device eligibility](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay?platform=android) for the SDK version in use. Real Tap to Pay requires eligible physical hardware; a simulated reader does not validate NFC payments or account eligibility.
 
 Complete Stripe Dashboard Terminal setup and create a [Location](https://docs.stripe.com/terminal/fleet/locations). Pass that `locationId` into `discoverReaders`; the plugin uses it when connecting the Tap to Pay reader.
 
@@ -57,7 +59,7 @@ Android and web reject the call (`unimplemented` / `unavailable`). Guard with a 
 
 `setTapToPayUxConfiguration` is **Android only**. Call it after `initialize()` and before `connectReader()`. iOS returns unimplemented; web logs and returns.
 
-The installed Android implementation applies `colors` (`primary`, `success`, `error` as `'default'` or a hex string such as `'#FF5733'`) and `darkMode` (`SYSTEM`, `DARK`, `LIGHT`). The TypeScript `tapZone` field is declared but not applied on the current Android Terminal SDK used by v8.2.1.
+The installed Android implementation applies `colors` (`primary`, `success`, `error` as `'default'` or a hex string such as `'#FF5733'`) and `darkMode` (`SYSTEM`, `DARK`, `LIGHT`). The TypeScript `tapZone` field is declared but not applied on the current Android Terminal SDK used by this plugin.
 
 !::setTapToPayUxConfiguration::
 

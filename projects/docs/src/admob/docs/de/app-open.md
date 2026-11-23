@@ -1,6 +1,6 @@
 ---
 title: "App-Open-Anzeigen"
-sourceRevision: "f77685b462e8df80fb5471195fd6f72c237c64c8f5992fa95e6ccfec337d5060"
+sourceRevision: "f51fbbaeae898550f5341aa74b1a943b2691f175f965fad7c99a774dd439de04"
 ---
 # App-Open-Anzeigen
 
@@ -55,3 +55,5 @@ Es gibt kein Flag `isTesting`. Setzen Sie in der Entwicklung `adId` auf Googles 
 Verwenden Sie das Ereignis `Closed`, um den Anwendungsablauf fortzusetzen und mit dem Laden der nächsten Anzeige zu beginnen.
 
 Ohne `adId` an `showAppOpen()` oder `isAppOpenLoaded()` wird die zuletzt geladene Anzeige verwendet. Die Ereignisliste finden Sie unter [Anzeigenereignisse](https://docs.rdlabo.dev/projects/capacitor-admob/docs/events).
+
+App-Open-Anzeigen laufen vier Stunden nach dem Laden ab. Für eine abgelaufene Anzeige gibt `isAppOpenLoaded()` den Wert `{ value: false }` zurück. Laden Sie vor der Anzeige mit `loadAppOpen()` eine neue Anzeige.

@@ -1079,6 +1079,41 @@ export const PROJECTS_EN = [
     ]
   },
   {
+    "id": "stripe-billing",
+    "slug": "capacitor-stripe-billing",
+    "shortName": "Stripe Billing",
+    "packageName": "@capacitor-community/stripe-billing",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.4.0",
+    "description": "Stripe Billing subscriptions for Capacitor apps on iOS.",
+    "path": "/projects/capacitor-stripe-billing",
+    "pages": [
+      {
+        "title": "Getting Started",
+        "navTitle": "Getting Started",
+        "slug": "readme",
+        "section": "Quickstart",
+        "path": "/projects/capacitor-stripe-billing/docs/readme"
+      },
+      {
+        "title": "iOS subscription integration",
+        "navTitle": "iOS subscription integration",
+        "slug": "integration",
+        "section": "Guides",
+        "path": "/projects/capacitor-stripe-billing/docs/integration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Reference",
+        "path": "/projects/capacitor-stripe-billing/docs/api"
+      }
+    ]
+  },
+  {
     "id": "stripe-identity",
     "slug": "capacitor-stripe-identity",
     "shortName": "Stripe Identity",
@@ -2660,6 +2695,41 @@ export const PROJECTS_JA = [
         "slug": "api",
         "section": "リファレンス",
         "path": "/projects/capacitor-stripe/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-billing",
+    "slug": "capacitor-stripe-billing",
+    "shortName": "Stripe Billing",
+    "packageName": "@capacitor-community/stripe-billing",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.4.0",
+    "description": "Capacitor の iOS アプリに Stripe Billing のサブスクリプションを追加します。",
+    "path": "/projects/capacitor-stripe-billing",
+    "pages": [
+      {
+        "title": "はじめに",
+        "navTitle": "はじめに",
+        "slug": "readme",
+        "section": "クイックスタート",
+        "path": "/projects/capacitor-stripe-billing/docs/readme"
+      },
+      {
+        "title": "Stripe Billing で iOS のサブスクリプションを実装する",
+        "navTitle": "iOS サブスクリプションの実装",
+        "slug": "integration",
+        "section": "ガイド",
+        "path": "/projects/capacitor-stripe-billing/docs/integration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "リファレンス",
+        "path": "/projects/capacitor-stripe-billing/docs/api"
       }
     ]
   },
@@ -4249,6 +4319,41 @@ export const PROJECTS_FR = [
     ]
   },
   {
+    "id": "stripe-billing",
+    "slug": "capacitor-stripe-billing",
+    "shortName": "Stripe Billing",
+    "packageName": "@capacitor-community/stripe-billing",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.4.0",
+    "description": "Abonnements Stripe Billing pour les applications Capacitor sur iOS.",
+    "path": "/projects/capacitor-stripe-billing",
+    "pages": [
+      {
+        "title": "Prise en main",
+        "navTitle": "Premiers pas",
+        "slug": "readme",
+        "section": "Démarrage rapide",
+        "path": "/projects/capacitor-stripe-billing/docs/readme"
+      },
+      {
+        "title": "Abonnements iOS avec Stripe Billing",
+        "navTitle": "Intégrer les abonnements sur iOS",
+        "slug": "integration",
+        "section": "Guides",
+        "path": "/projects/capacitor-stripe-billing/docs/integration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Référence",
+        "path": "/projects/capacitor-stripe-billing/docs/api"
+      }
+    ]
+  },
+  {
     "id": "stripe-identity",
     "slug": "capacitor-stripe-identity",
     "shortName": "Stripe Identity",
@@ -5830,6 +5935,41 @@ export const PROJECTS_DE = [
         "slug": "api",
         "section": "Referenz",
         "path": "/projects/capacitor-stripe/docs/api"
+      }
+    ]
+  },
+  {
+    "id": "stripe-billing",
+    "slug": "capacitor-stripe-billing",
+    "shortName": "Stripe Billing",
+    "packageName": "@capacitor-community/stripe-billing",
+    "repositoryUrl": "https://github.com/capacitor-community/stripe",
+    "category": "capacitor-plugins",
+    "icon": "payments",
+    "version": "8.4.0",
+    "description": "Stripe Billing-Abonnements für Capacitor-Apps unter iOS.",
+    "path": "/projects/capacitor-stripe-billing",
+    "pages": [
+      {
+        "title": "Erste Schritte",
+        "navTitle": "Erste Schritte",
+        "slug": "readme",
+        "section": "Schnellstart",
+        "path": "/projects/capacitor-stripe-billing/docs/readme"
+      },
+      {
+        "title": "iOS-Abonnements mit Stripe Billing",
+        "navTitle": "Abonnements unter iOS integrieren",
+        "slug": "integration",
+        "section": "Anleitungen",
+        "path": "/projects/capacitor-stripe-billing/docs/integration"
+      },
+      {
+        "title": "API",
+        "navTitle": "API",
+        "slug": "api",
+        "section": "Referenz",
+        "path": "/projects/capacitor-stripe-billing/docs/api"
       }
     ]
   },

@@ -57,6 +57,37 @@ test('cf-workers-native publishes independent native guides and resolves localiz
   }
 });
 
+test('Stripe Billing links its installation guide to the localized integration and API pages', async () => {
+  const pkg = JSON.parse(
+    await readFile('node_modules/@capacitor-community/stripe-billing/package.json', 'utf8'),
+  );
+  for (const { subPath } of PUBLISHED_DOCS_LOCALES) {
+    const base = `${subPath ? `/${subPath}` : ''}/projects/capacitor-stripe-billing/docs`;
+    const [readme, guide, api] = await Promise.all(
+      ['readme', 'integration', 'api'].map(async (slug) => {
+        const html = await readFile(`dist/docs/browser${base}/${slug}/index.html`, 'utf8');
+        return new JSDOM(html, { url: `https://docs.rdlabo.dev${base}/${slug}` }).window.document;
+      }),
+    );
+    assert.ok(readme.body.textContent?.includes('npm install @capacitor-community/stripe-billing'));
+    assert.ok(readme.querySelector(`a[href="${base}/integration"]`));
+    assert.ok(
+      guide.querySelector(
+        `a[href$="/blob/v${pkg.version}/demo/server/README.md#billing-demo-private-preview-test-mode-only"]`,
+      ),
+    );
+    const reference = api.querySelector('.api-reference');
+    assert.ok(reference);
+    const index = reference.querySelector('ul');
+    assert.ok(index);
+    assert.ok(index.querySelector(`a[href="${base}/api#presentbuybutton"]`));
+    for (const link of index.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+      assert.equal(link.pathname, `${base}/api`);
+      assert.ok(api.getElementById(decodeURIComponent(link.hash.slice(1))), link.href);
+    }
+  }
+});
+
 test('the AdMob docgen API has its own reviewed modification date in each locale', async () => {
   const project = projectDefinitions.find((entry) => entry.id === 'admob');
   assert.ok(project?.docgenApiUpdatedAt);

@@ -72,6 +72,12 @@ export const PROJECT_LOADERS = {
     fr: () => import('./projects/stripe.fr.generated').then((module) => module.PROJECT),
     de: () => import('./projects/stripe.de.generated').then((module) => module.PROJECT),
   },
+  "stripe-billing": {
+    en: () => import('./projects/stripe-billing.en.generated').then((module) => module.PROJECT),
+    ja: () => import('./projects/stripe-billing.ja.generated').then((module) => module.PROJECT),
+    fr: () => import('./projects/stripe-billing.fr.generated').then((module) => module.PROJECT),
+    de: () => import('./projects/stripe-billing.de.generated').then((module) => module.PROJECT),
+  },
   "stripe-identity": {
     en: () => import('./projects/stripe-identity.en.generated').then((module) => module.PROJECT),
     ja: () => import('./projects/stripe-identity.ja.generated').then((module) => module.PROJECT),

@@ -1,5 +1,21 @@
 /** Reviewed German translations keyed by the exact English manifest text. */
 export const METADATA_DE: Readonly<Record<string, string>> = {
+  'Stripe Billing subscriptions for Capacitor apps on iOS.':
+    'Stripe Billing-Abonnements für Capacitor-Apps unter iOS.',
+  'Offer subscriptions with Stripe Billing on iOS':
+    'Abonnements mit Stripe Billing unter iOS anbieten',
+  'Connect a Capacitor 8 app to the experimental Stripe BillingSDK on iOS 15 or later. Installation requires Swift Package Manager and access to the Stripe private preview.':
+    'Binden Sie das experimentelle Stripe BillingSDK unter iOS 15 oder neuer in eine Capacitor 8-App ein. Sie benötigen Swift Package Manager und Zugang zur privaten Vorschau von Stripe.',
+  'Subscription checkout': 'Abonnement abschließen',
+  'Present a native buy button that opens Stripe Checkout in the browser.':
+    'Zeigen Sie eine native Kaufschaltfläche an, die Stripe Checkout im Browser öffnet.',
+  'Customer Portal': 'Customer Portal',
+  'Let customers manage subscriptions in the app or in their browser.':
+    'Ihre Kunden können Abonnements in der App oder im Browser verwalten.',
+  'Active entitlements': 'Aktive Zugriffsrechte',
+  'Use entitlements to update the app interface and enforce feature access on your server.':
+    'Passen Sie die Oberfläche an die Zugriffsrechte an und prüfen Sie den Zugriff auf Funktionen auf Ihrem Server.',
+  'iOS subscription integration': 'Abonnements unter iOS integrieren',
   'ionic-list-structure': 'ionic-list-structure',
   'Advanced APIs': 'Erweiterte APIs',
   'Capture and platform limits': 'Aufnahme- und Plattformgrenzen',

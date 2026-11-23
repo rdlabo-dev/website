@@ -285,6 +285,7 @@ function packageScopedDirectory(project: {
 
   if (repositoryUrl === 'https://github.com/capacitor-community/stripe') {
     if (sourceDirectory === 'stripe') return 'packages/payment';
+    if (sourceDirectory === 'stripe-billing') return 'packages/billing';
     if (sourceDirectory === 'stripe-identity') return 'packages/identity';
     if (sourceDirectory === 'stripe-terminal') return 'packages/terminal';
     return undefined;

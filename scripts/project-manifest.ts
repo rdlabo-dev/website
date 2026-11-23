@@ -2031,6 +2031,74 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     ],
   },
   {
+    id: 'stripe-billing',
+    slug: 'capacitor-stripe-billing',
+    sourceDirectory: 'stripe-billing',
+    name: 'Capacitor Community Stripe Billing',
+    shortName: 'Stripe Billing',
+    packageName: '@capacitor-community/stripe-billing',
+    repositoryUrl: 'https://github.com/capacitor-community/stripe',
+    category: 'capacitor-plugins',
+    icon: 'payments',
+    sourceHeadingAliases: ['ja'],
+    docgenApiUpdatedAt: { en: '2026-11-23', ja: '2026-11-23', fr: '2026-11-23', de: '2026-11-23' },
+    description: text(
+      'Stripe Billing subscriptions for Capacitor apps on iOS.',
+      'Capacitor の iOS アプリに Stripe Billing のサブスクリプションを追加します。',
+    ),
+    headline: text(
+      'Offer subscriptions with Stripe Billing on iOS',
+      'iOS で Stripe Billing のサブスクリプションを提供する',
+    ),
+    overview: text(
+      'Connect a Capacitor 8 app to the experimental Stripe BillingSDK on iOS 15 or later. Installation requires Swift Package Manager and access to the Stripe private preview.',
+      'iOS 15 以降の Capacitor 8 アプリに、試験提供中の Stripe BillingSDK を組み込みます。利用には Swift Package Manager と Stripe のプライベートプレビューへのアクセスが必要です。',
+    ),
+    featuresHeading: text('What you can do', 'できること'),
+    features: [
+      {
+        icon: 'card',
+        title: text('Subscription checkout', 'サブスクリプションの購入'),
+        description: text(
+          'Present a native buy button that opens Stripe Checkout in the browser.',
+          'ネイティブの購入ボタンを表示し、ブラウザーで Stripe Checkout を開きます。',
+        ),
+      },
+      {
+        icon: 'identity',
+        title: text('Customer Portal', 'Customer Portal'),
+        description: text(
+          'Let customers manage subscriptions in the app or in their browser.',
+          '利用者はアプリ内またはブラウザーでサブスクリプションを管理できます。',
+        ),
+      },
+      {
+        icon: 'events',
+        title: text('Active entitlements', '有効な利用権限'),
+        description: text(
+          'Use entitlements to update the app interface and enforce feature access on your server.',
+          '利用権限に応じてアプリの表示を更新し、機能へのアクセスをサーバー側で制御します。',
+        ),
+      },
+    ],
+    pages: [
+      page('Getting Started', 'はじめに', 'readme', 'readme.md', 'Quickstart', 'クイックスタート', {
+        updatedAt: { en: '2026-11-23', ja: '2026-11-23', fr: '2026-11-23', de: '2026-11-23' },
+      }),
+      page(
+        'iOS subscription integration',
+        'iOS サブスクリプションの実装',
+        'integration',
+        'integration.md',
+        'Guides',
+        'ガイド',
+        {
+          updatedAt: { en: '2026-11-23', ja: '2026-11-23', fr: '2026-11-23', de: '2026-11-23' },
+        },
+      ),
+    ],
+  },
+  {
     id: 'stripe-identity',
     slug: 'capacitor-stripe-identity',
     sourceDirectory: 'stripe-identity',

@@ -20,6 +20,7 @@ Both apps deploy to separate Cloudflare Workers Static Assets services on their 
 | WebView Native UI Engine | `webview-native-ui/engine` |
 | cf-workers-native | `projects/docs/src/cf-workers-native/docs` |
 | Capacitor Community Stripe | `projects/docs/src/stripe/docs` |
+| Capacitor Community Stripe Billing | `projects/docs/src/stripe-billing/docs` |
 | Capacitor Community Stripe Identity | `projects/docs/src/stripe-identity/docs` |
 | Capacitor Community Stripe Terminal | `projects/docs/src/stripe-terminal/docs` |
 | Capacitor Community AdMob | `projects/docs/src/admob/docs` |

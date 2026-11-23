@@ -84,6 +84,7 @@
     "@capacitor-community/admob": "8.4.2",
     "@capacitor-community/facebook-login": "8.1.0",
     "@capacitor-community/stripe": "8.4.0",
+    "@capacitor-community/stripe-billing": "8.4.0",
     "@capacitor-community/stripe-identity": "8.4.0",
     "@capacitor/docgen": "0.3.1",
     "@cloudflare/workers-types": "^5.20261121.1",
